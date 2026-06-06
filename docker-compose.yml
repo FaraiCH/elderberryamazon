@@ -12,7 +12,7 @@ services:
             - db
         environment:
             - DB_HOST=db
-            - DB_DATABASE=btindustrial_dev
+            - DB_DATABASE=amazon_dev
             - DB_USERNAME=farai
             - DB_PASSWORD=@Paradice1
 
@@ -21,7 +21,7 @@ services:
         container_name: ubuntu-php-db
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: btindustrial_dev
+            MYSQL_DATABASE: amazon_dev
             MYSQL_USER: farai
             MYSQL_PASSWORD: '@Paradice1'
         volumes:
