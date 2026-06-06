@@ -1,0 +1,14 @@
+title = "New List"
+url = "/quote/list"
+layout = "default"
+is_hidden = 0
+meta_title = "Quote List"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[BTQuoteList]
+==
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-list-ul"></i> List</h1>
+{% component 'BTQuoteList' %}

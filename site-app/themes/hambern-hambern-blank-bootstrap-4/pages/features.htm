@@ -1,0 +1,173 @@
+title = "Home"
+url = "/"
+layout = "default"
+is_hidden = 0
+meta_title = "Dashboard"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+
+[Homedisplay]
+[StockGraphs]
+[RunningScheduleGraphs]
+==
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/">Dashboard</a>
+  </li>
+  <li class="breadcrumb-item active">Welcome <b>{{ user.name }}</b></li>
+</ol>
+<br>
+<h1 style="text-align: center">Dashboard is Being Reviewed Because of Performance Impact</h1>
+{#
+<div >{% component 'Homedisplay' %}</div>
+<br>
+
+{% component 'StockGraphs' %}
+<br>
+
+  <div class="card">
+    <div class="card-header" style="    display: flex; align-items: center; justify-content: space-between;">
+      <h3><i class="fa fa-server"></i>Floor Produced Pipes</h3>
+      <a class="btn btn-info " href="/report/download/pipes/today.pdf"><i class="fa fa-cog"></i> Download For Report</a>
+    </div>
+
+
+    {% set floorpipes = FloorGraph.producedPipes() %}
+    <div class="card-body">
+      <table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
+        <thead>
+          <tr>
+            <th>Quote</th>
+            <th>Client</th>
+            <th>Invoice</th>
+            <th>Pipe Description</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>Unit Price</th>
+            <th>Target</th>
+            <th>Units</th>
+            <th>Extras</th>
+            <th>Delivered</th>
+                <th>On Floor</th>
+                <th>On Floor Price</th>
+
+                <th>Scrap</th>
+                <th>Material Used</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% set totalscrap = 0 %}
+          {% set totalmaterial = 0 %}
+          {% set totalunits = 0 %}
+          {% set totaldelivered = 0 %}
+          {% set totalextras = 0 %}
+          {% set totalfloor = 0 %}
+          {% set totalfloorprice = 0 %}
+              {% for item in floorpipes if item.id > 3 %}
+                {% if (((item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) > 0) or item.qpush.status.id == 2  ) %}
+                {% if item.start_date is not empty %}
+              <tr>
+
+                    <td>{{item.qpush.quote.id}}</td>
+                    <td>{{item.qpush.quote.company_name}}</td>
+                    <td>
+                      {% if item.qpush.quote.invoice is not empty %}
+                      {{item.qpush.quote.invoice.name}}
+                      {% endif %}
+                    </td>
+                    <td ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{item.quoteitems.description}}</a></td>
+                    <td>{{item.qpush.status.name}}</td>
+                    <td>{{item.start_date}}</td>
+                    <td nowrap="nowrap" align="right">R {{item.quoteitems.unitprice|number_format(2, '.', ',')}}</td>
+                    <td align="right">{{item.quoteitems.units}}</td>
+
+                    <td align="right">{{item.schedules().sum('total_units_passed_qc')}}</td>
+                    <td align="right">
+                      {% if item.schedules().sum('total_units_passed_qc') > 0 %}
+                        {{item.schedules().sum('total_units_passed_qc')-item.quoteitems.units}}
+                      {% else %}
+                        0
+                      {% endif %}
+                    </td>
+
+                    <td align="right">{{item.delivered().sum('units')}}</td>
+
+
+                    <td align="right">
+                      {% if item.schedules().sum('total_units_passed_qc') > 0 %}
+                        {{item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')}}
+                      {% else %}
+                        0
+                      {% endif %}
+                    </td>
+
+                    <td align="right" nowrap="nowrap" >R {{((item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice)|number_format(2, '.', ',')}}</td>
+
+
+                    <td align="right" nowrap="nowrap" >{{item.schedules().sum('weight_scrap_kg')}} kg</td>
+                    <td align="right" nowrap="nowrap" >
+                    {% set total_auto_used = 0 %}
+                  {% for sc in item.schedules %}
+                    {% for rl in sc.usedmaterials %}
+                      {% set total_auto_used = total_auto_used + rl.kg %}
+                    {% endfor %}
+                  {% endfor %}
+                  {{total_auto_used}} kg
+                </td>
+
+                    {% set totalscrap = totalscrap + item.schedules().sum('weight_scrap_kg') %}
+                {% set totalunits = totalunits + item.schedules().sum('total_units_passed_qc') %}
+                {% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+
+                {% if item.schedules().sum('total_units_passed_qc') > 0 %}
+                {% set totalextras  = totalextras + (item.schedules().sum('total_units_passed_qc')-item.quoteitems.units) %}
+                    {% endif %}
+
+                {% set totalfloor = totalfloor + (item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) %}
+
+                {% set totalfloorprice = totalfloorprice + ((item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice) %}
+
+                {% set totalmaterial = totalmaterial + total_auto_used %}
+
+
+                     </tr>
+                {% endif %}
+                {% endif %}
+              {% endfor %}
+            </tbody>
+        <tfoot>
+          <tr>
+            <td align="right" colspan="8"><b>TOTAL</b></td>
+            <td align="right"><b>{{totalunits}}</b></td>
+            <td align="right"><b>{{totalextras}}</b></td>
+            <td align="right"><b>{{totaldelivered}}</b></td>
+            <td align="right"><b>{{totalfloor}}</b></td>
+            <td align="right"><b>R {{totalfloorprice|number_format(2, '.', ',')}}</b></td>
+
+            <td align="right"><b>{{totalscrap|number_format(1, '.', ',')}} kg</b></td>
+            <td align="right"><b>{{totalmaterial|number_format(1, '.', ',')}} kg</b></td>
+
+
+             </tr>
+
+        </tfoot>
+
+      </table>
+    </div>
+    <div class="card-footer">
+       <a class="nav-link" href="{{'production/floor'|page}}">View All Production Pipes</a>
+    </div>
+  </div>
+<br>
+
+
+
+
+<!-- <h2>Weekly Targets</h2> -->
+{% component 'RunningScheduleGraphs' %}
+
+#}

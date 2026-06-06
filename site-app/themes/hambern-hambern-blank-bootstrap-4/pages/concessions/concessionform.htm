@@ -1,0 +1,39 @@
+title = "Dashboard"
+url = "/concessions/form/:id/:key_pass"
+layout = "concession_theme"
+meta_title = "Non-SABS Concession Form"
+is_hidden = 0
+
+[CmConcessionForm]
+id = "{{ :id }}"
+key_pass = "{{ :key_pass }}"
+==
+{% put styles %}
+  <style type="text/css">
+
+      .container{
+          max-width: 100%
+      }
+
+      h3{
+        text-align: center;
+        line-height: 30px;
+      }
+      section.page-title {
+
+        padding: 0px !important;
+    }
+    section.content {
+    padding-top: 2px;
+   }
+   
+
+
+</style>
+
+
+{% endput %}
+
+{% component 'CmConcessionForm' %}
+
+

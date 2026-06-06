@@ -1,0 +1,94 @@
+body .content-wrapper{
+  background: url(/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) center center/ cover no-repeat fixed;
+}
+.input-group-text, .form-control{
+    font-size: 0.8rem;
+}
+
+.totalr{
+	display: flex; justify-content: space-between; align-items: center;
+}
+
+.iform-req{
+  position: relative;
+}
+
+.iform-req::after{
+  content: " *";
+  color: red;
+  text-align: right;
+  display: inline-block;
+  font-size: 12px;
+  float: right;
+  padding-top: 2px;
+  vertical-align: baseline;
+}
+
+.container-fluid .content img{
+max-width: 100%
+}
+h2{
+      font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+
+}
+ul.post-list{
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.post-list li {
+    list-style: none;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+
+
+h3{
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+h4{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.box{
+  height: 35px;
+  color: #fff;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.box0{
+   background: #ff0202;
+}
+
+.box1{
+   background: #ff8402;
+}
+
+.box2{
+   background: #02fdff;
+}
+
+.box3{
+   background: #00a224;
+}
+
+.boxselected,.boxoveryes:hover{
+  background: #dee2e6;
+  -webkit-box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+      cursor: pointer
+}
+.boxoveryes:hover:after{
+
+  }
+
+  .boxselected{
+    color: #00a224;
+   }

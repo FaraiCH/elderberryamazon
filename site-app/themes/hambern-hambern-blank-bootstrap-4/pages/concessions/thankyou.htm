@@ -1,0 +1,35 @@
+title = "Dashboard"
+url = "/concessions/form/:id/:key_pass/thankyou"
+layout = "concession_theme"
+meta_title = "Concession Form Accepted"
+is_hidden = 0
+
+[CmConcessionForm]
+id = "{{ :id }}"
+key_pass = "{{ :key_pass }}"
+==
+{% put styles %}
+  <style type="text/css">
+
+      .container{
+          max-width: 100%
+      }
+
+      h3{
+        text-align: center;
+        line-height: 30px;
+      }
+      section.page-title {
+
+        padding: 0px !important;
+    }
+
+
+</style>
+
+
+{% endput %}
+
+<div class="container" style="text-align: center ">
+    <h5 class="card-text mb-2">Your agreement to the concession is appreciated. Thank you for your understanding and cooperation.</h5>
+</div>

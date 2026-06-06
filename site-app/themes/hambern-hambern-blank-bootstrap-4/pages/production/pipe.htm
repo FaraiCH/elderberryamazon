@@ -1,0 +1,15 @@
+title = "Production List"
+url = "/production/:item/:pipe"
+layout = "default"
+is_hidden = 0
+meta_title = "Pipe Item"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[ProductionPushPipe]
+==
+
+
+
+{% component 'ProductionPushPipe' %}

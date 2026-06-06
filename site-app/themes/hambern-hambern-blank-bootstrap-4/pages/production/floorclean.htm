@@ -1,0 +1,39 @@
+title = "Home"
+url = "/production/floorclean"
+layout = "tv"
+is_hidden = 0
+meta_title = "Production Report"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+
+[Homedisplay]
+[StockGraphs]
+[FloorGraph]
+[RunningScheduleGraphs]
+
+
+==
+{% put styles %}
+    <style>
+        .tvhide .btn{
+          display: none;
+        }
+        body{
+        	font-size: 13px
+        }
+    </style>
+{% endput %}
+<div style="padding: 20px">
+
+
+
+{% set floorpipes = FloorGraph.producedPipes() %}
+	<div class="card_">
+		<div class="card-header" style="    display: flex; align-items: center; justify-content: space-between;">
+			<h3>Production Report</h3>
+		</div>
+	</div>
+	{% component 'FloorGraph' %}
+</div>

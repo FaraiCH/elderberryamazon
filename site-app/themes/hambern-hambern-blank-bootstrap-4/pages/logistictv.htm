@@ -1,0 +1,34 @@
+title = "Dashboard"
+url = "/logistictv"
+layout = "question_theme"
+meta_title = "Logistic Schedule"
+is_hidden = 0
+
+[CmLogisticsSchedule]
+==
+{% put styles %}
+  <style type="text/css">
+  
+      .container{
+          max-width: 100%
+      }
+
+      h3{
+        text-align: center;
+        line-height: 30px;
+      }
+      section.page-title {
+       
+        padding: 0px !important;
+    }
+    section.content {
+    padding-top: 8px;
+}
+
+
+</style>
+
+
+{% endput %}
+
+{% component 'CmLogisticsSchedule' %}

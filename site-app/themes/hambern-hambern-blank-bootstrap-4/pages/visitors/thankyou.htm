@@ -1,0 +1,36 @@
+title = "Dashboard"
+url = "/visitors/induction/:id/:key_pass/thankyou"
+layout = "question_theme"
+meta_title = "Thank You"
+is_hidden = 0
+
+[CmVisitorInvitation]
+id = "{{ :id }}"
+key_pass = "{{ :key_pass }}"
+==
+{% put styles %}
+  <style type="text/css">
+
+      .container{
+          max-width: 100%
+      }
+
+      h3{
+        text-align: center;
+        line-height: 30px;
+      }
+      section.page-title {
+
+        padding: 0px !important;
+    }
+
+
+</style>
+
+
+{% endput %}
+
+<div class="container" style="text-align: center ">
+    <img width="20%" src="https://bailaerp.bt-industrial.co.za/storage/app/media/Icons/smile.jpg" alt="">
+    <h5 class="card-text mb-2">We at BT Industrial Group are looking forward to seeing you!</h5>
+</div>

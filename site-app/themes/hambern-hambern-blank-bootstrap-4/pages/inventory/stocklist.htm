@@ -1,0 +1,18 @@
+title = "In-Stock List"
+url = "/inventory/stocklist"
+layout = "default"
+is_hidden = 0
+meta_title = "In-Stock List"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[BTStockList]
+[StockGraphs]
+==
+
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-list"></i> Stock List</h1>
+{% component 'StockGraphs' %}
+{% component 'BTStockList' %}

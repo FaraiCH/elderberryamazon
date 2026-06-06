@@ -1,0 +1,16 @@
+title = "BT Account"
+url = "/quote/btaccount"
+layout = "default"
+is_hidden = 0
+meta_title = "BT Account"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[FloorGraph]
+[CmBtAccount]
+==
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-list-ul"></i> BT Account and Pipes On the Froor</h1>
+
+{% component 'CmBtAccount' %}

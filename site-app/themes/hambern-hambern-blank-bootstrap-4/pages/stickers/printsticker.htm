@@ -1,0 +1,37 @@
+url = "/printstickers/:printid?/:pipestickeid?"
+layout = "tv"
+title = "pipe_stickers"
+is_hidden = 0
+meta_title = "Pipe Stickers"
+
+[CmpPrintpipesticker]
+==
+<style>
+    html,body{
+        padding: 0px;
+        margin: 0px;
+    }
+    .printcard{
+       width: 1200px; padding: 0px; margin: 0px; overflow: hidden;
+    }
+
+    .printcardimg{
+        float: left; width: 400px; ;
+    }
+
+    .printcardtext{
+        width: 700px;  padding-top: 4px ;
+       font-size: 40px;
+    }
+
+
+    @media print {
+  .pagebreakprint {page-break-after: always; }
+
+
+}
+    </style>
+
+<script src="/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js"></script>
+
+{% component 'CmpPrintpipesticker' %}

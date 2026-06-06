@@ -1,0 +1,94 @@
+title = "Sign In | Account"
+url = "/account/signin"
+layout = "clean"
+meta_title = "Sign In"
+is_hidden = 0
+child_of = "home"
+hide_crumb = 0
+crumb_title = "Sign In"
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[account]
+redirect = "/"
+paramCode = "code"
+forceSecure = 0
+==
+{% put styles %}
+    <style>
+        #page-header{
+          padding: 40px 0px !important;
+        }
+        .form-control{
+            width: 100%;
+            border-radius: 4px !important;
+        }
+        .sharebtns{
+            display: none;
+        }
+    </style>
+{% endput %}
+
+
+
+    {% if user %}
+        {% if not user.is_activated %}
+            <div class="alert alert-info">
+                <h3>Your email address has not yet been verified.</h3>
+                <p>You should verify your account otherwise it may be deleted. Please check your email to verify. <a href="javascript:;" data-request="onSendActivationEmail">Send the verification email again</a>.
+                </p>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% flash %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endflash %}
+
+	<div class="container h-100">
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="col-sm-6 col-sm-offset-4">
+				<form data-request="onSignin">
+					<div class="card">
+						<div class="card-header">
+							 <h5 class="card-title m-0 text-muted" >BT-Industrial: <b>Login</b></h5>
+						</div>
+						<div class="card-body">
+
+							<div class="input-group mb-3">
+							  <div class="input-group-prepend">
+								<span class="input-group-text iform-req label-small" for="userSigninLogin" id="basic-at" >{{ loginAttributeLabel }}</span>
+							  </div>
+							  <input id="userSigninLogin" name="login" required="required" type="text" class="form-control mt-0" placeholder="Enter your {{ loginAttributeLabel|lower }}">
+							</div>
+
+							<div class="input-group mb-3">
+							  <div class="input-group-prepend">
+								<span class="input-group-text iform-req label-small" for="userSigninPassword" id="basic-at" >Password</span>
+							  </div>
+							  <input id="userSigninPassword" name="password" required="required" type="password" class="form-control mt-0" placeholder="Enter your password">
+							</div>
+
+						   
+							<div class="form-group p-0 m-0">                           
+								<div class="checkbox">
+									<label class="m-0 p-0">
+										<input type="checkbox" name="remember"> Remember Password
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary btn-block mb-2">Sign in</button>
+							<a href="/user/password-reset">Resert password</a>
+						</div>	
+						
+						
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>

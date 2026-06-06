@@ -1,0 +1,56 @@
+url = "/survey"
+layout = "clean"
+title = "Survey"
+is_hidden = 0
+meta_title = "Customer Survey"
+meta_description = "Survey to be completed by BT customers"
+
+[contactForm]
+==
+{% put styles %}
+	<style type="text/css">
+		@media screen and (min-width: 992px) {
+		  div.contactForm .form-group{
+		  	clear: both;
+		  	margin-top: 20px;
+
+		  }
+
+		  div.contactForm .control-label{
+		  	float: left !important;
+		  	width: 50%;
+
+		  }
+
+		  div.contactForm .form-control{
+		  	float: left !important;
+		  	width: 50%;
+		  	margin-bottom: 15px;
+		  }
+
+		}
+	</style>
+{% endput %}
+
+<div class="container h-100" >
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="col-sm-12" style="margin-top: 40px; margin-bottom: 40px;">
+					<div class="card">
+						<div class="card-header">
+							 <h5 class="card-title m-0 text-muted" >BT-Industrial: <b>Survey</b></h5>
+						</div>
+						<div class="card-body contactForm">
+							
+							{% component 'contactForm' %}
+						</div>
+						<!-- <div class="card-footer">
+							<button type="submit" class="btn btn-primary btn-block mb-2">Sign in</button>
+							
+						</div> -->
+						
+					</div>
+			</div>
+
+		</div>
+	</div>
+	<br><br><br>

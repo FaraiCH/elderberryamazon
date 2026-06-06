@@ -1,0 +1,17 @@
+title = "Calendar"
+url = "/notify/calendar/:item"
+layout = "default"
+is_hidden = 0
+meta_title = "Calendar"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[CmCalendar]
+==
+
+
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-calendar"></i> Plant Activities</h1>
+{% component 'CmCalendar' %}

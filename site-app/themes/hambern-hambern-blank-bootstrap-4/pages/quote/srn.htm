@@ -1,0 +1,22 @@
+title = "SRN"
+url = "/quote/srn"
+layout = "default"
+is_hidden = 0
+meta_title = "SRN List"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[CmSrn]
+==
+
+
+<div class="card">
+		<div class="card-header" style="    display: flex; align-items: center; justify-content: space-between;">
+			<h3><i class="fa fa-server"></i>SRN/Delivery Note</h3>
+			<a class="btn btn-info " href="/report/download/srn/today.pdf"><i class="fa fa-cog"></i> Download For Report</a>
+		</div>
+		<div class="card-body">
+		{% component 'CmSrn' %}
+		</div>
+</div>

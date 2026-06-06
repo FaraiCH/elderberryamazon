@@ -1,0 +1,60 @@
+title = "qrtest"
+url = "/qrtest"
+layout = "tv"
+meta_title = "Dashboard"
+is_hidden = 0
+
+==
+<style>
+    @media print {
+  .pagebreak {page-break-after: always;}
+}
+    </style>
+
+<script src="/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js"></script>
+
+{% for i in 1..5 %}
+
+    <div style="
+
+        border: 1px solid #ccc; width: 305px; height: 150px; padding: 0px; margin: 0px;
+
+            " >
+        <div style=" float: left; width: 150px; height: 150px; background: #ccc; ">
+
+            <div id="element_{{i}}"></div>
+
+        </div>
+         <div style="float: left; width: 150px; height: 80x; padding-top: 4px ">
+           <table border="0" cellpadding="4px">
+                <tr><td width="50px">Pipe:</td><td>PN16 40mm 150m </td></tr>
+                <tr><td>Date:</td><td>2021-01-1</td></tr>
+                <tr><td>Code:</td><td>2193-1940-2</td></tr>
+                <tr><td>Run:</td><td>{{i}} or 200</td></tr>
+                
+                <tr><td>Bin area:</td><td>_______</td></tr>
+           </table> 
+         </div>
+
+    </div>
+
+
+
+    <script>
+        var barcode_{{i}} = new ej.barcodegenerator.QRCodeGenerator
+        (
+            {
+                width: '150px',
+                height: '150px',
+                displayText: { visibility: false },
+                mode: 'SVG',
+                name: "main",
+                value: 'https://bailaerp.bt-industrial.co.za/getpipe?id={{ i }}'
+            }
+        );
+        barcode_{{i}}.appendTo('#element_{{i}}');
+    </script>
+
+     <div class="pagebreak"></div>
+
+{% endfor %}

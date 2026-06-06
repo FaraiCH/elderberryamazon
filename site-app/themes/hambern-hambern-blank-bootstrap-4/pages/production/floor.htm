@@ -1,0 +1,50 @@
+title = "Home"
+url = "/production/floor"
+layout = "default"
+is_hidden = 0
+meta_title = "Dashboard"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+
+[Homedisplay]
+[StockGraphs]
+[FloorGraph]
+[RunningScheduleGraphs]
+==
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/">Production</a>
+  </li>
+  <li class="breadcrumb-item active">Production Floor</b></li>
+</ol>
+
+{% set floorpipes = FloorGraph.producedPipes() %}
+
+
+
+	<div class="card_">
+		<div class="card-header" style="    display: flex; align-items: center; justify-content: space-between;">
+			<h3>Produced Pipes</h3>
+			
+		</div>
+		<div class=" alert-info" style="padding: 10px;">
+			<b>NOTE:</b>
+			<BR/>Weight Processed + Scrap = Material Used
+			<br>All material taken out of cage and used in production = Material Used Auto
+		</div>
+
+
+		
+		
+		{% component 'FloorGraph' %}
+
+		
+
+
+<!-- <h2>Weekly Targets</h2> -->
+{# component 'RunningScheduleGraphs' #}
+</div>
+

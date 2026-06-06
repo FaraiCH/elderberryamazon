@@ -1,0 +1,24 @@
+title = "New Order"
+url = "/inventory/neworder"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+
+==
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-edit"></i> New Order</h1>
+<p class="alert alert-info">Function to come</p>
+<p>Create a record for any raw materials ordered but have not yet arrived</p>
+<ul>
+<li>Supplier details</li>
+<li>Quantity ordered</li>
+<li>Type – virgin/regrind/wide spec</li>
+<li>PE 100/80/63</li>
+<li>Generate internal batch number – this number will be used to identify the batch when it arrives in the stockroom</li>
+<li>Expected date of arrival of stock</li>
+</ul>

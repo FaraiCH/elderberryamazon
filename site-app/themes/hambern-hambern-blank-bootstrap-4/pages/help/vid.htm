@@ -1,0 +1,142 @@
+url = "/help/videos/:slug?"
+layout = "tv"
+title = "videos"
+description = "videos"
+is_hidden = 0
+meta_title = "videos Help/Tips"
+meta_description = "videos Help/Tips"
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "help/videos"
+
+[blogPosts eventblogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "videos"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "help/videos"
+postPage = "help/vid"
+
+[Gallery]
+idGallery = 0
+markup = "plugin"
+slug = "{{ :slug }}"
+==
+<?php
+function onEnd()
+{
+    if(null !== $this->param('slug')){
+        $this['blogslug'] = $this->param('slug');
+        //$this->page->meta_title = $this->post->title." | ".$this->page->meta_title;
+        $this->page->meta_description = $this->post->excerpt;
+    }
+}
+?>
+==
+
+<div style="width: 800px; margin: 40px auto; ">
+
+    <img src="/themes/hambern-hambern-blank-bootstrap-4/assets/images/demo/logo.png" style="margin: 20px auto; display: block; width: 100px">
+    <h1 class="display-4 wow animated zoomInDown m-t-3" style="padding-bottom: 20px; text-align: center"><a href="/help/videos"><i class="fa fa-info"></i> Training Videos and Procedures</a></h1>
+    {% if blogslug %}
+
+    {% set post = blogPost.post %}
+    <h2>{{ post.title }}</h2>
+    {% if post.featured_images.count %}
+        <div class="featured-images text-center">
+            {% for image in post.featured_images %}
+                <p>
+                    <img
+                        data-src="{{ image.filename }}"
+                        src="{{ image.path }}"
+                        alt="{{ image.description }}"
+                        style="max-width: 100%" />
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="content">{{ post.content_html|raw }}</div>
+
+
+
+    <hr>
+    <div class="galley-h">
+    {% if post.gallery.count != 0 %} 
+    	{% for gallery in post.gallery %}
+    		<div class="wrapper-gallery">
+    			<h3>Gallery: {{gallery.name}}</h3>
+    				<div class="gallery-itemscontent">
+    					<div class="row pretty">
+    						{% for image in gallery.images %}
+    						<div class="col-sm-4" >
+    						    
+    						    <div class="panel panel-default wow zoomIn" data-wow-duration="400ms" data-wow-delay="400ms">
+                                  <div class="panel-heading">{{image.title}}</div>
+                                  
+                                  <a class="" rel='prettyPhoto[pp_gal]' href="{{ image.path }}"><img title="{{image.title}}" alt="{{image.description}}" src="{{ image.path }}" class="img-responsive" alt="">
+                                  <div style=" border-top-left-radius: 0px;
+    border-top-right-radius: 0px;" class="panel-footer btn btn-primary btn-block" >View <i class="fa fa-eye"></i></div></a>
+                                </div>
+    						
+    							
+    						</div>
+    						{% endfor %}
+    					</div>
+    				</div>
+    			</div>
+    	{% endfor %}
+    {% endif %}
+
+
+    </div>
+    {% else %}
+
+    {% set posts = eventblogPosts.posts %}
+
+    <ul class="post-list">
+        {% for post in posts %}
+            <li>
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+
+                
+                <p class="excerpt" style="font-size: 16px">{{ post.summary|raw }}</p>
+
+                <p style="font-size: 16px"><a href="{{ post.url }}">View Video <i class="fa fa-caret-right"></i></a></p>
+
+            </li>
+        {% else %}
+            <li class="no-data">{{ noPostsMessage }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if posts.lastPage > 1 %}
+        <ul class="pagination">
+            {% if posts.currentPage > 1 %}
+                <li><a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}">&larr; Prev</a></li>
+            {% endif %}
+
+            {% for page in 1..posts.lastPage %}
+                <li class="{{ posts.currentPage == page ? 'active' : null }}">
+                    <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+
+            {% if posts.lastPage > posts.currentPage %}
+                <li><a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}">Next &rarr;</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    {% endif %}
+</div>

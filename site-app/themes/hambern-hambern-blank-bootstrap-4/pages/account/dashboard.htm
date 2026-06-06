@@ -1,0 +1,125 @@
+title = "Dashboard | Account"
+url = "/account/dashboard"
+layout = "userpage"
+meta_title = "Dashboard"
+is_hidden = 0
+child_of = "account/account"
+hide_crumb = 0
+crumb_title = "Dashboard"
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[session]
+security = "user"
+redirect = "account/signin"
+
+[AddNewBusiness]
+[AJBasket]
+
+==
+
+{% if user.firstbundle == 1 %}
+    {% put scripts %}
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Add Your Listing</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                    
+                     <div class="modal-body text-center">
+                        <div >
+                            <h3 style="font-size: 1.125rem; color: #212121">Free Listing!</h3>
+                            <ul class="list-unstyled ul-tick ul-tick-in" > 
+                                <li>Profile Image</li>
+                                <li>Company Full Page Listing</li>
+                                <li>Service Full Page Advert</li>
+                                <li>Contact Details</li>
+                                <li>Area Of Service</li>
+                                <li>Facebook Link</li>
+                            </ul>
+                        </div>
+
+                         <a href="{{'account-business/new_business'|page}}" class="btn btn-lg btn-primary mt-3 btn-block" ><i class="fa fa-plus"></i> CLAIM YOUR FREE LISTING!</a>
+
+                      </div>         
+                </div>
+              </div>
+            </div>
+
+
+            <script type="text/javascript">
+                $(window).on('load',function(){
+                    $('.bd-example-modal-lg').modal('show');
+                });
+            </script>
+        {% endput %}
+{% endif %}
+<section>
+    <div class="row">
+        <div class="col-sm-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                     <h5 class="card-title m-0" ><i class="fa fa-cubes"></i> Listings</h5>
+                </div>
+                
+                <div class="card-body">
+                     <h5 class="card-title">How it works</h5>
+                     <p class="card-text m-0">Manage your listing by editing or adding new listing. Under a listing/Company you can add services you provide and an area of the service.</p>                    
+                </div>
+                <div class="card-footer p-1">
+                    <div class="">
+                        {% set size =  AddNewBusiness.businesses | length %}
+                        <a href="{{'account-business/acc_business_list'|page}}" class="btn btn-md btn-info"><i class="fa fa-list-ul"></i> Your Listings <span class="badge badge-secondary">{{size}}</span></a>
+                        <a href="{{'account-business/new_business'|page}}" class="btn btn-md btn-primary"><i class="fa fa-plus"></i> Add New Listing </a>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div class="col-sm-6 mb-4">
+            <div class="card dash-bg-shop">
+                <div class="card-header border-0 text-white">
+                     <h5 class="card-title m-0 border-0 text-white " ><i class="fa fa-shopping-bag"></i> Shop</h5>
+                     
+                </div>
+                <div class="card-body text-white bg-trans">
+                      <div style="float: right;" class="mt-3 ml-4"> {% component 'AJBasket' %}</div>
+                     <h5 class="card-title">Tip</h5>
+                     <p class="card-text m-0">Save up by buying bundles to upgrade listings, services and branches... <a href="{{'account-shop/shop' | page()}}" >Learn more</a></p>
+                       
+                </div>
+                <div class="card-footer p-1 border-0">
+                    <div class="">
+                        <a href="{{'account-shop/bundles' | page()}}" class="btn btn-md btn-primary"><i class="fa fa-cart-plus"></i> Buy Bundles</a>
+                        <a href="{{'account-shop/upgrades' | page()}}" class="btn btn-md btn-primary"><i class="fa fa-cart-plus"></i> Updgrades</a>
+                        <a href="{{'account-billing/checkout' | page()}}" class="btn btn-md btn-info "><i class="fa fa-shopping-cart"></i> Cart / Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% partial 'events/product-event-panel' %}
+        <div class="col-sm-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                     <h5 class="card-title m-0" ><i class="fa fa-credit-card"></i> Billing</h5>
+                </div>
+                <div class="card-body">
+                    
+                     <p class="card-text m-0">View complete and incomplete orders.</p>
+                    
+                </div>
+                <div class="card-footer p-1">
+                    <div class="">
+                        <a href="{{'account-billing/orders' | page()}}" class="btn btn-md btn-info "><i class="fa fa-list-ul"></i> Orders</a>
+                       
+                       
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/#pricing-->

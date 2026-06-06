@@ -1,0 +1,17 @@
+title = "Running"
+url = "/production/running"
+layout = "default"
+is_hidden = 0
+meta_title = "Running Production"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[RunningScheduleGraphs]
+==
+
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3 m-b-3"><i class="fa fa-wrench"></i> Running Production</h1>
+<br>
+{% component 'RunningScheduleGraphs' %}

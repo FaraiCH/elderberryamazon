@@ -1,0 +1,29 @@
+title = "Dashboard"
+url = "/logo"
+layout = "tv"
+meta_title = "Dashboard"
+
+==
+
+{% put styles %}
+<style type="text/css">
+
+    .container {
+        position: relative;
+        height: 100vh; /* Ensure full viewport height */
+    }
+
+    .image-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+
+{% endput %}
+
+    <div class="container">
+      <img class="image-logo" src="{{ 'assets/images/demo/logo.png'|theme }}" alt="Image">
+    </div>

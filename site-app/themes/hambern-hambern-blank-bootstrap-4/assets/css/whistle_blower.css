@@ -1,0 +1,93 @@
+.template-header {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding: 10px 10px;
+}
+
+@media (min-width: 640px) {
+  .template-header {
+    flex-direction: row;
+  }
+
+  .template-header .template-header-logo {
+    position:absolute;
+    left:0;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+.bg-4 {
+  background-color: #062f6e;
+  color: #fff;
+}
+
+.bg-4 h1 {
+  margin: 0;}
+#whistleblower-form{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    /*margin-top: 3rem; */
+    margin-bottom: 3rem;
+
+}
+
+#whistleblower-form form {
+    width: 100%;
+}
+
+#whistleblower-form .form-group {
+    margin-bottom: 15px;
+}
+
+#whistleblower-form button {
+    margin-top: 15px;
+}
+
+#whistleblower-instructions h3 {
+    text-align: center;
+}
+
+#whistleblower-instructions p {
+    margin-bottom: 1rem;
+}
+
+#whistleblower-instructions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#whistleblower-instructions li {
+    margin-bottom: 0.5rem;
+}
+
+#whistleblower-instructions strong {
+    font-weight: bold;
+}
+
+.footer-holder {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyright {
+  font-size: 14px;
+  color: black;
+  margin: 0;
+}
+
+.text-color {
+  font-weight: bold;
+}
