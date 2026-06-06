@@ -41,14 +41,14 @@ class Home extends Controller
         $startdate = $current->addDays(-3);
         $data = array('startdate' => $startdate, 'enddate' => $enddate);
         $events = array();
-        $obj = ControlSheetModel::whereBetween('created_at', array($data['startdate'], $data['enddate']." 23:59:00"))->where("editlevel_id",0)->where("jobcard_id",'>',0)->where("batch_id",'>',0)->where('active', 0)->get();
+        $obj = ControlSheetModel::whereBetween('created_at', array($data['startdate'], $data['enddate']." 23:59:00"))->where("editlevel_id",0)->where("jobcard_id",'>',0)->where('active', 0)->get();
         foreach ($obj as $key => $value) {
             $color = '#4497e0';
             $desc = "#".$value->id;
-            if($value->batch_id > 0){
-                $date=date_create($value->opendate);
-              $desc = "#".$value->id.", #BT-".$value->jobcard_id."-".$value->batch_id." (".date_format($date,"Y/m/d ").")";
-            }
+//            if($value->batch_id > 0){
+//                $date=date_create($value->opendate);
+//              $desc = "#".$value->id.", #BT-".$value->jobcard_id."-".$value->batch_id." (".date_format($date,"Y/m/d ").")";
+//            }
             if(isset($value->btline) && isset($value->btline->name)){
               $desc .= ", Running on ".($value->btline->name?$value->btline->name:"");
             }
