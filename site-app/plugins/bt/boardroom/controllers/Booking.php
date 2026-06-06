@@ -141,6 +141,7 @@ class Booking extends Controller
     {
         BackendMenu::setContext('Bt.Boardroom', 'boardroom', 'appointment');
         $this->pageTitle = "Appointment Dashboard";
+        $events = [];
         $this->addJs("/plugins/bt/production/assets/js/popthis.js", "1.0.0");
         $this->addJs("/plugins/bt/production/assets/js/scheduleinput.js", "1.0.0");
         $this->addCss("/plugins/bt/plcommon/assets/css/customform.css", "1.0.2");
