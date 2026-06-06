@@ -196,7 +196,7 @@ class Push extends Controller
 //        // This will work
 //        $widget->bindEvent('list.extendColumns', function () use ($widget) {
 //            $widget->removeColumn('id');
-        });
+//        });
 //    }
 
     public function listExtendColumns($list)
