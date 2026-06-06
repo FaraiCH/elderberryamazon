@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Q M
+
+# Model Form Field configuration
+form: $/bt/qc/models/qms/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\QMS
+
+# Default redirect location
+defaultRedirect: bt/qc/qms
+
+# Create page
+create:
+    title: Create QMS
+    redirect: bt/qc/qms/update/:id
+    redirectClose: bt/qc/qms
+
+# Update page
+update:
+    title: Edit QMS
+    redirect: bt/qc/qms
+    redirectClose: bt/qc/qms
+
+# Preview page
+preview:
+    title: Preview QMS

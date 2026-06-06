@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Recieved Type
+
+# Model Form Field configuration
+form: $/bt/inventory/models/recievedtype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\RecievedType
+
+# Default redirect location
+defaultRedirect: bt/inventory/recievedtype
+
+# Create page
+create:
+    title: Create Recieved Type
+    redirect: bt/inventory/recievedtype/update/:id
+    redirectClose: bt/inventory/recievedtype
+
+# Update page
+update:
+    title: Edit Recieved Type
+    redirect: bt/inventory/recievedtype
+    redirectClose: bt/inventory/recievedtype
+
+# Preview page
+preview:
+    title: Preview Recieved Type

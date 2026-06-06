@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Purchaseitem
+
+# Model Form Field configuration
+form: $/bt/production/models/purchaseitem/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Purchaseitem
+
+# Default redirect location
+defaultRedirect: bt/production/purchaseitem
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/purchaseitem/update/:id
+    redirectClose: bt/production/purchaseitem
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/purchaseitem
+    redirectClose: bt/production/purchaseitem
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,89 @@
+scopes:
+    employee:
+        label: Employee Name
+        modelClass: Bt\HR\Models\Employee
+        conditions: employee_id in (:filtered)
+        options: onEmpOptions
+    department:
+        label: Department
+        modelClass: Bt\HR\Models\Department
+        nameFrom: name
+        # Filter scope
+        scope: filterByDepartment
+    shoe_cover:
+        label: Shoe Cover
+        type: group
+        conditions: shoe_cover in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+
+    mop_caps:
+        label: Mop Caps
+        type: group
+        conditions: mop_caps in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    beard_cover:
+        label: Beard Cover
+        type: group
+        conditions: beard_cover in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    boats:
+        label: Boots
+        type: group
+        conditions: boats in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    overall:
+        label: Overall
+        type: group
+        conditions: overall in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    gloves:
+        label: Gloves
+        type: group
+        conditions: gloves in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    jackets:
+        label: Jackets
+        type: group
+        conditions: jackets in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    thermal:
+        label: Thermal
+        type: group
+        conditions: thermal in (:filtered)
+        options:
+            No: No
+            Yes: Yes
+    bootsdate:
+        label: Boots Date
+        type: daterange
+        conditions: bootsdate >= ':after' AND bootsdate <= ':before'
+    overalldate:
+        label: Overall Date
+        type: daterange
+        conditions: overalldate >= ':after' AND overalldate <= ':before'
+    glovesdate:
+        label: Gloves Date
+        type: daterange
+        conditions: glovesdate >= ':after' AND glovesdate <= ':before'
+    jacketsdate:
+        label: Jacket Date
+        type: daterange
+        conditions: jacketsdate >= ':after' AND jacketsdate <= ':before'
+    thermaldate:
+        label: Thermal Date
+        type: daterange
+        conditions: jacketsdate >= ':after' AND jacketsdate <= ':before'

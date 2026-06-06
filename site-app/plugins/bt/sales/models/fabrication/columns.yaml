@@ -1,0 +1,73 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    quote:
+        label: Quote
+        relation: quote
+        select: concat(id, ' - ', company_name)
+    schedule_date:
+        label: Fab Out Date
+
+    back_date:
+        label: Fab In Date
+
+
+    fab_in:
+        label: Fab Out Doc
+        relation: files_delivery
+        useRelationCount: true
+        type: partial
+        path: $/bt/plcommon/partials/_yes_no.htm
+    fab_out:
+        label: Fab In Doc
+        relation: files_coming
+        useRelationCount: true
+        type: partial
+        path: $/bt/plcommon/partials/_yes_no.htm
+    srn:
+        label: SRN
+
+
+    pickslip:
+        label: Pickslip No
+        relation: pickslip
+        select: id
+        searchable: true
+
+    ponumber:
+        label: PO Number
+        select: ponumber
+        relation: quote
+        searchable: true
+        sortable: false
+    item_status:
+        label: Items
+        type: partial
+        path: $/bt/sales/models/fabrication/_items.htm
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

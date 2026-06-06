@@ -1,0 +1,12 @@
+import:
+    title: Import Transport Rates
+    modelClass: Bt\Sales\Models\TransportFeeImport
+    list: $/bt/sales/models/transportfee/columns_import.yaml
+    redirect: bt/sales/transportfee
+
+export:
+    title: Export sTransport Rates
+    modelClass: Bt\Sales\Models\TransportFeeExport
+    list: $/bt/sales/models/transportfee/columns_export.yaml
+    redirect: bt/sales/transportfee
+    fileName: transportfee-export.csv

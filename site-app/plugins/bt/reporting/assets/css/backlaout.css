@@ -1,0 +1,49 @@
+.dt-button {
+  margin-right: 10px;
+  color: #ffffff !important;
+    background: #1E347B !important;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.just {
+    white-space: nowrap;
+}
+
+.justwrap{
+    width:1%;
+    white-space:nowrap;
+}
+
+.page-link:hover {
+    color: black !important;
+}
+
+.dt-button:hover {
+    background: #5e35b1 !important;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+td.highlight {
+    background-color: grey !important;
+}
+
+table.dataTable{
+    width: 100%;
+}
+table.dataTable tbody  tr td{
+    font-size: 11px;
+
+}
+table.dataTable thead  tr th{
+    font-size: 11px;
+    background: #1E347B !important;
+    color: #fff;
+    border-color: #1E347B;
+
+}
+
+
+

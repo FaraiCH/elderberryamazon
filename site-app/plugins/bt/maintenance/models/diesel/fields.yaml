@@ -1,0 +1,40 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    type:
+        label: Equipment/Machine
+        type: relation
+        select: name
+        span: storm
+        cssClass: col-sm-6 col-md-6
+        placeholder: -- Select Equipment/Machine --
+        scope: Machine
+    date:
+        label: Date Diesel Was Captured
+        type: datepicker
+        mode: date
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    speed:
+        label: Start of Kilometres
+        type: number
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    intake:
+        label: Amount of Diesel Intake (L)
+        type: number
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    operator:
+        label: Operator Using Diesel
+        type: relation
+        select: name
+        span: storm
+        placeholder: -- Select Operator --
+        cssClass: col-sm-6 col-md-6
+

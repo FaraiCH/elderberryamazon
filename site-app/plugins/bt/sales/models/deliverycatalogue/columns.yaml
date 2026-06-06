@@ -1,0 +1,18 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    catalogue:
+        label: Product
+
+
+    units:
+        label: units
+        type: number
+
+    notes:
+        label: Notes

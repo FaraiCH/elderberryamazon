@@ -1,0 +1,67 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+      label: ID
+      searchable: true
+
+    pipe_id:
+        label: Production Pipe
+        type: partial
+        path: $/bt/production/models/jobcard/_pipe_column.htm
+        sortable: false
+
+    # jobcardapprove:
+    #   label: Approved
+    #   type: partial
+    #   path: $/bt/production/models/jobcard/_approved_column.htm
+    #   sortable: false
+
+    status:
+      label: Status
+      type: partial
+      path: $/bt/production/models/jobcard/_canceled_column.htm
+      searchable: false
+      sortable: false
+
+
+    opendate:
+      label: Open Date and Time
+    # product_description:
+    #   label: Product Description
+
+    btline:
+      label: BT Line
+      searchable: true
+      relation: btline
+      select: name
+    notes:
+      label: Notes
+    file:
+      type: partial
+      path: $/bt/production/models/jobcard/_file.htm
+      label: File Name
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

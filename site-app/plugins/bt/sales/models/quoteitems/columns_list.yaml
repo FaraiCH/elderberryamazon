@@ -1,0 +1,81 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    flag:
+        label: Flag
+        searchable: true
+        type: partial
+        path: $/bt/sales/models/quoteitems/_flag_column.htm
+    
+
+    salesperson:
+        label: Sales Person
+        searchable: true
+        type: partial
+        path: $/bt/sales/models/quoteitems/_salesperson_column.htm
+    
+    productrating:
+        label: PN Rating
+        searchable: true
+        type: partial
+        path: $/bt/sales/models/quoteitems/_pnrating_column.htm
+
+    unitlength:
+        label: Length
+        type: number
+        format: %.0f
+        
+    client:
+        label: Client
+        searchable: true
+        relation: quote
+        select: company_name
+
+    units:
+        label: Qty
+        type: number
+    
+    premuimprice:
+        label: P Price
+        searchable: true
+        type: partial
+        path: $/bt/sales/models/quoteitems/_premuimprice_column.htm
+       
+
+    priceperkg:
+        label: Q Price
+        type: number
+        format: R %.2f
+        
+
+    primuimperkg_v:
+        label: M Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_marginprice_column.htm
+
+    unitprice:
+        label: Unit Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+
+
+    price:
+        label: Total Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+    pipe_id:
+        label: In Production?
+        type: partial
+        path: $/bt/sales/models/quoteitems/_isproduction_column.htm
+
+
+    created_at:
+        label: Date Created
+        
+        type: date
+

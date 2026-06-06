@@ -1,0 +1,10 @@
+<?php if(isset($record->is_completed) && $record->is_completed == 1): ?>
+<span class="oc-icon-check text-center" style="color: whitesmoke; background: forestgreen; display: block; border-radius: 10px">
+	    Yes
+	</span>
+
+<?php else: ?>
+<span class="oc-icon-circle text-center" style="color: whitesmoke; background: red; display: block; border-radius: 10px">
+	No
+	</span>
+<?php endif; ?>

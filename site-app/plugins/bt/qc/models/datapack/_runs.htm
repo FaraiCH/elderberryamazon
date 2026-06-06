@@ -1,0 +1,116 @@
+<?php
+    if(isset($formModel->pipereport->id)){
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+?>
+<?php if(!empty($formModel->pipereport)): ?>
+    <div class="scoreboard">
+        <div data-control="toolbar">
+            <div class="scoreboard-item title-value">
+                <h4>Client Name</h4>
+                <p class="oc-icon-address-card-o"> <?= e($formModel->quote->company_name) ?></p>
+            </div>
+
+            <div class="scoreboard-item title-value">
+                <h4>Quote</h4>
+                <p class="oc-icon-bullhorn">
+                    <?= e($formModel->quote->id) ?>
+
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <table class="table data">
+        <thead>
+        <tr>
+            <th class="sort-desc"><a href="/">Title</a></th>
+            <th class="sort-desc"><a href="/">File</a></th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <?php
+
+                //echo '<tr><td>Datapack</td><td><a class="btn btn-primary" target="_blank" href="/lab/letterhead/download/me/'.$formModel->id.'.pdf">Download</a></td></tr>';
+        echo '<tr><td>New Datapack</td><td><a class="btn btn-primary" target="_blank" href="/lab/letterhead/download/newme/'.$formModel->id.'.pdf">Download</a></td></tr>';
+        echo '<tr><td>Letter Head - Run First</td><td><a class="btn btn-primary" target="_blank" href="/lab/letterhead/download/'.$formModel->id.'.pdf">Download</a></td></tr>';
+        if($formModel->qualityplan && !empty($formModel->qualityplan)){
+        echo '<tr><td>Quality Plan</td><td><a class="btn btn-primary" target="_blank" href="'.$formModel->qualityplan->path.'">'.$formModel->qualityplan->file_name.'</a></td></tr>';
+        }else{
+        echo '<tr class="negative"><td>Quality Plan</td><td >Missing, please upload</td></tr>';
+        }
+
+
+        $csarray = array();
+        $batcharray = array();
+
+        $matids = array();
+        $coa = array();
+        $found = 0;
+        #foreach($formModel->quote->items as $kk=>$qitem){
+        #if($formModel->item_id == $qitem->id ){
+        $found++;
+        $qitem = $formModel->item;
+        foreach($qitem->pipe->schedules as $k=>$schedules){
+        #echo "<h2>Day ".$schedules->production_days.": Shift ".$schedules->shiftno."</h2>";
+
+        #if(isset($schedules->controlsheet) && isset($schedules->controlsheet->file)){
+        if(isset($schedules->controlsheet)){
+            if(isset($schedules->controlsheet) && isset($schedules->controlsheet->file)){
+                $csarray[$schedules->controlsheet->file->file_name] = $schedules->controlsheet->file->path;
+            }
+            foreach($schedules->usedmaterials as $key=>$value){
+            if(isset($value->receiving) && isset($value->receiving->productname) && $value->receiving->productname->cat_id != 2){
+                    if($formModel->pipereport->supplier_batch_id == $value->receiving->id){
+                        $batcharray[$value->receiving->productname->name." - Batch #".$value->receiving->supplier_batch] = '/lab/coc/download/'.$value->receiving->id.'/'.$schedules->pipe_id.'/'.$schedules->controlsheet->id.'.pdf';
+                        $_SESSION['cs'] = $schedules->controlsheet->id;
+                        $matids[$value->receiving->productname->name." - Batch #".$value->receiving->supplier_batch] = '/lab/photos/download/'.$value->receiving->id.'.pdf';
+
+                        if(isset($formModel->pipereport_id)){
+                            if(isset($formModel->pipereport->coa_file->path) && isset($formModel->pipereport->coa_file->path))
+                                $coa[$formModel->pipereport->supplier_batch->productname->name." - Batch #".$formModel->pipereport->supplier_batch->supplier_batch] = $formModel->pipereport->coa_file->path;
+                        }else{
+                            if(isset($value->labresults->coa_file) && isset($value->labresults->coa_file->path)){
+                                $coa[$value->labresults->productname->name." - Batch #".$value->labresults->supplier_batch] = $value->labresults->coa_file->path ;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        }
+        # }
+        #}
+
+
+
+
+        foreach($csarray as $key=>$value){
+            echo '<tr><td>Controlsheets</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></</td></tr>';
+        }
+
+        foreach($batcharray as $key=>$value){
+            echo '<tr><td>COC - Run First</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></td></tr>';
+        }
+
+        foreach($matids as $key=>$value){
+            if(isset($formModel->pipereport->id)){
+                $_SESSION["pipereport_id"] = $formModel->pipereport->id;
+            }
+            echo '<tr><td>PHOTOS - Run First</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></td></tr>';
+        }
+
+        foreach($coa as $key=>$value){
+
+            echo '<tr><td>COA</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></td></tr>';
+        }
+
+        ?>
+        </tbody>
+    </table>
+<?php endif ?>

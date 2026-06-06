@@ -1,0 +1,48 @@
+{% set listentry = CmRawMaterialRecon.loadList() %}
+{% if listentry is not empty  %}
+	{% set total = 0 %}
+
+
+
+		<table class="table table-striped table-bordered" id="tabledownload">
+				<thead>
+					<tr>
+						
+						<th>#</th>
+						<th>Date</th>
+						<th>Product Name</th>
+						<th>Bags</th>
+						<th>KG</th>
+
+						
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in listentry %}					
+			        	<tr>
+			        		
+			        		<td>{{itemobject.id}}</td>
+			        		<td>{{itemobject.datecaptured|date("m/d/Y")}}</td>
+			        		<td>{{itemobject.productname.name}}</td>
+			        		<td>{{itemobject.bags}}</td>
+			        		<td>{{itemobject.kg}}</td>
+			              	
+			              	
+			             </tr>
+			            
+			        {% endfor %} 
+		        </tbody>
+		      
+	        
+    </table>
+	
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

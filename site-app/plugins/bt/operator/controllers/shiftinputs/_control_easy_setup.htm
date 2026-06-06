@@ -1,0 +1,36 @@
+<?= $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0") ?>
+<?= $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0"); ?>
+<form>
+    <div class="form-group col-md-6" style="padding-top: 30px">
+        <label for="control_date">Date Time</label>
+        <input type="text" class="form-control" id="control_easy_date" name="control_easy_date">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="shift">Shift: </label>
+        <select style="height: 15px" id="shift_easy" name="shift_easy" class="form-control custom-select">
+            <option value="DAY">Day</option>
+            <option value="NIGHT">Night</option>
+        </select>
+    </div>
+    <button
+        type="submit"
+        data-request="onSetupEasy"
+        data-request-confirm="Are you sure you want to run Control Sheet No <?= $formModel->id ?>?"
+        class="btn btn-default">Submit</button>
+</form>
+
+<div id="setup_easy">
+
+</div>
+<script>
+    var startpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd HH:mm',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#control_easy_date');
+</script>

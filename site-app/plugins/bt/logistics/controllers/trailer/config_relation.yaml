@@ -1,0 +1,9 @@
+trailerchecklist:
+    label: Trailer Checklist
+    manage:
+        form: $/bt/logistics/models/trailerchecklist/fields.yaml
+        list: $/bt/logistics/models/trailerchecklist/columns.yaml
+    view:
+        list: $/bt/logistics/models/trailerchecklist/columns.yaml
+        toolbarButtons: create|delete
+

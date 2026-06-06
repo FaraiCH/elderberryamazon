@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Bt Account
+
+# Model Form Field configuration
+form: $/bt/production/models/btaccount/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\BtAccount
+
+# Default redirect location
+defaultRedirect: bt/production/btaccount
+
+# Create page
+create:
+    title: Create Bt Account
+    redirect: bt/production/btaccount/update/:id
+    redirectClose: bt/production/btaccount
+
+# Update page
+update:
+    title: Edit Bt Account
+    redirect: bt/production/btaccount
+    redirectClose: bt/production/btaccount
+
+# Preview page
+preview:
+    title: Preview Bt Account

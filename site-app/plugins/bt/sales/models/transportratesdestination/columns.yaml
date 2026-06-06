@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    name:
+        label: Destination
+        type: text
+        searchable: true
+    kilometers:
+        label: Kilometers Captured
+        type: Number
+        format: %.1f km

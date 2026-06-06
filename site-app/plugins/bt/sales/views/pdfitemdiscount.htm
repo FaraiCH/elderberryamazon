@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 11px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px 20px 100px 20px; }
+html { margin:20px 20px 100px 20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 1%;
+    font-size: 1em;
+    color: #545554;
+    line-height: 1.3em;
+}
+
+.pagenumber::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.footer .left div{
+	float: left;
+	width: 50%
+}
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+            	<table border="0">
+            		<tr>
+            			<td valign="top" width="30%">Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>
+                Doc: F-S-9.5.52<br>
+                Effective: 2020/05/08 Rev: 0<br>
+                Prepared By: K Maphai<br>
+                Approved By: K Lekola
+                </td>
+                <td valign="top" width="30%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005<br><br>E-mail: enquiries@bt-industrial.co.za</td>
+                <td width="30%" align="center">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+
+						</td>
+
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="50%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="50%" style="text-align: center;">
+							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+							<h2>Quotation #BT{{quote.id}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+	</table>
+       {% if env == 'dev' %}
+       <div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+       {% endif %}
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>Customer</b></td></tr>
+								<tr><td width="50%"><b>To:</b></td><td width="50%">{{quote.billing_name}}</td></tr>
+								<tr><td width="50%"><b>Company/Personal Name:</b></td><td width="50%">{{quote.company_name}}</td></tr>
+								<tr><td width="50%"><b>Email:</b></td><td width="50%">{{quote.email}}</td></tr>
+								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
+								<tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
+								<tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
+								{% for item in quote.responses if item.quote_status_id == 3 %}
+									<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+				    			{% endfor %}
+								{% if quote.reg_number is not empty %}
+									<tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
+								{% endif %}
+								{% if quote.vat_number is not empty %}
+									<tr><td width="50%"><b>VAT Number:</b></td><td width="50%">{{quote.vat_number}}</td></tr>
+								{% endif %}
+							</table>
+						</td>
+						<td></td>
+						<td width="40%" valign="top" >
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">BT-IND-{{quote.id}}</td></tr>
+								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
+								<tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
+								<tr><td width="50%"></td><td width="50%">{{quote.user.email}}</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+	</table>
+
+
+				<table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+					<thead>
+						<tr>
+							<th width="20px" style="background: #ececec" >#</th>
+							<th  style="background: #ececec" class="text-center" >Description</th>
+							<th width="50px" nowrap="nowrap" style="background: #ececec" class="text-center" >Units</th>
+							<th width="50px" nowrap="nowrap" style="background: #ececec" class="text-center" >Total Length</th>
+							<th width="100px" nowrap="nowrap" style="background: #ececec" class="text-center" >Unit Price</th>
+							<th width="100px" nowrap="nowrap" style="background: #ececec" class="text-center" >Total Price</th>
+						</tr>
+					</thead>
+				</table>
+
+
+						{% set counter = 0 %}
+				        {% for itemobject in quote.items %}
+				        	{% set counter = counter + 1 %}
+				        	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+				        		<tbody>
+						        	<tr>
+						        		<td width="20px">{{counter}}</td>
+						        		<td>{{itemobject.description}}</td>
+						        		<td width="50px" class="text-center">{{itemobject.units}}</td>
+						        		<td width="50px" class="text-center">{{itemobject.units * itemobject.unitlength}}</td>
+						              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
+
+						              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
+						             </tr>
+						         </tbody>
+				     		</table>
+				     	</div>
+				        {% endfor %}
+
+
+				         {% for itemobject in quote.itemscat %}
+				        	{% set counter = counter + 1 %}
+				        	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+				        	<tr>
+				        		<td  width="20px">{{counter}}</td>
+				        		<td>{{itemobject.description}}</td>
+				        		<td width="50px" class="text-center">{{itemobject.units}}</td>
+								<td width="50px">&nbsp;</td>
+				              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
+
+				              	<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
+				             </tr>
+				         </table>
+				     </div>
+				        {% endfor %}
+
+
+				        {% set deliveryamount = 0 %}
+				        {% for item in quote.responses if item.quote_status_id == 4 %}
+							{% set counter = counter + 1 %}
+							{% set deliveryamount = deliveryamount + item.additionalamount %}
+							<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+				        	<tr>
+				        		<td width="20px">{{counter}}</td>
+				        		<td>Delivery</td>
+				        		<td width="50px" class="text-center">1</td>
+				        		<td width="50px">&nbsp;</td>
+				              	<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+
+				              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+				             </tr>
+				         </table>
+				     </div>
+			    		{% endfor %}
+
+			    	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+		        	<tfoot>
+			        	<tr>
+			        		<td width="20px">&nbsp;</td>
+			        		<td>&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="100px" class="text-right"><b>TOTAL</b></td>
+			              	<td width="100px" class="text-right"><div class="totalr"><span>R</span><span>{{(quote.total)|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+				         <tr>
+				         	<td width="20px">&nbsp;</td>
+			        		<td>&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+
+			        		<td  width="100px" class="text-right"><b>VAT</b></td>
+			              	<td  width="100px" class="text-right"><div class="totalr"><span>R</span><span>
+			              		{% set autototalvat = (quote.total*quote.vat) %}
+			              		{% set autototal = autototalvat+(quote.total) %}
+			              	{{autototalvat|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+				          	{% set discount = 0 %}
+			          		{% for item in quote.responses %}
+								{% set discount = discount + item.amountdiscount %}
+			    			{% endfor %}
+
+						      {% if discount > 0 %}
+							     <tr>
+							     	<td width="20px">&nbsp;</td>
+					        		<td>&nbsp;</td>
+					        		<td width="50px">&nbsp;</td>
+					        		<td width="50px">&nbsp;</td>
+
+									<td width="100px" class="text-right"><b>DISCOUNT</b></td>
+							      	<td width="100px" class="text-right"><div class="totalr"><span>R</span><span>-{{discount|number_format(2, '.', ',')}}</span></div></td>
+							     </tr>
+						     {% endif %}
+				          <tr>
+				          	<td width="20px">&nbsp;</td>
+			        		<td>&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+
+			        		<td  width="100px" nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>
+			              	<td  width="100px" class="text-right"><div class="totalr"><span>R</span><span>
+			              	{{((autototal) - discount)|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+				         <tr>
+				        		<td colspan="6" style="background: #ccc;"><b>Discount Structure</b></td>
+
+				             </tr>
+				         {% for item in disclist %}
+
+				        	<tr>
+				        		<td colspan="4">{{item.name}}</td>
+				        		<td  class="text-right">{{item.discount|number_format(2, '.', ',')}}%</td>
+				              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{(autototal-((autototal/100)*item.discount))|number_format(2, '.', ',')}}</span></div></td>
+				             </tr>
+				     	{% endfor %}
+			        </tfoot>
+				</table></div>
+
+		{% if quote.notes is not empty %}
+
+
+				<div style="background: #ececec; padding: 5px" >
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Notes</h4>
+					<table width="100%" border="1" style="border: 1px solid #333" cellpadding="5px" cellspacing="0">
+						<tr>
+							<td width="100%">{{quote.notes|nl2br}}</td>
+						</tr>
+					</table>
+				</div>
+
+		{% endif %}
+
+
+		<br>
+				<h4 style="font-size: 15px; margin: 0px; padding: 0px">QUOTATION ACCEPTED BY CUSTOMER:</h4>
+
+				<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+					<tr><td><br></td></tr>
+					<tr>
+						<td>NAME:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>DATE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>SIGNATURE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+					</tr>
+				</table>
+
+
+	<div class="page-break"></div>
+	<h2>BT INDUSTRIAL (PROPRIETARY) LIMITED (REGISTRATION NUMBER: 2017/05746/07) (“COMPANY”) TERMS AND CONDITIONS OF CREDIT SALE AGREEMENT</h2>
+	<p>The Company grants credit to the Customer subject to the Customer complying with the Company&rsquo;s credit application process. The Customer hereby agrees to the following credit terms and conditions in connection with the application for credit sale.</p>
+<p><strong>1. Whole agreement and acceptance</strong> 1.1 The Customer agrees that these terms and conditions: 1.1.1 represent the entire agreement between the Customer and Company and that no alterations or additions to them may be effected unless agreed to by both parties, reduced to writing and signed by the Customer and a duly authorised representative of Company; 1.1.2 will, in the absence of any other agreement, govern all future contractual relationships between the parties; 1.1.3 are applicable to all existing debts between the parties; 1.1.4 are final and binding and are not subject to any suspensive or dissolutive conditions; 1.1.5 expressly exclude any conflicting terms and conditions stipulated by the Customer; 1.1.6 supersede all previous terms and conditions of sale without prejudice to any securities or guarantees held by Company. 1.2 Should the Customer be granted an account at Company such account is for the sole and exclusive use of the Customer to whom it was granted, and the Customer may under no circumstances allow any third party to accept service from Company using such account facility. 1.3 These terms and conditions become final and binding on acceptance by Company which acceptance shall be deemed on application for credit sale.</p>
+<p><strong>2. Personal Suretyship, co-indebtedness, representations, suitability, modifications and alternatives</strong> 2.1 The signatory hereby binds himself/herself in his/her personal capacity as Customer&rsquo;s director/s, member/s, owner/s, partner/s and no other document is required to effect such security. 2.2 The Customer acknowledges that it does not rely on any representations made by Company regarding the services or any of its qualities leading up to this agreement other than those contained in this agreement. All specifications, price lists, performance figures, advertisements, brochures and other technical data furnished by Company in respect of services verbally or in writing will not form part of the agreement in any way unless agreed to in writing by Company. 2.3 The Customer agrees that neither Company nor any of its employees will be held liable for any innocent misrepresentations made to the Customer. 2.4 It is the sole responsibility of the Customer to determine that the goods or services ordered are suitable for the purposes of intended use. 2.5 The Customer agrees to pay all costs resulting from any acts or omissions of the Customer including suspension of work, modification of requirements, failure or delay in giving authority to enable work to proceed on schedule or requirements that work be completed earlier than agreed. 2.6 The Customer is responsible for payment. Company will not re-invoice to third parties.</p>
+<p><strong>3. Quotations </strong>3.1 All quotations will remain valid for a period of 7 days only from the date of the quotation. 3.2 The prices quoted are subject to any increases in the cost price, including current fluctuations, of Company before acceptance of the order.</p>
+<p><strong>4. Delivery, risk, repair, credit return policy </strong>4.1 The Customer hereby confirms that the services on the invoice issued duly represent services ordered by the Customer at the prices agreed to by the Customer and, that the services were inspected and that the Customer is satisfied that these conform in all respects to the quality of work and are free from any defects. 4.2 Notwithstanding the provisions of section 4.1 above, all orders or variations to orders, whether verbal or in writing, shall be binding and subject to these standard terms and conditions of sale and may not be cancelled. 4.3 Any delivery note or waybill (copy or original) signed by the Customer or a third party engaged to transport the report shall be conclusive proof that delivery was made to the Customer. Electronic submission of report to Customer is also conclusive proof of delivery by Company. 4.4 The risk of damage to, destruction or theft of goods shall pass to the Customer on receipt of any order placed in terms of this agreement. 4.5 Performance times given are merely estimates and are not binding on Company. 4.6. Where prices are stated as delivery rates they shall be based on full loads. Transportation rates from third parties are quoted in good faith and without prejudice. Deviations from transportation routes shall incur additional charges which shall be for the account of the Buyer. All goods shall be collected from the factory within 5 (FIVE) business days from order failing which the Seller shall not be liable for any weathering of the goods or any damage or loss in respect of such goods. Goods not collected from factory within 5 (FIVE) business days from order shall attract storage charge of R5000.00 (FIVE THOUSAND RAND) daily. 4.7. In the event the Customer requests for any double handling, a fee of R8.00 (eight rand) per kilogram will be levied against the Customer. 4.8 The Customer may be provided with a Certificate of Conformance (COC) and/or Certificate of Analysis (COA) for orders placed in respect of coils that are less than 2&nbsp;000m (two thousand metres) in length and a full data pack for coils that are greater than 2&nbsp;000m (two thousand metres) in length by submitting 72 (seventy-two) hours written request to the Company.</p>
+
+<p><strong>5. Guarantees, liability and safety </strong>5.1 No claim by the Customer under this agreement shall arise unless the Customer has, within 3 (three) days of the alleged breach or defect occurring, given Company 30 (thirty) days' written notice to rectify any defect or breach of agreement. 5.2 Any technical advice supplied to the Customer shall be prepared in good faith, in the context of the laws in force at that time, and on the basis of the information disclosed by the Customer to Company. 5.3 Company accepts no responsibility for changes in law or any loss or damage incurred by the Customer arising out of a failure by the Customer to disclose all relevant facts and circumstances necessary for the preparation of the technical advice.</p>
+<p><strong>6. Payment </strong>6.1 The Customer agrees that the amount contained in an invoice or tax invoice issued by Company shall be due and payable unconditionally within 30 days from the date of statement or invoice or tax invoice being issued by Company. 6.2 The Customer agrees to pay the amount on the tax invoice by electronic transfer. 6.3 The Customer has no right to withhold payment for any reason whatsoever and agrees that no extension of payment of any nature shall be extended to the Customer and any such extension will not be applicable or enforceable unless agreed to by Company, reduced to writing and signed by the Customer and a duly authorised representative of Company. 6.4 The Customer is not entitled to set off any amount due to the Customer by Company against this debt. &nbsp;6.5. Notwithstanding anything to the contrary, issue of purchase orders pursuant to quotation shall constitute an irrevocable commitment by Buyer to make payment on demand for the total amount of the order, and if the Buyer fails to take delivery of the goods (as provided for in 4 above, the Buyer shall, in addition, be liable to the Seller for storage fees arising our of confirmed orders.</p>
+<p><strong>7. Evidence and interest </strong>7.1 The Customer agrees that the amount due and payable to Company may be determined and proven by a certificate issued and signed by any Manager/Director of the Company. Such certificate shall be binding and shall be prima facie proof of the indebtedness of the Customer. 7.2 The Customer agrees that in the case of late payment, interest shall be payable to Company on the overdue monies which shall be calculated at the prime overdraft rate of Company&rsquo;s bankers plus three percent from the date of statement or invoice.</p>
+<p><strong>8. Remedies </strong>8.1 The Customer agrees that if an account is not settled in full within the period agreed in clause 6.1 above, Company is: 8.1.1 entitled to institute action immediately against the Customer at the sole expense of the Customer; remedies are without prejudice to any other right Company may be entitled to in terms of this agreement or in law. Company reserves its right to stop service immediately on cancellation or on non-payment. 8.2 A credit approved customer will forthwith lose this approval when payment is not made according to the conditions of 6.1. 8.3 In the event of cancellation Company is entitled not to deliver any undelivered balance of a contract and to recover any loss sustained thereby from the Customer.</p>
+<p><strong>9. Legal expenses, indulgence and jurisdiction </strong></p>
+<p>9.1 The Customer shall be liable to Company for all legal expenses on the attorney-and-own client scale of an attorney and counsel incurred by Company in the event of: 9.1.1 any default by the Customer; or 9.1.2 any litigation in regard to the validity and enforceability of this agreement. The Customer shall also be liable for any tracing, collection or valuation fees incurred as well as for any costs, including stamp duties, for any form of security that Company may demand. 9.2 The Customer agrees that no indulgence whatsoever by Company will affect the terms of this agreement or any of the rights of Company and such indulgence shall not constitute a waiver by Company in respect of any of its rights herein. Under no circumstances will Company be stopped from exercising any of its rights in terms of this agreement. 9.3 The Customer consents to Company instituting any action in either the Magistrate's Court or the High Court at its sole discretion. 9.4 This agreement and its interpretation is subject to South African law.</p>
+<p><strong>10. General </strong>10.1 Any notice shall be deemed duly accepted by the Customer: 10.1.1 within 5 (five) days of mailing by prepaid registered mail to any of the Customer's business or postal addresses or to the personal address of any director, member, partner or owner of the Customer; or 10.1.2 within 24 hours of being transmitted by electronic mail to any of the Customer's email addresses or any director's, member's, partner's or owner's email addresses; or 10.1.3 on being delivered by hand to the Customer or any director, member, partner or owner of the Customer; or 10.1.4 within 48 hours if sent by overnight courier. 10.2 The Customer chooses domicilium citandi et executandi at the business address or the physical addresses of any director (in the case of a company), member (in the case of a close corporation) or of the owner(s) or partner(s). 10.3 The Customer undertakes to inform Company in writing within 7 (seven) days of any change of director, member, shareholder, owner or partner or address or 14 (fourteen) days prior to disposal of the Customer's business and failure to do so will constitute a material breach of this agreement. 10.4 The Customer hereby consents to the storage and use by Company of the personal information that it has provided for establishing its credit rating and to Company disclosing such information to credit control companies, banks and other institutions involved in rating credit. The Customer agrees that Company will not be held liable for the <em>bona fide</em> disclosure of any of this information to such a third party and that no further specific consent need be obtained for the transfer of such information to a specific third party. 10.5 Company reserves its right to renew its pricing structure in accordance with market, economic and other relevant circumstances. 10.6 Company may, at its sole discretion, levy charges in respect of copy documentation requested by the customer. 10.7 The invalidity of any part of this agreement shall not affect the validity of any other part. 10.8 Any order or supply is subject to cancellation by Company due to force majeure including but not limited to inability to secure labour, power, materials or supplies, or by reason of an act of God, war, civil disturbance, riot, state of emergency, strike, lockout, or other labour disputes, fire, flood, drought or legislation. 10.9 Any order or supply is subject to cancellation if the Customer breaches any term of this agreement or makes any attempt of compromise, liquidation, sequestration, termination or judgment is recorded against the Customer or any of its principals. 10.10 The Customer agrees that Company will immediately and irrevocably be released from any contractual damages and penalty obligations should any event in clause 10.8 or 10.9 occur. 10.11 Unless the context clearly indicates a contrary intention, any expression which denotes: 10.11.1 any gender includes the other genders; 10.11.2 a natural body includes a body corporate and vice versa; 10.11.3 the singular includes the plural and vice versa; 10.11.4 headings are for convenience only and are not to be taken into account for the purpose of interpretation. 10.12 Company retains all intellectual property in its drawings, specifications, data, and all other documents prepared by Company for the Customer in whatever medium. 10.13 Any know-how, information or documents supplied at any time by Company to the Customer shall be treated as confidential and shall not be disclosed by the Customer to any third party.</p>
+<p><strong>11. Warranty.</strong> For goods manufactured by the Seller, the Seller&rsquo;s standard limited warranty for the goods sold hereby shall apply. The Seller&rsquo;s obligation under such warranty, unless otherwise stated, is limited to repairing or replacing, at its factory, any parts which are returned to the Seller within said warranty period, delivery prepaid, which upon examination prove to be defective. Labour costs are excluded. THIS WARRANTY IS EXCLUSIVE AND IN LIEU OF ANY OTHER WARRANTIES, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT, AND ALL WARRANTIES ARISING FROM COURSE OF DEALING, USAGE OR TRADE PRACTICE. EXCEPT FOR THE EXPRESS WARRANTIES SET OUT IN THIS SECTION 6, ALL SERVICES AND MATERIALS ARE PROVIDED &ldquo;AS IS&rdquo;. ALL THIRD-PARTY MATERIALS ARE PROVIDED &ldquo;AS IS&rdquo; AND ANY REPRESENTATION OR WARRANTY OF OR CONCERNING ANY THIRD-PARTY MATERIALS IS STRICTLY BETWEEN BUYER AND THE THIRD-PARTY OWNER OR DISTRIBUTOR OF THE THIRD-PARTY MATERIALS. Warranty claims shall be subject to the Buyer having complied with the necessary PE-HP pipe field pressure testing specifications including those specifications required in terms of the SANS 2001-DP2:2020 and/or SANS 1200LB, and SANS1671 confirming welding equipment for PE-HP pipe installations and SANS 10270 approval of welding procedures and welds. The Company &nbsp;discourages the ordering of non/low pressure PN8 coils and below due to being prone to mild kinks during production. Where the Customer orders the non/low pressure PN8 coils, by signing and accepting the quotation it accepts the appearance of mild kinks on the Goods.&nbsp;</p>
+
+
+	</body>
+	</html>

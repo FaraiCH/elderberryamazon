@@ -1,0 +1,61 @@
+{% set listentry = OutStockList.loadStockList() %}
+{% if listentry is not empty  %}
+	{% set total = 0 %}
+
+
+
+		<table class="table table-striped table-bordered" id="tabledownload">
+				<thead>
+					<tr>
+						
+						<th>#</th>
+						<th>Product Name</th>
+						<th>Supplier Batch</th>
+						<th>Pallet/Bags</th>
+						<th>Weight</th>
+						<th>Date Received</th>
+						<th>Date Taken Out</th>
+						<th>Taken Out By</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in listentry %}					
+			        	<tr class='{{(itemobject.instock == 0)?"text-danger":"No"}}'>
+			        		
+			        		<td>{{itemobject.id}}</td>
+			        		<td>{{itemobject.productname.name}}</td>
+			        		<td>{{itemobject.supplier_batch}}</td>
+			              	<td>
+			              		{% if itemobject.received_in > 0  %}
+			              			{{itemobject.receivedtypes.name}}
+			              		{% endif %}
+
+			              		{% if itemobject.bagsother > 0  %}
+			              			{{itemobject.bagsother}} bags
+			              		{% endif %}
+			              	</td>
+			              	<td>{{itemobject.weight_pallets}} KG</td>
+			              	<td>{{itemobject.date_of_receipt|date("Y-m-d")}}</td>
+			              	<td>{{itemobject.stockout.stockout_date|date("Y-m-d")}}</td>
+			              	<td>{{itemobject.stockout.user.name}}</td>
+			              	<td><a href="{{ 'inventory/stockitem'|page({'item': itemobject.id}) }}">View</a></td>
+			           
+			             </tr>
+			            
+			        {% endfor %} 
+		        </tbody>
+		      
+	        
+    </table>
+	
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

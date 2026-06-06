@@ -1,0 +1,43 @@
+<input  type="hidden" name="hidden_id" id="hidden_id" placeholder="Input New Length" step="0.01" value="<?= $stickerObj->sticker_id ?>" />
+<input type="hidden" name="hidden_counter" id="hidden_counter" placeholder="Input New Weight" step="0.01" value="<?= $stickerObj->counter ?>" />
+<td width="20%">
+    <input name="controlsheet" type="hidden" value="<?= $stickerObj->controlsheet_id ?>">
+    <input type="hidden" name="stickerCount" value="<?= $stickerCount ?>">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <input class="form-control" type="number" data-request="onCheckNum" data-track-input="" name="sticker_id" id="sticker_id" value="<?= $stickerObj->sticker_id  ?>">
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <input class="form-control" type="number" data-request="onCheckNum" data-track-input="" name="counter" id="counter" value="<?= $stickerObj->counter  ?>">
+        </div>
+    </div>
+    <div id="sticker_no_" >
+    </div>
+
+</td>
+<td width="10%"><input class="form-control" type="number" name="unit_length" id="unit_length" placeholder="Input Length" step="0.01" value="<?= $stickerObj->unit_length ?>" /></td>
+<td width="10%"><input class="form-control" type="number" name="unit_weight" id="unit_weight" placeholder="Input Weight" step="0.01" value="<?= $stickerObj->weight ?>" /></td>
+<td width="10%">
+    <select class="form-control custom-select" name="is_scrap" id="is_scrap">
+        <option value="0">No</option>
+        <option value="1" <?php if($stickerObj->is_scrap > 0) echo "selected='selected'" ;?>>Yes</option>
+    </select>
+</td>
+<td width="10%">
+    <select class="form-control custom-select" name="qcstatus" id="qcstatus" data-request="onCheckQcStatus" data-track-input="">
+        <?php if(!empty($qcstatus)): ?>
+            <option value="0">-- Select  Status --</option>
+            <?php foreach($qcstatus as $qc): ?>
+                <option value="<?= $qc->id ?>" <?php if($stickerObj->qcstatus_id == $qc->id) echo "selected='selected'" ;?>><?= $qc->name ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </select>
+    <div id="fail_pic">
+
+    </div>
+</td>
+<td width="10%">
+    <button class="btn btn-outline-primary" data-request="onSaveStickerEdit">Save</button>
+</td>
+
+

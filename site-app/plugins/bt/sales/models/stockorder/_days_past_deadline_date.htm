@@ -1,0 +1,15 @@
+<?php
+
+use Carbon\Carbon;
+$deadlineDate = Carbon::parse($record->deadline_date);
+$today = Carbon::today();
+
+//dump($record);
+
+if(!empty($record->srn->id)){
+    $today = Carbon::parse($record->srn->created_at);
+}
+
+echo $deadlineDate->lt($today) ? $deadlineDate->diffInDays($today) : '';
+
+?>

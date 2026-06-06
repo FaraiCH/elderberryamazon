@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    status:
+      label: Status
+      type: relation
+      select: concat(id," - ",name)
+      disabled: true
+    
+    
+    response:
+      label: Comment
+      
+      disabled: true
+    poamount@update:
+      label: PO Amount
+      comment: The exact ammount in the PO document      
+      type: inputcurrency
+
+    poamountcomment:
+        label: PO Amount Comment
+        type: text
+
+    
+    file:
+      label: PO Documents
+      type: fileupload
+      tab: Upload Files
+      mode: file
+      disabled: true
+      

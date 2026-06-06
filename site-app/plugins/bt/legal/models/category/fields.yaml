@@ -1,0 +1,9 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Parent Folder Name
+        required: true
+        comment: Parent structure or parent folder 

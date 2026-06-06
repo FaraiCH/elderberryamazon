@@ -1,0 +1,19 @@
+{% set qcreason = CmStickerLanding.reason %}
+{% set printpipe = CmStickerLanding.item %}
+Reason:
+<select name="qcreason" id="qcreason" class="select_search form-control form-size" minlength="4" data-track-input data-request="onStickerLandingReason">
+    <option value="0">Select Reason</option>
+    {% for reason in qcreason %}
+        {% if printpipe.reason.id == reason.id %}
+            <option selected value="{{reason.id}}">{{reason.reason}}</option>
+        {% else %}
+            <option value="{{reason.id}}">{{reason.reason}}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+<div id="wall-thickness"></div>
+{% if status == 2 %}
+    <p style="padding-top: 10px">Take Picture of Failed Pipe:</p>
+    <input type="file" id="fail_pic" name="fail_pic" class="form-control form-size text-center">
+{% endif %}
+

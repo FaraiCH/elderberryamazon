@@ -1,0 +1,43 @@
+fields:
+    status_id:
+      label: Approve Finance
+      type: switch
+      comment: Approve by management
+      on: Yes
+      off: No
+      span: auto
+    price:
+        label: Approved Amount
+        type: inputcurrency
+        span: auto
+    pop:
+        label: POP File
+        type: fileupload
+
+        mode: file
+    files:
+        label: Other/More Files
+        type: fileupload
+        mode: file
+    createdby:
+      label: Created By
+      disabled: true
+      type: relation
+      select: concat(first_name, ' ', last_name)
+      span: auto
+      placeholder: -- select a status --
+      comment: Please ignore, this field will be automated
+
+    updatedby:
+      label: Updated By
+      disabled: true
+      type: relation
+      select: concat(first_name, ' ', last_name)
+      span: auto
+      placeholder: -- select a status --
+      comment: Please ignore, this field will be automated
+    note:
+      label: Notes and Comments
+      size: small
+      type: textarea
+      span: auto

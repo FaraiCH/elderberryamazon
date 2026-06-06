@@ -1,0 +1,8 @@
+
+
+
+<?php if(isset($record) && isset($record->scheduleday) && isset($record->scheduleday->controlsheet)): ?>
+	
+	<a href="/lab/coc/download/<?=   $formModel->id ?>/<?= $record->scheduleday->pipe->id ?>/<?= $record->scheduleday->controlsheet->id ?>.pdf" target="_blank" class="btn btn-secondary btn-sm">COC</a>
+
+<?php endif; ?>

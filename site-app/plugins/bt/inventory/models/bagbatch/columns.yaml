@@ -1,0 +1,19 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    raw_material_receiving_id:
+        label: Raw Material Receiving ID
+        relation: rawMaterialReceiving
+    bags:
+        label: Bag Number
+    weight:
+        label: Supply Weight
+    actual_weight:
+        label: Actual Weight
+    batch_number:
+        label: Batch Number

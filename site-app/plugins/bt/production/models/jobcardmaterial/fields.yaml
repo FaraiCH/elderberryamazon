@@ -1,0 +1,17 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    raw_material_receivings_id:
+        label: Material Used
+        type: dropdown
+        placeholder: -- select a Material --
+        comment: "Material recieved into the factory."
+   
+    kg:
+        label: Weight in kg
+        type: number
+    note:
+        label: Comments
+        default: USE AS PER PROCEDURE

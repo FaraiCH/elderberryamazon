@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+<title>BT-FEEDBACK-FORM-{{'%04d'|format(messages.id)}}</title>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+.table td, .table th {
+padding: 5px;
+vertical-align: top;
+border: 0px solid #e9ecef;
+font-size: 12px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+
+	     <div class="footer">
+            <p class="left">
+               <!-- 	<table border="0">
+            		<tr>
+            			<td valign="top" width="45%">
+                Doc: F-QMS-9.5.7<br>
+                Effective: 2020/03/14 Rev: 2<br>
+                Prepared By: K Phaleng<br>
+                Approved By: F Chamisa
+                </td>
+                <td valign="top" width="45%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+                 -->
+
+
+            </p>
+
+        </div>
+
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+							<p>11 Barnsley St, Benoni,Johannesburg, 1501<br><b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>BT-FEEDBACK-FORM-{{'%04d'|format(messages.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+		<p><b>Date:</b> {{messages.created_at}} <p>
+
+		<table style="width: 100%" class="table" cellspacing="10" >
+			{% for item in fields %}
+				<tr>
+					<td style="width: 50%"><b>{{item.label}}</b></td>
+					<td> <div style="border: 1px solid #ccc; padding: 5px">{{item.answer}}</td>
+				</tr>
+
+
+		{% endfor %}
+		</table>
+		<br><br>
+			<div style="border: 1px solid #ccc; padding: 10px;">
+				<h4 style="font-size: 15px; margin: 0px; padding: 0px">Quality Manager:</h4>
+				<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+					<tr>
+						<td>NAME:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>DATE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>SIGNATURE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+					</tr>
+				</table>
+
+</body>
+	</html>

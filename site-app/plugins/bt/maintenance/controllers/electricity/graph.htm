@@ -1,0 +1,428 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/maintenance/elecmeter') ?>">Electricity Usage</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<?= $this->makePartial('filterform',['startdate' => $startdate,'enddate' => $enddate, 'monthly' => $monthly, 'weekly' => $weekly, 'daily' => $daily]) ?>
+
+<div class="callout fade in callout-info ">
+
+    <div class="content">
+
+        <div class="card" style="margin-top: 20px">
+            <div id="chart_kg" style="height: 450px;"></div>
+
+            <div style="padding: 10px">
+
+                <table class="table" style="width: 100%;border-collapse:collapse; font-size: 13px; border: 1px solid #ccc; border-color: #ccc" cellspacing="0px" cellpadding="2px"  border="1">
+                    <tr>
+                        <td>Average PF</td>
+                        <td>Maximum PF</td>
+                        <td>Average KVA</td>
+                        <td>Maximum KVA</td>
+                        <td>Average KWH</td>
+                        <td>Maximum KWH</td>
+                        <td>Average KVARH</td>
+                        <td>Maximum KVARH</td>
+
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <?= $averagepf ?>
+                            </td>
+                            <td>
+                                <?= $maxpf ?>
+                            </td>
+                            <td>
+                                <?= $averagekva ?>
+                            </td>
+                            <td>
+                                <?= $maxkva ?>
+                            </td>
+                            <td>
+                                <?= $averagekwh ?>
+                            </td>
+                            <td>
+                                <?= $maxkwh ?>
+                            </td>
+                            <td>
+                                <?= $averagekvarh ?>
+                            </td>
+                            <td>
+                                <?= $maxkvarh ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+            <?php
+                $bill2021 = 0;
+                $bill2022 = 0;
+                $kilo2021 = 0;
+                $kilo2022 = 0;
+                $kw2021 = 0;
+                $kw2022 = 0;
+            ?>
+
+        <div class="card" style="margin-top: 20px">
+            <div id="chart_line" style="height: 450px;"></div>
+            <br>
+            <div style="padding: 10px">
+
+                <table class="table table-bordered">
+                    <thead style="background: #0c0c80; color: white">
+                    <tr>
+                        <th>Date</th>
+                        <th colspan="2">PF</th>
+                        <th colspan="2">KVA</th>
+                        <th colspan="2">KWH (Total)</th>
+                        <th colspan="2">KVARH</th>
+                        <th colspan="2">Monthly Billing</th>
+                        <th colspan="2">KG Processed</th>
+                        <th colspan="2">Rand Per Kilo</th>
+                        <th colspan="2">KWH Per Kilo</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr style="background: #0c0c80; color: white">
+                        <td></td>
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+                        <td>
+                            <b>2021</b>
+                        </td>
+                        <td>
+                            <b>2022</b>
+                        </td>
+                    </tr>
+                    <?php foreach($tableData as $key => $datearray): ?>
+                    <tr>
+                        <td style="background: #0c0c80; color: white">
+                            <b><?= $key ?></b>
+                        </td>
+                        <td style="background: white;">
+                           <?= number_format($datearray['pf 2021'], 2, ',', '.') ?>
+                        </td>
+                        <?php if(isset($datearray['pf 2022'])): ?>
+                            <td style="background: white;">
+                                <?= number_format($datearray['pf 2022'], 2, ',', '.') ?>
+                            </td>
+                        <?php else: ?>
+                            <td style="background: white;">0.00</td>
+                        <?php endif; ?>
+
+                        <td style="background: white;">
+                            <?= number_format($datearray['kva 2021'], 2, ',', '.') ?>
+                        </td>
+                        <?php if(isset($datearray['kva 2022'])): ?>
+                        <td style="background: white;">
+                            <?= number_format($datearray['kva 2022'], 2, ',', '.') ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00</td>
+                        <?php endif; ?>
+
+                        <td style="background: white;">
+                            <?= number_format($datearray['kwh 2021'], 2, ',', '.') ?>
+                            <?php $kw2021 = $datearray['kwh 2021'];?>
+                        </td>
+                        <?php if(isset($datearray['kwh 2022'])): ?>
+                        <td style="background: white;">
+                            <?= number_format($datearray['kwh 2022'], 2, ',', '.') ?>
+                            <?php $kw2022 = $datearray['kwh 2022'] ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00</td>
+                         <?php $kw2022 = 0; ?>
+                        <?php endif; ?>
+
+                        <td style="background: white;">
+                            <?= number_format($datearray['kVArh 2021'], 2, ',', '.') ?>
+                        </td>
+                        <?php if(isset($datearray['kVArh 2022'])): ?>
+                        <td style="background: white;">
+                            <?= number_format($datearray['kVArh 2022'], 2, ',', '.') ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00</td>
+                        <?php endif; ?>
+                        <?php if(isset($bill[$key]['2021'])): ?>
+                            <td style="background: white;">
+                                R <?= number_format($bill[$key]['2021'],2,',','.') ?>
+                                <?php $bill2021 = $bill[$key]['2021']; ?>
+                            </td>
+                        <?php else: ?>
+                            <td style="background: white;">R 0.00</td>
+                        <?php $bill2021 = 0; ?>
+                        <?php endif; ?>
+                        <?php if(isset($bill[$key]['2022'])): ?>
+                            <td style="background: white;">
+                                R <?= number_format($bill[$key]['2022'] ,2,'.',',') ?>
+                                <?php $bill2022 = $bill[$key]['2022']; ?>
+                            </td>
+                        <?php else: ?>
+                            <td style="background: white;">R 0.00</td>
+                            <?php $bill2022 = 0; ?>
+                        <?php endif; ?>
+                        <?php if(isset($kgs[$key. '2021']['total_kg_processed'])): ?>
+                        <td style="background: white;">
+                            <?= number_format($kgs[$key. '2021']['total_kg_processed'], 2, ',','.') ?> KG
+                            <?php $kilo2021 = $kgs[$key. '2021']['total_kg_processed']; ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00 KG</td>
+                        <?php $kilo2021 = 0; ?>
+                        <?php endif; ?>
+                        <?php if(isset($kgs[$key. '2022']['total_kg_processed'])): ?>
+                        <td style="background: white;">
+                             <?= number_format($kgs[$key. '2022']['total_kg_processed'], 2, ',', '.') ?> KG
+                            <?php $kilo2022 = $kgs[$key. '2022']['total_kg_processed']; ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00 KG</td>
+                        <?php $kilo2022 = 0; ?>
+                        <?php endif; ?>
+                        <?php if($kilo2021 > 0): ?>
+                        <td style="background: white;">
+                            R <?= number_format($bill2021/$kilo2021, 2, ',','.') ?>
+                        </td>
+                        <?php else: ?>
+                            <td style="background: white;">R 0.00</td>
+                        <?php endif; ?>
+
+                        <?php if($kilo2022 > 0): ?>
+                        <td style="background: white;">
+                            R <?= number_format($bill2022/$kilo2022, 2, ',','.') ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">R 0.00</td>
+                        <?php endif; ?>
+
+                        <?php if($kilo2021 > 0): ?>
+                        <td style="background: white;">
+                            <?= number_format($kw2021/$kilo2021, 2, ',','.') ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00</td>
+                        <?php endif; ?>
+
+                        <?php if($kilo2022 > 0): ?>
+                        <td style="background: white;">
+                            <?= number_format($kw2022/$kilo2022, 2, ',','.') ?>
+                        </td>
+                        <?php else: ?>
+                        <td style="background: white;">0.00</td>
+                        <?php endif; ?>
+
+                    </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+
+
+
+
+        Highcharts.chart('chart_kg', {
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Electric Meter Graph (Ekurhuleni)'
+            },
+
+            subtitle: {
+
+                text: 'Daily Readings'
+            },
+
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+
+                    text: 'Readings'
+
+                },
+                plotLines: [
+                    {
+                        value: <?= $averagekva ?>,
+                color: 'black',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'Avarage <?= number_format($averagekva) ?>'
+                }
+            }
+                ]
+            },
+
+            series: <?= json_encode($stats) ?> ,
+
+            plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+    });
+
+
+</script>
+
+<script>
+    var select = document.getElementById('select');
+
+        select.addEventListener('change', (e) => {
+
+   console.log(Highcharts.redraw());
+});
+</script>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        Highcharts.chart('chart_line', {
+            data: {
+                dateFormat: 'M'
+            },
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Electric Meter Compare Graph 2021-2022'
+            },
+
+            subtitle: {
+
+                text: 'Average'
+            },
+
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+
+                    text: 'Readings'
+
+                },
+                plotLines: [
+
+                ]
+            },
+
+            series: <?= json_encode($lines) ?>,
+
+            plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+    });
+
+
+
+</script>

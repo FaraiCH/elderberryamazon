@@ -1,0 +1,23 @@
+scopes:
+    department:
+        label: Department
+        modelClass: Bt\Maintenance\Models\Department
+        conditions: department_id in (:filtered)
+        nameFrom: name
+
+    assignedto:
+        label: Assigned To
+        modelClass: Bt\Maintenance\Models\Staff
+        conditions: assignedto_id in (:filtered)
+        nameFrom: name
+
+    status:
+        label: Status
+        modelClass: Bt\Maintenance\Models\Status
+        conditions: status_id in (:filtered)
+        nameFrom: name
+
+    opendate:
+        label: Date
+        type: daterange
+        conditions: opendate >= ':after' AND opendate <= ':before'

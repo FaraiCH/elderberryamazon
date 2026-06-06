@@ -1,0 +1,5 @@
+<?php if (count($formModel->files_delivery) > 0 &&  count($formModel->files_coming) > 0 ): ?>
+		<?= $this->relationRender('items', ['readOnly' => true]) ?>
+<?php else: ?>
+		<?= $this->relationRender('items') ?>
+<?php endif ?>

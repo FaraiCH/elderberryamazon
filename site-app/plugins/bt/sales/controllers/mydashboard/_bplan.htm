@@ -1,0 +1,108 @@
+<div style="text-align: right">
+    <a href="/backend/sales/orders/export" class="btn btn-primary">
+        Export Orders
+    </a>
+</div>
+<br>
+<div class="control-list" style="overflow: auto;">
+    <table class="table"  style="width:100%">
+        <thead>
+            <tr>
+                        
+                <!-- <th ><span>Quote Date</span></th> -->
+                <th ><span>Quote Date</span></th>
+                <th ><span>Client Name</span></th>
+                <th ><span>Sales Agent</span></th>
+                <th ><span>Quote</span></th>
+                <th ><span>Total Inc Vat</span></th>
+                <th ><span>PO Number</span></th>
+                <th ><span>PO Date</span></th>
+
+                <th ><span>Buy Outs</span></th>
+                <th ><span>Pipes Price</span></th>
+                <th ><span>KG Ordered</span></th>
+                <th ><span>R/Kg</span></th>
+                <th ><span>Executive Involvement</span></th>
+                        
+                 
+            </tr>
+
+        </thead>
+        <tbody>
+            <?php
+                    $totalincvat = 0;
+                    $totalweight = 0;
+                    $i_price = 0;
+                    $p_price = 0;
+                    $average = 0;
+                ?>  
+        	<?php foreach($poquotes as $m => $mdata): ?>
+                 	<tr>     		
+                            <?php
+                                $date = date_create($mdata["created_at"] );
+                               $totalincvat = $totalincvat + $mdata["totalincvat"];
+                               $totalweight = $totalweight + $mdata->items->sum("totalweight");
+                               $i_price = $i_price + $mdata->items->sum("price");
+                               $p_price = $p_price + $mdata->itemscat->sum("price");
+                               $average = 0;
+                               if($totalweight > 0)
+                                    $average = $i_price / $totalweight ;
+                               
+                            ?>
+                        
+                        <td><?= date_format($date, 'M Y');?></td>
+                        <td><?= $mdata["company_name"] ?></td>
+                        <td><?= $mdata->user->name ?> <?= $mdata->user->surname ?></td>
+                        <td><?= $mdata["id"] ?></td>
+                        <td style="text-align: right" nowrap="nowrap">R <?= number_format($mdata["totalincvat"],2, '.', ',') ?></td>
+                        <td><?= $mdata["ponumber"] ?></td>
+                        <td>
+                           <?php if(!empty($mdata["responses"] ) ): ?>
+                                <?php foreach($mdata["responses"] as $r => $rdata): ?>
+                                    <?php if($rdata->quote_status_id == 10): ?>
+                                        <?php
+                                             $date_r = date_create($rdata["created_at"] );
+                                   
+                                            ?>
+                                       <?= date_format($date_r, 'M Y');?>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            <?php endif ?>
+
+
+                        </td>
+                        <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( !empty($mdata["itemscat"])?$mdata->itemscat->sum("price"):0 ),2, '.', ',') ?></td>
+
+                        <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( !empty($mdata["items"])?$mdata->items->sum("price"):0 ),2, '.', ',') ?></td>
+
+                        <td style="text-align: right" nowrap="nowrap"> <?= number_format( ( !empty($mdata["items"])?$mdata->items->sum("totalweight"):0 ),2, '.', ',') ?> KG</td>
+
+                         <?php if(!empty($mdata["items"] ) && $mdata->items->sum("totalweight") > 0): ?>
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( !empty($mdata["items"])?$mdata->items->sum("price"):0 )/( !empty($mdata["items"])?$mdata->items->sum("totalweight"):0 ),2, '.', ',') ?></td>
+                         <?php else: ?>
+                         <td></td>
+                         <?php endif ?>
+                         <td></td>
+
+                 	</tr>
+
+
+        	<?php endforeach ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td align="left" colspan="4"><b>TOTAL</b></td>
+                <td style="text-align: right" nowrap="nowrap">R <?=  number_format($totalincvat,2, '.', ',') ?></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right" nowrap="nowrap">R <?= number_format($p_price,2, '.', ',') ?></td>
+
+                <td style="text-align: right" nowrap="nowrap">R <?= number_format($i_price ,2, '.', ',') ?></td>
+
+                <td style="text-align: right" nowrap="nowrap"> <?= number_format($totalweight,2, '.', ',') ?> KG</td>
+
+                <td style="text-align: right" nowrap="nowrap">R <?= number_format($average ,2, '.', ',') ?></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

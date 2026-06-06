@@ -1,0 +1,12 @@
+<?php
+if(isset($record->quote->invoice) && count($record->quote->invoice) > 0 ){
+	$inv = array();
+	foreach($record->quote->invoice as $key => $value){
+		$inv[] = $value->name;
+	}
+	echo  implode(", ", $inv);
+}
+
+?>
+
+

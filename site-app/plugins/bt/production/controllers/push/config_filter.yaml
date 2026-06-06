@@ -1,0 +1,22 @@
+scopes:
+    quote:
+        label: Quote Number
+        modelClass: Bt\Sales\Models\Newquote
+        conditions: quote_id in  (:filtered)
+        options: getQuotes
+    status:
+        label: Production Status
+        modelClass: Bt\Production\Models\Status
+        conditions: status_id in (:filtered)
+        nameFrom: name
+    sales_rep:
+        label: Sales Rep
+        modelClass: RainLab\User\Models\User
+        nameFrom: name
+            # Filter scope
+        scope: filterByUser
+    created_at:
+        label: Date Created       
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+    

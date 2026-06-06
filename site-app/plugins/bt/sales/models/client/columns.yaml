@@ -1,0 +1,91 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    account_number:
+        label: Account Number
+        invisible: false
+    company_name:
+        label: Company Name
+        searchable: true
+    user_id:
+        label: Account Manager
+    client_category:
+        label: Category
+        relation: client_category
+        select: name
+    is_blocked:
+        label: Blocked
+        type: switch
+    is_cod:
+        label: Is COD
+        type: switch
+    coreg:
+        label: CO Reg
+        invisible: true
+    utilization:
+        label: Utilization
+        format: R %.2f
+        type: number
+        invisible: false
+    limit:
+        label: Limit Set
+        format: R %.2f
+        type: number
+        invisible: false
+
+    invoices:
+        label: invoices
+        type: partial
+        path: $/bt/sales/models/client/_qinvoices_column.htm
+        sortable: false
+        searchable: false
+        invisible: true
+
+    payment:
+        label: Payment
+        type: partial
+        path: $/bt/sales/models/client/_qpayment_column.htm
+        sortable: false
+        searchable: false
+        invisible: true
+
+    limitcount:
+        label: Balance
+        type: partial
+        path: $/bt/sales/models/client/_limitcount_column.htm
+        sortable: false
+        searchable: false
+
+    docstatus:
+        label: contract files
+        type: partial
+        path: $/bt/sales/models/client/_docstatus.htm
+        searchable: false
+        sortable: false
+        invisible: false
+
+    vatno:
+        label: VAT No
+        searchable: true
+        invisible: true
+    vendorno:
+        label: Vendor No
+        invisible: true
+
+    contact_name:
+        label: Contact Name
+    contact_email:
+        label: Contact Email
+    contact_number:
+        label: Contact Number
+    physical_address:
+        label: Physical Address
+        invisible: true
+    postal_address:
+        label: Postal Address
+        invisible: true

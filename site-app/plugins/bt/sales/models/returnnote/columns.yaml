@@ -1,0 +1,24 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    srn:
+        label: Quote
+        select: quote_id
+        relation: srn 
+
+    item_id:
+        label: Description
+        type: partial
+        path: $/bt/sales/models/returnnote/_description_column.htm  
+    units:
+        label: Units
+
+    return_date:
+        label: Return Date
+    note:
+        label: Reason

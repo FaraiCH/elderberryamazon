@@ -1,0 +1,54 @@
+scopes:
+    quoteid:
+        label: Quote Number
+        modelClass: Bt\Sales\Models\Newquote
+        conditions: id =  (:filtered)
+        nameFrom: id
+    client:
+       label: Company Name
+       modelClass: Bt\Sales\Models\Client
+       conditions: client_id in (:filtered)
+       nameFrom: company_name
+    ponumber:
+        label: PO Number
+        modelClass: Bt\Sales\Models\Newquote
+        conditions: ponumber =  (:filtered)
+        options: getPONumberOptions
+    status:
+        label: Status
+        modelClass: Bt\Sales\Models\QuoteStatus
+        conditions: quote_status_id in (:filtered)
+        nameFrom: name
+    createdby:
+        label: Sales Person
+        modelClass: RainLab\User\Models\User
+        conditions: user_id in (:filtered)
+        options: getSalesOptions
+
+    isactive:
+        label: Active
+        modelClass: Bt\Maintenance\Models\YesNo
+        conditions: active in (:filtered)
+        nameFrom: name
+
+    reason:
+        label: Reason For Quote
+        modelClass: Bt\Sales\Models\ReasonForQuote
+        conditions: reason_for_quote_id in (:filtered)
+        nameFrom: name
+
+    nonreceived:
+        label: Receiving Order
+        modelClass: Bt\Sales\Models\ReceivedNonReceived
+        conditions: received_non_received_order_id in (:filtered)
+        nameFrom: name
+
+    closing_date:
+        label: Closing Date
+        type: daterange
+        conditions: closing_date >= ':after' AND closing_date <= ':before'
+
+    created_at:
+        label: Date Created
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'

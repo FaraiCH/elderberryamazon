@@ -1,0 +1,14 @@
+
+<div class="callout fade in callout-info no-subheader">
+    <div class="header">
+        <i class="icon-info"></i>
+        <h3>Ticket Approval</h3>
+    </div>
+</div>
+<br>
+<?php if ($this->user->hasAccess('bt.production.approve')): ?>
+		<?= $this->relationRender('approved') ?>
+<?php else: ?>
+		<?= $this->relationRender('approved', ['readOnly' => true]) ?>
+<?php endif ?>
+

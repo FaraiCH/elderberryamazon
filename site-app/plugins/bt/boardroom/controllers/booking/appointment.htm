@@ -1,0 +1,63 @@
+<h3 style="text-align: center; background: whitesmoke;margin:0 20px 0px 0px;padding:0;">Upcoming Visitors</h3>
+
+
+<div class="scoreboard" >
+    <div  class="row row-no-gutters">
+        <?php foreach($visitors as $formModel): ?>
+        <a href="/backend/bt/boardroom/visitor/update/<?= $formModel->id ?>" class="col-sm-3">
+            <div class="scoreboard-item title-value ">
+                <p class="oc-icon-user" style="font-size: 16px">
+                    &nbsp;Name: <?= $formModel->visitorname ?>
+                </p>
+                <p class="icon-universal-access" style="font-size: 16px">
+                    &nbsp; Hosted By: <?= $formModel->hostname ?>
+                </p>
+                <p class="oc-icon-calendar" style="font-size: 16px">
+                    <?php $date=date_create($formModel->date) ?>
+                    Arrival: <?= date_format($date, "Y-m-d H:i A") ?>
+                </p>
+            </div>
+        </a>
+        <?php endforeach ?>
+    </div>
+</div>
+
+
+
+<div id='calendar'></div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/core/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/interaction/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/daygrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/timegrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/list/main.js"></script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            },
+
+            navLinks: true, // can click day/week names to navigate views
+            businessHours: true, // display business hours
+            editable: true,
+            events: <?= json_encode($events) ?>,
+
+        });
+
+        calendar.render();
+
+    });
+    $(document).ready(function () {
+
+    });
+
+</script>

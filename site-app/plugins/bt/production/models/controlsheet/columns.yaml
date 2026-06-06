@@ -1,0 +1,151 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    docstatus:
+        label: Doc Status
+        type: partial
+        path: $/bt/production/models/controlsheet/_docstats.htm
+        searchable: false
+        sortable: false
+        invisible: false
+    id:
+        label: ID
+        searchable: true
+    jobcard_id:
+        label: Jobcard id
+        type: number
+        searchable: true
+
+    batch_id:
+        label: batch id
+        type: number
+        searchable: true
+    batch:
+        label: Batch Code
+        type: number
+        relation: batch
+        select: concat(jobcard_id,'-',id)
+        searchable: true
+    active:
+        label: Is Active
+        type: partial
+        path: $/bt/production/models/controlsheet/_active.htm
+        searchable: true
+    btline:
+        label: Line
+        relation: btline
+        select: name
+        searchable: true
+    # target_num_pipes:
+    #   label: Target Pipes
+
+    download:
+      label: Download
+      type: partial
+      path: $/bt/production/models/controlsheet/_download_column.htm
+      sortable: false
+      clickable: false
+
+    downloadqc:
+      label: QC Inspection
+      type: partial
+      path: $/bt/production/models/controlsheet/_downloadqc_column.htm
+      sortable: false
+      clickable: false
+
+    total_weight:
+        label: Lab Weight
+
+    produced:
+        label: QC Passed
+        type: partial
+        path: $/bt/production/models/controlsheet/producedPipes.htm
+        sortable: false
+        clickable: false
+    scanned:
+        label: QC Scanned
+        type: partial
+        path: $/bt/production/models/controlsheet/scannedPipes.htm
+        sortable: false
+        clickable: false
+
+    downloadprodinspection:
+      label: Production Inspection
+      type: partial
+      path: $/bt/production/models/controlsheet/_downloadprodinspection_column.htm
+      sortable: false
+      clickable: false
+
+
+    # downloadactuals:
+    #   label: Download Auctuals
+    #   type: partial
+    #   path: $/bt/production/models/controlsheet/_downloadactuals_column.htm
+    #   sortable: false
+    #   clickable: false
+    downloadcoc:
+      label: COC
+      type: partial
+      path: $/bt/production/models/controlsheet/_coc_column.htm
+      sortable: false
+      clickable: false
+    manage:
+      label: Shift Input
+      type: partial
+      path: $/bt/production/models/controlsheet/_manage_column.htm
+      sortable: false
+      clickable: false
+
+    opendate:
+      label: Open Date and Time
+      span: left
+
+    assignedto:
+      label: Operator Name
+      relation: assignedto
+      select: name
+    shift:
+      label: Shift
+    standardweight:
+      label: Standard Weight
+
+    mass:
+      label: Mass/Meter
+    pipesize:
+      label: Pipe Size
+      span: left
+
+    pipelenght:
+      label: Pipe Lenght
+
+    rawmaterialpe:
+      label: Rawmaterial PE
+
+
+    docnumber:
+      label: Document Number
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+

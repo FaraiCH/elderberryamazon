@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 10px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+
+        .table-md td, .table-md th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 12px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="footer">
+    <p class="left">
+    <table border="0">
+        <tr>
+            <td valign="top" width="45%">
+                Doc: F-SC-20.0.3<br>
+                Effective: 2019/05/08 Rev: 0<br>
+                Prepared By: K Maphai<br>
+                Approved By: K Lekola
+            </td>
+            <td valign="top" width="45%">Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+            <td width="10%"><span class="pagenumber"></span></td></tr></table>
+    </p>
+
+</div>
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                       <h2>Non-SABS Pipes Form #BT{{quote.id}}</h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+    <td width="47%" valign="top">
+        <table width="100%" border="0" cellpadding="2px" cellspacing="0">
+
+            <tr><td width="40%"><b>Customer:</b></td><td width="60%">{{quote.company_name}}</td></tr>
+            <tr><td width="40%"><b>Date:</b></td><td width="60%">{{quote.created_at|date("Y-m-d")}}</td></tr>
+            <tr><td valign="top" width="40%"><b>Quote Number:</b></td><td width="60%">{{quote.id}}</td></tr>
+        </table>
+    </td>
+</table>
+<br><br>
+<p>I, {{quote.company_name}}, acknowledge and understand that I am purchasing out of spec pipes from BT Industrial at a discounted rate.
+By signing this form, I release and discharge BT Industrial, its officers, agents, employees, and affiliates from any liability, claims, demands, actions, or causes of action arising out of or related to the use installation.</p>
+<p>I agree to indemnify and hold harmless BT Industrial PTY from any claims, losses, damages, liabilities, expenses, and costs (including legal fees) that may arise.</p>
+<p>I have read this concession form and understand its contents.</p>
+
+<br><br>
+<table>
+    <tr>
+        <td>
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Sales Consultant:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>Name:     {{quote.user.name}} {{quote.user.surname}}</td>
+                        <td>Date:   {{ "now"|date("m/d/Y") }}</td>
+                        <td>Signature:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            <div style="border: 1px solid #ccc; padding: 10px;  margin-top: 10px">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Customer:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+
+                    <tr>
+                        <td>Name:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>Date:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>Signature:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    checklist:
+        label: Checklist Setup   
+        select: name
+        type: relation
+        span: left
+
+    status:
+        label: Schedule Status    
+        select: name
+        type: relation
+        span: right
+
+    instructions:
+        label: Instructions
+        span: left
+    
+    assignedto:
+        label: Assigned To    
+        select: name
+        type: relation
+        span: right
+
+    scheduledate:
+        label: Schedule Date    
+        type: datepicker
+        required: yes
+        ignoreTimezone: true
+tabs:
+  fields:   
+    condition@update:
+        label: Results Condition
+        select: name
+        type: relation
+        tab: Results
+        span: left
+        placeholder: -- Select --
+    comments@update:
+        label: Results Comments
+        tab: Results
+        span: right
+    files@update:
+        label: Results Files
+        type: fileupload
+        tab: Upload Files
+        mode: file
+        tab: Files
+
+        

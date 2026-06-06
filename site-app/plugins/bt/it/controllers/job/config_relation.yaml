@@ -1,0 +1,20 @@
+approved:
+    label: Approve Task
+    view:
+        list: $/bt/it/models/jobapprove/columns.yaml
+        form: $/bt/it/models/jobapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/it/models/jobapprove/fields.yaml
+        list: $/bt/it/models/jobapprove/columns.yaml
+
+responses:
+    label: Responses
+    manage:
+        form: $/bt/it/models/taskresponse/fields.yaml
+        list: $/bt/it/models/taskresponse/columns.yaml
+    view:
+        list: $/bt/it/models/taskresponse/columns.yaml
+        toolbarButtons: create | delete
+
+        

@@ -1,0 +1,5 @@
+import:
+    title: Import Sticker Pickslips
+    modelClass: Bt\Reporting\Models\StickerImport
+    list: $/bt/production/models/pipestickeritem/columns_import.yaml
+    redirect: bt/production/printsticker

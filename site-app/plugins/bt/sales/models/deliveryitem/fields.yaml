@@ -1,0 +1,31 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    quotecat:
+        label: Items In quote
+        type: dropdown
+        span: storm
+        cssClass: noezanclass col-md-6 col-sm-6
+        placeholder: --- Select ---
+
+    units:
+        label: Qty
+        span: storm
+        cssClass: noezanclass col-md-6 col-sm-6
+        type: number
+
+    notes:
+        label: Notes
+        type: textarea
+        size: small
+    upload_file:
+        label: Upload Screenshots or Documents
+        type: fileupload
+        span: auto
+        mode: file
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx, png, jpg, jpeg

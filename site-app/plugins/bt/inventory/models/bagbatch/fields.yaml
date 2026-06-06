@@ -1,0 +1,38 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        type: number
+        span: auto
+        disabled: true
+    rawMaterialReceiving:
+        label: Raw Material Receiving ID
+        select: id
+        type: relation
+        span: auto
+        disabled: true
+    bags:
+        label: Bag Number
+        type: text
+        span: auto
+        required: true
+    weight:
+        label: Supply Weight
+        type: number
+        span: auto
+        required: true
+        min: 0
+    actual_weight:
+        label: Actual Weight
+        type: number
+        span: auto
+        required: true
+        min: 0
+    batch_number:
+        label: Batch Number
+        type: text
+        span: auto
+        required: true

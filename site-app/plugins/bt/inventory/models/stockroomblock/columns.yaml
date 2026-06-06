@@ -1,0 +1,20 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    zone_row:
+        label: ROW
+        searchable: true
+    zone_column_number:
+        label: Column
+        searchable: true
+    zone_stack_height:
+        label: Height
+        searchable: true
+    used:
+        label: Used
+        searchable: true

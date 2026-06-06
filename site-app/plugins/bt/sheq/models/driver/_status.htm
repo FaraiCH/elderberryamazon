@@ -1,0 +1,9 @@
+<?php if($record->expiry >= date("Y-m-d")): ?>
+	<span class="oc-icon-circle text-success">
+	Active
+	</span>
+<?php else: ?>
+<span class="oc-icon-circle text-danger">
+	    Expired
+	</span>
+<?php endif; ?>

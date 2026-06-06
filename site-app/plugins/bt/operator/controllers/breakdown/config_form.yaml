@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Breakdown
+
+# Model Form Field configuration
+form: $/bt/production/models/breakdown/operator_fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Breakdown
+
+# Default redirect location
+defaultRedirect: bt/operator/breakdown
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/operator/breakdown/update/:id
+    redirectClose: bt/operator/breakdown
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/operator/breakdown
+    redirectClose: bt/operator/breakdown
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,11 @@
+scopes:
+    date:
+        label: Effective Date 
+        type: date
+        conditions: date >= ':filtered'
+
+    transportratesdestination:
+        label: Destination
+        modelClass: Bt\Sales\Models\TransportRatesDestination
+        conditions: transportratesdestination_id in (:filtered)
+        nameFrom: name

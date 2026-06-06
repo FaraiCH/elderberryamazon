@@ -1,0 +1,29 @@
+   {% set btype = BTNewQuote.loadUniqueCompany() %}
+   <!-- <div class="card card-default mb-4 mt-3">
+      <div class="card-body  py-2"> -->
+          <div style="margin: 0px auto; width: 1200px">
+	           	<form name="frmfilter" id="frmfilter" class="form-inline" method="POST" data-request="onFetchCompany"  data-request-update="'{{__SELF__ ~ '::form'}}': '#formquote'" data-attach-loading data-request-flash >
+
+					    <label for="exampleInputName2" style="float: left; " >Duplicate quote: </label>
+					    <div style="float: left; width: 500px" class="px-2">
+					     	<select id="quotecopy" style="max-width: 400px;" name="quotecopy" class="input-sm select_search"  minlength="4" required="required" data-request-success="$('#userloginTaken').toggle(!!data.isTaken)"
+        data-track-input>
+					     		<option value=""></option>
+						  			{% for obType in btype %}
+	                              {% set selected = '' %}
+
+	                                <option {{selected}} value="{{obType.id}}">QT#{{obType.id}} : {{obType.company_name}} : {{obType.created_at|date("m/d/Y")}} </option>
+	                                {% set selected = '' %}
+	                        {% endfor %}
+							 </select>
+							</div>
+							<input id="excludeitems" name='excludeitems'type="checkbox"  >
+								<label for="excludeitems"style="text-align: left; padding-right: 40px; padding-left: 5px; ">Exclude Quote Items</label>
+					      <button type="submit" id="flterbtn" class="btn btn-primary btn-sm py-0">Use Company</button>
+					</form>
+			</div>
+			<br>
+   <div id="credit_balance">
+
+   </div>
+

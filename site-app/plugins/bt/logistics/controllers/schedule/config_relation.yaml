@@ -1,0 +1,8 @@
+logisticapprove:
+    label: Approve Schedule
+    view:
+        form: $/bt/logistics/models/logisticapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/logistics/models/logisticapprove/fields.yaml
+        list: $/bt/logistics/models/logisticapprove/columns.yaml

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Usage Type
+
+# Model Form Field configuration
+form: $/bt/logistics/models/usagetype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\UsageType
+
+# Default redirect location
+defaultRedirect: bt/logistics/usagetype
+
+# Create page
+create:
+    title: Create Usage Type
+    redirect: bt/logistics/usagetype/update/:id
+    redirectClose: bt/logistics/usagetype
+
+# Update page
+update:
+    title: Edit Usage Type
+    redirect: bt/logistics/usagetype
+    redirectClose: bt/logistics/usagetype
+
+# Preview page
+preview:
+    title: Preview Usage Type

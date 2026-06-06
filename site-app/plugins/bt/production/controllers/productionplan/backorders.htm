@@ -1,0 +1,161 @@
+<?php
+	$class = 'callout-success';
+
+    if (count($list ) == 0){
+    echo "<p class='flash-message static error'>Back Order Is Empty. Most Likely the date that was tracking the production as expired</p>";
+    }
+?>
+
+<div class="control-breadcrumb">
+                                            <ul>
+        <li><a href="/backend/bt/production/push">Production</a></li>
+        <li>Back Orders</li>
+    </ul>                                        </div>
+
+
+   
+   
+        <?php $totalBack = 0; ?>
+        <?php  foreach($list as $client): ?>
+                
+            <?php if (isset($client->gotbackorder)): ?>
+                <div style="position: relative;" class="control-tabs master callout fade in <?= $class?>"  data-control="tab" data-closable>
+                    <div class="header" style="padding: 10px 10px">
+                        <i class="icon-history"></i>
+                            <h3 style="font-size: 16px"><?= $client->company_name ?></h3>
+                    </div>
+                    <div class="content tab-content" style="padding: 0px" >
+                        <table class="table data">
+                                <thead>
+                                    <tr>
+                                        <th><span>Quote</span></th>
+                                        <th><span>PO Number</span></th>
+                                        <th><span>Sales Person</span></th>
+                                        <th><span>Age</span></th>
+                                        <th><span>Pipe</span></th>
+                                        <th  style="text-align: center;"><span>Ordered</span></th>
+                                        <th  style="text-align: center;"><span>Delivered</span></th>
+                                        <th  style="text-align: center;"><span>Back Order</span></th>
+                                        <th  style="text-align: right;"><span>Weight</span></th>
+                                        <th style="text-align: right;"><span>Value</span></th>
+                                        <th style="text-align: center;"><span>Remove</span></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <?php
+                                      $t_ordered = 0;
+                                      $t_delived = 0;
+                                      $t_backorder = 0;
+                                      $t_weight = 0;
+                                      $t_value = 0;
+                                     ?>
+
+                                <?php foreach($client->quotes as $quote): ?>
+                                        
+                                        <?php foreach($quote->items as $itemobject): ?>
+                                            <?php
+
+                                                    $datetime1 = new DateTime();
+
+                                                    $datetime2 = new DateTime($quote->created_at);
+
+                                                    $difference = $datetime1->diff($datetime2);
+                                                      ?>
+                                            <?php if ( $difference->days < 300 && isset($itemobject->gotbackorder) && $itemobject->gotbackorder == 1 ): ?>
+                                                <tr>
+                                                    
+                                                    <td><?= $itemobject->quote_id ?></td>
+                                                    <td><?= $quote->ponumber ?> </td>
+                                                    <td><?= $quote->user->name ?></td>
+                                                    
+                                                    
+                                                    <td>
+                                                        <?=
+
+                                                         $difference->days
+
+                                                        ?> days
+                                                    </td>
+
+                                                    <td><?= $itemobject->description ?></td>
+
+                                                     <?php $t_ordered += $itemobject->units ?>
+                                                    <td  style="text-align: center;"><?= $itemobject->units ?></td>
+
+                                                    <?php if (isset($itemobject->pipe->delivered)): ?>
+                                                        
+                                                         <?php $t_delived += $itemobject->pipe->delivered->sum("units")  ?>
+                                                         <td  style="text-align: center;"><?= $itemobject->pipe->delivered->sum("units") ?></td>
+
+                                                         <?php $t_backorder += $itemobject->units - $itemobject->pipe->delivered->sum("units")  ?>
+                                                         <td  style="text-align: center;" >
+                                                            <?= ($itemobject->units - $itemobject->pipe->delivered->sum("units")) ?>
+                                                        </td>
+
+                                                        <?php $t_weight += (($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->weight) ?>
+                                                        <td style="text-align: right;" > 
+                                                            <?= number_format(($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->weight,1, '.', ',') ?> kg
+                                                        </td>
+
+                                                         <?php $t_value += (($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->unitprice)  ?>
+                                                         <td style="text-align: right;" >R 
+                                                            <?= number_format(($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->unitprice,2, '.', ',') ?>
+                                                        </td>
+                                                    <?php else: ?>
+                                                        <td  style="text-align: center;">0</td>
+
+                                                         <?php $t_backorder += $itemobject->units ?>
+                                                        <td  style="text-align: center;"><?= $itemobject->units ?></td>
+
+                                                        <?php $t_weight += ($itemobject->units  * $itemobject->weight) ?>
+                                                        <td style="text-align: right;" ><?= number_format($itemobject->units * $itemobject->weight,1, '.', ',') ?> kg</td>
+
+                                                         <?php $t_value += ($itemobject->units * $itemobject->unitprice)  ?>
+                                                        <td style="text-align: right;" >R <?= number_format($itemobject->units * $itemobject->unitprice,2, '.', ',') ?></td>
+                                                       
+                                                       
+                                                    <?php endif ?>  
+                                                     <td style="text-align: center; font-size: 14px">
+                                                            <a
+        type="button" data-request-confirm="Are you sure?" href="" data-request-data="id: <?= $itemobject->id ?>"
+        data-request="onRemove"
+        class="text-danger oc-icon-trash" style="margin: 0px !important">
+        
+    </a>
+    </td>                              
+                                                    
+                                                </tr>
+                                             <?php endif ?>
+                                        <?php endforeach ?>
+                                        
+                                <?php endforeach ?>
+                              
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" style="text-align: right;"></td>
+                                        <td style="text-align: center; font-weight: bold;"><?= $t_ordered ?></td>
+                                        <td style="text-align: center; font-weight: bold;"><?= $t_delived ?></td>
+                                        <td style="text-align: center; font-weight: bold;"><?= $t_backorder ?></td>
+                                        <td style="text-align: right; font-weight: bold;"><?= number_format($t_weight,1, '.', ',') ?> kg</td>
+                                        <td style="text-align: right; font-weight: bold;">R <?= number_format($t_value,2, '.', ',') ?></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                                    </table>
+                                 
+                    </div>
+                    
+                   
+                    </div>
+                
+            <?php endif ?>
+        <?php endforeach ?>
+    
+
+
+
+
+
+

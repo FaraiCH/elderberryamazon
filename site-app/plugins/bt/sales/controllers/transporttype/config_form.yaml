@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Transport Type
+
+# Model Form Field configuration
+form: $/bt/sales/models/transporttype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\TransportType
+
+# Default redirect location
+defaultRedirect: bt/sales/transporttype
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/transporttype/update/:id
+    redirectClose: bt/sales/transporttype
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/transporttype
+    redirectClose: bt/sales/transporttype
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

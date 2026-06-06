@@ -1,0 +1,22 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+  employee:
+    label: FilterBy Employee+
+    type: group
+    conditions: employee_id in (:filtered)
+    modelClass: Bt\HR\Models\Employee 
+    options: getEmployeeOptions
+ 
+
+    
+  workdate:
+      label: Work Date
+      type: daterange
+      minDate: '2001-01-23'
+      maxDate: '2030-10-13'
+      yearRange: 10
+      #conditions: created_at = ':filtered'
+      conditions: workdate >= ':after' AND workdate <= ':before'

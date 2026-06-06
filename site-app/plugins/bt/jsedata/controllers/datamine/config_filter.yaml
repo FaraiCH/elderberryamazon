@@ -1,0 +1,18 @@
+scopes:
+    company:
+        label: Company
+        modelClass: Bt\JSEData\Models\Company
+        conditions: company_id in (:filtered)
+        select: concat(name, ' > ', ticker)
+
+    parent:
+        label: Properties
+        modelClass: Bt\JSEData\Models\Property
+        conditions: property_id in (:filtered)
+        nameFrom: name
+        scope: scopeParents
+
+    scheduledate:
+        label:  Data Date
+        type: daterange
+        conditions: datea >= ':after' AND datea <= ':before'

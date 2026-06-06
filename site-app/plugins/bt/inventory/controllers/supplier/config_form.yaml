@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Supplier
+
+# Model Form Field configuration
+form: $/bt/inventory/models/supplier/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\Supplier
+
+# Default redirect location
+defaultRedirect: bt/inventory/supplier
+
+# Create page
+create:
+    title: Create Supplier
+    redirect: bt/inventory/supplier/update/:id
+    redirectClose: bt/inventory/supplier
+
+# Update page
+update:
+    title: Edit Supplier
+    redirect: bt/inventory/supplier
+    redirectClose: bt/inventory/supplier
+
+# Preview page
+preview:
+    title: Preview Supplier

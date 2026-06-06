@@ -1,0 +1,197 @@
+
+
+
+
+{% if results_count > 0  %}
+
+   <div class="header">
+        
+        <h3>Search Results: {{ results_count }} Rows Returned</h3>
+
+
+    </div>
+    <div class="control-list"">
+       {% if SS > 0  %}
+      	<h3>SECTIONAL TITLE ({{ SS }})</h3>
+				<table id="example1" class="table table-bordered table-hover example1">
+					<thead>
+						<tr>
+							
+							<th><span>Municipality</span></th>
+							<th><span>Township</span></th>
+							<th><span>Scheme Name </span></th>
+							<th><span>Scheme Number</span></th>
+							<th><span>Unit</span></th>
+							
+							<th><span>Address</span></th>
+							<th width="200px"><span>Owner</span></th>
+							<th width="25px"></th>
+					</thead>
+					<tbody>
+
+
+					   {% for property in propeties %}
+						    {% if property.property_type == 'SS'  %}
+						    	
+									<tr>
+
+															
+										<td>{{property.MUNICNAME}}</td>
+										<td>{{property.TownShip}}</td>
+										<td>{{property.SECTIONAL_TITLE | replace({'SS ': ""})}}</td>
+										<td>{{property.SS_Number}}</td>
+										<td>{{property.UNIT}}</td>
+										
+
+										<td>{{property.STREET_NUMBER}} {{property.STREET_NAME}}</td>
+										<td>{{property.BUYER_NAME}}</td>
+										{% if client is not empty   %}
+												<td width="25px">
+													{#<button  class="btn btn-primary btn-sm" data-confirmmsg="{{client.companyname}} ({{client.bankref}}): Are you sure you want to add property by {{property.BUYER_NAME}} ?" data-request="onAddProperty" data-request-flash data-stripe-load-indicator data-request-data="propid: {{property.prop_id}},clientid: {{client.client.id}} ">ADD</button>#}
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-prop_id="{{property.prop_id}}" data-clientid="{{property.client.id}}" data-searchtext="{{property.searchtext}}" data-confirmmsg="{{client.companyname}} ({{client.bankref}}): Are you sure you want to add property by {{property.searchtext}} ?" >ADD</button>
+												</td>
+										{% else %}
+											<td width="25px">
+												{#<button  class="btn btn-primary btn-sm" data-request-confirm="Are you sure you want to add property {{property.searchtext}} by {{property.BUYER_NAME}} ?" data-request="onAddProperty" data-request-flash data-stripe-load-indicator data-request-data="propid: {{property.prop_id}}">ADD</button>#}
+
+												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-searchtext="{{property.searchtext}}" data-prop_id="{{property.prop_id}}" data-clientid="0" data-confirmmsg="Are you sure you want to add property {{property.searchtext}} by {{property.BUYER_NAME}} ?" >ADD</button>
+
+											</td>
+										{% endif   %}
+									</tr>
+								{% endif   %}
+							{% endfor %} 
+					</tbody>
+
+				</table>
+				{% endif   %}
+
+
+      {% if FH > 0  %}
+      	<h3>FREEHOLD ({{ FH }})</h3>
+				<table id="example1" class="table table-bordered table-hover example1">
+					<thead>
+						<tr>
+							
+							<th><span>Municipality</span></th>
+							<th><span>Township</span></th>
+							<!-- <th><span>Farm Name</span></th>
+							<th><span>Unit</span></th> -->
+							<th><span>Erf</span></th>
+							<th><span>Portion</span></th>
+							
+							<!-- <th><span>Address</span></th> -->
+							<th width="200px"><span>Owner</span></th>
+							<th width="25px"></th>
+					</thead>
+					<tbody>
+
+
+					   {% for property in propeties %}
+						    {% if property.property_type == 'FH'  %}
+									<tr>
+										
+										<td>{{property.MUNICNAME}}</td>
+										<td>{{property.TownShip}}</td>
+										<!-- <td>{{property.FARMNAME}}</td>
+										
+										<td>{{property.UNIT}}</td> -->
+										<td>{{property.ERF}}</td>
+										<td>{{property.PORTION}}</td>
+										<td>{{property.BUYER_NAME}}</td>
+
+										<!-- <td>{{property.STREET_NUMBER}} {{property.STREET_NAME}}</td> -->
+										{% if client is not empty   %}
+												<td width="25px">
+													{#<button  class="btn btn-primary btn-sm" data-confirmmsg="{{client.companyname}} ({{client.bankref}}): Are you sure you want to add property by {{property.BUYER_NAME}} ?" data-request="onAddProperty" data-request-flash data-stripe-load-indicator data-request-data="propid: {{property.prop_id}},clientid: {{client.client.id}} ">ADD</button>#}
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-prop_id="{{property.prop_id}}" data-clientid="{{property.client.id}}" data-searchtext="{{property.searchtext}}" data-confirmmsg="{{client.companyname}} ({{client.bankref}}): Are you sure you want to add property by {{property.searchtext}} ?" >ADD</button>
+												</td>
+										{% else %}
+											<td width="25px">
+												{#<button  class="btn btn-primary btn-sm" data-request-confirm="Are you sure you want to add property {{property.searchtext}} by {{property.BUYER_NAME}} ?" data-request="onAddProperty" data-request-flash data-stripe-load-indicator data-request-data="propid: {{property.prop_id}}">ADD</button>#}
+
+												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-searchtext="{{property.searchtext}}" data-prop_id="{{property.prop_id}}" data-clientid="0" data-confirmmsg="Are you sure you want to add property {{property.searchtext}} by {{property.BUYER_NAME}} ?">ADD</button>
+
+											</td>
+										{% endif   %}
+									</tr>
+								{% endif   %}
+							{% endfor %} 
+					</tbody>
+
+				</table>
+				{% endif   %}
+
+				{% if FRM > 0  %}
+				<h3>FARM [{{ FRM }}]</h3>
+				<table id="example1" class="table table-bordered table-hover example1">
+					<thead>
+						<tr>
+							
+							<th><span>Municipality</span></th>
+							<th><span>Farm Name</span></th>
+							<th><span>ERF</span></th>
+							<th><span>Registration division </span></th>
+							<th><span>Portion</span></th>
+							
+							<th><span>Address</span></th>
+							<th width="200px"><span>Owner</span></th>
+							<th width="25px"></th>
+					</thead>
+					<tbody>
+
+
+					   {% for property in propeties %}
+						    {% if property.property_type == 'FRM'  %}
+									<tr>
+										
+										<td>{{property.MUNICNAME}}</td>
+										<td>{{property.FARMNAME}}</td>
+										<td>{{property.ERF}}</td>
+										<td>{{property.DEEDTOWN}}</td>
+										<td>{{property.PORTION}}</td>
+										<td>{{property.STREET_NUMBER}} {{property.STREET_NAME}}</td>
+										<td>{{property.BUYER_NAME}}</td>
+										{% if client is not empty   %}
+												<td width="25px">
+													{#<button  class="btn btn-primary btn-sm" data-confirmmsg="{{client.companyname}} ({{client.bankref}}): Are you sure you want to add property by {{property.BUYER_NAME}} ?" data-request="onAddProperty" data-request-flash data-stripe-load-indicator data-request-data="propid: {{property.prop_id}},clientid: {{client.client.id}} ">ADD</button>#}
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-prop_id="{{property.prop_id}}" data-clientid="{{property.client.id}}" data-searchtext="{{property.searchtext}}" data-confirmmsg="{{client.companyname}} ({{client.bankref}}): Are you sure you want to add property by {{property.searchtext}} ?" >ADD</button>
+												</td>
+										{% else %}
+											<td width="25px">
+												{#<button  class="btn btn-primary btn-sm" data-request-confirm="Are you sure you want to add property {{property.searchtext}} by {{property.BUYER_NAME}} ?" data-request="onAddProperty" data-request-flash data-stripe-load-indicator data-request-data="propid: {{property.prop_id}}">ADD</button>#}
+
+												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-searchtext="{{property.searchtext}}" data-prop_id="{{property.prop_id}}" data-clientid="0" data-confirmmsg="Are you sure you want to add property {{property.searchtext}} by {{property.BUYER_NAME}} ?">ADD</button>
+
+											</td>
+										{% endif   %}
+									</tr>
+								{% endif   %}
+							{% endfor %} 
+					</tbody>
+
+				</table>
+				{% endif   %}
+
+    </div>
+
+    <script>
+  $(function () {
+    $('.example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+{% else %}
+<div class="card-body" style="text-align: center;">
+	<h5>Search Results</h5>
+	<p >No Items</p>
+</div>
+{% endif %}

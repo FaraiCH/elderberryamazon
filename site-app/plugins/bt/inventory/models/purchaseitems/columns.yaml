@@ -1,0 +1,31 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    description:
+        label: Description
+        span: left
+
+    weight:
+        label: Weight
+        span: right
+        type: number
+        format: %.2f kg
+
+    unitprice:
+        label: Unit Price
+        span: left
+        type: number
+        format: R %.2f
+
+    price:
+        label: Price
+        span: right
+        type: number
+        format: R %.2f
+
+    units:
+        label: Units
+        type: number
+        span: left

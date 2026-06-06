@@ -1,0 +1,50 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    date:
+        label: Date To Captured
+    is_lights_ok:
+        label: Is lights Ok?
+        type: partial
+        path: $/bt/logistics/models/trailerchecklist/_is_ok_column.htm
+        searchable: false
+        sortable: false
+    lights_comments:
+        label: Comment About lights
+    is_hazards_ok:
+        label: Is hazards Ok?
+        type: partial
+        path: $/bt/logistics/models/trailerchecklist/_is_ok_column.htm
+        searchable: false
+        sortable: false
+    hazards_comments:
+        label: Comment About hazards
+    is_brakes_ok:
+        label: Is Brakes Ok?
+        type: partial
+        path: $/bt/logistics/models/trailerchecklist/_is_ok_column.htm
+        searchable: false
+        sortable: false
+    brakes_comments:
+        label: Comment About Brakes
+    is_tires_ok:
+        label: Is Right Tires Ok?
+        type: partial
+        path: $/bt/logistics/models/trailerchecklist/_is_ok_column.htm
+        searchable: false
+        sortable: false
+    tires_comments:
+        label: Comment About Tires
+    is_lefttires_ok:
+        label: Is Left Tires Ok?
+        type: partial
+        path: $/bt/logistics/models/trailerchecklist/_is_ok_column.htm
+        searchable: false
+        sortable: false
+    leftlights_comments:
+        label: Comment About Left Tires

@@ -1,0 +1,24 @@
+
+<?php if(isset($record->pipe->delivered)): ?>
+	<?php
+		$t = $record->units - $record->pipe->delivered()->sum('units');
+		if($t == 0){
+			echo '<span class="oc-icon-circle text-danger">
+                       Sold Out
+                    </span>';
+		
+		}else if($t == $record->units){
+			echo '<span class="oc-icon-circle text-success">
+                      '.$t.' ready
+                    </span>';
+		
+		}else{
+			echo '<span class="oc-icon-circle text-info">
+                      '.$t.' Left
+                    </span>';
+		}
+		
+	
+	?>
+
+<?php endif; ?>

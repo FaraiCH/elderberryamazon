@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    attendancetypes:
+        label: Attendance Type
+        relation: attendancetypes
+        select: attendancetype
+
+    numAttendees:
+        label: Attendees
+        type: number
+
+    date:
+        label: Date
+        type: date
+
+    description:
+        label: Description
+        type: text
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

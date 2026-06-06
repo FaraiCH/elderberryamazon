@@ -1,0 +1,32 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+#    id:
+#        label: ID
+#        searchable: true
+    name:
+        label: Name
+        searchable: true
+        sortable: true
+    description:
+        label: Description
+        searchable: true
+        sortable: true
+    date:
+        label: Date
+        searchable: true
+        sortable: true
+    documents:
+        label: Documents Uploaded
+        type: partial
+        path: $/bt/hr/models/policy/documents.htm
+        sortable: true
+        searchable: true
+    visible:
+        label: Visibility
+        type: partial
+        path: $/bt/hr/models/policy/visible.htm
+        sortable: true
+        searchable: true

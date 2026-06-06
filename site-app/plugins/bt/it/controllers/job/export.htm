@@ -1,0 +1,10 @@
+<?php foreach($it_group->users as $user): ?>
+<div class="col-md-6">
+    <b><?= $user->name . " " . $user->surname; ?></b>
+
+</div>
+<div class="col-md-6">
+    <a class="btn btn-primary" href="task/download/<?= $user->id ?>" target="_blank">Download Report</a>
+</div>
+
+<?php endforeach; ?>

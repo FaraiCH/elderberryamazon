@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Document
+
+# Model Form Field configuration
+form: $/bt/sheq/models/document/fields.yaml
+
+# Model Class name
+modelClass: Bt\SHEQ\Models\Document
+
+# Default redirect location
+defaultRedirect: bt/sheq/document
+
+# Create page
+create:
+    title: Create Document
+    redirect: bt/sheq/document/update/:id
+    redirectClose: bt/sheq/document
+
+# Update page
+update:
+    title: Edit Document
+    redirect: bt/sheq/document
+    redirectClose: bt/sheq/document
+
+# Preview page
+preview:
+    title: Preview Document

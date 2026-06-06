@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Training Type
+
+# Model Form Field configuration
+form: $/bt/hr/models/trainingtype/fields.yaml
+
+# Model Class name
+modelClass: Bt\HR\Models\TrainingType
+
+# Default redirect location
+defaultRedirect: bt/hr/trainingtype
+
+# Create page
+create:
+    title: Create Training Type
+    redirect: bt/hr/trainingtype/update/:id
+    redirectClose: bt/hr/trainingtype
+
+# Update page
+update:
+    title: Edit Training Type
+    redirect: bt/hr/trainingtype
+    redirectClose: bt/hr/trainingtype
+
+# Preview page
+preview:
+    title: Preview Training Type

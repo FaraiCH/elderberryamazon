@@ -1,0 +1,72 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    coc:
+        label: COC Requested?
+        disabled: false
+        type: checkbox
+        span: auto
+    coa:
+        label: COA Requested?
+        disabled: false
+        type: checkbox
+        span: auto
+    quotes@update:
+        label: Quote No
+        type: relation
+        select: concat(id, ' > ', company_name)
+        disabled: true
+    createdby:
+        label: Created By
+        disabled: true
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        span: auto
+    updatedby:
+        label: Updated By
+        disabled: true
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        span: auto
+    items:
+        label:  Items
+        type: repeater
+        form:
+            fields:
+                description:
+                    label: Pipe Description On Quote
+                    type: dropdown
+                    placeholder: -- Select Item --
+
+tabs:
+    
+    fields:
+        cocfile@update:
+            label: COC Document
+            type:  fileupload
+            tab:  COC Files
+            mode: file
+            span: auto
+            comment: This is the requested COC for the quote
+        notes@update:
+            label: Notes
+            type: textarea
+            tab:  COC Files
+            size: small
+            span: auto
+
+        coafile@update:
+            label: COA Document
+            type:  fileupload
+            tab:  COA Files
+            mode: file
+            span: auto
+            comment: This is the requested COA for the quote
+
+        approvecoc@update:
+            path: $/bt/qc/controllers/reqcertificate/_approve.htm
+            tab:  COC Approval
+            type: partial
+

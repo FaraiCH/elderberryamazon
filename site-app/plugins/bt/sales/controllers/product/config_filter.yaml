@@ -1,0 +1,23 @@
+scopes:
+    pnrating:
+        label: PN Rating
+        modelClass: Bt\Sales\Models\PNRating
+        conditions: pn_ratings_id in (:filtered)
+        nameFrom: name
+
+    diameter:
+        label: Diameter
+        modelClass: Bt\Sales\Models\Diameter
+        conditions: diameter_id in (:filtered)
+        nameFrom: name
+
+    # createdby:
+    #     label: Created By
+    #     modelClass: Backend\Models\User
+    #     conditions: created_by in (:filtered)
+    #     nameFrom: first_name
+
+    # assinged_date:
+    #     label: Date In Relation
+    #     type: daterange
+    #     conditions: assinged_date >= ':after' AND assinged_date <= ':before'

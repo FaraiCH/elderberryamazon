@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Ticket
+
+# Model Form Field configuration
+form: $/bt/it/models/job/fields.yaml
+
+# Model Class name
+modelClass: Bt\IT\Models\Job
+
+# Default redirect location
+defaultRedirect: bt/it/job
+
+# Create page
+create:
+    title: Create Task
+    redirect: bt/it/job/update/:id
+    redirectClose: bt/it/job
+
+# Update page
+update:
+    title: Edit Task
+    redirect: bt/it/job
+    redirectClose: bt/it/job
+
+# Preview page
+preview:
+    title: Preview Task

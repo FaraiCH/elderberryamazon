@@ -1,0 +1,309 @@
+{# Name: Farai Chakarisa #}
+{# Description: PDF download for weekly electricity readings ( Average and Accumulative)  #}
+{# Changes: Create Accumulative Data for KWH #}
+
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 90%;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            background: #0c0c80;
+
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 11px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #2d3558;
+            font-weight: normal;
+            color: whitesmoke;
+        }
+
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        tr.status_3 td{
+            background: rgb(162, 251, 165)
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley Street, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+                        <h3>ELECTRICITY READINGS: {{ start }} - {{ end }} </h3>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+
+<br>
+<table class="table table-bordered" cellpadding="0" cellspacing="0">
+    <thead>
+    <tr style="background: #0c0c80; color: whitesmoke;">
+        <th>
+
+        </th>
+        {% for key, machine in machineheading %}
+            {% if key != 7 %}
+                <th colspan="3"><b>{{machine}}</b></th>
+            {% else %}
+                <th colspan="2"><b>{{machine}}</b></th>
+            {% endif %}
+        {% endfor %}
+            <th colspan="3"><b>Weekly Totals <br><span>(Excluding Main Meter)</span></b></th>
+    </tr>
+    <tr>
+        <th>Date</th>
+        {% for key, machine in machineheading %}
+
+            <th><b>KWH</b></th>
+            {% if key != 7 %}
+                <th><b>KG Processed</b></th>
+            {% endif %}
+            <th><b>Cost</b></th>
+        {% endfor %}
+        <th><b>KWH</b></th>
+        <th><b>KG Processed</b></th>
+        <th><b>Cost</b></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set totalkwh = 0 %}
+    {% set totalkgporcessed = 0 %}
+    {% set totalcost = 0 %}
+    {% for week_key, week in electricity_usage %}
+        <tr>
+            <td nowrap="">
+                Wk - {{week['name']}}
+                {% set count = count + 1 %}
+            </td>
+            {% for mkey, machine in machineheading %}
+                <td nowrap="" style="text-align: right">
+                    {{electricity_usage[week_key]['data'][mkey]['elec']|number_format(2, '.', ',')}}
+                </td>
+                {% if mkey != 7 %}
+                    <td nowrap="" style="text-align: right">
+                        {{electricity_usage[week_key]['data'][mkey]['production']|number_format(2, '.', ',')}}
+                    </td>
+                {% endif %}
+                <td nowrap="" style="text-align: right">
+                    R {{electricity_usage[week_key]['data'][mkey]['cost']|number_format(2, '.', ',')}}
+                </td>
+            {% endfor %}
+            <td nowrap="" style="text-align: right">
+                <b>{{totalweek[week_key]['elec']|number_format(2, '.', ',')}}</b>
+            </td>
+            <td nowrap="" style="text-align: right">
+                <b>{{totalweek[week_key]['production']|number_format(2, '.', ',')}}</b>
+                {% set totalkwh = totalkwh + totalweek[week_key]['elec'] %}
+                {% set totalkgporcessed = totalkgporcessed + totalweek[week_key]['production'] %}
+            </td>
+            <td nowrap="" style="text-align: right">
+                <b>R {{totalweek[week_key]['cost']|number_format(2, '.', ',')}}</b>
+                {% set totalcost = totalcost + totalweek[week_key]['cost'] %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                <b>
+                    Totals
+                </b>
+
+            </td>
+            {% for mkey, machine in machineheading %}
+                    <td nowrap="" style="text-align: right">
+                        <b>{{totals[mkey]['elec']|number_format(2, '.', ',')}}</b>
+                    </td>
+                {% if mkey != 7 %}
+                    <td nowrap="" style="text-align: right">
+                        <b>{{totals[mkey]['production']|number_format(2, '.', ',')}}</b>
+                    </td>
+                {% endif %}
+            <td nowrap="" style="text-align: right">
+                <b>R {{totals[mkey]['cost']|number_format(2, '.', ',')}}</b>
+            </td>
+            {% endfor %}
+            <td nowrap="" style="text-align: right">
+                <b>{{totalkwh|number_format(2, '.', ',')}}</b>
+            </td>
+            <td nowrap="" style="text-align: right">
+                <b>{{totalkgporcessed|number_format(2, '.', ',')}}</b>
+            </td>
+            <td nowrap="" style="text-align: right">
+            <b>R {{totalcost|number_format(2, '.', ',')}}</b>
+        </td>
+        </tr>
+    </tfoot>
+</table>
+<br>
+<table class="table" cellpadding="0" cellspacing="0" style="width: 50%">
+    <thead>
+    <tr style="background: #0c0c80; color: whitesmoke;"><th colspan="9">Electricity Tariffs</th></tr>
+        <tr style="background: #0c0c80; color: whitesmoke;">
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Meter Charge
+            </th>
+            <th>
+                Net Access <br>Charge
+            </th>
+            <th>
+                Maximum KVA
+            </th>
+            <th>
+                Peak
+            </th>
+            <th>
+                Standard
+            </th>
+            <th>
+                Off Peak
+            </th>
+            <th>
+                R/KWH
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for tarrif in tarrifs %}
+        <tr>
+            <td>
+                {{tarrif.start_date|date('Y-m-d')}}
+            </td>
+            <td>
+                {{tarrif.end_date|date('Y-m-d')}}
+            </td>
+            <td>
+               R {{tarrif.meter_charge|number_format(2, '.', ',')}}
+            </td>
+            <td>
+               R {{tarrif.net_access_charge|number_format(2, '.', ',')}}
+            </td>
+            <td>
+                R {{tarrif.maximum_kva|number_format(2, '.', ',')}}
+            </td>
+            <td>
+                R {{tarrif.peak|number_format(2, '.', ',')}}
+            </td>
+            <td>
+               R {{tarrif.standard|number_format(2, '.', ',')}}
+            </td>
+            <td>
+               R {{tarrif.off_peak|number_format(2, '.', ',')}}
+            </td>
+            <td>
+                R {{tarrif.rand_per_kwh|number_format(2, '.', ',')}}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

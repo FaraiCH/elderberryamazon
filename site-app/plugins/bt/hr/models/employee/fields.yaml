@@ -1,0 +1,287 @@
+
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    idno:
+        label: ID Number
+        type: number
+        span: auto
+
+    company:
+        label: Project Name or Company
+        type: relation
+        select: name
+        span: auto
+
+    employeenumber:
+        label: Employee Number
+        span: auto
+    firstname:
+        label: First Name
+        span: auto
+
+    secondname:
+        label: Second Name
+        span: auto
+    lastname:
+        label: Last Name
+        span: auto
+
+    email:
+        label: Email
+        type: email
+        span: auto
+    gender:
+        label: Gender
+        type: dropdown
+        span: auto
+        placeholder: -- Choose Gender --
+        options:
+            0: Male
+            1: Female
+    ethnicity:
+        label: Ethnicity
+        span: auto
+        type: relation
+        placeholder: -- Select Ethnicity --
+        select: name
+    tvorder:
+        label: TV Order
+        type: number
+        span: auto
+    pay_roll:
+        label: Payroll
+        type: dropdown
+        span: auto
+    pay_roll_type:
+        label: Pay Roll Type
+        type: dropdown
+        span: auto
+        placeholder: -- Select A Pay Roll Type --
+        options:
+            0: None
+            1: Monthly
+            2: Fortnight
+    is_user_active:
+        label: Is User active?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+    showontv:
+        label: Show On TV
+        type: switch
+        span: auto
+    is_emergency:
+        label: Is Employee Emergency?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+
+
+
+
+
+
+
+tabs:
+    fields:
+        nextofkin_name:
+            label: Next Of Kin Name
+            span: auto
+            tab: General
+        nextofkin_phone:
+            label: Next Of Kin Phone
+            span: auto
+            tab: General
+        dob:
+            label: Date Of Birth
+            disabled: false
+            type: datepicker
+            mode: date
+            tab: General
+            span: auto
+
+        phone:
+            label: Phone
+            span: auto
+            tab: General
+        street1:
+            label: Street 1
+            span: auto
+            tab: General
+        street2:
+            label: Street 2
+            span: auto
+            tab: General
+        city:
+            label: City
+            span: auto
+            tab: General
+        country:
+            label: Country
+            span: auto
+            tab: General
+        biography:
+            label: Biography
+            tab: General
+            type: textarea
+            size: small
+
+        acc_holder_name:
+            label: Account Holder Name
+            span: auto
+            tab: Banking
+        acc_number:
+            label: Account Number
+            span: auto
+            tab: Banking
+
+        bankname:
+            label: Bank Name
+            span: auto
+            tab: Banking
+
+        branchcode:
+            label: Branch Code
+            span: auto
+            tab: Banking
+
+        branchname:
+            label: branchname
+            span: auto
+            tab: Banking
+
+        # bankdetails:
+        #     label: Banking Details
+        #     tab: Banking
+        #     type: textarea
+        #     size: small
+#            span: auto
+        type:
+            label: Employment Type
+            disabled: false
+            select: name
+            type: relation
+            tab: Employment
+            span: auto
+
+        employment_date:
+            label: Employment Date
+            disabled: false
+            type: datepicker
+            mode: date
+            tab: Employment
+            span: auto
+
+        department:
+            label: Department
+            disabled: false
+            select: name
+            type: relation
+            tab: Employment
+            span: auto
+        designation:
+            label: Designation
+            disabled: false
+            select: name
+            type: relation
+            tab: Employment
+            span: auto
+
+        job_description:
+            label: Job Description
+            select: name
+            type: relation
+            tab: Employment
+            span: auto
+            placeholder: -- Pick Job Description --
+
+        employmentfiles:
+            label: Employment Files
+            type: fileupload
+            tab: Employment
+            mode: file
+            comment: CV, ID, ect
+
+        termination_date:
+            label: Termination Date
+            disabled: false
+            type: datepicker
+            mode: date
+            tab: Termination
+            span: auto
+        termination_reason:
+            label: Reason  for Termination/Leaving
+            tab: Termination
+            type: textarea
+            size: small
+            span: auto
+        terminationfiles:
+            label: Termination Files
+            type: fileupload
+            tab: Termination
+            mode: file
+            comment: Termination Letter,  Resignation
+        leave:
+            path: $/bt/hr/controllers/employee/_leave.htm
+            tab: Leave and Absence
+            type: partial
+            span: storm
+            cssClass: col-md-8 col-sm-8 col-lg-8
+        stats:
+            path: $/bt/hr/models/employee/_stats.htm
+            tab: Leave and Absence
+            type: partial
+            span: storm
+            cssClass: col-md-4 col-sm-4 col-lg-4
+        incidents:
+            path: $/bt/hr/controllers/employee/_incidents.htm
+            tab: Incidents
+            type: partial
+        training:
+            path: $/bt/hr/controllers/employee/_training.htm
+            tab: Training
+            type: partial
+        signature:
+            tab: Signature
+            label: Signature Pic
+            type: fileupload
+            span: auto
+        profilepic:
+            tab: Profile Pic
+            label: Profile Pic
+            type: fileupload
+            span: auto
+        id_copy:
+            tab: ID Copy & Certificates
+            label: ID Copy
+            mode: file
+            type: fileupload
+            span: auto
+        certificates:
+            tab: ID Copy & Certificates
+            label: Certificates
+            mode: file
+            type: fileupload
+            span: auto
+        rate:
+            label: Rate Per Hour
+            type: inputcurrency
+            span: auto
+            tab: Wage Bill
+        shifthours:
+            label: Shift Hours
+            type: dropdown
+            placeholder: -- Select Shift Hours --
+            options:
+                12: 12 Hours
+                9: 9 Hours
+            span: auto
+            tab: Wage Bill

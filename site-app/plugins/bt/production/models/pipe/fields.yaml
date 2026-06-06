@@ -1,0 +1,93 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    active:
+        label: Is Production Pipe active
+        cssClass:  col-sm-6
+        span: storm
+
+        type: switch
+    hide_expected_scrap:
+        label: Hide Expected Scrap?
+        type: switch
+        cssClass: col-sm-6
+        span: storm
+        commentHtml: true
+        comment: Toggle this switch to show or hide expected scrap </br> and weighted scrap in the production report
+        on: Yes
+        off: No
+    start_date:
+        label: Start Date
+        searchable: true
+        type: datepicker
+        cssClass: noezanclass col-sm-6
+        span: storm
+        mode: date
+
+    due_date:
+        label: Due Date
+        searchable: true
+        type: datepicker
+        cssClass: noezanclass col-sm-6
+        span: storm
+        mode: date
+
+    pipe_target_weight:
+        label: Pipe Target Weight
+        disabled: false
+        cssClass: noezanclass col-sm-4
+        span: storm
+
+
+    btline:
+        label: Line
+        select: name
+        type: relation
+        cssClass: noezanclass col-sm-4
+        span: storm
+
+    pipe_target_weight:
+        label: Pipe Target Weight
+        type: number
+        cssClass: noezanclass col-sm-4
+        span: storm
+
+    production_rate:
+        label: Production Rate
+        type: number
+        cssClass: noezanclass col-sm-4
+        span: storm
+
+    target_scrap_rate:
+        label: Target Scrap Rate %
+        searchable: true
+        type: number
+        cssClass: noezanclass col-sm-4
+        span: storm
+
+    target_availability:
+        label: Target Availability
+        searchable: true
+        type: number
+        cssClass: noezanclass col-sm-4
+        span: storm
+    changeover_days:
+        label: Change Over Days
+        searchable: true
+        cssClass: noezanclass col-sm-4
+        span: storm
+
+    section1:
+        type: section
+
+    section:
+        type: section
+        label: Associate Quote
+        comment: To deliver this production to any quote, please link it to this production, this will help with reducing BT Account
+    quotes@update:
+        path: $/bt/production/controllers/pipe/_rel_quotes.htm
+        tab: Properties
+        type: partial
+

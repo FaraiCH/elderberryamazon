@@ -1,0 +1,7 @@
+# form: $/bt/sales/models/client/fields.yaml
+export:
+    title: Export Production Plan
+    modelClass: Bt\Production\Models\ProductionPlanExport
+    list: $/bt/production/models/productionplan/columns_export.yaml
+    redirect: bt/production/productionplan
+    fileName: Production_Plan_Export.csv

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Trailer
+
+# Model Form Field configuration
+form: $/bt/logistics/models/trailer/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\Trailer
+
+# Default redirect location
+defaultRedirect: bt/logistics/trailer
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/trailer/update/:id
+    redirectClose: bt/logistics/trailer
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/trailer
+    redirectClose: bt/logistics/trailer
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

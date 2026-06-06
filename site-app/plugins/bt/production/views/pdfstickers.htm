@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:0px; }
+html { margin:0px; }
+
+h1{
+font-size: 14px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+h3{
+font-size: 14px;
+margin-top: 10px;
+padding-top: 0px;
+border-bottom: 1px solid #ccc;
+margin-bottom: 10px
+
+}
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+font-size: 10px;
+
+
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+
+
+</style>
+</head>
+<body>
+	
+	{% set clear = 0 %}
+	{% set clearpage = 0 %}
+
+	{% if quote.start > 0 %}
+		{% set start = quote.start %}
+		{% for i in 1..start %}
+
+			{% set style = "" %}
+			{% if clear == 3%}
+				{% set style = "" %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clear = 0 %}
+			{% endif %}
+
+			{% if clearpage == 18%}
+				
+				<div class="page-break" style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clearpage = 0 %}
+			{% endif %}
+
+			{% set clear = clear + 1 %}
+			{% set clearpage = clearpage + 1 %}
+
+			<div style="width: 267px; margin: 0px; float: left; height: 181px; border-left: 1px solid #ccc; border-top: 1px solid #ccc">
+				&nbsp;
+			</div>
+			{% if i == 3 and start == 3%}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 6 and start == 6%}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 9 and start == 9%}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 12 and start == 12 %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 15 and start == 15 %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+		{% endfor  %}
+
+	{% endif  %}
+
+	{% set clear = 0 %}
+	{% set clearpage = 0 %}
+
+
+	{% for itemobject in quote.printitems %}
+		{% for i in 1..itemobject.units %}
+			
+			
+
+			{% set style = "" %}
+			{% if clear == 3%}
+				{% set style = "" %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clear = 0 %}
+			{% endif %}
+
+			{% if clearpage == 18%}
+				
+				<div class="page-break" style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clearpage = 0 %}
+			{% endif %}
+
+			{% set clear = clear + 1 %}
+			{% set clearpage = clearpage + 1 %}
+			<div style="width: 267px; margin: 0px; float: left; height: 181px; border-left: 1px solid #ccc; border-top: 1px solid #ccc">
+				<div style="padding: 5px">
+					<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+										<tr>
+											<td width="20%" >
+												<img style="width: 30px" src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+											</td>
+											<td width="80%" style="text-align: left;">
+												<h1 style="color: #1d2240; margin: 0px; padding:0px;">BT INDUSTRIAL GROUP</h1>
+												
+											</td>
+										</tr>
+									</table>
+					
+			        	<table width="100%" border="0" cellpadding="0px" cellspacing="0px">
+			        		
+							<tr>
+								<td>	
+									<table width="100%" cellpadding="0" class="table" cellspacing="0">
+										<tr>
+											<td width="23%"><b>Pipe:</b></td>
+											<td width="80%">{{itemobject.pipe.quoteitems.description}}</td>
+										</tr>
+										<tr>
+											<td><b>Date:</b></td>
+											<td><b>{{itemobject.schedule_date|date("Y-m-d")}}</b></td>
+										</tr>
+										<tr>
+											<td><b>Client:</b></td>
+											<td>{{itemobject.pipe.qpush.quote.company_name}}</td>							
+										</tr>
+										<tr>
+											<td><b>Quote:</b></td>
+											<td>#BT{{itemobject.pipe.qpush.quote.id}}</td>
+											
+										</tr>
+										{#<tr>
+											<td><b>Invoice:</b></td>
+											<td>{{itemobject.pipe.qpush.quote.invoice?itemobject.pipe.qpush.quote.invoice.name:"&nbsp;"}}</td>
+											
+										</tr>#}
+
+										{% if itemobject.batchnumber %}
+											<tr>
+												<td><b>Batch #:</b></td>
+												<td>{{itemobject.batchnumber}}</td>
+												
+											</tr>
+										{% endif %}
+
+										{% if itemobject.jobcardnumber %}
+											<tr>
+												<td><b>Job Card:</b></td>
+												<td>{{itemobject.jobcardnumber}}</td>
+												
+											</tr>
+										{% endif %}
+										
+										<!-- <tr>
+											<td><b>Status:</b></td>
+											<td>QC Passed</td>
+											
+										</tr> -->
+										{% if itemobject.pipenoend > 0 %}
+											<tr>
+												<td><b>Pipe #:</b></td>
+												<td>{{itemobject.pipenostart+i}} of {{itemobject.pipenoend}}</td>
+												
+											</tr>
+										{% endif %}
+
+										<tr>
+											<td><b>Comment:</b></td>
+											<td>{{itemobject.notes}}</td>
+											
+										</tr>
+									</table>	
+								</td>
+							</tr>
+						</table>
+					
+					<!-- <span style="font-size: 8; text-align: center;display: block;">Batch #{{quote.id}}/{{itemobject.id}}</span> -->
+				</div>
+			</div>
+        {% endfor %} 
+     {% endfor %}
+
+
+	
+	
+
+								
+			
+					
+					
+	
+	
+	</body>
+	</html>

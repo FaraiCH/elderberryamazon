@@ -1,0 +1,58 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    images:
+        label: Image
+        type: partial
+        path: $/bt/maintenance/models/storeproductitem/_image.htm
+        searchable: false
+        sortable: false
+        width: 80
+    name:
+        label: Name
+        disabled: false
+        type: text
+        span: auto
+    description:
+        label: Description
+        disabled: false
+        type: text
+        span: auto
+    totalitems:
+        label: Total InStore Items
+        type: partial
+        path: $/bt/maintenance/models/storeproductitem/_totalitems_column.htm
+        searchable: false
+        sortable: false
+    printstricker:
+        label: Print
+        type: partial
+        path: $/bt/maintenance/models/storeproductitem/_printstoreitem.htm
+        searchable: false
+        sortable: false
+        clickable: false
+    created_at:
+        label: Created At
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        type: date
+        invisible: true
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true

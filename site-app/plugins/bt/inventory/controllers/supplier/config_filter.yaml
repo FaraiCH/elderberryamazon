@@ -1,0 +1,11 @@
+scopes:
+    category:
+        label: Cagetory
+        modelClass: Bt\Inventory\Models\MaterialCat
+        conditions: cat_id in (:filtered)
+        nameFrom: name
+    country:
+        label: Country
+        modelClass: RainLab\Location\Models\Country
+        conditions: country_id in (:filtered)
+        nameFrom: name

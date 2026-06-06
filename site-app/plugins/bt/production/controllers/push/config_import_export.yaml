@@ -1,0 +1,6 @@
+export:
+    title: Export Production
+    modelClass: Bt\Production\Models\PushExport
+    list: $/bt/production/models/push/columns_export.yaml
+    redirect: bt/production/push
+    fileName: Production_Export.csv

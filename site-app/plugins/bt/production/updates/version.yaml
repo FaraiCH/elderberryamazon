@@ -1,0 +1,131 @@
+1.0.1:
+- First version of Production
+- create_statuses_table.php
+- create_pushes_table.php
+- create_pipes_table.php
+- create_materials_table.php
+- create_schedules_table.php
+- create_lines_table.php
+- seeder_line.php
+- seeder_status.php
+- create_material_useds_table.php
+1.0.2:
+- Add Jobcards
+- create_jobcards_table.php
+- create_jobcardapproves_table.php
+1.0.3:
+- Add Push Approve
+- create_pushapproves_table.php
+1.0.4:
+- Add material Items
+- create_jobcard_materials_table.php
+1.0.5:
+- Add material Items
+- create_control_sheets_table.php
+- create_control_sheet_items_table.php
+1.0.6:
+- Add BT Account
+- create_bt_accounts_table.php
+1.0.7:
+- Add BT Stickers
+- create_print_stickers_table.php
+- create_print_sticker_items_table.php
+1.0.8:
+- Add Scrap Codes
+- create_scrap_codes_table.php
+- seeder_scrapcode.php
+- create_scrap_to_schedule_table.php
+1.0.9:
+- Update Job Card
+- create_job_card_batches_table.php
+2.0.1:
+- Update Edit Level
+- create_editlevels_table.php
+2.0.2:
+- Update Line kg
+- create_plant_hours_table.php
+2.0.3:
+- Update Production Plan
+- create_production_plans_table.php
+- create_production_plan_items_table.php
+2.0.4:
+- Update Production Delay
+- create_production_delays_table.php
+- create_delay_reasons_table.php
+2.0.5:
+- Update price per pipe
+2.0.6:
+- Update BT Account
+2.0.7:
+- Update Control
+2.0.8:
+- Create Purchase Order
+- create_purchases_table.php
+- create_purchaseitems_table.php
+2.0.9:
+- Update Push for blendened price
+2.0.10:
+- Original Pipecount
+2.0.11:
+- Daily Sheet
+- create_prodailies_table.php
+2.0.12:
+- Create Catalogue
+- create_production_plan_item_cats_table.php
+2.0.13:
+- Creat Control Material
+- create_controlmaterials_table.php
+- create_control_sheet_item_materials_table.php
+2.0.14:
+- Create Breakdown
+- create_breakdowns_table.php
+- create_breakdown_reasons_table.php
+- create_pipestickeritems_table.php
+2.0.15:
+- Create QC Status
+- create_q_c_statuses_table.php
+2.0.16:
+- Update Sticekers
+2.0.17:
+- Create Controlsheet qc item
+- create_control_sheet_qc_items_table.php
+2.0.18:
+- Update Line
+2.0.19:
+- Create Minimum Run
+- create_minimumruns_table.php
+3.0.1:
+- Update Pipes
+3.0.2:
+- Update Control Sheet
+3.0.3:
+- Create raw production plan items table
+- create_raw_production_plan_items_table.php
+- create_raw_production_plans_table.php
+3.0.4:
+- Create Running Parameters
+- create_running_parameters_table.php
+3.0.5:
+- Create raw production plan items table
+3.0.6:
+- Update Schedule
+3.0.7:
+- Update Sticekers
+3.0.8:
+- Update Production Plan
+3.0.9:
+- Update Controlsheet qc item
+3.1.0:
+- Update Stickers
+3.1.1:
+- Update Quote Items
+- CreateQuoteItems.php
+3.11.0:
+- Create dispatches table
+- create_dispatches_table.php
+4.0.1:
+- Update Pipesticker
+- seeder_pipestickeritem.php
+4.0.2:
+- Create Assistant
+- create_assistants_table.php

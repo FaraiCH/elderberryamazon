@@ -1,0 +1,51 @@
+<?php
+	$count = 0;
+	foreach($record->quote->items as $key=>$value){
+	    if(isset($value->product))
+	    if ($value->product->value > 0 && $value->unitlength > 0) {
+	    	$count = $count + $value->units;
+		}
+
+	} 
+
+	$vs = 0;
+	if(isset($record->pipes))
+	foreach($record->pipes as $pkey=>$pvalue){
+		if(isset($pvalue->schedules))
+			$vs = $vs + $pvalue->schedules()->sum('total_units_passed_qc');
+		
+
+	} 
+
+?>
+<?php if($count == 0): ?>
+	<span class="text-info" >
+	    not available
+	    </span>
+<?php else: ?>
+	<?php
+	$per = 0;
+	if($vs > 0)
+		$per = ($vs/$count) * 100;
+		if($per > 100)
+			$per = 100;
+		
+		if($record->status_id == 3)
+			$per = 100;
+		?>
+
+	        
+	    
+	<div class="progress" style="border-radius: 3px;display: block; height: 15px !important; overflow: hidden !important; background: #ccc !important">
+    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo number_format($per, 1); ?>" aria-valuemin="0" aria-valuemax="100" style="background: <?php echo ($per == 100?'green':''); ?>;width: <?php echo number_format($per, 0); ?>%;">
+        <span style="display: block;padding-top: 4px; font-size: 10px; min-width: 100px !important;" >
+        	<?php if($per == 100): ?>
+        		Complete
+        	<?php else: ?>
+        		<?php echo number_format($count, 0); ?>/<?php echo number_format($vs, 0); ?> - <?php echo number_format($per, 0); ?>%
+        	<?php endif; ?>
+
+        </span>
+    </div>
+</div>
+<?php endif; ?>

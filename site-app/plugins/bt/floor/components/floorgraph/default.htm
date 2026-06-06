@@ -1,0 +1,340 @@
+{% partial __SELF__ ~ '::filterform'%}
+
+<div class="row ">
+
+	<div class="col-sm-12">
+		<div class="card">
+			<div id="chart_floor" style="width: 100%; height: 230px;"></div>
+		</div>
+	</div>
+</div>
+
+<div class="row " style="margin-top: 10px;">
+
+	<div class="col-sm-12" style="margin-bottom: 20px">
+		<div class="card">
+			<div id="chart_oparator" style="width: 100%; height: 230px;"></div>
+		</div>
+	</div>
+</div>
+
+
+{% set floorpipes = FloorGraph.producedPipes() %}
+
+
+<div class="tvhide" style="width: 99%; overflow: auto; padding: 10px;">
+			<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
+				<thead>
+					<tr>
+						<th>Quote</th>
+						<th>Client</th>
+						<!-- <th>Invoice</th> -->
+						<th>Pipe Description</th>
+						<th>Status</th>
+						<th>Start Date</th>
+						<!-- <th>Unit Price</th> -->
+						<!-- <th>Target</th> -->
+						<th>Units</th>
+						<!-- <th>Extras</th>
+						<th>Delivered</th>
+		        		<th>On Floor</th>
+		        		<th>On Floor Price</th> -->
+		        		<th>Weight Processed</th>
+		        		<th>Scrap</th>
+		        		<th>Scrap %</th>
+		        		<th>Over weight (Kg)</th>
+		        		<th>Over weight %</th>
+		        		<th>Wasted Material</th>
+		        		<th>Wasted %</th>
+		        		<!-- <th>Scrap</th> -->
+		        		<th>Material Used</th>
+		        		<th>Material Used Auto</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% set totalactualweight  = 0 %}
+					{% set totaloverweight  = 0 %}
+					{% set totalscrap = 0 %}
+					{% set totalmaterial = 0 %}
+					{% set totalmaterial_real = 0 %}
+
+					{% set totalunits = 0 %}
+					{% set totaldelivered = 0 %}
+					{% set totalextras = 0 %}
+					{% set totalfloor = 0 %}
+					{% set totalfloorprice = 0 %}
+
+					{% set row_count  = 0 %}
+					{% set perc_scrap  = 0 %}
+					{% set perc_weight  = 0 %}
+					{% set total_waste  = 0 %}
+					{% set total_waste_m_p  = 0 %}
+
+
+
+			        {% for item in floorpipes if item.id > 3 %}
+			        	{% set row_count  = row_count + 1 %}
+                    {% set total_auto_used = 0 %}
+                    {% for sc in item.schedules %}
+                    {% for rl in sc.usedmaterials %}
+                    {% set total_auto_used = total_auto_used + rl.kg %}
+                    {% endfor %}
+                    {% endfor %}
+                    {% if total_auto_used != 0 %}
+						<tr>
+
+				        		<td>{{item.qpush.quote.id}}
+				        		<td>{{item.qpush.quote.company_name}}</td>
+				        		<!-- <td>
+				        			{% if item.qpush.quote.invoice is not empty %}
+				        			{{item.qpush.quote.invoice.name}}
+				        			{% endif %}
+				        		</td> -->
+				        		<td nowrap="" ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{item.quoteitems.description}}</a></td>
+				        		<td nowrap="">{{item.qpush.status.name}}</td>
+				        		<td nowrap="">{{item.start_date|date("Y-m-d")}}</td>
+				        		{#<td nowrap="" nowrap="nowrap" align="right">R {{item.quoteitems.unitprice|number_format(2, '.', ',')}}</td>#}
+				        		<!-- <td nowrap="" align="right">{{item.quoteitems.units}}</td> -->
+
+				        		<td nowrap="" align="right">
+				        			{{item.schedules.sum('total_units_passed_qc')}}
+				        			{% set row_count_pc  = 0 %}
+				        				{#{% for itemdd in item.schedules %}
+				        						{{itemdd.production_date}}
+
+				        						{% set row_count_pc  = row_count_pc + itemdd.total_units_passed_qc%}
+				        				{% endfor%}
+				        				({{row_count_pc}})#}
+				        		</td>
+				        		{#<td nowrap="" align="right">
+				        			{% if item.schedules.sum('total_units_passed_qc') > 0 %}
+				        				{{item.schedules.sum('total_units_passed_qc')-item.quoteitems.units}}
+				        			{% else %}
+				        				0
+				        			{% endif %}
+				        		</td>
+
+				        		<td nowrap="" align="right">{{item.delivered().sum('units')}}</td>
+
+				        		<td nowrap="" align="right">
+				        			{% if item.schedules.sum('total_units_passed_qc') > 0 %}
+				        				{{item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')}}
+				        			{% else %}
+				        				0
+				        			{% endif %}
+				        		</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >R {{((item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice)|number_format(2, '.', ',')}}</td>
+				        		#}
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('total_kg_processed')}} kg</td>
+				        		{% set totalactualweight = totalactualweight + item.schedules.sum('total_kg_processed') %}
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('weight_scrap_kg')}} kg</td>
+
+				        		<td>
+				        			{% set p_scarp =
+				        			(item.schedules.sum('total_kg_processed') > 0)?((item.schedules.sum('weight_scrap_kg')*100)/item.schedules.sum('total_kg_processed')):0 %}
+				        		{{p_scarp|number_format(1, '.', ',')}} %</td>
+
+				        		{% set perc_scrap  = perc_scrap + p_scarp %}
+
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('over_weight_kg')}} kg</td>
+
+				        		{% set totaloverweight  = totaloverweight + item.schedules.sum('over_weight_kg') %}
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+
+				        			{% set p_weight = (item.schedules.sum('total_kg_processed')  > 0)?((item.schedules.sum('weight_scrap_kg'))/item.schedules.sum('total_kg_processed') ):0 %}
+				        			{{p_weight|number_format(1, '.', ',')}}%</td>
+				        			{% set perc_weight  = perc_weight + p_weight %}
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+				        			{% set count_waste_m = item.schedules.sum('weight_scrap_kg') + item.schedules.sum('over_weight_kg') %} {{count_waste_m}} kg
+
+				        			{% set total_waste = total_waste + count_waste_m %}
+				        		</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+				        			{% set count_waste_m_p = (item.schedules.sum('total_kg_processed') > 0)? (count_waste_m*100)/item.schedules.sum('total_kg_processed'):0 %}
+				        			{{count_waste_m_p|number_format(1, '.', ',')}} %
+
+				        			{% set total_waste_m_p = total_waste_m_p + count_waste_m_p %}
+				        		</td>
+
+
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed')}} kg</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+
+									{{total_auto_used}} kg
+								</td>
+
+				        		{% set totalscrap = totalscrap + item.schedules.sum('weight_scrap_kg') %}
+								{% set totalunits = totalunits + item.schedules.sum('total_units_passed_qc') %}
+								{% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+
+								{% if item.schedules.sum('total_units_passed_qc') > 0 %}
+								{% set totalextras  = totalextras + (item.schedules.sum('total_units_passed_qc')-item.quoteitems.units) %}
+				        		{% endif %}
+								{% set totalfloor = totalfloor + (item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) %}
+
+								{% set totalfloorprice = totalfloorprice + ((item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice) %}
+
+								{% set totalmaterial = totalmaterial + total_auto_used %}
+
+								{% set totalmaterial_real = totalmaterial_real + item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed') %}
+
+
+				             </tr>
+                        {% endif %}
+			        {% endfor %}
+		        </tbody>
+				<tfoot>
+					<tr>
+						<td nowrap="" nowrap="" align="right" colspan="5"><b>TOTAL</b></td>
+						<td nowrap="" align="right"><b>{{totalunits}}</b></td>
+						{#<td nowrap="" align="right"><b>{{totalextras}}</b></td>
+						<td nowrap="" align="right"><b>{{totaldelivered}}</b></td>
+						<td nowrap="" align="right"><b>{{totalfloor}}</b></td>
+						<td nowrap="" align="right"><b>R {{totalfloorprice|number_format(2, '.', ',')}}</b></td>
+						#}
+						<td nowrap="" align="right"><b>{{totalactualweight|number_format(1, '.', ',')}} kg</b></td>
+						<td nowrap="" align="right"><b>{{totalscrap|number_format(1, '.', ',')}} kg</b></td>
+						<td> {{totalscrap>0?((totalscrap/totalactualweight)*100)|number_format(1, '.', ','):0}} %</td>
+						<td nowrap="" align="right"><b>{{totaloverweight|number_format(1, '.', ',')}} kg</b></td>
+						<td> {{perc_weight>0?(perc_weight/row_count)|number_format(1, '.', ','):0}} %</td>
+
+
+						<td nowrap="" align="right"><b>{{total_waste|number_format(1, '.', ',')}} kg</b></td>
+
+						<td> {{total_waste_m_p>0?(total_waste_m_p/row_count)|number_format(1, '.', ','):0}} %</td>
+
+
+
+						<td nowrap="" align="right"><b>{{totalmaterial_real|number_format(1, '.', ',')}} kg</b></td>
+						<td nowrap="" align="right"><b>{{totalmaterial|number_format(1, '.', ',')}} kg</b></td>
+
+
+				     </tr>
+
+				</tfoot>
+
+			</table>
+		</div>
+
+
+
+
+
+ {% put scripts %}
+
+    <script type="text/javascript">
+    	$(window).on('load',function(){
+				Highcharts.chart('chart_floor', {
+					chart: {
+                        type: 'column'
+                    },
+			    title: {
+			        text: 'Scrap'
+			    },
+
+
+				xAxis: {
+			        type: 'datetime'
+			    },
+			    yAxis: {
+			        title: {
+			            text: 'kg'
+			        }
+			    },
+
+			    series: {% autoescape false %}{{FloorGraph.ScrapGraph()}}{% endautoescape %}
+
+
+			    ,
+
+			    plotOptions: {
+			        series: {
+			            marker: {
+			                enabled: false
+			            }
+			        }
+			    },
+
+
+			    responsive: {
+			        rules: [{
+			            condition: {
+			                maxWidth: 500
+			            },
+			            chartOptions: {
+			                legend: {
+			                    layout: 'horizontal',
+			                    align: 'center',
+			                    verticalAlign: 'bottom'
+			                }
+			            }
+			        }]
+			    }
+
+			});
+    	});
+    </script>
+{% endput %}
+	 {% put scripts %}
+
+    <script type="text/javascript">
+    	$(window).on('load',function(){
+				Highcharts.chart('chart_oparator', {
+					chart: {
+                        type: 'column'
+                    },
+			    title: {
+			        text: 'Operator Scrap'
+			    },
+
+
+				xAxis: {
+			        type: 'datetime'
+			    },
+			    yAxis: {
+			        title: {
+			            text: 'kg'
+			        }
+			    },
+
+			    series: {% autoescape false %}{{FloorGraph.OparatorGraph()}}{% endautoescape %}
+
+
+			    ,
+
+			    plotOptions: {
+			        series: {
+			            marker: {
+			                enabled: false
+			            }
+			        }
+			    },
+
+
+			    responsive: {
+			        rules: [{
+			            condition: {
+			                maxWidth: 500
+			            },
+			            chartOptions: {
+			                legend: {
+			                    layout: 'horizontal',
+			                    align: 'center',
+			                    verticalAlign: 'bottom'
+			                }
+			            }
+			        }]
+			    }
+
+			});
+    	});
+    </script>
+{% endput %}

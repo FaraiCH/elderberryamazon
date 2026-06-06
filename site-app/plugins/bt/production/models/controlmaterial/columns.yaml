@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    productname:
+        label: Product Name
+        type: partial
+        path: $/bt/production/models/controlmaterial/_productname_column.htm
+    batch:
+        label: Batch
+        searchable: true
+        relation: material
+        select: supplier_batch
+    measurement:
+        label: Measurement Type
+        type: selectable
+        options:
+            1: Bag
+            2: Bucket
+            3: Cup
+    kg_per_measurement:
+        label: KG Per Measurement
+        type: number
+        format:  '%.2f kg'

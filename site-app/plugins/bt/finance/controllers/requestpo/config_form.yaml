@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Request P.O
+
+# Model Form Field configuration
+form: $/bt/finance/models/requestpo/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\RequestPO
+
+# Default redirect location
+defaultRedirect: bt/finance/requestpo
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/finance/requestpo/update/:id
+    redirectClose: bt/finance/requestpo
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/finance/requestpo
+    redirectClose: bt/finance/requestpo
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

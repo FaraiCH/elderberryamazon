@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Bag Batch
+
+# Model Form Field configuration
+form: $/bt/inventory/models/bagbatch/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\BagBatch
+
+# Default redirect location
+defaultRedirect: bt/inventory/bagbatch
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/inventory/bagbatch/update/:id
+    redirectClose: bt/inventory/bagbatch
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/inventory/bagbatch
+    redirectClose: bt/inventory/bagbatch
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

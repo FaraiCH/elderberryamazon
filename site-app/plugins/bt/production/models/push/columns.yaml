@@ -1,0 +1,163 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    client:
+        label: Client Name
+        relation: quote
+        select: company_name
+        searchable: true
+
+    is_cod: 'Is COD?'
+
+    quote_id:
+        label: Quote No.
+        searchable: true
+    # invoice:
+    #     label: Invoiced
+    #     type: partial
+    #     path: $/bt/production/models/push/_invoice_column.htm
+    #     sortable: false
+    #     invisible: true
+    sales_rep:
+        label: Sales Rep
+        type: partial
+        path: $/bt/production/models/push/_sales_rep.htm
+        searchable: false
+        sortable: false
+    quote:
+        label: Price/Kg
+        type: partial
+        path: $/bt/production/models/push/_perkg_column.htm
+        sortable: false
+    delivery_request:
+        label: Is Delivery Requested?
+        type: partial
+        path: $/bt/production/models/push/_delivery_request_column.htm
+        searchable: false
+        sortable: false
+        invisible: false
+    rate_transport:
+        label: Rate/Transport
+        type: partial
+        path: $/bt/production/models/push/_rate_per_transport.htm
+        searchable: false
+        sortable: false
+        invisible: false
+    delivery_amount:
+        label: Delivery Amount
+        type: partial
+        path: $/bt/production/models/push/_deliveryamounts.htm
+        searchable: false
+        sortable: false
+        invisible: false
+    production_tonnage:
+        label: Production Tonnage
+        type: partial
+        path: $/bt/production/models/push/_production_tonnage.htm
+        searchable: false
+        sortable: false
+        invisible: false
+
+    clientlimit:
+        label: Limit (000)
+        relation: quote
+        select: totalincvat
+        # type: number
+        searchable: false
+        # format: R %.2f
+        type: partial
+        path: $/bt/production/models/push/_clientlimit_column.htm
+        sortable: false
+    clienttotal:
+        label: Total Inc Vat
+        relation: quote
+        select: totalincvat
+        # type: number
+        searchable: false
+        # format: R %.2f
+        type: partial
+        path: $/bt/production/models/push/_currency_column.htm
+        sortable: false
+    production:
+        label: Progress
+        type: partial
+        path: $/bt/production/models/push/_production_column.htm
+        searchable: false
+        sortable: false
+    delivery:
+        label: Delivery
+        type: partial
+        path: $/bt/production/models/push/_delivery_column.htm
+        searchable: false
+        sortable: false
+    invoiced:
+        label: Invoiced
+        type: partial
+        path: $/bt/production/models/push/_trackerinvoice_column.htm
+        searchable: false
+        sortable: false
+    tracker:
+        label: Payment
+        type: partial
+        path: $/bt/production/models/push/_tracker_column.htm
+        searchable: false
+        sortable: false
+
+    created_at:
+        label: Date Created
+        type: date
+        invisible: true
+    approved:
+        label: Management Approved
+        type: partial
+        path: $/bt/production/models/push/_approved_column.htm
+        sortable: false
+    status:
+        label: Production status
+        type: partial
+        path: $/bt/production/models/push/_status_column.htm
+        sortable: false
+    canceled:
+        label: Sales Canceled production
+        type: partial
+        path: $/bt/production/models/push/_canceled_column.htm
+        sortable: false
+    date_of_accepted:
+        label: Date Started
+        type: date
+        invisible: true
+
+    date_of_completed:
+        label: Date Completed
+        type: date
+        invisible: true
+
+
+
+    pipes:
+        label: Pipes Pushed
+        relation: pipes
+        useRelationCount: true
+        invisible: true
+        sortable: false
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updated_at:
+        label: Date Updated
+        type: date
+        invisible: true

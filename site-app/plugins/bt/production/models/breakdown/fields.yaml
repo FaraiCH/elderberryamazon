@@ -1,0 +1,38 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    btline:
+      label: Baila Machine
+      select: name
+      type: relation
+      span: auto
+      placeholder: --Select Baila Machine--
+    startdate:
+      label: Start Date and Time
+      type: datepicker
+      span: auto
+      ignoreTimezone: true
+    breakdown:
+      label: Breakdown Reasons
+      select: name
+      type: relation
+      span: auto
+      placeholder: -- Select Breakdown Reasons--
+    controlsheets:
+      label: Control Sheet
+      type: dropdown
+      span: auto
+      placeholder: -- Select Control Sheet--
+
+tabs:
+    fields:
+        file:
+          label: Images
+          type: fileupload
+          tab: Images
+          comment: Upload Images

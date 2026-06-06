@@ -1,0 +1,52 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    employee_id:
+        label: employee number
+        relation: employee
+        select: employeenumber 
+        searchable: true
+        sortable: true
+    name:
+        label: name
+        relation: employee
+        select: firstname
+        searchable: true
+        sortable: true
+
+    surname:
+        label: surname
+        relation: employee
+        select: lastname
+        searchable: true
+        sortable: true
+
+
+    created_at:
+        label: Created At
+        
+    hours:
+        label: Hours
+        type: number
+    workDate:
+        label: Work Day
+        type: date 
+        searchable: true
+        sortable: true
+    created_by:
+        label: created_by
+        relation: createdby
+        select: first_name
+        invisible: true
+        
+    updated_by:
+        label: updated_by
+        invisible: true
+
+    #########Time Stamp (Created/Updated When)

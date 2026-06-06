@@ -1,0 +1,66 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    productname:
+        label: Product Name
+        type: partial
+        path: $/bt/production/models/materialused/_productname_column.htm
+
+    raw_material_release_id:
+        label: Release ID
+    scheduleday_qty:
+        label: Unit Psd Qc
+        searchable: true
+        relation: scheduleday
+        select: total_units_passed_qc
+
+    scheduleday_scrap:
+        label: Scrap
+        searchable: true
+        relation: scheduleday
+        select: weight_scrap_kg
+
+    batch:
+        label: Batch
+        searchable: true
+        relation: receiving
+        select: supplier_batch
+    percentage:
+        label: Percentage
+        type: partial
+        path: $/bt/production/models/materialused/percentage.htm
+        searchable: true
+    kg:
+        label: KG
+        searchable: true
+        type: number
+
+    note:
+        label: Comment
+        searchable: true
+        invisible: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

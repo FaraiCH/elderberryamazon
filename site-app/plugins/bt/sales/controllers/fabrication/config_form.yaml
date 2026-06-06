@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Fabrication
+
+# Model Form Field configuration
+form: $/bt/sales/models/fabrication/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Fabrication
+
+# Default redirect location
+defaultRedirect: bt/sales/fabrication
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/fabrication/update/:id
+    redirectClose: bt/sales/fabrication
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/fabrication
+    redirectClose: bt/sales/fabrication
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

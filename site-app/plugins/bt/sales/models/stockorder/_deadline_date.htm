@@ -1,0 +1,8 @@
+<?php
+
+use Carbon\Carbon;
+$deadlineDate = $record->deadline_date;
+$deadlineDateIsPast = Carbon::parse($deadlineDate)->isPast();
+
+?>
+<span class="<?= $deadlineDateIsPast ? 'text-danger' : 'text-success' ?>"><?= $deadlineDate ?></span>

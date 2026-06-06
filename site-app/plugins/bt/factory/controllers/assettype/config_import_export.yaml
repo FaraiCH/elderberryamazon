@@ -1,0 +1,15 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+# import:
+#     title: Import subscribers
+#     modelClass: Acme\Campaign\Models\SubscriberImport
+#     list: $/acme/campaign/models/subscriber/columns.yaml
+
+export:
+    title: Export subscribers
+    modelClass: bt\factory\Models\AssettypeExport
+    list: $/bt/factory/models/assettype/columns.yaml
+    redirect: bt/factory/assettype
+    fileName: asset_type.csv

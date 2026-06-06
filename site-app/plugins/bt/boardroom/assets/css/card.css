@@ -1,0 +1,72 @@
+.card {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.card-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.card-text {
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    border-color: #007bff;
+    color: #007bff;
+    transition: all 0.3s ease-in-out;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+/*@keyframes fadeIn {*/
+/*    from {*/
+/*        opacity: 0;*/
+/*    }*/
+/*    to {*/
+/*        opacity: 1;*/
+/*    }*/
+/*}*/
+
+/*.animate {*/
+/*    animation-name: fadeIn;*/
+/*    animation-duration: 5s;*/
+/*    animation-delay: 20s;*/
+/*    animation-fill-mode: forwards;*/
+/*}*/
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.10);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulsate {
+    animation: pulsate 10s ease-out infinite;
+}

@@ -1,0 +1,34 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+
+    quote_id:
+        label: Quote
+        searchable: true
+        type: number
+    po_number:
+        label: PO Number
+    client_name:
+        label: Client Name
+    sales_rep:
+        label: Sales Rep
+    invoice_quote:
+        label: Quote Inc Vat
+    amount_po:
+        label: Amount on PO
+    difference:
+        label: Def
+    invoiced:
+        label: Invoiced
+    poamountcomment:
+        label: PO Amount Comment
+        invisible: false
+    status_name:
+        label: Status
+    # altfiles:
+    #     label: Att Files
+    created_at:
+        label: Date Created
+    # updated_at:

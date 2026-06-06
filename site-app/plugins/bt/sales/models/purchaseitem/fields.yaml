@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id@update:
+#        label: ID
+#        disabled: true
+#        span: storm
+#        cssClass: col-md-6 col-sm-6
+    item_id:
+        label: Item
+        type: dropdown
+        span: storm
+        cssClass: col-md-6 col-sm-6
+        placeholder: -- Select Item --
+    units:
+        label: Quantity
+        type: number
+        span: storm
+        cssClass: col-md-6 col-sm-6
+    sell_price@update:
+        label: Sell Price
+        type: number
+        span: storm
+        disabled: true
+        cssClass: col-md-6 col-sm-6
+    buy_price@update:
+        label: Buying Price
+        type: number
+        span: storm
+        cssClass: col-md-6 col-sm-6
+

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Property
+
+# Model Form Field configuration
+form: $/bt/jsedata/models/property/fields.yaml
+
+# Model Class name
+modelClass: Bt\JSEData\Models\Property
+
+# Default redirect location
+defaultRedirect: bt/jsedata/property
+
+# Create page
+create:
+    title: Create Property
+    redirect: bt/jsedata/property/update/:id
+    redirectClose: bt/jsedata/property
+
+# Update page
+update:
+    title: Edit Property
+    redirect: bt/jsedata/property
+    redirectClose: bt/jsedata/property
+
+# Preview page
+preview:
+    title: Preview Property

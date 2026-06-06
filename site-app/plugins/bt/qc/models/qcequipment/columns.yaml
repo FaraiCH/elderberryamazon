@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        invisible: true
+    images:
+        label: Image
+        type: partial
+        path: $/bt/maintenance/models/tools/_image.htm
+        searchable: false
+        sortable: false
+        width: 80
+    name:
+        label: Equipment Name
+        searchable: true
+    serial_number:
+        label: Serial Number
+        searchable: true
+    model_number:
+        label: Model Number
+    supplier_name:
+        label: Manufacture/Supplier
+   
+    caliberation_date:
+        label: Caliberation Date
+    caliberation_expiry_date:
+        label: Caliberation Expiry Date 
+
+

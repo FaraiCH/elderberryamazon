@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    category:
+        label: Category
+        select: name
+        type: relation
+        span: auto
+
+    run_date:
+        label: Run date
+        span: auto
+        type: datepicker
+        mode: date
+
+    target:
+        label: Target
+        type: number
+        span: auto
+
+    straight:
+        label: Straight
+        span: auto
+        type: number
+
+    coil:
+        label: Coil
+        span: auto
+        type: number

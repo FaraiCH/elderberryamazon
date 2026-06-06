@@ -1,0 +1,48 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    quote:
+        label: Quote
+        type: partial
+        path: $/bt/production/models/productionplan/_quote_column.htm
+    btline:
+        label: BT Line
+        searchable: true
+        relation: btline
+        select: name
+    type:
+        label: Type
+        type: partial
+        path: $/bt/production/models/productionplan/type.htm
+    size:
+        label: Size
+        searchable: true
+        type: number
+        format: %.0f mm
+    startdate:
+        label: Start Date and Time
+
+
+    enddate:
+        label: Start Date and Time
+
+    totalweight:
+        label: Total Weight
+        type: partial
+        path: $/bt/production/models/productionplan/_totalweight_column.htm
+        sortable: false
+
+    changeover_hours:
+        label: Changeover Hours
+        type: number
+
+
+    comments:
+        label: Comments
+
+

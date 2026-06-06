@@ -1,0 +1,15 @@
+questions:
+    label: Associate To questionelement
+    view:
+        list: $/bt/sheq/models/questionelement/columns.yaml
+        form: $/bt/sheq/models/questionelement/fields.yaml
+        toolbarButtons: link|unlink
+    manage:
+        form: $/bt/sheq/models/questionelement/fields.yaml
+        recordsPerPage: 20
+
+        # Display page numbers with pagination, disable to improve performance
+        showPageNumbers: true
+        showSearch: true
+        showCheckboxes: true
+        showSorting: true

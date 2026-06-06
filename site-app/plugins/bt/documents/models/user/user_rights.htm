@@ -1,0 +1,9 @@
+<?php if($record->pivot['user_rights'] === 0): ?>
+<span class="text-center" style="color: whitesmoke; background: grey; display: block; border-radius: 10px">
+	    <b>Read Only</b>
+	</span>
+<?php else: ?>
+<span class="text-center" style="color: whitesmoke; background: limegreen; display: block; border-radius: 10px">
+	   <b>Read & Edit</b>
+	</span>
+<?php endif; ?>

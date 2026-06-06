@@ -1,0 +1,22 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    materialreceiving:
+        label: Select Product By Batch
+        disabled: false
+        type: dropdown
+        placeholder: -- Select a Batch Number--
+        span: auto
+    kg:
+        label: Incage Kg
+        disabled: false
+        type: number
+        span: auto
+    comments:
+        label: Comments
+        type: textarea
+        size: small
+

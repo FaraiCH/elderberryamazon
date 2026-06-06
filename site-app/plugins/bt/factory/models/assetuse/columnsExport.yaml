@@ -1,0 +1,72 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    employee:
+        label: emp Num.
+        relation: employee
+        select: employeenumber
+
+    name:
+        label: emp Name
+        relation: employee
+        select: firstname
+
+    surname:
+        label: emp Surname
+        relation: employee
+        select: lastname
+
+    asset:
+        label: Asset Type
+        relation: asset
+        select: assettype
+
+    brand:
+        label: Brand
+        relation: asset
+        select: brand
+
+    serialnum:
+        label: Serial Number
+        type: text
+
+    pre-damage:
+        label: Pre-Damage
+        type: switch
+        on: Yes
+        off: No
+
+    post-damage:
+        label: Post-Damage
+        type: switch
+        on: Yes
+        off: No
+
+    dateissue:
+        label: Date Issued
+        type: date
+        mode: date
+        searchable: true
+        sortable: true
+
+    date-return:
+        label: Date Recieved
+        type: date
+        mode: date 
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

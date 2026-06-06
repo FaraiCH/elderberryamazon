@@ -1,0 +1,7 @@
+export:
+    title: Export Quote
+    modelClass: Bt\Sales\Models\QuoteExport
+    list: $/bt/sales/models/newquote/columns_export.yaml
+    redirect: bt/sales/newquote
+    fileName: quote-export.csv
+

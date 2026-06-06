@@ -1,0 +1,150 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="card">
+			<!-- <div class="card-header">
+				<h2>Injuries On The Floor</h2>
+			</div> -->
+			<div id="chart_injuries" style="width: 100%; height: 300px"></div>
+
+			{%set bname = [] %}
+			{%set totalcount = 0 %}
+			
+			<hr>
+			<div class="text-center totals">
+				<div class="row">
+					{% for  key,value in CmCovid.injurytype %}
+						<div class="col-sm-3">
+							<h1 style="font-size: 16px">{{value}}</h1>
+							{%set totali = 0 %}
+							{% for itemobject in CmCovid.data_inj %}
+								{% if key == itemobject.scale_of_injury %}	
+									{%set bname = bname|merge([{name:CmCovid.injurytype[itemobject.scale_of_injury],y:itemobject.noinjuries}])  %}
+									{%set totali = itemobject.noinjuries %}
+									{%set totalcount = totalcount +itemobject.noinjuries %}
+								{% endif %}
+							{% endfor %} 
+							<h2 class="text-info">{{totali}}</h2>
+						</div>
+					{% endfor %}
+
+					<div class="col-sm-3">
+						<h1 style="font-size: 16px"><b>Total (YTD)</b></h1>
+						<h2 class="text-info">{{totalcount}}</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card">
+			<!-- <div class="card-header">
+				<h2>COVID 19 Screening</h2>
+			</div> -->
+			<div id="chart_covid" style="width: 100%; height: 300px"></div>
+				<hr>
+			<div class="text-center totals">
+				<div class="row">
+					
+
+					<div class="col-sm-12">
+						<h1 style="font-size: 16px">Total Screened (YTD)</h1>
+						<h2 class="text-info">{{CmCovid.total_screening}}</h2>
+					</div>
+					{#<div class="col-sm-6">
+						<h1 style="font-size: 16px">Total Potential Infection/Risks (YTD)</h1>
+						<h2 class="text-info">{{CmCovid.total_temp}}</h2>
+					</div>#}
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+
+ {% put scripts %}
+
+    <script type="text/javascript">
+        $(window).on('load',function(){
+        		Highcharts.chart('chart_injuries', {
+				    chart: {
+				        plotBackgroundColor: null,
+				        plotBorderWidth: null,
+				        plotShadow: false,
+				        type: 'pie'
+				    },
+				    title: {
+				        text: 'Production Floor Injuries'
+				    },
+				    tooltip: {
+				        pointFormat: '{series.name}: {point.y:.Of} At <b>{point.percentage:.1f}%</b>'
+				    },
+				    plotOptions: {
+				        pie: {
+				            allowPointSelect: true,
+				            cursor: 'pointer',
+				            dataLabels: {
+				                enabled: true,
+				                format: '{point.y} <b>{point.name}</b> Injuries',
+				                style: {
+				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				                }
+				            },
+				            showInLegend: true
+				        }
+				    },
+				    series: [{
+				        name: 'Injury Type',
+				        colorByPoint: true,
+				        data: {% autoescape false %}{{bname|json_encode()}}{% endautoescape %}
+
+				    }]
+				});  
+
+				Highcharts.chart('chart_covid', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Daily COVID-19 Screenings'
+                    },
+                    // subtitle: {
+                    //         text: 'Target Units Vs Units Produced'
+                    //     },
+                    
+                    xAxis: {
+                        categories:  {% autoescape false %}{{CmCovid.data_covid.name|json_encode()}}{% endautoescape %},
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Employees'
+                        }
+                    },
+                    // tooltip: {
+                    //     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    //     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    //         '<td style="padding:0"><b>{point.y:.0f} Units/Pipes</b></td></tr>',
+                    //     footerFormat: '</table>',
+                    //     shared: true,
+                    //     useHTML: true
+                    // },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series:  {% autoescape false %}{{CmCovid.data_covid.data|json_encode()}}{% endautoescape %},
+                });
+
+				
+				
+
+    	});
+    </script>
+
+    
+
+{% endput %}

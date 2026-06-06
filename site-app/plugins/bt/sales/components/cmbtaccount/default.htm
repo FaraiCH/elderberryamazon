@@ -1,0 +1,85 @@
+
+		{% set floorpipes = CmBtAccount.producedPipes() %}
+		<div class="card-body">
+			<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
+				<thead>
+					<tr>						
+						<th>Quote ID</th>
+						<th>Production ID</th>
+						<th>Client</th>
+						<th>Pipe Description</th>
+						<th>Unit Price</th>
+						<th>Price Per KG</th>
+						<th>Weight KG</th>
+						<th>Created Date</th>
+						<th>Units</th>
+						<th>On Hold</th>
+						<th>Delivered</th>						
+		        		<th>Ready For Sale</th>
+		        		<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				
+					
+					
+					{% set totalunits = 0 %}
+					{% set totaldelivered = 0 %}
+					{% set totalonhold = 0 %}
+					{% set totalfloor = 0 %}
+								
+			        {% for item in floorpipes if item.id > 3 %}
+			        	{# if item.qpush.id == 41 #}
+			        	{% if item.qpush.id > 40 %}
+			        	{# if (item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')) > 0 #}
+
+						<tr>
+				        		
+				        		<td>{{item.qpush.quote.id}}</td>
+				        		<td>{{item.qpush.id}}</td>
+				        		<td>{{item.qpush.quote.company_name}}</td>
+				        		<td ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{item.quoteitems.description}}</a></td>
+				        		<td align="right"><span>R</span><span>{{item.quoteitems.unitprice|number_format(2, '.', ',')}}</span></td>
+				        		<td align="right"><span>R</span><span>{{item.quoteitems.priceperkg|number_format(2, '.', ',')}}</span></td>
+				        		<td align="right">{{item.quoteitems.weight}}</td>
+				        		<td>{{item.start_date}}</td>
+				        		<td align="right">{{item.schedules().sum('total_units_passed_qc')}}</td>
+				        		<td align="right">{{item.schedules().sum('onhold')}}</td>
+				        		<td align="right">{{item.delivered().sum('units')}}</td>
+				        		<td align="right">{{item.schedules().sum('total_units_passed_qc') - item.schedules().sum('onhold') - item.delivered().sum('units')}}</td>
+				        		{% for s_item in item.schedules %}
+				        		  	{% if loop.last %}
+				        		  		<td ><a target="_blank" href="/backend/bt/production/schedule/update/{{s_item.id}}">Edit</a>/<a target="_blank" href="/backend/bt/production/pipe/update/{{item.id}}">Edit</a></td>
+				        		  	{% endif %}
+				        		  {% endfor %} 
+
+				        		{% set totalunits = totalunits + item.schedules().sum('total_units_passed_qc') %}
+								{% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+								{% set totalonhold = totalonhold + item.schedules().sum('onhold') %}
+								{% set totalfloor = totalfloor + item.schedules().sum('total_units_passed_qc') - item.schedules().sum('onhold') - item.delivered().sum('units') %}
+				        		
+				             </tr>
+			        	{# endif #}
+			        	{% endif %}	
+			        {% endfor %} 
+		        </tbody>
+				<tfoot>
+					<tr>
+						<td align="right" colspan="5"><b>TOTAL</b></td>
+						<td align="right"><b>{{totalunits}}</b></td>
+						<td align="right"><b>{{totalonhold}}</b></td>
+						<td align="right"><b>{{totaldelivered}}</b></td>
+						<td align="right"><b>{{totalfloor}}</b></td>
+						<td></td>
+						
+						
+				      	
+				     </tr>
+
+				</tfoot>
+			       
+			</table>
+		</div>
+		</div>
+
+

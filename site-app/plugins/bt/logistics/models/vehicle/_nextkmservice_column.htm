@@ -1,0 +1,39 @@
+<?php if(isset($record->vehiclechecklist) && count($record->vehiclechecklist) > 0): ?>
+       <?php
+		$cnt = 0;
+		$servicetime = 15000;
+
+		$nextservicekm = $record->next_service_km;
+
+		foreach($record->vehiclechecklist as $key=>$value){
+			if($cnt == 0 && $value->current_mileage > 0){
+		  		$cnt = $value->current_mileage;
+		  		 break; 
+			}
+		}
+		$kmleft = $nextservicekm - $cnt ;
+		?>
+	<?php if($kmleft > 0 && $kmleft < $servicetime): ?>
+	<div class="oc-icon-bell-o" style="background: yellow; color: black; padding: 2px; border-radius: 2px; text-align: center;">
+		
+		Due For Service (<?= number_format($kmleft, 2, ',', ' ') ?> km) 
+	</div>	
+	<?php elseif($kmleft < 0 ): ?>
+	<div class="oc-icon-times-circle-o" style="background: red; color: #fff; padding: 2px; border-radius: 2px; text-align: center;">
+		
+		Service overdue (<?= number_format($kmleft, 2, ',', ' ') ?> km)
+	</div>	
+	<?php else: ?>
+		<div class="oc-icon-check-square" style="background: blue; color: #fff; padding: 2px; border-radius: 2px; text-align: center;">
+		
+		     Up To Date (<?= number_format($kmleft, 2, ',', ' ') ?> km)
+	   </div>
+	<?php endif; ?>
+<?php else: ?>
+	<div class="oc-icon-bell-slash-o" style="background: orange; color: #fff; padding: 2px; border-radius: 2px; text-align: center;">
+		
+		     Pending
+	   </div>
+<?php endif; ?>
+
+

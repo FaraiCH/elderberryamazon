@@ -1,0 +1,203 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    user_id:
+        label: Account Manager
+        span: storm
+        type: dropdown
+        placeholder: -- Select Account Manager --
+        cssClass: col-sm-6 col-md-6
+    client_category:
+        label: Category
+        span: storm
+        cssClass: col-sm-6 col-md-6
+        placeholder: -- Select Client Category --
+        type: relation
+        select: name
+    account_number:
+        label: Account Number
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    document_password:
+        label: Document Password
+        span: storm
+        cssClass: col-sm-6 col-md-6
+tabs:
+    fields:
+        company_name:
+            label: Company Name
+            span: left
+            tab: Client
+        vatno:
+            label: VAT No
+            span: right
+            tab: Client
+        vendorno:
+            label: Vendor No
+            span: left
+            tab: Client
+        coreg:
+            label: CO Reg
+            span: right
+            tab: Client
+
+        contact_name:
+            label: Primary Contact Name
+            tab: Contact Details
+            span: left
+        contact_email:
+            label: Contact Email
+            tab: Contact Details
+            span: right
+        contact_number:
+            label: Contact Number
+            tab: Contact Details
+            span: left
+        additional_contacts@update:
+            tab: Contact Details
+            label: Additional Contacts
+            type: datatable
+            adding: true
+            deleting: false
+            columns:
+
+                contactname:
+                    type: string
+                    title: Contact Name
+                contactnumber:
+                    type: string
+                    title: Contact Number
+                contactemail:
+                    type: string
+                    title: Email
+                position:
+                    type: string
+                    title: Role
+
+
+            recordsPerPage: false
+            searching: false
+
+
+        finance_contact_name:
+            label: Primary Contact Name
+            tab: Client Finance
+            span: left
+        finance_contact_email:
+            label: Contact Email
+            tab: Client Finance
+            span: right
+        finance_contact_number:
+            label: Contact Number
+            tab: Client Finance
+            span: left
+
+        client_finance:
+            label: Finance Notes
+            tab: Client Finance
+            type: partial
+            path: $/bt/sales/models/client/_client_finance.htm
+        physical_address:
+            label: Physical Address
+            tab: Address
+            span: left
+        physical_code:
+            label: Physical Code
+            tab: Address
+            span: right
+        postal_address:
+            label: Postal Address
+            tab: Address
+            span: left
+        postal_code:
+            label: Postal Code
+            tab: Address
+            span: right
+
+        buyer_code:
+            label: Buyer Code
+            tab: Account
+            span: auto
+        utilization:
+            label: Utilization
+            tab: Account
+            type: number
+            span: auto
+
+        limit:
+            label: Limit Granted
+            tab: Account
+            type: inputcurrency
+            span: auto
+
+        date_granted:
+            label: Date Granted
+            type: datepicker
+            mode: date
+            tab: Account
+            span: auto
+
+        terms_of_payment:
+            label: Terms Of Payment
+            tab: Account
+            span: auto
+
+
+
+        quotes:
+            path: $/bt/sales/controllers/client/_quotes.htm
+            tab: Quotes
+            type: partial
+
+        proof_address:
+            label: Proof Of Address
+            type: fileupload
+            tab: Documents
+            mode: file
+            comment:  You can upload multiple files <hr>
+            commentHtml: true
+            span: auto
+
+        identification:
+            label: Identifications
+            type: fileupload
+            tab: Documents
+            mode: file
+            comment:  You can upload multiple files <hr>
+            commentHtml: true
+            span: auto
+        certification:
+            label: Certification
+            type: fileupload
+            tab: Documents
+            mode: file
+            comment:  You can upload multiple files <hr>
+            commentHtml: true
+            span: auto
+        businessfiles:
+            label: Business Files
+            type: fileupload
+            tab: Documents
+            mode: file
+            comment:  You can upload multiple files <hr>
+            commentHtml: true
+            span: auto
+        other:
+            label: Other Files
+            type: fileupload
+            tab: Documents
+            mode: file
+            comment:  You can upload multiple files <hr>
+            commentHtml: true
+            span: auto
+        contract:
+            label: Upload Contracts
+            type: fileupload
+            tab: Contracts
+            mode: file
+            comment:  You can upload multiple files <hr>
+            commentHtml: true
+            span: auto
+            #maxFilesize: 39 MB

@@ -1,0 +1,36 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+
+    ########On update show the ID
+    id:
+        label: ID
+        disabled: true
+        invisible: true
+
+    employee:
+        label: Employee Number
+        span: left
+        type: relation
+        select: CONCAT(employeenumber,' - ', firstname,' ', lastname)
+        placeholder: --select--
+
+    workDate:
+        label: Work Day
+        type: datepicker 
+        mode: date
+        span: right
+        invisible: true 
+
+    hours:
+        label: Hours
+        type: number
+        span: left
+    
+

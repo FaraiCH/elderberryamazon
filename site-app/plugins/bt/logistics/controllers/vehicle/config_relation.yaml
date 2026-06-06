@@ -1,0 +1,17 @@
+vehiclechecklist:
+    label: Vehicle Checklist
+    manage:
+        form: $/bt/logistics/models/vehiclechecklist/fields.yaml
+        list: $/bt/logistics/models/vehiclechecklist/columns.yaml
+    view:
+        list: $/bt/logistics/models/vehiclechecklist/columns.yaml
+        toolbarButtons: create|delete
+
+vehiclefuelusage:
+    label: Vehicle Fuel Usage
+    manage:
+        form: $/bt/logistics/models/vehiclefuelusage/fields.yaml
+        list: $/bt/logistics/models/vehiclefuelusage/columns.yaml
+    view:
+        list: $/bt/logistics/models/vehiclefuelusage/columns.yaml
+        toolbarButtons: create|delete

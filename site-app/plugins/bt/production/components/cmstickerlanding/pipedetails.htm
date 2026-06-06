@@ -1,0 +1,64 @@
+{#
+<!--{% if printpipe.controlsheets is not empty }-->
+<!--    {% set pipesOnFloor = CmStickerLanding.PipeStatsFloor(printpipe.product_id, printpipe.unit_length) %}-->
+<!--    {% set pipesDelivered = CmStickerLanding.PipeStatsDelivered(printpipe.product_id, printpipe.unit_length, printpipe.controlsheets.jobcard.pipe.quoteitems.quote_id) %}-->
+
+<!--    {% set floorCount = pipesOnFloor|length %}-->
+<!--    {% set deliveredCount = pipesDelivered|length %}-->
+
+<!--	<h4>Summary</h4>-->
+<!--	<table class="table table-borderd" border="1">-->
+<!--		<thead>-->
+<!--			<tr>-->
+<!--				<td>Quote</td>-->
+<!--				<td>Ordered</td>-->
+<!--				<td>Order Completed</td>-->
+<!--				<td>Sale Rep</td>-->
+<!--				<td>Age</td>-->
+<!--				<td>Available Stock</td>-->
+<!--			</tr>-->
+<!--		</thead>-->
+<!--		<tbody>-->
+<!--			<tr>-->
+<!--				<td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.quote_id}}</td>-->
+<!--				<td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.units}}</td>-->
+<!--				<td>-->
+<!--                    {% if printpipe.controlsheets.jobcard.pipe.quoteitems.units == deliveredCount %}-->
+<!--                        Yes-->
+<!--                    {% else %}-->
+<!--                        No-->
+<!--                    {% endif %}-->
+<!--                </td>-->
+<!--				<td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.quote.user.name}} {{printpipe.controlsheets.jobcard.pipe.quoteitems.quote.user.surname}}</td>-->
+<!--				<td>{{CmStickerLanding.PipeAge(printpipe.production_date)}} days</td>-->
+<!--				<td>{{floorCount}}</td>-->
+<!--			</tr>-->
+<!--		</tbody>-->
+<!--	</table>-->
+
+<!--	<h4>On The floor : Of the same pipe type</h4>-->
+<!--	<table class="table table-borderd" border="1">-->
+
+<!--		<thead>-->
+<!--			<tr>-->
+<!--				<td>Sticker #</td>-->
+<!--				<td>Quote</td>-->
+<!--				<td>Sale Rep</td>-->
+<!--				<td>Age</td>-->
+<!--			</tr>-->
+<!--		</thead>-->
+<!--		<tbody>-->
+<!--            {% for sticker in pipesOnFloor %}-->
+<!--                <tr>-->
+<!--                    <td>{{sticker.sticker_id}} - {{sticker.counter}}</td>-->
+<!--                    <td>{{sticker.controlsheets.jobcard.pipe.qpush.quote_id}}</td>-->
+<!--                    <td>{{sticker.controlsheets.jobcard.pipe.qpush.quote.user.name}} {{sticker.controlsheets.jobcard.pipe.qpush.quote.user.surname}}</td>-->
+<!--                    <td>{{CmStickerLanding.PipeAge(sticker.production_date)}} days</td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--		</tbody>-->
+
+<!--	</table>-->
+<!--{% endif %}-->
+
+#}

@@ -1,0 +1,6 @@
+scopes:
+    category:
+        label: Categories
+        modelClass: Bt\Suppliers\Models\Category
+        conditions: category_id in (:filtered)
+        nameFrom: name

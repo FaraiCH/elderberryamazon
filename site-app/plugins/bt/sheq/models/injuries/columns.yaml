@@ -1,0 +1,61 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    injurydate:
+      label: Date of Injury
+
+
+    status:
+        label: Status
+        type: partial
+        path: $/bt/sheq/models/injuries/state.htm
+
+
+    scale_of_injury:
+        label: Scale Of Injury
+        type: partial
+        path: $/bt/sheq/models/injuries/_scale.htm
+
+
+
+    firstname:
+      label: First Name
+
+
+    lastname:
+      label: Last Name
+
+
+    description_of_injury:
+      label: Description Of Incident/Injury
+
+
+    items_used_to_treat:
+      label: Control Measures
+
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

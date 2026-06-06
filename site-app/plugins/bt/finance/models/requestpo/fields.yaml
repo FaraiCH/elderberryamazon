@@ -1,0 +1,41 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    supplier_details:
+        label: Supplier Details
+        type: section
+    # id:
+    #     label: ID
+    #     disabled: true
+    suppliername:
+        label: New Supplier Name
+        span: auto
+        commentHtml: true
+        comment: <b>If the supplier is new, please use the new supplier name.</b>
+    supplier:
+        label: Supplier Name
+        select: name
+        type: relation
+        placeholder: -- select Supplier --
+        span: auto
+        commentHtml: true
+        comment: <b>If a supplier has already been created, please choose the existing supplier.</b>
+    quote_details:
+        label: Quote Details
+        type: section
+    total_amount_incvat:
+        label: Total Amount Include Vat
+        type: inputcurrency
+        span: auto
+    quote_file:
+        label: Quote File/Slip
+        type: fileupload
+        span: auto
+        mode: file
+    exp_date:
+        label: Expiry Date(Optional)
+        type: datepicker
+        mode: date
+        span: auto

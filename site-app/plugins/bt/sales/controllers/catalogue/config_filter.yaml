@@ -1,0 +1,22 @@
+scopes:
+  category:
+     label: Category
+     modelClass: Bt\Sales\Models\Category
+     conditions: category_id in (:filtered)
+     nameFrom: category_name
+  createdby:
+     label: Sales Person
+     modelClass: RainLab\User\Models\User
+     conditions: user_id in (:filtered)
+     options: getSalesOptions
+
+  production_required:
+     label: Is Production Required?
+     type: group
+     default: 0
+     conditions: production_required in (:filtered)
+     modelClass: Bt\Sales\Models\Catalogue
+     nameFrom: production_required
+     options:
+         1: Yes
+         0: No

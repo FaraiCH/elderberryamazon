@@ -1,0 +1,176 @@
+
+
+<div style="text-align: right">
+    <a href="/backend/sales/orders/production/export" class="btn btn-success">
+        Approved Production (Financial Year)
+    </a>
+    <a href="/backend/sales/orders/export" class="btn btn-success">
+        Export Excel
+    </a>
+    <a href="/backend/sales/orders/export/pdf" class="btn btn-primary">
+        Export PDF
+    </a>
+</div>
+<br>
+<br>
+
+<div class="control-list" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-hover table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>Quote Date</span></th>
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>Status</span></th>
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>Production approval</span></th>
+                <th style="text-transform: uppercase; text-align: left; width:  15%;"><span>Quote Overview</span></th>
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>PO Number</span></th>
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>PO Date</span></th>
+
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>Client</span></th>
+
+                <th style="text-transform: uppercase; text-align: left; width:  25%;"><span>Sales Rep</span></th>
+                <th style="text-transform: uppercase; text-align: right; width:  15%;"><span>Total Ordered Weight </span></th>
+                 <th style="text-transform: uppercase; text-align: right; width:  15%;"><span>Total kg Processed</span></th>
+                 <th style="text-transform: uppercase; text-align: right;width: 15%"><span>Total kg Delivered In Date</span></th>
+                <th style="text-transform: uppercase; text-align: right; width: 15%;"><span>Total Ordered Pipes </span></th>
+                <th style="text-transform: uppercase; text-align: right; width: 15%;"><span>Total Pipes Produced </span></th>
+                <th style="text-transform: uppercase; text-align: right;width:  15%"><span>Total Units Delivered In Date</span></th>
+                <th style="text-transform: uppercase; text-align: right;width: 15%"><span>Pipes Price</span></th>
+
+                <th style="text-transform: uppercase; text-align: right;width: 15%"><span>Buy Outs</span></th>
+                <th style="text-transform: uppercase; text-align: left; width:  35%;"><span>Total Inc Vat</span></th>
+                <th ><span>R/Kg</span></th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+        <?php
+                    $totalincvat = 0;
+                    $totalweight = 0;
+                    $i_price = 0;
+                    $p_price = 0;
+                    $average = 0;
+                ?>
+        <?php
+                    $total_kg_ordered = 0;
+					$total_kg_processed = 0;
+					$deliveyweight = 0;
+				?>
+
+                <?php foreach($poquotes as $key => $mdata): ?>
+		              <?php
+						$total_kg_ordered = $total_kg_ordered + $mdata->items->sum('totalweight');
+                        if(isset($pb[$mdata->id]["total_kg_processed"])){
+                            $total_kg_processed = $total_kg_processed + $pb[$mdata->id]["total_kg_processed"];
+                        }else{
+                            $total_kg_processed = $total_kg_processed + 0;
+                        }
+                        if(isset($pb[$mdata->id]["deliveyweight"])){
+                            $deliveyweight = $deliveyweight + $pb[$mdata->id]["deliveyweight"];
+                        }else{
+                            $deliveyweight = $deliveyweight + 0;
+                        }
+					?>
+                    <?php if(empty($mdata->responses->where('quote_status_id', 15)->first())): ?>
+                        <?php if(($mdata->productionStatus == 'In Production') && ($mdata->productionAproval == 'Approved') && ($mdata->totalKgProcessed == 0)) : ?>
+                            <tr style="color: red; font-weight: bold">
+                        <?php else: ?>
+                             <tr>
+                        <?php endif; ?>
+                                <?php
+                                        $date = date_create($mdata->created_at);
+                                       $totalincvat = $totalincvat + $mdata->totalincvat;
+                                       $totalweight = $totalweight + $mdata->items->sum("totalweight");
+                                $i_price = $i_price + $mdata->items->sum("price");
+                                $p_price = $p_price + $mdata->itemscat->sum("price");
+                                $average = 0;
+                                if($totalweight > 0)
+                                $average = $i_price / $totalweight ;
+
+                                ?>
+
+                                <td><?= date_format($date, 'M Y') ?></td>
+                                <td><?= $mdata->productionStatus ?></td>
+                                <td><?= $mdata->productionAproval ?></td>
+                                <td><a href="/sales/report/download/<?= $mdata->id ?>/<?= $mdata->user->id ?>" target="_blank"><?= $mdata->id ?></a></td>
+                                <td><?= $mdata->ponumber ?></td>
+                                <td>
+                                    <?php if(!empty($mdata->responses ) ): ?>
+                                    <?php foreach($mdata->responses as $r => $rdata): ?>
+                                    <?php if($rdata->quote_status_id == 10): ?>
+                                    <?php
+                                                     $date_r = date_create($rdata->created_at );
+
+                                                    ?>
+                                    <?= date_format($date_r, 'M Y');?>
+                                    <?php endif ?>
+                                    <?php endforeach ?>
+                                    <?php endif ?>
+
+
+                                </td>
+
+                                <td><?= $mdata->company_name ?></td>
+                                <td><?= $mdata->user->name ?> <?= $mdata->user->surname ?></td>
+                                <td style="text-align: right" nowrap="nowrap"><?= number_format($mdata->items->sum('totalweight'),1, '.', ',') ?> KG</td>
+                                <td style="text-align: right"><?= $mdata->totalKgProcessed ?> Kg</td>
+                                <?php if(isset($pb[$mdata->id]["deliveyweight"])): ?>
+                                    <td style="text-align: right" nowrap="nowrap"><?= number_format( $pb[$mdata->id]["deliveyweight"],1, '.', ',') ?> KG</td>
+                                <?php else: ?>
+                                    <td style="text-align: right" nowrap="nowrap">0.0 KG</td>
+                                <?php endif; ?>
+
+                                <td style="text-align: right" nowrap="nowrap"><?= number_format( $mdata->items->sum('units'),0, '.', ',') ?></td>
+
+                                <?php if(isset($pb[$mdata->id]["total_units_passed_qc"])): ?>
+                                    <td style="text-align: right" nowrap="nowrap"><?= number_format( $pb[$mdata->id]["total_units_passed_qc"],0, '.', ',') ?></td>
+                                <?php else: ?>
+                                    <td style="text-align: right" nowrap="nowrap">0</td>
+                                <?php endif; ?>
+
+                                <?php if(isset($pb[$mdata->id]["total_units_unit_in_date"])): ?>
+                                    <td style="text-align: right" nowrap="nowrap"><?= number_format( $pb[$mdata->id]["total_units_unit_in_date"],0, '.', ',') ?></td>
+                                <?php else: ?>
+                                    <td style="text-align: right" nowrap="nowrap">0</td>
+                                <?php endif; ?>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( !empty($mdata["items"])?$mdata->items->sum("price"):0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( !empty($mdata["itemscat"])?$mdata->itemscat->sum("price"):0 ),2, '.', ',') ?></td>
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format($mdata->totalincvat,2, '.', ',') ?></td>
+
+                                <?php if(!empty($mdata["items"] ) && $mdata->items->sum("totalweight") > 0): ?>
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( !empty($mdata["items"])?$mdata->items->sum("price"):0 )/( !empty($mdata["items"])?$mdata->items->sum("totalweight"):0 ),2, '.', ',') ?></td>
+                                <?php else: ?>
+                                <td style="text-align: right" nowrap="nowrap">R 0.00</td>
+                                <?php endif ?>
+                            </tr>
+                    <?php endif; ?>
+                <?php endforeach ?>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<td colspan="1">TOTALS</td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right" nowrap="nowrap"><?= number_format($total_kg_ordered,1, '.', ',') ?> KG</td>
+        		<td style="text-align: right" nowrap="nowrap"><?= number_format($total_kg_processed,1, '.', ',') ?> KG</td>
+				<td style="text-align: right" nowrap="nowrap"><?= number_format($deliveyweight,1, '.', ',') ?> KG</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right" nowrap="nowrap">R <?= number_format($i_price ,2, '.', ',') ?></td>
+
+                <td style="text-align: right" nowrap="nowrap">R <?= number_format($p_price,2, '.', ',') ?></td>
+                <td style="text-align: right" nowrap="nowrap">R <?=  number_format($totalincvat,2, '.', ',') ?></td>
+                <td style="text-align: right" nowrap="nowrap">R <?= number_format($average ,2, '.', ',') ?></td>
+        	</tr>
+        </tfoot>
+    </table>
+</div>

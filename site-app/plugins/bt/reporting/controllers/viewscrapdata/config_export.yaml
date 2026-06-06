@@ -1,0 +1,6 @@
+export:
+    title: Export Electricity Production 
+    modelClass: Bt\Reporting\Models\ScrapDataExport
+    list: $/bt/reporting/models/viewscrapdata/columns_export.yaml
+    redirect: bt/reporting/viewscrapdata
+    fileName:  Export_Scrap_Data.csv

@@ -1,0 +1,22 @@
+<?php $disabled = ''; ?>
+<?php if ($this->previewMode || $this->formField->disabled ): ?>
+
+    <?php $disabled = 'disabled'; ?>
+
+<?php endif ?>
+
+	
+    <input
+        type="text"
+        id="<?= $this->getId('input') ?>"
+        name="<?= $name ?>"
+        value="<?= $value ?>"
+        class="form-control inputcurrency"
+        placeholder="R 0.00"
+        autocomplete="off" 
+		<?= $disabled ?>
+		/>
+        <script type="text/javascript">
+            inputcurrency();
+        </script>
+

@@ -1,0 +1,6 @@
+1.0.1:
+- First version of reporting
+- create_user_activity_logs_table.php
+1.0.2:
+  - Create Sticker View
+  - create_view_sticker_datas_table.php

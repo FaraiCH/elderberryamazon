@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Absence Leave
+
+# Model Form Field configuration
+form: $/bt/hr/models/absenceleave/fields.yaml
+
+# Model Class name
+modelClass: Bt\HR\Models\AbsenceLeave
+
+# Default redirect location
+defaultRedirect: bt/hr/absenceleave
+
+# Create page
+create:
+    title: Create Absence Leave
+    redirect: bt/hr/absenceleave/update/:id
+    redirectClose: bt/hr/absenceleave
+
+# Update page
+update:
+    title: Edit Absence Leave
+    redirect: bt/hr/absenceleave
+    redirectClose: bt/hr/absenceleave
+
+# Preview page
+preview:
+    title: Preview Absence Leave

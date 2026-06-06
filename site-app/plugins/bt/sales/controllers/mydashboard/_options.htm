@@ -1,0 +1,19 @@
+
+<?php if ($this->user->hasAccess('bt.finance.ho')): ?>
+    <div class="form-group " style="padding-bottom: 0px">
+
+        <select class="form-control custom-select" style="width: 200px;" name="sales" id="sales">
+            <option value="">ALL</option>
+            <?php foreach($groupusers->users as $value): ?>
+                <?php if(isset($mypeople[$value->id])): ?>
+                    <option value="<?= $value->id ?>"<?php if(isset($_POST['sales'])) if ($_POST['sales'] == $value->id) echo 'selected="selected"'; ?>><?= $value->name . " ". $value->surname ?></option>
+                <?php else: ?>
+                    <option value="<?= $value->id ?>"><?= $value->name . " ". $value->surname ?></option>
+                <?php endif; ?>
+            <?php endforeach ?>
+        </select>
+
+    </div>
+
+<?php endif ?>
+

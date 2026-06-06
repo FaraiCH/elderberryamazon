@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: auto
+    employee:
+        label: Employee
+        type: dropdown
+        span: auto
+    start_shift:
+        label: Shift Start
+        type: datepicker
+        span: auto
+    end_shift:
+        label: End Shift
+        type: datepicker
+        span: auto

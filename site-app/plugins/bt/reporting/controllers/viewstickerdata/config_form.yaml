@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: View Sticker Datum
+
+# Model Form Field configuration
+form: $/bt/reporting/models/viewstickerdata/fields.yaml
+
+# Model Class name
+modelClass: Bt\Reporting\Models\ViewStickerData
+
+# Default redirect location
+defaultRedirect: bt/reporting/viewstickerdata
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/reporting/viewstickerdata/update/:id
+    redirectClose: bt/reporting/viewstickerdata
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/reporting/viewstickerdata
+    redirectClose: bt/reporting/viewstickerdata
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

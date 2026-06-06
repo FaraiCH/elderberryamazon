@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+#    id:
+#        label: ID
+#        searchable: true
+    date:
+        label: Date and Time Of Arrival
+
+
+    visitorname:
+        label: Name and Surname of Visitor
+        span: auto
+    company:
+        label: Company
+        span: auto
+    hostname:
+        label: Name and Surname of Host
+        span: auto
+
+
+    location:
+        label: Location Inside BT
+        type: selectable
+
+    no_of_attendees:
+        label: Number of Attendees
+        type: Number
+        span: auto
+    accept_date:
+        label: Date Accepted by Visitor

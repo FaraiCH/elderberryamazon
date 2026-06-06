@@ -1,0 +1,113 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    equipment_type:
+        label: Equipment Type
+        select: name
+        type: relation
+        span: left
+    partcode:
+        label: Part Code
+        disabled: false
+        type: text
+        span: right
+
+    name:
+        label: Equipment Description
+        disabled: false
+        type: text
+        span: left
+    quantity:
+        label: Quantity
+        disabled: false
+        type: number
+        span: right
+    quantitytype:
+        label: Quantity Type
+        select: name
+        type: relation
+        span: left
+    make:
+        label: Make
+        disabled: false
+        type: text
+        span: right
+
+tabs:
+  fields:
+    is_diesel:
+        label: Does It Use Diesel?
+        type: switch
+        tab: Equipment Details
+        options:
+            0: No
+            1: Yes
+
+
+    modelnumber:
+        label: Model Number
+        tab: Equipment Details
+        span: left
+    serialnumber:
+        label: Serial Number
+        disabled: false
+        type: text
+        tab: Equipment Details
+        span: right
+    size:
+        label: Size
+        disabled: false
+        type: text
+        tab: Equipment Details
+        span: left
+    suppliername:
+        label: Manufacture/Supplier
+        disabled: false
+        type: text
+        tab: Equipment Details
+        span: right
+    notes:
+        label: Comments
+        disabled: false
+        type: textarea
+        size: small
+        tab: Equipment Details
+    puchased_date:
+        label: Date Of Purchase
+        disabled: false
+        type: datepicker
+        tab: Purchase Details
+    price:
+        label: Purchase Price
+        disabled: false
+        type: text
+        tab: Purchase Details
+
+    caliberation_date:
+        label: Calibration Date
+        disabled: false
+        type: datepicker
+        tab: Calibration
+    caliberation_expiery_date:
+        label: Calibration Expiery Date
+        disabled: false
+        type: datepicker
+        tab: Calibration
+    fileawayyes:
+        label: Active
+        select: name
+        type: relation
+        tab: File Away
+    images:
+        label: Images
+        type: fileupload
+        tab: Images
+    files:
+        label: Equipment Files
+        type: fileupload
+        tab: Upload Files
+        mode: file
+        tab: Files

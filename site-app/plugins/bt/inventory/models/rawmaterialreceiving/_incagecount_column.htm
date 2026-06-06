@@ -1,0 +1,24 @@
+
+<div style="white-space: nowrap;"><?php
+$count = 9999999999;
+foreach($record->incage as $key=>$value){
+    $count = $value->kg;
+} 
+?>
+<?php if($count == 9999999999): ?>
+	<span class="text-info" >
+	    not available
+	    </span>
+<?php else: ?>
+	<?php if($count > 0): ?>
+	    <span class="text-success">
+	        <?php echo $count; ?> kg
+	    </span>
+
+	<?php else: ?>
+	    <span class="text-danger" >
+	    <?php echo $count; ?> kg
+	    </span>
+	<?php endif; ?>
+<?php endif; ?>
+</div>

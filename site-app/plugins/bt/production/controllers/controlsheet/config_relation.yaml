@@ -1,0 +1,39 @@
+
+citem:
+    label: Shift Input
+    manage:
+        form: $/bt/production/models/controlsheetitem/fields.yaml
+        list: $/bt/production/models/controlsheetitem/columns.yaml
+
+    view:
+        list: $/bt/production/models/controlsheetitem/columns.yaml
+        toolbarButtons: create|delete
+
+controlmaterial:
+    label: Active Material To Use In Shift
+    manage:
+        form: $/bt/production/models/controlmaterial/fields.yaml
+        list: $/bt/production/models/controlmaterial/columns.yaml
+
+    view:
+        list: $/bt/production/models/controlmaterial/columns.yaml
+        toolbarButtons: create|delete
+pipestickeritem:
+    label: Pipe Sticker Items
+    manage:
+        form: $/bt/production/models/pipestickeritem/fields.yaml
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+
+    view:
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+        toolbarButtons: create|delete
+
+assistant:
+    label: Assistant
+    manage:
+        form: $/bt/production/models/assistant/fields.yaml
+        list: $/bt/production/models/assistant/columns.yaml
+
+    view:
+        list: $/bt/production/models/assistant/columns.yaml
+        toolbarButtons: create|delete

@@ -1,0 +1,40 @@
+1.0.1:
+- First version of QC
+- create_categories_table.php
+- create_subs_table.php
+- create_documents_table.php
+- create_datapacks_table.php
+- create_lab_results_table.php
+- create_bacapproves_table.php
+- create_data_pack_indices_table.php
+- create_pack_to_indices_table.php
+1.0.2:
+- Update Qms And NCR
+- create_q_m_s_s_table.php
+- create_n_c_r_s_table.php
+- create_ncrtypes_table.php
+- create_ncrappproves_table.php
+- create_ncrpreppares_table.php
+1.0.3:
+- Testing Matrix
+- create_testing_matrices_table.php
+- create_testtypes_table.php
+1.0.4:
+- COC
+- create_reqcertificates_table.php
+1.0.5:
+- Create Pickslip
+- create_pickslips_table.php
+1.0.6:
+- Create QcEquipment
+- create_qc_equipments_table.php
+1.0.7:
+- Create pipereport
+- create_pipe_reports_table.php
+1.0.10:
+- Update Pack Results
+1.0.11:
+- Update Pipe Report
+1.0.12:
+- Create QC Reasons
+- create_qcreasons_table.php

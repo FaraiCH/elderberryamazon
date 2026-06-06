@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Electricity
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/electricity/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Electricity
+
+# Default redirect location
+defaultRedirect: bt/maintenance/electricity
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/maintenance/electricity/update/:id
+    redirectClose: bt/maintenance/electricity
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/maintenance/electricity
+    redirectClose: bt/maintenance/electricity
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

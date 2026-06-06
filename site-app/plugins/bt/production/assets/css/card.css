@@ -1,0 +1,40 @@
+.row {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+
+    .cards {
+        text-align: center;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #f8f9fa;
+        transition: transform 0.3s ease-in-out;
+        margin: 5px;
+    }
+
+    .cards:hover {
+        transform: scale(1.05);
+    }
+
+    .description {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #3498db;
+    }
+
+    .oc-icon {
+        font-size: 36px;
+        margin-bottom: 15px;
+        color: #353738;
+    }
+
+    .weight-icon, .cost-icon {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+
+    p {
+        color: #555;
+    }

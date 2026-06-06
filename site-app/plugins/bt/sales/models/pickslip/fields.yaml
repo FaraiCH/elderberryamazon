@@ -1,0 +1,49 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    #    id:
+    #        label: ID
+    #        disabled: true
+    quote@update:
+        label: Quote No
+        span: storm
+        type: relation
+        select: concat(id, ' > ', company_name)
+        cssClass: col-md-6 col-sm-6
+        disabled: true
+        placeholder: -- Select Quote --
+    quote_id@create:
+        label: Quote No
+        span: storm
+        type: dropdown
+        required: yes
+        placeholder: -- Select Quote --
+        cssClass: col-md-6 col-sm-6
+    pickslip:
+        label: Pick Slip Upload
+        type: fileupload
+        span: storm
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx
+        cssClass: col-md-6 col-sm-6
+
+    header2_1:
+        type: section
+        label: 1. Pipe Details
+        cssClass: noezanheader2
+    stickeritems@update:
+
+        type: partial
+        path: $/bt/sales/models/pickslip/_stickeritems_field.htm
+
+    header2_2:
+        type: section
+        label: 2. Refrabrished Stock Details
+        cssClass: noezanheader2
+
+    catalogue@update:
+        label: Additional Catalogue Products
+        tab: Catalogue
+        type: partial
+        path: $/bt/sales/models/pickslip/_cat_field.htm

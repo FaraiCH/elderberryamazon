@@ -1,0 +1,40 @@
+
+        <div class="box-body">
+          <div class="row">
+            
+
+             <input type="hidden" id="propid" name="propid" placeholder="">
+             <input type="hidden" id="clientid" name="clientid" placeholder="">
+
+
+               
+              <div class="col-sm-12">
+                <div class="form-group row">
+                    <label   class="col-sm-12 col-form-label" for="category_id" style="font-size: 14px;"><b>What is the use of the property selected:</b></label>
+                    <div class="col-sm-12">
+                          <div style=""><br></div>
+                        <div class="row">
+
+
+                           
+
+                            {% set pc = ClientAddProperty.getPropertyCategory() %}
+                            {% for key,item in pc %}
+                              <div class="col-sm-12"><p style="font-weight: bold;">{{item.name}}</p></div>
+                              {% for key_k,item_i in item.children %}
+                                  <div class="col-sm-3">
+                                    <div class="form-check"><input type="checkbox" name="usage[]" value="{{item_i.id}}" class='form-check-input'><label class='form-check-label'>{{item_i.name}}</label></div>
+                                </div>
+                              {% endfor %}  
+                            {% endfor %}
+                        </div>
+                      
+                    </div>
+                  </div>
+              </div>
+         
+
+        </div>
+        
+        
+      

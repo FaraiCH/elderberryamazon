@@ -1,0 +1,87 @@
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Batch Numbers</title>
+    <!-- Add custom CSS styles -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #qrCodeContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Print Batch Numbers</h1>
+
+    <!-- Container to display QR codes -->
+    <div id="qrCodeContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@latest"></script>
+    <script>
+        // Function to parse query parameters from URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Retrieve the QR code data from the query parameter
+        var qrCodeDataJson = getParameterByName('qrCodeData');
+        if (qrCodeDataJson) {
+            // Parse the JSON string to an array of QR code data objects
+            var qrCodeDataArray = JSON.parse(qrCodeDataJson);
+
+            // Display QR codes for each batch number
+            qrCodeDataArray.forEach(function(qrCodeData, index) {
+                // Generate a unique ID for the QR code container
+                var containerId = 'qrCode_' + index;
+
+                // Create a new div element for the QR code
+                var qrCodeDiv = document.createElement('div');
+                qrCodeDiv.id = containerId;
+                qrCodeDiv.className = 'qr-code';
+
+                // Add the QR code div to the container
+                document.getElementById('qrCodeContainer').appendChild(qrCodeDiv);
+
+                // Generate the QR code
+                new QRCode(document.getElementById(containerId), {
+                    text: JSON.stringify(qrCodeData),
+                    width: 200,
+                    height: 200
+                });
+            });
+        } else {
+            // Display an error message if no QR code data is found
+            document.body.innerHTML = '<h2>Error: No QR code data found.</h2>';
+        }
+    </script>
+</body>

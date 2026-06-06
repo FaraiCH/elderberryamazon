@@ -1,0 +1,8 @@
+supplierproducts:
+    label: Supplier Product
+    view:
+        list: $/bt/sales/models/supplierstock/columns.yaml
+    manage:
+        list: $/bt/sales/models/supplierstock/columns.yaml
+    pivot:
+        form: $/bt/sales/models/supplierstock/fields.yaml

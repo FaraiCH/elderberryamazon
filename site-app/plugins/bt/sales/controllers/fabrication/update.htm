@@ -1,0 +1,93 @@
+<?php Block::put('breadcrumb') ?>
+    <ul style="margin-top: -5px">
+        <li><a href="<?= Backend::url('bt/sales/fabrication') ?>">Fabrication</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+    <?= Form::open(['class' => 'layout']) ?>
+        <div class="cardContainer" style="margin-top: -20px">
+            <div class="cards" style="line-height: 1.0; background: #0a3576; color: white;">
+                <h5 class="description" style="font-weight: bold;color: white;"><a style="color: white" href="/backend/bt/sales/newquote/update/<?= e($formModel->quote->id) ?>" target="_blank"> #BT-QT- <?= e($formModel->quote->id) ?></a> </h5></li>
+
+                <p><span class="oc-icon-star" style="color:gold;"></span><?= e($formModel->quote->company_name) ?></p>
+            </div>
+
+            <div class="cards" style="line-height: 1.0; background: #0a3576; color: white;">
+                <h5 class="oc-icon-cubes" style="font-weight: bold;color: white;"> Total Items To Be Fabricated</h5>
+                <?php
+                        $total = 0;
+                        if(!empty($formModel->items)){
+                foreach($formModel->items as $item){
+                $total ++;
+                }
+                }
+                ?>
+                <p><span class="oc-icon-arrow-up" style="color:gold;"></span><?= $total ?></p>
+            </div>
+            <div class="cards" style="line-height: 1.0; background: #0a3576; color: white;">
+                <h5 class="oc-icon-user" style="font-weight: bold;">Created By:</h5>
+                <p><?= $formModel->createdby->first_name. '  '.$formModel->createdby->last_name  ?></p>
+            </div>
+            <div class="cards" style="line-height: 1.0; background: #0a3576; color: white;">
+                <h5 class="oc-icon-file" style="font-weight: bold;">Linked SRN:</h5>
+                <p>
+                    <?php if(!empty($formModel->srn)): ?>
+                    <?= $formModel->srn->id ?>
+                    <?php else: ?>
+                    No SRN Linked
+                    <?php endif ?>
+                </p>
+            </div>
+        </div>
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-primary">
+                    <?= e(trans('backend::lang.form.save')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-default">
+                    <?= e(trans('backend::lang.form.save_and_close')) ?>
+                </button>
+<!--                <button-->
+<!--                    type="button"-->
+<!--                    class="oc-icon-trash-o btn-icon danger pull-right"-->
+<!--                    data-request="onDelete"-->
+<!--                    data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"-->
+<!--                    data-request-confirm="<?= e(trans('backend::lang.form.delete_confirm')) ?>">-->
+<!--                </button>-->
+                <?php if($formModel->items->sum('units') > 0): ?>
+                    <a target="_blank" class="btn btn-info pull-right oc-icon-file-pdf-o" href="/fab/item/in/download/<?=   $formModel->id ?>.pdf">Fabrication In</a>
+                    <a target="_blank" class="btn btn-info pull-right oc-icon-file-pdf-o" href="/fab/item/out/download/<?=   $formModel->id ?>.pdf">Fabrication Out</a>
+                <?php endif ?>
+<!--                <span class="btn-text">-->
+<!--                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('bt/sales/fabrication') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>-->
+<!--                </span>-->
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/sales/fabrication') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+<?php endif ?>

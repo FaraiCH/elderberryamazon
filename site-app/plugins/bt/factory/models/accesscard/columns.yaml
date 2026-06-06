@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    card:
+        label: Card
+        searchable: true   
+
+    employee_id:
+        label: employee number
+        relation: employee
+        select: employeenumber 
+        searchable: true
+        sortable: true   
+
+    issue_date:
+      label: Issue Date
+      
+    lost_date:
+      label: Lost Date
+      
+    

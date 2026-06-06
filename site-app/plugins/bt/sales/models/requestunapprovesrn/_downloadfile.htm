@@ -1,0 +1,7 @@
+
+<?php if(!empty($record->form) ): ?>
+
+    <a href="<?= $record->form->getPath() ?>" class="btn btn-primary btn-sm";>Download Signed Unapproval Form</a>
+<?php else: ?>
+   File not uploaded
+<?php endif; ?>

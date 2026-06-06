@@ -1,0 +1,116 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sales/client') ?>">Client</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+
+            <?php $is_blocked = 0;?>
+
+            <?php if ($formModel->is_blocked == 1): ?>
+                 <div class="callout fade in callout-danger no-icon" >
+                    <div class="header"  style="background: red">
+                        <h3 style="text-align: center; font-size: 40px; color: #fff">
+                            ACCOUNT IS BLOCKED
+                        </h3>
+                        <?php if(isset($formModel->blocked_reason)): ?>
+                            <h4>Blocked Reason: <?= $formModel->blocked_reason ?> </h4>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php $is_blocked = 1;?>
+            <?php endif ?>
+
+
+
+
+                <?php
+                    $count = 0;
+                    $invoice = 0;
+                    $payment = 0;
+                    foreach($formModel->quotes as $key=>$value){
+                        $invoice += $value->invoice->sum('amount');
+                        $payment += $value->paymenttracker->sum('amount');
+
+                    }
+
+                    $count = $invoice - $payment;
+                    $count = $formModel->utilization;
+                    //$count = 20000;
+                    $total = $formModel->limit;
+
+                    ?>
+                        <?php if($total > 0): ?>
+                                         <h3 style="text-align: center;">Account Utilization</h3>
+                                            <?php
+
+
+                                                $per = ($count/$total) * 100;
+                                                if($per > 100 )
+                                                    $per = 100;
+                                            ?>
+                                        <div
+                                            class="control-chart centered wrap-legend"
+                                            data-control="chart-pie"
+                                            data-size="<?php echo number_format(200, 0); ?>"
+                                            data-center-text="<?php echo number_format($per, 0); ?>%">
+                                            <ul>
+                                                 <li>Account Limit R <?php echo number_format($total,2, '.', ','); ?><span ><?php echo number_format(100-$per,2, '.', ','); ?></span></li>
+                                                <li>Utilization R <?php echo number_format($count,2, '.', ',');?><span ><?php echo number_format($per,2, '.', ',');?></span></li>
+
+
+
+                                            </ul>
+                                        </div>
+                        <?php endif; ?>
+
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Client..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Client..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+               <!--  <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Client..."
+                    data-request-confirm="Delete this client?">
+                </button> -->
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/sales/client') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/sales/client') ?>" class="btn btn-default">Return to client list</a></p>
+
+<?php endif ?>

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stocksize
+
+# Model Form Field configuration
+form: $/bt/floor/models/stocksize/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\Stocksize
+
+# Default redirect location
+defaultRedirect: bt/floor/stocksize
+
+# Create page
+create:
+    title: Create Stocksize
+    redirect: bt/floor/stocksize/update/:id
+    redirectClose: bt/floor/stocksize
+
+# Update page
+update:
+    title: Edit Stocksize
+    redirect: bt/floor/stocksize
+    redirectClose: bt/floor/stocksize
+
+# Preview page
+preview:
+    title: Preview Stocksize

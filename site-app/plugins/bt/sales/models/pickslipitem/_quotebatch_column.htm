@@ -1,0 +1,8 @@
+<?php
+
+  	foreach ($record->pipe->jobcard as $key => $value) {
+			foreach ($value->batch as $k => $v) {
+				echo '#BT-'.sprintf("%04d", $value->id)."-".sprintf("%04d", $v->id)." ";
+			}
+	}
+?>

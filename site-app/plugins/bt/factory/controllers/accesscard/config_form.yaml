@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Access Card
+
+# Model Form Field configuration
+form: $/bt/factory/models/accesscard/fields.yaml
+
+# Model Class name
+modelClass: Bt\Factory\Models\AccessCard
+
+# Default redirect location
+defaultRedirect: bt/factory/accesscard
+
+# Create page
+create:
+    title: Create Access Card
+    redirect: bt/factory/accesscard/update/:id
+    redirectClose: bt/factory/accesscard
+
+# Update page
+update:
+    title: Edit Access Card
+    redirect: bt/factory/accesscard
+    redirectClose: bt/factory/accesscard
+
+# Preview page
+preview:
+    title: Preview Access Card

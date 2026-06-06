@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Leavetype
+
+# Model Form Field configuration
+form: $/bt/hr/models/leavetype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Hr\Models\Leavetype
+
+# Default redirect location
+defaultRedirect: bt/hr/leavetype
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/hr/leavetype/update/:id
+    redirectClose: bt/hr/leavetype
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/hr/leavetype
+    redirectClose: bt/hr/leavetype
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

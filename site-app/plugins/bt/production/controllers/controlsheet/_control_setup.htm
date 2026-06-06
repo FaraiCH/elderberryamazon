@@ -1,0 +1,73 @@
+<?= $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0") ?>
+<?= $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0"); ?>
+<div class="callout fade in callout-warning no-subheader">
+    <h3 style="text-align: center; margin-top: -10px;">CONTROL SHEET # <?= $formModel->id ?></h3>
+    <table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+
+        <tr>
+            <th  >DATE:</th>
+            <td class="border" nowrap="nowrap"><?= $formModel->opendate ?></td>
+            <th >CLIENT:</th><td class="border"><?= $formModel->jobcard->pipe->qpush->quote->company_name ?></td>
+
+            <th >PRODUCT:</th><td class="border"><?= $formModel->jobcard->pipe->quoteitems->description ?></td>
+
+            <th   >OPERATOR:</th><td   class="border" nowrap="nowrap">
+            <?= $formModel->assignedto?$formModel->assignedto->name:"" ?></td>
+
+            <th >PRODUCTION LINE:</th><td class="border"><?= $formModel->btline->name ?></td>
+            <th >SHIFT:</th><td class="border"><?= $formModel->shift ?></td>
+        </tr>
+
+    </table>
+    <div class="header">
+        <h4 style="text-align: center"><b>Warning! No Date On Control Sheet</b></h4>
+
+        <p>This control sheet is not finished being setup for input</p>
+        <p>The date still needs to be added.</p>
+        <p>Please input date shift and press the <b>Start Control Sheet</b> button to put the date.</p>
+    </div>
+</div>
+    <div class="form-group col-md-6">
+        <label for="control_date">Control Sheet Input Date</label>
+        <input type="text" class="form-control" id="control_date" name="control_date" value="<?= e($today) ?>">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="shift">Shift: </label>
+        <select style="height: 15px" id="shift" name="shift" class="form-control custom-select">
+            <?php if(!empty($formModel->shift)): ?>
+                <?php if($formModel->shift == "DAY"): ?>
+                    <option selected value="DAY">Day</option>
+                <?php else: ?>
+                    <option value="DAY">Day</option>
+                <?php endif; ?>
+                <?php if($formModel->shift == "NIGHT"): ?>
+                    <option selected value="NIGHT">NIGHT</option>
+                <?php else: ?>
+                    <option value="NIGHT">NIGHT</option>
+                <?php endif; ?>
+            <?php else: ?>
+                <option value="DAY">Day</option>
+                <option value="NIGHT">NIGHT</option>
+            <?php endif; ?>
+        </select>
+    </div>
+    <button
+        type="submit"
+        data-request="onSetup"
+        data-request-confirm="Are you sure you want to run Control Sheet No <?= $formModel->id ?>?"
+        class="btn btn-default">Start Control Sheet</button>
+<div id="setup">
+
+</div>
+<script>
+    var startpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#control_date');
+</script>

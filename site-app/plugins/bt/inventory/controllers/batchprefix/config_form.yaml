@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Batch Prefix
+
+# Model Form Field configuration
+form: $/bt/inventory/models/batchprefix/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\BatchPrefix
+
+# Default redirect location
+defaultRedirect: bt/inventory/batchprefix
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/inventory/batchprefix/update/:id
+    redirectClose: bt/inventory/batchprefix
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/inventory/batchprefix
+    redirectClose: bt/inventory/batchprefix
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

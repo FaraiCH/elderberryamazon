@@ -1,0 +1,81 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    date_of_receipt:
+        label: Date Received
+        searchable: true
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sales/models/newquote/_active.htm
+    datapack:
+        label: Data Pack
+        relation: datapack
+        searchable: true
+        select: name
+    # purchase_id:
+    #     label: purchase_id
+    #     searchable: true
+    #     conditions: purchase_id > 0
+    # container_number:
+    #     label: container_number
+    #     searchable: true
+    # truck_number_plate:
+    #     label: truck_number_plate
+    #     searchable: true 
+    
+    product:
+        label: Product
+        searchable: true
+        relation: productname
+        select: name
+    supplier_batch:
+        label: Supplier Batch
+        searchable: true
+    product_code:
+        label: Product Code
+    # virgin:
+    #     label: virgin
+    #     searchable: true
+    # regrind:
+    #     label: regrind
+    #     searchable: true
+    # bags:
+    #     label: bags
+    #     searchable: true
+    weight:
+        label: Weight
+        searchable: true
+    pricekg:
+        label: Price Per kg
+        searchable: true
+        type: number
+        format: R %.2f
+
+    damagedbags:
+        label: Damaged Bags
+        searchable: true
+    mfi:
+        label: Mfi
+        searchable: true
+    # pallet_number:
+    #     label: pallet_number
+    #     searchable: true
+    # number_of_trucks:
+    #     label: number_of_trucks
+    #     searchable: true
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

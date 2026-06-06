@@ -1,0 +1,12 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    name:
+        label: Fuel Type
+        span: storm
+        cssClass: col-sm-6 col-md-6

@@ -1,0 +1,24 @@
+<article class="client-quote-approval">
+  {% if __SELF__.quoteValid == true %}
+    <div class="tabs">
+      <input type="radio" class="tabs-radio" name="tabs-radio" id="tab1" checked />
+      <label for="tab1" class="tabs-label">Quote</label>
+      <div class="tabs-content">
+        {% partial __SELF__ ~ "::partials/quote_iframe" %}
+      </div>
+
+      <input type="radio" class="tabs-radio" name="tabs-radio" id="tab2" />
+      <label for="tab2" class="tabs-label">Approve</label>
+      <div class="tabs-content">
+        {% partial __SELF__ ~ "::partials/terms_and_conditions" %}
+        {% partial __SELF__ ~ "::partials/quote_approval_form" %}
+      </div>
+    </div>
+  {% else %}
+    <div class="text-center">
+      <h3>Something went wrong.</h3>
+      <p>It seems that the quote you are trying to access is invalid or no longer available.</p>
+      <p>If you continue to experience issues, please feel free to contact us for assistance.</p>
+    </div>
+  {% endif %}
+</article>

@@ -1,0 +1,42 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+# columns:
+#     id:
+#         label: ID
+#         searchable: true
+#     btline:
+#         label: Line
+#         searchable: true
+#         relation: btline
+#         select: name
+#     datestored:
+#         label: Date Stores
+#         searchable: true
+#     weight_kg:
+#         label: Weight In KG
+#         searchable: true
+#     diameter:
+#         label: Pipe Diameter
+#         searchable: true
+#         relation: diameter
+#         select: name
+#     code:
+#         label: Code On Pipe
+#         searchable: true
+#     notes:
+#         label: Notes
+#         searchable: true
+columns:
+    id:
+        label: ID
+        searchable: true
+    datestored:
+        label: Date Stored
+        searchable: true
+    weight_kg:
+        label: Weight In KG
+        searchable: true
+    notes:
+        label: Notes

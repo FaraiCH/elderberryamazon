@@ -1,0 +1,17 @@
+<?php
+$count = 0;
+foreach($record->release as $key=>$value){
+    $count += $value->kg;
+} 
+?>
+
+<?php if($count >= $record->weight): ?>
+    <span class="text-danger">
+        <?php echo $count; ?> kg
+    </span>
+
+<?php else: ?>
+    <span class="text-success" >
+    <?php echo $count; ?> kg
+    </span>
+<?php endif; ?>

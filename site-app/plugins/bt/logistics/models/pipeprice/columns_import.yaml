@@ -1,0 +1,9 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    batch:
+        label: BATCH NO
+    qty:
+        label: QUANTITY

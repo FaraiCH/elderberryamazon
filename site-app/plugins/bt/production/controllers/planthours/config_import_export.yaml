@@ -1,0 +1,12 @@
+import:
+    title: Import Hour
+    modelClass: bt\production\Models\PlantHoursImport
+    list: $/bt/production/models/planthours/config_export.yaml
+    redirect: bt/production/planthours
+
+export:
+    title: Export Hours
+    modelClass: bt\production\Models\PlantHoursExport
+    list: $/bt/production/models/planthours/config_export.yaml
+    redirect: bt/production/planthours
+

@@ -1,0 +1,573 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sales/newquote') ?>">Quote</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if(!$this->user->hasPermission('bt.sales.guest') || $this->user->is_superuser ): ?>
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+
+        <?php $is_blocked = 0;?>
+    <?php if ($formModel->client): ?>
+            <?php if ($formModel->client->is_blocked == 1): ?>
+                 <div class="callout fade in callout-danger no-icon" >
+                    <div class="header"  style="background: red">
+                        <h3 style="text-align: center; font-size: 40px; color: #fff">
+                            ACCOUNT IS BLOCKED
+                        </h3>
+                        <?php if(isset($formModel->client->blocked_reason)): ?>
+                            <h4>Blocked Reason: <?= $formModel->client->blocked_reason ?> </h4>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php $is_blocked = 1;?>
+            <?php endif ?>
+    <?php endif ?>
+
+
+
+
+        <div class="layout-row">
+
+            <div class="control-tabs content-tabs" data-control="tab">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="false">Summary</a>
+                          </li>
+                          <li class="nav-item">
+                            <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Quote Details</a>
+                          </li>
+                           <li class="nav-item">
+                            <a  id="responses-tab" data-toggle="tab" href="#responses" role="tab" aria-controls="responses" aria-selected="false">Responses</a>
+                          </li>
+                        <li class="nav-item">
+                            <a id="load-tab" data-toggle="tab" href="#quoteload" role="tab" aria-controls="quoteload" aria-selected="false">Quote Logistic Loads</a>
+                        </li>
+
+                          <li class="nav-item">
+                            <a  id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Invoice Tracker</a>
+                          </li>
+                          <li class="nav-item">
+                            <a  id="tracker-tab" data-toggle="tab" href="#tracker" role="tab" aria-controls="tracker" aria-selected="false">Payment Tracker</a>
+                          </li>
+                        <li class="nav-item">
+                            <a  id="qc-tab" data-toggle="tab" href="#qc-tab" role="tab" aria-controls="qc-tab" aria-selected="false">Request COC/COA</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a  id="plan-tab" data-toggle="tab" href="#plan-tab" role="tab" aria-controls="plan-tab" aria-selected="false">Production Plan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a  id="accept-tab" data-toggle="tab" href="#accept-tab" role="tab" aria-controls="accept-tab" aria-selected="false">Quote Approval</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="tab-content" id="myTabContent" style="background: #fff">
+                        <div class="tab-pane active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                            <div style="padding: 0px 20px">
+                                <h3>Summary <a target="_blank" class="btn btn-primary pull-right " href="/sales/report/download/<?=   $formModel->id ?>/<?= $formModel->user_id ?>">*** NEW: Quote Production Delivery Overview</a></h3>
+
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+
+                                        <?php
+                                        $count = 0;
+                                        foreach($formModel->items as $key=>$value){
+                                            if(isset($value->product))
+                                            if ($value->product->value > 0 && $value->unitlength > 0) {
+                                                $count = $count + $value->units;
+                                            }
+
+                                        }
+
+                                        $vs = 0;
+                                        if(isset($formModel->qpush->pipes))
+                                        foreach($formModel->qpush->pipes as $pkey=>$pvalue){
+                                            if(isset($pvalue->schedules))
+                                                $vs = $vs + $pvalue->schedules()->sum('total_units_passed_qc');
+
+
+                                        }
+
+                                    ?>
+                                    <?php
+                                        $per = 0;
+                                        ?>
+                                    <?php if($count == 0): ?>
+                                        <span class="text-info" >
+                                            not available
+                                            </span>
+                                    <?php else: ?>
+                                        <?php
+                                        $per = 0;
+                                        if($vs > 0)
+                                            $per = ($vs/$count) * 100;
+                                            if($per > 100)
+                                                $per = 100;
+
+                                            if(isset($formModel->qpush) && $formModel->qpush->status_id == 3)
+                                                $per = 100;
+                                            ?>
+
+
+
+
+                                    <?php endif; ?>
+                                        <h3 style="text-align: center;">PRODUCTION</h3>
+                                        <?php if($per == 100): ?>
+                                        <div
+                                                class="control-chart centered wrap-legend"
+                                                data-control="chart-pie"
+                                                data-size="<?php echo number_format(200, 0); ?>"
+                                                data-center-text="Completed">
+                                                <ul>
+
+                                                    <li>Ordered Pipes <?php echo number_format($count, 0); ?><span><?php echo number_format($count, 0); ?></span></li>
+
+
+
+                                                </ul>
+                                            </div>
+                                        <?php else: ?>
+                                           <div
+                                                class="control-chart centered wrap-legend"
+                                                data-control="chart-pie"
+                                                data-size="<?php echo number_format(200, 0); ?>"
+                                                data-center-text="<?php echo number_format($per, 0); ?>%">
+                                                <ul>
+                                                    <li>Produced Pipes <?php echo number_format($vs, 0);?><span><?php echo number_format($per, 0);?></span></li>
+                                                    <li>Ordered Pipes <?php echo number_format($count, 0); ?><span><?php echo number_format(100-$per, 0); ?></span></li>
+
+
+
+                                                </ul>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+
+
+                                    <div class="col-sm-3">
+
+                                        <?php
+                                        $count = 0;
+                                        foreach($formModel->items as $key=>$value){
+                                            if(isset($value->product))
+                                            if ($value->product->value > 0 && $value->unitlength > 0) {
+                                                $count = $count + $value->units;
+                                            }
+
+                                        }
+
+                                        $vs = 0;
+                                        if(isset($formModel))
+                                            if(isset($formModel->srn))
+                                                foreach($formModel->srn as $pkey=>$pvalue){
+                                                    if(isset($pvalue->items))
+                                                        $vs = $vs + $pvalue->items()->sum('units');
+
+
+                                                }
+
+                                    ?>
+                                    <?php if($count == 0): ?>
+                                        <span class="text-info" >
+                                            not available
+                                            </span>
+                                    <?php else: ?>
+                                        <?php
+                                            $per = 0;
+                                            if($vs > 0)
+                                                $per = ($vs/$count) * 100;
+                                                if($per > 100)
+                                                    $per = 100;
+                                                ?>
+
+
+
+
+                                    <?php endif; ?>
+                                        <h3 style="text-align: center;">DELIVERY</h3>
+                                       <div
+                                            class="control-chart centered wrap-legend"
+                                            data-control="chart-pie"
+                                            data-size="<?php echo number_format(200, 0); ?>"
+                                            data-center-text="<?php echo number_format($per, 0); ?>%">
+                                            <ul>
+                                                <li>Deliverd Pipes <?php echo number_format($vs, 0);?> <span><?php echo number_format($per, 0);?></span></li>
+                                                <li>Ordered Pipes <?php echo number_format($count, 0);?> <span><?php echo number_format(100-$per, 0); ?></span></li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                     <div class="col-sm-3">
+                                         <h3 style="text-align: center;">INVOICE</h3>
+                                            <?php
+                                                $total = 0;
+                                                $amount = 0;
+                                                if($formModel->totalincvat > 0){
+                                                    $total = $formModel->totalincvat;
+                                                    $amount = $formModel->invoice()->sum('amount');
+                                                    $per = ($amount/$total) * 100;
+                                                }
+                                            ?>
+                                        <div
+                                            class="control-chart centered wrap-legend"
+                                            data-control="chart-pie"
+                                            data-size="<?php echo number_format(200, 0); ?>"
+                                            data-center-text="<?php echo number_format($per, 0); ?>%">
+                                            <ul>
+                                                <li>Invoiced R <?php echo number_format($amount,2, '.', ',');?><span ><?php echo number_format($per,2, '.', ',');?></span></li>
+
+                                                <li>Total Quote R <?php echo number_format($total,2, '.', ','); ?><span ><?php echo number_format(100-$per,2, '.', ','); ?></span></li>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                       <div class="col-sm-3">
+                                                 <h3 style="text-align: center;">PAYMENT</h3>
+                                                    <?php
+                                                        $total = 0;
+                                                        $amount = 0;
+                                                        if($formModel->totalincvat > 0){
+                                                            $total = $formModel->totalincvat;
+                                                            $amount = $formModel->paymenttracker()->sum('amount');
+                                                            $per = ($amount/$total) * 100;
+                                                        }
+                                                    ?>
+                                            <div
+                                                    class="control-chart centered wrap-legend"
+                                                    data-control="chart-pie"
+                                                    data-size="<?php echo number_format(200, 0); ?>"
+                                                    data-center-text="<?php echo number_format($per, 0); ?>%">
+                                                    <ul>
+                                                        <li>Paid R <?php echo number_format($amount,2, '.', ',');?><span ><?php echo number_format($per,2, '.', ',');?></span></li>
+
+                                                        <li>Total Quote R <?php echo number_format($total,2, '.', ','); ?><span ><?php echo number_format(100-$per,2, '.', ','); ?></span></li>
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                </div>
+
+                                <h3>Supporting Files</h3>
+                                    <div class="control-list">
+                                        <table class="table data">
+                                            <thead>
+                                                <tr>
+                                                    <th class="sort-desc"><a href="/">Title</a></th>
+                                                    <th class="sort-desc"><a href="/">File</a></th>
+                                                    <th class="active sort-asc"><a href="/">Created</a></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                        <?php $countfile = 0; ?>
+                                        <?php if ($formModel->invoice): ?>
+                                            <?php
+                                                foreach($formModel->invoice as $key=>$value){
+                                                    if($value->file){
+                                                        $countfile++;
+                                                        echo '<tr><td>Invoice '.$countfile.': '.$value->name.'</td><td><a target="_blank" href="'.$value->file->path.'">'.$value->file->file_name.'</a></td><td>'.$value->created_at.'</td></tr>';
+                                                    }
+                                                }
+                                            ?>
+
+                                        <?php endif ?>
+                                          <?php if($countfile == 0): ?>
+
+                                            <div class="callout fade in callout-danger no-icon">
+                                                <div class="header">
+                                                    <h3 style="text-align: center; font-size: 40px; color: #fff">
+
+                                                                BT-QT-<?= e($formModel->id) ?>
+
+                                                    </h3>
+                                                        <div style="text-align: center;"><button class="btn btn-primary " data-request="onSendRequestInvoiceNotification" data-stripe-load-indicator data-request-flash>Request Invoice</button></div>
+
+
+                                                </div>
+                                            </div>
+
+                                        <?php endif ?>
+
+                                        <?php
+
+                                            foreach($formModel->responses as $key=>$value){
+                                                if(isset($value)){
+                                                    if($value->file){
+                                                    if(isset($value->status)){
+                                                    echo '<tr><td>'.$value->status->name.'</td><td>'.'<a href="'.$value->file->path.'" target="_blank">'.$value->file->file_name.'</a></td><td>'.$value->created_at.'</td></tr>';
+                                                    }
+                                                    }
+                                                    if($value->quote_status_id == 10 || $value->quote_status_id == 9){
+                                                    $countfile++;
+                                                    }
+
+                                        }
+
+
+                                            }
+                                        ?>
+
+                                        <?php
+
+                                         echo '<tr><td colspan="3"><b>SRNs:</b></td></tr>';
+                                        foreach($formModel->srn as $dkey=>$dvalue){
+                                             echo '<tr><td>SRN Number</td><td>'.'<a class="btn btn-primary" href="/backend/bt/sales/srn/update/'.$dvalue->id.'" target="_blank">'.$dvalue->id.'</a></td><td>'.$dvalue->schedule_date.'</td></tr>';
+
+                                            foreach($dvalue->files_srn as $key=>$value){
+                                                if($value){
+                                                    echo '<tr><td>SRN</td><td>'.'<a href="'.$value->path.'" target="_blank">'.$value->file_name.'</a></td><td>'.$dvalue->schedule_date.'</td></tr>';
+
+                                                }
+                                            }
+                                        }
+
+                                        echo '<tr><td colspan="3"><b>Delivery Notes:</b></td></tr>';
+                                        foreach($formModel->srn as $dkey=>$dvalue){
+                                            foreach($dvalue->files_delivery as $key=>$value){
+                                                if($value){
+                                                    echo '<tr><td>Delivery Note</td><td>'.'<a href="'.$value->path.'" target="_blank">'.$value->file_name.'</a></td><td>'.$dvalue->schedule_date.'</td></tr>';
+
+                                                }
+                                            }
+                                        }
+                                        echo '<tr><td colspan="3"><b>Collection Notes:</b></td></tr>';
+                                        foreach($formModel->srn as $dkey=>$dvalue){
+                                             foreach($dvalue->files_collection as $key=>$value){
+                                                if($value){
+                                                    echo '<tr><td>Collection Note</td><td>'.'<a href="'.$value->path.'" target="_blank">'.$value->file_name.'</a></td><td>'.$dvalue->schedule_date.'</td></tr>';
+
+                                                }
+                                            }
+                                        }
+                                    ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div style="padding: 0px 20px"><h3>Quote Details</h3> <?= $this->formRender() ?></div>
+                        </div>
+                         <div class="tab-pane" id="responses" role="tabpanel" aria-labelledby="responses-tab">
+                            <div style="padding: 0px 20px"><h3>Responses</h3>
+                                <div class="callout fade in callout-info no-subheader">
+                                    <div class="header">
+                                        <i class="icon-info"></i>
+                                        <h3>Use front end to add new responses. This section is for only updates</h3>
+                                    </div>
+                                </div>
+                                <?= $this->relationRender('responses') ?>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="quoteload" role="tabpanel" aria-labelledby="quoteload">
+                            <div style="padding: 20px 20px">
+                                <h4 style="background-color: #7d8490; margin: 0px 0px 10px 0px; padding: 5px; color: #fff; border-radius: 4px;">1. Quote Logistics Load Setup</h4>
+                                <p>To be completed by sales person: <b><?= $formModel->user->name ?></b></p>
+                                <?php if(isset($formModel->quoteapproval->status_id)): ?>
+                                    <?php if ($formModel->quoteapproval->status_id == 1): ?>
+                                        <?= $this->relationRender('dispatch', ['readOnly' => true]) ?>
+                                    <?php else: ?>
+
+                                    <div class="callout fade in callout-warning no-subheader">
+                                        <div class="header">
+                                            <i class="icon-warning"></i>
+                                            <i class="icon-warning"></i>
+                                            <?php if ($formModel->dispatch->sum('discount') > 0): ?>
+                                                <h3>To get approval from EXCO so that this quote can be pushed to production, please click the following button after adding a load:  <a class="btn btn-primary" data-stripe-load-indicator data-request="onRequestExco">Request Approval</a>
+                                            <?php else: ?>
+                                                <h3>You are free to push to production without EXCO approval when ready. Use this link <a class="btn btn-primary" href="/quote/item/<?$formModel->id?>">Click Here</a> </h3>
+                                            <?php endif ?>
+                                        </div>
+                                    </div>
+                                        <?= $this->relationRender('dispatch') ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+
+                                    <div class="callout fade in callout-warning no-subheader">
+                                        <div class="header">
+                                            <i class="icon-warning"></i>
+                                            <?php if ($formModel->dispatch->sum('discount') > 0): ?>
+                                                <h3>To get approval from EXCO so that this quote can be pushed to production, please click the following button after adding a load:  <a class="btn btn-primary" data-stripe-load-indicator data-request="onRequestExco">Request Approval</a>
+                                            <?php else: ?>
+                                                <h3>You are free to push to production without EXCO approval when ready. Use this link <a class="btn btn-primary" target="_blank" href="/quote/item/<?=$formModel->id?>">Click Here</a> </h3>
+                                            <?php endif ?>
+                                        </div>
+                                    </div>
+                                    <?php if ($formModel->deliveryrequest > 0 || $formModel->dispatch->count() > 0): ?>
+                                        <?= $this->relationRender('dispatch') ?>
+                                    <?php else: ?>
+                                        Please choose 'Yes' on <b>Delivery Requested</b> to create a load.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <h3 style="text-align: center">Total Logistics Load Cost: R <?= number_format($formModel->dispatch->sum('total'), 2); ?></h3>
+                                <h4  style="background-color: #7d8490; margin: 10px 0px 10px 0px; padding: 5px; color: #fff; border-radius: 4px;">2. Quote Logistics Approval</h4>
+                                <h4 style="text-align: center; color:red">
+                                    <?php if($flag_date > 0): ?>
+                                        <b>Rate Card is Not Up to Date</b>
+                                    <?php endif; ?>
+                                </h4>
+                                <p>To be approved by <b>EXCO</b></p>
+                                <?php if ($formModel->dispatch->count() > 0): ?>
+                                    <?php if ($formModel->dispatch->sum('discount') > 0): ?>
+                                        <?php if($this->user->hasPermission(['bt.sales.logisticsapproval'])): ?>
+                                            <?= $this->relationRender('quoteapproval') ?>
+                                        <?php else: ?>
+                                            <?= $this->relationRender('quoteapproval', ['readOnly' => true]) ?>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <div class="callout fade in callout-info no-subheader">
+                                            <div class="header">
+                                                <i class="icon-info"></i>
+                                                <h3 style="color: white"><b>There is no need for EXCO Approval. There are no discounts.</b></h3>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <div class="callout fade in callout-danger no-subheader">
+                                        <div class="header">
+                                            <i class="icon-danger"></i>
+                                            <h3>Approval of the quote has not been enabled because the load is empty. <?= $formModel->user->name ?> needs to create a load so it can be approved by EXCO.</h3>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div style="padding: 0px 20px"><h3>Invoice</h3><?= $this->relationRender('invoice') ?></div>
+                        </div>
+                        <div class="tab-pane" id="tracker" role="tabpanel" aria-labelledby="tracker-tab">
+                            <div style="padding: 0px 20px"><h3>Payment</h3><?= $this->relationRender('paymenttracker') ?></div>
+                        </div>
+
+                        <div class="tab-pane" id="qc-tab" role="tabpanel" aria-labelledby="qc-tab">
+                            <div style="padding: 0px 20px"><h3>Request</h3>
+                                <div class="container-fluid">
+                                    <?= $this->relationRender('requestqc') ?>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="tab-pane" id="plan-tab" role="tabpanel" aria-labelledby="plan-tab">
+                            <div style="padding: 0px 20px"><h3>Production Plan</h3>
+                                <div class="container-fluid">
+                                    <?= $this->relationRender('productionplan') ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane p-3" id="accept-tab" role="tabpanel" aria-labelledby="plan-tab">
+                            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 5px;">
+                                <h3 >Quote Approval</h3>
+                                <a href="/quoteapproval/<?= $formModel->key_pass ?>/<?= $formModel->id ?>" target="_blank" class="btn btn-primary">Client Approval Link</a>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <h4 style="background-color: #7d8490; margin: 0px 0px 10px 0px; padding: 5px; color: #fff; border-radius: 4px;">1. Quote approval intro</h4>
+
+                                <p>To be completed by sales person: <b><?= $formModel->user->name . ' ' . $formModel->user->surname ?></b></p>
+
+                                <?= $this->relationRender('quote_approval_intro') ?>
+
+                                <button class="btn btn-primary" data-request="onSendClienApproval" data-stripe-load-indicator>Send Client Approval</button>
+
+                            </div>
+
+                            <div class="col-12">
+                                <h4 style="background-color: #7d8490; margin: 0px 0px 10px 0px; padding: 5px; color: #fff; border-radius: 4px;">2. Items sent to the Client</h4>
+
+                                <?= $this->relationRender('quote_approval_activity_log') ?>
+                            </div>
+                    </div>
+                </div>
+        </div>
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <button
+            type="submit"
+            data-request="onSave"
+            data-request-data="redirect:0"
+            data-hotkey="ctrl+s, cmd+s"
+            data-load-indicator="Saving Quote..."
+            class="btn btn-primary">
+            <u>S</u>ave
+        </button>
+        <button
+            type="button"
+            data-request="onSave"
+            data-request-data="close:1"
+            data-hotkey="ctrl+enter, cmd+enter"
+            data-load-indicator="Saving Quote..."
+            class="btn btn-default">
+            Save and Close
+        </button>
+
+        <button class="btn btn-primary pull-right" data-request="onSendQuoteToMe" data-stripe-load-indicator data-request-flash>Email Me</button>
+
+        <?php if($countfile == 0): ?>
+        <button class="btn btn-primary pull-right" data-request="onSendRequestInvoiceNotification" data-stripe-load-indicator data-request-flash>Request  Invoice</button>
+        <?php endif ?>
+
+
+        <a target="_blank" class="btn btn-info pull-right " href="/quote/item/downloaddollar/<?=   $formModel->id ?>.pdf">Quote Dollar PDF</a>
+        <a target="_blank" class="btn btn-info pull-right " href="/quote/item/download/<?=   $formModel->id ?>.pdf">Quote PDF</a>
+
+<!--        <a target="_blank" class="btn btn-info pull-right " href="/quote_discount/item/download/<?=   $formModel->id ?>.pdf">Quote V2 PDF</a>-->
+        <a target="_blank" class="btn btn-info pull-right " href="/concession/item/download/<?=   $formModel->id ?>.pdf">Non-SABS Form</a>
+
+        <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/sales/newquote') ?>">Cancel</a>
+        </span>
+        <?php if($formModel->email): ?>
+            <?php if(!isset($formModel->accept_date)): ?>
+                <?php if($formModel->invited != 1): ?>
+                <a class="btn btn-info pull-right oc-icon-user" data-request-confirm="Are sure you want to send this concession form to the client?" data-request="onSendForm" data-request-data="id: <?= $formModel->id ?>">
+                    Send Concession To <?= $formModel->email ?>
+                </a>
+                <?php else: ?>
+                <a class="btn btn-info pull-right oc-icon-user" data-request-confirm="You have already sent this concession form to client. Do you want to send it again?" data-request="onSendForm" data-request-data="id: <?= $formModel->id ?>">
+                    Resend Concession To <?= $formModel->email ?>
+                </a>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endif; ?>
+
+
+
+    </div>
+</div>
+
+<?= Form::close() ?>
+
+<?php else: ?>
+
+<p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<p><a href="<?= Backend::url('bt/sales/newquote') ?>" class="btn btn-default">Return to newquote list</a></p>
+
+<?php endif ?>
+
+<?php else: ?>
+    <div class="form-preview">
+        <?= $this->formRenderPreview() ?>
+    </div>
+<?php endif ?>
+

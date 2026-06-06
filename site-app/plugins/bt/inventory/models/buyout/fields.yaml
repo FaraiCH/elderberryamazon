@@ -1,0 +1,117 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: auto
+        hidden: true
+    quote:
+        label: Link to Quote
+        type: relation
+        select: concat(id,' -- ', company_name)
+        span: left
+        placeholder: --- Select ---
+tabs:
+    fields:
+        invoice_no:
+            label: Invoice No
+            disbaled: false
+            required: true
+            span: auto
+            tab: Supplier Details
+
+        ponumber:
+            label: PO Number
+            tab: Supplier Details
+            required: true
+            span: auto
+        supplier:
+            label: Supplier Name
+            type: relation
+            tab: Supplier Details
+            select: name
+            required: true
+            placeholder: -- Select a Supplier --
+            span: auto
+        date_received:
+            label: Date Recieved
+            disabled: false
+            mode: date
+            type: datepicker
+            required: true
+            tab: Supplier Details
+            comment: Date Item Was Recieved Into BT
+            span: auto
+        comments:
+            label: Comments
+            type: textarea
+            size: small
+            tab: Supplier Details
+
+
+#Repeater form has nested values that can only be accessed by bind the widget to the model
+        items:
+            type: repeater
+            titleFrom: items
+            commentAbove: <h3>Please items recieved</h3>
+            tab: Item Details
+            commentHtml: true
+            form:
+                fields:
+                    category:
+                        label: Category
+                        span: auto
+                        type: relation
+                        select: concat(id, ' - ',  category_name)
+                    name:
+                        label: Name
+                        span: auto
+                    quantity:
+                        label: Quantity 
+                        type: number
+                        span: auto
+                    price:
+                        label: Price
+                        span: auto
+                        type: number
+        damageditems:
+            type: repeater
+            titleFrom: items
+            tab: Item Details
+            commentAbove: <h3>Please <b style="color:red">damaged</b> items recieved</h3>
+            commentHtml: true
+            form:
+                fields:
+                    category:
+                        label: Category
+                        span: auto
+                        type: relation
+                        select: concat(id, ' - ',  category_name)
+                    name:
+                        label: Name
+                        span: auto
+                    quantity:
+                        label: Quantity 
+                        type: number
+                        span: auto
+                    price:
+                        label: Price
+                        span: auto
+                        type: number
+        images:
+            label: Images
+            type: fileupload
+            tab: Item Details
+            comment: Upload Images Like Pictures Of The Item
+            span: auto
+        files:
+            label: Upload Documents
+            type: fileupload
+            mode: file
+            span: auto
+            tab: Item Details
+            comment: Upload Documents Like The Invoice 

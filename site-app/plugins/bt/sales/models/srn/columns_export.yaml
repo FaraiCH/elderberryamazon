@@ -1,0 +1,107 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID.
+        searchable: true
+    doc_status: 'Doc Status'
+    schedule_date:
+        label: Schedule Date
+        searchable: true
+    srnapprove_name: 'SRN Approved?'
+
+    quote_id:
+        label: Quote ID
+        searchable: true
+        type: number
+
+    stock_weight: 'Stocks Weight'
+
+    stock_value: 'Stock Value'
+
+    stock_value_cat: 'Stock Value Cat'
+
+    #    amount_invoived: 'Amount Invoiced'
+
+    amount: 'Amount'
+
+    ponumber_name: 'PO Number'
+
+    active_name: 'Delivery Completed'
+
+    invoiceqt_name: 'Invoiced'
+    type_name: 'Delivery Type'
+
+    delivery_request:
+        label: Delivery Requested?
+    deliveryamount:
+        label: Delivery Amount on Quote
+    deliveryamounthidden:
+        label: Delivery Amount Hidden from Quote
+    additionalamount:
+        label: Additional Delivery Amount
+    deliveryprice:
+        label: Delivery Price
+    srn_logistics:
+        label: Payment Supplier Logistic Company
+    logistic_invoice:
+        label: Payment Suppler Invoice Number
+    srn_pay:
+        label: Payment Delivery Supplier Amount
+    invoice_name: 'Linked Invoice'
+
+    quote_name: 'Quote'
+
+    linkaltinvoice_name: 'Altenative Invoice Number'
+
+    client_name: 'Client Name'
+
+    client2_name: 'Contact'
+
+    client3_name: 'Contact Details'
+
+    items_name: 'Items'
+
+    delivery_address:
+        label: Delivery Address
+
+    created_by_name: 'Created By'
+
+    updated_by_name: 'Updated By'
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

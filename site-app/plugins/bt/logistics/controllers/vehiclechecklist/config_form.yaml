@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Vehicle Checklist
+
+# Model Form Field configuration
+form: $/bt/logistics/models/vehiclechecklist/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\VehicleChecklist
+
+# Default redirect location
+defaultRedirect: bt/logistics/vehiclechecklist
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/vehiclechecklist/update/:id
+    redirectClose: bt/logistics/vehiclechecklist
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/vehiclechecklist
+    redirectClose: bt/logistics/vehiclechecklist
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

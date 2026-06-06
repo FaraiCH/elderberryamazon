@@ -1,0 +1,124 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    test_date:
+        label: Test Date
+        type: Date
+        ignoreTimezone: true
+
+    testtype:
+        label: Test Type
+        relation: testtype
+        select: name
+        searchable: true
+
+    pipedesc:
+        label: Pipe Description
+        relation: pipedesc
+        select: description
+
+    materialcat:
+        label: Material V/R
+        relation: materialcat
+        select: name
+
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+
+    mfi_num_bags:
+        label: Num of Bags
+        type: number
+        invisible: true
+    mfi_results:
+        label: MFI Results 
+        type: text 
+        invisible: true
+    materialcat: 
+        label: MFI Meterial 
+        type: text 
+        invisible: true
+
+    therm_pipebatch_no:
+        label: Thermal Pipe Batch 
+        type: text 
+        invisible: true
+    therm_material_batch:
+        label: Thermal Meterial Batch 
+        type: text 
+        invisible: true
+
+    tensile_pipebatch_no:
+        label: Elo Pipe Batch No.
+        type: text
+        invisible: true
+    tensile_material_batch: 
+        label: Elo Meterial Batch No.
+        type: text  
+        invisible: true 
+
+    hydro100_pipebatch_no:
+        label: Hydro-20 Pipe Batch
+        type: text
+        invisible: true
+
+    hydro165_pipebatch_no:
+        label: Hydro-80-165hrs Pipe Batch
+        type: text
+        invisible: true
+
+    hydro1k_pipebatch_no:
+        label: Hydro-80-1000hrs Pipe Batch
+        type: text
+        invisible: true
+
+    oit_result:
+        label: OIT Result
+        type: text
+        invisible: true
+    oit_material_batch:
+        label: OIT Material Batch
+        type: text
+        invisible: true   
+
+    content_material_batch:
+        label: Content Material Batch
+        type: text
+        invisible: true
+    content_result:
+        label: Content Results
+        type: number 
+        invisible: true
+    dispersion_material_batch:
+        label: Dispersion Material Batch
+        type: text
+        tab: Carbon Black
+        invisible: true
+    dispersion_result:
+        label: Dispersion Results
+        type: number
+        invisible: true
+
+    density_material_batch:
+        label: Density Material Batch
+        type: text
+        invisible: true
+    density_result:
+        label: Density Results
+        type: number
+        invisible: true

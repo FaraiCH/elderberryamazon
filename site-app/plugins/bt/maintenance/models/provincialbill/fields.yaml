@@ -1,0 +1,88 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+    start_date:
+        label: Start Date
+        type: datepicker
+        span: auto
+    end_date:
+        label: End Date
+        type: datepicker
+        span: auto
+    line:
+        label: Baila Machine
+        type: relation
+        select: name
+        span: auto
+        placeholder: -- Choose Baila Machine --
+    on_peak_section:
+        label: On Peak
+        type: section
+    on_peak_kwh:
+        label: On Peak KWH
+        type: number
+        span: auto
+    on_peak_amount:
+        label: On Peak Amount
+        type: inputcurrency
+        span: auto
+    standard_section:
+        label: Standard
+        type: section
+    standard_kwh:
+        label: Standard KWH
+        type: number
+        span: auto
+    standard_amount:
+        label: Standard Amount
+        type: inputcurrency
+        span: auto
+    off_peak_section:
+        label: Off Peak
+        type: section
+    off_peak_kwh:
+        label: Off Peak KWH
+        type: number
+        span: auto
+    off_peak_amount:
+        label: Off Peak Amount
+        type: inputcurrency
+        span: auto
+    max_section:
+        label: Max Demand
+        type: section
+    max_demand_amount:
+        label: Max Demand Amount
+        type: inputcurrency
+        span: auto
+    newtork_charg_section:
+        label: Network Charge
+        type: section
+    network_access_amount:
+        label: Network Access
+        type: inputcurrency
+        span: auto
+    fixed_charg_section:
+        label: Fixed Charge
+        type: section
+    fixed_charge_amount:
+        label: Fixed Charge
+        type: inputcurrency
+        span: auto
+    total_section:
+        label: Total
+        type: section
+    total_kwh:
+        label: Total KWH
+        type: number
+        span: auto
+    total_amount:
+        label: Total Amount
+        type: inputcurrency
+        span: auto

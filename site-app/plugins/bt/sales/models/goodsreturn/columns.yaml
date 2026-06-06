@@ -1,0 +1,46 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    date:
+        label: Date Received
+        searchable: true
+    client:
+        label: Client Name
+        select: company_name
+        relation: client
+        searchable: true
+    quote:
+        label: Quote No
+        relation: quote
+        select: id
+    return:
+        label: Quantity Returned
+        type: partial
+        path: $/bt/sales/models/goodsreturn/_quantity_returned_column.htm
+        searchable: false
+        sortable: false
+    reasonforreturn:
+        label: Reasons For Returns
+        relation: reasonforreturn
+        select: name
+    contact:
+        label: Contact Number
+    tel_no:
+        label: Telephone Number
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    

@@ -1,0 +1,604 @@
+<!doctype html>
+Name:
+Description:print/ download production report
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 11px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            white-space: nowrap;
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc;
+        }
+        tr.status_3 td{
+            background: rgb(162, 251, 165);
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="footer">
+    <p class="left">
+        Tel. +27 11 966 8058<br>
+        Fax:  +27 86 459 5761<br>
+        E-mail: enquiries@bt-industrial.co.za
+    </p>
+</div>
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>12 Barnsley Street, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h2>BT WEEKLY PRODUCTION REPORT: {{ data.startdate|date("d/m/Y") }} - {{ data.enddate|date("d/m/Y") }} </h2>
+                        <a class="btn btn-primary" href='http://bailaerp.bt-industrial.co.za/production/floorclean?startdate={{ data.startdate|date("Y-m-d") }}&enddate={{ data.enddate|date("Y-m-d") }}'>View Online</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{% set floorpipes = quote %}
+
+{% set floorpipes = quote %}
+
+<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
+    <thead>
+    <tr>
+        <th>Quote</th>
+        <th>Client</th>
+        <th>Pipe Description</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>Units</th>
+        <th>Stock</th>
+        <th>Minimum <br>Run Length</th>
+        <th>Total Quoted <br>Length</th>
+        <th>Total Produced <br>Length</th>
+        <th>Weight <br>Processed</th>
+        <th>Overruns</th>
+        <th>Overruns <br>Weight</th>
+        <th>Overruns<br>%</th>
+        <th>Scrap</th>
+        <th>Scrap %</th>
+        <th>CODE</th>
+        <th>Over weight <br>(Kg)</br></th>
+        <th>Over weight <br>%</br></th>
+        <th>Wasted <br>Material</th>
+        <th>Wasted %</th>
+        <th>Material <br>Used</th>
+        <th>Material <br>Used Auto</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set keeper = 'no name' %}
+    {% set total_count = 0 %}
+    {% set total_count_group = 0 %}
+    {% set totalactualweight  = 0 %}
+    {% set totalstock  = 0 %}
+    {% set total_stock_group  = 0 %}
+    {% set totalactualweight_group  = 0 %}
+    {% set totaloverweight  = 0 %}
+    {% set totaloverweight_group  = 0 %}
+    {% set totalscrap = 0 %}
+    {% set totalscrap_group = 0 %}
+    {% set percoverrun_group = 0 %}
+    {% set totalmaterial = 0 %}
+    {% set totalmaterial_group = 0 %}
+    {% set totalmaterial_real = 0 %}
+    {% set run = 0 %}
+    {% set totalmaterial_real_group = 0 %}
+    {% set run_group = 0 %}
+    {% set quoted_length_group = 0 %}
+    {% set quoted_length_total = 0 %}
+    {% set produce_length_group = 0 %}
+    {% set produce_length_total = 0 %}
+    {% set run_total = 0 %}
+    {% set totalunits = 0 %}
+    {% set totalunits_group = 0 %}
+    {% set totaldelivered = 0 %}
+    {% set totalextras = 0 %}
+    {% set totalfloor = 0 %}
+    {% set totalfloorprice = 0 %}
+
+    {% set row_count  = 0 %}
+    {% set perc_scrap  = 0 %}
+    {% set perc_scrap_group  = 0 %}
+    {% set perc_weight  = 0 %}
+    {% set perc_overruns  = 0 %}
+    {% set perc_weight_group  = 0 %}
+    {% set total_waste  = 0 %}
+    {% set total_waste_group  = 0 %}
+    {% set total_waste_m_p  = 0 %}
+    {% set total_waste_m_p_group  = 0 %}
+    {% set overruns = 0 %}
+    {% set overruns_group = 0 %}
+    {% set setoverruns = 0 %}
+    {% set setoverruns_group = 0 %}
+    {% set setoverruns_per = 0 %}
+    {% for item in floorpipes if item.id > 3 %}
+    {% set total_auto_used = 0 %}
+
+    {% set bt_units = 0 %}
+    {% set bt_units = 0 %}
+    {% set bt_weight = 0 %}
+    {% set p_overuns_weight = 0 %}
+    {% for sc in item.schedules %}
+    {% set bt_units = bt_units + sc.btaccount.sum('units') %}
+    {% for bt in sc.btaccount %}
+    {% set bt_weight = bt_weight + bt.schedule.total_kg_processed %}
+    {% endfor %}
+    {% for rl in sc.usedmaterials %}
+    {% set total_auto_used = total_auto_used + rl.kg %}
+    {% endfor %}
+    {% endfor %}
+    {% set row_count  = row_count + 1 %}
+
+    {% set totalLength = item.quoteitems.product.Diameter.minimumrun.startup_scrap + item.quoteitems.product.Diameter.minimumrun.end_scrap +
+    item.quoteitems.product.Diameter.minimumrun.workmanship +  item.quoteitems.product.Diameter.minimumrun.other %}
+    {% set run = item.quoteitems.product.Diameter.minimumrun.minimum_run %}
+    {% if keeper != item.btline.name ~ item.quoteitems.product.Diameter.name %}
+        {% if total_count != 0 %}
+            <tr style="background: lightgoldenrodyellow">
+                <td nowrap="" nowrap="" align="right" colspan="5"><b>TOTAL</b></td>
+                <td nowrap="" align="right"><b>{{totalunits_group}}</b></td>
+                <td nowrap="" align="right"><b>{{total_stock_group}}</b></td>
+                <td nowrap="" align="right"><b>{{run_group|number_format(2, '.',' ')}}</b></td>
+                <td nowrap="" align="right"><b>{{quoted_length_group|number_format(0, '.',' ')}}</b></td>
+                <td nowrap="" align="right"><b>{{produce_length_group|number_format(0, '.',' ')}}</b></td>
+                <td nowrap="" align="right"><b>{{totalactualweight_group|number_format(0, '.',' ')}} kg</b></td>
+                <td nowrap="" align="right">{{overruns_group}}</td>
+                <td nowrap="" align="right"><b>{{setoverruns_group|number_format(0, '.',' ')}} kg</b></td>
+                <td nowrap="" align="right"><b>{{total_overuns_per|number_format(2, '.',' ')}} %</b></td>
+                <td nowrap="" align="right"><b>{{totalscrap_group|number_format(0, '.',' ')}} kg</b></td>
+                <td nowrap="" align="right"> {{totalscrap_group>0?((totalscrap_group/totalactualweight_group)*100)|number_format(2, '.',' '):0}} %</td>
+                <td></td>
+                <td nowrap="" align="right"><b>{{totaloverweight_group|number_format(0, '.',' ')}} kg</b></td>
+                <td nowrap="" align="right"> {{perc_weight_group>0?((totaloverweight_group/totalactualweight_group) * 100)|number_format(2, '.',' '):0}} %</td>
+                <td nowrap="" align="right"><b>{{total_waste_group|number_format(0, '.',' ')}} kg</b></td>
+                <td nowrap="" align="right"> {{total_waste_m_p_group>0?((total_waste_group/totalmaterial_real_group) * 100)|number_format(2, '.',' '):0}} %</td>
+                <td nowrap="" align="right"><b>{{totalmaterial_real_group|number_format(0, '.',' ')}} kg</b></td>
+                <td nowrap="" align="right"><b>{{totalmaterial_group|number_format(0, '.',' ')}} kg</b></td>
+            </tr>
+            {% set totalactualweight_group  = 0 %}
+            {% set totaloverweight_group  = 0 %}
+            {% set total_scrap_group = 0 %}
+            {% set total_stock_group = 0 %}
+            {% set total_overuns_per = 0 %}
+            {% set totalmaterial_group = 0 %}
+            {% set totalmaterial_real_group = 0 %}
+            {% set overruns_group = 0 %}
+            {% set setoverruns_group = 0 %}
+            {% set run_group = 0 %}
+            {% set totalscrap_group = 0 %}
+            {% set quoted_length_group = 0 %}
+            {% set totalunits_group = 0 %}
+            {% set totaldelivered_group = 0 %}
+            {% set totalextras_group = 0 %}
+            {% set totalfloor_group = 0 %}
+            {% set totalfloorprice_group = 0 %}
+            {% set produce_length_group = 0 %}
+        {% endif %}
+        {% set total_count = total_count + 1 %}
+        <tr><td colspan="23" style="text-align: center; background: lightgrey;"><b>({{item.schedules.first().controlsheet.btline.name}}) Diameter: {{item.quoteitems.product.Diameter.name}}mm </b></td></tr>
+        {% set keeper = item.btline.name ~ item.quoteitems.product.Diameter.name %}
+
+    {% endif %}
+    <tr class="status_{{item.qpush.status.id}}">
+        <td>{{item.qpush.quote.id}}</td>
+        <td>{{item.qpush.quote.company_name}}</td>
+        <td nowrap="" ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{item.quoteitems.description}}</a></td>
+        <td nowrap="">{{item.qpush.status.name}}</td>
+        <td style="white-space: nowrap;">{{item.start_date|date("Y-m-d")}}</td>
+
+
+        <td nowrap="" align="right">{{item.schedules.sum('total_units_passed_qc')|number_format(0, '.',' ')}}</td>
+        {% if (item.schedules.sum('total_units_passed_qc') - item.quoteitems.units) > 0 %}
+            <td nowrap="" align="right">{{item.schedules.sum('total_units_passed_qc') - item.quoteitems.units|number_format(0, '.',' ')}}</td>
+        {% else %}
+            <td nowrap="" align="right">{{0|number_format(0, '.',' ')}}</td>
+        {% endif %}
+        <td nowrap="" align="right"><b></b>{{run|number_format(2, '.',' ')}}</td>
+        <td nowrap="" align="right"><b></b>{{(item.quoteitems.units * item.quoteitems.unitlength)|number_format(0, '.',' ')}}</td>
+        <td nowrap="" align="right"><b></b>{{(item.schedules.sum('total_units_passed_qc') * item.quoteitems.unitlength)|number_format(0, '.',' ')}}</td>
+        <td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('total_kg_processed')|number_format(0, '.',' ')}} kg</td>
+        <td nowrap="" align="right">{{bt_units}}</td>
+        <td nowrap="" align="right">{{bt_weight|number_format(0, '.',' ')}} kg</td>
+
+        {% set p_overuns_weight = (item.schedules.sum('total_kg_processed') > 0)?((bt_weight / item.schedules.sum('total_kg_processed')) * 100):0 %}
+
+        <td align="right">
+            {{ p_overuns_weight|number_format(2, '.',' ') }} %
+        </td>
+
+
+        {% set overruns = overruns + bt_units %}
+        {% set overruns_group = overruns_group + bt_units %}
+        {% set setoverruns = setoverruns + bt_weight %}
+        {% set setoverruns_group = setoverruns_group + bt_weight %}
+        {% set total_overuns_per = total_overuns_per|default(0) + p_overuns_weight %}
+        {% set overuns_per = overuns_per|default(0) + p_overuns_weight %}
+        {% set totalactualweight = totalactualweight + item.schedules.sum('total_kg_processed') %}
+        {% set totalactualweight_group = totalactualweight_group + item.schedules.sum('total_kg_processed') %}
+        {% set run_group = run %}
+        {% set run_total = run %}
+        {% set quoted_length_group = quoted_length_group + (item.quoteitems.units * item.quoteitems.unitlength) %}
+        {% set quoted_length_total =  quoted_length_group + (item.quoteitems.units * item.quoteitems.unitlength) %}
+        {% set produce_length_group = produce_length_group + (item.schedules.sum('total_units_passed_qc') * item.quoteitems.unitlength) %}
+        {% set produce_length_total = produce_length_total + (item.schedules.sum('total_units_passed_qc') * item.quoteitems.unitlength) %}
+        <td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('weight_scrap_kg')|number_format(0, '.',' ')}} kg</td>
+
+        {% set p_scarp =
+        (item.schedules.sum('total_kg_processed') > 0)?((item.schedules.sum('weight_scrap_kg')/item.schedules.sum('total_kg_processed'))*100):0 %}
+        {% if p_scarp > 5 %}
+        <td align="right" style="color: white; background: darkred;">
+            {{p_scarp|number_format(2, '.',' ')}} %
+        </td>
+        {% endif %}
+        {% if p_scarp < 5 %}
+        <td align="right">
+            {{p_scarp|number_format(2, '.',' ')}} %
+        </td>
+        {% endif %}
+        <td>
+            {% for s_item in item.schedules %}
+                {% for sc_item in s_item.scrapcodes %}
+                    {{sc_item.code}}
+                {% endfor %}
+            {% endfor %}
+        </td>
+
+        {% set perc_scrap  = perc_scrap + p_scarp %}
+        {% set perc_scrap_group  = perc_scrap_group + p_scarp %}
+
+        <td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('over_weight_kg')|number_format(0, '.',' ')}} kg</td>
+        {% set totaloverweight  = totaloverweight + item.schedules.sum('over_weight_kg') %}
+        {% set totaloverweight_group  = totaloverweight_group + item.schedules.sum('over_weight_kg') %}
+
+        <td nowrap="" align="right" nowrap="nowrap" >
+
+            {% set itemweight = 0 %}
+            {% for main in item.schedules|slice(0,1) %}
+            {% set itemweight = main.pipe.quoteitems.weight %}
+            {% endfor %}
+
+
+            {% if item.schedules.sum('total_kg_processed') == 0 %}
+            {% set p_weight = 0 %}
+            {% else %}
+            {% set p_weight = (item.schedules.sum('over_weight_kg')  > 0)?(item.schedules.sum('over_weight_kg')/item.schedules.sum('total_kg_processed') * 100):0 %}
+            {% endif %}
+
+            {{p_weight|number_format(2, '.',' ')}}%</td>
+        {% set perc_weight  = perc_weight + p_weight %}
+        {% set perc_weight_group  = perc_weight_group + p_weight %}
+
+        <td nowrap="" align="right" nowrap="nowrap" >
+            {% set count_waste_m = item.schedules.sum('weight_scrap_kg') + item.schedules.sum('over_weight_kg') %} {{count_waste_m|number_format(0, '.',' ')}} kg
+            {% set total_waste = total_waste + count_waste_m %}
+            {% set total_waste_group = total_waste_group + count_waste_m %}
+        </td>
+        <td nowrap="" align="right" nowrap="nowrap" >
+            {% set count_waste_m_p = (item.schedules.sum('total_kg_processed') > 0)? (count_waste_m*100)/item.schedules.sum('total_kg_processed'):0 %}
+            {{count_waste_m_p|number_format(2, '.',' ')}} %
+
+            {% set total_waste_m_p_group = total_waste_m_p_group + count_waste_m_p %}
+        </td>
+        <td nowrap="" align="right" nowrap="nowrap" >{{(item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed'))|number_format(0, '.',' ')}} kg</td>
+        <td nowrap="" align="right" nowrap="nowrap">
+
+            {{total_auto_used|number_format(0, '.',' ')}} kg
+        </td>
+
+        {% set totalscrap = totalscrap + item.schedules.sum('weight_scrap_kg') %}
+        {% set totalscrap_group = totalscrap_group + item.schedules.sum('weight_scrap_kg') %}
+        {% set totalunits = totalunits + item.schedules.sum('total_units_passed_qc') %}
+        {% set totalunits_group = totalunits_group + item.schedules.sum('total_units_passed_qc') %}
+        {% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+
+        {% if (item.schedules.sum('total_units_passed_qc') - item.quoteitems.units) > 0 %}
+            {% set totalstock  = totalstock + (item.schedules.sum('total_units_passed_qc') - item.quoteitems.units) %}
+            {% set total_stock_group  = total_stock_group + (item.schedules.sum('total_units_passed_qc') - item.quoteitems.units) %}
+        {% endif %}
+        {% set totalfloor = totalfloor + (item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) %}
+
+        {% set totalfloorprice = totalfloorprice + ((item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice) %}
+
+        {% set totalmaterial = totalmaterial + total_auto_used %}
+        {% set totalmaterial_group = totalmaterial_group + total_auto_used %}
+
+        {% set totalmaterial_real = totalmaterial_real + item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed') %}
+        {% set totalmaterial_real_group = totalmaterial_real_group + item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed') %}
+    </tr>
+
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr style="background: lightgrey">
+        <td nowrap="" nowrap="" align="right" colspan="5"><b>TOTAL</b></td>
+        <td nowrap="" align="right"><b>{{totalunits}}</b></td>
+        <td nowrap="" align="right"><b>{{totalstock}}</b></td>
+        <td nowrap="" align="right"><b>{{run_total|number_format(2, '.',' ')}}</b></td>
+        <td nowrap="" align="right"><b>{{quoted_length_total|number_format(0, '.',' ')}}</b></td>
+        <td nowrap="" align="right"><b>{{produce_length_total|number_format(0, '.',' ')}}</b></td>
+        <!-- <td nowrap="" align="right"><b>{{totalextras}}</b></td> -->
+        <!-- <td nowrap="" align="right"><b>{{totaldelivered}}</b></td> -->
+        <!-- <td nowrap="" align="right"><b>{{totalfloor}}</b></td> -->
+        <td nowrap="" align="right"><b>{{totalactualweight|number_format(0, '.',' ')}} kg</b></td>
+        <td nowrap="" align="right">{{overruns|number_format(0, '.',' ')}}</td>
+        <td nowrap="" align="right"><b>{{setoverruns|number_format(0, '.',' ')}} kg</b></td>
+        <td nowrap="" align="right"> {{setoverruns>0?((setoverruns/totalactualweight)*100)|number_format(2, '.',' '):0}} %</td>
+        <td nowrap="" align="right"><b>{{totalscrap|number_format(0, '.',' ')}} kg</b></td>
+        <td nowrap="" align="right"> {{totalscrap>0?((totalscrap/totalactualweight)*100)|number_format(2, '.',' '):0}} %</td>
+        <td></td>
+        <td nowrap="" align="right"><b>{{totaloverweight|number_format(0, '.',' ')}} kg</b></td>
+        <td nowrap="" align="right"> {{perc_weight>0?((totaloverweight/totalactualweight) * 100)|number_format(2, '.',' '):0}} %</td>
+        <td nowrap="" align="right"><b>{{total_waste|number_format(0, '.',' ')}} kg</b></td>
+        <td nowrap="" align="right"> {{total_waste_m_p>0?((total_waste/totalmaterial_real) * 100)|number_format(2, '.',' '):0}} %</td>
+        <td nowrap="" align="right"><b>{{totalmaterial_real|number_format(0, '.',' ')}} kg</b></td>
+        <td nowrap="" align="right"><b>{{totalmaterial|number_format(0, '.',' ')}} kg</b></td>
+    </tr>
+    </tfoot>
+</table>
+<br>
+Material Used: Matreial Captured by a User on the System
+Material Used Auto: Material Captured Linked to the Material Release on the system
+<br>
+<h2>Scrap Reasons</h2>
+<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
+    <thead>
+    <tr>
+        <th>CODE</th>
+        <th>REASON</th>
+        <th>VALUE</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in reasons %}
+    <tr>
+        <td>{{item.code}}</td>
+        <td>{{item.reason}}</td>
+        <td>{{item.value}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<h2>Operator Production</h2>
+
+<table class="table tablesimple dt-responsive table-striped table-hover " style="width:100%">
+    <thead>
+    <tr>
+
+        <th rowspan="2" style="text-transform: uppercase;"><span>DATE</span></th>
+
+        {% for item in mypeople %}
+        <th colspan="2"   style="text-transform: uppercase; text-align: center;"><span>{{item}}</span></th>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for item in mypeople %}
+        <th style="text-transform: uppercase;"><span>Total kg <br>Processed</span></th>
+        <th style="text-transform: uppercase;"><span>Total kg <br>SCRAP</span></th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for key,mdata in monster %}
+    <tr>
+        <td nowrap="">{{key}}</td>
+        {% for p,item in mypeople %}
+        {% if mdata[p] is not empty %}
+
+        <td style="text-align: right;">{{mdata[p].total_kg_processed?mdata[p].total_kg_processed|number_format(0, '.',' '):0}}</td>
+        <td style="text-align: right;">{{mdata[p].weight_scrap_kg?mdata[p].weight_scrap_kg|number_format(0,'.',' '):0}}</td>
+        {% else %}
+        <td style="text-align: right;">0</td>
+        <td style="text-align: right;">0</td>
+
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+
+    {% for key,mdata in totals %}
+
+    <tr>
+        <td nowrap="">Total</td>
+        {% for p,item in mypeople %}
+        {% if mdata[p] is not empty %}
+
+        <td style="text-align: right; font-weight: bold;">{{mdata[p].total_kg_processed?mdata[p].total_kg_processed|number_format(0,'.',' '):0}}</td>
+        <td style="text-align: right; font-weight: bold;">{{mdata[p].weight_scrap_kg?mdata[p].weight_scrap_kg|number_format(0, '.',' '):0}}</td>
+        {% else %}
+        <td style="text-align: right; font-weight: bold;">0</td>
+        <td style="text-align: right; font-weight: bold;">0</td>
+
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+    {% for key,mdata in totals %}
+    <tr >
+        <td nowrap="">Percentage of Scrap</td>
+        {% for p,item in mypeople %}
+        {% if mdata[p] is not empty %}
+        <td colspan="2" style="text-align: center; font-weight: bold; ">
+            {% if mdata[p].total_kg_processed == 0 %}
+
+        <td>0</td>
+        {% else %}
+        {{(
+        (mdata[p].weight_scrap_kg?mdata[p].weight_scrap_kg:0)/(mdata[p].total_kg_processed?mdata[p].total_kg_processed:0)*100)|number_format(2, '.',' ')}}%</td>
+        {% endif %}
+        {% else %}
+        <td style="text-align: right; font-weight: bold;">0</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tfoot>
+</table>
+<br>
+<div class="page-break"></div>
+<h2>Weekly Readings</h2>
+<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple">
+    <thead>
+    <tr>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Week</th>
+        <th>Total KG Processed</th>
+        <th>Total Weight Scrap In KG</th>
+        <th>Total Overweight In KG</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set count = 0 %}
+    {% set total_pro = 0 %}
+    {% set total_scr = 0 %}
+    {% set total_over = 0 %}
+    {% for key, schedule in scheduleObj %}
+    {% if count == 0 %}
+    {% set total_pro = 0 %}
+    {% set total_scr = 0 %}
+    {% set total_over = 0 %}
+    {% endif %}
+    {% if schedule['total_kg_processed'] is not empty %}
+    {% set count = count + 1 %}
+    <tr>
+        <td>
+            {{schedule['year']}}
+        </td>
+        <td>
+            {{schedule['month']}}
+        </td>
+        <td style="text-align: right">
+            {{schedule['name']}}
+        </td>
+        <td style="text-align: right">
+            {{schedule['total_kg_processed']|number_format(0, '.',' ') }} kg
+            {% set total_pro  = total_pro + schedule['total_kg_processed'] %}
+        </td>
+        <td style="text-align: right">
+            {{schedule['weight_scrap_kg']|number_format(0, '.',' ')}} kg
+            {% set total_scr = total_scr + schedule['weight_scrap_kg'] %}
+        </td>
+        <td style="text-align: right">
+            {{schedule['over_weight_kg']|number_format(0, '.',' ')}} kg
+            {% set total_over = total_over + schedule['over_weight_kg'] %}
+        </td>
+    </tr>
+    {% if count == months[schedule.year ~ schedule.month] %}
+    <tr>
+        <td colspan="3" style="text-align: center"><b>Total</b></td>
+        <td style="text-align: right"><b>{{total_pro|number_format(0, '.',' ')}} kg</b></td>
+        <td style="text-align: right"><b>{{total_scr|number_format(0, '.',' ')}} kg</b></td>
+        <td style="text-align: right"><b>{{total_over|number_format(0, '.',' ')}} kg</b></td>
+    </tr>
+    {% set count = 0 %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

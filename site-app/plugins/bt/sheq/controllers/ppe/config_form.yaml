@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Ppe
+
+# Model Form Field configuration
+form: $/bt/sheq/models/ppe/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Ppe
+
+# Default redirect location
+defaultRedirect: bt/sheq/ppe
+
+# Create page
+create:
+    title: Create Ppe
+    redirect: bt/sheq/ppe/update/:id
+    redirectClose: bt/sheq/ppe
+
+# Update page
+update:
+    title: Edit Ppe
+    redirect: bt/sheq/ppe
+    redirectClose: bt/sheq/ppe
+
+# Preview page
+preview:
+    title: Preview Ppe

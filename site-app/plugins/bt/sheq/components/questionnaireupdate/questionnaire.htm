@@ -1,0 +1,98 @@
+<div class="card-box_old">
+    <form data-request="onSaveQuestions" enctype="multipart/form-data" data-request-data="isredirect: 1"  class="myForm" data-request-files data-request-flash data-request-validate>
+
+
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs" id="ul_qtab">
+            {% set is_printeted = [] %}
+           
+
+          {% for c_key,c_item in categories %}
+         
+        {% for key,item in c_item.questions %}
+
+          {% if is_printeted[item.id] is empty %}
+                  {% set ans = QuestionnaireUpdate.getAnser( c_item.id ) %}
+                  {% set foundans = 0 %}
+                 
+                    {% for a_item in ans  %}
+                      {% if a_item.answer is not empty and  a_item.answer != "" %}
+                      
+
+                        {% for q in item.questions if q.question == a_item.question_id %}
+                       
+                          {% set foundans = foundans + 1 %} 
+                        {% endfor %}
+                     {% endif %}
+                  {% endfor %}
+
+               <li id="li_qtab_{{item.id}}" >
+                <a id="nextphase_{{item.id}}" href="#qtab_{{item.id}}" data-toggle="tab">{{item.name}} 
+                  {% if foundans > 0 %}
+                    <i style ="color: green;" class="fa fa-check "></i>
+                  {% endif %}
+                </a>
+              </li>
+          {% endif %}
+          
+ 
+             {% set is_printeted = QuestionnaireUpdate.cheifprinted(is_printeted,item.id) %}
+              
+         
+        {% endfor %}
+      {% endfor %}
+
+         </ul>
+      <div class="tab-content" id="body_qtab">
+        {% set is_printeted = [] %}
+      {% for c_key,c_item in categories %}
+     
+        {% for key,item in c_item.questions %}
+          {% if is_printeted[item.id] is empty %}
+          <div class="tab-pane" id="qtab_{{item.id}}">
+              {% set ans = QuestionnaireUpdate.getAnser( c_item.id ) %}
+              {{item.getFieldHtmlCodeAnswer(ans)|raw}}
+
+               <div class="box-footer clearfix no-border" style="border-top: 1px solid #f7f7f7 !important; background-color: #fbfbfb; margin: 0px -10px -10px -10px; text-align: center;">
+        
+                    <button type="button" class="btn btn-primary nextbtn"  data-request="onSaveQuestions" data-request-data="isredirect: 0" data-request-success="callTap({{item.id}});" data-request-files > Save & Next <i class="fa fa-chevron-right"></i></button>
+
+                    <button type="submit" class=" btn btn-lg btn-info lastsubmitbtn"  data-request-data="isredirect: 1" style="display: none;" id="sendEmail">Submit
+      <i class="fa fa-arrow-circle-right"></i></button>
+
+                  </div>
+
+            </div>
+          {% endif %}
+          
+ 
+             {% set is_printeted = QuestionnaireUpdate.cheifprinted(is_printeted,item.id) %}
+              
+         
+        {% endfor %}
+      {% endfor %}
+
+       </div>
+    </div>
+
+
+
+    <div class="box-footer clearfix">
+    
+  </div>
+  </form>
+</div>
+{% put scripts %}
+<script>
+    function callTap(v){
+      $( "#li_qtab_"+v ).next().find("a").trigger('click');
+    } 
+
+    jQuery(document).ready(function ($) {
+        
+        $( "#ul_qtab li" ).first().find("a").trigger('click');
+        $( "#body_qtab .tab-pane" ).last().find(".lastsubmitbtn").show();
+        $( "#body_qtab .tab-pane" ).last().find(".nextbtn").hide();
+    })
+</script>
+{% endput %}

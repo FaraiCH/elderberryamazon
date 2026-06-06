@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Supplier
+
+# Model Form Field configuration
+form: $/bt/sheq/models/supplier/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Supplier
+
+# Default redirect location
+defaultRedirect: bt/sheq/supplier
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/supplier/update/:id
+    redirectClose: bt/sheq/supplier
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/supplier
+    redirectClose: bt/sheq/supplier
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,25 @@
+leave:
+    label: Absance/Leave
+    manage:
+        form: $/bt/hr/models/absenceleave/fields.yaml
+        list: $/bt/hr/models/absenceleave/columns.yaml
+    view:
+        list: $/bt/hr/models/absenceleave/columns.yaml
+        toolbarButtons: create|delete
+incidents:
+    label: Incidents
+    manage:
+        form: $/bt/hr/models/incidents/fields.yaml
+        list: $/bt/hr/models/incidents/columns.yaml
+    view:
+        list: $/bt/hr/models/incidents/columns.yaml
+        toolbarButtons: create|delete
+training:
+    label: Training
+    manage:
+        form: $/bt/hr/models/training/fields.yaml
+        list: $/bt/hr/models/training/columns.yaml
+    view:
+        list: $/bt/hr/models/training/columns.yaml
+        toolbarButtons: create|delete
+        

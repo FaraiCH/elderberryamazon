@@ -1,0 +1,37 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    quantity:
+        label: Quantity
+        disabled: false
+        type: number
+        span: auto
+    in_out_status_status_id:
+        label: Is The Product In or Out?
+        span: auto
+        type: selectable
+    created_at:
+        label: Created At
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        type: date
+        invisible: true
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true

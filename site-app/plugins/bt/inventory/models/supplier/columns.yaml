@@ -1,0 +1,50 @@
+columns:
+    risklevel_id:
+        label: Risk Level
+        type: partial
+        # path: $/bt/mall/models/imageset/_image.htm
+        path: $/bt/maintenance/models/vendor/_risklevel.htm
+        searchable: false
+        sortable: false
+        width: 80
+    category:
+        label: Category
+        searchable: true
+        relation: category
+        select: name
+    country:
+        label: Country
+        searchable: true
+        relation: country
+        select: name
+    is_blacklisted:
+        label: Blacklisted by BT
+        type: switch
+    name:
+        label: Company Name
+    contact_name:
+        label: Contact Name
+    contact_email:
+        label: Contact Email
+        invisible: true
+    contact_number:
+        label: Contact Number
+    physical_address:
+        label: Physical Address
+        invisible: true
+
+    postal_address:
+        label: Postal Address
+        invisible: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true

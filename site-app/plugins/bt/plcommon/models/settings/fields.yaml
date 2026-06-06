@@ -1,0 +1,5 @@
+fields:
+    list:
+        path: $/bt/plcommon/models/settings/_listpermisions.htm
+        tab: Quotes
+        type: partial

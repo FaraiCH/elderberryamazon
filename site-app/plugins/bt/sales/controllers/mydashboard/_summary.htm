@@ -1,0 +1,81 @@
+<div class="control-list" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-hover table-bordered" style="width:100%">
+        <thead>
+            <tr>        
+               
+                <th style="text-transform: uppercase; text-align: left; width:  5%;"><span>Month</span></th>
+                <th style="text-transform: uppercase; text-align: right; width:  10%;"><span>Total kg Processed</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Total kg Delivered</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Delivered Value</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Total Buyouts</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Total Buyouts Less VAT</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Total Invoiced</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Total Invoiced Less VAT</span></th>
+                <th style="text-transform: uppercase; text-align: right;"><span>Average Price</span></th>                       
+             
+            </tr>
+
+        </thead>
+        <tbody>
+           <?php foreach($mypeople as $pkey => $pitem): ?>
+                <tr>
+                    <th colspan="9"   style="text-transform: uppercase; text-align: center;"><span><?= $pitem ?></span></th>
+                </tr>
+
+                <?php foreach($monster as $m => $mdata): ?>
+                    <tr>
+                        
+                        <td><?= $mdata["month"] ?> <?= $mdata["year"] ?></td>
+
+                        
+                             <?php if(isset($mdata["totals"][$pkey]) ): ?>
+
+                                <td style="text-align: right"><?= (isset($mdata["totals"][$pkey]["total_kg_processed"]) )?$mdata["totals"][$pkey]["total_kg_processed"]:"0" ?></td>
+
+                                <td style="text-align: right"><?= number_format( ( ( isset($mdata["totals"][$pkey]["deliveyweight"]) )?$mdata["totals"][$pkey]["deliveyweight"]:0 ),1, '.', ',') ?></td>
+                                
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["deliveystockvalue"]) )?$mdata["totals"][$pkey]["deliveystockvalue"]:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["stockvalue"]) )?$mdata["totals"][$pkey]["stockvalue"]:0 ),2, '.', ',') ?></td>
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["stockvalue"]) )?$mdata["totals"][$pkey]["stockvalue"]*0.85:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["invoicedamount"]) )?$mdata["totals"][$pkey]["invoicedamount"]:0 ),2, '.', ',') ?></td>
+                                
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["invoicedamount"]) )?$mdata["totals"][$pkey]["invoicedamount"]*0.85:0 ),2, '.', ',') ?></td>
+
+                               
+                                    
+                                    <?php
+                                      //$inv = ( isset($mdata["totals"][$pkey]["invoicedamount"]) )?$mdata["totals"][$pkey]["invoicedamount"]*0.85:0;;
+                                        $inv = ( isset($mdata["totals"][$pkey]["deliveystockvalue"]) )?$mdata["totals"][$pkey]["deliveystockvalue"]:0;;
+                                      $buyouts = ( isset($mdata["totals"][$pkey]["stockvalue"]) )?$mdata["totals"][$pkey]["stockvalue"]*0.85:0;
+                                      $deliverd = ( isset($mdata["totals"][$pkey]["deliveyweight"]) )?$mdata["totals"][$pkey]["deliveyweight"]:0;
+
+                                      $aver_price = 0;
+                                      if($deliverd > 0){
+                                        $aver_price = ($inv- $buyouts)/$deliverd;
+                                      }
+                                     ?>
+
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( $aver_price,2, '.', ',') ?></td>
+                            <?php else: ?>
+
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                                <td style="text-align: right" >0</td>
+                               
+                            <?php endif ?>
+                       
+                    </tr>
+                <?php endforeach ?>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>

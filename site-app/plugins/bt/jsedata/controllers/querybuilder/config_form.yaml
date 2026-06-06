@@ -1,0 +1,14 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Query Builder
+
+# Model Form Field configuration
+form: $/bt/jsedata/controllers/querybuilder/search_fields.yaml
+
+# Model Class name
+modelClass: Bt\JSEData\Models\DataMine
+
+

@@ -1,0 +1,12 @@
+import:
+    title: Import Batch
+    modelClass: Bt\Logistics\Models\PipeImport
+    list: $/bt/logistics/models/pipeprice/columns_import.yaml
+    redirect: bt/logistics/pipeprice
+    # form: $/bt/sales/models/client/fields.yaml
+#export:
+#    title: Export Pipe Prices
+#    modelClass: Bt\Logistics\Models\PipeExport
+#    list: $/bt/logistics/models/pipeprice/columns_export.yaml
+#    redirect: bt/logistics/pipeprice
+#    fileName: Prices-Export.csv

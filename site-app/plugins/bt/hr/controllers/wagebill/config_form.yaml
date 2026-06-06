@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Wagebill
+
+# Model Form Field configuration
+form: $/bt/hr/models/wagebill/fields.yaml
+
+# Model Class name
+modelClass: Bt\Hr\Models\Wagebill
+
+# Default redirect location
+defaultRedirect: bt/hr/wagebill
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/hr/wagebill/update/:id
+    redirectClose: bt/hr/wagebill
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/hr/wagebill
+    redirectClose: bt/hr/wagebill
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    reason:
+        label: Reason for unapproval
+        type: textarea
+        size: small
+    form@update:
+        label: Upload Unapprove form
+        type: fileupload
+        span: auto
+        tab: Upload form
+        mode: file
+    # is_used:
+    #     label: Is Used
+    #     type: switch

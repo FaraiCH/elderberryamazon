@@ -1,0 +1,12 @@
+import:
+    title: Import Properties
+    modelClass: Bt\JSEData\Models\PropertyImport
+    list: $/bt/jsedata/models/property/columns_export.yaml
+    redirect: bt/JSEData/property
+    # form: $/bt/sales/models/client/fields.yaml
+# export:
+#     title: Export Clients
+#     modelClass: Bt\Sales\Models\ClientExport
+#     list: $/bt/sales/models/client/columns_export.yaml
+#     redirect: bt/sales/client
+#     fileName: client-export.csv

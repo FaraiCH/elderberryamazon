@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    locked_date:
+        label: Start Date
+
+    end_date:
+        label: Locked Date
+       
+
+    price:
+        label: Blended Price
+        type: number
+        format: R %.2f
+
+    is_locked:
+        label: Is Locked
+        span: auto
+        type: switch
+        on: Yes
+        off: No

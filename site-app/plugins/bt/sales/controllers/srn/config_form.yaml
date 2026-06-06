@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Srn
+
+# Model Form Field configuration
+form: $/bt/sales/models/srn/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Srn
+
+# Default redirect location
+defaultRedirect: bt/sales/srn
+
+# Create page
+create:
+    title: Create Stock Delivery / Collection
+    redirect: bt/sales/srn/update/:id
+    redirectClose: bt/sales/srn
+
+# Update page
+update:
+    title: Edit Stock Delivery / Collection
+    redirect: bt/sales/srn
+    redirectClose: bt/sales/srn
+
+# Preview page
+preview:
+    title: Preview Stock Delivery / Collection

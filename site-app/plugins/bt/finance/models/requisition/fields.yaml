@@ -1,0 +1,139 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+    project:
+        label: Project Name or Company
+        type: relation
+        select: name
+        span: auto
+    suppliername:
+        label: Supplier Name
+        span: auto
+    req_date:
+        label: Date
+        type: datepicker
+        mode: date
+        span: auto
+    req_project:
+        label: Requisition Project
+        type: relation
+        select: concat(name, ' - ', description)
+        placeholder: -- Select Requisition Projects --
+        span: auto
+    currencytype:
+        label: Currency Type
+        type: relation
+        select: name
+        span: auto
+    amount:
+        label: Amount in Rands
+        type: inputcurrency
+        span: auto
+        trigger:
+            action: show
+            field: currencytype
+            condition: 'value[1]'
+
+    amount_other_currency:
+        label: Amount in Other Currency
+        type: number
+        span: auto
+        trigger:
+            action: show
+            field: currencytype
+            condition: 'value[2][3][4]'
+
+    currentexchange_rate:
+        label: Current Exchange Rate in Rands
+        type: inputcurrency
+        span: auto
+        trigger:
+            action: show
+            field: currencytype
+            condition: 'value[2][3][4]'
+
+    requestby:
+        label: Requested By
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        span: auto
+        placeholder: -- select --
+    linemanager:
+        label: Request Line Manager Approval
+        type: relation
+        select: concat(name, ' ', surname)
+        span: auto
+        placeholder: -- select --
+        comment: This is optional, It can go to KL directly
+    description:
+        label: Description
+        type: textarea
+        size: small
+
+    header1:
+        label: What is Opex Cape
+        type: section
+        commentHtml: true
+        comment: <b>CapEx (Capital Expenditures)</b> = Investments in significant assets that provide long-term value to a company. (Examples = buying machinery, constructing sections of a building). </br> <b>OpEx (Operating Expenses)</b> = The ongoing operational costs required to sustain the business's day-to-day activities. (Examples = office supplies, marketing expenses, maintenance costs)
+
+    expense:
+        type: balloon-selector
+        label: Is this requisition CapEx or OpEx?
+        options:
+            1: OpEx
+            2: CapEx
+        span: auto
+
+    expense_options:
+        label: Expense Options
+        placeholder: Select Expense Options
+        type: dropdown
+        span: auto
+        dependsOn: expense
+    other:
+        label: If other, please give a brief description of the expense designation eg. (Laptop Purchases)
+        dependsOn: expense_options
+
+    archived@update:
+        label: Archived
+        span: left
+        type: switch
+        on: yes
+        off: no
+        comment: Archive if requisition is complete
+
+
+tabs:
+
+    fields:
+        invoice:
+            label: Invoice File/Slip
+            type: fileupload
+            span: auto
+            tab: Invoice
+            mode: file
+        files:
+            label: Additional Files
+            type: fileupload
+            span: auto
+            tab: Invoice
+            mode: file
+            comment: Additional supporting files, you can upload more than 1
+        lineapprove@update:
+            path: $/bt/finance/controllers/requisition/_lineapprove.htm
+            tab: Line Management
+            type: partial
+        managerapprove@update:
+            path: $/bt/finance/controllers/requisition/_managerapprove.htm
+            tab:  HO Management
+            type: partial
+        financeapprove@update:
+            path: $/bt/finance/controllers/requisition/_financeapprove.htm
+            tab:  Finance
+            type: partial

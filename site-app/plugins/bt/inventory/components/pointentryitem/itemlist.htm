@@ -1,0 +1,43 @@
+{% set listentry = mpe.listitems %}
+<h4>Items In Entry</h4>
+{% if listentry is not empty  %}
+	<table class="table table-striped table-bordered table-sm" id="tabledownload">
+		<thead>
+			<tr>
+				
+				
+				<th rowspan="2">Product Name</th>
+				<th rowspan="2">Supplier Batch</th>
+				<th rowspan="2">Received In</th>
+			
+				<th class="text-center" colspan="3">Zone In Stock Room</th>						
+			</tr>
+			<tr>
+				<th class="text-center">Row</th>
+				<th class="text-center">Column Number</th>
+				<th class="text-center">Stacked On</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+	        {% for itemobject in listentry %}
+	        	<tr>
+	        		
+	              	<td>{{itemobject.productname.name}}</td>
+	              	<td>{{itemobject.supplier_batch}}</td>
+	              	<td>{{itemobject.receivedtypes.name}} : {{ (itemobject.receivedtypes.bags > 0)? itemobject.receivedtypes.bags:itemobject.bagsother}} Bags</td>
+	              	<td class="text-center">{{itemobject.floorblock.zone_row}}</td>
+	              	<td class="text-center">{{itemobject.floorblock.zone_column_number}}</td>
+	              	<td class="text-center">{{itemobject.flooruse}}</td>
+	             </tr>
+	        {% endfor %} 
+	    </tbody>
+	  
+
+	</table>
+  
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

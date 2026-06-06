@@ -1,0 +1,47 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    schedule_date:
+        label: Schedule Date
+        searchable: true
+    load_date:
+        label: Loading Date
+    quote_id:
+        label: Quote No.
+
+    ponumbername:
+        label: PO Number
+
+    invoiceno:
+        label: Invoice
+    typename:
+        label: Delivery Type
+    clientname:
+        label: Client Name
+    notes:
+        label: Notes
+    address:
+        label: Delivery Address
+        invisible: true
+
+    createdbyname:
+        label: Created By
+
+    updatedbyname:
+        label: Updated By
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

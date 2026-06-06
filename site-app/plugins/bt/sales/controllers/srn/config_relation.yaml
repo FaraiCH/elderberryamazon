@@ -1,0 +1,78 @@
+items:
+    label: Pipe
+    manage:
+        form: $/bt/sales/models/srnitem/fields.yaml
+        list: $/bt/sales/models/srnitem/columns.yaml
+    view:
+        list: $/bt/sales/models/srnitem/columns.yaml
+        toolbarButtons: create|delete
+itemscat:
+    label: Product Catalogue
+    manage:
+        form: $/bt/sales/models/srncatalogue/fields.yaml
+        list: $/bt/sales/models/srncatalogue/columns.yaml
+    view:
+        list: $/bt/sales/models/srncatalogue/columns.yaml
+        toolbarButtons: create|delete
+srnapprove:
+    label: Approve SRN By QC
+    view:
+        form: $/bt/sales/models/srnapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/srnapprove/fields.yaml
+        list: $/bt/sales/models/srnapprove/columns.yaml
+returnnote:
+    label: Return Note
+    manage:
+        form: $/bt/sales/models/returnnote/fields.yaml
+        list: $/bt/sales/models/returnnote/columns.yaml
+    view:
+        list: $/bt/sales/models/returnnote/columns.yaml
+        toolbarButtons: create|delete
+
+requestunapprove:
+    label: Request Unapproval
+    manage:
+        form: $/bt/sales/models/requestunapprovesrn/fields.yaml
+        list: $/bt/sales/models/requestunapprovesrn/columns.yaml
+    view:
+        list: $/bt/sales/models/requestunapprovesrn/columns.yaml
+        toolbarButtons: create|delete
+        showCheckboxes: true
+
+logisticsignature:
+    label: Logistics Signature
+    view:
+        form: $/bt/sales/models/logisticsignature/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/logisticsignature/fields.yaml
+        list: $/bt/sales/models/logisticsignature/columns.yaml
+clientsignature:
+    label: Client Signature
+    view:
+        form: $/bt/sales/models/clientsignature/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/clientsignature/fields.yaml
+        list: $/bt/sales/models/clientsignature/columns.yaml
+
+stickeritems:
+    label: Sticker Pipe Items
+    manage:
+        form: $/bt/production/models/pipestickeritem/fields.yaml
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+    view:
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+        toolbarButtons: link|unlink
+
+srnpayment:
+    label: SRN Payment
+    manage:
+        form: $/bt/sales/models/srnpayment/fields.yaml
+        list: $/bt/sales/models/srnpayment/columns.yaml
+    view:
+        form: $/bt/sales/models/srnpayment/fields.yaml
+        toolbarButtons: create
+        showCheckboxes: false

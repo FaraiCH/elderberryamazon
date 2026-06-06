@@ -1,0 +1,25 @@
+{% if printpipe.srn_id is empty %}
+<div class="myform">
+    <form>
+        <div>
+            <p>Add To SRN:</p>
+            <select name="pickslip" id="pickslip"  class="input-sm select_search form-control form-size"   minlength="4">
+                <option value="0">Select</option>
+                {% for s in srn %}
+                    {% if printpipe.srn_id == s.id %}
+                        <option selected value="{{s.id}}">{{s.id}} - {{s.quote.id}} > {{s.quote.company_name}}</option>
+                    {% else %}
+                        <option value="{{s.id}}">{{s.id}} - {{s.quote.id}} > {{s.quote.company_name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-width btn-block" data-request="onPickSlip"
+                    data-request-confirm="Are you sure you want to add this pipe to the selected Pick Slip number?">Save</button>
+        </div>
+    </form>
+</div>
+
+{% endif %}
+

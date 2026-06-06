@@ -1,0 +1,12 @@
+<div class="callout fade in callout-info no-subheader">
+    <div class="header">
+        <i class="icon-info"></i>
+        <h3>Job Card Approval</h3>
+    </div>
+</div>
+<br>
+<?php if (!$this->user->hasAccess('bt.jobcard.approve')): ?>
+		<?= $this->relationRender('jobcardapprove') ?>
+<?php else: ?>
+		<?= $this->relationRender('jobcardapprove', ['readOnly' => true]) ?>
+<?php endif ?>

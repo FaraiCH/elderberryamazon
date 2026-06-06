@@ -1,0 +1,5 @@
+<?php if(isset($record->quote->invoice) && $record->quote->invoice): ?>
+	<div style="width: 100px; text-align: right;">R <?php echo number_format($record->quote->invoice->sum('amount'),2, '.', ','); ?></div>
+	
+<?php endif; ?>
+

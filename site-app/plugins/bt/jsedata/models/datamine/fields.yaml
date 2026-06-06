@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+
+    company:
+        label: Company
+        disabled: false
+        select: concat(name, ' > ', ticker)
+        type: relation
+        span: auto
+        placeholder: -- select --
+
+    property:
+        label: Property
+        disabled: false
+        type: dropdown
+        span: auto
+        placeholder: -- select --
+
+
+    datea:
+        label: Date A
+        type: datepicker
+        mode: date
+        span: auto
+        ignoreTimezone: true
+
+    dateb:
+        label: Date B
+        type: datepicker
+        mode: date
+        span: auto
+        ignoreTimezone: true
+    
+    value:
+      label: Value
+      span: auto
+      type: number

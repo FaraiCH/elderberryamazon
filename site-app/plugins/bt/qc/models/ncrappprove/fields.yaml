@@ -1,0 +1,40 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    status_id:
+      label: Approve by
+      type: switch
+      
+      on: Yes
+      off: No
+      span: auto
+    createdby:
+      label: Created By
+      disabled: true
+      type: relation
+      select: concat(first_name, ' ', last_name)
+      span: auto
+      placeholder: -- select a status --
+      comment: Please ignore, this field will be automated
+    # signature:
+    #   label: Signature
+    #   disabled: false
+    #   select: concat(firstname, ' ', lastname)
+    #   placeholder: -- select a person signature --
+    #   type: relation
+    #   span: auto
+    updatedby:
+      label: Updated By
+      disabled: true
+      type: relation
+      select: concat(first_name, ' ', last_name)
+      span: auto
+      placeholder: -- select a status --
+      comment: Please ignore, this field will be automated
+    note: 
+      label: Notes and Comments
+      size: small
+      type: textarea
+      span: auto

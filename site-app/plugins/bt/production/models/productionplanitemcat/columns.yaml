@@ -1,0 +1,40 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    prodorder:
+        label: Priority/Order
+        type: number
+
+    quote_id:
+        label: Quote
+
+    quote:
+        label: Client
+        searchable: true
+        relation: quote
+        select:  company_name
+
+    item_desc:
+        label: Item
+        searchable: true
+        relation: item
+        select:  description
+    qty:
+        label: qty
+
+    weight_:
+        label: Weight P/M
+        searchable: true
+        relation: item
+        select:  weight
+    totalweight:
+        label: Total Weight
+        type: partial
+        path: $/bt/production/models/productionplanitem/_totalweight_column.htm
+        sortable: false

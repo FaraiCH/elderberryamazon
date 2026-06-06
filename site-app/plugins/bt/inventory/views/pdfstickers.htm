@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:0px; }
+html { margin:0px; }
+
+h1{
+font-size: 14px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+h3{
+font-size: 14px;
+margin-top: 10px;
+padding-top: 0px;
+border-bottom: 1px solid #ccc;
+margin-bottom: 10px
+
+}
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+font-size: 10px;
+
+
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+
+
+</style>
+</head>
+<body>
+
+	{% set clear = 0 %}
+	{% set clearpage = 0 %}
+
+	{% if quote.start > 0 %}
+		{% set start = quote.start %}
+		{% for i in 1..start %}
+
+			{% set style = "" %}
+			{% if clear == 3%}
+				{% set style = "" %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clear = 0 %}
+			{% endif %}
+
+			{% if clearpage == 18%}
+
+				<div class="page-break" style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clearpage = 0 %}
+			{% endif %}
+
+			{% set clear = clear + 1 %}
+			{% set clearpage = clearpage + 1 %}
+
+			<div style="width: 267px; margin: 0px; float: left; height: 181px; border-left: 1px solid #ccc; border-top: 1px solid #ccc">
+				&nbsp;
+			</div>
+			{% if i == 3 and start == 3%}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 6 and start == 6%}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 9 and start == 9%}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 12 and start == 12 %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+			{% if i == 15 and start == 15 %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+			{% endif %}
+		{% endfor  %}
+
+	{% endif  %}
+
+	{% set clear = 0 %}
+	{% set clearpage = 0 %}
+
+
+	{% for itemobject in quote.printitems %}
+		{% for i in 1..itemobject.units %}
+
+
+
+			{% set style = "" %}
+			{% if clear == 3%}
+				{% set style = "" %}
+				<div style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clear = 0 %}
+			{% endif %}
+
+			{% if clearpage == 18%}
+
+				<div class="page-break" style="clear:left; height: 0px; width: 100%;display: block;">&nbsp;</div>
+				{% set clearpage = 0 %}
+			{% endif %}
+
+			{% set clear = clear + 1 %}
+			{% set clearpage = clearpage + 1 %}
+			<div style="width: 267px; margin: 0px; float: left; height: 181px; border-left: 1px solid #ccc; border-top: 1px solid #ccc">
+				<div style="padding: 5px">
+
+			        	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+			        		<tr>
+			        			<td>
+			        				<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+										<tr>
+											<td width="20%" >
+												<img style="width: 30px" src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+											</td>
+											<td width="80%" style="text-align: left;">
+												<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<table width="100%" cellpadding="0" class="table" cellspacing="0">
+										<tr>
+											<td width="30%"><b>Received Date:</b></td>
+											<td width="70%">{{itemobject.material.date_of_receipt|date("Y-m-d")}}</td>
+										</tr>
+										<tr>
+											<td><b>Supplier:</b></td>
+											<td>{{itemobject.material.productname.supplier.name}}</td>
+										</tr>
+										<tr>
+											<td><b>Material:</b></td>
+											<td>{{itemobject.material.productname.name}}</td>
+										</tr>
+										<tr>
+											<td><b>Batch No:</b></td>
+											<td>{{itemobject.material.supplier_batch}}</td>
+										</tr>
+										<tr>
+											<td><b>Weight:</b></td>
+											<td>{{itemobject.weight}} Kg</td>
+										</tr>
+										<tr>
+											<td><b>MFI:</b></td>
+											<td>{{itemobject.material.mfi}}</td>
+										</tr>
+
+										<tr>
+											<td><b>Comment:</b></td>
+											<td>{{itemobject.notes}}</td>
+
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+				</div>
+			</div>
+        {% endfor %}
+     {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+	</body>
+	</html>

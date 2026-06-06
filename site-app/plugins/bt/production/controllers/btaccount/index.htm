@@ -1,0 +1,35 @@
+<div style="padding: 0px 20px"><div class="callout fade in callout-info">
+    <button
+        type="button"
+        class="close"
+        data-dismiss="callout"
+        aria-hidden="true">&times;</button>
+    <div class="header">
+        <i class="icon-info"></i>
+        <h3>BT ACCOUNT</h3>
+        
+    </div>
+    <div class="content">
+    	<div class="row">
+    		<div class="col-sm-3">
+        		<ul>
+                    <li>Checkout Stock that is delivered</li>
+                    <li>Update Production Price table</li>
+                    
+        		</ul>
+    		</div>
+    		<div class="col-sm-3">
+    			<a class="btn btn-primary" style="display: block; text-align: center; padding: 20px" href="/quote/btaccount">View Live Stock On the floor</a>
+    		</div>
+            <div class="col-sm-3">
+                <button class="btn btn-danger" style="display: block; text-align: center; padding: 20px; width: 100%; float: left;" data-request="onCheckOutStock" data-stripe-load-indicator>Checkout Stock</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-danger" style="display: block; text-align: center; padding: 20px; width: 100%; float: left;" data-request="onUpdatePrice" data-stripe-load-indicator>Update Price</button>
+            </div>
+    	</div>
+
+    </div>
+</div>
+</div>
+<?= $this->listRender() ?>

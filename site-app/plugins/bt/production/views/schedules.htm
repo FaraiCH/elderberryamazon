@@ -1,0 +1,30 @@
+<table style="width: 100%">
+    <thead>
+       <tr style="background: skyblue">
+           <th>Production Date</th>
+           <th>Total Weight Processed</th>
+           <th>Quote</th>
+           <th>Description of Pipe</th>
+       </tr>
+    </thead>
+    <tbody>
+        {% set total = 0 %}
+        {% set count = 0 %}
+        {% for items in fullschedule %}
+            <tr>
+                <td>{{items.production_date}}</td>
+                <td>{{items.total_kg_processed}}</td>
+                <td>{{items.pipe.qpush.quote_id}}</td>
+                <td>{{description[count]}}</td>
+            </tr>
+            {% set count = count + 1 %}
+            {% set total = total + items.total_kg_processed %}
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="1"></td>
+            <td>{{total}}kg</td>
+        </tr>
+    </tfoot>
+</table>

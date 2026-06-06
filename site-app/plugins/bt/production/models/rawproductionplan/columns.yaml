@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    date:
+        label: Date
+    btline:
+        label: Baila Line
+        relation: btline
+        select: name
+    total_weight:
+        label: Total Assigned Weight (kg)
+        type: partial
+        path: $/bt/production/models/rawproductionplan/partials/total_assigned_weight.htm
+    raw_material_cost:
+        label: Raw Material Cost
+        format: R %.2f
+
+

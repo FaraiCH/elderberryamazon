@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Provincial Bill
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/provincialbill/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\ProvincialBill
+
+# Default redirect location
+defaultRedirect: bt/maintenance/provincialbill
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/maintenance/provincialbill/update/:id
+    redirectClose: bt/maintenance/provincialbill
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/maintenance/provincialbill
+    redirectClose: bt/maintenance/provincialbill
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

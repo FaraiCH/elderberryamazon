@@ -1,0 +1,49 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    isbtproduct:
+        label: Is Wish Item or Catalogue
+        type: selectable
+        span: auto
+        options:
+            1: Wish Item
+            0: Catalogue
+
+    reason_id:
+        label: Reason for plan
+        type: selectable 
+       
+        
+        
+
+    item:
+        label: Production item
+        relation: item
+        select: description
+    
+
+    catitemid:
+        label: Catalogue item        
+        searchable: true
+        relation: catitem
+        select: description
+
+        
+    units:
+        label: Units To Product 
+        type: number
+        
+
+    schedule_date:
+        label: Production Expected Date
+        
+    notes:
+        label: Notes to Production and Management
+   
+    

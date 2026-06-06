@@ -1,0 +1,29 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    pipe_id:
+        label: Pipe
+        type: partial
+        path: $/bt/production/models/printstickeritems/_pipe_column.htm
+    units:
+        label: Stickers
+        type: number
+    schedule_date:
+        label:  Date and Time
+    batchnumber:
+        label: Batch Number
+    jobcardnumber:
+        label: Job Card Number
+    pipenostart:
+        label: Start Pipe
+        type: number
+    pipenoend:
+        label: End Pipe
+        type: number
+    notes:
+        label: Notes

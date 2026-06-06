@@ -1,0 +1,10 @@
+subcategory:
+    label: Sub Folders
+    manage:
+        form: $/bt/sheq/models/sub/fields.yaml
+        list: $/bt/sheq/models/sub/columns.yaml
+    view:
+        list: $/bt/sheq/models/sub/columns.yaml
+        toolbarButtons: create
+
+        

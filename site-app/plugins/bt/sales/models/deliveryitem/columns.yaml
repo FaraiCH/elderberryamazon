@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    quoteitem_id:
+        label: Product
+        type: selectable
+
+    units:
+        label: Units
+        type: number
+
+    notes:
+        label: Notes
+

@@ -1,0 +1,12 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    name:
+        label: Name
+        span: storm
+        cssClass: col-md-4 col-sm-4 col-lg-4

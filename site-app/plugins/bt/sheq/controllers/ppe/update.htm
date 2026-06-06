@@ -1,0 +1,110 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sheq/ppe') ?>">Ppe</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+    <?php if(isset($formModel->employee_id)): ?>
+        <div class="layout-row">
+            <div class="cardContainer"  >
+
+                <div class="cards" style="line-height: 1.0;">
+                <table class="table table-data"  style="background: whitesmoke">
+                    <thead>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                Ethnicity
+                            </td>
+                            <td>
+                                Date of Birth
+                            </td>
+                            <td>
+                                Department
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <?php if(isset($formModel->employee->firstname)): ?>
+                                    <?= $formModel->employee->firstname . ' ' . $formModel->employee->lastname ?>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if (isset($formModel->employee->ethnicity->name)): ?>
+                                    <?= $formModel->employee->ethnicity->name ?>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if(isset($formModel->employee->dob)): ?>
+                                    <?= $formModel->employee->dob ?>
+                                <?php endif; ?>
+                            </td>
+
+                            <td>
+                                <?php if(!empty($formModel->employee->department)): ?>
+                                    <?= $formModel->employee->department->name ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <?php endif; ?>
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-browser-validate
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving ppe..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-browser-validate
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving ppe..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting ppe..."
+                    data-request-confirm="Delete this ppe?">
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/sheq/ppe') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/sheq/ppe') ?>" class="btn btn-default">Return to ppe list</a></p>
+
+<?php endif ?>

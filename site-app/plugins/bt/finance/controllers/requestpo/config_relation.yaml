@@ -1,0 +1,9 @@
+responsepo:
+    label: Response PO
+    manage:
+        form: $/bt/finance/models/responsepo/fields.yaml
+        list: $/bt/finance/models/responsepo/columns.yaml
+    view:
+        list: $/bt/finance/models/responsepo/columns.yaml
+        form: $/bt/finance/models/responsepo/fields.yaml
+        toolbarButtons: create|delete

@@ -1,0 +1,11 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    status_id:
+      label: Approve Purcharse Order
+      type: switch
+      comment: Approve by management
+      on: Yes
+      off: No

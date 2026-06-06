@@ -1,0 +1,155 @@
+
+
+
+<div class="blob" class="text-center" >
+    <h1 style="text-align: center;">
+        Thanks <b>{{obj.name}} {{obj.surname}}</b> for participating in the BT Industrial Training Session!
+    </h1>
+
+    <h2 style="text-align: center;">Your score is: <br><b>{{ percentage|round(1, 'floor') }}%</b></h2>
+</div>
+
+<div class="text-center" style="margin-bottom: 50px; margin-top: 50px;">
+    <h2>Here Are Your Results!<h2>
+</div>
+
+
+
+{% set mainman = 0 %}
+<form data-request="onSaveQuestions" enctype="multipart/form-data" data-request-data="isredirect: 1"  class="myForm" data-request-files data-request-flash data-request-validate>
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            {% set countertop = 0 %}
+            {% for startkey, questionnaire in questionobj %}
+            {% if countertop == 0 %}
+            <li id="li_qtab_{{countertop}}" class="active" ><a class="nav-link" href="#activity_{{countertop}}" data-toggle="tab">{{questionobj[startkey]['name']}}</a></li>
+            {% else %}
+            <li id="li_qtab_{{countertop}}"><a class="nav-link" href="#activity_{{countertop}}" data-toggle="tab">{{questionobj[startkey]['name']}}</a></li>
+            {% endif %}
+            {% set countertop = countertop + 1 %}
+            {% endfor %}
+        </ul>
+        <div class="tab-content" id="body_qtab">
+            {% set counter = 0 %}
+
+            {% for startkey, questionnaire in questionobj %}
+
+            {% if counter == 0 %}
+            <div class="active tab-pane" id="activity_{{counter}}">
+
+                {% for key, fields in questionobj[startkey]['fields'] %}
+                {% set count = 1 %}
+                <p><b>{{questionobj[startkey]['label'][key]}}</b></p>
+                <hr>
+                {% set track = 0 %}
+                {% for f_key, f in fields %}
+                {% if f['field_value_content'] == questionobj[startkey]['realanswer'][key] %}
+                    <p style="color: green"><b>{{count}}.{{f['field_value_content']}}</b></p>
+                {% set track = questionobj[startkey]['realanswer'][key] %}
+                {% else %}
+                    <p>{{count}}.{{f['field_value_content']}}</p>
+                {% endif %}
+                {% set count = count + 1 %}
+                {% endfor %}
+
+
+                {% if track == questionobj[startkey]['youranswer'][key] %}
+                <p><b>Your Answer: <span style="color: green">{{questionobj[startkey]['youranswer'][key]}}</span><span class="text-center" style="margin-left: 20px; min-width: 20px; color: whitesmoke; background: forestgreen; border-radius: 5px">Correct Answer</span> </b></p>
+                {% set track = 0 %}
+                {% else %}
+                    <p><b>Your Answer: <span style="color: red">{{questionobj[startkey]['youranswer'][key]}} </span><span class="text-center" style="margin-left: 20px; min-width: 20px; color: whitesmoke; background: maroon; border-radius: 5px">Wrong Answer</span></b></p>
+                {% endif %}
+                <br>
+                <br>
+                {% endfor %}
+
+               
+                <div class="box-footer clearfix no-border" style="">
+
+                    <button type="button" class="btn btn-primary nextbtn"  data-request="onSaveQuestions" data-request-data="isredirect: 0" data-request-success="callTap({{counter}});" data-request-files > Next <i class="fa fa-chevron-right"></i></button>
+
+                    <button type="submit" class=" btn btn-lg btn-info lastsubmitbtn"  data-request-data="isredirect: 1" style="display: none;" id="sendEmail">Finish
+                        <i class="fa fa-arrow-circle-right"></i></button>
+
+                </div>
+            </div>
+            {% else %}
+            <div class="tab-pane" id="activity_{{counter}}">
+
+                {% for key, fields in questionobj[startkey]['fields'] %}
+                {% set count = 1 %}
+                <p><b>{{questionobj[startkey]['label'][key]}}</b></p>
+                <hr>
+                {% set track = 0 %}
+                {% for f_key, f in fields %}
+                {% if f['field_value_content'] == questionobj[startkey]['realanswer'][key] %}
+                <p style="color: green"><b>{{count}}.{{f['field_value_content']}}</b></p>
+                {% set track = questionobj[startkey]['realanswer'][key] %}
+                {% else %}
+                <p>{{count}}.{{f['field_value_content']}}</p>
+                {% endif %}
+                {% set count = count + 1 %}
+                {% endfor %}
+
+
+                {% if track == questionobj[startkey]['youranswer'][key] %}
+                <p><b>Your Answer: <span style="color: green">{{questionobj[startkey]['youranswer'][key]}}</span><span class="text-center" style="margin-left: 20px; min-width: 20px; color: whitesmoke; background: forestgreen; border-radius: 5px">Correct Answer</span> </b></p>
+                {% set track = 0 %}
+                {% else %}
+                <p><b>Your Answer: <span style="color: red">{{questionobj[startkey]['youranswer'][key]}} </span><span class="text-center" style="margin-left: 20px; min-width: 20px; color: whitesmoke; background: maroon; border-radius: 5px">Wrong Answer</span></b></p>
+                {% endif %}
+                <br>
+                <br>
+                {% endfor %}
+                <div class="box-footer clearfix no-border">
+
+                    <button type="button" class="btn btn-primary nextbtn"  data-request="onSaveQuestions" data-request-data="isredirect: 0" data-request-success="callTap({{counter}});" data-request-files > Next <i class="fa fa-chevron-right"></i></button>
+
+                    <button type="submit" class=" btn btn-lg btn-info lastsubmitbtn"  data-request-data="isredirect: 1" style="display: none;" id="sendEmail">Finish
+                        <i class="fa fa-arrow-circle-right"></i></button>
+                </div>
+            </div>
+            {% endif %}
+            {% set counter = counter + 1 %}
+            {% endfor %}
+            
+        </div>
+    </div>
+
+
+
+    <div class="box-footer clearfix">
+
+    </div>
+</form>
+
+
+
+{% put scripts %}
+<script>
+
+
+
+
+    jQuery(document).ready(function ($) {
+        let selectedTab = window.location.hash;
+
+        $('.nav-link[href="' + selectedTab + '"]' ).trigger('click');
+    });
+
+
+
+
+</script>
+<script>
+    function callTap(v){
+        $( "#li_qtab_"+v ).next().find("a").trigger('click');
+    }
+
+    jQuery(document).ready(function ($) {
+        $( "#ul_qtab li" ).first().find("a").trigger('click');
+        $( "#body_qtab .tab-pane" ).last().find(".lastsubmitbtn").show();
+        $( "#body_qtab .tab-pane" ).last().find(".nextbtn").hide();
+    })
+</script>
+{% endput %}

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Covid Screen
+
+# Model Form Field configuration
+form: $/bt/sheq/models/covidscreens/fields.yaml
+
+# Model Class name
+modelClass: Bt\SHEQ\Models\CovidScreens
+
+# Default redirect location
+defaultRedirect: bt/sheq/covidscreens
+
+# Create page
+create:
+    title: Create Covid Screen
+    redirect: bt/sheq/covidscreens/update/:id
+    redirectClose: bt/sheq/covidscreens
+
+# Update page
+update:
+    title: Edit Covid Screen
+    redirect: bt/sheq/covidscreens
+    redirectClose: bt/sheq/covidscreens
+
+# Preview page
+preview:
+    title: Preview Covid Screen

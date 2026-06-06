@@ -1,0 +1,16 @@
+
+
+<?php
+$totalWeight = 0;
+
+foreach ($record->quote->items as $dkey => $dvalue) {
+    if (isset($dvalue->totalweight)) {
+        $dvalue->totalweight; 
+        $totalWeight += $dvalue->totalweight; 
+    }
+}
+
+echo  number_format($totalWeight,2, '.', ',')." KG"; 
+?>
+
+

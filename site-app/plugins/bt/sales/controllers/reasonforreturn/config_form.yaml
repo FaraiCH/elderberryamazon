@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Reason For Return
+
+# Model Form Field configuration
+form: $/bt/sales/models/reasonforreturn/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\ReasonForReturn
+
+# Default redirect location
+defaultRedirect: bt/sales/reasonforreturn
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/reasonforreturn/update/:id
+    redirectClose: bt/sales/reasonforreturn
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/reasonforreturn
+    redirectClose: bt/sales/reasonforreturn
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

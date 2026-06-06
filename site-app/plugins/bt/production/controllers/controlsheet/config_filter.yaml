@@ -1,0 +1,18 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    isactive:
+        label: Active
+        type: switch
+        default: 1
+        conditions:
+            - active <> true
+            - active = true
+    opendate:
+        label: Date Period
+        type: daterange
+        yearRange: 10
+        #conditions: created_at = ':filtered'
+        conditions: opendate >= ':after' AND opendate <= ':before'

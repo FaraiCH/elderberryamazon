@@ -1,0 +1,187 @@
+
+
+<?php if (isset($dateheader)): ?>
+<br>
+ <div class="callout fade in callout-info ">
+                
+
+                <div class="header">
+                    <i class="icon-search" style="font-size: 16px"></i>
+                    <h3><?= $propertyheader["parent"]["name"] ?> / <?= $propertyheader["name"] ?></h3>
+                   
+                </div>
+                <?php if ($includeinflation): ?>
+                    <div class="header" style="background: #fcfcfc; text-transform: uppercase; border: 2px solid #d8eaf4; text-align: center; border-radius: 0px">
+                        <i class="icon-info" style="font-size: 16px"></i>
+                        <h3>Inflation Included: <?= $inflationyear  ?> at <?= $inflationyear_value ?> </h3>
+                   
+                    </div>
+                <?php endif ?>
+                <div class="content">
+                   
+
+                    <i style="text-align: right;display: block;">Zoom enabled on the graph</i>
+
+                    <div style="height: 400px;  margin-bottom: 20px" id="chart_unit"></div>
+
+
+                       
+    <div  style="overflow: auto; padding-bottom: 20px ">
+        <table class="table  table-striped table-bordered tabledownload" width="100%"  cellpadding="4px" style="font-size: 11px">
+          <thead>
+            <tr>
+                <th><span><b>COMPANY</b></span></th><th><span><b>INDUSTRY</b></span></th><th><span><b>LINK BY</b></span></th>
+                <?php $dateh = array(); ?>
+                 <?php $series = array(); ?>
+                 <?php foreach($dateheader as $key=>$value): ?>
+                    <th nowrap="nowrap" style="text-align: right"><span><b><?= $value["datea"] ?></b></span></th>
+
+                   <?php  $dateh[] = $value["datea"]; ?>
+                <?php endforeach ?>
+            </tr>
+
+          </thead>
+
+          <tbody>
+            <?php if (isset($monster)): ?>
+                <?php foreach($monster as $m=>$item): ?>
+
+                    <?php 
+                        $print = 0;
+                        if(count($item["mines"]) > 0 || $includeemptycompany == 1){
+                            $print = 1;
+                            } 
+                        ?>
+                    <?php if ($print == 1): ?>
+                    <tr>
+                        <td nowrap="nowrap"><b><?= $item["name"] ?></b></td>
+                        <td nowrap="nowrap" ><?= $item["industry"]["name"] ?></td>
+                        <td nowrap="nowrap" ><?= $item["ticker"] ?>/<?= $item["altticker"] ?></td>
+                          <?php $pvaue = 0; ?>  
+                          <?php $p = array(); ?>
+                        <?php foreach($dateheader as $key=>$value): ?>
+                            <td style="text-align: right" nowrap="nowrap" >
+                                <?php foreach($item["mines"] as $d=>$data): ?>
+                                    <?php if ($value["datea"] == $data["datea"]): ?>
+                                       <?= $displaycur?$data["cur"]:"" ?> <?= $removedecimals?number_format($data["value"], 2):number_format($data["value"], 0) ?>
+                                       <?php $pvaue =$data["value"] ; ?> 
+                                    <?php endif ?>
+                                <?php endforeach ?>
+
+                                <?php  $p[] = intval($pvaue); ?>
+                            </td>
+
+                        <?php endforeach ?>
+                       <?php 
+                        if(count($p) > 0){
+                            $series[] = array("name"=>$item["name"],"data"=>$p);
+                            } 
+                        ?>
+                    </tr>
+                    <?php endif ?>
+                <?php endforeach ?>
+            <?php endif ?>
+          </tbody>
+
+    </table>
+      </div>
+                        
+                </div>
+            </div>
+
+
+             <script type="text/javascript">
+                function test2(){
+                    
+                     Highcharts.chart('chart_unit', {
+                        chart: {
+                            type: 'spline',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: '<?= $propertyheader["parent"]["name"] ?>'
+                        },
+                        // subtitle: {
+                        //     text: 'Source: WorldClimate.com'
+                        // },
+                        xAxis: {
+
+                            categories: <?= json_encode($dateh) ?> 
+                        },
+                        yAxis: {
+                            title: {
+                                text: '<?= $propertyheader["name"] ?>'
+                            }
+                        },
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        },
+                        series: <?= json_encode($series) ?> 
+                    });
+
+
+                      $('.tabledownload').DataTable( {
+        "pageLength": 25,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':contains("Office")'
+                }
+            },
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+
+
+    $('.tabledownload_desc').DataTable( {
+        "pageLength": 25,
+        "order": [[ 0, "desc" ]],
+        "scrollX": true,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':contains("Office")'
+                }
+            },
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+
+    } );
+
+    $('.tabledownload_desc tbody')
+        .on( 'mouseenter', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+        } );
+
+    $(".dt-button").addClass("btn");
+    $(".dt-button").addClass("btn-info");
+    $(".dt-button").addClass("btn-sm");
+    $(".dt-buttons").addClass("pull-left");
+                    
+   
+
+                  }
+                test2();
+
+          
+
+                   
+
+
+            </script>
+   
+<?php endif ?>

@@ -1,0 +1,172 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sheq/covidscreens') ?>">Covid</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?= $this->makePartial('filterform',['startdate' => $startdate,'enddate' => $enddate]) ?>
+
+ <div class="callout fade in callout-info ">
+
+  <div class="content">
+
+    <div class="card" style="margin-top: 20px">
+      <div id="chart_kg" style="height: 450px;"></div>
+
+        <div style="padding: 10px">
+
+  <table class="table" style="width: 100%;border-collapse:collapse; font-size: 13px; border: 1px solid #ccc; border-color: #ccc" cellspacing="0px" cellpadding="2px"  border="1">
+          <thead>
+
+            <tr>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Date</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Day</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Time</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Employees Screened</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Employees Who Declared Symptoms</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Number Infected</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Highest Temperature</th>
+              <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+        <?php
+                foreach ($schedules as $key => $i) {
+                  echo '<tr>';
+                    $date = date_create($i->capturedate);
+                 echo '<td nowrap="nowrap">'.date_format($date,'Y-m-d').'</td>';
+                   echo '<td nowrap="nowrap">'.date_format($date,'l').'</td>';
+
+                  echo '<td nowrap="nowrap">'.date_format($date,'H:i').'</td>';
+            $color= "#ccc";
+            if($i->no_screen > 7 && $i->no_screen < 21)
+            $color= "#93e893";
+
+            if($i->no_screen < 8)
+            $color= "yellow";
+
+
+            if($i->no_screen > 20)
+            $color= "blue";
+            echo '<td align="center" style="background-color: '.$color.'">'.$i->no_screen.'</td>';
+
+            $color= "#ccc";
+            if($i->potential_infection > 26 && $i->potential_infection < 41)
+            $color= "#93e893";
+
+            if($i->potential_infection < 25)
+            $color= "yellow";
+
+            if($i->potential_infection > 40)
+            $color= "red";
+
+            echo '<td align="center" style="background-color: '.$color.'">'.$i->potential_infection.'</td>';
+
+            $color= "#ccc";
+            if($i->no_infected > 0 && $i->no_infected < 9)
+            $color= "red";
+            if($i->no_infected == 0)
+            $color = "yellow";
+            if($i->no_infected > 10)
+            $color= "red";
+
+            echo '<td align="center" style="background-color: '.$color.'">'.$i->no_infected.'</td>';
+                  $color = '#ccc';
+
+                  if($i->highest_temperature > 29 && $i->highest_temperature < 38)
+                    $color= "#93e893";
+
+                  if($i->highest_temperature < 20)
+                    $color= "yellow";
+
+                  if($i->highest_temperature > 37)
+                    $color= "red";
+
+                  echo '<td align="center" style="background-color: '.$color.'">'.$i->highest_temperature.' •C</td>';
+
+
+                   echo '<td>'.$i->notes.'</td>';
+                  echo '<tr>';
+                }
+            ?>
+
+
+
+</tbody>
+</table>
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+            <script type="text/javascript">
+                $(window).on('load',function(){
+
+
+
+
+          Highcharts.chart('chart_kg', {
+            chart: {
+                        type: 'column',
+                        zoomType: 'x'
+                    },
+              title: {
+                  text: 'Covid 19 Screenings'
+              },
+
+              subtitle: {
+                  text: 'Staff Data'
+              },
+
+            xAxis: {
+                  type: 'datetime'
+              },
+              yAxis: {
+                  title: {
+                      text: 'Averages'
+                  },
+                  plotLines: [
+
+                ]
+              },
+
+              series: <?= json_encode($stats) ?> ,
+
+              plotOptions: {
+                  series: {
+                      marker: {
+                          enabled: false
+                      }
+                  }
+              },
+
+
+              responsive: {
+                  rules: [{
+                      condition: {
+                          maxWidth: 500
+                      },
+                      chartOptions: {
+                          legend: {
+                              layout: 'horizontal',
+                              align: 'center',
+                              verticalAlign: 'bottom'
+                          }
+                      }
+                  }]
+              }
+
+          });
+            });
+            </script>
+

@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        fields: 
+    name:
+        label: Field Name
+        searchable: true
+    type:
+        label: 'janvince.smallcontactform::lang.settings.form_fields.type'
+        
+    label:
+        label: 'janvince.smallcontactform::lang.settings.form_fields.label'
+        searchable: true
+    answer:
+        label: Answer
+    
+    placeholder:
+        label: Placeholder
+        searchable: true
+
+    swaplabel:
+        label: Swap label
+        type: switch

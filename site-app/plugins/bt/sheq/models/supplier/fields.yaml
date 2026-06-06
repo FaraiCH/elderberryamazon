@@ -1,0 +1,51 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    company_name:
+        label: Company
+        span: auto
+    company_description:
+        label: Company Description
+        span: auto
+    items:
+        label: Items Purchased
+        span: auto
+    nationality:
+        label: Nationality
+        span: auto
+    person:
+        label: Contact Person
+        span: auto
+    email:
+        label: Email
+        span: auto
+    number:
+        label: Contact Number
+        type: number
+        span: auto
+    tax:
+        label: Tax Clearance
+        type: dropdown
+        span: auto
+        options:
+            No: No
+            Yes: Yes
+    bbbee:
+        label: BBBEE Certificate
+        type: dropdown
+        span: auto
+        options:
+            No: No
+            Yes: Yes
+    account:
+        label: Credit Account
+        span: auto
+        type: dropdown
+        options:
+            No: No
+            Yes: Yes

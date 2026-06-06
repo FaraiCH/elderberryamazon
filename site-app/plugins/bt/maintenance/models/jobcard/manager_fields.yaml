@@ -1,0 +1,104 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    priority:
+        span: auto
+        label: Priority
+        type: dropdown
+        options:
+            1: 1 - Urgent
+            2: 2 - Not Urgent
+    department:
+        label: Department
+        select: name
+        type: relation
+        span: auto
+    opendate:
+        label: Open Date
+        type: datepicker
+        mode: date
+        required: yes
+        span: auto
+        ignoreTimezone: true
+    status:
+        label: Schedule Status
+        select: name
+        type: relation
+        span: auto
+    assignedto@update:
+            label: Assigned To
+            select: name
+            type: relation
+            span: auto
+            placeholder: -- Select Technichian --
+    supervisor_id:
+        label: Assigned Supervisor
+        type: dropdown
+        placeholder: -- Select Supervisor --
+        span: auto
+    job_summary:
+        label: Job Summary
+        type: text
+        span: left
+
+tabs:
+
+
+    fields:
+        jobtype:
+            label: Schedule Type
+            select: name
+            type: relation
+            span: auto
+            tab: Summary
+        budget:
+            label: Budget
+            span: auto
+            default: 0.0
+            tab: Summary
+        budget_note:
+            label: Budget Note
+            span: auto
+            tab: Summary
+        job_description@update:
+            label: Job Description
+            type: textarea
+            size: small
+            span: left
+            tab: Setup
+        enddate:
+            label: End Date
+            type: datepicker
+            span: auto
+            ignoreTimezone: true
+            tab: Complete/Close Job
+
+        spares_used:
+            label: Spares Used
+            type: textarea
+            size: small
+            tab: Complete/Close Job
+            span: auto
+        files:
+            label: Attach Documents
+            type: fileupload
+            tab: Upload Files
+            mode: file
+        comments@update:
+            label: Comments
+            type: textarea
+            size: small
+            tab: Comments
+secondaryTabs:
+    fields:
+        header1:
+
+            type: section
+            comment: Approve form to start with jobcard
+            tab: Approval
+        jobcardapprove@update:
+            path: $/bt/maintenance/controllers/jobcard/_approve.htm
+            tab: Approval
+            type: partial

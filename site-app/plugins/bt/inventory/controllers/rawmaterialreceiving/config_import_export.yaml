@@ -1,0 +1,6 @@
+export:
+    title: Material Export
+    modelClass: Bt\Inventory\Models\RawMaterialReceivingExport
+    list: $/bt/inventory/models/rawmaterialreceiving/columns_export.yaml
+    redirect: bt/inventory/rawmaterialreceiving
+    fileName: Material-Export.csv

@@ -1,0 +1,721 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 10px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 20px;
+        }
+        h2{
+            font-size: 16px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 10px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+        .table tr td:first-child {
+            width: 150px;
+        }
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: -58px;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 50s%;
+        }
+
+        .border{
+            border: 1px solid #000;
+            height: 15px;
+        }
+        .text-success{
+            color: green
+        }
+        .text-danger{
+            color: red
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="footer">
+    <p class="left" style="text-align: center">
+    <table border="0">
+        <tr>
+            <td valign="top" width="45%">
+                Doc: F-PROD-12.0.8<br>
+                Effective: 2022/09/30 Rev: 3<br>
+                Prepared By: N Tsekela<br>
+                Approved By: F Chamisa
+            </td>
+            <td valign="top" width="45%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+            <td width="10%"><span class="pagenumber"></span></td>
+        </tr>
+    </table>
+
+    </p>
+
+</div>
+
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="25%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" style="height: 100px" >
+
+                    </td>
+                    <td width="70%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501  <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h2>CONTROL SHEET  #BT-CS-{{'%04d'|format(quote.id)}} &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp;
+                            {% if quote.batch_id > 0 %}
+                            PRODUCTION BATCH #BT-{{quote.jobcard_id}}-{{'%04d'|format(quote.batch_id)}}</h2>
+
+                        {% endif %}
+                        <h2>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr>
+        <td >
+            <table width="97%" border="0" cellpadding="2px" cellspacing="2px">
+
+                <tr>
+                    <th >JOB CARD:</th><td class="border">
+                    {% if quote.jobcard_id > 0 %}
+                    #BT-JC-{{'%04d'|format(quote.jobcard_id)}}
+                    {% endif %}
+                </td>
+                    <th >CLIENT:</th><td class="border">{{quote.jobcard.pipe.qpush.quote.company_name}}</td>
+                    <th  width="20%" >OPERATOR:</th><td   width="20%"class="border" nowrap="nowrap">{{quote.assignedto?quote.assignedto.name:""}}</td>
+                    <!-- <th  width="20%" >MATERIAL: VIRGIN</th><td style="text-align: right"  width="20%"class="border" nowrap="nowrap">%</td> -->
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th width="20%" >DATE:</th>
+                    <td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("Y-m-d") :""}}</td>
+                    <th  width="20%" >TIME:</th>
+                    <td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("H:i") :""}}</td>
+                    <!-- <th  width="20%" >MATERIAL: RECYCLE</th><td style="text-align: right"  width="20%"class="border" nowrap="nowrap">%</td> -->
+                    <th >PIPE SIZE:</th><td class="border">{{quote.pipesize}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th >PRODUCT:</th><td class="border">{{quote.jobcard.pipe.quoteitems.description}}</td>
+                    <th >STANDARD WEIGHT:</th><td class="border">{{quote.standardweight}}</td>
+                    <th >SHIFT:</th><td class="border">{{quote.shift}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th >PIPE LENGTH:</th><td class="border">{{quote.pipelenght}}</td>
+                    <th >RAW MATERIAL:</th><td class="border">{{quote.rawmaterialpe}}</td>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th >PRODUCTION LINE:</th><td class="border">{{quote.btline.name}}</td>
+
+                    <th >QUOTE #:</th><td class="border">{{quote.jobcard.pipe.quoteitems.quote_id}}
+                    {# if quote.jobcard.pipe.qpush.invoice is not empty %}
+                    {{quote.jobcard.pipe.qpush.invoice.name}}
+                    {% endif #}
+                </td>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td >
+            <table width="97%" border="1px" cellpadding="1px" cellspacing="1px">
+                <tr>
+                    <td style="background: #ccc"><b>TIME OF READING</b></td>
+                    <td style="background: #ececec; text-align: center;width:65px"><b></b></td>
+                    {% set time = 6 %}
+                    {% if quote.shift == "NIGHT" %}
+                    {% set time = 18 %}
+                    {% endif %}
+                    {% for i in 1..12 %}
+                    <th nowrap="nowrap" style="background: #ececec; text-align: center;width:65px">
+
+                        {{time<10?'0':''}}{{time|number_format(2,':')}} - {{(time+1)<10?'0':''}}{{(time == 23)?'00':((time+1))}}:00
+
+
+                    </th>
+                    {% if time == 23 %}
+                    {% set time = 0 %}
+                    {% else %}
+                    {% set time = time + 1 %}
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>MACHINE SETTING</b></td>
+                    <td style="background: #ececec"><b>Value</b></td>
+                    {% for i in 1..12 %}
+                    <th >Actual</th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc"><b>TERMPERATURE OF MATERIAL EXITING THE DRYER</b></td>
+                    <td style="background: #ececec"><b>50&deg;</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>DRYER TERMPERATURE BY HAND</b></td>
+                    <td style="background: #ececec"><b>WARM/COLD</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc"><b>HOPPER TERMPERATURE</b></td>
+                    <td style="background: #ececec"><b>80&deg;</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>BARREL TEMPERATURE</th>
+                    <td colspan="13"></td>
+                </tr>
+
+                {% set max = 7 %}
+                {% if quote.btline.id == 3 %}
+                {% set max = 5 %}
+                {% endif %}
+
+                {% for y in 1..max %}
+                <tr>
+                    <td style="background: #ccc" align="right"><b>Barel Zone {{y}}</b></td>
+                    <td style="background: #ececec"><b>
+                        {% if y == 1 %} {{quote.jobcard.BZ1 }}
+                        {% elseif  y == 2 %} {{quote.jobcard.BZ2 }}
+                        {% elseif  y == 3 %} {{quote.jobcard.BZ3 }}
+                        {% elseif  y == 4 %} {{quote.jobcard.BZ4 }}
+                        {% elseif  y == 5 %} {{quote.jobcard.BZ5 }}
+                        {% elseif  y == 6 %} {{quote.jobcard.BZ6 }}
+                        {% elseif  y == 7 %} {{quote.jobcard.BZ7 }}{% endif %}
+                    </b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td style="background: #ccc" align="right"><b>Barel Zone Adaptor</b></td>
+                    <td style="background: #ececec"><b>
+                        {% if y == 1 %} {{quote.jobcard.BZ1 }}
+                        {% elseif  y == 2 %} {{quote.jobcard.BZ2 }}
+                        {% elseif  y == 3 %} {{quote.jobcard.BZ3 }}
+                        {% elseif  y == 4 %} {{quote.jobcard.BZ4 }}
+                        {% elseif  y == 5 %} {{quote.jobcard.BZ5 }}
+                        {% elseif  y == 6 %} {{quote.jobcard.BZ6 }}
+                        {% elseif  y == 7 %} {{quote.jobcard.BZ7 }}{% endif %}
+                    </b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <th>DIE TEMPERATURE</th>
+                    <td colspan="13"></td>
+                </tr>
+                {% set max = 23 %}
+                {% if quote.btline.id == 3 %}
+                {% set max = 11 %}
+                {% elseif quote.btline.id == 4 %}
+                {% set max = 6 %}
+                {% endif %}
+
+                {% for y in 1..max %}
+                <tr>
+                    <td style="background: #ccc" align="right"><b>Die Zone {{y}}</b></td>
+                    <td style="background: #ececec"><b>
+                        {% if y == 1 %} {{quote.jobcard.DZ1 }}
+                        {% elseif  y == 2 %} {{quote.jobcard.DZ2 }}
+                        {% elseif  y == 3 %} {{quote.jobcard.DZ3 }}
+                        {% elseif  y == 4 %} {{quote.jobcard.DZ4 }}
+                        {% elseif  y == 5 %} {{quote.jobcard.DZ5 }}
+                        {% elseif  y == 6 %} {{quote.jobcard.DZ6 }}
+                        {% elseif  y == 7 %} {{quote.jobcard.DZ7 }}
+                        {% elseif  y == 8 %} {{quote.jobcard.DZ8 }}
+                        {% elseif  y == 9 %} {{quote.jobcard.DZ9 }}
+                        {% elseif  y == 10 %} {{quote.jobcard.DZ10 }}
+                        {% elseif  y == 11 %} {{quote.jobcard.DZ11 }}
+                        {% elseif  y == 12 %} {{quote.jobcard.DZ12 }}
+                        {% elseif  y == 13 %} {{quote.jobcard.DZ13 }}
+                        {% elseif  y == 14 %} {{quote.jobcard.DZ14 }}
+                        {% elseif  y == 15 %} {{quote.jobcard.DZ15 }}
+                        {% elseif  y == 16 %} {{quote.jobcard.DZ16 }}
+                        {% elseif  y == 17 %} {{quote.jobcard.DZ17 }}
+                        {% elseif  y == 18 %} {{quote.jobcard.DZ18 }}
+                        {% elseif  y == 19 %} {{quote.jobcard.DZ19 }}
+                        {% elseif  y == 20 %} {{quote.jobcard.DZ20 }}
+                        {% elseif  y == 21 %} {{quote.jobcard.DZ21 }}
+                        {% elseif  y == 22 %} {{quote.jobcard.DZ22 }}
+                        {% elseif  y == 23 %} {{quote.jobcard.DZ23 }}
+                        {% elseif  y == 24 %} {{quote.jobcard.DZ24 }}{% endif %}
+                    </b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td style="background: #ccc"><b>MOTOR SPEED</b></td>
+                    <td style="background: #ececec"><b>{{quote.jobcard.screw_speed }}</b></td>
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>HAUL OFF SPEED</b></td>
+                    <td style="background: #ececec"><b>{{quote.jobcard.haull_of_speed }}</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>MACHINE TORQUE</b></td>
+                    <td style="background: #ececec"><b>{{quote.jobcard.machine_torque }}</b></td>
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc"><b>VACUUM 1 READING</b></td>
+                    <td style="background: #ececec"><b>{{quote.jobcard.vacuum_pressure1 }}</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>VACUUM 2 READING</b></td>
+                    <td style="background: #ececec"><b>{{quote.jobcard.vacuum_pressure2 }}</b></td>
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>VACUUM 3 READING</b></td>
+                    <td style="background: #ececec"><b>{{quote.jobcard.vacuum_pressure3 }}</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #fff"><b>WALL THICKNESS</b></td>
+                    <td style="background: #fff"><b>N</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #fff"><b>MAX WALL / {{quote.maxwall }}</b></td>
+                    <td style="background: #fff"><b>NE</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #fff"><b></b></td>
+                    <td style="background: #fff"><b>E</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #fff"><b></b></td>
+                    <td style="background: #fff"><b>SE</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #fff"><b></b></td>
+                    <td style="background: #fff"><b>S</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #fff"><b></b></td>
+                    <td style="background: #fff"><b>SW</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #fff"><b>MIN WALL / {{quote.minwall }}</b></td>
+                    <td style="background: #fff"><b>W</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #fff"><b></b></td>
+                    <td style="background: #fff"><b>NW</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    {% if quote.pipesize > 350 %}
+                        <td style="background: #ccc"><b>AVR WALL (+0.5)</b></td>
+                    {% else %}
+                        <td style="background: #ccc"><b>AVR WALL</b></td>
+                    {% endif %}
+                    <td style="background: #fcfcfc"><b>{{quote.jobcard.pipe.quoteitems.product.wt_ave }}</b></td>
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc"><b>PIPE OD</b></td>
+                    <td style="background: #fcfcfc; font-size: 9.2px"><b>{{quote.pipeod }}</b></td>
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc"><b>OVALITY</b></td>
+                    <td style="background: #fcfcfc"><b>{{quote.ovality }}</b></td>
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>ACTUAL WEIGHT</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2" colspan="2"><b>ACTUAL LENGTH</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>PIPE NUMBER</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>COLOUR</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>OUTSIDE WORKMANSHIP</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>INSIDE WORKMANSHIP</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>PRINTER CLEAR</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>PRINTER CORRECT</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>END SQUIRE</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>MATERIAL SUPPLIER</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>MATERIAL BATCH</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>RECYCLE MATERIAL BATCH</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>HOURLY PRODUCTION</b></td>
+
+                    {% for i in 1..12 %}
+                    <th ></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>HOURLY SCRAP</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>SCRAP CODE</b></td>
+
+                    {% for i in 1..12 %}
+                    <th style="background: #ececec"></th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>TOTAL NUMBER OF PIPE</b></td>
+                    <td colspan="2"></td>
+                    <td style="background: #ccc" colspan="3"><b>TOTAL WEIGTH OF MATERIAL</b></td>
+                    <td colspan="2"></td>
+                    <td style="background: #ccc" colspan="3"><b>TOTAL WEIGHT OF SCRAP</b></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td style="background: #ccc" colspan="2"><b>PRINTING:</b></td>
+                    <td colspan="5">{{quote.jobcard.printing_requirments}}</td>
+                    <td style="background: #ccc"><b>OR</b></td>
+                    <td colspan="6"></td>
+
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <br>
+            <div style="border: 1px solid #ccc; padding: 5px;width:49%; float: left">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Operator:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>NAME:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>DATE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>SIGNATURE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="border: 1px solid #ccc; padding: 5px;width:49%; float: right">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Quality Control:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>NAME:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>DATE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>SIGNATURE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="clear: both;"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            <div style="border: 1px solid #ccc; padding: 5px;width:49%;float: left">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Supervisor:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>NAME:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>DATE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>SIGNATURE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="border: 1px solid #ccc; padding: 5px;width:49%;float: right">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Comments:</h4>
+                <br>
+                <br>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+
+
+        </td>
+    </tr>
+
+
+
+</table>
+
+
+</body>
+</html>

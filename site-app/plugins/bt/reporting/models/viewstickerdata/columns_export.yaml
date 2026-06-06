@@ -1,0 +1,72 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        clickable: false
+    sticker:
+        label: Sticker No
+        clickable: false
+        searchable: true
+    controlsheet_id:
+        label: Control Sheet
+    batch_no:
+        label: Batch No
+    sticker_scanned_date:
+        label: Sticker Scanned Date
+    contronsheet_production_date:
+        label: Control Sheet Production Date
+        type: date
+        clickable: false
+        searchable: true
+    pipesize:
+        label: Diameter
+        searchable: true
+
+        clickable: false
+    pn_rating:
+        label: PN Rating
+
+    Baila:
+        label: Baila Machine
+        clickable: false
+    stick_pipe_lenght:
+        label: Sticker Pipe Length
+        clickable: false
+        searchable: true
+    scrap_production:
+        label: Is Scrap (Production)
+    qc_status_name:
+        label: QC Status
+    quote_no:
+        label: Quote
+    q_unit_weight:
+        label: Unit weight (KG)
+    price_per_kg:
+        label: R/kg per quote
+    company_name:
+        label: Client
+        clickable: false
+    pickslip_id:
+        label: Pick Slip
+    dispatch_date:
+        label: Dispatch Date
+        clickable: false
+        searchable: true
+    srn_id:
+        label: Srn No
+    srn_date:
+        label: SRN Date
+    stock_age:
+        label: Stock Age
+        clickable: false
+        searchable: true
+    sticker_age:
+        label: Sticker Age
+        clickable: false
+        searchable: true
+    fail_pic:
+        label: Pictures

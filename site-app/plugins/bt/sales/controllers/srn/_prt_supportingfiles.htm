@@ -1,0 +1,74 @@
+<div style="padding: 20px 20px">
+
+                            <h3 style="margin-top: 0px; padding-top: 0px">Supporting Files</h3>
+                            <div class="control-list">
+                                <table class="table data">
+                                    <thead>
+                                        <tr>
+                                            <th class="sort-desc"><a href="/">Title</a></th>
+                                            <th class="sort-desc"><a href="/">File</a></th>
+                                            <th class="active sort-asc"><a href="/">Created</a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                <?php $countfile = 0; ?>
+                                <?php if ($formModel->quote): ?>
+
+                                <?php if (isset($formModel->quote->invoice)): ?>
+
+
+                                    <?php
+                                        foreach($formModel->quote->invoice as $key=>$value){
+                                            if($value->file){
+                                                $countfile++;
+                                                echo '<tr><td>Invoice '.$countfile.': '.$value->name.'</td><td><a target="_blank" href="'.$value->file->path.'">'.$value->file->file_name.'</a></td><td>'.$value->created_at.'</td></tr>';
+                                            }
+                                        }
+                                    ?>
+
+
+                                <?php endif ?>
+                                <?php endif ?>
+
+                                <div class="row">
+
+
+                                    <?php if($countfile == 0): ?>
+                                        <div class="col-sm-12">
+
+                                            <div class="callout fade in callout-danger no-icon">
+                                                <div class="header">
+
+                                                         <?php if ($formModel->quote): ?>
+                                                        <div style="text-align: center;"><button class="btn btn-primary oc-icon-paper-plane-o" data-request="onSendRequestInvoiceNotification" data-stripe-load-indicator data-request-flash>No Invoice File - Request  Invoice</button></div>
+                                                        <?php endif ?>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
+                                <?php
+                                    if(isset($formModel->quote)){
+                                        foreach($formModel->quote->responses as $key=>$value){
+
+                                                if($value->file){
+                                                    if(isset($value->status)){
+                                                        echo '<tr><td>'.$value->status->name.'</td><td>'.'<a href="'.$value->file->path.'" target="_blank">'.$value->file->file_name.'</a></td><td>'.$value->created_at.'</td></tr>';
+                                                    }
+
+
+                                                    if($value->quote_status_id == 10 || $value->quote_status_id == 9){
+                                                        $countfile++;
+                                                    }
+                                                }
+
+                                        }
+                                    }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                         </div>

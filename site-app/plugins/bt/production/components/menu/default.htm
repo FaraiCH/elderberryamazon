@@ -1,0 +1,13 @@
+{% set menuitems = ProductionMenu.getItems() %}
+{% for itemobject in menuitems %}
+	{% for pipe in itemobject.pipes %}
+		<li class="nav-item">
+			<a class="nav-link" href="{{ 'production/pipe'|page({'item': itemobject.id,'pipe': pipe.id}) }}">
+			<i class="fa fa-list"></i>
+			<span class="nav-link-text" >
+			Running Pipe {{pipe.id}} - {{itemobject.quote.company_name}} - {{pipe.quoteitems.description}}</span>
+			</a>
+		</li>
+	{% endfor %} 
+   
+{% endfor %} 

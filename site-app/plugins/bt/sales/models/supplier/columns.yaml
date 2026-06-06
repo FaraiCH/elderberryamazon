@@ -1,0 +1,24 @@
+columns:
+   
+    name:
+        label: Company Name
+    contact_name:
+        label: Contact Name
+    contact_email:
+        label: Contact Email
+    contact_number:
+        label: Contact Number
+    physical_address:
+        label: Physical Address
+    postal_address:
+        label: Postal Address
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

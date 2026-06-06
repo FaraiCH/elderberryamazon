@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Minimumrun
+
+# Model Form Field configuration
+form: $/bt/production/models/minimumrun/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Minimumrun
+
+# Default redirect location
+defaultRedirect: bt/production/minimumrun
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/minimumrun/update/:id
+    redirectClose: bt/production/minimumrun
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/minimumrun
+    redirectClose: bt/production/minimumrun
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

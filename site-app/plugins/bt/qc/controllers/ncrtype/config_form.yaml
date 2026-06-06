@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Ncrtype
+
+# Model Form Field configuration
+form: $/bt/qc/models/ncrtype/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\Ncrtype
+
+# Default redirect location
+defaultRedirect: bt/qc/ncrtype
+
+# Create page
+create:
+    title: Create NCR Type
+    redirect: bt/qc/ncrtype/update/:id
+    redirectClose: bt/qc/ncrtype
+
+# Update page
+update:
+    title: Edit Ncrtype
+    redirect: bt/qc/ncrtype
+    redirectClose: bt/qc/ncrtype
+
+# Preview page
+preview:
+    title: Preview Ncrtype

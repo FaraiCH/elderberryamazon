@@ -1,0 +1,131 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    date:
+        label: Date To Captured
+    current_mileage:
+        label: Current Mileage
+        type: number
+    is_brakes_ok:
+        label: Is Brakes Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    brakes_comments:
+        label: Comment About Brakes
+    is_engine_ok:
+        label: Is Engine Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    engine_comments:
+        label: Comment About Engine
+    is_lights_ok:
+        label: Is Lights Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    lights_comments:
+        label: Comment About Lights
+    is_hazards_ok:
+        label: Is Hazards Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    hazards_comments:
+        label: Comment About Hazards
+    is_doors_ok:
+        label: Is Doors Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    doors_comments:
+        label: Comment About Doors
+    is_mirrors_ok:
+        label: Is Mirrors Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    mirrors_comments:
+        label: Comment About Mirrors
+    is_tires_ok:
+        label: Is Tires Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    tires_comments:
+        label: Comment About Tires
+    is_fuel_ok:
+        label: Is Fuel Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    fuel_comments:
+        label: Comment About Fuel
+    is_oil_ok:
+        label: Is oil Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+        
+    oil_comments:
+        label: Comment About oil
+    is_battery_ok:
+        label: Is Battery Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+        
+    battery_comments:
+        label: Comment About Battery
+    is_vehicle_ok:
+        label: Is Vehicle Condition Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+        
+    vehiclecon_comments:
+        label: Comment About Vehicle Condition
+    is_belt_ok:
+        label: Is Safety belt Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+        
+    belt_comments:
+        label: Comment About Belt
+    is_horn_ok:
+        label: Is horn Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+        
+    horn_comments:
+        label: Comment About Horn
+    is_wipers_ok:
+        label: Is wipers Ok?
+        type: partial
+        path: $/bt/logistics/models/vehiclechecklist/_isengine_column.htm
+        searchable: false
+        sortable: false
+    wipers_comments:
+        label: Comment About Wipers
+    

@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: auto
+    amount:
+        label: Amout Paid
+        type: number
+        span: auto
+    payment_date:
+        label: Payment Date
+        type: datepicker
+        span: auto
+    comment:
+        label: comment
+        type: textarea
+        size: small
+        span: auto
+    files:
+      label: Upload Files
+      type: fileupload
+      mode: file
+      span: auto

@@ -1,0 +1,50 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+    account_number:
+        label: Account Number
+    company_name:
+        label: Company Name
+    is_blocked_name: 'Blocked'
+#        label: Blocked
+    account: 'Account Manager'
+    category: 'Category'
+    coreg:
+        label: CO Reg
+    vatno:
+        label: VAT No
+    vendorno:
+        label: Vendor No
+    buyer_code:
+        label: Buyer Code
+    limit:
+        label: Limit Granted
+    utilization:
+        label: Utilization
+    balance:
+        label: Balance
+    date_granted:
+        label: Date Granted
+    terms_of_payment:
+        label: Terms Of Payment
+    contact_name:
+        label: Contact Name
+    contact_email:
+        label: Contact Email
+    contact_number:
+        label: Contact Number
+    physical_address:
+        label: Physical Address
+    postal_address:
+        label: Postal Address
+
+    contract_name: 'Number of Contracts'
+#    contract:
+#
+#        label: contract
+#        relation: contract
+#        useRelationCount: true

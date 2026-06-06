@@ -1,0 +1,56 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    name:
+        label: Name
+        span: auto
+
+    surname:
+        label: Surname
+        span: auto
+
+    idnumber:
+        label: Number
+        type: number
+        span: auto
+
+    is_medical:
+        label: General Medical Checks Done?
+        commentHtml: true
+        comment: If someone has had medical checks done on them, then click on.
+        type: switch
+        span: auto
+        options:
+            0: No
+            1: Yes
+    cert:
+        label: Certificates
+        type: fileupload
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx
+        span: auto
+tabs:
+    fields:
+        flue:
+            label: Flu Vaccine?
+            type: switch
+            span: auto
+            tab: Flue
+            options:
+                0: No
+                1: Yes
+        flue_dates:
+            type: repeater
+            titlefrom: flue
+            tab: Flue
+            form:
+                fields:
+                    fluemade:
+                        label: Date Of Vaccine
+                        type: datepicker
+                        mode: date
+                        span: auto

@@ -1,0 +1,37 @@
+<?php foreach($list as $item): ?>
+	<div style="position: relative;  background: #fcfcfc" class=" master  fade in  "  data-control="tab" data-closable>
+		<div class="header" style="padding: 0px 0px;; border-top: 1px solid #ccc;">
+    		 
+    		 <h3 style="text-transform: uppercase; font-weight:  bold; font-size: 16px;padding: 5px 5px; margin: 0px;"><i class="icon-files-o"></i> <?= $item->name ?></h3>
+    		 
+	    </div>
+
+	    <div class="content tab-content" style="padding-top: 10px" >
+	    		 <div class="row">
+	    		 	<?php foreach($item->subcategory as $subcat): ?>
+	    		 		<div class="col-sm-4">
+	    		 			<div  style="     overflow: hidden; background: #fff; border-radius: 2px; ">
+		    		 			<h4 style="font-weight:  bold; font-size: 14px; background: #969899; color: #fff;; padding: 10px 10px; margin: 0px;"><i class="icon-file-o"></i> <?= $subcat->name ?></h4>
+		    		 			<div class="control-list" >
+			    		 			<table class="table " data-control="rowlink">
+								       
+								        <tbody>
+			    		 				<?php foreach($subcat->documents as $documents): ?>
+					    		 			<?php foreach($documents->files as $file): ?>
+					    		 				<tr>
+					    		 					<td><a target="_blank" href="<?= $file->path ?>"><?= $file->file_name ?></a></td>
+					    		 					<td nowrap="nowrap"><?= $documents->assinged_date ?></td>
+					    		 					
+					    		 				</tr>
+					    		 			<?php endforeach ?>
+			    		 				<?php endforeach ?>
+			    		 				</tbody>
+	   								</table>
+			    		 		</div>
+			    		 	</div>
+	    		 		</div>
+	    		 	<?php endforeach ?>
+	    		 </div>
+	    	</div>
+	</div>
+ <?php endforeach ?>

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Booking
+
+# Model Form Field configuration
+form: $/bt/boardroom/models/booking/fields.yaml
+
+# Model Class name
+modelClass: Bt\Boardroom\Models\Booking
+
+# Default redirect location
+defaultRedirect: bt/boardroom/booking
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/boardroom/booking/update/:id
+    redirectClose: bt/boardroom/booking
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/boardroom/booking
+    redirectClose: bt/boardroom/booking
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,567 @@
+<h3 style="text-align: center; margin-top: -10px;">CONTROL SHEET # <?= $formModel->id ?></h3>
+
+<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+
+    <tr>
+    	<th  >DATE:</th>
+        <td   class="border" nowrap="nowrap"><?= $formModel->opendate ?></td>
+        <th >CLIENT:</th><td class="border"><?= $formModel->jobcard->pipe->qpush->quote->company_name ?></td>
+
+        <th >PRODUCT:</th><td class="border"><?= $formModel->jobcard->pipe->quoteitems->description ?></td>
+
+        <th   >OPERATOR:</th><td   class="border" nowrap="nowrap">
+            <?= $formModel->assignedto?$formModel->assignedto->name:"" ?></td>
+
+        <th >PRODUCTION LINE:</th><td class="border"><?= $formModel->btline->name ?></td>
+        <th >SHIFT:</th><td class="border"><?= $formModel->shift ?></td>
+    </tr>
+
+</table>
+
+<?php $maxactual = 12; ?>
+<?php $quote = $formModel; ?>
+<?php $totalweight = 0; ?>
+
+<?php if( count($quote->citem) > 0 ): ?>
+	<?php $maxactual = 12 - count($quote->citem) ?>
+<?php endif; ?>
+
+<table style="width: 100%"  border="1px" cellpadding="1px" cellspacing="1px">
+
+	<tr>
+		<td style="background: #ccc"><b>TIME OF READING</b></td>
+		<td style="background: #ececec; text-align: center;width:30px"><b></b></td>
+		<?php $time = 6; ?>
+		<?php if( $quote->shift == "NIGHT"): ?>
+			<?php $time = 18; ?>
+		<?php endif; ?>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+		    <th nowrap="nowrap" style="background: #ececec; text-align: center;min-width:50px">
+
+		   		<?= sprintf("%02d",$time) ?>h-<?= ($time == 23)?'00':(sprintf("%02d",($time+1)))?>h
+
+
+		    </th>
+		    <?php if( $time == 23): ?>
+		   		<?php $time = 0; ?>
+			<?php else: ?>
+				<?php $time = $time + 1; ?>
+		    <?php endif; ?>
+		<?php endfor; ?>
+	</tr>
+
+
+<tr>
+	<td style="background: #ccc"><b>MACHINE SETTING</b></td>
+	<td style="background: #ececec"><b>Value</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+	    <th >Actual<?= $quote->getButton($i-1) ?></th>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #ccc"><b>TERMPERATURE OF MATERIAL EXITING THE DRYER</b></td>
+	<td style="background: #ececec"><b>50&deg;</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+	    <td><?= $quote->getItemValueInput($i-1,'temperature_of_material') ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: #ccc"><b>DRYER TERMPERATURE BY HAND</b></td>
+	<td style="background: #ececec"><b>WARM/COLD</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'dryer_temperature_by_hand','number',5) ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+
+<tr>
+	<td style="background: #ccc"><b>HOPPER TERMPERATURE</b></td>
+	<td style="background: #ececec"><b>80&deg;</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+	    <td><?= $quote->getItemValueInput($i-1,'hopper_temperature') ?></td>
+	<?php endfor; ?>
+
+</tr>
+<tr>
+	<th>BARREL TEMPERATURE</th>
+	<td colspan="13"></td>
+</tr>
+
+<?php for($y = 1; $y <= 7; $y++): ?>
+
+	<tr>
+		<td style="background: #ccc" align="right"><b>Barel Zone <?= $y ?></b></td>
+		<td style="background: #ececec"><b>
+		<?php if( $y == 1): ?>
+			<?= $quote->jobcard->BZ1 ?>
+		<?php elseif( $y == 2): ?>
+			<?= $quote->jobcard->BZ2 ?>
+		<?php elseif( $y== 3): ?>
+			<?= $quote->jobcard->BZ3 ?>
+		<?php elseif( $y== 4): ?>
+			<?= $quote->jobcard->BZ4 ?>
+		<?php elseif( $y== 5): ?>
+			<?= $quote->jobcard->BZ5 ?>
+		<?php elseif( $y== 6): ?>
+			<?= $quote->jobcard->BZ6 ?>
+		<?php elseif( $y== 7): ?>
+			<?= $quote->jobcard->BZ7 ?>
+		<?php endif; ?>
+		</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInput($i-1,'barel_zone'.$y) ?></td>
+		<?php endfor; ?>
+
+
+	</tr>
+<?php endfor; ?>
+
+<tr>
+		<td style="background: #ccc" align="right"><b>Barel Zone Adaptor</b></td>
+		<td style="background: #ececec"><b><?= $quote->jobcard->ADAPTOR ?>
+		</b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInput($i-1,'barel_zone_adaptor') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+<tr>
+	<th>DIE TEMPERATURE</th>
+	<td colspan="13"></td>
+</tr>
+
+<?php for($y = 1; $y <= 24; $y++): ?>
+	<tr>
+		<td style="background: #ccc" align="right"><b>Die Zone <?= $y ?></b></td>
+		<td style="background: #ececec"><b>
+		<?php if( $y == 1): ?> <?= $quote->jobcard->DZ1 ?>
+			<?php elseif( $y== 2): ?> <?= $quote->jobcard->DZ2 ?>
+			<?php elseif( $y== 3): ?> <?= $quote->jobcard->DZ3 ?>
+			<?php elseif( $y== 4): ?> <?= $quote->jobcard->DZ4 ?>
+			<?php elseif( $y== 5): ?> <?= $quote->jobcard->DZ5 ?>
+			<?php elseif( $y== 6): ?> <?= $quote->jobcard->DZ6 ?>
+			<?php elseif( $y== 7): ?> <?= $quote->jobcard->DZ7 ?>
+			<?php elseif( $y== 8): ?><?= $quote->jobcard->DZ8 ?>
+			<?php elseif( $y== 9): ?> <?= $quote->jobcard->DZ9 ?>
+			<?php elseif( $y== 10): ?> <?= $quote->jobcard->DZ10 ?>
+			<?php elseif( $y== 11): ?> <?= $quote->jobcard->DZ11 ?>
+			<?php elseif( $y== 12): ?> <?= $quote->jobcard->DZ12 ?>
+			<?php elseif( $y== 13): ?> <?= $quote->jobcard->DZ13 ?>
+			<?php elseif( $y== 14): ?> <?= $quote->jobcard->DZ14 ?>
+			<?php elseif( $y== 15): ?> <?= $quote->jobcard->DZ15 ?>
+			<?php elseif( $y== 16): ?> <?= $quote->jobcard->DZ16 ?>
+			<?php elseif( $y== 17): ?> <?= $quote->jobcard->DZ17 ?>
+			<?php elseif( $y== 18): ?> <?= $quote->jobcard->DZ18 ?>
+			<?php elseif( $y== 19): ?> <?= $quote->jobcard->DZ19 ?>
+			<?php elseif( $y== 20): ?> <?= $quote->jobcard->DZ20 ?>
+			<?php elseif( $y== 21): ?> <?= $quote->jobcard->DZ21 ?>
+			<?php elseif( $y== 22): ?> <?= $quote->jobcard->DZ22 ?>
+			<?php elseif( $y== 23): ?> <?= $quote->jobcard->DZ23 ?>
+			<?php elseif( $y== 24): ?> <?= $quote->jobcard->DZ24 ?>
+		<?php endif; ?>
+		</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInput($i-1,'die_zone'.$y) ?></td>
+		<?php endfor; ?>
+
+
+<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #ccc"><b>MOTOR SPEED</b></td>
+	<td style="background: #ececec"><b><?= $quote->jobcard->screw_speed ?></b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInput($i-1,'motor_speed') ?></td>
+		<?php endfor; ?>
+
+</tr>
+<tr>
+	<td style="background: #ccc"><b>HAUL OFF SPEED</b></td>
+	<td style="background: #ececec"><b><?= $quote->jobcard->haull_of_speed ?></b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInput($i-1,'haul_off_speed') ?></td>
+		<?php endfor; ?>
+
+</tr>
+<tr>
+	<td style="background: #ccc"><b>MACHINE TORQUE</b></td>
+	<td style="background: #ececec"><b><?= $quote->jobcard->machine_torque ?></b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'machine_torque') ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+<tr>
+	<td style="background: #ccc"><b>VACUUM 1 READING</b></td>
+	<td style="background: #ececec"><b><?= $quote->jobcard->vacuum_pressure1 ?></b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'vacuum_1_reading') ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+<tr>
+	<td style="background: #ccc"><b>VACUUM 2 READING</b></td>
+	<td style="background: #ececec"><b><?= $quote->jobcard->vacuum_pressure2 ?></b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'vacuum_2_reading') ?></td>
+	<?php endfor; ?>
+
+</tr>
+<tr>
+	<td style="background: #ccc"><b>VACUUM 3 READING</b></td>
+	<td style="background: #ececec"><b><?= $quote->jobcard->vacuum_pressure3 ?></b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'vacuum_3_reading') ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: #fff"><b>WALL THICKNESS</b></td>
+	<td style="background: #fff"><b>N</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'wall_thikness_n') ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+<tr>
+	<td style="background: #fff"><b>MAX WALL / <?= $quote->maxwall ?></b></td>
+	<td style="background: #fff"><b>NE</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'max_wall_ne') ?></td>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #fff"><b></b></td>
+	<td style="background: #fff"><b>E</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'max_wall_e') ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+
+
+<tr>
+	<td style="background: #fff"><b></b></td>
+	<td style="background: #fff"><b>SE</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'max_wall_se') ?></td>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #fff"><b></b></td>
+	<td style="background: #fff"><b>S</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'max_wall_s') ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: #fff"><b></b></td>
+	<td style="background: #fff"><b>SW</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'max_wall_sw') ?></td>
+	<?php endfor; ?>
+
+</tr>
+<tr>
+	<td style="background: #fff"><b>MIN WALL / <?= $quote->minwall ?></b></td>
+	<td style="background: #fff"><b>W</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'min_wall_w') ?></td>
+	<?php endfor; ?>
+</tr>
+<tr>
+	<td style="background: #fff"><b></b></td>
+	<td style="background: #fff"><b>NW</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'min_wall_nw') ?></td>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #ccc"><b>AVR WALL</b></td>
+    <td style="background: #fcfcfc"><b><?= $quote->avrwall ?></b></td>
+    <?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'avr_wall', 'text') ?></td>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #ccc"><b>PIPE OD</b></td>
+	<td style="background: #fcfcfc"><b><?= $quote->pipeod ?></b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'pipe_od') ?></td>
+	<?php endfor; ?>
+</tr>
+
+
+<tr>
+	<td style="background: #ccc"><b>OVALITY</b></td>
+	<td style="background: #fcfcfc"><b><?= $quote->ovality ?></b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'ovality') ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2" colspan="2"><b>ACTUAL WEIGHT</b></td>
+
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'actual_weight') ?></td>
+	<?php endfor; ?>
+</tr>
+
+
+<tr>
+	<td style="background: #ccc" colspan="2" colspan="2"><b>ACTUAL LENGTH</b></td>
+
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'actual_lenght') ?></td>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2" colspan="2"><b>COLOUR</b></td>
+
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'colour','number',8) ?></td>
+	<?php endfor; ?>
+</tr>
+<tr>
+	<td style="background: #ccc" colspan="2"><b>OUTSIDE WORKMANSHIP</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'outside_workmanship','number',1) ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b>INSIDE WORKMANSHIP</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'inside_workmanship','number',1) ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b>PRINTER CLEAR</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'printer_clear','number',1) ?></td>
+	<?php endfor; ?>
+
+
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b>PRINTER CORRECT</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'printer_correct','number',1) ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b>END SQUIRE</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'end_squire','number',1) ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b>HOURLY PRODUCTION</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'hourly_production') ?></td>
+	<?php endfor; ?>
+</tr>
+<tr>
+
+	<td style="background: #ccc" colspan="2"><b>HOURLY SCRAP</b></td>
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'hourly_scrap') ?></td>
+	<?php endfor; ?>
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b> Reason For Scrap</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'reasonscrap_id','number',2) ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: yellow" colspan="20"></td>
+
+</tr>
+<tr>
+	<td style="background: #fff" colspan="20"><b>Material</b></td>
+
+</tr>
+
+<?php if(count($quote->controlmaterial) == 0 ): ?>
+<tr>
+	<td style="background: #fff" colspan="20" align="text-center">There are no materials assigned to this shift.</td>
+
+</tr>
+
+<?php endif; ?>
+
+<?php foreach($quote->controlmaterial as $m => $mat ): ?>
+<tr>
+	<td style="background: #fff"><b><?= $mat->material->productname->name ?></b></td>
+	<td style="background: #fff"><b><?= $mat->material->supplier_batch ?></b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInputMat($i-1,$mat) ?></td>
+	<?php endfor; ?>
+</tr>
+
+<?php endforeach; ?>
+<tr>
+	<td style="background: yellow" colspan="20"></td>
+
+</tr>
+    <tr>
+        <td style="background: #ccc" colspan="2"><b>Line Change</b></td>
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInput($i-1,'line_change_id','number',7) ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2"><b>Breakdown</b></td>
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInput($i-1,'breakdown_id','number',6) ?></td>
+        <?php endfor; ?>
+    </tr>
+<tr>
+	<td style="background: #ccc" colspan="2"><b>Delays</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'delay_id','number',3) ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: #ccc" colspan="2"><b>Delay Time in Minutes</b></td>
+
+	<?php for($i = 1; $i <= 12; $i++): ?>
+    	<td><?= $quote->getItemValueInput($i-1,'minutes_delay','number',4) ?></td>
+	<?php endfor; ?>
+
+</tr>
+
+<tr>
+	<td style="background: yellow" colspan="20"></td>
+
+</tr>
+
+
+</table>
+<table class="table">
+<tr>
+	<td style="background: #ccc" colspan="2"><b>TOTAL NUMBER OF PIPE</b></td>
+	<td colspan="2" class="text-center"><?= $quote->citem->sum('hourly_production') ?></td>
+	<td style="background: #ccc" colspan="3"><b>TOTAL WEIGHT OF MATERIAL</b></td>
+    <td colspan="2" class="text-center"> <?= $quote->citem->sum('actual_weight') ?> kg</td>
+	<td style="background: #ccc" colspan="3"><b>TOTAL WEIGHT OF SCRAP</b></td>
+	<td colspan="2" class="text-center"><?= $quote->citem->sum('hourly_scrap') ?> kg</td>
+</tr>
+<tr>
+	<td style="background: #ccc" colspan="2"><b>PRINTING:</b></td>
+	<td colspan="5"><?= $quote->jobcard->printing_requirments ?></td>
+	<td style="background: #ccc"><b>OR</b></td>
+	<td colspan="6"></td>
+
+
+</tr>
+
+</table>
+
+<div class="col-md-6" >
+    <h3 style="font-size: 15px; margin: 5px; padding: 5px"><b>Operator Signature:</b></h3>
+    <div class="text-center" style="border: 1px solid black">
+        <?php if(!isset($quote->operator_sign)):?>
+        <canvas id="op_sign" style="min-width:400px" height="300px" ></canvas>
+        <button onclick="oPSigned()" class="btn-primary"><h3>I confirm that I have signed as the Operator</h3></button>
+        <?php else: ?>
+        <img src="<?= $quote->operator_sign->getPath() ?>" alt="image">
+        <?php endif; ?>
+    </div>
+
+</div>
+
+<div class="col-md-6">
+    <h3 style="font-size: 15px; margin: 5px; padding: 5px"><b>QC Signature:</b></h3>
+    <div class="text-center" style="border: 1px solid black">
+        <?php if(!isset($quote->qc_sign)):?>
+        <canvas id="qc_sign" style="min-width:400px" height="300px" ></canvas>
+        <button onclick="QCSigned()" class="btn-primary"><h3>I confirm that I have signed as QC</h3></button>
+        <?php else: ?>
+        <img src="<?= $quote->qc_sign->getPath() ?>" alt="image">
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="col-md-6" >
+    <h3 style="font-size: 15px; margin: 5px; padding: 5px"><b>Supervisor Signature:</b></h3>
+    <div class="text-center" style="border: 1px solid black">
+        <?php if(!isset($quote->super_sign)):?>
+        <canvas id="super_sign" style="min-width:400px" height="300px"></canvas>
+        <button onclick="SuperSigned()" class="btn-primary" ><h3>I confirm that I have signed as the Supervisor</h3></button>
+        <?php else: ?>
+        <img src="<?= $quote->super_sign->getPath() ?>" alt="image">
+        <?php endif; ?>
+    </div>
+</div>
+
+<script>
+    ej.base.enableRipple = true;
+
+    var signature = new ej.inputs.Signature({}, '#op_sign');
+    var signature2 = new ej.inputs.Signature({}, '#qc_sign');
+    var signature3 = new ej.inputs.Signature({}, '#super_sign');
+</script>

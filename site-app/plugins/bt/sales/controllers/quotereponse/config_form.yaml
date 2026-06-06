@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Quote Reponse
+
+# Model Form Field configuration
+form: $/bt/sales/models/quotereponse/fields_all.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\QuoteReponse
+
+# Default redirect location
+defaultRedirect: bt/sales/quotereponse
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/quotereponse/update/:id
+    redirectClose: bt/sales/quotereponse
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/quotereponse
+    redirectClose: bt/sales/quotereponse
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

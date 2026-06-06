@@ -1,0 +1,26 @@
+
+<div class="row">
+    {% for item in questionnaire  %}
+    <div class="col-md-6">
+        <div class="card card-program" style="margin-bottom: 20px">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="q-icon">
+                            <img src="{{ 'assets/images/tzz.png'|theme }}"  >
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3>{{item.name}} </h3>
+                        <p class="card-text" >{{item.introduction|raw}}</p>
+                        <a class="btn btn-primary" href="/training/{{item.id}}" ><i class="fa fa-edit"></i> &nbsp;&nbsp;Start Program</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+</div>
+
+
+

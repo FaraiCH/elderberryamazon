@@ -1,0 +1,50 @@
+	<div class="row">
+		<?php foreach($list as $item): ?>
+			<div class="col-sm-12" style="margin-bottom: 20px;">
+				<div class="row">
+
+					<div class="col-sm-4">
+						<div style="position: relative;" class="control-tabs master callout fade in callout-success"  data-control="tab" data-closable>
+		                    <div class="header" style="padding: 10px 10px">
+		                        <i class="icon-history"></i>
+		                            <h3 style="font-size: 16px"><?= $item["name"] ?></h3>
+		                    </div>
+		                    <div class="content tab-content" style="padding: 0px" >
+		                    </div>
+
+		                    <div class="content tab-footer" style="padding: 0px 20px 20px 20px" >
+		                    	
+		                    	<?php
+									$per = $item["perc"];
+									if($per > 100)
+										$per = 100;
+								?>
+
+		                    	<div class="progress" style="border-radius: 3px;display: block; height: 15px !important; overflow: hidden !important; background: #ccc !important">
+								    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo number_format($per, 1); ?>" aria-valuemin="0" aria-valuemax="100" style="background: <?php echo ($per == 100?'green':''); ?>;width: <?php echo number_format($per, 0); ?>%;">
+								        <span style="display: block;padding-top: 4px; font-size: 10px; min-width: 100px !important;" >
+								        	
+								        	<?php echo number_format($item["totalweight"], 0); ?> kg / <?php echo number_format($per, 0); ?>%</span>
+								    </div>
+								</div>
+								<div style="text-align: center; font-weight: bold;">
+									Target <?php echo number_format($item["target"], 0); ?> KG
+								</div>
+
+		                    </div>
+
+		                </div>
+					</div>
+					<div class="col-sm-8"  style="background: #fff; height: 125px; overflow: auto;">
+						<table class="table">
+							<tr><th>Type</th><th>Quote</th><th>Client</th><th>Qty</th></tr>
+						<?php foreach($item["obj"] as $i): ?>
+								<tr><td width="20%"><?php echo  $i->getReasonIdOptionsSelect($i->reason_id);?></td><td width="5%"><?php echo  $i->quote->id;?></td><td width="50%"><?php echo  $i->quote->company_name;?></td><td width="5%"><?php echo  $i->units;?></td></tr>
+						<?php endforeach ?>
+						</table>
+					</div>
+
+				</div>
+			</div>
+		<?php endforeach ?>
+	</div>

@@ -1,0 +1,12 @@
+{% if sticker.is_scrap != 1 %}
+    {% set kg = (itemweight - standardweight) %}
+    {% if itemweight == standardweight %}
+        <p class="text text-success">This item is in spec</p>
+    {% else %}
+        {% if kg < 0 %}
+         <p class="text text-danger">Underweight by {{kg|number_format(2)|abs}} kg</p>
+        {% else %}
+            <p class="text text-danger">Overweight by {{kg|number_format(2)|abs}} kg</p>
+        {% endif %}
+    {% endif %}
+{% endif %}

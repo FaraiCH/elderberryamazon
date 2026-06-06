@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    category:
+        label: Category
+        span: auto
+        type: relation
+        slect: name
+        placeholder: --- Select ---
+    supplier:
+        label: Supplier
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: --- Select ---
+    name:
+        label: Product Name
+        disabled: false
+        span: auto
+    

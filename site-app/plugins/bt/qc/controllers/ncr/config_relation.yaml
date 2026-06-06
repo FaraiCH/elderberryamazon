@@ -1,0 +1,17 @@
+ncrapprove:
+    label: Approve BY
+    view:
+        form: $/bt/qc/models/ncrappprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/qc/models/ncrappprove/fields.yaml
+        list: $/bt/qc/models/ncrappprove/columns.yaml
+
+ncrpreppare:
+    label: Prepared By
+    view:
+        form: $/bt/qc/models/ncrpreppare/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/qc/models/ncrpreppare/fields.yaml
+        list: $/bt/qc/models/ncrpreppare/columns.yaml

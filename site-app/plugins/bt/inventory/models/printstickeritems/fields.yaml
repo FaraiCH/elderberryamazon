@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    material_id:
+        label: Material    
+        type: dropdown
+        options: listPipesitems
+        placeholder: -- select a Pipe --
+     
+    units:
+        label: Stickers To Print
+        type: number
+        span: left
+    weight:
+        label: Weight
+        type: number
+        span: right
+    # schedule_date:
+    #     label:  Date and Time    
+    #     type: datepicker
+    #     span: left
+    notes:
+        label: Notes
+        type: textarea
+        size: small

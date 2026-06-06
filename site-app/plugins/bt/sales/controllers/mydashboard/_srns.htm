@@ -1,0 +1,147 @@
+<div style="text-align: right">
+    <a href="/backend/sales/deliveries/export" class="btn btn-primary">
+        Export Delivery
+    </a>
+</div>
+<div class="control-list tablecolumnreeze" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-hover " style="width:100%">
+		<thead>
+			<tr>
+				<th><span>SRN Date</span></th>
+				<th><span>SRN REF</span></th>
+				<th><span>Quote #</span></th>
+				<th><span>PO #</span></th>
+                <th><span>Collection Notes</span></th>
+                <th><span>Delivery Notes</span></th>
+				<th><span>Sales Rep</span></th>
+				<th><span>Client</span></th>
+				<th><span>Weight (Pipe)</span></th>
+				<th><span>Accumulative Weight (Pipe)</span></th>
+				<th><span>Value (Pipe)</span></th>
+				<th><span>Catalogue Weight</span></th>
+				<th><span>Value (CAT)</span></th>
+				<th><span>Value To Invoice</span></th>
+				<th><span>Invoice #</span></th>
+				<th style="text-align: right;"><span>Amount</span></th>
+				<th style="text-align: right;"><span>Amount Def</span></th>
+				<th style="text-align: right;"><span><span class="icon-arrows-v"> </span> Total Amount</span></th>
+
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+					$amount = 0;
+                    $weight =0;
+					?>
+			<?php foreach($srns as $key => $item): ?>
+					<?php if(!empty($item->srninvoice)): ?>
+						<?php if(count($item->srninvoice) > 1): ?>
+							<tr>
+								<td colspan="100">&nbsp;</td>
+							</tr>
+						<?php endif; ?>
+						<?php foreach($item->srninvoice as $key_ => $item_i): ?>
+
+							<tr>
+							<td nowrap="nowrap"><?php
+								$date = date_create($item->schedule_date );
+								echo date_format($date, 'Y-m-d H:i:s');
+								?>
+							</td>
+							<td><a target="_blank" href="/srn/item/download/<?= $item->id?>.pdf"><?= $item->id ?></a></td>
+							<td><a target="_blank" href="/quote/item/download/<?= $item->quote_id?>.pdf"><?= $item->quote_id ?></a></td>
+							<td><?= $item->quote->ponumber ?></td>
+							<td><?= $item->files_collection->count() ?></td>
+							<td><?= $item->files_delivery->count() ?></td>
+							<td>
+								<?php if(isset($item->quote->user)): ?>
+									<span class="icon-user-circle"> <?= $item->quote->user->name . " " . $item->quote->user->surname?></span>
+								<?php endif; ?>
+							</td>
+
+							<td>
+								<?php if(isset($item->quote->client->company_name)): ?>
+								<?= $item->quote->client->company_name ?></span>
+								<?php endif; ?>
+							</td>
+							<td><?= $item->items->sum('stockweight')?> kg</td>
+                            <?php
+									$weight += $item->items->sum('stockweight');
+							?>
+							<td><?= $weight ?> kg</td>
+							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item->items->sum('stockvalue'),2, '.', ',') ?></td>
+							<td style="text-align: right" nowrap="nowrap"><?= number_format( $item->itemscat->sum('stockweight'),1, '.', ',') ?> kg</td>
+							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item->itemscat->sum('stockvalue'),2, '.', ',') ?></td>
+							<?php
+									$vatamount = ($item->items->sum('stockvalue') + $item->itemscat->sum('stockvalue'))+( ($item->items->sum('stockvalue') + $item->itemscat->sum('stockvalue') ) * 0.15);
+							?>
+							<td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R <?= number_format( $vatamount,2, '.', ',') ?></td>
+
+							<td><a target="_blank" href="/backend/bt/sales/invoice/preview/<?= $item->id?>"><?= $item_i->name ?></a></td>
+
+							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item_i->amount,2, '.', ',') ?></td>
+
+							<?php
+									$amount += $item_i->amount;
+									$amountdef = $item_i->amount - $vatamount ;
+							?>
+							<?php if($amountdef < -5 ): ?>
+								<td style="text-align: right; color: #fff; background-color: red;" nowrap="nowrap">R <?= number_format( $amountdef,2, '.', ',') ?></td>
+									<?php else: ?>
+
+									<?php if($amountdef > 100 ): ?>
+									<td style="text-align: right; color: #fff; background-color: orange;" nowrap="nowrap">R <?= number_format( $amountdef,2, '.', ',') ?></td>
+									<?php else: ?>
+										<td style="text-align: right" nowrap="nowrap">R <?= number_format( $amountdef,2, '.', ',') ?></td>
+									<?php endif; ?>
+								<?php endif; ?>
+
+							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $amount,2, '.', ',') ?></td>
+
+							</tr>
+						<?php endforeach ?>
+						<?php if(count($item->srninvoice) > 1): ?>
+							<tr>
+								<td colspan="100">&nbsp;</td>
+							</tr>
+						<?php endif; ?>
+					<?php else: ?>
+							<tr>
+							<td><?php
+								$date = date_create($item->schedule_date );
+								echo date_format($date, 'Y-m-d H:i:s');
+								?>
+							</td>
+							<td><a target="_blank" href="/srn/item/download/<?= $item->id?>.pdf"><?= $item->id ?></a></td>
+							<td>
+								<?php if(isset($item->quote->user)): ?>
+									<span class="icon-user-circle"> <?= $item->quote->user->name . " " . $item->quote->user->surname?></span>
+								<?php endif; ?>
+							</td>
+
+							<td>
+								<?php if(isset($item->quote->client->company_name)): ?>
+								<?= $item->quote->client->company_name ?></span>
+								<?php endif; ?>
+							</td>
+							<td><?= $item->items->sum('stockweight')?> kg</td>
+
+							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item->items->sum('stockvalue'),2, '.', ',') ?></td>
+							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item->itemscat->sum('stockvalue'),2, '.', ',') ?></td>
+							<?php
+									$vatamount = ($item->items->sum('stockvalue') + $item->itemscat->sum('stockvalue'))+( ($item->items->sum('stockvalue') + $item->itemscat->sum('stockvalue') ) * 0.15);
+							?>
+							<td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R <?= number_format( $vatamount,2, '.', ',') ?></td>>
+
+							<td><a target="_blank" href="/backend/bt/sales/invoice/preview/<?= $item->id?>"><?= $item_i->name ?></a></td>
+
+						<td colspan="4">Not Invoiced</td>
+					</tr>
+					<?php endif; ?>
+
+			 <?php endforeach ?>
+		</tbody>
+	</table>
+</div>

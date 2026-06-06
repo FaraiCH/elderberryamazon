@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 11px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px 20px 100px 20px; }
+html { margin:20px 20px 100px 20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 1%;
+    font-size: 1em;
+    color: #545554;
+    line-height: 1.3em;
+}
+
+.pagenumber::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.footer .left div{
+	float: left;
+	width: 50%
+}
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+            	<table border="0">
+            		<tr>
+            			<td valign="top" width="30%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                Doc: F-S-9.5.52<br>
+                Effective: 2020/05/08 Rev: 0<br>
+                Prepared By: K Maphai<br>
+                Approved By: K Lekola
+                </td>
+                <td valign="top" width="30%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005<br><br>E-mail: enquiries@bt-industrial.co.za</td>
+                <td width="30%" align="center">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+
+						</td>
+
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="50%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+						</td>
+						<td width="50%" style="text-align: center;">
+							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>Pick Slip #BT{{quote.id}}-{{pick.id}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+	</table>
+    {% if type %}
+    <div style="background: red; color: #fff; font-size: 20; padding: 20px; text-align: center; margin-bottom: 10px;">THIS IS FOR VIEW ONLY, DO NOT USE IN PROCESS!!!!!!</div>
+    {% endif %}
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>Customer</b></td></tr>
+								<tr><td width="50%"><b>To:</b></td><td width="50%">{{quote.billing_name}}</td></tr>
+								<tr><td width="50%"><b>Company/Personal Name:</b></td><td width="50%">{{quote.company_name}}</td></tr>
+								<tr><td width="50%"><b>Email:</b></td><td width="50%">{{quote.email}}</td></tr>
+								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
+								<tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
+								<tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
+								{% for item in quote.responses if item.quote_status_id == 3 %}
+									<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+				    			{% endfor %}
+								{% if quote.reg_number is not empty %}
+									<tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
+								{% endif %}
+								{% if quote.vat_number is not empty %}
+									<tr><td width="50%"><b>VAT Number:</b></td><td width="50%">{{quote.vat_number}}</td></tr>
+								{% endif %}
+
+							</table>
+						</td>
+						<td></td>
+						<td width="40%" valign="top" >
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">BT-IND-{{quote.id}}</td></tr>
+                                {% if assoc is not empty %}
+                                    <tr><td width="50%"><b>Associated Quotes:</b></td><td width="50%">{{assoc}}</td></tr>
+                                {% endif %}
+								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
+								<tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
+								<tr><td width="50%"></td><td width="50%">{{quote.user.email}}</td></tr>
+                                <tr><td width="50%"><b>SRN No:</b></td><td width="50%"></td></tr>
+                                <tr><td width="50%"><b>Date Created:</b></td><td width="50%">{{pick.created_at}}</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+	</table>
+
+
+				<table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+					<thead>
+						<tr>
+							<th  style="background: #ececec" >#</th>
+							<th  style="background: #ececec;vertical-align: bottom" class="text-center" >Description</th>
+                            <th   style="background: #ececec;vertical-align: bottom" class="text-center" >Batch</th>
+                            <th  style="background: #ececec" class="text-center">Units <br>Ordered</th>
+                            <th style="background: #ececec" class="text-center">Units <br>Delivered</th>
+                            <th  style="background: #ececec" class="text-center" >Units <br>To Deliver</th>
+							<th style="background: #ececec" class="text-center" >Units <br>Available</th>
+							<th style="background: #ececec" class="text-center" >Collected <br>Units</th>
+							<th style="background: #ececec" class="text-center" >Unit <br>Difference</th>
+
+						</tr>
+					</thead>
+                    <tbody>
+                    {% set counter = 0 %}
+                    {% for key, itemobject in quoteObj %}
+                    {% set counter = counter + 1 %}
+
+                        <tr>
+
+                            <td width="20px">{{counter}}</td>
+                            <td nowrap="" width="200px">{{quoteObj[key]['item']}}</td>
+                            <td width="50px" class="text-center">{{quoteObj[key]['batch']}}</td>
+                            <td width="50px" class="text-center">{{quoteObj[key]['order']}}</td>
+                            <td nowrap="" class="text-center">{{quoteObj[key]['delivered']}}</td>
+                            <td nowrap="" class="text-center">{{quoteObj[key]['todeliver']}}</td>
+                            {% if quoteObj[key]['associate'] is not empty %}
+                                <td nowrap="" class="text-center">{{quoteObj[key]['yard']}} + {{quoteObj[key]['associate']}}</td>
+                            {% else %}
+                                <td nowrap="" class="text-center">{{quoteObj[key]['yard']}}</td>
+                            {% endif %}
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    {% for itemobject in quote.itemscat %}
+                    {% set counter = counter + 1 %}
+                        <tr>
+                            <td width="20px">{{counter}}</td>
+                            <td nowrap="" width="200px">{{itemobject.description}}</td>
+                            <td></td>
+                            <td width="50px" class="text-center">{{itemobject.units}}</td>
+                            <td></td>
+                            <td nowrap="" class="text-center"></td>
+                            <td nowrap="" class="text-center"></td>
+                            <td nowrap="" class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+				</table>
+        <br>
+       <br>
+       <table>
+           <tr>
+               <td>
+                   <div style="border: 1px solid #ccc; padding: 10px;">
+                       <h4 style="font-size: 15px; margin: 0px; padding: 0px">Loading Supervisor:</h4>
+                       <br>
+                       <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                           <tr>
+                               <td>NAME:</td>
+                               <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                               <td>DATE:</td>
+                               <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                               <td>SIGNATURE:</td>
+                               <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                           </tr>
+                       </table>
+                   </div>
+               </td>
+           </tr>
+       </table>
+       <table>
+           <tr>
+               <td>
+                   <div style="border: 1px solid #ccc; padding: 10px;">
+                       <h4 style="font-size: 15px; margin: 0px; padding: 0px">Loading QC:</h4>
+                       <br>
+                       <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                           <tr>
+                               <td>NAME:</td>
+                               <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                               <td>DATE:</td>
+                               <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                               <td>SIGNATURE:</td>
+                               <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                           </tr>
+                       </table>
+                   </div>
+               </td>
+           </tr>
+       </table>
+
+
+	</body>
+	</html>

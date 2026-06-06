@@ -1,0 +1,33 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Shift Input
+
+# Model Form Field configuration
+form: $/bt/production/models/controlsheet/shiftfields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\ControlSheet
+
+
+
+# Default redirect location
+defaultRedirect: bt/qc/shiftinputs
+
+# Create page
+create:
+    title: Create Shift Input
+    redirect: bt/qc/shiftinputs/update/:id
+    redirectClose: bt/qc/shiftinputs
+
+# Update page
+update:
+    title: Edit Shift Input
+    redirect: bt/qc/shiftinputs
+    redirectClose: bt/qc/shiftinputs
+
+# Preview page
+preview:
+    title: Preview Shift Input

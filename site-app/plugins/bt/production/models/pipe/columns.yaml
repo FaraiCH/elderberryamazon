@@ -1,0 +1,72 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    active:
+        label: Active
+        type: partial
+        path: $/bt/production/models/pipe/_active.htm
+
+    batch:
+        label:  'Pipe Batch'
+    quoteitems:
+        label: Pipe Description
+        relation: quoteitems
+        select: description
+        searchable: true
+    quoteitemsid:
+        label: Quote Item ID
+        relation: quoteitems
+        select: id
+        searchable: true
+    qpush:
+        label: Date Started
+        relation: qpush
+        select: date_of_accepted
+        searchable: true
+
+    push_id:
+        label: Push/Production id
+        searchable: true
+        invisible: true
+
+    pipe_target_weight:
+        label: Pipe Target Weight
+        searchable: true
+        type: number
+        format: %.1f kg
+    btline:
+        label: BT Line
+        searchable: true
+        relation: btline
+        select: name
+
+    production_rate:
+        label: Production Rate
+        searchable: true
+        type: number
+        format: %.1f km/h
+    target_scrap_rate:
+        label: Target Scrap Rate %
+        searchable: true
+        type: number
+
+    target_availability:
+        label: Target Availability
+        searchable: true
+        type: number
+    changeover_days:
+        label: Change Over Days
+        searchable: true
+        type: number
+    start_date:
+        label: Start Date
+        searchable: true
+    due_date:
+        label: Due Date
+        searchable: true

@@ -1,0 +1,23 @@
+{% set pickslip = CmStickerLanding.pickslip %}
+{% if printpipe.qcstatus_id is not empty %}
+    {% if printpipe.pickslip.id is empty and printpipe.qcstatus_id != 2 %}
+        <div class="myform">
+            <form data-request-flash data-request="onPickSlip" data-request-confirm="Are you sure you want to add this pipe to the selected Pick Slip number?">
+                <div>
+                    <p><b>Logistics:</b> Add To Pick Slip</p>
+                    <select name="pickslip" id="pickslip"  class="input-sm select_search form-control form-size"   minlength="4">
+                        <option value="0">Select</option>
+                        {% for pick in pickslip %}
+                            <option {{printpipe.pickslip.id == pick.id?"selected":""}} value="{{pick.id}}">{{pick.id}} - Q#{{pick.quote.id}} > {{pick.quote.company_name}}</option>
+
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-width btn-block"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </form>
+        </div>
+
+    {% endif %}
+{% endif %}

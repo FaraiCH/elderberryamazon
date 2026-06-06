@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # citem:
+    #   path: $/bt/production/controllers/controlsheet/_shiftinputs.htm
+    #   tab: Approve By Management
+    #   type: partial
+    h1:
+      type: section
+      label: Upload Material Images
+    images_material:
+        label: Images
+        type: fileupload
+        tab: Collection Documents
+        comment: Upload  all related material images Before and after
+
+    h2:
+      type: section
+      label: Upload Delays and Breakdowns Images
+    images_delays:
+        label: Images
+        type: fileupload
+        tab: Collection Documents
+        comment: Upload  all related delays and breakdowns
+
+    h3:
+      type: section
+      label: Upload Faulty Product/Pipe Images 
+    images_product:
+        label: Images
+        type: fileupload
+        tab: Collection Documents
+        

@@ -1,0 +1,111 @@
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+
+            <div class="scoreboard" >
+                <div  class="row row-no-gutters">
+                    <div class="col-sm-3">
+                        <div class="scoreboard-item title-value ">
+                            <h4>SRN Number<b style="font-size: 16px; color: #6bc48d ;"></b></h4>
+                            <p class="oc-icon-star"> 
+                              #<?= e($formModel->id) ?>
+                            </p>
+                            <p class="description">
+                                <b>CreatedBy:</b> <?= $formModel->createdby->first_name. '  '.$formModel->createdby->last_name?>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="scoreboard-item title-value ">
+                            <h4>Schedule Date <b style="font-size: 16px; color: #6bc48d ;"># </b></h4>
+                            <p class="oc-icon-calendar-o"> 
+                                    <?= $formModel->schedule_date ?>
+                            </p>
+                            <p class="description">
+                                <b>Delivery Type:</b> <?= $formModel->type->name ?>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="scoreboard-item title-value ">
+                            <h4>Quote Number <b style="font-size: 16px; color: #6bc48d ;"></b></h4>
+                            <p class="oc-icon-dollar"> 
+                                    #<?= $formModel->quote->id ?>
+                            </p>
+                            <p class="description">
+                                <b>Sales Person:</b> <?= $formModel->quote->user->name. ' '.$formModel->quote->user->surname?>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="scoreboard-item title-value ">
+                            <h4>Pick Slip  <b style="font-size: 16px; color: #6bc48d ;"> </b></h4>
+                            <p class="oc-icon-star"> 
+                                 <?= $formModel->quote->company_name ?>
+                            </p>
+                             <p class="description">
+                               <b>Number:</b>  <?= $formModel->pickslip->id. '>'.$formModel->pickslip->quote_id ?>
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-browser-validate
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Schedule..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-browser-validate
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Schedule..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <!-- <?php if(!isset($formModel->logisticapprove)): ?>
+                            <button class="btn btn-primary pull-right" data-request="onSendRequestApprovalNotification" data-stripe-load-indicator data-request-flash>Request  Approval</button>
+                <?php endif; ?> -->
+                <!-- <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Schedule..."
+                    data-request-confirm="Delete this schedule?">
+                </button> -->
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/logistics/home/srn') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/logistics/stockrelease') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+<?php endif ?>

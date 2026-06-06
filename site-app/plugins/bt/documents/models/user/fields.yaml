@@ -1,0 +1,24 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+    email:
+        span: auto
+        type: email
+        label: backend::lang.user.email
+        disabled: true
+    first_name:
+        span: auto
+        label: backend::lang.user.first_name
+        disabled: true
+    last_name:
+        span: auto
+        label: backend::lang.user.last_name
+        disabled: true
+    pivot[user_rights]:
+        span: auto
+        type: switch
+        label: User Rights
+        on: Edit
+        off: Read

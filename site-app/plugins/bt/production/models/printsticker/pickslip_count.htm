@@ -1,0 +1,11 @@
+<?php
+    $total = 0;
+    if(!empty($record->pipestickeritem)) {
+        foreach($record->pipestickeritem as $pipestciker){
+            if(isset($pipestciker->pickslip->id)){
+                $total += 1;
+            }
+        }
+    }
+
+    echo $total;

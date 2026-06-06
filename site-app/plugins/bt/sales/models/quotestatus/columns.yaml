@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Status Name
+        disabled: false
+    action:
+        label: Action Name
+        disabled: false
+    emailgroup:
+      label: Email User Group
+      relation: emailgroup
+      searchable: true
+      select: name
+    candelete:
+        label: Can Delete?
+        type: switch

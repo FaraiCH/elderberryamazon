@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Scrappipe
+
+# Model Form Field configuration
+form: $/bt/floor/models/scrappipe/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\Scrappipe
+
+# Default redirect location
+defaultRedirect: bt/floor/scrappipe
+
+# Create page
+create:
+    title: Create Scrappipe
+    redirect: bt/floor/scrappipe/update/:id
+    redirectClose: bt/floor/scrappipe
+
+# Update page
+update:
+    title: Edit Scrappipe
+    redirect: bt/floor/scrappipe
+    redirectClose: bt/floor/scrappipe
+
+# Preview page
+preview:
+    title: Preview Scrappipe

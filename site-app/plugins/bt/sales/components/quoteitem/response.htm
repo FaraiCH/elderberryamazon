@@ -1,0 +1,169 @@
+	{% set btype = BTQuoteItem.loadStatus() %}
+		<div style=" padding: 10px;">
+  		<h2>Update Quote</h2>
+{% if quote.qpush is not empty and quote.qpush.comments%}
+  		<h3>Production Communication</h3>
+                                 <div style="border: 1px solid #ccc; padding: 20px; background: #fff; margin-bottom: 20px">{{quote.qpush.comments}}</div>
+{% endif %}
+  		<div id="responselist"> {% partial __SELF__ ~ '::responselist' response=quote.responses   %}</div>
+
+		<hr>
+
+		<form data-request="onSaveResponse" data-request-update="'{{__SELF__ ~ '::responselist'}}': '#responselist'"  data-request-files data-request-flash>
+
+			<div class="card">
+				<div class="card-header">
+					Update
+                    {% if quote.deliveryrequest > 0 %}
+                        {% if quote.quoteload is empty or quote.quoteapproval.status_id != 1 or quote.dispatch.sum('discount') %}
+                            <div class="alert alert-warning">
+                                {% if quote.dispatch.sum('discount') > 0 %}
+                                    <h4><i class="fa fa-warning"> This quote cannot be <b>Pushed to Production</b> because of the following reasons:</i></h4>
+                                {% else %}
+                                    <h4><i class="fa fa-tick"> You can safely push the quote to production without EXCO approval:</i></h4>
+                                {% endif %}
+                                <ul>
+                                    {% if quote.dispatch is empty %}
+                                        <li>This quote does not have a transport load. Please input the load for the quote in the backend on the <b>Quote Logistics Loads</b> tab inside the quote to fix the issue.</li>
+                                    {% endif %}
+                                    {% if quote.dispatch.sum('discount') > 0 %}
+                                        <li>There are delivery loads with discounts. Only EXCO can approve those.</li>
+                                        {% if quote.quoteapproval is empty or quote.quoteapproval.status_id != 1 %}
+                                            <li>This quote has not been approved by EXCO. Please click <b>Request Approval</b> in the backend when ready</li>
+                                        {% endif %}
+                                    {% endif %}
+
+                                </ul>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+				</div>
+				<div class="card-body">
+
+					<div class="row">
+					    <div class="col-sm-12" style="margin-bottom: 10px">
+							<span class="text-danger" data-validate-for="notes"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Quote Status:</span>
+							</div>
+							<select id="quote_status_id" required="required" name="quote_status_id" class="form-control input-sm" >
+						     		<option value=""></option>
+							  	 {% for obType in btype %}
+		                              {% set selected = '' %}
+		                              	{% set notfound = 0 %}
+		                              		{% for check in quote.responses %}
+		                               	 		{% if obType.id == check.quote_status_id %}
+		                               	 			{% set notfound = 1 %}
+		                               	 		{% endif %}
+		                               	 	{% endfor %}
+		                                {% if obType.id > 1 and notfound == 0 %}
+                                            {% if quote.dispatch.sum('discount') > 0 %}
+                                                {% if obType.id != 14 %}
+                                                    <option {{selected}} value="{{obType.id}}">#{{obType.id}} - {{obType.action}}</option>
+                                                {% endif %}
+                                            {% else %}
+                                                    <option {{selected}} value="{{obType.id}}">#{{obType.id}} - {{obType.action}}</option>
+                                            {% endif %}
+		                               	{% endif %}
+		                                {% set selected = '' %}
+		                            {% endfor %}
+								 </select>
+
+							</div>
+
+						</div>
+
+						 <div class="col-sm-12 fhide" style="margin-bottom: 10px; display: none;" id="deliveryamount_holder" >
+							<span class="text-danger" data-validate-for="deliveryamount"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Delivery Amount:</span>
+							</div>
+
+							<input
+							name="deliveryamount"
+							type="number"
+							class="form-control mt-0 counttext"
+							id="deliveryamount" />
+							</div>
+
+						</div>
+
+
+						<div class="col-sm-12 fhide" style="margin-bottom: 10px; display: none;" id="amountdiscount_holder" >
+							<span class="text-danger" data-validate-for="amountdiscount"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Discount %:</span>
+							</div>
+							<select id="amountdiscount_perc" name="amountdiscount_perc" class="form-control mt-0 counttext">
+								<option value="">Select</option>
+								{% for i in 1..25 %}
+									    <option value=" {{ i }}"> {{ i }}%</option>
+									{% endfor %}
+							</select>
+							</div>
+
+						</div>
+
+					    <div class="col-sm-12 fhide" style="margin-bottom: 10px; display: none;" id="amountpaid_holder" >
+							<span class="text-danger" data-validate-for="amountpaid"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Amount Paid:</span>
+							</div>
+
+							<input
+							name="amountpaid"
+							type="number"
+							class="form-control mt-0 counttext"
+							id="amountpaid" />
+							</div>
+
+						</div>
+
+						<div class="col-sm-12 fhide" style="margin-bottom: 10px; display: none;" id="supporting_file_holder">
+							<span class="text-danger" data-validate-for="notes"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Upload Supporting File:</span>
+							</div>
+
+							<input
+
+							type="file" name="file_input"
+							class="form-control mt-0 counttext"
+							id="supporting_file" />
+							</div>
+
+						</div>
+
+						<div class="col-sm-12">
+							<span class="text-danger" data-validate-for="notes"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Message</span>
+							</div>
+
+							<textarea
+							name="notes"
+							type="text"
+							class="form-control mt-0 counttext"
+							id="preview_text" ></textarea>
+							</div>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary btn-block mt-0 " data-attach-loading>Submit</button>
+				</div>
+			</div>
+
+        </form>
+	</div>

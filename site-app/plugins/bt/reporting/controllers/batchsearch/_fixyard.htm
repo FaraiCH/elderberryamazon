@@ -1,0 +1,28 @@
+<div style="text-align: center" class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Fix Stock Number</h4>
+        <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label style="display: block" for="pipe_id">ID: </label>
+            <input readonly style="display: block; max-width: 100%" id="pipe_id" value="<?= $pipe_id ?>" name="pipe_id" type="text" class="form-control" >
+        </div>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label style="display: block" for="pipe_name">Item: </label>
+            <input readonly style="display: block; max-width: 100%" id="pipe_name" value="<?= $pipe_name ?>" name="pipe_name" type="text" class="form-control" >
+        </div>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label style="display: block" for="ava">Old Quantity: </label>
+            <input  readonly style="display: block; max-width: 100%" id="ava" value="<?= $amount ?>" name="ava" type="text" class="form-control" >
+        </div>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label style="display: block" for="amount">New Quantity: </label>
+            <input style="display: block; max-width: 100%" id="amount" value="<?= $amount ?>" name="amount" type="text" class="form-control" >
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-stripe-load-indicator data-attach-loading class="btn btn-primary" data-request="onUpdateFix" data-dismiss="modal">Fix Stock</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+        <?= Form::close()?>
+    </div>
+</div>

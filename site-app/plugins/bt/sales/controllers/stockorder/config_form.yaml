@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Available Order Notification
+
+# Model Form Field configuration
+form: $/bt/sales/models/stockorder/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\StockOrder
+
+# Default redirect location
+defaultRedirect: bt/sales/stockorder
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/stockorder/update/:id
+    redirectClose: bt/sales/stockorder
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/stockorder
+    redirectClose: bt/sales/stockorder
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

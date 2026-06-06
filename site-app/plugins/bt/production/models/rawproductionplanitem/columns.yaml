@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    receiving:
+        label: Raw Material Name
+        type: partial
+        path: $/bt/production/models/rawproductionplanitem/partials/recieving.htm
+    weighted_percentage:
+        label: Weighted %
+        type: partial
+        path: $/bt/production/models/rawproductionplanitem/partials/weighted_percentage.htm
+    materialcost:
+        label: Material Cost (R/kg)
+        type: partial
+        path: $/bt/production/models/rawproductionplanitem/partials/material_cost.htm
+    weight_kg:
+        label: Weight Assigned (Kg)
+        type: partial
+        path: $/bt/production/models/rawproductionplanitem/partials/assigned_weight.htm
+    assignedcost:
+        label:  Assigned Cost (ZAR)
+        type: partial
+        path: $/bt/production/models/rawproductionplanitem/partials/assigned_cost.htm

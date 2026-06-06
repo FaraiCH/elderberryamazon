@@ -1,0 +1,23 @@
+1.0.1: 
+- First version of JSEData
+- create_companies_table.php
+- create_industries_table.php
+- create_data_mines_table.php
+- create_properties_table.php
+- create_query_types_table.php
+- create_share_datas_table.php
+1.0.2: 
+- First version of JSEData udte
+- create_share_data_a_v_gs_table.php
+- create_share_data_closings_table.php
+- seeder_updateproduction.php
+- seeder_years.php
+- seeder_closing.php
+- seeder_fiscal.php
+1.0.3: 
+- First version of JSEData udte
+- create_inflations_table.php
+
+1.0.4:
+- New upload
+- seeder_closing.php

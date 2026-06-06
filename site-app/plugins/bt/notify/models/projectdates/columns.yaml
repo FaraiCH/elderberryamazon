@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+   
+
+    project:
+        label: Project
+        relation: project
+        select: name
+
+    projectdate:
+        label: Deadline Date
+    title:
+        label: Title of Project
+    
+    status:
+        label: Active
+        type: switch

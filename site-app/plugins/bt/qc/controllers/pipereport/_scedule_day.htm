@@ -1,0 +1,17 @@
+
+<?php if(isset($record)): ?>
+	
+	<?php if(isset($record) && isset($record->scheduleday)): ?>
+		<a href="/backend/bt/production/push/update/<?= $record->scheduleday->pipe->qpush->id ?>" target="_blank">
+			<span class="list-badge badge-info">
+                        <i class="icon-info"></i>
+                    </span> <?= $record->scheduleday->pipe->qpush->quote->company_name ?>
+			
+			
+
+
+		</a>
+	<?php endif; ?>
+<?php endif; ?>
+
+

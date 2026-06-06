@@ -1,0 +1,246 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    btline:
+      label: Production Line
+      select: name
+      type: relation
+      span: auto
+      placeholder: -- select a Production Line --
+
+    plan:
+        label: Select Production Plan
+        span: auto
+        type: dropdown
+        dependsOn: btline
+        placeholder: Please Select Plan
+    planitem:
+        label: Select pipe to run under selected plan
+        span: auto
+        type: dropdown
+        placeholder: Please Select Plan Item
+        dependsOn: plan
+    raw_plan:
+        label: Raw Production Plan
+        span: auto
+        type: dropdown
+        placeholder: -- Choose Raw Production Plan --
+        dependsOn: btline
+    shift:
+      label: Shift
+      span: auto
+      type: dropdown
+      placeholder: -- select a shift --
+      options:
+          DAY: DAY
+          NIGHT: NIGHT
+
+    batch@update:
+      label: Batch
+      type: dropdown
+      dependsOn: jobcard_id
+      span: auto
+    batch@create:
+      label: Batch
+      select: concat('Jobcard-',jobcard_id,'-',id)
+      type: dropdown
+      dependsOn: jobcard_id
+      span: auto
+      placeholder: -- select a batch --
+
+    # target_num_pipes:
+    #   label: Target of Pipes To Produce
+    #   type: Number
+    #   span: auto
+    opendate:
+      label: Open Date and Time
+      type: datepicker
+      span: auto
+      ignoreTimezone: true
+    assignedto:
+      label: Operator Name
+      select: name
+      type: relation
+      span: auto
+      placeholder: -- select a Operator --
+
+
+    active:
+        label: Is Active
+        type: switch
+        span: auto
+        off: No
+        on: Yes
+
+tabs:
+  fields:
+
+    standardweight@update:
+      label: Standard Weight
+      span: auto
+      # comment: Pull from quote/Automate - weight
+      tab: Run Setup
+
+    mass@update:
+      label: Mass/Meter
+      span: auto
+      # comment: Pull from quote/Automate - totalweight
+      tab: Run Setup
+
+    pipesize@update:
+      label: Pipe Size
+      span: auto
+      #comment: product > diameters > 16 + mm
+      tab: Run Setup
+    pipelenght@update:
+      label: Pipe Lenght
+      span: auto
+      #comment: Pull from quote/Automate - unitlnght
+      tab: Run Setup
+    rawmaterialpe:
+      label: Rawmaterial PE
+      span: auto
+      default: PE 100
+      tab: Run Setup
+
+
+
+    maxwall@update:
+      label: Max Wall
+      span: auto
+      tab: Run Setup
+    minwall@update:
+      label: Min Wall
+      span: auto
+      tab: Run Setup
+    avrwall@update:
+      label: Avr Wall
+      span: auto
+      tab: Run Setup
+    pipeod@update:
+      label: Pipe OD
+      span: auto
+      tab: Run Setup
+    ovality@update:
+      label: ovality
+      span: auto
+      tab: Run Setup
+    # shift:
+    #   label: Shift
+    #   span: auto
+    docnumber:
+      label: Document Number
+      span: auto
+      default: F-FROD-12.0.8
+      tab: Run Setup
+
+    file@update:
+      label: Attach Documents
+      type: fileupload
+      tab: Control Sheet
+      mode: file
+    actual_ovality:
+      label: Actual ovality
+      span: storm
+      tab: Control Sheet
+      cssClass: col-md-3
+    ov_comply:
+        label: Ovality Comply
+        type: dropdown
+        span: storm
+        tab: Control Sheet
+        cssClass: col-md-3
+        options:
+            0: No
+            1: Yes
+            2: Exceeded Spec
+    actual_avrwall:
+      label: Actual Avr Wall
+      span: storm
+      cssClass: col-md-3
+      tab: Control Sheet
+    wt_comply:
+        label: Wall Thickness Comply
+        type: dropdown
+        span: storm
+        tab: Control Sheet
+        cssClass: col-md-3
+        options:
+            0: No
+            1: Yes
+            2: Exceeded Spec
+    actual_pipeod:
+      label: Actual Pipe OD
+      span: storm
+      cssClass: col-md-3
+      tab: Control Sheet
+    od_comply:
+        label: Pipe Diameter Comply
+        type: dropdown
+        span: storm
+        tab: Control Sheet
+        cssClass: col-md-3
+        options:
+            0: No
+            1: Yes
+            2: Exceeded Spec
+
+    ponumber:
+        label: PO Number
+        tab: Control Sheet
+        span: storm
+        cssClass: col-md-3
+    total_weight:
+        label: Lab Weight
+        tab: Control Sheet
+        type: number
+        span: storm
+        cssClass: col-md-3
+    # raw_material_cost:
+    #     label: Raw Mix Cost
+    #     tab: Quote Performance
+    #     type: inputcurrency
+    #     span: storm
+    #     cssClass: col-md-3
+    # purge_cost:
+    #     label: Purge cost
+    #     tab: Quote Performance
+    #     type: inputcurrency
+    #     span: storm
+    #     cssClass: col-md-3
+    # purge_weight:
+    #     label: Purge Weight
+    #     tab: Quote Performance
+    #     type: number
+    #     span: storm
+    #     cssClass: col-md-3
+    # lab_sample_weight:
+    #     label: Lab Sample Weight
+    #     tab: Quote Performance
+    #     type: number
+    #     span: storm
+    #     cssClass: col-md-3
+
+    fileinspection@update:
+      label: Attach Documents
+      type: fileupload
+      tab: Upload Inspection Release Note
+      mode: file
+
+    fileqcp@update:
+      label: Attach Documents
+      type: fileupload
+      tab: QCP
+      mode: file
+
+    fileinspectionreport@update:
+      label: Attach Documents
+      type: fileupload
+      tab: Inspection Report
+      mode: file
+
+
+

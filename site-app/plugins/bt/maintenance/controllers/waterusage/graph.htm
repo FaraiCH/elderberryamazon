@@ -1,0 +1,153 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/sheq/covidscreens') ?>">Covid</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<?= $this->makePartial('filterform',['startdate' => $startdate,'enddate' => $enddate]) ?>
+
+<div class="callout fade in callout-info ">
+
+    <div class="content">
+
+        <div class="card" style="margin-top: 20px">
+            <div id="chart_kg" style="height: 450px;"></div>
+
+            <div style="padding: 10px">
+
+                <table class="table" style="width: 100%;border-collapse:collapse; font-size: 13px; border: 1px solid #ccc; border-color: #ccc" cellspacing="0px" cellpadding="2px"  border="1">
+                    <thead>
+
+                    <tr>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Date</th>
+
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Production Meter</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Cooling Meter</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Admin Meter</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    <?php
+                foreach ($schedules as $key => $i) {
+                    echo '<tr>';
+
+                        $date = date_create($i->readingdate);
+                        echo '<td nowrap="nowrap">'.date_format($date,'Y-m-d').'</td>';
+                        $color= "#ccc";
+                        if($i->pro_meter > 7 && $i->pro_meter < 21)
+                        $color= "#93e893";
+
+                        if($i->pro_meter < 8)
+                        $color= "yellow";
+
+
+                        if($i->pro_meter > 20)
+                        $color= "blue";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->pro_meter.'</td>';
+
+                        $color= "#ccc";
+                        if($i->cooling_meter > 26 && $i->cooling_meter < 41)
+                        $color= "#93e893";
+
+                        if($i->cooling_meter < 25)
+                        $color= "yellow";
+
+                        if($i->cooling_meter > 40)
+                        $color= "red";
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->cooling_meter.'</td>';
+
+                        $color= "#ccc";
+                        if($i->admin_meter > 0 && $i->admin_meter < 9)
+                        $color = "yellow";
+                        if($i->admin_meter > 10)
+                        $color= "yellow";
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->admin_meter.'</td>';
+                        echo '<tr>';
+                        }
+                        ?>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+
+
+
+
+        Highcharts.chart('chart_kg', {
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Water Usage Meter Graph'
+            },
+
+            subtitle: {
+
+                text: 'Normal and Accumulative'
+            },
+
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+
+                    text: 'Readings'
+
+                },
+                plotLines: [
+
+                ]
+            },
+
+            series: <?= json_encode($stats) ?> ,
+
+            plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+    });
+</script>

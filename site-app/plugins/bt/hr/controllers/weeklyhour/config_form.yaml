@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Weeklyhour
+
+# Model Form Field configuration
+form: $/bt/hr/models/weeklyhour/fields.yaml
+
+# Model Class name
+modelClass: Bt\Hr\Models\Weeklyhour
+
+# Default redirect location
+defaultRedirect: bt/hr/weeklyhour
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/hr/weeklyhour/update/:id
+    redirectClose: bt/hr/weeklyhour
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/hr/weeklyhour
+    redirectClose: bt/hr/weeklyhour
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

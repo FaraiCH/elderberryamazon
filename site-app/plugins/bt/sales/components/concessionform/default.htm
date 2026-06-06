@@ -1,0 +1,64 @@
+{% set form = CmConcessionForm.concession %}
+{% set invaliduser = CmConcessionForm.invalidmessage %}
+
+{% if invaliduser is empty %}
+    {% if form.id is not empty %}
+
+<div class="container" style="width: 900px; margin: 0px auto; min-height: 300px; ">
+    <table width="100%" border="0" cellpadding="0px" cellspacing="0">
+	    <tr>
+	        <td style="background: #ececec" >
+
+	            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+	                <tr>
+	                    <td width="40%">
+	                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+	                    </td>
+	                    <td width="60%" style="text-align: center;">
+	                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+	                        <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+	                       <h2>Non-SABS Pipes Form #BT{{form.id}}</h2>
+	                    </td>
+	                </tr>
+	            </table>
+	        </td>
+	    </tr>
+	    <tr><td><br></td></tr>
+	</table>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+	    <td width="47%" valign="top">
+	        <table width="100%" border="0" cellpadding="2px" cellspacing="0">
+
+	            <tr><td width="40%"><b>Customer:</b></td><td width="60%">{{form.company_name}}</td></tr>
+	            <tr><td width="40%"><b>Date:</b></td><td width="60%">{{form.created_at|date("Y-m-d")}}</td></tr>
+	            <tr><td valign="top" width="40%"><b>Quote Number:</b></td><td width="60%">{{form.id}}</td></tr>
+	        </table>
+	    </td>
+	</table>
+	<br><br>
+	<p>I, {{form.company_name}}, acknowledge and understand that I am purchasing out of spec pipes from BT Industrial at a discounted rate.
+	By signing this form, I release and discharge BT Industrial, its officers, agents, employees, and affiliates from any liability, claims, demands, actions, or causes of action arising out of or related to the use installation.</p>
+	<p>I agree to indemnify and hold harmless BT Industrial PTY from any claims, losses, damages, liabilities, expenses, and costs (including legal fees) that may arise.</p>
+	<p>I have read this concession form and understand its contents.</p>
+
+	<br><br>
+	<table>
+    <br>
+    {% if form.accept_date is empty %}
+        <button id="accept-btn" class="btn btn-primary" data-request="onSave">Accept Non-SABS Concession</button>
+    {% else %}
+        <h5 class="text text-success">You have already accepted the Non-SABS Concession</h5>
+    {% endif %}
+</div>
+
+
+    {% endif %}
+{% else %}
+    <div class="container" style="text-align: center ">
+        <img width="20%" src="https://bailaerp.bt-industrial.co.za/storage/app/media/Icons/Sad-Face-Emoji.png" alt="">
+        <h5 class="card-title">OOPS! Seems like you're on the wrong page! Please go back or use the link send to you in your email to find your place!</h5>
+    </div>
+{% endif %}
+

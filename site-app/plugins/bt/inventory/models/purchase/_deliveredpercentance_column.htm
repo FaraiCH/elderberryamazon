@@ -1,0 +1,6 @@
+<?php if($record->weight != 0): ?>
+
+<?= number_format(($record->receiving->sum("weight")/$record->weight) * 100) ?>  %
+<?php else: ?>
+    0%
+<?php endif ?>

@@ -1,0 +1,132 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        invisible: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    priceperpipe:
+        label: Price Per Pipe
+        invisible: false
+        type: number
+        format: R %.2f
+
+
+    pipe_id:
+        label: Pipe
+        searchable: true
+        invisible: true
+    production_days:
+        label: Day
+        searchable: true
+
+        format:  Day %.0f
+    production_date:
+        label: Prod. Date
+        searchable: true
+    scheduled:
+        label: scheduled
+        type: partial
+        path: $/bt/production/models/schedule/_scheduled.htm
+    is_stock:
+        label: From Stock Taking?
+        type: partial
+        path: $/bt/production/models/schedule/_stock.htm
+
+    controlsheet_id:
+        label: Controlsheet ID
+        type: number
+        relation: controlsheet
+        select: concat(id, ' ', shift)
+
+
+    assignedto:
+        label: Operator Name
+        relation: assignedto
+        select: name
+    shiftno:
+        label: Shift No
+        type: number
+
+    target_kg_processed:
+        label: Target KG #Processed
+        searchable: true
+        type: number
+        format: %.1f kg
+    target_units_produced:
+        label: Target Qty # Produced
+        searchable: true
+        type: number
+        format:  %.0f Pipes
+    total_kg_processed:
+        label: KG Processed
+        searchable: true
+        type: number
+        format: %.1f kg
+    total_units_produced:
+        label: Qty Produced
+        searchable: true
+    total_units_passed_qc:
+        label: Passed QC
+        searchable: true
+    extra:
+        label: Extra Pipes
+    weight_scrap_kg:
+        label: Scrap
+        searchable: true
+        type: number
+        format: %.1f kg
+    # scrapcode:
+    #     label: Scrap Code
+    #     select: concat(code, ' > ', reason)
+    #     relation: scrapcode
+
+    over_weight_kg:
+        label: Over Weight
+        searchable: true
+        type: number
+        format: %.1f kg
+    reason_deviation_processed:
+        label: Reason Deviation Processed
+        searchable: true
+        invisible: true
+    reason_qc_Fail:
+        label: Reason QC Fail
+        searchable: true
+        invisible: true
+    reason_overweight:
+        label: Reason Over Weight
+        searchable: true
+        invisible: true
+    recovery_plan:
+        label: Recovery Plan
+        searchable: true
+        invisible: true
+    material_used:
+        label: Material Used
+        searchable: true
+        invisible: true
+    batch_numbers:
+        label: Batch Numbers
+        searchable: true
+        invisible: true
+    running_hours:
+        label: Running Hours
+        searchable: true
+        invisible: true
+    maintenance:
+        label: Maintenance
+        searchable: true
+        invisible: true

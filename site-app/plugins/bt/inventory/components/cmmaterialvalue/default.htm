@@ -1,0 +1,98 @@
+{% set listentry = CmMaterialValue.loadList() %}
+{% if listentry is not empty  %}
+	{% set total = 0 %}
+
+		<div style="width: 100%; overflow: auto;">
+
+		<table class="table table-striped table-bordered tabledownload" id="tabledownload">
+				<thead>
+					<tr>
+						
+						<th>#</th>
+						<th>Purchase Date</th>
+						<th>Approved</th>
+						<th>Supplier</th>
+						<th>Transport Cost</th>
+						<th>VAT</th>		
+						<th>Purchace Price</th>
+						<th>Purchace Weight</th>
+						<th>Recieved Weight</th>
+						<th>Recieved Prices</th>
+						<th>Weight Notes</th>
+						<th>Price Notes</th>
+
+						{% set total_price = 0 %}
+						{% set total_weight = 0 %}
+						{% set total_r_weight = 0 %}
+						{% set total_r_price = 0 %}
+						
+						
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in listentry %}	
+			        	{% set total_u_price = 0 %}
+						{% for rl in itemobject.receiving %}
+							{% set total_u_price = total_u_price + (rl.pricekg * rl.weight) %}
+						{% endfor %}
+
+			        	<tr class="{{(itemobject.weight != itemobject.receiving.sum('weight'))? 'text-danger':''}}">
+			        		
+			        		<td>{{itemobject.id}}</td>
+			        		<td>{{itemobject.date_of_puchase|date("m/d/Y")}}</td>
+			        		<td>{{(itemobject.approved.status_id)?"Yes":"No"}}</td>
+			        		<td>{{itemobject.supplier.name}}</td>
+			        		
+			        		<td align="right" nowrap="nowrap">R {{itemobject.transportcost|number_format(2, '.', ',')}}</td>
+			        		<td align="right" nowrap="nowrap">R {{itemobject.vat|number_format(2, '.', ',')}}</td>
+
+			        		<td align="right" nowrap="nowrap">R {{itemobject.price|number_format(2, '.', ',')}}</td>
+			        		
+			        		
+			        		<td align="right" nowrap="nowrap">{{itemobject.weight}} kg</td>
+			        		<td align="right" nowrap="nowrap">{{itemobject.receiving.sum("weight")}} kg</td>
+			        		
+			        		<td align="right" nowrap="nowrap">R {{total_u_price|number_format(2, '.', ',')}}</td>
+			        		<td>{{(itemobject.weight != itemobject.receiving.sum("weight"))? 'Weights Dont Match':''}}</td>
+			        		<td>{{(total_u_price != itemobject.price)? 'Pricing Dont Match':''}}</td>
+
+
+			              	
+			             </tr>
+
+			             {% set total_price = total_price + itemobject.price %}
+						{% set total_weight = total_weight + itemobject.weight %}
+						{% set total_r_weight = total_r_weight+ itemobject.receiving.sum("weight") %}
+						{% set total_r_price = total_r_price + total_u_price %}
+			            
+			        {% endfor %} 
+		        </tbody>
+		      <tfoot>
+						<tr>
+							<td align="left" colspan="6"><b>TOTAL</b></td>
+							<td align="right" nowrap="nowrap"><b>R {{total_price|number_format(2, '.', ',')}}</b></td>
+							<td align="right" nowrap="nowrap"><b>{{total_weight|number_format(1, '.', ',')}} KG</b></td>
+							<td align="right" nowrap="nowrap"><b>{{total_r_weight|number_format(1, '.', ',')}} KG</b></td>
+							<td align="right" nowrap="nowrap"><b>R {{total_r_price|number_format(2, '.', ',')}} KG</b></td>
+							<td></td>
+							<td></td>
+							
+							
+					      	
+					     </tr>
+					
+				</tfoot>
+	        
+    </table>
+</div>
+	
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

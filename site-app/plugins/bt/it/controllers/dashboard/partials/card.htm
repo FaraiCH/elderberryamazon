@@ -1,0 +1,29 @@
+<div class="card removable editable">
+                    
+    <div class="card-header">
+        <div class="card-title"><?= $job['name'] ?> #<?= $job['id'] ?></div>
+    </div>
+    
+    <div class="card-description">
+        <?= str_replace(['<p>', '</p>', '<span lang="EN-GB">', '</span>'], ['', '', '', ''], $job['description']) ?>
+    </div>
+
+    <?php if($job['expected_date']): ?>
+        <div class="card-deadline-date">
+            <?= $job['expected_date'] ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="card-footer">
+        <div class="card-complete-percentage">
+            <?= $job['complet_percentage'] ?>/100%
+        </div>
+
+        <?php if($job['assignedto']): ?>
+        <div class="card-assigned-to">
+            <?= $job['assignedto']['name'][0] ?><?= $job['assignedto']['surname'][0] ?>
+        </div>
+        <?php endif; ?>
+    </div>
+    
+</div>

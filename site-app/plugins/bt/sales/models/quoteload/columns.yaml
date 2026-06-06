@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    
+    vehicle:
+        label: Vehicle Type
+        relation: vehicle_type
+        select: name
+        span: auto
+    unit:
+        label: Units / Number of Vehicles
+    vihicle_load_weight:
+        label: Intended Load Weight
+    vehicle_load_min_lenth:
+        label: Vehicle Min Length
+    vehicle_load_max_length:
+        label: Vehicle Max Length
+    unit_price:
+        label: Vehicle Unit Price
+    danages_required:
+        label: Danages Required?
+        type: switch
+        on: Yes
+        off: No
+        span: auto

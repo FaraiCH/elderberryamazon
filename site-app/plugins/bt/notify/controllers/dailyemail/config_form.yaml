@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Daily Email
+
+# Model Form Field configuration
+form: $/bt/notify/models/dailyemail/fields.yaml
+
+# Model Class name
+modelClass: Bt\Notify\Models\DailyEmail
+
+# Default redirect location
+defaultRedirect: bt/notify/dailyemail
+
+# Create page
+create:
+    title: Create Daily Email
+    redirect: bt/notify/dailyemail/update/:id
+    redirectClose: bt/notify/dailyemail
+
+# Update page
+update:
+    title: Edit Daily Email
+    redirect: bt/notify/dailyemail
+    redirectClose: bt/notify/dailyemail
+
+# Preview page
+preview:
+    title: Preview Daily Email

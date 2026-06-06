@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    pipe_id:
+        label: Produced/Associated/BT Account Item
+        type: dropdown
+        options: listQuoteitems
+        comment: Pipes list above shows matching pipe class and length with the Item In Quote
+        placeholder: -- select a Pipe --
+        dependsOn: quoteitem_id
+    units:
+        label: Units
+        type: dropdown
+        dependsOn: pipe_id
+        placeholder: -- select a Units --
+        comment: Units MAX will be automated from the "Pipe Item" selected
+    description:
+        label: Alt Description
+        comment: Overwright PIPE description to be shown on the PDF
+    unitdescription:
+        label: Alt Unit Description (IE - 3 Per Bundle)
+        comment: Inculde additional unit description to be shown on the PDF (IE - 3 Per Bundle)

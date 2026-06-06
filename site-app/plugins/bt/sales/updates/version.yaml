@@ -1,0 +1,209 @@
+1.0.1:
+- First version of Sales
+- create_action_to_groups_table.php
+- seeder_actiontoproduct.php
+
+- create_quote_statuses_table.php
+- seeder_quote_status.php
+
+- create_diameters_table.php
+- create_newqoutes_table.php
+- create_p_n_ratings_table.php
+- create_price_per_kgs_table.php
+- create_products_table.php
+- create_quoteitems_table.php
+- create_unitlengths_table.php
+- create_quote_reponses_table.php
+- create_quote_emails_table.php
+- create_email_statuses_table.php
+
+
+- seeder_diameters.php
+- seeder_PNRatings.php
+- seeder_UnitLength.php
+- seeder_priceperkg.php
+- seeder_product.php
+- seeder_email_status.php
+
+- create_catalogues_table.php
+- seeder_catalugue.php
+- create_quote_item_catalogues_table.php
+- create_srn_items_table.php
+- create_srns_table.php
+- create_clients_table.php
+- create_reason_for_quotes_table.php
+- create_received_non_receiveds_table.php
+- seeder_reason.php
+- seeder_received_non_received.php
+- create_invoices_table.php
+1.0.2:
+- Refresh JS
+- create_srn_catalogues_table.php
+1.0.3:
+- Refresh JS
+1.0.4:
+- Delivery Plans
+- create_delivery_plans_table.php
+- create_delivery_types_table.php
+- seeder_delivery_type.php
+1.0.5:
+- Delivery Plans
+- create_suppliers_table.php
+1.0.6:
+- Delivery Plans
+- create_client_accounts_table.php
+1.0.7:
+- Supplier Stock
+- create_supplier_stocks_table.php
+- create_catalougue_to_stock_table.php
+1.0.8:
+- Update Js
+- Update Sales
+1.0.9:
+- Run Product Updare
+- seeder_updateproduction.php
+2.0.1:
+- Update Traker
+- create_payment_trackers_table.php
+2.0.2:
+- Update SRN Approve
+- create_srnapproves_table.php
+2.0.3:
+- Add new Return note
+- create_return_notes_table.php
+2.0.4:
+- Add category for catalogues
+- create_categories_table.php
+
+2.1.1:
+- Update delete status
+- create_delivery_items_table.php
+- create_quote_production_plans_table.php
+
+2.1.2:
+- Update Product
+2.1.3:
+- Update Delivery Catalogue
+- create_deliverycatalogues_table.php
+2.1.4:
+- Update Delivery Catalogue
+2.1.5:
+- Update Client
+2.1.6:
+- Update client
+- create_catergories_table.php
+2.1.7:
+- Update Purchases
+- create_purchases_table.php
+- create_client_categories_table.php
+2.1.8:
+- Update SRNS
+- create_client_category_targets_table.php
+2.1.9:
+- Update Catalogue
+2.1.10:
+- Create Destination
+- create_transport_fees_table.php
+- create_transport_rates_destinations_table.php
+2.1.11:
+- Update Quote Catalogue
+2.1.12:
+- Create Goods
+- create_goods_returns_table.php
+- create_reason_for_returns_table.php
+2.1.13:
+- Create Pipe Request
+- create_piperequests_table.php
+- create_piperapproves_table.php
+2.1.14:
+- Create Discount
+- create_discount_items_table.php
+2.1.15:
+- Update Delivery Schedule
+2.1.16:
+- Update SRN Catalogue
+- create_request_unapprove_srns_table.php
+2.1.17:
+- Update New Quote
+
+2.1.18:
+- Update SRN
+- create_logisticsignatures_table.php
+- create_clientsignatures_table.php
+2.1.19:
+- Update SRN Item
+- seeder_update_srnitems.php
+2.1.20:
+- Update Client
+2.1.21:
+- Update Pick Slips
+- create_fabrications_table.php
+- create_fabrication_items_table.php
+- create_fabapproves_table.php
+- create_pickslips_table.php
+- create_pickslip_items_table.php
+- create_pickslip_catalogues_table.php
+2.1.22:
+- Add Finance to Client
+2.1.23:
+- Update Pick Slip
+
+3.1.0:
+- Create SRN Payment
+  - create_srn_payments_table.php
+3.1.1:
+- Update New Quote
+3.1.2:
+- Create Trip Sheet
+- create_trip_sheets_table.php
+3.1.3:
+- Update SRN
+3.1.4:
+- Create Dispatch Items
+- create_dispatch_items_table.php
+- create_transport_types_table.php
+3.1.5:
+- Update Transport Fees
+
+3.1.6:
+- Update Product
+
+3.1.7:
+- create stock order ready tables
+- create_stock_orders_table.php
+- create_stockoderitems_table.php
+- create_stockoderitemcatalogues_table.php
+3.1.8:
+- Update SRN table
+3.1.9:
+- update stock orders table
+3.1.10:
+- update quote accept table
+- create_quote_accepts_table.php
+3.1.14:
+- Update Quote Function
+- create_quote_loads_table.php
+3.1.15:
+- Update Quote Approval
+- create_quote_approvals_table.php
+3.1.16:
+- Update Quote Approval
+- create_quote_approval_intros_table.php
+- create_quote_approval_activity_logs_table.php
+
+3.1.17:
+- Update Dispatch Item
+
+3.1.18:
+- Update Transport Fees
+
+3.1.19:
+- Update Quote Items Catalogue
+- UpdateQuoteItemCatalogue.php
+
+3.1.20:
+- Update New Quote
+
+3.1.21:
+- Update Catalogue
+

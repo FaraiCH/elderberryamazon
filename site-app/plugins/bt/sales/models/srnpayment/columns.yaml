@@ -1,0 +1,35 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    invoice_date:
+        label: Invoice Date
+    logistic_company_name:
+        label: Logistics Company Name
+    supplier_amount:
+        label: Supplier Amount
+    logistic_invoice_number:
+        label: Logistics Invoiced Number
+    bt_customer_name:
+        label: Customer Name
+    area:
+        label: Area
+    reason:
+        label: Reason
+    bt_delivery_charged:
+        label: Delivery Charged
+    srn:
+        label: SRN No
+        select: id
+        relation: srn
+    r_per_kg:
+        label: Rand Per KG
+    delivery_weight:
+        label: Delivery Weight
+    invoiced_value_inc_vat:
+        label: Invoice Value Inc Vat
+

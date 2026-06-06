@@ -1,0 +1,14 @@
+<td><?= $sticker->sticker_id . "-" . $sticker->counter ?></td>
+<td><?= $sticker->unit_length . "m " ?></td>
+<td><?= $sticker->weight ?></td>
+<?php if($sticker->is_scrap > 0): ?>
+<td>Yes</td>
+<?php else: ?>
+<td>No</td>
+<?php endif; ?>
+<?php if(!empty($sticker->qcstatus)): ?>
+<td><?= $sticker->qcstatus->name ?></td>
+<?php else: ?>
+<td>None</td>
+<?php endif; ?>
+<td><button class="btn btn-info" data-request="onEditList" data-request-data="{sticker_id: <?= $sticker->sticker_id ?>, counter: <?= $sticker->counter ?>, stickerCount: <?= $stickerCount ?>}" type="submit">Edit</button></td>

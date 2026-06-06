@@ -1,0 +1,112 @@
+<h3 style="text-align: center; margin-top: -10px;">SRN # <?= $formModel->id ?></h3>
+
+<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+    
+    <tr>
+    	<th  >DATE:</th>
+        <td   class="border" nowrap="nowrap"><?= $formModel->opendate ?></td> 
+        <th >CLIENT:</th><td class="border"><?= $formModel->quote->company_name ?></td>
+
+        
+    </tr>
+    
+</table>
+
+<?php $maxactual = 12; ?>
+<?php $quote = $formModel; ?>
+<?php $totalweight = 0; ?>
+
+<div class="row">
+	<div class="col-sm-4">
+		<h3 style="background: #ccc; padding:5px; font-size: 16px; border-radius: 4px;">1: Register Truck</h3>
+		<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+			<tr>
+				<th width="25%"><span>Logistics Company</span></th>
+				<td>
+					<div class="p-1">
+						<input  data-id="<?= $formModel->id ?>" data-mat_id="'.$mat_id.'" id="logistics_company" value="<?= $formModel->plate_number ?>" name="plate_number" type="text" placeholder="" class="form-control input-md mx-1">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th width="25%"><span>Truck Type</span></th>
+				<td>
+					<div class="p-1">
+						<input  data-id="<?= $formModel->id ?>" data-mat_id="'.$mat_id.'" id="plate_number" value="<?= $formModel->plate_number ?>" name="plate_number" type="text" placeholder="" class="form-control input-md mx-1">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th width="25%"><span>Registration Number</span></th>
+				<td>
+					<div class="p-1">
+						<input  data-id="<?= $formModel->id ?>" data-mat_id="'.$mat_id.'" id="plate_number" value="<?= $formModel->plate_number ?>" name="plate_number" type="text" placeholder="" class="form-control input-md mx-1">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th width="25%"><span>Arrival Time</span></th>
+				<td>
+					<div class="p-1">
+						<input  data-id="<?= $formModel->id ?>" data-mat_id="'.$mat_id.'" id="vehicle_arrival" value="<?= $formModel->vehicle_arrival ?>" name="vehicle_arrival" type="text" placeholder="YYYY-MM-DD h:m" class="datetimepicker form-control input-md mx-1">
+					</div>
+				</td>
+			</tr>
+			
+
+		</table>
+	</div>
+
+	<div class="col-sm-4">
+		<h3 style="background: #ccc; padding:5px; font-size: 16px; border-radius: 4px;">2: Load Truck</h3>
+		<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+			<tr>
+				<th width="25%"><span>Load Start Time</span></th>
+				<td>
+		    		<div class="p-1">
+		    			<input   data-id="<?= $formModel->id ?>" id="vehicle_load_start" value="<?= $formModel->vehicle_load_start ?>" name="vehicle_load_start" type="text" placeholder="YYYY-MM-DD h:m" class="datetimepicker form-control input-md mx-1">
+		    		</div>
+		    	</td>
+			</tr>
+			<tr>
+				<th width="25%"><span>Load End Time</span></th>
+				<td>
+		    		<div class="p-1">
+		    			<input   data-id="<?= $formModel->id ?>" id="vehicle_load_end" value="<?= $formModel->vehicle_load_end ?>" name="vehicle_load_end" type="text" placeholder="YYYY-MM-DD h:m" class="datetimepicker form-control input-md mx-1">
+		    		</div>
+		    	</td>
+			</tr>
+			
+
+		</table>
+	</div>
+
+	<div class="col-sm-4">
+		<h3 style="background: #ccc; padding:5px; font-size: 16px; border-radius: 4px;">2: Finish</h3>
+		<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+			<tr>
+				<th width="25%"><span>Weight Bridge in KG</span></th>
+				<td>
+		    		<div class="p-1">
+		    			<input   data-id="<?= $formModel->id ?>" id="weight_bridge" value="<?= $formModel->weight_bridge ?>" name="weight_bridge" type="number" placeholder="YYYY-MM-DD h:m" class="datetimepicker form-control input-md mx-1">
+		    		</div>
+		    	</td>
+			</tr>
+			<tr>
+				<th width="25%"><span>Truck Departure Time</span></th>
+				<td>
+		    		<div class="p-1">
+		    			<input   data-id="<?= $formModel->id ?>" id="vehicle_departure" value="<?= $formModel->vehicle_departure ?>" name="vehicle_departure" type="text" placeholder="YYYY-MM-DD h:m" class="datetimepicker form-control input-md mx-1">
+		    		</div>
+		    	</td>
+			</tr>
+		
+
+		</table>
+	</div>
+
+</div>
+
+
+
+ <?= $this->relationRender('items') ?>

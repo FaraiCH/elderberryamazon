@@ -1,0 +1,18 @@
+usage:
+    label: Usage
+    manage:
+        form: $/bt/maintenance/models/toolsusage/fields.yaml
+        list: $/bt/maintenance/models/toolsusage/columns.yaml
+    view:
+        list: $/bt/maintenance/models/toolsusage/columns.yaml
+        toolbarButtons: create
+
+checklist:
+    label: Check List
+    manage:
+        form: $/bt/maintenance/models/toolschecklist/fields.yaml
+        list: $/bt/maintenance/models/toolschecklist/columns.yaml
+    view:
+        list: $/bt/maintenance/models/toolschecklist/columns.yaml
+        toolbarButtons: create
+        

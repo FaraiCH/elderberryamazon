@@ -1,0 +1,40 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    vehicle_type:
+        label: Vehicle Type
+        type: relation
+        select: name
+        span: auto
+    unit:
+        label: Units / Number of Vehicles
+        type: number
+        span: auto
+    vihicle_load_weight:
+        label: Intended Load Weight in KG
+        type: number
+        span: auto
+
+    vehicle_load_min_lenth:
+        label: Vehicle Min Length
+        type: number
+        span: auto
+    vehicle_load_max_length:
+        label: Vehicle Max Length
+        type: number
+        span: auto
+    unit_price:
+        label: Vehicle Unit Price
+        type: number
+        span: auto
+    danages_required:
+        label: Danages Required?
+        type: switch
+        on: Yes
+        off: No
+        span: auto

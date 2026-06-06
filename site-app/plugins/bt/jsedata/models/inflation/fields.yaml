@@ -1,0 +1,16 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    i_year:
+        label: i_year
+
+    i_jan:
+        label: i_jan
+
+    i_feb:
+        label: i_feb

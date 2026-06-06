@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Staff
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/staff/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Staff
+
+# Default redirect location
+defaultRedirect: bt/maintenance/staff
+
+# Create page
+create:
+    title: Create Staff
+    redirect: bt/maintenance/staff/update/:id
+    redirectClose: bt/maintenance/staff
+
+# Update page
+update:
+    title: Edit Staff
+    redirect: bt/maintenance/staff
+    redirectClose: bt/maintenance/staff
+
+# Preview page
+preview:
+    title: Preview Staff

@@ -1,0 +1,31 @@
+<?= Form::open(['class' => 'layout']) ?>
+<div class="form-group col-md-3"  style="padding-top: 5px">
+    <label style="display: block" for="machine">Meters : </label>
+    <select data-track-input data-request="onMachine" id="machine" name="machine" style="width: 200px; display: block" class="form-control custom-select">
+        <option value="0" >Please Select A Meter</option>
+        <?php foreach($meter_baila as $baila) :?>
+            <option value="<?= $baila->id ?>" ><?= $baila->name ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
+<div style="padding-top: 10px" class="col-md-9">
+    <p>1. Make sure that you have selected the machine you want to import for. Otherwise, the function will not import</p>
+    <p>2. Press <em>Auto match columns</em> to match the columns with the rows. As of now, kvarh- and kwh- are ignored</p>
+</div>
+
+    <div class="layout-row">
+        <?= $this->importRender() ?>
+    </div>
+
+    <div class="form-buttons">
+        <button
+            type="submit"
+            data-control="popup"
+            data-handler="onImportLoadForm"
+            data-keyboard="false"
+            class="btn btn-primary">
+            Import Meters
+        </button>
+    </div>
+
+<?= Form::close() ?>

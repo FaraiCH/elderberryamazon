@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Client Category
+
+# Model Form Field configuration
+form: $/bt/sales/models/clientcategory/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\ClientCategory
+
+# Default redirect location
+defaultRedirect: bt/sales/clientcategory
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/clientcategory/update/:id
+    redirectClose: bt/sales/clientcategory
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/clientcategory
+    redirectClose: bt/sales/clientcategory
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

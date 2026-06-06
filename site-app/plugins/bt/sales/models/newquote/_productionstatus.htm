@@ -1,0 +1,31 @@
+<?php if(isset($record->qpush) && $record->qpush): ?>
+
+	<?php if(isset($record->qpush->status) &&  $record->qpush->status): ?>
+		<a class="btn btn-primary" style="width: 100%" href="/backend/bt/production/push/update/<?php echo $record->qpush->id; ?>">
+		<?php if($record->qpush->status->id == 1): ?>
+			<span class="oc-icon-exclamation-circle ">
+			    <?php echo $record->qpush->status->name; ?>
+			</span>
+		<?php elseif($record->qpush->status->id == 2): ?>
+			<span class="oc-icon-coffee">
+			    <?php echo $record->qpush->status->name; ?>
+			</span>
+		<?php elseif($record->qpush->status->id == 3): ?>
+			<span class="oc-icon-star">
+			    <?php echo $record->qpush->status->name; ?>
+			</span>
+		<?php elseif($record->qpush->status->id == 4): ?>
+			<span class="oc-icon-exclamation-circle ">
+			    <?php echo $record->qpush->status->name; ?>
+			</span>
+		<?php else: ?>
+			<span class="oc-icon-circle ">
+			<?php echo $record->qpush->status->name; ?>
+			</span>
+		<?php endif; ?>
+		 / <?php echo $record->qpush->id; ?>
+	</a>
+	<?php endif; ?>
+<?php endif; ?>
+
+

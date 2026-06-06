@@ -1,0 +1,142 @@
+<table>
+    <thead>
+    <tr>
+        <th colspan="10"></th>
+        <th colspan="3" style="font-size: 16px">Machine & Speed</th>
+    </tr>
+    <tr>
+        <th>Quote</th>
+        <th>Client</th>
+        <th>Pipe Size</th>
+        <th>OD</th>
+        <th>PN</th>
+        <th>Unit Length</th>
+        <th>Units</th>
+        <th>Price Per Pipe</th>
+        <th>Rand Per KG</th>
+        <th>Unit Weight</th>
+        <th>Tonnage (KG)</th>
+        <th>Tonnage Price</th>
+        <th>Due Date</th>
+        <th>Planned Invoicing</th>
+        <th>Planned GP @35%</th>
+        <th>Baila 1 Estimated Runtime (H)</th>
+        <th>Baila 3 Estimated Runtime (H)</th>
+        <th>Baila 4 Estimated Runtime (H)</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set tonnage = 0 %}
+
+    {% set firstday = 0 %}
+    {% set secondday = 0 %}
+    {% set thirdday = 0 %}
+    {% set fourthday = 0 %}
+    {% for mainobject in obj %}
+    {% set counter = 0 %}
+    {% for subobject in mainobject.planitems %}
+
+    <tr>
+        {% if counter == 0 %}
+        <td>{{subobject.quote.id}}</td>
+        <td>{{subobject.quote.company_name}}</td>
+        {% else %}
+        <td></td>
+        <td></td>
+        {% endif %}
+        <td>{{subobject.item.product.Diameter.name}}</td>
+        <td>{{subobject.item.product.od_min}}</td>
+        <td>{{subobject.item.product.PNRating.name}}</td>
+
+        <td>{{subobject.item.unitlength}}</td>
+        <td>{{subobject.qty}}</td>
+        <td>{{subobject.unit_price}}</td>
+        <td>{{subobject.priceperkg}}</td>
+        <td>{{subobject.item.weight|number_format(1)}}</td>
+        {% set mykg = 0 %}
+
+        {% set mykg = mykg + subobject.item.weight * subobject.qty %}
+
+        {% set tonnage = tonnage + mykg %}
+        {% set tonnageprice = subobject.priceperkg * mykg %}
+        <td>
+            {{mykg|number_format(1)}}
+        </td>
+        <td>
+            {{tonnageprice}}
+        </td>
+        {% if counter == 0 %}
+        <td>{{mainobject.enddate|date('d F')}}</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+        {% if mainobject.line_id == 2 %}
+        <td>
+            {% set man = mykg/600 %}
+            {{man|number_format(1)}}
+            {% set firstday = firstday + man %}
+        </td>
+        {% else %}
+        <td>
+
+
+
+        </td>
+        {% endif %}
+
+        {% if mainobject.line_id == 3 %}
+        <td>
+            {% set man = mykg/350 %}
+            {{man|number_format(1)}}
+            {% set thirdday = thirdday + man %}
+        </td>
+        {% else %}
+        <td>
+
+        </td>
+        {% endif %}
+        {% if mainobject.line_id == 4 %}
+        <td>
+            {% set man = mykg/220 %}
+            {{man|number_format(1)}}
+            {% set fourthday = fourthday + man %}
+        </td>
+        {% else %}
+        <td>
+
+
+
+        </td>
+        {% endif %}
+    </tr>
+    {% set counter = counter + 1 %}
+    {% endfor %}
+    {% set counter = 0 %}
+    {% endfor %}
+
+    <tr aria-rowspan="2">
+        <td> Total Tonnage(kg)</td>
+        <td colspan="7"><b></b></td>
+        <td><b>{{tonnage|number_format(1)}}</b></td>
+        <td colspan="4"></td>
+    </tr>
+    <tr>
+        <td> Total Production Hours</td>
+        <td colspan="10"></td>
+
+        <td>{{firstday|number_format(1)}}</td>
+
+        <td>{{thirdday|number_format(1)}}</td>
+        <td>{{fourthday|number_format(1)}}</td>
+    </tr>
+    <tr>
+        <td> Production Days</td>
+        <td colspan="10"></td>
+
+        <td>{{(firstday/24)|number_format(1)}}</td>
+
+        <td>{{(thirdday/24)|number_format(1)}}</td>
+        <td>{{(fourthday/24)|number_format(1)}}</td>
+    </tr>
+    </tbody>
+</table>

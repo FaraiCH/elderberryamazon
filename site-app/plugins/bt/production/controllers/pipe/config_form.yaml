@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Pipe
+
+# Model Form Field configuration
+form: $/bt/production/models/pipe/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Pipe
+
+# Default redirect location
+defaultRedirect: bt/production/pipe
+
+# Create page
+create:
+    title: Create Pipe
+    redirect: bt/production/pipe/update/:id
+    redirectClose: bt/production/pipe
+
+# Update page
+update:
+    title: Edit Pipe
+    redirect: bt/production/pipe
+    redirectClose: bt/production/pipe
+
+# Preview page
+preview:
+    title: Preview Pipe

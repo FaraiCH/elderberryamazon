@@ -1,0 +1,364 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    production_date:
+        label: Production Date
+        disabled: false
+        type: datepicker
+        cssClass: noezanclass col-sm-12
+        span: storm
+    # projectname:
+    #     type: partial
+    #     path: $/bt/production/models/schedule/_projectname_column.htm
+    # id:
+    #     label: Schedule ID
+    #     disabled: true
+    #     cssClass: noezanclass col-sm-6
+
+
+    # priceperpipe:
+    #     label: Price Per Pipe
+    #     disabled: true
+    #     span: row
+    #     cssClass: col-sm-6
+
+    # materialvalue:
+    #     label: Material Value
+    #     span: row
+    #     disabled: true
+    #     cssClass: col-sm-6
+
+    # production_costperkg:
+    #     label: Production Cost Per kg
+    #     span: row
+    #     disabled: true
+    #     cssClass: col-sm-6
+
+    # total_cost_schedule:
+    #     label: Total Cost Schedule
+    #     disabled: true
+    #     span: row
+    #     cssClass: col-sm-6
+
+    # unitprice:
+    #     label: Unit Price
+    #     span: row
+    #     disabled: true
+    #     cssClass: col-sm-6
+
+    # total_scrap_cost:
+    #     label: Total Scrap Cost
+    #     span: row
+    #     disabled: true
+    #     cssClass: col-sm-6
+
+    assignedto:
+        label: Operator Name
+        select: name
+        type: relation
+        cssClass: noezanclass col-sm-6
+        span: storm
+        placeholder: -- select a Operator --
+
+    shiftno:
+        label: Shift No
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: dropdown
+        placeholder: -- select a shift --
+        options:
+            1: 1st
+            2: 2nd
+            3: 3rd
+            4: 4th
+            5: other
+    production_days:
+            label: Production Day
+            disabled: false
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+
+    target_kg_processed:
+        label: Target KG Processed
+        disabled: false
+        tab: Target
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: number
+    target_units_produced:
+        label: Target Units Produced
+        disabled: false
+        tab: Target
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: number
+
+    is_stock:
+        label: Is Stock Taking?
+        type: switch
+        span: auto
+        on: Yes
+        off: No
+
+tabs:
+    fields:
+
+        controlsheet@update:
+            label: Control Sheet
+            #select: concat('BT-CS-',id)
+            type: dropdown
+            cssClass: noezanclass col-sm-6
+            span: storm
+            placeholder: -- select a Control Sheet --
+            tab: Control Sheet
+
+
+
+
+        total_kg_processed:
+            label: Total KG Processed
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+        total_units_produced:
+            label: Total Units Produced
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+            dependsOn:
+        total_units_passed_qc:
+            label: Total Units Passed QC
+            disabled: false
+            tab: Processed
+            commentHtml: Yes
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+
+
+        onhold:
+            label: Total Units Onhold(IN Qc)
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+
+        reason_onhold:
+            label: Reason For Onhold
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+
+        weight_scrap_kg:
+            label: Weight Scrap KG
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+
+        reason_scrap:
+            label: Reason For Scrap
+            disabled: true
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+        raw_material_cost:
+            label: Raw Mix Cost
+            tab: Processed
+            type: inputcurrency
+            span: storm
+            cssClass: noezanclass col-sm-6
+        purge_cost:
+            label: Purge cost
+            tab: Processed
+            type: inputcurrency
+            span: storm
+            cssClass: noezanclass col-sm-6
+        purge_weight:
+            label: Purge Weight
+            tab: Processed
+            type: number
+            span: storm
+            cssClass: noezanclass col-sm-6
+        lab_sample_weight:
+            label: Lab Sample Weight
+            tab: Processed
+            type: number
+            span: storm
+            cssClass: noezanclass col-sm-6
+        overrun_weight:
+            label: Over Run Weight
+            tab: Processed
+            type: number
+            span: storm
+            cssClass: noezanclass col-sm-6
+
+        over_weight_kg:
+            label: Over Weight KG
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+
+        reason_overweight:
+            label: Reason Over Weight
+            disabled: false
+            tab: Processed
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: dropdown
+            placeholder: -- select --
+            attributes:
+                data-tags: true
+
+        scrapcode@update:
+            path: $/bt/production/controllers/schedule/_scrapcodes.htm
+            tab: Processed
+            type: partial
+
+
+
+        reason_deviation_processed:
+            label: Reason Deviation Processed
+            disabled: false
+            tab: Deviation
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: dropdown
+            placeholder: -- select --
+            attributes:
+                data-tags: true
+
+        reason_qc_Fail:
+            label: Reason QC Fail
+            disabled: false
+            tab: Deviation
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: dropdown
+            placeholder: -- select --
+            attributes:
+                data-tags: true
+
+
+        recovery_plan:
+            label: Recovery Plan
+            disabled: false
+            tab: Deviation
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: dropdown
+            placeholder: -- select --
+            attributes:
+                data-tags: true
+
+        material_used:
+            label: Material Used
+            disabled: false
+            tab: Material
+            cssClass: noezanclass col-sm-6
+            span: storm
+
+        batch_numbers:
+            label: Batch Numbers
+            disabled: false
+            tab: Material
+            cssClass: noezanclass col-sm-6
+            span: storm
+
+        running_hours:
+            label: Running Hours
+            disabled: false
+            tab: Deviation
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: number
+            step: 1  # defaults to 'any'
+            min: 1   # defaults to not present
+            max: 100 # defaults to not present
+        maintenance:
+            label: Maintenance
+            disabled: false
+            tab: Deviation
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: dropdown
+            placeholder: -- select --
+            attributes:
+                data-tags: true
+        scheduled:
+            label: Scheduled
+            disabled: false
+            tab: Scheduled
+            type: switch
+
+            # type: dropdown
+            # options:
+            #     1: Yes
+            #     0: No
+        whyonhold:
+            label: Why On Hold
+            disabled: false
+            tab: Scheduled
+            type: dropdown
+            placeholder: -- select --
+            attributes:
+                data-tags: true
+        btaccount@update:
+            path: $/bt/production/models/schedule/_btaccount.htm
+            tab: BT Account
+            type: partial
+
+        # extrapipe:
+        #     tab: BT Account
+        #     type: datatable
+        #     adding: true
+        #     deleting: true
+        #     columns:
+        #         lenght:
+        #             type: dropdown
+        #             title: PipeLenght
+        #         numberpipes:
+        #             type: string
+        #             title: Number Of Pipe
+        #             validation:
+        #                 integer:
+        #                     message: Please enter a number
+        #         reason_extra:
+        #             type: string
+        #             title: Reason For Extra
+
+        #     recordsPerPage: false
+        #     searching: false
+
+        # extra:
+        #     label: Total Units Extra
+        #     disabled: false
+        #     tab: BT Account
+        #     cssClass: noezanclass col-sm-6
+        #     span: storm
+        #     type: number
+        #     comment: Old Field, to be removed
+
+        # reason_extra:
+        #     label: Reason For Extra
+        #     disabled: false
+        #     tab: BT Account
+        #     cssClass: noezanclass col-sm-6
+        #     span: storm
+        #     type: dropdown
+        #     placeholder: -- select --
+        #     attributes:
+        #         data-tags: true
+        #     comment: Old Field, to be removed

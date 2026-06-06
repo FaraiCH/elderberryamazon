@@ -1,0 +1,25 @@
+<?php namespace Bt\Floor\Controllers;
+
+use BackendMenu;
+use Backend\Classes\Controller;
+
+/**
+ * Stockname Back-end Controller
+ */
+class Stockname extends Controller
+{
+    public $implement = [
+        'Backend.Behaviors.FormController',
+        'Backend.Behaviors.ListController'
+    ];
+
+    public $formConfig = 'config_form.yaml';
+    public $listConfig = 'config_list.yaml';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        BackendMenu::setContext('Bt.Floor', 'floor', 'stockname');
+    }
+}

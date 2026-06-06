@@ -1,0 +1,88 @@
+{% if CmSchedule.dtimer == 0 %}
+<div class="card text-center" style="margin-bottom: 20px">
+    <div class="card-header">
+        <h2>No Upcoming Maintenance</h2>
+    </div>
+</div>
+{% endif %}
+
+
+{% if CmSchedule.isdashboard == 'No' %}
+	{% partial __SELF__ ~ '::filterform'%}
+
+	{% set response = CmSchedule.listquote %}
+		{% set total = 0 %}
+			<table class="table table-sm table-striped table-bordered" id="tabledownload" >
+					<thead>
+						<tr>
+								<th >#</th>
+								<th >Plant Item</th>
+								<th >Date</th>
+								<th >Summary</th>
+								<!-- <th >Machine Status</th> -->
+								<th >Action Type</th>
+								<th >Assigned To</th>
+								<th >Status</th>
+								<!-- <th >Completed By</th> -->
+								<!-- <th >Completed Date</th> -->
+								<th >Instruction Notes</th>
+								<th >Completion Notes</th>
+								<th >Spares Used</th>
+								<th >Budget</th>
+								<th >Budget Note</th>
+								<th >Priority</th>
+								<th >Download</th>
+						</tr>
+					</thead>
+					<tbody>
+
+				        {% for item in response %}
+							<tr>
+
+					        		<td>{{item.id}}</td>
+									<td width="150px">{{item.btline.name}}</td>
+									<td nowrap="nowrap">{{item.scheduledate?item.scheduledate|date("Y-m-d") :""}}</td>
+									<td>{{item.job_summary}}</td>
+									<!-- <td>{{item.machinestatus.name}}</td> -->
+									<td>{{item.actiontype.name}}</td>
+									<td>{{item.assignedto.name}}</td>
+									<td>{{item.status.name}}</td>
+									<!-- <td>{{item.completedby.name}}</td> -->
+									<!-- <td>{{item.completeddate?item.completeddate|date("Y-m-d") :""}}</td> -->
+									<td>{{item.instruction_notes}}</td>
+									<td>{{item.completion_notes}}</td>
+									<td>{{item.spares_used}}</td>
+									<td>R{{item.budget}}</td>
+									<td>{{item.budget_note}}</td>
+									<td>{{item.priority}}</td>
+									<td><a class="btn btn-primary btn-sm" href="/schedule/item/download/{{item.id}}.pdf"><i class="fa fa-download"></i></a></td>
+
+				             </tr>
+				        {% endfor %}
+			        </tbody>
+
+	    </table>
+	    {% else %}
+
+	    	{% set response = CmSchedule.listquote %}
+		{% set total = 0 %}
+
+			<div class="row">
+
+	        {% for item in response %}
+	        	<div class="col-md-4">
+				<div class="card text-center  {{item.priority == 1? 'bg-warning text-white' : 'bg-light' }} mb-3" style="">
+					<div class="card-header" style="font-size: 26px">#{{item.id}} / {{item.actiontype.name}} / {{item.btline.name}}</div>
+					<div class="card-body">
+						<h5 class="card-title" style="font-size: 26px">{{item.scheduledate?item.scheduledate|date("Y-m-d") :""}}</h5>
+						<p class="card-text" style="font-size: 16px">{{item.job_summary}}</p>
+					</div>
+					<div class="card-footer" style="font-size: 16px">
+					    {{item.priority == 1? 'Urgent' : 'Not Urgent' }}
+					  </div>
+				</div>
+				</div>
+
+	        {% endfor %}
+	    </div>
+	    {% endif %}

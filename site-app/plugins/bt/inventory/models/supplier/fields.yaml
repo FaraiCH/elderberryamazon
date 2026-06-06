@@ -1,0 +1,182 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Company Name
+        span: auto
+    category:
+        label: Category
+        span: auto
+        type: relation
+        select: name
+        placeholder: --- Select ---
+    country:
+        label: Country
+        span: auto
+        type: relation
+        select: name
+        placeholder: --- Select ---
+
+    vatno:
+        label: VAT No
+        span: auto
+    
+    coreg:
+        label: CO Reg
+        span: auto
+    risklevel_id:
+        label: Risk Left
+        span: auto
+        type: dropdown
+        options:
+            5: Excellent
+            4: Above Average
+            3: Average
+            2: Below Average
+            1: Very Poor
+            0: None Existent
+    website:
+        label: Website
+        tab: Contact Details
+        span: auto
+    
+tabs:
+    fields:
+        contact_name:
+            label: Contact Name
+            tab: Contact Details
+            span: auto
+        contact_email:
+            label: Contact Email
+            tab: Contact Details
+            span: auto
+        contact_number:
+            label: Contact Number
+            tab: Contact Details
+            span: auto
+        
+
+        extra_contacts:
+            type: repeater
+            tab: Other Contracts
+            titleFrom: contact_name
+            form:
+                fields:
+                    contact_name:
+                        label: Contact Name
+                        tab: Contact Details
+                        span: auto
+                    contact_email:
+                        label: Contact Email
+                        tab: Contact Details
+                        span: auto
+                    contact_number:
+                        label: Contact Number
+                        tab: Contact Details
+                        span: auto
+        
+
+        physical_address:
+            label: Physical Address
+            tab: Address
+            span: auto
+        physical_code:
+            label: Physical Code
+            tab: Address
+            span: auto
+        postal_address:
+            label: Postal Address
+            tab: Address
+            span: auto
+        postal_code:
+            label: Postal Code
+            tab: Address
+            span: auto
+        beestatus:
+            label: BEE status
+            tab: BEE
+            span: auto
+
+        expiry_date_of_bee_cert:
+            label: Expiry date of BEE cert
+            tab: BEE
+            span: auto
+            type: datepicker
+            mode: date
+
+        beefile:
+            label: BEE Certificate
+            type: fileupload
+            tab: BEE
+            mode: file
+
+        is_blacklisted:
+            label: Blacklisted by BT
+            type: switch
+            on: Yes
+            off: No
+            tab: Blacklisted
+
+        blacklisted_notes:
+            label: Notes
+            type: textarea
+            tab: Blacklisted
+            size: small
+        audits:
+            type: repeater
+            tab: Audits
+            titleFrom: audit_date
+            form:
+                fields:
+                    audit_date:
+                        label: Date of BT Audit
+                        type: datepicker
+                        mode: date
+                        span: auto
+                    is_pass:
+                        label: Pass/Fail
+                        type: switch
+                        on: Pass
+                        off: Fail
+                        span: auto
+                    Comments:
+                        label: Contact Email
+                        type: textarea
+                        size: small
+                        span: auto
+
+                    next_audit_date:
+                        label: Next Audit date
+                        type: datepicker
+                        mode: date
+                        span: auto
+        is_quality_accreditations:
+            label: Quality Accreditations (Y/N)
+            type: switch
+            on: Yes
+            off: No
+            tab: Vendor Criteria
+            span: auto
+
+        details_of_accreditation:
+            label: Details of accreditation
+            tab: Vendor Criteria
+            span: auto
+
+        name_of_accreditation:
+            label: Name of accreditation
+            tab: Vendor Criteria
+            span: auto
+        accreditation_body:
+            label: Accreditation body
+            tab: Vendor Criteria
+            span: auto
+
+        blacklisted_notes:
+            label: Notes
+            type: textarea
+            tab: Blacklisted
+            size: small
+            span: auto

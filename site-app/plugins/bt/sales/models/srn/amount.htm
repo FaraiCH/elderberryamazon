@@ -1,0 +1,7 @@
+<?php
+    $itemamount = 0;
+    foreach($record->srninvoice as $srn_item){
+        $itemamount += $srn_item->amount;
+    }
+    echo 'R'. number_format($itemamount,2, '.', ',');
+?>

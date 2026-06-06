@@ -1,0 +1,6 @@
+<?php if ($this->user->hasAccess('bt.sales.pipeapprove')): ?>
+    <?= $this->relationRender('piperapprove') ?>
+<?php else: ?>
+    <?= $this->relationRender('piperapprove', ['readOnly' => true]) ?>
+<?php endif ?>
+

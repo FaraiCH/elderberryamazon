@@ -1,0 +1,29 @@
+<div class="control-list">
+    <h3>Client's Feed Back Messages. </h3>
+    <br>
+    <table class="table data">
+        <thead>
+            <tr>
+                <th><span>#</span></th>
+                <th><span>Name</span></th>
+                <th><span>Email</span></th>
+                <th><span>Downlod</span></th>
+                <th><span>created_at</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($messages as $user): ?>
+                <tr>
+                    <td><?= $user->id ?></td>
+                    <td><?= $user->name ?></td>
+                    <td><?= $user->email ?></td>
+                    <td><a target="_blank" href="/feedback/download/<?= $user->id ?>.pdf" class="btn btn-primary">
+                            Download
+                        </a>
+                    </td>
+                    <td><?= $user->created_at ?></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>

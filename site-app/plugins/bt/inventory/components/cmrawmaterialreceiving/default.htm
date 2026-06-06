@@ -1,0 +1,145 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<form data-request="onSaveReceiving" enctype="multipart/form-data" data-request-files data-request-flash>
+    <div class="form-group">
+        <label for="supplier_id">Select Supplier:</label>
+        <select name="supplier_id" id="supplier_id" class="form-control">
+            <option value="">Choose a supplier</option>
+            {% for supplier in suppliers %}
+            <option value="{{ supplier.id }}">{{ supplier.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Table to display PO numbers -->
+    <div id="po_numbers_wrapper" class="form-group" style="display: none;">
+        <label for="po_number">Select PO Number:</label>
+        <select id="po_number" name="po_number" class="form-control">
+            <option value="Select PO">Select PO</option>
+        </select>
+    </div>
+    
+    <!-- Hidden input field to store the supplier batch -->
+    <input type="hidden" id="supplier_batch" name="supplier_batch" value="">
+
+    <!-- New select for Material Type -->
+    <div id="inventory_type_select" class="form-group" style="display: none;">
+        <label for="inventory_type_id">Inventory Type:</label>
+        <select id="inventory_type_id" name="inventory_type_id" class="form-control">
+            <option value="">Select Inventory Type</option>
+            {% for type in inventoryTypes %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Select Product name -->
+    <div id="inventory_type_select" class="form-group" style="display: none;">
+        <label for="part_name_id">Product Name:</label>
+        <select id="part_name_id" name="part_name_id" class="form-control">
+            <option value="">Select Product Name</option>
+            {% for product in products %}
+            <option value="{{ product.id }}">{{ product.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" id="batch_prefix_select" style="display: none;">
+        <label for="batch_prefix_id">Batch Prefix:</label>
+        <select id="batch_prefix_id" name="batch_prefix_id" class="form-control">
+            <option value="">Select Batch Prefix</option>
+            {% for prefix in batchPrefixes %}
+            <option value="{{ prefix.prefix }}">{{ prefix.prefix }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Receiving Form -->
+    <div id="receiving_form" style="display:none;">
+
+        <div class="form-group">
+            <label>Automated Batch Number Required?:</label><br>
+            <label class="radio-inline">
+                <input type="radio" name="batch_required" value="yes" checked> Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="batch_required" value="no"> No
+            </label>
+        </div>
+
+         <!-- Driver's Name -->
+        <div class="form-group">
+            <label for="driver_name">Driver's Name:</label>
+            <input type="text" name="driver_name" id="driver_name" class="form-control" placeholder="Driver's Name">
+        </div>
+
+        <!-- Truck Registration Number -->
+        <div class="form-group">
+            <label for="truck_reg_number">Truck Registration Number:</label>
+            <input type="text" name="truck_reg_number" id="truck_reg_number" class="form-control" placeholder="Truck Registration Number">
+        </div>
+
+        <!-- Truck Trailer Registration Number -->
+        <div class="form-group">
+            <label for="truck_trailer_reg_number">Truck Trailer Registration Number:</label>
+            <input type="text" name="truck_trailer_reg_number" id="truck_trailer_reg_number" class="form-control" placeholder="Truck Trailer Registration Number">
+        </div>
+
+        <!-- Quantity Delivered (bags) input field -->
+        <div class="form-group">
+            <label for="bags">Quantity Delivered (bags):</label>
+            <input type="number" name="bags" id="bags" class="form-control" placeholder="Quantity Delivered">
+        </div>
+
+        <!-- Bag Weight -->
+        <div class="form-group">
+            <label>Total Weight:</label>
+            <input type="number" name="weight" id="weight" class="form-control" placeholder="Total Weight">
+        </div>
+
+        <div class="form-group">
+            <label for="files">Delivery Note Upload:</label>
+            <input type="file" name="files" id="files" class="form-control-file" accept="image/*,.pdf, .ai, .eps, .psd, .zip, .doc, .docx, .xls, .xlsx, .txt, .csv" capture>
+        </div>
+
+        <!-- Bag Details table -->
+        <div class="table-responsive">
+            <table id="bag_details_table" class="table table-bordered" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Bag Number</th>
+                        <th>Supplier Weight</th>
+                        <th>Batch No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <!-- Pagination controls -->
+            <div class="pagination" style="display: none;">
+                <button onclick="goToPreviousPage()" class="btn btn-primary">Previous</button>
+                <span>Page <span id="currentPage">1</span></span>
+                <button onclick="goToNextPage()" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+
+        <!-- Sum of Weight -->
+        <div id="sum_of_weight" style="display: none;">
+            <p><strong>Total Weight:</strong> <span id="total_weight">0</span></p>
+        </div>
+
+        <!-- Batch Numbers button -->
+        <button type="button" onclick="generateBatchNumbers()" id="generateBatchNumbersBtn" class="btn btn-success">Generate Batch Numbers</button>
+        <!-- Batch Print button -->
+        <button type="button" onclick="printBatchNumbers()" class="btn btn-info">Print QR Code</button>
+        <!-- Save button -->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" onclick="printReport()" id="printReportBtn" class="btn btn-info">Print Report</button>
+    </div>
+</form>
+
+
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>

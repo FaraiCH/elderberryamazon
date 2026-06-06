@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Piperequest
+
+# Model Form Field configuration
+form: $/bt/sales/models/piperequest/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Piperequest
+
+# Default redirect location
+defaultRedirect: bt/sales/piperequest
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/piperequest/update/:id
+    redirectClose: bt/sales/piperequest
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/piperequest
+    redirectClose: bt/sales/piperequest
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

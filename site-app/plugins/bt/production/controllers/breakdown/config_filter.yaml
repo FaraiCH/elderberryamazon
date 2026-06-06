@@ -1,0 +1,7 @@
+scopes:
+    btline:
+        label: Line
+        modelClass: Bt\Production\Models\Line
+        conditions: line_id in (:filtered)
+        nameFrom: name
+

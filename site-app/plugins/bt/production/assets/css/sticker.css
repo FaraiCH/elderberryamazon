@@ -1,0 +1,94 @@
+
+
+
+  body{
+
+    height: 100%;
+    background-image: url(https://bt-industrial.co.za/wp-content/uploads/2021/02/TDD-Logo-Slider-Ver.21.04.png);
+  }
+  .img-top{
+    display: block;
+    margin: 0px auto 20px auto;
+  }
+  .mycard{
+    display: block;
+    border:  1px solid #ccc;
+    margin: 20px auto;
+    max-width: 500px;
+    font-size: 16px;
+    background: #fff;
+    padding: 10px;
+  }
+
+
+      .btn-primary{
+            background-color: #032b5e;
+            color: #ffffff;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            overflow: hidden;
+            line-height: 34px;
+            font-size: 22px;
+            font-weight: 300;
+            font-family: 'Roboto Condensed';
+            padding-left: 1.1364em;
+            padding-right: 1.1364em;
+            border: 0px;
+
+
+      }
+      .btn-primary:hover{
+            background-color: #848484;color: #fff;
+      }
+
+      .form-size{
+        font-size: 20px;
+            height: 48px !important;
+      }
+      .btn-width{
+        margin: 20px auto;
+      }
+
+      .h4{
+        background: #ccc;
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+
+      }
+
+      .myform{
+            background: #ececec;
+            padding: 20px 20px 1px 8px;
+            margin: 20px 0px;
+            text-align: center;
+            border-radius: 5px;
+
+      }
+    .chosen-container-single .chosen-single span{
+        font-size: 20px;
+
+    }
+    .chosen-container-single .chosen-single{
+        height: 48px !important;
+    }
+    .chosen-container-single .chosen-single span{
+        margin-top: 10px;
+    }
+    .chosen-container-single .chosen-single div b {
+
+        background-position-y: 15px;
+    }
+    .chosen-container .chosen-drop{
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .hideme{
+        display: none !important;
+    }
+
+

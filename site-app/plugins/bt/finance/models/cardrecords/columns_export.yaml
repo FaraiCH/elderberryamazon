@@ -1,0 +1,47 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    project: 'project'
+    storename:
+        label: Storename/Supplier Name
+    purchase_date:
+        label: Date
+    amount:
+        label: Amount
+        type: number
+        format: R %.2f
+    mainitem:
+        label: Main Item
+
+    uploader: 'Slip Uploads'
+
+
+    comments:
+        label: Comments
+        invisible: true
+        searchable: true
+        sortable: false
+
+    Purchasedby: 'Purchased'
+
+    approved: 'Approved'
+
+    createby: 'createby'
+
+    updateby: 'updateby'
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

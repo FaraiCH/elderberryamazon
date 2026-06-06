@@ -1,0 +1,511 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 8px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+        .table tr td:first-child {
+            width: 150px;
+        }
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="footer">
+    <p class="left">
+        <b>F-QMS-9.7.7</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Rev. 2 - Effecrive Date 03/03/2020</b><br><br>
+        Tel. +27 11 966 8058<br>
+        Fax:  +27 86 459 5761<br>
+        E-mail: enquiries@bt-industrial.co.za
+
+    </p>
+
+</div>
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501  <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h2>CERTIFICATE OF CONFORMANCE</h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr>
+        <td >
+            <table width="100%" border="1" cellpadding="5px" cellspacing="0">
+                <tr>
+                    <td colspan="2">
+                        <table width="100%">
+                            <tr>
+                                <td width="80%" style="text-align: right"><b>Client Order Number: </b></td>
+                                <td width="20%" style="border: 1px solid  black">{{cs.ponumber}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr><td width="30%"><b>DATE:</b></td><td>{{cs.opendate|date("Y-m-d")}}</td></tr>
+                <tr><td><b>PRODUCT NAME:</b></td><td>{{quote.productname.name}}</td></tr>
+                <tr><td><b>PIPE NAME:</b></td><td>{{pipe.quoteitems.description}}</td></tr>
+                <tr><td><b>PIPE BATCH:</b></td><td>
+                    #BT-{{cs.jobcard.id}}-{{'%04d'|format(cs.batch.id)}}
+                    {# for j in pipe.jobcard %}
+                    {% for b in j.batch %}
+                    {% if j.id == 266 and b.id == 15 %}
+                    #BT-266-0103
+                    {% else %}
+                    #BT-{{j.id}}-{{'%04d'|format(b.id)}} &nbsp;
+                    {% endif %}
+
+                    {% endfor %}
+                    {% endfor #}
+                </td></tr>
+                <tr><td><b>MATERIAL BATCH NUMBER:</b></td><td>{{quote.supplier_batch}}</td></tr>
+                <!-- <tr><td><b>GRADE OF MATERIAL:</b></td><td></td></tr> -->
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr><td>This is to certify that the product named above was manufactured in an ISO 9001:2015 practice
+        manufacturing facility and was tested and passed the relevant quality control requirements under
+        which it is manufactured. Details of inspections and validation criteria can be obtained from BT-
+        INDUSTRIAL Laboratory on request.</td></tr>
+    <tr><td><br></td></tr>
+
+    <tr>
+        <td>
+            <table width="100%" border="1" cellpadding="5px" cellspacing="">
+                <thead>
+                <tr>
+                    <th width="25%" style="background: #ececec" >PARAMETER MEASURED</th>
+                    <th width="25%" style="background: #ececec" class="text-center" nowrap="nowrap" >SPECIFICATION VALUE</th>
+                    <th width="25%" style="background: #ececec" class="text-center" nowrap="nowrap" >RESULTS</th>
+                    <th width="25%" nowrap="nowrap" style="background: #ececec" class="text-center" >COMPLY</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Outside Diameter (mm)</td>
+                    <td>{{pipe.quoteitems.product.od_min}}mm - {{pipe.quoteitems.product.od_max}}mm</td>
+                    <td>{{cs.actual_pipeod}}mm</td>
+                    {% if cs.od_comply == 0 %}
+                    <td>No</td>
+                    {% endif %}
+                    {% if cs.od_comply == 1 %}
+                    <td>Yes</td>
+                    {% endif %}
+                    {% if cs.od_comply == 2 %}
+                    <td>Exceeded Spec</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Wall thickness(mm)</td>
+                    <td>{{pipe.quoteitems.product.wt_min}}mm - {{pipe.quoteitems.product.wt_max}}mm</td>
+                    <td>{{cs.actual_avrwall}}mm</td>
+                    {% if cs.wt_comply == 0 %}
+                    <td>No</td>
+                    {% endif %}
+                    {% if cs.wt_comply == 1 %}
+                    <td>Yes</td>
+                    {% endif %}
+                    {% if cs.wt_comply == 2 %}
+                    <td>Exceeded Spec</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Ovality (mm)</td>
+                    <td>{{pipe.quoteitems.product.ovality_max}}mm</td>
+                    <td>{{cs.actual_ovality}}mm</td>
+                    {% if cs.ov_comply == 0 %}
+                    <td>No</td>
+                    {% endif %}
+                    {% if cs.ov_comply == 1 %}
+                    <td>Yes</td>
+                    {% endif %}
+                    {% if cs.ov_comply == 2 %}
+                    <td>Exceeded Spec</td>
+                    {% endif %}
+                </tr>
+                {% if pipereport is not empty %}
+                {% if pipereport.mfi is not empty %}
+                <tr>
+                    <td>Pre MFI</td>
+                    <td>0,2 - 1.4g/10min</td>
+                    <td>{{pipereport.mfi}}g/10min</td>
+                    <td>{{pipereport.mfi_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.mfi_post is not empty %}
+                <tr>
+                    <td>Post MFI</td>
+                    <td>0,2 - 1.4g/10min</td>
+                    <td>{{pipereport.mfi_post}}g/10min</td>
+                    <td>{{pipereport.mfi_comply_post == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.iot is not empty %}
+                <tr>
+                    <td>Pre Oxidation Induction Time</td>
+                    <td>>= 20min</td>
+                    <td>{{pipereport.iot}}min</td>
+                    <td>{{pipereport.iot_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.iot_post is not empty %}
+                <tr>
+                    <td>Post Oxidation Induction Time</td>
+                    {% if pipereport.testing_oit is empty %}
+
+                        <td>>= 20min</td>
+                        <td>{{pipereport.iot_post}}min</td>
+                        <td>{{pipereport.iot_comply_post == 1?"Yes":"No"}}</td>
+                    {% else %}
+                        <td>{{pipereport.testing_oit}}</td>
+                        <td>{{pipereport.testing_oit}}</td>
+                        <td>{{pipereport.testing_oit}}</td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+
+                {% if pipereport.elongation_at_break_test is not empty %}
+                <tr>
+                    <td>Elongation at break</td>
+                    <td>>= 350%</td>
+                    <td>{{pipereport.elongation_at_break_test}}%</td>
+                    <td>{{pipereport.elongation_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.thermal_revision_test is not empty %}
+                <tr>
+                    <td>Longitudinal Reversion</td>
+                    <td>{{code}} 3%</td>
+                    <td>{{pipereport.thermal_revision_test}}%</td>
+                    <td>{{pipereport.thermal_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.hydrostatic_test is not empty  %}
+                <tr>
+                    <td>Hydrostatic Pressure </td>
+                    <td>No Failure</td>
+                    <td>{{pipereport.hydrostatic_test}}</td>
+                    <td>{{pipereport.hydrostatic_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.hydrostatic_test_2 is not empty  %}
+                <tr>
+                    <td>Hydrostatic Pressure </td>
+                    <td>No leaks during test</td>
+                    <td>{{pipereport.hydrostatic_test_2}}</td>
+                    <td>{{pipereport.hydrostatic_comply_2 == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.hydrostatic_test_3 is not empty  %}
+                <tr>
+                    <td>Hydrostatic Pressure </td>
+                    <td>No leaks during test</td>
+                    <td>{{pipereport.hydrostatic_test_3}}</td>
+                    <td>{{pipereport.hydrostatic_comply_3 == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if pipereport.hydrostatic_test is empty and pipereport.hydrostatic_test_2 is empty and pipereport.hydrostatic_test_3 is empty %}
+                <tr>
+                    <td>Hydrostatic Pressure </td>
+                    <td>{{pipereport.testing}}</td>
+                    <td>{{pipereport.testing}}</td>
+                    <td>{{pipereport.testing}}</td>
+                </tr>
+                {% endif %}
+                {% else %}
+                <tr>
+                    <td>PRE MFI</td>
+                    <td>0,2 - 1.4g/10min</td>
+                    <td>{{quote.mfi}}g/10min</td>
+                    <td>{{quote.mfi_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                <tr>
+                    <td>POST MFI</td>
+                    <td>0,2 - 1.4g/10min</td>
+                    <td>{{quote.mfi_post}}g/10min</td>
+                    <td>{{quote.mfi_comply_post == 1?"Yes":"No"}}</td>
+                </tr>
+                <tr>
+                    <td>OIT (MIN)</td>
+                    <td>>= 20min</td>
+                    <td>{{quote.iot}}min</td>
+                    <td>{{quote.iot_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                <tr>
+                    <td>Elongation at break</td>
+                    <td>>= 350%</td>
+                    <td>{{quote.elongation_at_break_test}}%</td>
+                    <td>{{quote.elongation_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                <tr>
+                    <td>Longitudinal Reversion</td>
+                    <td>{{code}} 3%</td>
+                    <td>{{quote.thermal_revision_test}}%</td>
+                    <td>{{quote.thermal_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% if quote.hydrostatic_test is not empty  %}
+                <tr>
+                    <td>Hydrostatic Pressure <br>({{quote.hydrostatic_test}})</td>
+                    <td>No failure during test period</td>
+                    <td>No failure</td>
+                    <td>{{quote.hydrostatic_comply == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if quote.hydrostatic_test_2 is not empty  %}
+                <tr>
+                    <td>Hydrostatic Pressure <br> ({{quote.hydrostatic_test_2}})</td>
+                    <td>No failure during test period</td>
+                    <td>No failure</td>
+                    <td>{{quote.hydrostatic_comply_2 == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if quote.hydrostatic_test_3 is not empty  %}
+                <tr>
+                    <td>Hydrostatic Pressure <br> ({{quote.hydrostatic_test_3}})</td>
+                    <td>No failure during test period</td>
+                    <td>No failure</td>
+                    <td>{{quote.hydrostatic_comply_3 == 1?"Yes":"No"}}</td>
+                </tr>
+                {% endif %}
+
+                {% if quote.hydrostatic_test is empty and quote.hydrostatic_test_2 is empty and quote.hydrostatic_test_3 is empty %}
+                <tr>
+                    <td>Hydrostatic Pressure </td>
+                    <td>{{quote.testing}}</td>
+                    <td>{{quote.testing}}</td>
+                    <td>{{quote.testing}}</td>
+                </tr>
+                {% endif %}
+
+                {% endif %}
+
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+
+
+    <tr><td><br></td></tr>
+    <tr><td>This data is given in good faith, but values may vary within factory tolerance or according to
+        conditions of use.</td></tr>
+
+
+    <tr><td><br></td></tr>
+    <tr>
+        <td>
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Quality Manager:</h4>
+                {% if quote.bacapproved is not empty and quote.bacapproved.status_id == 1 %}
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>NAME:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="40%" >
+                            {{quote.bacapproved.signature.firstname}} {{quote.bacapproved.signature.lastname}}
+                        </td>
+                        <td>DATE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="40%" >
+                            {% if cs.opendate is not empty  %}
+                            {{cs.opendate|date("Y-m-d")}}
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                </table>
+                {% endif %}
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <br>
+            <div style="border: 1px solid #ccc; padding: 5px;">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Approved By Management:
+                    {% if quote.bacapproved is not empty and quote.bacapproved.status_id == 1 %}
+
+                    <br>
+                    <img src="{{quote.bacapproved.signature.signature.path}}">
+
+                    {% else %}
+                    <span class="oc-icon-circle text-danger">
+                                No
+                                </span>
+                    {% endif %}
+                </h4>
+
+            </div>
+        </td>
+    </tr>
+
+    <!-- <tr><td><br></td></tr>
+    <tr>
+        <td>
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Prepared By:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>NAME:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>DATE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>SIGNATURE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+
+    <tr><td><br></td></tr>
+    <tr>
+        <td>
+            <div style="border: 1px solid #ccc; padding: 10px;">
+                <h4 style="font-size: 15px; margin: 0px; padding: 0px">Approved By:</h4>
+                <table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+                    <tr>
+                        <td>NAME:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>DATE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                        <td>SIGNATURE:</td>
+                        <td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td  >
+
+            <br>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="47%" valign="top">
+                        <div style="border: 1px solid #ccc; padding: 10px; height: 80px width:100%; ">
+                            <h4 style="font-size: 15px; margin: 0px; padding: 0px">Stamp:</h4>
+                        </div>
+                    </td>
+                    <td></td>
+
+                </tr>
+            </table>
+        </td>
+    </tr> -->
+
+</table>
+
+
+</body>
+</html>

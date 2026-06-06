@@ -1,0 +1,64 @@
+<?= Form::open(['class' => 'layout']) ?>
+
+<div>
+    <div class="form-group col-md-6" style="padding-bottom: 20px">
+        <label for="startdate">Start Date: </label>
+        <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text">
+
+    </div>
+    <div class="form-group col-md-6" style="padding-bottom: 20px">
+        <label for="enddate">End Date: </label>
+        <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text">
+    </div>
+
+    <button
+        type="submit"
+        data-request-success="Dates Saved. You can export."
+        data-request="onDailyKHWExport"
+        class="btn btn-primary">
+        Save Dates
+    </button>
+</div>
+<br>
+<br>
+
+<div class="layout-row">
+
+    <?= $this->exportRender() ?>
+</div>
+
+<div class="form-buttons">
+    <button
+        type="submit"
+        data-control="popup"
+        data-handler="onExportLoadForm"
+        data-keyboard="false"
+        class="btn btn-primary">
+        Export records
+    </button>
+</div>
+
+<?= Form::close() ?>
+
+<script>
+    var startpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#startdate');
+    var endpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#enddate');
+</script>

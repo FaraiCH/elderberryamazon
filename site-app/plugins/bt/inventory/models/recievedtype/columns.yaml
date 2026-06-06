@@ -1,0 +1,14 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Type
+        searchable: true
+    bags:
+        label: Number Of Bags
+        searchable: true

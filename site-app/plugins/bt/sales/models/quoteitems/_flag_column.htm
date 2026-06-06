@@ -1,0 +1,22 @@
+
+
+<?php if($record->flagit == 1): ?>
+	<span class="oc-icon-flag text-success">
+	    
+	</span>
+	
+<?php elseif($record->flagit == 0): ?>
+	<span class="oc-icon-comments text-info">
+	    
+	</span>
+<?php elseif($record->flagit == 3): ?>
+	<span class="oc-icon-comments "style="color: orange">
+	    
+	</span>
+
+<?php else: ?>
+	<span class="oc-icon-flag text-danger">
+	
+	</span>
+	
+<?php endif; ?>

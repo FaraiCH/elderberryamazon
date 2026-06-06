@@ -1,0 +1,69 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    document_name:
+      label: Document Name
+      searchable: true
+
+    rev:
+      label: Rev
+      searchable: true
+
+    iso_ref:
+      label: ISO Ref
+      searchable: true
+
+    document_type:
+      label: Document Type
+      searchable: true
+    
+    area:
+      label: Area
+      searchable: true
+
+    allocated_number:
+      label: Allocated Number
+      searchable: true
+      type: number
+
+    document_number:
+      label: Document Number
+      searchable: true
+      type: number
+    
+    revised_effective_date:
+      label: Revised Effective Date
+      searchable: true
+            
+    first_issue_date:
+      label: First issue Date
+      searchable: true
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: false
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+

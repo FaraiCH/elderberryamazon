@@ -1,0 +1,405 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 11px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px 20px 100px 20px; }
+html { margin:20px 20px 100px 20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 1%;
+    font-size: 1em;
+    color: #545554;
+    line-height: 1.3em;
+}
+
+.pagenumber::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.footer .left div{
+	float: left;
+	width: 50%
+}
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+            	<table>
+            		<tr>
+            			<td valign="top" width="30%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za</td>
+                <td valign="top" width="20%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005</td>
+                <td width="40%" align="center">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+
+						</td>
+                
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+                
+           
+            </p>
+            
+        </div>
+	
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="50%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="50%" style="text-align: center;">
+							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+							<p>	First Floor, Block 3, White Hills Junction 1, White Hills Close, Lonehill</p>
+							<p>	<b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>Quotation #BT{{quote.id}}v{{quote.responses|length }}</h2>
+						</td>
+					</tr>
+				</table>					
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+	</table>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>Customer</b></td></tr>
+								<tr><td width="50%"><b>To:</b></td><td width="50%">{{quote.billing_name}}</td></tr>
+								<tr><td width="50%"><b>Company/Personal Name:</b></td><td width="50%">{{quote.company_name}}</td></tr>
+								<tr><td width="50%"><b>Email:</b></td><td width="50%">{{quote.email}}</td></tr>
+								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
+								<tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
+								<tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
+								{% for item in quote.responses if item.quote_status_id == 3 %}
+									<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+				    			{% endfor %}
+								{% if quote.reg_number is not empty %}
+									<tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
+								{% endif %}
+								{% if quote.vat_number is not empty %}
+									<tr><td width="50%"><b>VAT Number:</b></td><td width="50%">{{quote.vat_number}}</td></tr>
+								{% endif %}
+							</table>
+						</td>
+						<td></td>
+						<td width="40%" valign="top" >
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">								
+								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">BT-IND-{{quote.id}}</td></tr>
+								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
+								<tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
+								<tr><td width="50%"></td><td width="50%">{{quote.user.email}}</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+	</table>
+
+	
+				<table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+					<thead>
+						<tr>
+							<th width="20px" style="background: #ececec" >#</th>
+							<th  style="background: #ececec" class="text-center" >Description</th>		
+							<th width="50px" nowrap="nowrap" style="background: #ececec" class="text-center" >Units</th>	
+							<th width="50px" nowrap="nowrap" style="background: #ececec" class="text-center" >Total Length</th>			
+							<th width="100px" nowrap="nowrap" style="background: #ececec" class="text-center" >Unit Price</th>
+							<th width="100px" nowrap="nowrap" style="background: #ececec" class="text-center" >Total Price</th>
+						</tr>
+					</thead>
+				</table>
+
+					
+						{% set counter = 0 %}
+				        {% for itemobject in quote.items %}
+				        	{% set counter = counter + 1 %}
+				        	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+				        		<tbody>
+						        	<tr>
+						        		<td width="20px">{{counter}}</td>
+						        		<td>{{itemobject.description}}</td>		
+						        		<td width="50px" class="text-center">{{itemobject.units}}</td>	
+						        		<td width="50px" class="text-center">{{itemobject.units * itemobject.unitlength}}</td>              	
+						              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
+						              	
+						              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
+						             </tr>
+						         </tbody>
+				     		</table>
+				     	</div>
+				        {% endfor %} 
+
+				   
+				         {% for itemobject in quote.itemscat %}
+				        	{% set counter = counter + 1 %}
+				        	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+				        	<tr>
+				        		<td  width="20px">{{counter}}</td>
+				        		<td>{{itemobject.description}}</td>		
+				        		<td width="50px" class="text-center">{{itemobject.units}}</td>	
+								<td width="50px">&nbsp;</td>
+				              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
+				              	
+				              	<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
+				             </tr>
+				         </table>
+				     </div>
+				        {% endfor %}
+
+				        
+				        {% set deliveryamount = 0 %}
+				        {% for item in quote.responses if item.quote_status_id == 4 %}
+							{% set counter = counter + 1 %}
+							{% set deliveryamount = deliveryamount + item.additionalamount %}
+							<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+				        	<tr>
+				        		<td>{{counter}}</td>
+				        		<td>Delivery</td>		
+				        		<td  class="text-center">1</td>	 
+				        		<td>&nbsp;</td>             	
+				              	<td class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+				              	
+				              	<td class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+				             </tr>
+				         </table>
+				     </div>
+			    		{% endfor %}
+			        
+			    	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+		        	<tfoot>
+			        	<tr>
+			        		<td width="20px">&nbsp;</td>
+			        		<td>&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="100px" class="text-right"><b>TOTAL</b></td>		        		
+			              	<td width="100px" class="text-right"><div class="totalr"><span>R</span><span>{{(quote.total+deliveryamount)|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>	
+				         <tr>
+				         	<td width="20px">&nbsp;</td>
+			        		<td>&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+
+			        		<td  width="100px" class="text-right"><b>VAT</b></td>		        		
+			              	<td  width="100px" class="text-right"><div class="totalr"><span>R</span><span>
+			              		{% set autototalvat = ((quote.total+deliveryamount)*quote.vat) %}
+			              		{% set autototal = autototalvat+(quote.total+deliveryamount) %}
+			              	{{autototalvat|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+				          	{% set discount = 0 %}
+			          		{% for item in quote.responses %}
+								{% set discount = discount + item.amountdiscount %}
+			    			{% endfor %}
+
+						      {% if discount > 0 %}			
+							     <tr>
+							     	<td width="20px">&nbsp;</td>
+					        		<td>&nbsp;</td>
+					        		<td width="50px">&nbsp;</td>
+					        		<td width="50px">&nbsp;</td>
+
+									<td width="100px" class="text-right"><b>DISCOUNT</b></td>		        		
+							      	<td width="100px" class="text-right"><div class="totalr"><span>R</span><span>-{{discount|number_format(2, '.', ',')}}</span></div></td>
+							     </tr>
+						     {% endif %}
+				          <tr>
+				          	<td width="20px">&nbsp;</td>
+			        		<td>&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+			        		<td width="50px">&nbsp;</td>
+
+			        		<td  width="100px" nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>		        		
+			              	<td  width="100px" class="text-right"><div class="totalr"><span>R</span><span>
+			              	{{((autototal) - discount)|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+			        </tfoot>
+				</table></div>
+  
+		{% if quote.notes is not empty %}
+			
+			
+				<div style="background: #ececec; padding: 5px" >
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Notes</h4>
+					<table width="100%" border="1" style="border: 1px solid #333" cellpadding="5px" cellspacing="0">
+						<tr>
+							<td width="100%">{{quote.notes}}</td>
+						</tr>
+					</table>					
+				</div>
+			
+		{% endif %}
+		
+
+		<br>
+				<h4 style="font-size: 15px; margin: 0px; padding: 0px">QUOTATION ACCEPTED BY CUSTOMER:</h4>
+
+				<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+					<tr><td><br></td></tr>
+					<tr>
+						<td>NAME:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>DATE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>SIGNATURE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+					</tr>
+				</table>					
+			
+	
+	<div class="page-break"></div>
+	<h2>BT-INDUSTRIAL GROUP QUOTATION TERMS AND CONDITIONS</h2>
+<p><b>1. Acceptance and Contract.</b> SELLER’S ACCEPTANCE OF THIS ORDER IS EXPRESSLY CONDITIONED UPON BUYER’S
+ACCEPTANCE OF ALL TERMS AND CONDITIONS HEREOF. Quotations are valid for 7 days unless otherwise indicated by
+Seller. Once order is confirmed by the Seller, the contract shall come into being. The terms and conditions hereof shall
+constitute the binding contract between Seller and Buyer concerning the goods sold hereunder. Neither party shall claim any
+amendment, modification, waiver or release form any provisions hereof unless the same is in writing and signed by both Buyer
+and Seller.</p>
+
+<p><b>2. Selling Terms.</b> All goods sold hereunder are F.O.B. Seller’s facility unless otherwise stated herein, but Seller retains a
+security interest in the goods until payment is received. All claims for delivery or damage are the Buyer’s responsibility. Delivery
+dates are not guaranteed and Seller has no liability for damages that may be incurred due to any delay in delivery of goods
+hereunder. All amounts of the order exclude value added tax (“VAT”) payable in terms of Value Added Tax Act No. 81 of 1991,
+as amended, and any other rates, taxes or charges which may be payable thereon. Should the VAT rate be altered, the
+amounts of VAT shall be accordingly adjusted.</p>
+
+<p><b>3. Delivery.</b> Where prices are stated as delivery rates they shall be based on full loads. Transportation rates from third parties
+are quoted in good faith and without prejudice. Deviations from transportation routes shall incur additional charges which shall
+be for the account of the Buyer. All goods shall be collected from the factory within 10 (TEN) days from order failing which the
+Seller shall not liable for any weathering of the goods or any damage or loss in respect of such goods. Goods not collected
+from factory within 12 (TWELVE) days from order shall attract storage charge of R5000.00 (FIVE THOUSAND RAND) daily.</p>
+
+<p><b>4. Payment.</b> Payment terms are cash on delivery, unless credit terms are established at the Seller’s sole discretion. The Buyer
+agrees to pay the Seller any cost of collection of overdue invoices, including reasonable attorney’s fees on attorney-own-client-
+scale. A certificate signed by a director, credit manager or accountant of the Seller shall be apparent proof of the amount of any
+indebtedness owing by the Buyer to the Seller at any time and also the fact that the due date of payment of the whole or, as the
+case may be, any portion of that amount has arrived.</p>
+
+<p><b>5. Returns/Cancellations.</b> All claims relating to quantity or delivery errors shall be waived by the Buyer unless made in writing
+to the Seller within thirty (30) days after delivery of goods to the address stated. The Buyer shall pre-pay delivery charges for
+any approved returns. The Buyer shall be obligated to pay for the portion of the order that has been delivered to Buyer or that is
+in-process at the time of cancellation.</p>
+
+<p><b>6. Warranty.</b> For goods manufactured by the Seller, the Seller’s standard limited warranty for the goods sold hereby shall
+apply. The Seller’s obligation under such warranty, unless otherwise stated, is limited to repairing or replacing, at its factory,
+any parts which are returned to the Seller within said warranty period, delivery prepaid, which upon examination prove to be
+defective. Labour costs are excluded. THIS WARRANTY IS EXCLUSIVE AND IN LIEU OF ANY OTHER WARRANTIES,
+EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTY OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT, AND ALL
+WARRANTIES ARISING FROM COURSE OF DEALING, USAGE OR TRADE PRACTICE. EXCEPT FOR THE EXPRESS
+WARRANTIES SET OUT IN THIS SECTION 6, ALL SERVICES AND MATERIALS ARE PROVIDED “AS IS”. ALL THIRD-
+PARTY MATERIALS ARE PROVIDED “AS IS” AND ANY REPRESENTATION OR WARRANTY OF OR CONCERNING ANY
+THIRD PARTY MATERIALS IS STRICTLY BETWEEN BUYER AND THE THIRD-PARTY OWNER OR DISTRIBUTOR OF
+THE THIRD-PARTY MATERIALS.
+</p>
+<p><b>7. Limitation of Liability/Indemnification.</b> TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE BUYER’S SOLE
+RECOURSE AGAINST SELLER IS LIMITED TO THE PROVISIONS IN SECTION 6 ABOVE, AND IN NO EVENT SHALL THE
+SELLER BE RESPONSIBLE OR LIABLE TO BUYER (OR CLAIMS OF ANY THIRD PARTY AGAINST BUYER) FOR
+SPECIAL, INDIRECT, COLLATERAL, PUNITIVE OR EXLEMPLARY, INCIDENTAL OR CONSEQUENTIAL DAMAGES, EVEN
+IF THE SELLER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. TO THE FULLEST EXTENT
+PERMITTED BY LAW, SUCH EXCLUDED DAMAGES INCLUDE, BUT ARE NOT LIMITED TO, LOSS OF GOODWILL, LOSS
+OF REVENUE, LOSS OF PROFITS, LOSS OF USE, INTERRUPTION OF BUSINESS, LOSS OF BUSINESS OPPORTUNITY,
+OR OTHER DAMAGES RESULTING FROM ANY DELAY, ACT, ERROR OR OMISSION OF SELLER OR ANY
+SUBCONTRACTOR OF THE SELLER HOWEVER CAUSED INCLUDING NEGLIGENCE, GROSS NEGLIGENCE AND
+STRICT LIABILITY. Buyer shall indemnify and hold Seller harmless from and against any and all claims, demands, lawsuits,
+damages, liabilities, costs and expenses (including attorney’s fees), incurred by reason of any injury to or death of any person,
+or damage to any property, resulting from or arising out of any act, error, omission, negligence, or misconduct by Buyer in
+connection with the goods sold hereunder. The Seller shall have no liability to the Buyer for delay or failure to perform due to
+any cause beyond the reasonable control of the Seller.</p>
+
+<p><b>8. Governing Law.</b> This order, and the terms and conditions hereof, shall be governed by and construed in accordance with
+the laws of the Republic of South Africa. The Buyer consents in terms of section 45 of the Magistrates Court Act of 1944 to the
+jurisdiction Magistrates Court for the purpose of any proceedings in terms of incidental to this order, provided that the Seller, at
+its option, shall have the right to institute proceedings at any division of the High Court having jurisdiction and the costs thereof
+shall be determined on the scale applicable to the High Court.</p>
+
+	</body>
+	</html>

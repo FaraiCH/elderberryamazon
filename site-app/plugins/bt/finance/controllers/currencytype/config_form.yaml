@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Currency Type
+
+# Model Form Field configuration
+form: $/bt/finance/models/currencytype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\CurrencyType
+
+# Default redirect location
+defaultRedirect: bt/finance/currencytype
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/finance/currencytype/update/:id
+    redirectClose: bt/finance/currencytype
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/finance/currencytype
+    redirectClose: bt/finance/currencytype
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

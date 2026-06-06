@@ -1,0 +1,139 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/boardroom/visitor') ?>">Visitor</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+<?php if(!empty($formModel->visitorname)): ?>
+    <?php if(!isset($formModel->accept_date)): ?>
+        <div class="header" style="text-align: center; margin: 0 0;" >
+            <div class="alert alert-warning" >
+                <div class="header"  style="background: #ffdb5b">
+                    <h3 style="text-align: center; font-size: 40px; color: #fff">
+                       <?= $formModel->visitorname ?> has been booked, but has not accepted!
+                    </h3>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="header" style="text-align: center; margin: 0 0;" >
+            <div class="alert alert-success" >
+                <div class="header"  style="background: green">
+                    <h3 style="text-align: center; font-size: 40px; color: #fff">
+                        <?= $formModel->visitorname ?> has been booked!
+                    </h3>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+<div class="callout fade in callout-info no-subheader" style="margin: 0 auto;">
+    <div class="header">
+        <h3 style="text-align: center">Please Read the Following Below:</h3>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-8">
+                <p>1. Please download the Visitors General OHS Induction form and send it to your visitors to read if necessary. In order to download the form, the visitor must accept the invitation. </p>
+                <p>2. For you to send an invitation for the visitor to accept, please input an email on the Email Visitor field and press Send Invitation to <em>email</em> button</p>
+                <p>3. Once visitor has accepted the email, it will update on the Date Accepted By Visitor field</p>
+                <p>4. If it requires, you may accept the booking on behalf of the visitor. This only applies if a visitor is unable to do so.</p>
+            </div>
+            <div class="col-sm-4" style="text-align: center">
+                <?php if(isset($formModel->accept_date)): ?>
+                    <a class="btn btn-info oc-icon-file-pdf-o" style="margin-top: 30px" href="/backend/boardroom/visitors/download/<?= $formModel->id ?>">
+                        Visitors General OHS Induction
+                    </a>
+                <?php else: ?>
+                    <a class="btn btn-info oc-icon-file-pdf-o" style="margin-top: 30px" href="/backend/boardroom/visitors/download/">
+                        Visitors General OHS Induction
+                    </a>
+                <?php endif; ?>
+            </div>
+
+        </div>
+            <br>
+            <?php if(!isset($formModel->accept_date)): ?>
+                <?php if($formModel->invited != 1): ?>
+                    <p style="text-align:center;color: red"><b>You have not send an invitation to the visitor yet</b></p>
+                <?php else: ?>
+                    <p style="text-align:center;color: red"><b>Invitation has been sent to the visitor. The visitor has not yet accepted this invitation</b></p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p style="text-align:center;color: green"><b>The visitor has accepted your invitation</b></p>
+            <?php endif; ?>
+    </div>
+
+</div>
+
+
+
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-primary">
+                    <?= e(trans('backend::lang.form.save')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-default">
+                    <?= e(trans('backend::lang.form.save_and_close')) ?>
+                </button>
+<!--                <button-->
+<!--                    type="button"-->
+<!--                    class="oc-icon-trash-o btn-icon danger pull-right"-->
+<!--                    data-request="onDelete"-->
+<!--                    data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"-->
+<!--                    data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">-->
+<!--                </button>-->
+                <span class="btn-text">
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('bt/boardroom/visitor') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                </span>
+                <?php if($formModel->email): ?>
+                    <?php if(!isset($formModel->accept_date)): ?>
+                        <?php if($formModel->invited != 1): ?>
+                            <a class="btn btn-info pull-right oc-icon-user" data-request-confirm="Are you you want to send this invitation to the visitor?" data-request="onSendInvitation" data-request-data="id: <?= $formModel->id ?>">
+                                Send Invitation To <?= $formModel->email ?>
+                            </a>
+                        <?php else: ?>
+                            <a class="btn btn-info pull-right oc-icon-user" data-request-confirm="You have already sent this invitation to this visitor. Do you want to send it again?" data-request="onSendInvitation" data-request-data="id: <?= $formModel->id ?>">
+                                Resend Invitation To <?= $formModel->email ?>
+                            </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if(!isset($formModel->accept_date)): ?>
+                    <a class="btn btn-info pull-right oc-icon-check" data-request-confirm="You will be accepting on the behalf of the visitor?" data-request="onAccept" data-request-data="id: <?= $formModel->id ?>">
+                        Accept booking on behalf of <?= $formModel->visitorname ?>
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/boardroom/visitor') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+
+<?php endif ?>

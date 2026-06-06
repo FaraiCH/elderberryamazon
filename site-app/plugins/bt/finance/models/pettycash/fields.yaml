@@ -1,0 +1,100 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id@update:
+    #     label: ID
+    #     disabled: true
+    subject:
+        label: Item(s) To Purchase
+        span: auto
+    date:
+        label: Date To Purchase
+        type: datepicker
+        span: auto
+        mode: date
+    amount:
+        label: Amount Requesting
+        type: inputcurrency
+        span: auto
+    amount_left@update:
+        label: Amount Left After Purchase
+        type: inputcurrency
+        span: auto
+    paymenttype:
+        label: Payment Type
+        select: name
+        type: relation
+        placeholder: -- select a Payment --
+        span: auto
+    linemanager:
+        label: Line Manager
+        select: concat(name, '  ', surname)
+        type: relation
+        placeholder: -- Select Line Manager
+        span: auto
+    requested_to:
+        label: Request Petty Cash To?
+        placeholder: -- select --
+        type: dropdown
+        options: PickMe
+        span: auto
+    isactive:
+        label: Active/Hide
+        type: relation
+        select: name
+        span: auto
+
+    message:
+        label: Message
+        type: textarea
+        size: small
+    is_completed@update:
+        label: Is Completed?
+        type: switch
+        span: storm
+        cssClass:  col-sm-6
+        options:
+            0: Not Completed
+            1: Completed
+    cancel@update:
+        label: Is Cancelled?
+        type: switch
+        span: storm
+        cssClass:  col-sm-6
+        on: Yes
+        off: No
+
+tabs:
+
+    fields:
+        # slips:
+        #     label: Upload Slips
+        #     type: fileupload
+        #     span: auto
+        #     tab: Upload Slips
+        #     mode: file
+        #     comment: Additional supporting files, you can upload more than 1
+
+        cardrecords@update:
+          path: $/bt/finance/controllers/cardrecords/_cardrecords.htm
+          tab: Petty Cash Records
+          type: partial
+
+        pettylineapprove@update:
+            path: $/bt/finance/models/pettycash/_pettylineapprove.htm
+            tab: Line Manager Approval
+            type: partial
+        pettycashapprove@update:
+          path: $/bt/finance/controllers/pettycash/_approve.htm
+          tab: Approval
+          type: partial
+        comments@update:
+          label: Comments
+          type: textarea
+          size: small
+          tab: Comments
+
+
+

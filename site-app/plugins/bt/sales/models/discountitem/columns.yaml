@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    order:
+        label: Order
+        type: number
+        
+    name:
+        label: Name
+        
+    discount:
+        label: Discount
+        type: number
+        format: %.2f
+    active:
+        label: Is Active
+        type: switch
+        on: Yes
+        off: No

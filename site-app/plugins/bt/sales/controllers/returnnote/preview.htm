@@ -1,0 +1,25 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sales/returnnote') ?>">Return Note</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <div class="form-preview">
+        <?= $this->formRenderPreview() ?>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <div style="text-align: center;"><button class="btn btn-primary " data-request="onSendReturnNote" data-stripe-load-indicator data-request-flash>Send Email To Finance</button> <a target="_blank" class="btn btn-info  oc-icon-file-pdf-o" href="/returnnote/item/download/<?=   $formModel->srn_id ?>.pdf">Return Note</a></div>
+            </div>
+        </div>
+    </div>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/sales/returnnote') ?>" class="btn btn-default">Return to return note list</a></p>
+
+<?php endif ?>

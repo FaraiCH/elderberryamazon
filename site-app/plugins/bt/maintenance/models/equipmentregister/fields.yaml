@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    # equipment_name:
+    #     label: Device / Equipment 
+    #     span: auto
+    #     placeholder: -- Choose Device / Equipment --
+    #     type: dropdown
+
+    equipment:
+      label: Device / Equipment 
+      type: relation
+      select: concat(id," - ",name)
+      span: auto
+
+    file:
+        label: Equipment Register Files
+        type: fileupload
+        span: auto
+        mode: file

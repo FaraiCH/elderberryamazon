@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: QCStatus
+
+# Model Form Field configuration
+form: $/bt/production/models/qcstatus/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\QCStatus
+
+# Default redirect location
+defaultRedirect: bt/production/qcstatus
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/qcstatus/update/:id
+    redirectClose: bt/production/qcstatus
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/qcstatus
+    redirectClose: bt/production/qcstatus
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

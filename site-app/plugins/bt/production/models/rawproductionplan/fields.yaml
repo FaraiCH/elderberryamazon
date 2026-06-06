@@ -1,0 +1,29 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+    date:
+        label: Date
+        type: datepicker
+        mode: date
+        span: auto
+    btline:
+        label: Line
+        type: relation
+        span: auto
+        placeholder: --- Select a Baila line ---
+        comment: Choose Baila line to assign material
+    raw_material_cost:
+        label: Raw Material Cost
+        type: inputcurrency
+        span: auto
+
+    rawitems@update:
+        label: Raw Material Items
+        type: partial
+        path: $/bt/inventory/controllers/rawproductionplan/items.htm

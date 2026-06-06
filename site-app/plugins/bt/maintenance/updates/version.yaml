@@ -1,0 +1,60 @@
+1.0.1:
+- First version of Maintenance
+- create_equipment_types_table.php
+- create_tools_table.php
+- create_vendor_types_table.php
+- create_vendors_table.php
+- create_action_types_table.php
+- create_schedules_table.php
+- create_statuses_table.php
+- create_staff_table.php
+- create_machine_statuses_table.php
+- create_job_cards_table.php
+- create_departments_table.php
+- create_job_types_table.php
+- create_unit_types_table.php
+- create_yes_nos_table.php
+- create_tools_usages_table.php
+- create_in_outs_table.php
+- create_tool_conditions_table.php
+- create_checklists_table.php
+- create_checkpoints_table.php
+- create_tools_checklists_table.php
+- seeder_tools.php
+1.0.2:
+- Update electicity
+- create_elec_meters_table.php
+- create_elec_meter_readings_table.php
+1.0.3:
+- Create Water Usage
+- create_waterusages_table.php
+1.0.4:
+- Update import electricity
+- create_electricities_table.php
+1.0.5:
+- Create Diesel Usage
+- create_diesels_table.php
+1.0.6:
+- Create Vehicles
+- create_vehicles_table.php
+1.0.7:
+- Create jobcardapprove
+- create_job_card_approves_table.php
+1.0.8:
+- update job card
+1.0.9:
+  - Update Electricityy
+1.0.10:
+- Create Equioment
+- create_equipment_registers_table.php
+1.0.11:
+- Craate Tarrifs
+- create_tarrifs_table.php
+1.0.12:
+- Create store item
+- create_store_product_items_table.php
+- create_store_item_in_outs_table.php
+1.0.13:
+  - Create Bills item
+  - create_provincial_bills_table.php
+

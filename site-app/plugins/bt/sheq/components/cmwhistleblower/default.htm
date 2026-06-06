@@ -1,0 +1,110 @@
+
+<div id="whistleblower-form" class="container mt-5 ">
+
+	{% if whistleblowerSubmitted  %}
+	     {% partial __SELF__ ~ '::thankyou' %}
+	{% else %}
+		<div id="whistleblower-instructions" class="mt-3 mb-3">
+		    <p>
+		        <strong>INSTRUCTIONS:</strong> BT Industrial Group accepts and investigates allegations of theft/harassment activities by BT Industrial Group employees or where BT Industrial Group is potentially a victim of wrongdoing.
+		    </p>
+
+			<ul>
+				<li>
+					<strong>Evidence Emphasis:</strong> Highlights the importance of providing substantial evidence to support the allegations, including specific details such as names, contact information, and locations.
+				</li>
+				<li>
+					<strong>Anonymous Complaints:</strong> Acknowledges the acceptance of anonymous complaints but notes potential challenges in obtaining evidence, emphasizing the value of detailed information.	
+				</li>
+				<li>
+					<strong>Information Requirements:</strong> Specifies the necessary information for each allegation, covering who is involved, what happened, where and when it occurred, why it occurred, and how the wrongdoing took place. The ultimate goal is to gather comprehensive details to facilitate a thorough investigation.
+				</li>
+			</ul>
+		</div>
+	    <div class="alert alert-warning" role="alert">
+	        <b>Please complete the form below to send us the details. All fields marked with</b> <span style="color: red;">*</span> <b> are required.</b>
+	    </div>
+    
+	    <form data-request="{{ __SELF__ }}::onSubmit" data-request-update="'{{ __SELF__ }}::result': '#whistleblower-form'" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
+	        <!-- CSRF Token -->
+	        <input type="hidden" name="_handler" value="onSubmit">
+	        {{ form_token() }}
+            
+            <input type="hidden" name="formSubmit" value="1">
+
+	        <div class="form-group row">
+
+	            <label for="date" class="col-sm-4 col-form-label">Date of incident: <span style="color: red;">*</span></label>
+	            <div class="col-sm-8">
+	                <input type="text" class="form-control datepicker" id="date" name="date" placeholder="YYYY-MM-DD" required>
+	            </div>
+	        </div>
+
+	        <div class="form-group row">
+	            <label for="who" class="col-sm-4 col-form-label">Who did the wrongdoing? <span style="color: red;">*</span></label>
+	            <div class="col-sm-8">
+	                <input type="text" class="form-control" id="who" name="who" required>
+	            </div>
+	        </div>
+
+	        <div class="form-group row">
+	            <label for="where" class="col-sm-4 col-form-label">Where did this happen (unit, location)? <span style="color: red;">*</span></label>
+	            <div class="col-sm-8">
+	                <input type="text" class="form-control" id="where" name="where" required>
+	            </div>
+	        </div>
+
+	        <div class="form-group row">
+	            <label for="what" class="col-sm-4 col-form-label">What wrongdoing occurred? <span style="color: red;">*</span></label>
+	            <div class="col-sm-8">
+	                <textarea class="form-control" id="what" name="what" rows="3" required></textarea>
+	            </div>
+	        </div>
+
+	        <div class="form-group row">
+	            <label for="how" class="col-sm-4 col-form-label">What enabled this to happen (How)? <span style="color: red;">*</span></label>
+	            <div class="col-sm-8">
+	                <textarea class="form-control" id="how" name="how" rows="3" required></textarea>
+	            </div>
+	        </div>
+
+	        <div class="form-group row">
+	            <label class="col-sm-4 col-form-label">
+					Have you reported the matter before? <span style="color: red;">*</span>
+				</label>
+	            <div class="col-sm-8">
+					<label for="yes">
+						<input type="radio" id="yes" name="reported" value="yes" />
+						Yes
+					</label>
+					<br />
+					<label for="no">
+						<input type="radio" id="no" name="reported" value="no" />
+						No
+					</label>
+	            </div>
+	        </div>
+
+	        <div class="form-group row">
+			    <label for="witness_doc" class="col-sm-4 col-form-label">Evidence documents:</label>
+			    <div class="col-sm-8">
+			        <input type="file" class="form-control-file" id="witness_doc" name="witness_doc" multiple>
+			        {% if result and result.witness_doc %}
+			            {% for file in result.witness_doc %}
+			                <p>{{ file.filename }}</p>
+			            {% endfor %}
+			        {% endif %}
+			    </div>
+			</div>
+
+	        <div class="form-group row">
+	            <div class="col-sm-8 offset-sm-4">
+	                <button type="submit" class="btn btn-primary">Submit</button>
+	            </div>
+	        </div>
+	    </form>
+    {% endif %}
+    <!-- Display the result if needed -->
+    
+</div>

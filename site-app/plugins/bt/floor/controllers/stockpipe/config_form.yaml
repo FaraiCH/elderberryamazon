@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stockpipe
+
+# Model Form Field configuration
+form: $/bt/floor/models/stockpipe/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\Stockpipe
+
+# Default redirect location
+defaultRedirect: bt/floor/stockpipe
+
+# Create page
+create:
+    title: Create Stockpipe
+    redirect: bt/floor/stockpipe/update/:id
+    redirectClose: bt/floor/stockpipe
+
+# Update page
+update:
+    title: Edit Stockpipe
+    redirect: bt/floor/stockpipe
+    redirectClose: bt/floor/stockpipe
+
+# Preview page
+preview:
+    title: Preview Stockpipe

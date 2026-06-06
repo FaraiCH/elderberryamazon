@@ -1,0 +1,5 @@
+<?php
+    if(isset($record->controlsheets->id) && isset($record->controlsheets->jobcard->pipe->quoteitems->description)){
+     echo $record->controlsheets->id. " > " .$record->controlsheets->jobcard->pipe->qpush->quote->company_name. " : " .$record->controlsheets->jobcard->pipe->quoteitems->description;
+    }
+?>

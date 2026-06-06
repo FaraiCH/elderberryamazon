@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Sticker
+
+# Model Form Field configuration
+form: $/bt/operator/models/sticker/fields.yaml
+
+# Model Class name
+modelClass: Bt\Operator\Models\Sticker
+
+# Default redirect location
+defaultRedirect: bt/operator/stickers
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/operator/stickers/update/:id
+    redirectClose: bt/operator/stickers
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/operator/stickers
+    redirectClose: bt/operator/stickers
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

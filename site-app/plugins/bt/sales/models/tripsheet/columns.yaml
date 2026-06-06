@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    driver_name:
+        label: Driver Name
+        searchable: true
+        sortable: true
+    truck_reg_number:
+        label: Truck Reg Number
+        searchable: true
+        sortable: true
+    transporter:
+        label: Transport
+        searchable: true
+        sortable: true
+    vehicle:
+        label: Vehicle Type
+        relation: vehicle
+        select: name
+        searchable: true
+        sortable: true
+

@@ -1,0 +1,65 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    # product:
+    #     label: Official Name
+    #     searchable: true
+    #     relation: product
+    #     select: concat(product_code," - ", name )
+    pipeinproduction:
+        label: In Production?
+        searchable: true
+        relation: pipe
+        select: created_at
+
+    description:
+        label: Name
+
+    units:
+        label: Qty
+        type: number
+
+    priceperkg:
+        label: Price Per KG
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+
+    unitprice:
+        label: Unit Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+
+    price:
+        label: Total Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+    weight:
+        label: weight
+        type: number
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+

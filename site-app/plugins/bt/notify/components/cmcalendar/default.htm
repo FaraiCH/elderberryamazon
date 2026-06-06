@@ -1,0 +1,122 @@
+<div class="text-right" style="color:  #828282;">
+  {% set item = __SELF__.item %}
+  
+    {% if item == 4 %}
+      <i style="color: #ea3f17" class="fa fa-fw fa-circle" ></i>
+      Delivery Note
+
+      <i style="color: #ff9f89" class="fa fa-fw fa-circle" ></i>
+      Delivery Schedule
+    {% endif %} 
+    
+    {% if item == 5 %}
+      <i style="color: #ffb811" class="fa fa-fw fa-circle" ></i>
+      Maintenance Schedule 
+    {% endif %} 
+    
+     
+
+    {% if item == 2 %}
+      <i style="color: #c1c50e" class="fa fa-fw fa-circle" ></i>
+      BAILA 1 - Shedule to run 
+    {% endif %} 
+    
+    {% if item == 1 %}
+      <i style="color: #e06bc7" class="fa fa-fw fa-circle" ></i>
+      BAILA 2  - Shedule to run 
+    {% endif %} 
+   
+    {% if item == 3 %}
+      <i style="color: #4497e0" class="fa fa-fw fa-circle" ></i>
+      BAILA 3  - Shedule to run 
+    {% endif %} 
+    {% if item < 4 %}
+      <i style="color: #009a7f" class="fa fa-fw fa-circle" ></i>
+      Production Day  
+    {% endif %}
+
+    
+</div>
+<br>
+
+<div id='calendar'></div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="titleshow"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% put styles %}
+	
+	<link href="{{'assets/packages/core/main.css'|theme }}" rel="stylesheet">
+	<link href="{{'assets/packages/daygrid/main.css'|theme }}" rel="stylesheet">
+	<link href="{{'assets/packages/timegrid/main.css'|theme }}" rel="stylesheet">
+	<link href="{{'assets/packages/list/main.css'|theme }}" rel="stylesheet">
+
+{% endput %}
+
+ {% put scripts %}
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{{'assets/packages/core/main.js'|theme }}"></script>
+<script src="{{'assets/packages/interaction/main.js'|theme }}"></script>
+<script src="{{'assets/packages/daygrid/main.js'|theme }}"></script>
+<script src="{{'assets/packages/timegrid/main.js'|theme }}"></script>
+<script src="{{'assets/packages/list/main.js'|theme }}"></script>
+
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+     
+      // navLinks: true, // can click day/week names to navigate views
+      // businessHours: true, // display business hours
+      editable: true,
+      events: {% autoescape false %}{{CmCalendar.events|json_encode()}}{% endautoescape %},
+
+      eventClick: function(info) {
+        var eventObj = info.event;
+
+        
+          $("#titleshow").empty().html("<p><i>"+eventObj.start+"</i></p><p>"+eventObj.title+"</p>");
+          $("#exampleModal").modal();
+          
+        
+      }
+
+
+    });
+
+    calendar.render();
+
+
+
+
+  });
+$(document).ready(function () {
+
+});
+
+</script>
+{% endput %}

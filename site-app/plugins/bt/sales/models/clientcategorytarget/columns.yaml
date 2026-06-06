@@ -1,0 +1,32 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    run_date:
+        label: Run Date
+        searchable: true
+        type: date
+    id:
+        label: ID
+        searchable: true
+
+    category:
+        label: Category
+        select: name
+        relation: category
+
+    straight:
+        label: Straight
+        type: number
+        format: R %.2f
+
+    coil:
+        label: Coil
+        type: number
+        format: R %.2f
+
+    target:
+        label: Target
+
+    

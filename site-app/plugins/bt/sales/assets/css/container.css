@@ -1,0 +1,33 @@
+* {
+      box-sizing: border-box;
+   }
+   .cards {
+      color: black;
+      float: left;
+      width: calc(25% - 20px);
+      padding: 10px;
+      
+      border-radius: 10px;
+      margin: 10px;
+      height: 120px;
+   }
+   .cards p {
+      font-size: 13px;
+   }
+   .cardContainer:after {
+      content: "";
+      display: table;
+      clear: both;
+   }
+   @media screen and (max-width: 600px) {
+      .cards {
+         width: 100px;
+      }
+   }
+   .cards {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: left;
+  background-color: white;
+  line-height: normal;
+}

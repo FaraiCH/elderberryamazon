@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    po_number:
+        label: PO Number
+        span: auto
+    date_created:
+        label: Created date
+        type: datepicker
+        mode: date
+        span: auto
+    po_file:
+        label: Purchase Order File/Slip
+        type: fileupload
+        span: auto
+        mode: file

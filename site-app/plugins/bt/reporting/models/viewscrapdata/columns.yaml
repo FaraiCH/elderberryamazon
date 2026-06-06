@@ -1,0 +1,81 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        clickable: false
+    cs_run_date_long:
+        label: Controlsheet Run Date Long
+        clickable: false
+    cs_run_date:
+        label: Controlsheet Run Date
+        clickable: false
+    cs_created_date:
+        label: Controlsheet Created Date
+        clickable: false
+    client:
+        label: Client
+        searchable: true
+        clickable: false
+    shift:
+        label: Shift
+        searchable: true
+        clickable: false
+    baila:
+        label: Baila
+        searchable: true
+        clickable: false
+    quote_id:
+        label: Quote No
+        searchable: true
+        clickable: false
+    description:
+        label: Description
+        searchable: true
+        clickable: false
+    ordered_unitlength:
+        label: Ordered Unit Length
+        clickable: false
+    ordered_unitweight:
+        label: Ordered Unit Weight
+        clickable: false
+    ordered_totalweight:
+        label: Ordered Total Weight
+        clickable: false
+    csname:
+        label: Controlsheet Name
+        clickable: false
+    batch_no:
+        label: Batch No
+        clickable: false
+    cs_total_weight:
+        label: Controlsheet Total Weight
+        clickable: false
+    plan_id:
+        label: Production Plan No
+        clickable: false
+    total_units_produced:
+        label: Total Units Produced
+        clickable: false
+    weight_scrap_kg:
+        label: Weight Scrap KG
+        clickable: false
+    over_weight_kg:
+        label: Over Weight KG
+        clickable: false
+    total_kg_processed:
+        label: Total KG Processed
+        clickable: false
+    scrap_perc:
+        label: Scrap Percentage %
+        format:  %.2f 
+        searchable: true
+        clickable: false
+    list_of_codes:
+        label: Reasons
+        searchable: true
+        clickable: false
+    

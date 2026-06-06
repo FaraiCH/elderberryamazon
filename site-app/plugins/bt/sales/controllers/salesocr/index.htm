@@ -1,0 +1,51 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/sales/salesocr') ?>">Sales</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<div class="callout fade in callout-warning">
+    <div class="header">
+        <i class="icon-file-pdf-o"></i>
+        <h3>Document Scan Feature</h3>
+        <div  class="content">
+            <ul class="list-badge">
+                <li>This feature is highly experimental.</li>
+                <li>Make sure to double-check that the document matches the data.</li>
+                <li>If there is a mismatch, you can edit the information with the correct data (Note: You can click the image to expand the document to see the name).</li>
+                <li>When you save, the system will allocate the documents to the specified note entries.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<form name="form-check" id="form-check" enctype="multipart/form-data" >
+    <table  width="100%">
+        <tr>
+            <td>
+                <!--File Input-->
+                <input type="file" accept="application/pdf" name="scans">
+                <!--File Input-->
+            </td>
+            <td>
+                <button data-stripe-load-indicator data-attach-loading
+                        type="submit"
+                        data-request-files
+                        data-request="onCheck"
+                        class="btn btn-primary btn-block text-center" style="text-align: center;">
+                    Check File
+                </button>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <div id="scans">
+    </div>
+
+</form>
+
+<div id = "results">
+</div>
+
+

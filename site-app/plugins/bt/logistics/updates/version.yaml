@@ -1,0 +1,28 @@
+1.0.1:
+- First version of Logistics
+- create_vehicles_table.php
+- create_schedules_table.php
+- create_usage_types_table.php
+- create_drivers_table.php
+1.0.2:
+- Schedule Approval
+- create_logisticapproves_table.php
+1.0.3:
+- Check List
+- create_vehicle_checklists_table.php
+1.0.4:
+- Fuel Type
+- create_fuel_types_table.php
+1.0.5:
+- fuel usage
+- create_vehicle_fuel_usages_table.php
+1.0.6:
+- Create Trailer
+- create_trailers_table.php
+- create_trailer_checklists_table.php
+1.0.7:
+- Create Pipe Prices
+- create_pipeprices_table.php
+1.0.8:
+- Add Bin Area
+- create_binareas_table.php

@@ -1,0 +1,64 @@
+	{% set partnames = ProductionPushPipe.loadPartNames() %}
+		<div class="card" >
+	  		<div class="card-header">
+	  			<h2>Materials</h2>
+	  		</div>
+  		<div id="materiallist"> {% partial __SELF__ ~ '::materiallist' response=pipe.materials   %}</div>
+		
+		
+		<form data-request="onSaveMaterial" data-request-update="'{{__SELF__ ~ '::materiallist'}}': '#materiallist'"  data-request-files data-request-flash>
+
+			<div>
+				<div class="card-header">
+					<b>Add New Material</b>
+				</div>
+				<div class="card-body">
+
+					<div class="row">
+					    <div class="col-sm-12" style="margin-bottom: 10px">
+							<span class="text-danger" data-validate-for="notes"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Assigned Materials:</span>
+							</div>
+							<select id="part_name_id" required="required" name="part_name_id" class="form-control input-sm" >
+						     	<option value=""></option>
+							  		 {% for obType in partnames %}
+		                              <option {{selected}} value="{{obType.id}}">{{obType.name}}</option>
+		                            {% endfor %}
+								 </select>
+
+							</div>
+							
+						</div>
+
+						 
+ 
+						<div class="col-sm-12" style="margin-bottom: 0px; " id="mixratio_holder" >
+							<span class="text-danger" data-validate-for="mixratio"></span>
+							<div class="input-group mb-">
+							<div class="input-group-prepend">
+							<span class="input-group-text label-small" id="basic-at">Mix Ratio:</span>
+							</div>
+							<select id="mixratio" name="mixratio" class="form-control mt-0 counttext">
+								<option value="">Select</option>
+								{% for i in 1..100 %}
+									    <option value=" {{ i }}"> {{ i }}%</option>
+									{% endfor %}
+							</select>
+							</div>
+							
+						</div>
+
+
+					</div>
+
+
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary btn-block mt-0 " data-attach-loading>Submit</button>
+				</div>
+			</div>
+			
+        </form>
+	</div>

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Job Type
+
+# Model Form Field configuration
+form: $/bt/it/models/jobtype/fields.yaml
+
+# Model Class name
+modelClass: Bt\IT\Models\JobType
+
+# Default redirect location
+defaultRedirect: bt/it/jobtype
+
+# Create page
+create:
+    title: Create Job Type
+    redirect: bt/it/jobtype/update/:id
+    redirectClose: bt/it/jobtype
+
+# Update page
+update:
+    title: Edit Job Type
+    redirect: bt/it/jobtype
+    redirectClose: bt/it/jobtype
+
+# Preview page
+preview:
+    title: Preview Job Type

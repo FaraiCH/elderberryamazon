@@ -1,0 +1,103 @@
+<?if (isset($quote)): ?>
+<div class="cardContainer"  >
+    <div class="cards" style="line-height: 1.0;">
+
+        <h2 title="Click To Go To Quote" class="description" ><b>Quote:</b> <a  href="/backend/bt/sales/newquote/update/<?= $quoter ?>" target="_blank">#<?= $quoter ?></a>  <a href="/quote/item/download/<?= $quoter ?>.pdf"><span class="icon icon-file-pdf-o text text-danger"></span></a> <span style="margin-left: 100px"><b>Sales Rep:</b> <?= $sales ?></span></h2>
+
+        <p> <span class="icon icon-star" style="color:gold; font-size:16px"></span><b>Client</b>: <?= $client ?></p>
+    </div>
+</div>
+<?php $myrep = $sales; ?>
+<div class="control-list">
+    <table class="table data">
+    <thead>
+    <tr>
+        <th style="width: 15px"><span>Pipe Batch</span></th>
+        <th style="width: 15px"><span>Date Created</span></th>
+        <th><span>Item Description</span></th>
+        <th style="width: 15px"><span>Order<br> Qty</span></th>
+        <th style="width: 15px"><span>Produced<br> Qty</span></th>
+        <th style="width: 15px"><span>Delivered <br> Qty</span></th>
+        <th style="width: 15px"><span>In The <br> Yard</span></th>
+        <th style="width: 15px"><span>Fix Yard <br>(Disabled)</span></th>
+        <th style="width: 15px"><span>Stock Taking<br>(Disabled)</span></th>
+        <th style="width: 15px"><span>Link Pipe</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($quote as $key => $value): ?>
+        <tr>
+            <td nowrap="">
+               <a href="/batchsearch/view/details/<?= $value['batch'] ?>" target="_blank"><?= $value['batch'] ?></a>
+            </td>
+            <td>
+                <?= $value['date'] ?>
+            </td>
+            <td width="200px">
+                <?= $value['item'] ?>
+            </td>
+            <td>
+                <?= $value['order'] ?>
+            </td>
+            <td>
+                <?= $value['produced'] ?>
+            </td>
+            <td>
+                <?= $value['delivered']?>
+            </td>
+            <td>
+                <?= $value['yard'] ?>
+            </td>
+            <td width="40px">
+                <a disabled data-toggle="modal" data-stripe-load-indicator data-attach-loading href="#content-yard" data-request="onFixYard" class="btn btn-primary" data-request-data="{id: <?= $value['batch'] ?>, qua: <?= $value['yard'] ?>} "><span class="icon icon-circle"></span> Fix Yard </a>
+            </td>
+            <td width="40px">
+                <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+                <a disabled data-toggle="modal" data-stripe-load-indicator data-attach-loading href="#content-confirmation" data-request-update="updatestock: '#results'" data-request="onStock" class="btn btn-primary" data-request-data="id: <?= $value['batch'] ?>"><span class="icon icon-plus"></span> Add To Stock Taking </a>
+                <?= Form::close()?>
+            </td>
+
+
+            <td>
+                <?php if(!empty($value['overrun'])) : ?>
+                    <a data-toggle="modal" data-stripe-load-indicator data-attach-loading href="#content-overrun" data-request="onOverrun" class="btn btn-info" data-request-data="{id: <?= $value['pipe'] ?>} "><span class="icon icon-link"></span> Add to SRN</a>
+                <?php else: ?>
+                    <a data-toggle="modal" data-stripe-load-indicator data-attach-loading href="#content-done" data-request="onPipeRequest" class="btn btn-primary" data-request-data="{id: <?= $value['batch'] ?>, qua: <?= $value['yard'] ?>} "><span class="icon icon-link"></span> Add to SRN</a>
+                <?php endif; ?>
+            </td>
+
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?if endif; ?>
+</div>
+
+<div class="control-popup modal fade" id="content-confirmation" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="results">
+
+        </div>
+    </div>
+</div>
+<div class="control-popup modal fade" id="content-done" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="piperequest">
+
+        </div>
+    </div>
+</div>
+<div class="control-popup modal fade" id="content-overrun" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="overrun">
+
+        </div>
+    </div>
+</div>
+<div class="control-popup modal fade" id="content-yard" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="fixyard">
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/finance/requestpo') ?>">Request P.O</a></li>
+        <li>Request P.O</li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <div class="control-tabs content-tabs" data-control="tab">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item active">
+                        <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="false">Requesting PO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Response PO By Finance</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" style="padding:20px; background: #fff">
+                    <div class="tab-pane active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                        <div style="background-color: #f2f2f2; text-align: center; padding: 10px 20px; border-radius: 10px; max-width: 100%; margin: 0 auto;">
+                            <div class="header">
+                                <h3 style="color: #333; font-family: 'Metronic Pro', sans-serif; font-size: 1.5em; margin-bottom: 10px;">Please Read the Following Below</h3>
+                            </div>
+                            <div class="content" style="margin-top: 0; color: #555; font-family: 'Metronic Pro', sans-serif; font-size: 1.1em;">
+                                <p>1. Complete the form to request a Purchase Order (PO) from the finance team.</p>
+                                <p>2. Click the "Create" button to generate the form, and then click the "Request PO From Finance" button to send a request email to the finance team:</p>
+                            </div>
+                        </div>
+                        <br>
+                        <?= $this->formRender() ?>
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div style="background-color: #f2f2f2; text-align: center; padding: 10px 20px; border-radius: 10px; max-width: 100%; margin: 0 auto;">
+                            <div class="content" style="margin-top: 0; color: #555; font-family: 'Metronic Pro', sans-serif; font-size: 1.1em;">
+                                <p>🔒 This tab is designated for the finance team's use only. Please refrain from accessing or submitting information unless you are a member of the finance team.</p>
+                            </div>
+                        </div>
+                        <br>
+                        <?php if ($this->user->hasAccess('bt.finance.fin')): ?>
+                            <?= $this->relationRender('responsepo') ?>
+                        <?php else: ?>
+                            <?= $this->relationRender('responsepo', ['readOnly' => true]) ?>
+                        <?php endif ?>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** end TAB *** -->
+        </div>
+
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-primary">
+                    <?= e(trans('backend::lang.form.save')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-default">
+                    <?= e(trans('backend::lang.form.save_and_close')) ?>
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"
+                    data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+                </button>
+                <button class="btn btn-primary pull-right" data-request="onSendRequestPoNotification" data-stripe-load-indicator data-request-flash>Request PO From Finance</button>
+
+                <span class="btn-text">
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('bt/finance/requestpo') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/finance/requestpo') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+<?php endif ?>

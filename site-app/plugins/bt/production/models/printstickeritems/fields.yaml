@@ -1,0 +1,38 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    pipe_id:
+        label: Pipe To Print    
+        type: dropdown
+        options: listPipesitems
+        placeholder: -- select a Pipe --
+     
+    units:
+        label: Stickers To Print
+        type: number
+        span: auto
+    schedule_date:
+        label:  Date and Time    
+        type: datepicker
+        span: auto
+    batchnumber:
+        label: Batch Number
+        span: auto
+    jobcardnumber:
+        label: Job Card Number
+        span: auto
+    pipenostart:
+        label: Start Pipe Number of (1 of 10)
+        type: number
+        span: auto
+    pipenoend:
+        label: End Pipe Number of (1 of 10)
+        type: number
+        span: auto    
+    notes:
+        label: Notes
+        type: textarea
+        size: small

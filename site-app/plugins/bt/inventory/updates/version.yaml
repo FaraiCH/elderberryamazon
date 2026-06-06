@@ -1,0 +1,54 @@
+1.0.1:
+- First version of Inventory
+- create_part_names_table.php
+- create_entry_types_table.php
+- create_inventory_types_table.php
+- create_point_entries_table.php
+- create_point_entry_items_table.php
+- create_recieved_types_table.php
+- create_stocks_table.php
+- create_stock_outs_table.php
+- create_stock_room_blocks_table.php
+- create_cage_materials_table.php
+- create_raw_material_recons_table.php
+- create_raw_material_receivings_table.php
+- create_stock_releases_table.php
+- seeder_stock_room_block.php
+- seeder_part_names.php
+- seeder_entry_types.php
+- seeder_inventory_types.php
+- seeder_recieved_types.php
+- create_purchases_table.php
+- create_suppliers_table.php
+- create_request_materials_table.php
+- create_release_reasons_table.php
+1.0.2:
+- Update PO
+- create_purchaseitems_table.php
+- create_purchaseapproves_table.php
+1.0.3:
+- Add Stickers
+- create_print_stickers_table.php
+- create_print_sticker_items_table.php
+2.0.1:
+- Update material category
+- create_material_cats_table.php
+
+2.0.2:
+- Update material category
+- create_buy_outs_table.php
+
+2.0.3:
+  - Update Purchase
+2.0.4:
+- Create blendeded prices
+- create_blended_purchases_table.php
+
+2.0.5:
+- Create blendeded prices
+- create_daily_materials_table.php
+2.0.6:
+- Create bag batches
+- create_bag_batches_table.php
+- create_batch_prefixes_table.php
+

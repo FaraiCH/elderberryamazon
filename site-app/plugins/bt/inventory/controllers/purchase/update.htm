@@ -1,0 +1,109 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/inventory/purchase') ?>">Purchase</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <div class="scoreboard-item title-value">
+                <h4>Approved By Management</h4>
+                <p> 
+                   <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+                        <span class="oc-icon-check text-success">
+                            Yes
+                        </span>
+
+                    <?php else: ?>
+                        <span class="oc-icon-circle text-danger">
+                        No
+                        </span>
+                    <?php endif; ?>
+                </p>
+              
+            </div>
+
+
+            <div class="control-tabs content-tabs" data-control="tab">
+                <ul class="nav nav-tabs">
+                  <li class="active">
+                    <a class="active" id="starttab-tab" data-toggle="tab" href="#starttab" role="tab" aria-controls="starttab" aria-selected="true">Purchase Raw Material Details</a>
+                  </li>
+                    <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+                      <li class="nav-item">
+                        <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Receiving Raw Material</a>
+                      </li>
+                    <?php endif; ?>
+      
+                </ul>
+                <div class="tab-content" id="myTabContent" style="background: #fff">
+                    <div class="tab-pane active" id="starttab" role="tabpanel" aria-labelledby="starttab-tab">
+                        <div style="padding: 10px 20px"><?= $this->formRender() ?></div>
+                    </div>
+                    <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div style="padding: 0px 20px"><h3>Receiving Raw Material </h3><?= $this->relationRender('receiving') ?></div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Purchase..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Purchase..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+
+                <a target="_blank" class="btn btn-primary pull-right " href="/po/item/download/<?=   $formModel->id ?>.pdf">Download PO</a>
+                <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+                               
+                    <?php else: ?>
+                       <?php if (($this->user->hasAccess('bt.production.approve')) != 1 ): ?>
+
+                            <button class="btn btn-primary pull-right" data-request="onSendRequestPONotification" data-stripe-load-indicator data-request-flash>Request  Approval</button>
+
+                    <?php endif ?>
+                <?php endif; ?>
+
+               <!--  <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Purchase..."
+                    data-request-confirm="Delete this purchase?">
+                </button> -->
+
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/inventory/purchase') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/inventory/purchase') ?>" class="btn btn-default">Return to purchase list</a></p>
+
+<?php endif ?>

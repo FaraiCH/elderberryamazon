@@ -1,0 +1,46 @@
+{% if printitem.controlsheet_id is not empty %}
+<div class="alert alert-success">
+    <a class="form-size text-success" href="/printlanding/{{printitem.sticker_id}}/{{printitem.counter}}">Item has been saved. Click here to edit Sticker No: {{printitem.sticker_id}}-{{printitem.counter}}!</a>
+</div>
+
+{% endif %}
+<div class="col-xs-12" style=" background:#ececec;">
+    <form style="background: gainsboro;" enctype="multipart/form-data" data-request-files data-request="onSearch" data-request-flash id="savesticker_frm">
+        <div class="col-xs-4">
+            <input style="margin-top: 10px" type="number" required name="stickerparent" class="form-control form-size text-center">
+        </div>
+        <div class="col-xs-4">
+            <input style="margin-top: 10px" type="number" required name="stickerchild" class="form-control form-size text-center">
+        </div>
+        <div class="col-xs-4" style="text-align: center">
+            <button class="btn btn-primary btn-width btn-block" style="margin-top: 12px" data-load-indicator="Saving Line...">Search</button>
+        </div>
+    </form>
+</div>
+
+<!--<div class="col-xs-12">-->
+<!--    <table style="width: 100%" class="table tabledownload_desc dt-responsive table-striped table-hover form-size">-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th>Stick No</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            {# set printstickers = allstickers #}-->
+
+<!--            {# for printsticker in  printstickers #}-->
+<!--                {# for pipestickeritem in printsticker.pipestickeritem #}-->
+<!--                    {# if pipestickeritem.controlsheet_id is empty #}-->
+<!--                    <tr>-->
+<!--                        <td class="text-center">-->
+<!--                            <a style="width: 200px;" href="/printlanding/{{pipestickeritem.sticker_id}}/{{pipestickeritem.counter}}" class="btn btn-primary form-size"><span class="form-size"> Sticker No: </span>{{pipestickeritem.sticker_id}}-{{pipestickeritem.counter}}</a>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    {# endif #}-->
+<!--                {# endfor #}-->
+<!--            {# endfor #}-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--</div>-->
+

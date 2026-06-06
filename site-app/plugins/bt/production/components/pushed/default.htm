@@ -1,0 +1,50 @@
+{% set quotes = ProductionPushed.loadPushItems() %}
+
+
+
+
+{% if quotes is not empty  %}
+	
+		<table class="table table-striped table-bordered table-hover" id="tablesimple">
+				<thead>
+					<tr>
+						<th>INVOICE #</th>
+						<th>CLIENT</th>
+						<th>DATE REQUESTED</th>
+						<th>DATE STARTED</th>
+						<th>DATE COMPLETED</th>
+						<th>STATUS</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in quotes %}
+						
+
+			        	<tr>
+			        		<td>BT{{itemobject.quote.id}}</td>
+			        		<td>{{itemobject.quote.company_name}}</td>
+			              	<td>{{itemobject.created_at|date("Y-m-d")}}</td>
+			              	{% autoescape false %}{% set isnotset = '<span class="text-danger">Not Set</span>' %}{% endautoescape %}
+						
+							<td>{% autoescape false %}{{(itemobject.date_of_accepted)?itemobject.date_of_accepted|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+
+			              	<td>{% autoescape false %}{{(itemobject.date_of_completed)?itemobject.date_of_completed|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+
+			              	<td>{{itemobject.status.name}}</td>
+			              	<td><a href="{{ 'production/item'|page({'item': itemobject.id}) }}">View >></a></td>
+			              	
+			             </tr>
+			           
+			        {% endfor %} 
+		        </tbody>
+		       
+	        
+    </table>
+  
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

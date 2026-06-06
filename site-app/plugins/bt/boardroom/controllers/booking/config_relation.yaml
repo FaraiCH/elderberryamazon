@@ -1,0 +1,8 @@
+bookingapproval:
+    label: Approve Bookings
+    view:
+        form: $/bt/boardroom/models/bookingapproval/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/boardroom/models/bookingapproval/fields.yaml
+        list: $/bt/boardroom/models/bookingapproval/columns.yaml

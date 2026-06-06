@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Push
+
+# Model Form Field configuration
+form: $/bt/production/models/push/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Push
+
+# Default redirect location
+defaultRedirect: bt/production/push
+
+# Create page
+create:
+    title: Create Production Item
+    redirect: bt/production/push/update/:id
+    redirectClose: bt/production/push
+
+# Update page
+update:
+    title: Edit Production Item
+    redirect: bt/production/push
+    redirectClose: bt/production/push
+
+# Preview page
+preview:
+    title: Preview Production Item

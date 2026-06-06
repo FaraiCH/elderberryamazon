@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 10px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 20px;
+}
+h2{
+font-size: 16px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+.border{
+	border: 1px solid #000;
+	height: 15px;
+}
+.text-success{
+	color: green
+}
+.text-danger{
+	color: red
+}
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+               	<table border="0">
+            		<tr>
+            			<td valign="top" width="45%">
+                Doc: F-QMS-9.5.53<br>
+                Effective: 2019/03/03 Rev: 1<br>
+                Prepared By: T Ntjeke<br>
+                Approved By: F Chamisa
+                </td>
+                <td valign="top" width="45%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+
+            </p>
+
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="30%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="70%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501 <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>DAILY PRODUCTION RUN FOR JOB CARD #{{quote.prefix_dn?quote.prefix_dn:'BT-JC-'}}{{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="97%" border="0" cellpadding="2px" cellspacing="2px">
+
+					<tr>
+						<th >Client:</th><td class="border">{{quote.pipe.qpush.quote.company_name}}</td>
+						<th >Quote:</th><td class="border">{{quote.pipe.qpush.quote_id}}</td>
+						<th width="20%" >Job Card Start Date:</th>
+						<td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("Y-m-d") :""}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Product Description:</th><td class="border">{{quote.pipe.quoteitems.description}}</td>
+						<!-- <th >Order Quantity:</th><td class="border">{{quote.orderqty}}</td> -->
+						<th >Order Quantity:</th><td class="border">{{quote.pipe.quoteitems.units}}</td>
+						<th >Lengths in/M:</th><td class="border">{{quote.pipe.quoteitems.unitlength}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Override: Description:</th><td class="border">{{quote.product_description}}</td>
+						<th >Override: Quantity:</th><td class="border">{{quote.orderqty}}</td>
+						<th >Override: Lengths in/M:</th><td class="border">{{quote.lengthsinm}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Pipe Batch Number:</th><td class="border">BT-</td>
+						<th >&nbsp;</th><td>&nbsp;</td>
+						<th >&nbsp;</th><td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+
+				</table>
+			</td>
+		</tr>
+
+
+
+		<tr>
+			<td>
+			<br>
+			<h2 style="background: #ececec; text-align: center; padding: 4px">DAILY PRODUCTION RUN</h2>
+			<div style="width: 100%; display: block">
+			<table width="95%" border="1"  ca cellpadding="2px" cellspacing="0">
+				<thead>
+					<tr>
+						<th>CONTROL SHEET #</th>
+						<th>DATE</th>
+						<TH>SHIFT (D/N)</TH>
+						<TH>PRODUCED PIPES</TH>
+						<TH>PASSED QC</TH>
+						<TH>BALANCE TO RUN</TH>
+						<th>SUPERVISOR</th>
+						<TH>QC</TH>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+
+				{% for i in 0..20 %}
+					<tr>
+						<td width="15%">#BT-CS-</td>
+						<td width="15%">&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td width="15%">&nbsp;</td>
+						<td width="15%">&nbsp;</td>
+
+
+					</tr>
+				{% endfor %}
+
+
+			</table>
+		</div>
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<BR>
+				<h2 style="background: #ececec; text-align: center; padding: 4px">SIGN WHEN PRODUCTION IS COMPLETE</h2>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 5px;">
+
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>SUPERVISOR NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+						<tr>
+							<td>NAME OF QC:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+
+
+
+	</table>
+
+
+	</body>
+	</html>

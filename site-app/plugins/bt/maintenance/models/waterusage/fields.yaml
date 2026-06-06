@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+    readingdate:
+        label: Reading Date
+        type: datepicker
+        span: auto
+    pro_meter:
+        label: Production Meter
+        type: number
+        span: auto
+    cooling_meter:
+        label: Cooling Meter
+        type: number
+        span: auto
+    admin_meter:
+        label: Admin Meter
+        type: number
+        span: auto
+

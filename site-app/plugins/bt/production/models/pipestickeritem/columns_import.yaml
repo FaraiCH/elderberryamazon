@@ -1,0 +1,12 @@
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    pickslip:
+        label: Pick Slip
+        relation: pickslip
+        select: id
+
+    dispatch_date:
+        label: Dispatch Date

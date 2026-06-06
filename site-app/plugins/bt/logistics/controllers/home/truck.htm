@@ -1,0 +1,57 @@
+<div class="callout fade in callout-info ">
+    <div class="header"><h3>Pick Slips</h3></div>
+    <div class="content" style="padding: 5px;">
+        <table class="table table-sm">
+            <tr>
+                <th></th>
+                <th>Pick Slip #</th>
+                <th>Quote</th>
+                <th>Date</th>
+                <th>Truck Arrival Time</th>
+                <th>Load Start Time</th>
+                <th>Load End Time</th>
+                <th>Departure Time</th>
+            </tr>
+            <?php foreach($today as $item ): ?>
+            <tr>
+                <td><a href="/backend/bt/logistics/truckload/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-pencil">Update</a></td>
+                <td><?= $item->id ?></td>
+                <td><?= $item->quote_id ?> - <?= $item->quote->company_name ?></td>
+
+                <?php
+                    $date = date_create( $item->created_at);
+                    $arrival = date_create($item->vehicle_arrival);
+                    $start = date_create($item->vehicle_load_start);
+                    $end = date_create($item->vehicle_load_end);
+                    $go = date_create($item->vehicle_departure);
+                ?>
+                <td><?= date_format($date, 'D d M Y');?></td>
+                <?php if(isset($item->vehicle_arrival)): ?>
+                    <td><?= date_format($arrival, 'Y-m-d H:i') ?></td>
+                <?php else: ?>
+                    <td></td>
+                <?php endif; ?>
+                <?php if(isset($item->vehicle_load_start)): ?>
+                    <td><?= date_format($start, 'H:i') ?></td>
+                <?php else: ?>
+                    <td></td>
+                <?php endif; ?>
+                <?php if(isset($item->vehicle_load_end)): ?>
+                    <td><?= date_format($end, 'H:i') ?></td>
+                <?php else: ?>
+                    <td></td>
+                <?php endif; ?>
+                <?php if(isset($item->vehicle_departure)): ?>
+                    <td><?= date_format($go, 'H:i') ?></td>
+                <?php else: ?>
+                    <td></td>
+                <?php endif; ?>
+
+            </tr>
+            <?php endforeach ?>
+
+        </table>
+    </div>
+
+
+</div>

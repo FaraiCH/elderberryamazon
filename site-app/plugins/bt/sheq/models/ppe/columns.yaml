@@ -1,0 +1,47 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+        searchable: true
+    surname:
+        label: Surname
+        searchable: true
+    employeename:
+        label: Employee Name
+        relation: employee
+        select: concat(firstname, ' ', lastname)
+    department:
+        label: Department
+        type: partial
+        path: $/bt/sheq/models/ppe/_department.htm
+#    ppetype:
+#        label: PPE or Uniform
+#        relation: ppetype
+#        select: name
+
+    safety_shoes:
+        label: Safety Shoes
+
+    overall:
+        label: Overall
+
+    gloves:
+        label: Hand Gloves
+
+    ear_plugs:
+        label: Ear Plugs
+
+    protective_vest:
+        label: Reflector Vest
+    hard_hat:
+        label: Hard Hat
+    safety_glasses:
+        label: Safety Glasses
+    tshirt:
+        label: T-Shirt

@@ -1,0 +1,267 @@
+<div class="card-box">
+
+    <form data-request="onSearch" class="myForm" id="myForm"  data-request-update="'{{__SELF__ ~ '::p_resultsholder'}}': '#resultsholder'"
+   data-request-flash data-request-validate>
+    {% set companylist = ClientAddProperty.getcompanylist() %}
+     {% if companylist is not empty  %}
+        <div class="card-box">
+          <div class="form-group row" style="margin-bottom:0px">
+              <label   class="col-sm-6 col-form-label" for="province">Select profile to add property to, please leave unselected to add to personal profile: </label>
+              <div class="col-sm-6">
+                <select class="form-control" id="clientid" name="clientid">
+
+
+                      <option value=""></option>
+
+                      
+                     {% for item in companylist %}
+                        
+                            <option value="{{item.client.id}}" >{{item.companyname}} | {{item.bankref}}</option>
+                         
+                      {% endfor %}
+                </select>
+              </div>
+            </div>
+       </div>
+
+        {% endif %}
+
+
+    <div class="box-body">
+      <div id="accordion">
+
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <a class="btn btn-link " data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Property Details
+                </a>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse accodion-body in" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                  <!-- --- -->
+                  <div class="row">
+                    
+                    
+
+
+                    {% for key,item in ClientAddProperty.searcsplit.property_details %}
+                    {%if item == "province" %}
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                          <label   class="col-sm-4 col-form-label" for="province">Province</label>
+                          <div class="col-sm-8">
+                            <select class="form-control"  name="province">
+                                  <option value=""></option>
+                                  <option value="Gauteng">Gauteng</option>
+                                  <option value="Limpopo">Limpopo</option>
+                                  <option value="Free State">Free State</option>
+                                  <option value="Mpumalanga">Mpumalanga</option>
+                                  <option value="Kwazulu Natal">Kwazulu Natal</option>
+                                  <option value="Northern Cape">Northern Cape</option>
+                                  <option value="North West">North West</option>
+                                  <option value="Eastern Cape">Eastern Cape</option>
+                                  <option value="Western Cape">Western Cape </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      {% else %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                      {% endif%}
+                     {% endfor %}
+
+                  </div>
+                <!-- --- -->
+                
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Farm Details
+                </a>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse accodion-body" aria-labelledby="headingTwo" aria-expanded="false"  data-parent="#accordion">
+              <div class="card-body">
+                <!-- --- -->
+                  <div class="row">
+
+                    {% for key,item in ClientAddProperty.searcsplit.sec_3 %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                     {% endfor %}
+
+                  </div>
+                <!-- --- -->
+              </div>
+            </div>
+          </div>
+
+         
+
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Owner Details
+                </a>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse accodion-body" aria-labelledby="headingTwo" aria-expanded="false"  data-parent="#accordion">
+              <div class="card-body">
+                
+
+                <div class="row">
+
+                  <div class="col-sm-12"><b>Natural Person:</b></div>
+
+                 {# <div class="col-sm-6">
+                    <div class="form-group row">
+                      <label for="idck" class="col-sm-4 col-form-label" >ID or CC/CK Number:</label>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control" id="idck" name="idck" placeholder="SA ID Number or Company Registration Number" value="">
+                      </div>
+                    </div>
+                  </div> #}
+
+                  {% for key,item in ClientAddProperty.searcsplit.natural_person_1 %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                     {% endfor %}
+
+                      {% for key,item in ClientAddProperty.searcsplit.natural_person_2 %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                     {% endfor %}
+                     {% for key,item in ClientAddProperty.searcsplit.natural_person_3 %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                     {% endfor %}
+
+
+                  <div class="col-sm-12"><b>Legal Person:</b></div>
+                  
+                  {% for key,item in ClientAddProperty.searcsplit.legal_person %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+              
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+           <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                 Address Details
+                </a>
+              </h5>
+            </div>
+            <div id="collapseFive" class="collapse accodion-body" aria-labelledby="headingTwo" aria-expanded="false" data-parent="#accordion">
+              <div class="card-body">
+                <!-- --- -->
+                  <div class="row">
+
+                    {% for key,item in ClientAddProperty.searcsplit.sec_4 %}
+                     <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label   class="col-sm-4 col-form-label" for="{{key}}">{{item}}:</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="{{key}}" name="{{key}}" placeholder="" value="">
+                      </div>
+                      </div>
+                    </div>
+                     {% endfor %}
+
+                     
+
+                  </div>
+                <!-- --- -->
+              </div>
+            </div>
+          </div>
+
+
+
+          
+
+
+
+      </div>
+    
+     
+
+    </div>
+    
+    <div class="box-footer">
+         <div class="row">
+            <div class="col-sm-6">
+              <input type="hidden" name="maxrow" value="500">
+               {#Return  <select class="form-control"  name="maxrow" style="display: inline-block; width: 80px;">      
+                                  <option value="20" selected=>20</option>
+                                   <option value="40">40</option>
+                                   <option value="60">60</option>
+                                   <option value="80">80</option>
+                                   <option value="100">100</option>
+
+                            </select> Rows#}
+            </div>
+            <div class="col-sm-6">
+                <input type="reset" value="CLEAR"  class="btn btn-info pull-right  text-center">
+                <button data-stripe-load-indicator data-attach-loading type="submit"  data-request-update="'{{__SELF__ ~ '::p_resultsholder'}}': '#resultsholder'" data-request="onSearch" class="btn btn-primary pull-right text-center" style="text-align: center; margin: 0px 15px ;">SEARCH <i class="fa fa-search"></i></button>
+            </div>
+          </div>
+    </div>
+  </form>
+</div>

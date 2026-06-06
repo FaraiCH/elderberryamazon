@@ -1,0 +1,61 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    mainfolder:
+        label: Department
+        type: relation
+        select: name
+        span: auto
+        placeholder: -- select a folder --
+        showSearch: false
+        comment: After selecting department, **folder field will automatically update
+        required: true
+
+    subfolder:
+        label: Folder
+        type: dropdown
+        dependsOn: mainfolder
+        span: auto
+        emptyOption: -- no sub folder --
+        placeholder: -- select a folder --
+        showSearch: false
+        required: true
+
+
+        
+
+    name:
+        label: Document Name
+        searchable: true
+        span: auto
+        required: true
+
+    summary:
+        label: Document Summary
+        searchable: true
+        span: auto
+    assinged_date:
+        label: Date In Relation
+        type: datepicker
+        span: auto
+        mode: date
+    
+    active:
+        label: Is Active
+        type: switch
+        span: auto
+
+tabs:
+    fields:
+        
+        files:
+            label: Upload Files
+            type: fileupload
+            tab: Files
+            mode: file
+           
+       
+           

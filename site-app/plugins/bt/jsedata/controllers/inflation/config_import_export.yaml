@@ -1,0 +1,12 @@
+import:
+    title: Import Inflation
+    modelClass: Bt\JSEData\Models\InflationImport
+    list: $/bt/jsedata/models/inflation/columns_export.yaml
+    redirect: bt/JSEData/inflation
+    # form: $/bt/sales/models/client/fields.yaml
+# export:
+#     title: Export Clients
+#     modelClass: Bt\Sales\Models\ClientExport
+#     list: $/bt/sales/models/client/columns_export.yaml
+#     redirect: bt/sales/client
+#     fileName: client-export.csv

@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    requesteddate:
+        label: Date Request Of Release
+        disabled: false
+        type: datepicker
+    
+    reason:
+        label: Reason For Release
+        disabled: false
+        select: name
+        type: relation
+        showSearch: false
+
+    kg:
+        label: Weight On Kg
+        type: number
+        disabled: false
+        comment: You can only release what is left on in the cage
+    # requestby_id@create:
+    #   label: Country
+    #   type: dropdown

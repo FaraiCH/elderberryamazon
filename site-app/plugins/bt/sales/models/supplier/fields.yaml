@@ -1,0 +1,49 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Company Name
+        
+    vatno:
+        label: VAT No
+        span: left
+    
+    coreg:
+        label: CO Reg
+        span: right
+tabs:
+    fields:
+        contact_name:
+            label: Contact Name
+            tab: Contact Details
+            span: left
+        contact_email:
+            label: Contact Email
+            tab: Contact Details
+            span: right
+        contact_number:
+            label: Contact Number
+            tab: Contact Details
+            span: left
+        physical_address:
+            label: Physical Address
+            tab: Address
+            span: left
+        physical_code:
+            label: Physical Code
+            tab: Address
+            span: right
+        postal_address:
+            label: Postal Address
+            tab: Address
+            span: left
+        postal_code:
+            label: Postal Code
+            tab: Address
+            span: right
+        product:
+            path: $/bt/sales/controllers/supplier/_products.htm
+            tab: Products
+            type: partial

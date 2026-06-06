@@ -1,0 +1,42 @@
+
+.just {
+    white-space: nowrap;
+}
+
+.justwrap{
+    width:1%;
+    white-space:nowrap;
+}
+
+.page-link:hover {
+    color: black !important;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+td.highlight {
+    background-color: grey !important;
+}
+
+table.dataTable{
+    width: 100%;
+}
+table.dataTable tbody  tr td{
+    font-size: 11px;
+
+}
+table.dataTable thead  tr th{
+    font-size: 11px;
+    max-width: 10px;
+    background: #1E347B !important;
+    color: #fff;
+    border-color: #1E347B;
+
+}
+
+
+
+
+

@@ -1,0 +1,438 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+
+.table-md td, .table-md th {
+    padding: 2px;
+    vertical-align: top;
+    border: 1px solid #e9ecef;
+    font-size: 12px;
+    word-wrap: break-word;
+    height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+	      <div class="footer">
+            <p class="left">
+               	<table border="0">
+            		<tr>
+            			<td valign="top" width="45%">
+                Doc: F-SC-20.0.3<br>
+                Effective: 2019/05/08 Rev: 0<br>
+                Prepared By: K Maphai<br>
+                Approved By: K Lekola
+                </td>
+                <td valign="top" width="45%">Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+
+            </p>
+
+        </div>
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>STOCK RELEASE NOTE #{{quote.prefix_srn?quote.prefix_srn:'BT-SRN'}}{{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="47%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  ><b>Released From:</b></td></tr>
+								<tr><td><h2 style="margin: 0px; padding: 0px">BT-INDUSTRIAL GROUP</h2></td></tr>
+								<tr><td>11 Barnsley Street</td></tr>
+								<tr><td>Benoni</td></tr>
+								<tr><td>1501</td></tr>
+								{% if quote.invoiceno is not empty %}
+									<tr><td><br><b>Invoice No: {{quote.invoiceno}}</b></td></tr>
+								{% endif %}
+								<tr><td><b>Purchase Order No: {{quote.quote.ponumber}}</b></td></tr>
+								<tr><td><b>Quote No: {{quote.quote.id}}</b></td></tr>
+							</table>
+						</td>
+						<td></td>
+						<td width="47%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>Released To:</b></td></tr>
+
+								<tr><td width="40%"><b>Company:</b></td><td width="60%">{{quote.client.company_name}}</td></tr>
+								{% if quote.client.vatno is not empty %}
+									<tr><td width="40%"><b>Customer VAT NO:</b></td><td width="60%">{{quote.client.vatno}}</td></tr>
+								{% endif %}
+								<tr><td valign="top"  width="40%"><b>Delivery Address:</b></td><td width="60%">{% if quote.delivery_address %}
+									{{quote.delivery_address}}
+								{% else %}
+									{{quote.client.physical_address}}{{(quote.client.physical_code)? ", ": ""}}{{(quote.client.physical_code)? quote.client.physical_code : ""}}
+								{% endif %}
+								</td></tr>
+								<tr><td valign="top" width="40%"><b>Postal Address:</b></td><td width="60%">{{quote.client.postal_address}}{{(quote.client.postal_code)? ", ": ""}}{{quote.client.postal_code? quote.client.postal_code : ""}}</td></tr>
+
+								{% if quote.client.vendorno is not empty %}
+									<tr><td width="40%"><b>Vendor NO:</b></td><td width="60%">{{quote.client.vendorno}}</td></tr>
+								{% endif %}
+								{% if quote.client.coreg is not empty %}
+									<tr><td width="40%"><b>Co REG:</b></td><td width="60%">{{quote.client.coreg}}</td></tr>
+								{% endif %}
+
+
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+
+						<td width="47%" valign="top">
+							<br>
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>Driver Information:</b></td></tr>
+
+								<tr><td width="50%"><b>Driver Name:</b></td><td width="50%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+								<tr><td width="50%"><b>Truck Reg Number:</b></td><td width="50%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+								<tr><td width="50%"><b>Driver Signature:</b></td><td width="50%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+								<tr><td width="50%"><b>Date:</b></td><td width="50%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+
+						<td width="47%" valign="top">
+
+							<table width="100%" border="0" cellpadding="5px" cellspacing="0">
+								<tr><td width="50%"><h3>Schedule Date:</h3></td><td width="50%" ><h3>{{quote.schedule_date|date("Y-m-d")}}</h3></td></tr>
+
+							</table>
+						</td>
+					</tr>
+
+
+				</table>
+			</td>
+		</tr>
+    </table>
+
+        <table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+            <thead>
+                <tr>
+                    <th width="10px" style="background: #ececec" >#</th>
+
+                    <th  style="background: #ececec" class="text-center" nowrap="nowrap" >Description</th>
+                    <th  nowrap="nowrap" style="background: #ececec" class="text-center" >Units</th>
+                </tr>
+            </thead>
+        </table>
+
+          {% set counter = 0 %}
+          {% set num = 0 %}
+          {% set tabmade = '' %}
+
+          {% for itemobject in quote.items %}
+                {% set num = num + 1 %}
+          {% endfor %}
+          {% for itemobject in quote.itemscat %}
+                {% set num = num + 1 %}
+          {% endfor %}
+
+          {% if num < 10 %}
+
+            {% set tabmade = 'table-md' %}
+
+          {% else %}
+            {% set tabmade = 'table' %}
+
+          {% endif %}
+
+          {% for itemobject in quote.items %}
+          <div>
+              <table width="100%" border="1" cellpadding="5px" cellspacing="" class="{{tabmade}}">
+            <tbody>
+
+                    {% set counter = counter + 1 %}
+                    <tr>
+                        <td width="5px">{{counter}}</td>
+
+                            {% if itemobject.description is not empty %}
+                            <td nowrap="nowrap">{{itemobject.description}}</td>
+                        {% else %}
+                        <td nowrap="nowrap">{{itemobject.pipe.quoteitems.description}}</td>
+                        {% endif %}
+
+                        {% if itemobject.unitdescription is not empty %}
+                            <td nowrap="nowrap" class="text-center">{{itemobject.units}} {{itemobject.unitdescription}}</td>
+                        {% else %}
+                        <td nowrap="nowrap" class="text-center">{{itemobject.units}}</td>
+                        {% endif %}
+                     </tr>
+            </tbody>
+        </table>
+          </div>
+                {% endfor %}
+
+                {% for itemobject in quote.itemscat %}
+                    {% set counter = counter + 1 %}
+              <div>
+              <table table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+                  <tr>
+                      <td width="10px">{{counter}}</td>
+                      <td width="70%">{{itemobject.qoutecat.description}}</td>
+                      <td nowrap="nowrap" class="text-center">{{itemobject.units}}</td>
+
+                  </tr>
+              </table>
+              </div>
+                {% endfor %}
+
+		{% if quote.notes_srn is not empty %}
+		<table>
+			<tr>
+				<td style="background: #ececec; padding: 5px" >
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Notes</h4>
+					<table width="100%" border="1" style="border: 1px solid #333" cellpadding="5px" cellspacing="0">
+						<tr>
+							<td width="100%">{{quote.notes_srn|nl2br}}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+        </table>
+		{% endif %}
+
+		<table>
+		<tr>
+			<td>
+				<div style="border: 1px solid #ccc; padding: 10px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">BT Operations Release:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+        </table>
+
+        <table>
+		<tr>
+			<td>
+				<div style="border: 1px solid #ccc; padding: 10px;  margin-top: 10px">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">BT Loading Supervisor Release:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+        </table>
+
+          <table>
+		<tr>
+			<td>
+				<div style="border: 1px solid #ccc; padding: 10px;  margin-top: 10px">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">BT Security Release:</h4>
+
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+          </table>
+
+          <table>
+		<tr>
+			<td  >
+				<div style="border: 1px solid #ccc; padding: 10px;  margin-top: 10px">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">BT Account Manager Release:</h4>
+
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+          </table>
+
+          <table>
+		<tr>
+			<td  >
+
+				<br>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="47%" valign="top">
+							<div style="border: 1px solid #ccc; padding: 10px; height: 80px width:100%; ">
+								<h4 style="font-size: 15px; margin: 0px; padding: 0px">Security Stamp:</h4>
+							</div>
+						</td>
+						<td></td>
+						<td width="47%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>OFFICE USE ONLY</b></td></tr>
+
+								<tr><td width="50%"><b>Account #</b></td><td width="50%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+								<tr><td width="50%"><b>Delivery Note #</b></td><td width="50%" style="border-bottom: 1px solid #000">{{quote.prefix_dn?quote.prefix_dn:'BT-DN'}}{{'%04d'|format(quote.id)}}</td></tr>
+
+								{% if quote.altinvoice is not empty %}
+									<tr><td width="50%"><b>Invoice Number #</b></td><td width="50%" style="border-bottom: 1px solid #000">{{quote.altinvoice}}</td></tr>
+								{% else %}
+									<tr><td width="50%"><b>Invoice Number #</b></td><td width="50%" style="border-bottom: 1px solid #000">{{quote.invoice.name}}</td></tr>
+								{% endif %}
+
+							</table>
+						</td>
+					</tr>
+
+				</table>
+
+			</td>
+		</tr>
+
+	</table>
+
+
+	</body>
+	</html>

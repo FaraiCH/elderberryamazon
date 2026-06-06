@@ -1,0 +1,41 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+
+    attendancetypes:
+        label: Attendance Type
+        type: relation
+        select: attendancetype
+        span: auto
+
+    numAttendees:
+        label: Attendees
+        type: number
+        span: auto
+    date:
+        label: Date
+        type: datepicker
+        span: auto
+    description:
+        label: Description
+        type: text
+        span: auto
+
+tabs:
+    fields:
+        files@update:
+            label: Upload Files
+            type: fileupload
+            tab: Files
+            mode: file
+            
+        images@update:
+            label: Upload Images
+            type: fileupload
+            tab: Images

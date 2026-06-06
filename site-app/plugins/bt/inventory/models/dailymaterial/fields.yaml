@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    datecaptured:
+        label: Date Captured
+        disabled: false
+        type: datepicker
+        mode: date
+
+    dailyincate@update:
+        label: Daily Incage Material
+        path: $/bt/inventory/models/dailymaterial/_incage.htm
+
+        type: partial

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stocktype
+
+# Model Form Field configuration
+form: $/bt/floor/models/stocktype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\Stocktype
+
+# Default redirect location
+defaultRedirect: bt/floor/stocktype
+
+# Create page
+create:
+    title: Create Stocktype
+    redirect: bt/floor/stocktype/update/:id
+    redirectClose: bt/floor/stocktype
+
+# Update page
+update:
+    title: Edit Stocktype
+    redirect: bt/floor/stocktype
+    redirectClose: bt/floor/stocktype
+
+# Preview page
+preview:
+    title: Preview Stocktype

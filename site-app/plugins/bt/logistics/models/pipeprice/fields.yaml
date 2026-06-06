@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    batch:
+        label: Batch ID
+        type: relation
+        select: concat(jobcard_id, ' - ', id)
+        span: auto
+    qty:
+        label: Quantity
+        type: number
+        span: auto
+    date:
+        label: Start Date
+        type: datepicker
+        mode: date
+        span: auto
+

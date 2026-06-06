@@ -1,0 +1,42 @@
+scopes:
+    srnid:
+        label: SRN Number
+        modelClass: Bt\Sales\Models\Srn
+        conditions: id =  (:filtered)
+        nameFrom: id
+
+    quoteid:
+        label: Quote Number
+        modelClass: Bt\Sales\Models\Newquote
+        conditions: quote_id =  (:filtered)
+        nameFrom: id
+
+    fabrication:
+        label: Is Fabrication?
+        type: group
+        default: 0
+        conditions: fabrication in (:filtered)
+        modelClass: Bt\Sales\Models\Srn
+        nameFrom: fabrication
+        options:
+            1: Yes
+            0: No
+    schedule_date:
+        label: Date Scheduled
+        type: daterange
+        yearRange: 10
+        #conditions: created_at = ':filtered'
+        conditions: schedule_date >= ':after' AND schedule_date <= ':before'
+    created_at:
+        label: Date Created
+        type: daterange
+        yearRange: 10
+        #conditions: created_at = ':filtered'
+        conditions: created_at >= ':after' AND created_at <= ':before'
+    client_filter:
+        label: Client
+        modelClass: Bt\Sales\Models\Client
+        conditions: client_id in (:filtered)
+        nameFrom: company_name
+    
+

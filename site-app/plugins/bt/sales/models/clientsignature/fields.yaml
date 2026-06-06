@@ -1,0 +1,36 @@
+fields:
+#    status_id:
+#        label: Sign Document
+#        type: switch
+#        on: Yes
+#        off: No
+#        span: auto
+    name:
+        label: Name
+        span: auto
+    surname:
+        label: Surname
+        span: auto
+#    createdby:
+#        label: Created By
+#        disabled: true
+#        type: relation
+#        select: concat(first_name, ' ', last_name)
+#        span: auto
+#        placeholder: -- select a status --
+#        comment: Please ignore, this field will be automated
+#
+#    updatedby:
+#        label: Updated By
+#        disabled: true
+#        type: relation
+#        select: concat(first_name, ' ', last_name)
+#        span: auto
+#        placeholder: -- select a status --
+#        comment: Please ignore, this field will be automated
+    signage:
+        comment: Sign Bellow
+        type: section
+    sign:
+        type: signature
+

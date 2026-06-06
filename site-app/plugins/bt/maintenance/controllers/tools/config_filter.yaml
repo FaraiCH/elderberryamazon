@@ -1,0 +1,16 @@
+scopes:
+    equipment_type:
+        label: Equipment Type
+        modelClass: Bt\Maintenance\Models\EquipmentType
+        conditions: equipment_type_id in (:filtered)
+        nameFrom: name
+    fileawayyes:
+        label: Active
+        modelClass: Bt\Maintenance\Models\YesNo
+        conditions: fileaway in (:filtered)
+        nameFrom: name
+
+    caliberation_expiery_date:
+        label: Caliberation Expiery Date
+        type: daterange
+        conditions: caliberation_expiery_date >= ':after' AND caliberation_expiery_date <= ':before'

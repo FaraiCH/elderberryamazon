@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    name:
+        label: Company Name
+        span: auto
+    ticker:
+        label: JSE Ticker
+        span: auto
+    altticker:
+        label: ALT Ticker
+        span: auto
+    industry:
+        label: Industry
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: -- select --
+    isspecial:
+        label: Is special
+        type: switch
+        span: auto
+tabs:
+    fields:
+          mines:
+            path: $/bt/jsedata/controllers/company/_mines.htm
+            tab: Data Mine
+            type: partial

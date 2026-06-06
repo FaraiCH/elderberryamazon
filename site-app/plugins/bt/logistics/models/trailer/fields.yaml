@@ -1,0 +1,40 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    name:    
+        label: Trailer Name
+        type: text
+        span: auto
+    num_plate:
+        label: Number Plate
+        type: text
+        span: auto
+    next_exp_license_disc:
+        label: Next Expery License Disc Date
+        type: datepicker
+        mode: date
+        span: auto
+
+tabs:
+    fields:
+        trailerchecklist:
+          path: $/bt/logistics/controllers/trailer/_checklist.htm
+          tab: Trailer Checklist Records
+          type: partial
+        files:
+            label: Checklist Report
+            type: fileupload
+            tab: Upload Files
+            mode: file
+            tab: Files
+            span: auto
+        images:
+            label: Images
+            type: fileupload
+            tab: Images
+            span: auto

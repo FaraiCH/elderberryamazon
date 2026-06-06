@@ -1,0 +1,30 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    opendate:
+        label: Date Period
+        type: daterange
+        yearRange: 10
+        #conditions: created_at = ':filtered'
+        conditions: date >= ':after' AND date <= ':before'
+    hours_worked:
+        label: Range Daily Hours Worked
+        type: numberrange
+        conditions: hours_worked >= ':min' and hours_worked <= ':max'
+    hours_over:
+        label: Range Over Time
+        type: numberrange
+        conditions: hours_over >= ':min' and hours_over <= ':max'
+    employee:
+        label: Employees
+        modelClass: Bt\HR\Models\Employee
+        conditions: employee_id in (:filtered)
+        nameFrom: firstname
+    department:
+        label: Department
+        modelClass: Bt\HR\Models\Department
+        nameFrom: name
+        # Filter scope
+        scope: filterByDepartment

@@ -1,0 +1,11 @@
+# ===================================
+#  Extended Profile Field Definitions
+# ===================================
+
+_buttons:
+    label: Impersonate
+    tab: Impersonate
+    
+    type: impersonate_btn
+    # path: $/noezan/backendimpersonate/setup/_impersonate_btn.htm
+    span: left

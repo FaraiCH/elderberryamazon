@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Delivery Scrap Pipe
+
+# Model Form Field configuration
+form: $/bt/floor/models/deliveryscrappipe/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\DeliveryScrapPipe
+
+# Default redirect location
+defaultRedirect: bt/floor/deliveryscrappipe
+
+# Create page
+create:
+    title: Create Delivery Scrap Pipe
+    redirect: bt/floor/deliveryscrappipe/update/:id
+    redirectClose: bt/floor/deliveryscrappipe
+
+# Update page
+update:
+    title: Edit Delivery Scrap Pipe
+    redirect: bt/floor/deliveryscrappipe
+    redirectClose: bt/floor/deliveryscrappipe
+
+# Preview page
+preview:
+    title: Preview Delivery Scrap Pipe

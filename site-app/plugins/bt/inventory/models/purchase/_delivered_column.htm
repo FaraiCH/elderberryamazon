@@ -1,0 +1,16 @@
+
+<?php if($record->receiving->sum("weight") == $record->weight): ?>
+<span class="oc-icon-check text-center" style="color: whitesmoke; background: forestgreen; display: block; border-radius: 10px">
+	    <?= $record->receiving->sum("weight") ?> KG
+	</span>
+
+<?php elseif($record->receiving->sum("weight") > $record->weight): ?>
+<span class="oc-icon-info-circle text-center" style="color: whitesmoke; background: orange; display: block; border-radius: 10px">
+	    <?= $record->receiving->sum("weight") ?> KG
+	</span>
+
+<?php else: ?>
+<span class="oc-icon-circle text-center" style="color: whitesmoke; background: red; display: block; border-radius: 10px">
+	<?= $record->receiving->sum("weight") ?> KG
+	</span>
+<?php endif; ?>

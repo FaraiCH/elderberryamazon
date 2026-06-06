@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Trailer Ckecklist
+
+# Model Form Field configuration
+form: $/bt/logistics/models/trailerckecklist/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\TrailerCkecklist
+
+# Default redirect location
+defaultRedirect: bt/logistics/trailerckecklist
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/trailerckecklist/update/:id
+    redirectClose: bt/logistics/trailerckecklist
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/trailerckecklist
+    redirectClose: bt/logistics/trailerckecklist
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

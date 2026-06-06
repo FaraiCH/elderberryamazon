@@ -1,0 +1,6 @@
+<?php
+if(isset($record->pipe->quoteitems->quote_id))
+    echo "Quote (".$record->pipe->quoteitems->quote_id.') : '.$record->pipe->quoteitems->quote->company_name;
+else
+    echo "Item deleted from quote."
+?>

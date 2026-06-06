@@ -1,0 +1,34 @@
+<div class="callout fade in callout-info p-2">
+
+    <?= Form::open(['class'=>'row']) ?>
+
+        <div class="form-group col-sm-4">
+            <label for="startdate">Start Date: </label>
+            <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md" required>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <label for="enddate">End Date: </label>
+            <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md" required>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <label for="department">Department: </label>
+            <select class="form-control custom-select" name="department" id="id">
+                <option value="" >All Departments</option>
+                <?php foreach($departments as $department ): ?>
+                    <?php if($department->id): ?>
+                        <option value="<?= $department->id?>" <?php if(isset($_POST['department'])) if ($_POST['department'] == $department->id) echo 'selected="selected" '; ?> ><?= $department->short_name ?></option>
+                    <?php endif;?>
+                <?php endforeach?>
+            </select>
+        </div>
+
+        <div class="form-group col-sm-12">
+            <button type="submit" class="btn btn-primary text-center">Filter</button>
+            <a href="/home/hours/" class="btn btn-primary text-center">Download Weekly report</a>
+        </div>
+
+    <?= Form::close() ?>
+
+</div>

@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+
+    card:
+      label: Card
+      span: auto
+tabs:
+  fields:
+    employee:
+        label: Employee Number
+        span: auto
+        type: relation
+        select: CONCAT(employeenumber,' - ', firstname,' ', lastname)
+        placeholder: --select--
+        tab: Issue Card
+
+    issue_date:
+      label: Issue Date
+      span: auto
+      tab: Issue Card
+      type: datepicker
+      mode: date
+
+    lost_date:
+      label: Lost Date
+      span: auto
+      tab: Lost Card
+      type: datepicker
+      mode: date
+
+    reason_lost:
+      label: Reason lost
+      span: auto
+      tab: Lost Card
+      type: textarea
+      size: small

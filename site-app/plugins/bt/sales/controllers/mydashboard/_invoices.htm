@@ -1,0 +1,66 @@
+
+<div style="text-align: right">
+    <a href="/backend/sales/invoices/export" class="btn btn-primary">
+        Export Invoices
+    </a>
+</div>
+<br>
+<div class="control-list" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-hover " style="width:100%">
+		<thead>
+			<tr>
+				<th><span>SRN Date</span></th>
+				<th><span>SRN REF</span></th>
+				<th><span>Quote #</span></th>
+				<th><span>PO #</span></th>
+				<th><span>Invoice #</span></th>
+				<th><span>Invoice Date</span></th>
+				<th><span>Client</span></th>
+				<th><span>Sales Person</span></th>
+				<th style="text-align: right;"><span>Amount</span></th>
+				<th style="text-align: right;"><span><span class="icon-arrows-v"> </span> Total Amount</span></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+					$amount = 0;
+
+					?>
+			<?php foreach($invoices as $key => $item): ?>
+				<tr>
+				<td nowrap="nowrap"><?php
+					$date = date_create($item->srn->schedule_date );
+					echo date_format($date, 'Y-m-d');
+					?>
+				</td>
+					<td><a target="_blank" href="/srn/item/download/<?= $item->srn_id?>.pdf"><?= $item->srn_id ?></a></td>
+					<td><a target="_blank" href="/quote/item/download/<?= $item->quote_id?>.pdf"><?= $item->quote_id ?></a></td>
+							<td><?= $item->quote->ponumber ?></td>
+					<td><a target="_blank" href="/backend/bt/sales/invoice/preview/<?= $item->id?>"><?= $item->name ?></a></td>
+
+					<td><?= $item->invoice_date ?></td>
+					<td>
+						<?php if(isset($item->quote->client->company_name)): ?>
+							 <?= $item->quote->client->company_name ?></span>
+						<?php endif; ?>
+					</td>
+
+
+					<td>
+						<?php if(isset($item->quote->user)): ?>
+	    					<span class="icon-user-circle"> <?= $item->quote->user->name . " " . $item->quote->user->surname?></span>
+						<?php endif; ?>
+					</td>
+
+					<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item->amount,2, '.', ',') ?></td>
+					    <?php
+						    $amount += $item->amount;
+					    ?>
+
+					  <td style="text-align: right" nowrap="nowrap">R <?= number_format( $amount,2, '.', ',') ?></td>
+
+				</tr>
+			 <?php endforeach ?>
+		</tbody>
+	</table>
+</div>

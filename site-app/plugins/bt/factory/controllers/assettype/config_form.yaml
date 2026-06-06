@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Assettype
+
+# Model Form Field configuration
+form: $/bt/factory/models/assettype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Factory\Models\Assettype
+
+# Default redirect location
+defaultRedirect: bt/factory/assettype
+
+# Create page
+create:
+    title: Create Assettype
+    redirect: bt/factory/assettype/update/:id
+    redirectClose: bt/factory/assettype
+
+# Update page
+update:
+    title: Edit Assettype
+    redirect: bt/factory/assettype
+    redirectClose: bt/factory/assettype
+
+# Preview page
+preview:
+    title: Preview Assettype

@@ -1,0 +1,42 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    diameter:
+        label: Diameter (m)
+        type: relation
+        select: name
+        placeholder: -- Select Diameter --
+        span: auto
+    target_scrap:
+        label: Target Scrap %
+        type: number
+        span: auto
+    factor:
+        label: Factor %
+        type: number
+        span: auto
+    startup_scrap:
+        label: Start Up Scrap (m)
+        type: number
+        span: auto
+    end_scrap:
+        label: End Scrap (m)
+        type: number
+        span: auto
+    workmanship:
+        label: Workmanship (m)
+        type: number
+        span: auto
+    other:
+        label: Other (m)
+        type: number
+        span: auto
+    minimum_run:
+        label: Minimum Run
+        type: number
+        span: auto

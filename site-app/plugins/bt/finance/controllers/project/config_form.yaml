@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Project
+
+# Model Form Field configuration
+form: $/bt/finance/models/project/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\Project
+
+# Default redirect location
+defaultRedirect: bt/finance/project
+
+# Create page
+create:
+    title: Create Project
+    redirect: bt/finance/project/update/:id
+    redirectClose: bt/finance/project
+
+# Update page
+update:
+    title: Edit Project
+    redirect: bt/finance/project
+    redirectClose: bt/finance/project
+
+# Preview page
+preview:
+    title: Preview Project

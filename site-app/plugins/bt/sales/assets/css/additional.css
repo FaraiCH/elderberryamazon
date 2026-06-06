@@ -1,0 +1,41 @@
+.upload-files-container .info span[data-dz-name],.upload-files-container .info .size{
+	border: 1px solid blue;
+	display: none;
+}
+div .upload-files-container .info .upload-remove-button{
+	display: block !important;
+	font-size: 50px;
+	padding: 0px;
+	background: #fff;
+	height: 50px;
+	width: 50px;
+	top: 1px;
+	right: -50px;
+	line-height: 50px !important;
+
+}
+
+.responsiv-uploader-fileupload .upload-object{
+	overflow: visible !important;
+}
+
+div .responsiv-uploader-fileupload .upload-object h4{
+	margin: 0px;
+	border-radius: 2px;
+	height: 30px;
+	overflow: visible !important;
+
+}
+.responsiv-uploader-fileupload.style-image-single .upload-object .info{
+	top: 0px;
+}
+
+div .responsiv-uploader-fileupload.style-image-single .upload-object .icon-container{
+	border: 1px solid #ccc !important;
+}
+div .responsiv-uploader-fileupload.style-image-single .upload-object{
+	    padding-bottom: 20px;
+}
+
+
+

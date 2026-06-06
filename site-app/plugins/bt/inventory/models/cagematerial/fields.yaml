@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    datecaptured:
+        label: Date
+        disabled: false
+        type: datepicker
+    # productname:
+    #     label: Product
+    #     disabled: false
+    #     select: name
+    #     type: relation
+    kg:
+        label: Incage Kg
+        disabled: false
+        type: number
+

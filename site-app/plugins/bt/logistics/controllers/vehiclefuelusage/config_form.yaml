@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Vehicle Fuel Usage
+
+# Model Form Field configuration
+form: $/bt/logistics/models/vehiclefuelusage/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\VehicleFuelUsage
+
+# Default redirect location
+defaultRedirect: bt/logistics/vehiclefuelusage
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/vehiclefuelusage/update/:id
+    redirectClose: bt/logistics/vehiclefuelusage
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/vehiclefuelusage
+    redirectClose: bt/logistics/vehiclefuelusage
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

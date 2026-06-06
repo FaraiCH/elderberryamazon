@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 11px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>12 Barnsley Street, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>PRODUCED PIPES: {{ "now"|date("m/d/Y H:i") }} </h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+
+
+		<tr>
+			<td>
+				<div class=" alert-info" style="padding: 10px;">
+			<b>NOTE:</b>
+			<BR/>Weight Processed + Scrap = Material Used
+			<br>All material taken out of cage and used in production = Material Used Auto
+		</div>
+
+				{% set floorpipes = quote %}
+
+				<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
+				<thead>
+					<tr>
+						<th>Quote</th>
+						<th>Client</th>
+						<th>Invoice</th>
+						<th>Pipe Description</th>
+						<th>Status</th>
+						<th>Start Date</th>
+						<th>Unit Price</th>
+						<th>Target</th>
+						<th>Units</th>
+						<th>Extras</th>
+						<th>Delivered</th>
+		        		<th>On Floor</th>
+		        		<th>On Floor Price</th>
+		        		<th>Weight Processed</th>
+		        		<th>Scrap</th>
+		        		<th>Scrap %</th>
+		        		<th>Over weight (Kg)</th>
+		        		<th>Over weight %</th>
+		        		<th>Wasted Material</th>
+		        		<th>Wasted %</th>
+		        		<!-- <th>Scrap</th> -->
+		        		<th>Material Used</th>
+		        		<th>Material Used Auto</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% set totalactualweight  = 0 %}
+					{% set totaloverweight  = 0 %}
+					{% set totalscrap = 0 %}
+					{% set totalmaterial = 0 %}
+					{% set totalmaterial_real = 0 %}
+
+					{% set totalunits = 0 %}
+					{% set totaldelivered = 0 %}
+					{% set totalextras = 0 %}
+					{% set totalfloor = 0 %}
+					{% set totalfloorprice = 0 %}
+
+					{% set row_count  = 0 %}
+					{% set perc_scrap  = 0 %}
+					{% set perc_weight  = 0 %}
+					{% set total_waste  = 0 %}
+					{% set total_waste_m_p  = 0 %}
+
+
+
+
+			        {% for item in floorpipes if item.id > 3 %}
+			        	{% set row_count  = row_count + 1 %}
+						<tr>
+
+				        		<td>{{item.qpush.quote.id}}
+				        		<td>{{item.qpush.quote.company_name}}</td>
+				        		<td>
+				        			{% if item.qpush.quote.invoice is not empty %}
+				        			{{item.qpush.quote.invoice.name}}
+				        			{% endif %}
+				        		</td>
+				        		<td nowrap="" ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{item.quoteitems.description}}</a></td>
+				        		<td nowrap="">{{item.qpush.status.name}}</td>
+				        		<td nowrap="">{{item.start_date}}</td>
+				        		<td nowrap="" nowrap="nowrap" align="right">R {{item.quoteitems.unitprice|number_format(2, '.', ',')}}</td>
+				        		<td nowrap="" align="right">{{item.quoteitems.units}}</td>
+
+				        		<td nowrap="" align="right">{{item.schedules().sum('total_units_passed_qc')}}</td>
+				        		<td nowrap="" align="right">
+				        			{% if item.schedules().sum('total_units_passed_qc') > 0 %}
+				        				{{item.schedules().sum('total_units_passed_qc')-item.quoteitems.units}}
+				        			{% else %}
+				        				0
+				        			{% endif %}
+				        		</td>
+
+				        		<td nowrap="" align="right">{{item.delivered().sum('units')}}</td>
+
+				        		<td nowrap="" align="right">
+				        			{% if item.schedules().sum('total_units_passed_qc') > 0 %}
+				        				{{item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')}}
+				        			{% else %}
+				        				0
+				        			{% endif %}
+				        		</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >R {{((item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice)|number_format(2, '.', ',')}}</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules().sum('total_kg_processed')}} kg</td>
+				        		{% set totalactualweight = totalactualweight + item.schedules().sum('total_kg_processed') %}
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules().sum('weight_scrap_kg')}} kg</td>
+
+				        		<td>
+				        			{% set p_scarp =
+				        			(item.schedules().sum('total_kg_processed') > 0)?((item.schedules().sum('weight_scrap_kg')*100)/item.schedules().sum('total_kg_processed')):0 %}
+				        		{{p_scarp|number_format(1, '.', ',')}} %</td>
+
+				        		{% set perc_scrap  = perc_scrap + p_scarp %}
+
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules().sum('over_weight_kg')}} kg</td>
+
+				        		{% set totaloverweight  = totaloverweight + item.schedules().sum('over_weight_kg') %}
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+
+				        			{% set p_weight = (item.schedules().sum('total_kg_processed')  > 0)?((item.schedules().sum('weight_scrap_kg'))/item.schedules().sum('total_kg_processed') ):0 %}
+				        			{{p_weight|number_format(1, '.', ',')}}%</td>
+				        			{% set perc_weight  = perc_weight + p_weight %}
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+				        			{% set count_waste_m = item.schedules().sum('weight_scrap_kg') + item.schedules().sum('over_weight_kg') %} {{count_waste_m}} kg
+
+				        			{% set total_waste = total_waste + count_waste_m %}
+				        		</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+				        			{% set count_waste_m_p = (item.schedules().sum('total_kg_processed') > 0)? (count_waste_m*100)/item.schedules().sum('total_kg_processed'):0 %}
+				        			{{count_waste_m_p|number_format(1, '.', ',')}} %
+
+				        			{% set total_waste_m_p = total_waste_m_p + count_waste_m_p %}
+				        		</td>
+
+
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules().sum('weight_scrap_kg') +item.schedules().sum('total_kg_processed')}} kg</td>
+
+				        		<td nowrap="" align="right" nowrap="nowrap" >
+				        		{% set total_auto_used = 0 %}
+									{% for sc in item.schedules %}
+										{% for rl in sc.usedmaterials %}
+											{% set total_auto_used = total_auto_used + rl.kg %}
+										{% endfor %}
+									{% endfor %}
+									{{total_auto_used}} kg
+								</td>
+
+				        		{% set totalscrap = totalscrap + item.schedules().sum('weight_scrap_kg') %}
+								{% set totalunits = totalunits + item.schedules().sum('total_units_passed_qc') %}
+								{% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+
+								{% if item.schedules().sum('total_units_passed_qc') > 0 %}
+								{% set totalextras  = totalextras + (item.schedules().sum('total_units_passed_qc')-item.quoteitems.units) %}
+				        		{% endif %}
+								{% set totalfloor = totalfloor + (item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) %}
+
+								{% set totalfloorprice = totalfloorprice + ((item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice) %}
+
+								{% set totalmaterial = totalmaterial + total_auto_used %}
+
+								{% set totalmaterial_real = totalmaterial_real + item.schedules().sum('weight_scrap_kg') +item.schedules().sum('total_kg_processed') %}
+
+
+				             </tr>
+			        {% endfor %}
+		        </tbody>
+				<tfoot>
+					<tr>
+						<td nowrap="" nowrap="" align="right" colspan="8"><b>TOTAL</b></td>
+						<td nowrap="" align="right"><b>{{totalunits}}</b></td>
+						<td nowrap="" align="right"><b>{{totalextras}}</b></td>
+						<td nowrap="" align="right"><b>{{totaldelivered}}</b></td>
+						<td nowrap="" align="right"><b>{{totalfloor}}</b></td>
+						<td nowrap="" align="right"><b>R {{totalfloorprice|number_format(2, '.', ',')}}</b></td>
+						<td nowrap="" align="right"><b>{{totalactualweight|number_format(1, '.', ',')}} kg</b></td>
+						<td nowrap="" align="right"><b>{{totalscrap|number_format(1, '.', ',')}} kg</b></td>
+						<td> {{perc_scrap>0?(perc_scrap/row_count)|number_format(1, '.', ','):0}} %</td>
+						<td nowrap="" align="right"><b>{{totaloverweight|number_format(1, '.', ',')}} kg</b></td>
+						<td> {{perc_weight>0?(perc_weight/row_count)|number_format(1, '.', ','):0}} %</td>
+
+
+						<td nowrap="" align="right"><b>{{total_waste|number_format(1, '.', ',')}} kg</b></td>
+
+						<td> {{total_waste_m_p>0?(total_waste_m_p/row_count)|number_format(1, '.', ','):0}} %</td>
+
+
+
+						<td nowrap="" align="right"><b>{{totalmaterial_real|number_format(1, '.', ',')}} kg</b></td>
+						<td nowrap="" align="right"><b>{{totalmaterial|number_format(1, '.', ',')}} kg</b></td>
+
+
+				     </tr>
+
+				</tfoot>
+
+			</table>
+
+			</td>
+		</tr>
+
+
+
+
+	</table>
+
+
+	</body>
+	</html>

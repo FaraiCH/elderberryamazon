@@ -1,0 +1,171 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/sheq/ppes') ?>">PPE</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<div class="callout fade in callout-secondary ">
+
+    <div class="content">
+        <div>
+            <?= Form::open(['class'=>'form-inline']) ?>
+            <p>Choose a Department:</p>
+            <select class="form-control custom-select"  data-track-input style="min-height: 34px; width: 200px" name="department" id="department">
+                <option value="0" >Select Department</option>
+                <?php foreach($departments as $department): ?>
+                    <option value="<?= $department->id ?>"><?= $department->name ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button class="btn btn-primary" type="submit">Filter</button>
+            <?= Form::close() ?>
+        </div>
+        <div class="card" style="margin-top: 20px">
+            <div id="chart_kg" style="height: 450px;"></div>
+
+            <div style="padding: 10px">
+
+                <table class="table" style="width: 100%;border-collapse:collapse; font-size: 13px; border: 1px solid #ccc; border-color: #ccc" cellspacing="0px" cellpadding="2px"  border="1">
+                    <thead>
+
+
+                    <tr>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Name and Surname</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Department</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Overall</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Safety Shoes</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Hand Gloves</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Ear Plugs</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Reflective Vest</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Hard Hat</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Safety Glasses</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">T-Shirt</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    <?php
+                foreach ($schedules as $key => $i) {
+                    if(isset($i->employee->firstname)){
+                        echo '<tr>';
+                        $color= "lightblue";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->employee->firstname. ' '. $i->employee->lastname.'</td>';
+
+
+                        $color= "white";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->employee->department->name.'</td>';
+
+                        $color= "white";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->overall.'</td>';
+                        $color= "white";
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->safety_shoes.'</td>';
+
+                        $color= "white";
+
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->gloves.'</td>';
+                        $color = 'white';
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->ear_plugs.'</td>';
+
+                        $color = 'white';
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->protective_vest.'</td>';
+
+                        $color = 'white';
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->hard_hat.'</td>';
+
+                        $color = 'white';
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->safety_glasses.'</td>';
+
+                        $color = 'white';
+
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->tshirt.'</td>';
+
+                        echo '<tr>';
+                        }
+                    }
+                    ?>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+
+
+
+
+        Highcharts.chart('chart_kg', {
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: '<?= $title ?>'
+            },
+
+            subtitle: {
+                text: 'Staff Data'
+            },
+
+            xAxis: {
+                title: {
+                    text:  '<?= $xvalue ?>'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: '<?= $yvalue ?>'
+                },
+                plotLines: [
+    ]
+    },
+
+        series: <?= json_encode($stats) ?> ,
+
+        plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+    });
+</script>
+

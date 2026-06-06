@@ -1,0 +1,65 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    
+    schedule:
+        label: View
+        type: partial
+        path: $/bt/documents/controllers/document/_view.htm
+        sortable: false
+        clickable: false
+    id:
+        label: ID
+        searchable: true
+
+    folder:
+      label: Department
+      relation: mainfolder
+      searchable: true
+      select: name
+    subfolder:
+      label: Folder
+      relation: subfolder
+      searchable: true
+      select: name
+    name:
+        label: Document Name
+        searchable: true
+    summary:
+        label: Document Summary
+        searchable: true
+        invisible: true
+    assinged_date:
+        label: Date In Relation
+        
+    files_count:
+      label: Att Files 
+      relation: files
+      useRelationCount: true
+    images_count:
+      label: Att Images 
+      relation: images
+      useRelationCount: true
+      invisible: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: false
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

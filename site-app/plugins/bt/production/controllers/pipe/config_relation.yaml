@@ -1,0 +1,32 @@
+schedules:
+    label: Schedules
+
+    manage:
+        form: $/bt/production/models/schedule/fields.yaml
+        list: $/bt/production/models/schedule/columns.yaml
+    view:
+        list: $/bt/production/models/schedule/columns.yaml
+        recordUrl: bt/production/schedule/update/:id
+        toolbarButtons: create|delete
+        # Records to display per page
+        recordsPerPage: 20
+
+        # Display page numbers with pagination, disable to improve performance
+        showPageNumbers: true
+        showSearch: true
+        showCheckboxes: false
+        showSorting: true
+quotes:
+    label: Quotes
+    view:
+        list: $/bt/sales/models/newquote/columns.yaml
+        toolbarButtons: link|unlink
+    manage:
+        list: $/bt/sales/models/newquote/columns.yaml
+        form: $/bt/sales/models/newquote/fields.yaml
+        recordsPerPage: 10
+        showPageNumbers: true
+        showSearch: true
+        showCheckboxes: true
+        showSorting: true
+

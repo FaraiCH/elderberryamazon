@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Control Sheet
+
+# Model Form Field configuration
+form: $/bt/production/models/controlsheet/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\ControlSheet
+
+# Default redirect location
+defaultRedirect: bt/production/controlsheet
+
+# Create page
+create:
+    title: Create Control Sheet
+    redirect: bt/production/controlsheet/update/:id
+    redirectClose: bt/production/controlsheet
+
+# Update page
+update:
+    title: Edit Control Sheet
+    redirect: bt/production/controlsheet
+    redirectClose: bt/production/controlsheet
+
+# Preview page
+preview:
+    title: Preview Control Sheet

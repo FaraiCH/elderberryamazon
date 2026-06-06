@@ -1,0 +1,55 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    section1:
+        label: Quote To Get Pipes
+        type: section
+        comment: You can choose which quote and pipes to request approval from.
+    from_quote_id:
+        label: From Quote
+        type: dropdown
+        span: auto
+        placeholder: -- Choose Quote To Request --
+    quote_item_id:
+        label: Quote Item
+        type: dropdown
+        span: auto
+        dependsOn: from_quote_id
+
+    section2:
+        label: Quote To Move Pipes To
+        type: section
+        comment: You can choose which quote to move the pipes to and their quantity.
+    to_quote_id:
+        label: Destination Quote
+        type: dropdown
+        span: auto
+        dependsOn: quote_item_id
+        placeholder: -- Choose Destination Quote --
+#    qty@create:
+#        label: Quantity to Move
+#        type: dropdown
+#        span: auto
+#        dependsOn: to_quote_id
+#        placeholder: -- Pick How Many Pipes to Request --
+#        options: getQtyStart
+#
+#    qty@update:
+#        label: Quantity to Move
+#        type: dropdown
+#        span: auto
+#        dependsOn: to_quote_id
+#        placeholder: -- Pick How Many Pipes to Request --
+    note:
+        label: Comment
+        type: textarea
+
+    piperapprove@update:
+        label: Approval
+        type: partial
+        path: $/bt/sales/controllers/piperequest/_piperapprove.htm

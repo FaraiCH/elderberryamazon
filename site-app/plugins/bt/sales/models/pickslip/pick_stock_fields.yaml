@@ -1,0 +1,136 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    header0:
+        type: section
+        label: Setup
+        comment: please complete the form below to capture the details of the pick slip
+        cssClass: noezanheader
+    type:
+        label: Delivery Type
+        select: name
+        type: relation
+        cssClass: noezanclass col-sm-6
+        span: storm
+        placeholder: -- Select --
+        # comment: Select Delivery Type
+        tab: Setup
+        dependsOn:
+            - schedule
+    schedule:
+        label: Link Plan
+        cssClass: noezanclass col-sm-6
+        span: storm
+        placeholder: -- select plan --
+        type: dropdown
+        default: 0
+    logistics_company:
+        label: Logistics Company
+        cssClass: noezanclass col-sm-6
+        span: storm
+        # comment: If Collection
+        tab: Setup
+
+    vehicle:
+        label: Vehicle Type
+        placeholder: -- Select Vehicle Type --
+        tab: Setup
+        type: relation
+        select: name
+        span: storm
+        cssClass: noezanclass col-sm-6
+
+    plate_number:
+        label: Plate No
+        span: storm
+        cssClass: noezanclass col-sm-6
+        tab: Setup
+    header1:
+        type: section
+        label: 1. Truck Arrival Details
+        comment: please complete the form below to cupture details of a truck when it arrives at bt premises
+        cssClass: noezanheader
+
+
+    vehicle_arrival:
+        label: Truck Arrival Time
+        type: datepicker
+        tab: Vehicle Arrival Details
+        span: auto
+    images_truck_arrival:
+        label: Truck Arrival Photos
+        type: fileupload
+        tab: Vehicle Arrival Details
+        span: auto
+    header2:
+        type: section
+        label: 2. Loading Details
+        comment: Please complete the form below when you start loading the pipes
+        cssClass: noezanheader
+    weight_bridge_before:
+        label: Weight Bridge Before Load
+        type: number
+        span: auto
+    weight_bridge_photo:
+        label: Weight Bridge Before Load Photo
+        type: fileupload
+        tab: Delivery Documents
+        span: auto
+    vehicle_load_start:
+        label: Load Start Time
+        type: datepicker
+        tab: Vehicle Details
+        span: auto
+    vehicle_load_end:
+        label: Load End Time
+        type: datepicker
+        tab: Vehicle Details
+        span: auto
+    images_truck_load:
+        label: Truck Loading Photos
+        type: fileupload
+        tab: Vehicle Details
+        span: auto
+
+
+
+    # header2_1:
+    #     type: section
+    #     label: 2.1 Pipe Details
+    #     cssClass: noezanheader2
+
+    # stickeritems@update:
+    #     tab: Delivery Pipes
+    #     type: partial
+    #     path: $/bt/sales/models/pickslip/_stickeritems_field.htm
+
+
+    # header2_2:
+    #     type: section
+    #     label: 2.2 Refrabrished Stock Details
+    #     cssClass: noezanheader2
+
+    # catalogue@update:
+    #         label: Additional Catalogue Products
+    #         tab: Catalogue
+    #         type: partial
+    #         path: $/bt/sales/models/pickslip/_cat_field.htm
+    header4:
+        type: section
+        label: 3. Truck Departure Details
+        cssClass: noezanheader
+
+    vehicle_departure:
+        label: Truck Departure Time
+        type: datepicker
+        tab: Truck Departure Details
+        span: auto
+
+
+    images_truck_finish:
+        label: Truck Finish Photos
+        type: fileupload
+        tab: Truck Departure Details
+        span: auto

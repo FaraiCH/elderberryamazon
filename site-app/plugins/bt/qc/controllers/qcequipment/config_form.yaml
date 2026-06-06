@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Qc Equipment
+
+# Model Form Field configuration
+form: $/bt/qc/models/qcequipment/fields.yaml
+
+# Model Class name
+modelClass: Bt\Qc\Models\QcEquipment
+
+# Default redirect location
+defaultRedirect: bt/qc/qcequipment
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/qc/qcequipment/update/:id
+    redirectClose: bt/qc/qcequipment
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/qc/qcequipment
+    redirectClose: bt/qc/qcequipment
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

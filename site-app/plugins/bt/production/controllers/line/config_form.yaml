@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Line
+
+# Model Form Field configuration
+form: $/bt/production/models/line/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Line
+
+# Default redirect location
+defaultRedirect: bt/production/line
+
+# Create page
+create:
+    title: Create Line
+    redirect: bt/production/line/update/:id
+    redirectClose: bt/production/line
+
+# Update page
+update:
+    title: Edit Line
+    redirect: bt/production/line
+    redirectClose: bt/production/line
+
+# Preview page
+preview:
+    title: Preview Line

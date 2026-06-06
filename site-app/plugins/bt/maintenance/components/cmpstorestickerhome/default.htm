@@ -1,0 +1,35 @@
+{% set stickers = CmpStoreStickerHome.sticker %}
+{% set appurl = CmpStoreStickerHome.appurl %}
+{% set pagebreak = '' %}
+{% set pagecount  = 0 %}
+{% for print in stickers %}
+
+    {% set pagecount  = pagecount + 1 %}
+
+    {% if pagecount == 4 %}
+        <p style="height: 3px; margin:0px; padding:0px " class="pagebreakprint"></p>
+        {% set pagecount  = 1 %}
+    {% endif %}
+    {% set pagebreak ='pagebreakprint' %}
+
+    <div style=" padding-left: 20px; height: 545px; overflow: hidden;">
+        <table  class="printcard" width="100%">
+            <tr>
+                <td width="400px" style="padding-top: 20px"> <div id="element_{{ print.id }}"></div></td>
+                <td class="printcardtext"> BT Industrial<br>Prod #:{{ ("0" ~ ("%03d"|format(print.id))) }}<br>Name : {{print.name}}</td>
+            </tr>
+
+        </table>
+        <script>
+            var barcode_{{ print.id }} = new ej.barcodegenerator.QRCodeGenerator({
+                width: '400px',
+                height: '400px',
+                displayText: { visibility: false },
+                mode: 'SVG',
+                name: "main",
+                value: '{{appurl}}/print/storeitem/{{print.item}}'
+            });
+            barcode_{{ print.id }}.appendTo('#element_{{ print.id }}');
+        </script>
+    </div>
+{% endfor %}

@@ -1,0 +1,64 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    receivingid@create:
+        label: Material Used
+        type: dropdown
+
+        placeholder: -- select a Material --
+        comment: "Material recieved into the factory."
+
+
+    released@create:
+        label: Material Released
+        type: dropdown
+        dependsOn: receivingid
+        comment: "Material must be released first to be used."
+        placeholder: --- select ---
+
+
+#    backetsorbags@create:
+#        label: Backets Or Bags
+#        type: dropdown
+#        span: auto
+#        placeholder: -- Select Bucket or Bags --
+#        dependsOn: released
+
+
+
+#    number_backetsorbags:
+#        label: Number of Backets Or Bags
+#        dependsOn: backetsorbags
+#        span: auto
+#        type: dropdown
+#        placeholder: --- select ---
+
+
+
+
+    size_backetsorbags:
+        label: Percentage
+        dependsOn: released
+        span: auto
+        type: dropdown
+        placeholder: --- select ---
+
+
+    kg:
+        label: Weight in kg
+        dependsOn: size_backetsorbags
+        span: auto
+        type: dropdown
+        required: true
+
+    note:
+        label: Notes
+
+
+

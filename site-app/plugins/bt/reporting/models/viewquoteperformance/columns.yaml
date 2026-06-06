@@ -1,0 +1,191 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: CS ID
+        searchable: false
+        clickable: false
+    cs_run_date_long:
+        label: Controlsheet Run Date Long
+        clickable: false
+    client:
+        label: Client
+        searchable: true
+        clickable: false
+    shift:
+        label: Shift
+        clickable: false
+    baila:
+        label: Baila
+        clickable: false
+    quote_id:
+        label: Quote No
+        relation: quote
+        select: id
+        clickable: false
+        searchable: true
+    description:
+        label:'Description'
+        searchable: true
+        clickable: false
+    class:
+        label: Class
+        clickable: false
+    diameter:
+        label: Diameter
+        clickable: false
+    ordered_units:
+        label: Ordered Unit
+        clickable: false
+    ordered_unitlength:
+        label: Ordered Unit Length
+        clickable: false
+    ordered_unitweight:
+        label: Ordered Unit Weight
+        clickable: false
+    unitproductionweight:
+        label: Unit Production Weight
+        clickable: false
+    ordered_totalweight:
+        label: Ordered Total Weight
+        clickable: false
+        format:  %.2f 
+    totalproductionweight:
+        label: Total Production Weight
+        clickable: false
+    ordered_totalcost:
+        label: Ordered Total Cost
+        clickable: false
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm
+    assigned_cost_zar:
+        label: Assigned Cost ZAR
+        clickable: false
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+    purge_cost:
+        label: Purge Cost
+        clickable: false
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm
+    5_p_scrap_ls_spillage_weight: 
+        label: Scrap Spillage Weight
+        format:  %.2f 
+        clickable: false
+    5_scrap_ls_spillage_cost:
+        label: Scrap Spillage Cost
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+        clickable: false
+    sales_purchase_order_value_zar:
+        label: Sales Purchase Ordered Value ZAR
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+        clickable: false
+    ordered_priceperkg:
+        label: Ordered Price Per KG
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+        clickable: false
+    raw_mix_cost:
+        label: Raw Mix Cost
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm
+        clickable: false
+    total_units_produced:
+        label: Total Units Produced
+        format:  %.1f 
+        clickable: false
+    planned_pre_pargins_zar:
+        label: Planned Pre Pargins ZAR
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+        clickable: false
+    planned_pre_margins:
+        label: Planned Pre Margins
+        clickable: false
+    kgm_production:
+        label: Mass Production KG
+        format:  %.1f 
+        clickable: false
+    pipe_weight_per_length_target:
+        label: Pipe Weight Per Length Target
+        format:  %.1f 
+        clickable: false
+    production_total_weight:
+        label: :Production Total Weight
+        format:  %.1f 
+        clickable: false
+    assigned_cost:
+        label: Assigned Cost
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm
+        clickable: false
+    actual_production_cost:
+        label: Actual Production Cost
+        clickable: false
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+    actual_margins_zar:
+        label: Actual Margins ZAR
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm
+        clickable: false
+    purge_cost_zar:
+        label: Purge Cost ZAR
+        clickable: false
+    weight_scrap_kg:
+        label: Weight Scrap KG
+        format:  %.1f 
+        clickable: false
+    lab_sample_weight_kg:
+        label: Lab Sample Weight KG
+        format:  %.1f 
+        clickable: false
+    overrun_weight:
+        label: Overrun Weight
+        format:  %.1f 
+        clickable: false
+    scrap_cost_zar:
+        label: Scrap Cost ZAR
+        type: partial
+        path: $/bt/finance/models/requisition/_currency_column.htm 
+        clickable: false
+    csname:
+        label: Controlsheet Name
+        clickable: false
+    batch_no:
+        label: Batch No
+        clickable: false
+    cs_created_date:
+        label: Controlsheet Created Date
+        clickable: false
+    cs_run_date:
+        label: Controlsheet Run Date
+        clickable: false
+    plan_id:
+        label: Production Plan No
+        clickable: false
+    cs_total_weight:
+        label: Controlsheet Total Weight
+        clickable: false
+    original_order:
+        label: Original Order
+        clickable: false
+    plan_target_qty:
+        label: Plan Target Quantity
+        clickable: false
+    count_sticker:
+        label: Count Sticker
+        clickable: false
+    lebo_total_units_passed_qc:
+        label: Total Units Passed QC
+        clickable: false
+    lebo_over_weight_kg:
+        label: Over Weight KG
+        format:  %.1f 
+        clickable: false
+    
+    

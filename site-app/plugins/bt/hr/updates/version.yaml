@@ -1,0 +1,41 @@
+1.0.1:
+- First version of HR
+- create_employees_table.php
+- create_departments_table.php
+- create_designations_table.php
+- create_trainings_table.php
+- create_employment_types_table.php
+- create_incidents_table.php
+- create_leave_types_table.php
+- create_leave_statuses_table.php
+- create_absence_leaves_table.php
+- create_training_types_table.php
+- create_incident_statuses_table.php
+- seeder_Training.php
+- seeder_employmenttype.php
+- seeder_designation.php
+- seeder_Dapartment.php
+- seeder_leavestatus.php
+- seeder_leavetype.php
+- seeder_IncidentStatus.php
+
+1.0.2:
+- Update Leave
+1.0.3:
+- Update Weeklyhour
+- create_weeklyhours_table.php
+1.0.4:
+- Update Employees
+- create_ethnicities_table.php
+1.0.5:
+- Update Departments
+1.0.6:
+   - Create Wage Bill
+   - create_wagebills_table.php
+1.0.7:
+- Create Policy
+- create_policies_table.php
+1.0.8:
+- Add Job Description
+- create_jobdescriptions_table.php
+- create_employee_contracts_table.php

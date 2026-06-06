@@ -1,0 +1,66 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    setup:
+        type: section
+        label: Setup Wage Bill
+    date:
+        label: Date
+        span: auto
+    employee:
+        label: Empolyee Name
+        type: relation
+        select: concat(firstname, ' ', lastname)
+        span: auto
+    shift:
+        label: Shift
+        type: dropdown
+        options:
+            0: Day
+            1: Night
+        span: auto
+    start_time:
+        label: Start Time
+        span: auto
+        type: datepicker
+        mode: time
+    end_time:
+        label: End Time
+        span: auto
+        type: datepicker
+        mode: time
+
+    hours_sections:
+        type: section
+        label: Hours Section
+    normal:
+        label: Normal Work Hours
+        span: auto
+        type: number
+    hours_worked:
+        label: Total Work Hours
+        type: number
+        span: auto
+    overtime:
+        label: T/2 (Overtime)
+        type: number
+        span: auto
+    double:
+        label: T2 (Double Time)
+        type: number
+        span: auto
+    hours_over:
+        label: Hours Over Normal Time
+        type: number
+        span: auto
+
+    comments:
+        label: Leave/Holiday
+        type: dropdown
+        options: getComment
+        span: auto

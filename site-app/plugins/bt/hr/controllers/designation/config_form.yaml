@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Designation
+
+# Model Form Field configuration
+form: $/bt/hr/models/designation/fields.yaml
+
+# Model Class name
+modelClass: Bt\HR\Models\Designation
+
+# Default redirect location
+defaultRedirect: bt/hr/designation
+
+# Create page
+create:
+    title: Create Designation
+    redirect: bt/hr/designation/update/:id
+    redirectClose: bt/hr/designation
+
+# Update page
+update:
+    title: Edit Designation
+    redirect: bt/hr/designation
+    redirectClose: bt/hr/designation
+
+# Preview page
+preview:
+    title: Preview Designation

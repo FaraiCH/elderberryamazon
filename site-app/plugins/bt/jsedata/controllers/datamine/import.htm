@@ -1,0 +1,57 @@
+
+    <div class="layout-row">
+        <h2>Import FA Files</h2>
+     <form name="form-check" id="form-check" enctype="multipart/form-data" >
+        <table  width="100%">
+            <tr>
+                <td>
+                    <!--File Input-->
+                    <input type="file" accept="application/xlsx" name="importfile">
+                    <!--File Input-->
+                </td>
+                <td>
+                    <button data-stripe-load-indicator data-attach-loading
+                            type="submit"
+                            data-request-files
+                            data-request="onImportFile"
+                            class="btn btn-primary btn-block text-center" style="text-align: center;">
+                        Import File
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+       
+
+    </form>
+
+    <h2>Import Share Data Files</h2>
+     <form name="form-check" id="form-check" enctype="multipart/form-data" >
+        <table  width="100%">
+            <tr>
+                <td>
+                    <!--File Input-->
+                    <input type="file" accept="application/xlsx" name="importfile">
+                    <!--File Input-->
+                </td>
+                <td>
+                    <button data-stripe-load-indicator data-attach-loading
+                            type="submit"
+                            data-request-files
+                            data-request="onImportFileShareData"
+                            class="btn btn-primary btn-block text-center" style="text-align: center;">
+                        Import File
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+       
+
+    </form>
+ <div id="scans">
+        </div>
+
+    </div>

@@ -1,0 +1,130 @@
+/* Table styling */
+#bag_details_table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#bag_details_table th,
+#bag_details_table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+#bag_details_table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+#bag_details_table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+#bag_details_table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+#bag_details_table tbody td {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Pagination controls */
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #45a049;
+}
+
+/* Custom styles for printing */
+@media print {
+  /* Hide unnecessary elements */
+  body * {
+    visibility: hidden;
+  }
+  #bag_details_table,
+  #bag_details_table * {
+    visibility: visible;
+  }
+  /* Set appropriate styles for the table */
+  #bag_details_table {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Additional styles for the form */
+#receiving_form {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#receiving_form h3 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* Additional form input styles */
+#receiving_form .form-group {
+  margin-bottom: 20px;
+}
+
+#receiving_form label {
+  font-weight: bold;
+}
+
+#receiving_form input[type="number"],
+#receiving_form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#receiving_form .form-check-input {
+  margin-right: 5px;
+}
+
+#receiving_form .table-responsive {
+  margin-bottom: 20px;
+}
+
+#receiving_form .btn {
+  margin-right: 10px;
+}
+
+#receiving_form .pagination {
+  display: flex;
+  align-items: center;
+}
+
+#receiving_form .pagination button {
+  margin: 0 5px;
+}
+
+#receiving_form #sum_of_weight {
+  font-weight: bold;
+}

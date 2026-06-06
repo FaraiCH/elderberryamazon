@@ -1,0 +1,103 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  active:
+    label: Include in printing
+    type: switch
+
+  job_summary:
+    label: Job Summary 
+    span: left
+  priority:
+    span: right
+    label: priority
+    type: dropdown
+    options:
+        1: 1 - Urgent
+        2: 2 - Not Urgent 
+  btline:
+    label: Plant Item    
+    select: name
+    type: relation
+    span: left
+  actiontype:
+    label: Schedule Type    
+    select: name
+    type: relation
+    span: right
+  
+  scheduledate:
+    label: Schedule Date And Time    
+    type: datepicker
+    required: yes
+    
+  budget:
+    label: Budget
+    span: left
+    default: 0.0
+  budget_note:
+    label: Budget Note
+    span: right
+tabs:
+  fields:
+    assignedto:
+      label: Assigned To    
+      select: name
+      type: relation
+      span: left
+      tab: Setup
+    machinestatus:
+      label: Request Machine To Be    
+      select: name
+      type: relation
+      span: right
+      tab: Setup
+    durationmin:
+      label: Duration In Minutes
+      tab: Setup
+      type: number
+      span: left
+    instruction_notes:
+      label: Instruction Notes Or Action To be Taken      
+      type: textarea
+      size: small
+      tab: Setup
+      span: right
+      
+    status:
+      label: Schedule Status    
+      select: name
+      type: relation
+      span: right
+      tab: Complete/Close Schedule
+    completedby:
+      label: Completed By    
+      select: name
+      type: relation
+      span: left
+      tab: Complete/Close Schedule
+    
+    
+    completedby:
+      label: Completed By
+      type: text
+      tab: Complete/Close Schedule
+    completion_notes:
+      label: Completion Notes      
+      type: textarea
+      size: small
+      tab: Complete/Close Schedule
+      span: left
+    spares_used:
+      label: Spares Used      
+      type: textarea
+      size: small
+      tab: Complete/Close Schedule
+      span: right
+    files:
+        label: Attach Documents
+        type: fileupload
+        tab: Upload Files
+        mode: file

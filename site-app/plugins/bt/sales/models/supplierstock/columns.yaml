@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    supplier:
+        label: Supplier
+        searchable: true
+        relation: supplier
+        select: name
+    name:
+        label: Product Name
+    price:
+        label: Price
+        type: number
+        format: R %.2f
+    note: 
+        label: Notes
+        

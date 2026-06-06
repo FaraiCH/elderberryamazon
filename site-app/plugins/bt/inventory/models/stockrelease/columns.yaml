@@ -1,0 +1,45 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+       
+    datecaptured:
+        label: Date Of Release
+        #type: date
+        searchable: true
+        # format: d-m-Y
+
+    reason:
+        label: Reason For Release
+        relation: reason
+        select: name
+
+    # mfi:
+    #     label: mfi
+    #     relation: recieve
+    #     select: mfi
+    
+    kg:
+        label: Weight Released In kg
+        type: number
+        format:  %.1f kg 
+        searchable: true
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Create Date
+        #type: date
+        searchable: true
+        # format: d-m-Y

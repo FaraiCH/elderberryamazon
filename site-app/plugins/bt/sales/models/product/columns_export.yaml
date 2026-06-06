@@ -1,0 +1,62 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    pnrating_name: 'PNRating'
+
+    diameter_name: 'Diameter'
+
+    value:
+        label: Mass (kg/m)
+        type: number
+        searchable: true
+
+    production_value:
+        label: Production Mass (kg/m)
+        type: number
+        searchable: true
+    od_min:
+        label: od_min
+        type: number
+    od_max:
+        label: od_max
+        type: number
+    ovality_max:
+        label: ovality_max
+        type: number
+    coil:
+        label: coil
+        type: number
+    wt_min:
+        label: wt_min
+        type: number
+    wt_max:
+        label: wt_max
+        type: number
+    wt_ave:
+        label: wt_ave
+        type: number
+    pipe_id:
+        label: pipe_id
+        type: number
+
+
+    created_by_name: 'Created By'
+
+    updated_by_name: 'Updated By'
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

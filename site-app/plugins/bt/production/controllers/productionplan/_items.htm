@@ -1,0 +1,7 @@
+
+<?php if ($this->user->hasAccess('bt.production.admin')): ?>
+		<?= $this->relationRender('planitems') ?>
+<?php else: ?>
+		<?= $this->relationRender('planitems', ['readOnly' => true]) ?>
+<?php endif ?>
+

@@ -1,0 +1,36 @@
+scopes:
+    btline:
+        label: Product
+        modelClass: Bt\Inventory\Models\PartNames
+        conditions: part_name_id in (:filtered)
+
+        nameFrom: name
+
+    # assignedto:
+    #     label: Assigned To
+    #     modelClass: Bt\Maintenance\Models\Staff
+    #     conditions: assignedto_id in (:filtered)
+    #     nameFrom: name
+
+
+    # isactive:
+    #     label: Active
+    #     # modelClass: Bt\Maintenance\Models\YesNo
+    #     type: group
+    #     conditions: active in (:filtered)
+    #     options:
+    #         1: Active
+    #         0: Not Active
+
+    isactive:
+        label: Active
+        type: switch
+        default: 1
+        conditions:
+            - active <> true
+            - active = true
+
+    scheduledate:
+        label:  Date Received
+        type: daterange
+        conditions: date_of_receipt >= ':after' AND date_of_receipt <= ':before'

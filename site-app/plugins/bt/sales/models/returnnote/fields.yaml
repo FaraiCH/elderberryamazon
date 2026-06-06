@@ -1,0 +1,37 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    item_id@create:
+        label: Pipe/Product Item
+        type: dropdown
+        options: listSrnitems
+        # comment: Item linked to the production pipes. Only Item passed QC
+        placeholder: -- select a Pipe --    
+
+    item_id@update:
+        label: Pipe/Product Item
+        disabled: true
+       
+
+    units:
+        label: Units
+        span: auto
+        dependsOn: item_id
+        type: dropdown
+        #placeholder: -- select pipe above --
+        #emptyOption: -- no unite to return --
+
+    return_date:
+        label: Return Date
+        type: datepicker
+        span: auto
+        mode: date
+    note:
+        label: Reason for return
+        type: textarea
+        size: small

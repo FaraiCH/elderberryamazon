@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Materialsupplier
+
+# Model Form Field configuration
+form: $/bt/suppliers/models/materialsupplier/fields.yaml
+
+# Model Class name
+modelClass: Bt\Suppliers\Models\Materialsupplier
+
+# Default redirect location
+defaultRedirect: bt/suppliers/materialsupplier
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/suppliers/materialsupplier/update/:id
+    redirectClose: bt/suppliers/materialsupplier
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/suppliers/materialsupplier
+    redirectClose: bt/suppliers/materialsupplier
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

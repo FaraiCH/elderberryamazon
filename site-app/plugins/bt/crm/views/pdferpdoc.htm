@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>BT User Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,900&display=swap');
+</style>
+
+<style type="text/css">
+body{
+color: #212529;font-size: 13px;
+font-family: 'Roboto', sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px 20px 100px 20px; }
+html { margin:20px 20px 100px 20px; }
+
+h1{
+font-size: 22px;
+color: #373950;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+color: #1f376d;
+
+}
+
+h3{
+	color: #1f376d;
+}
+
+a{
+text-decoration: none;
+color: #1f376d;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 1%;
+    font-size: 1em;
+    color: #545554;
+    line-height: 1.3em;
+}
+
+.pagenumber::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.footer .left div{
+	float: left;
+	width: 50%
+}
+
+
+.content img{
+	max-width: 100%;
+	border-radius: 5px;
+}
+.content{
+	padding:  0px 10px 10px 10px
+}
+.content a{
+	color: #17a2b8;
+}
+
+.content a:hover{
+	color: #17a2b8;
+}
+h2.pagetitle{
+	font-weight: 500;
+	font-size: 26px;
+	background: #213972;
+	padding: 5px;
+	text-transform: uppercase;
+	color: #fff;
+	
+	line-height: 25px;
+	-webkit-box-shadow: 2px 3px 9px -3px rgba(36,36,36,1);
+	-moz-box-shadow: 2px 3px 9px -3px rgba(36,36,36,1);
+	box-shadow: 2px 3px 9px -3px rgba(36,36,36,1);
+
+}
+h3.posttitle{
+	font-weight: 400;
+	font-size: 20px;
+	padding-left: 5px;
+	padding-bottom: px;
+
+
+}
+
+ol {
+    counter-reset: item;
+    margin-left: 5px
+}
+
+.list_intro li{
+		margin-bottom: 5px;
+		font-size: 16px;
+		text-transform: uppercase;
+		font-weight: 500;
+}
+
+ol > li {
+    counter-increment: item;
+}
+
+ol ol > li {
+    display: block;
+    margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -20px;
+}
+
+
+
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+			<script src="https://code.highcharts.com/modules/series-label.js"></script>
+			<script src="https://code.highcharts.com/modules/exporting.js"></script>
+			<script src="https://code.highcharts.com/modules/export-data.js"></script>
+			<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+</head>
+<body>
+	<div class="footer">
+            <p class="left">
+            	<table>
+            		<tr>
+            			<td valign="top" width="30%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za</td>
+                <td valign="top" width="20%"></td>
+                <td width="40%" align="center">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+
+						</td>
+                
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+                
+           
+            </p>
+            
+        </div>
+   	
+		<div style="position: absolute; top: 0px; left: 0px; width: 100%; background: #fff; padding-bottom: 40px"><img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Production-report-cover-1.jpg" alt="BT Industrial" style="width: 100%" ></div>
+		<div class="page-break"></div>
+			<div style="padding-top: 200px; padding-left: 100px; width: 70%; text-align: center;">
+				<h1 style="font-size: 60px; ">ERP USER GUIDE</h1>
+				<h1 style="font-size: 40px; color: #242947 ">BT PIPES</h1>
+				<!-- <div style="border: 1px solid #ccc">
+					<p>This is property of BT Industrial.....</p>
+				</div> -->
+			</div>
+			<div class="page-break"></div>
+			<h1 style="margin: 20px; font-weight: 700; color: #242947">TABLE OF CONTENTS</h1>
+			<ol class="list_intro">
+			{% for cat in categories if cat.post_count > 0 %}
+				{% set postCount = cat.post_count %}
+			    <li style="font-weight: bold; margin-top: 20px;"><a style="display: block;margin-bottom: 10px; " href="#tab_{{loop.index}}">{{ cat.name }}</a>
+			    	<ol>
+			    		{% for post in cat.posts %}
+					    	<li style="font-size: 14px;font-weight: 500" ><a href="#subtab_{{loop.index}}">{{ post.title }}</a></li>
+					    {% endfor %}
+			    	</ol>
+			    </li>
+			{% endfor %}
+			</ol>
+
+			{% for cat in categories if cat.post_count > 0 %}
+				<div class="page-break"></div>
+				{% set i = loop.index %}
+			    <h2  class="pagetitle" id="tab_{{loop.index}}">{{ loop.index }}. {{ cat.name }}</h2>
+
+			    {% for post in cat.posts %}
+			    	<h3 id="subtab_{{loop.index}}" class="posttitle">{{i}}.{{loop.index}} {{ post.title }}</h3>
+			    	<div class="content">{{ post.content_html|raw }}</div>
+			    {% endfor %}
+
+			{% endfor %}
+
+			
+
+
+		
+		<div style="width: 100%; background: #fff; padding-bottom: 40px"><img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Production-report-cover-2.jpg" alt="BT Industrial" style="max-width: 99%; " ></div>
+	
+</body>
+</html>

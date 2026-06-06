@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Delay Reason
+
+# Model Form Field configuration
+form: $/bt/production/models/delayreason/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\DelayReason
+
+# Default redirect location
+defaultRedirect: bt/production/delayreason
+
+# Create page
+create:
+    title: Create Delay Reason
+    redirect: bt/production/delayreason/update/:id
+    redirectClose: bt/production/delayreason
+
+# Update page
+update:
+    title: Edit Delay Reason
+    redirect: bt/production/delayreason
+    redirectClose: bt/production/delayreason
+
+# Preview page
+preview:
+    title: Preview Delay Reason

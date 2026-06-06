@@ -1,0 +1,28 @@
+
+
+<div class="card card-default mb-4 mt-3">
+    <div class="card-header py-2">
+        <b>Search By</b>
+    </div>
+
+    <div class="card-body py-2">
+        <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label for="txtqoute">Quote Number: </label>
+            <input id="txtqoute" value="" name="txtqoute" type="number" class="form-control">
+        </div>
+        <div class="form-group " style="padding-bottom: 20px; ">
+            <label for="txtbatch">Batch Printed On Pipe: </label>
+            <input id="txtbatch" value="" name="txtbatch" type="text"  class="form-control" placeholder="0000-0000">
+        </div>
+
+        <button style="    margin-top: -20px;" type="submit" class="btn btn-primary oc-icon-search" data-request="onSearch" data-stripe-load-indicator data-request-flash data-request-update="ptlsearch: '#searchresults'">Search</button>
+        <?= Form::close()?>
+    </div>
+</div>
+
+<div id="searchresults" >
+    <p>Use form to search</p>
+
+
+</div>

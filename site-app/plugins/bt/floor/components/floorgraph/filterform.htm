@@ -1,0 +1,66 @@
+   <div class="tvhide">
+ 		<div style="padding: 10px" >
+            	<form name="frmfilter" id="frmfilter" class="form-inline" method="POST" >
+
+				  <div class="form-group">
+				    <label for="exampleInputName2">Start Date: </label>
+				    <input id="startdate" value="{{FloorGraph.startdate|date("Y-m-d")}}" name="startdate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md mx-1" style="max-width: 150px;" required="">
+				   </div>
+				  <div class="form-group px-2">
+				    <label for="exampleInputEmail2">End Date: </label>
+				    <input id="enddate" value="{{FloorGraph.enddate|date("Y-m-d")}}" name="enddate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md mx-1" required="" style="max-width: 150px;">
+				  </div>
+				  <div class="form-group px-2 " style="padding-bottom: 5px">
+                      <label for="company_exclude">Exclude Client: </label>
+                        <select class="form-control custom-select" style="width: 200px;" name="company_exclude" id="company_exclude">
+
+                          <option value="0" >All Clients</option>
+                      		{% for client in FloorGraph.getClient()  %}
+                                {% if company_id_ex == client.id %}
+                                   <option value="{{client.id}}" selected="selected" >{{client.company_name}}</option>
+                            {% else %}
+                                <option value="{{client.id}}">{{client.company_name}}</option>
+                            {% endif %}
+                          {% endfor %}
+
+                        </select>
+                      </div>
+                    <div class="form-group px-2 " style="padding-bottom: 5px">
+                        <label for="company_only">Only Client: </label>
+                        <select class="form-control custom-select" style="width: 200px;" name="company_only" id="company_only">
+                            <option value="0" >All Clients</option>
+                            {% for client in FloorGraph.getClient()  %}
+                                {% if company_id_on == client.id %}
+                                    <option value="{{client.id}}" selected="selected" >{{client.company_name}}</option>
+                                {% else %}
+                                    <option value="{{client.id}}">{{client.company_name}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+				  <button type="submit" class="btn btn-primary">Filter</button>
+				</form>
+			</div>
+
+            {% if state != 'error' %}
+                {% if company_id_on is not empty %}
+                    <a target="_blank" class="btn btn-info" style="margin-bottom: 20px;" href="/report/download/{{state}}/{{company_id_on}}/pipes/today.pdf"><i class="fa fa-pdf"></i> Download Formatted PDF Report Tuesday</a>
+                    <a target="_blank" class="btn btn-success" style="margin-bottom: 20px;" href="/report/download/{state}/{company_id}/pipes/excel"><i class="fa fa-pdf"></i> Download Formatted Excel Report Tuesday</a>
+                {% endif %}
+               {% if company_id_ex is not empty %}
+                    <a target="_blank" class="btn btn-info" style="margin-bottom: 20px;" href="/report/download/{{state}}/{{company_id_ex}}/pipes/today.pdf"><i class="fa fa-pdf"></i> Download Formated PDF Report Tuesday</a>
+                    <a target="_blank" class="btn btn-success" style="margin-bottom: 20px;" href="/report/download/{state}/{company_id}/pipes/excel"><i class="fa fa-pdf"></i> Download Formatted Excel Report Tuesday</a>
+               {% endif %}
+
+               {% if company_id_ex is empty and company_id_on is empty %}
+                    <a target="_blank" class="btn btn-info" style="margin-bottom: 20px;" href="/report/download/standard/0/pipes/today.pdf"><i class="fa fa-pdf"></i> Download Formated PDF Report Tuesday</a>
+                    <a target="_blank" class="btn btn-info" style="margin-bottom: 20px;" href="/report/download/standard/0/pipes/scrap/today.pdf"><i class="fa fa-pdf"></i> Download Formated PDF Report Tuesday (Expected Scrap)</a>
+                    <a target="_blank" class="btn btn-success" style="margin-bottom: 20px;" href="/report/download/standard/0/pipes/excel"><i class="fa fa-pdf"></i> Download Formatted Excel Report Tuesday</a>
+               {% endif %}
+            {% else %}
+                <a class="btn btn-danger"><b>Cannot Choose Both Exclude and Only Client</b></a>
+          {% endif %}
+		</div>
+
+

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Job Card
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/jobcard/supervisor_fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\JobCard
+
+# Default redirect location
+defaultRedirect: bt/maintenance/jobcard
+
+# Create page
+create:
+    title: Create Job Card
+    redirect: bt/maintenance/jobcard/update/:id
+    redirectClose: bt/maintenance/jobcard
+
+# Update page
+update:
+    title: Edit Job Card
+    redirect: bt/maintenance/jobcard
+    redirectClose: bt/maintenance/jobcard
+
+# Preview page
+preview:
+    title: Preview Job Card

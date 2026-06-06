@@ -1,0 +1,48 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    readingdate:
+        label: Reading Date
+        type: datepicker
+        mode: date
+        # span: auto
+
+    pfl1:
+        label: pfl1
+        type: number
+        span: auto
+
+    pfl2:
+        label: pfl2
+        type: number
+        span: auto
+
+    pfl3:
+        label: pfl3
+        type: number
+        span: auto
+
+    reading:
+        label: FKW/h
+        type: number
+        span: auto
+    meltblown:
+        label: Meltblown
+        type: number
+        span: auto
+
+
+    notes:
+        label: Notes
+        type: textarea
+        size: small
+tabs:
+    fields:
+        image:
+            label: Upload Image
+            type: fileupload
+            tab: Images
+            comment: Please keep the file size below 3 Megabytes. Anything above that wont be uploaded

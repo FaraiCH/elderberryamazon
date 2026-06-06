@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    unitlength:
+        label: Pipe Length (M)
+        type: number
+        span: auto
+
+    product:
+        label: Product
+        type: relation
+        select: concat(id," > ", name )
+        span: auto
+        placeholder: -- Select ---
+
+   
+          
+    description:
+        label: Description on the quote
+        type: text
+        dependsOn: product
+
+  
+    units:
+        label: Qty
+        type: number
+        span: auto
+
+    priceperkg:
+        label: Price Per KG
+        type: number
+        span: auto   

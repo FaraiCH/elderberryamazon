@@ -1,0 +1,11 @@
+<?php if(($record->price - $record->supplierproducts->sum('price') - 0.00) > 0): ?>
+	<?php
+		echo '<span class="text-success" style="text-align: right; display: block;"> '.(number_format(((($record->price - $record->supplierproducts->sum('price') - 0.00)*100)/($record->price)),0,".","")).'%</span>';
+
+	?>
+<?php else: ?>
+	<?php
+		echo '<span class="text-danger" style="text-align: right; display: block;"> Loss </span>';
+
+	?>
+<?php endif; ?>

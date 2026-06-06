@@ -1,0 +1,68 @@
+
+
+{% set targetsmonster = BTNewQuoteV2.getTarget() %}
+
+{% set targetscats = BTNewQuoteV2.getTargetCats() %}
+<h4>Base Price</h4>
+<div class="card">
+							<!-- <div class="card-header  " style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+								<span>Base Price</span>
+							</div> -->
+
+    <table class="table table-sm " style="width:100%">
+        <thead>
+            <tr>
+
+                <th style="text-transform: uppercase;"><span>Month</span></th>
+
+
+                 {% for item in targetsmonster %}
+
+                 		<th    style="text-transform: uppercase; text-align: center;" class="{{item.active?'bg-dark text-white':''}}">
+                 			<span>{{item.month}} {{item.year}}</span>
+                 		</th>
+                 {% endfor %}
+
+            </tr>
+
+
+
+
+
+        </thead>
+        <tbody>
+      <!--   	<tr>
+        			<td>Target</td>
+        	 		{% for item_m in targetsmonster %}
+                  		{% for item in targetscats %}
+	                 		<td style="text-transform: uppercase; text-align: center;" class="{{item.active?'bg-dark text-white':''}}">
+	                 			{{item_m.arr_cat[item.id]?item_m.arr_cat[item.id].target:"0"}} KG
+
+	                 		</td>
+                 		{% endfor %}
+                 	{% endfor %}
+            </tr> -->
+            <tr>
+        			<td>Price For Coils</td>
+        	 		{% for item_m in targetsmonster %}
+                  		{% for item in targetscats %}
+	                 		<td style="text-transform: uppercase; text-align: center;" class="{{item_m.active?'bg-primary  text-white':''}}">
+	                 			R {{item_m.arr_cat[item.id]?item_m.arr_cat[item.id].coil:"0"}}
+	                 		</td>
+                 		{% endfor %}
+                 	{% endfor %}
+            </tr>
+            <tr>
+        			<td>Price For straights</td>
+        	 		{% for item_m in targetsmonster %}
+                  		{% for item in targetscats %}
+	                 		<td style="text-transform: uppercase; text-align: center;" class="{{item_m.active?'bg-primary  text-white':''}}">
+	                 			R {{item_m.arr_cat[item.id]?item_m.arr_cat[item.id].straight:"0"}}
+	                 		</td>
+                 		{% endfor %}
+                 	{% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>

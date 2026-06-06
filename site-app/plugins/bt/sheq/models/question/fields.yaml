@@ -1,0 +1,236 @@
+fields: 
+    name:
+        label: Field Name
+        placeholder: Easy to identify
+        type: text
+        required: true
+        span: storm
+        cssClass: noezanclass col-sm-6 
+
+    type:
+        label: 'janvince.smallcontactform::lang.settings.form_fields.type'
+        type: dropdown
+        required: true
+        # cssClass: field-indent 
+        span: storm
+        cssClass: noezanclass col-sm-6 
+        comment:
+
+    label:
+        label: 'janvince.smallcontactform::lang.settings.form_fields.label'
+        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_placeholder'
+        type: text
+        span: storm
+        cssClass: noezanclass col-sm-6
+        comment:
+
+    
+    placeholder:
+        label: Placeholder
+        type: text
+        span: storm
+        cssClass: noezanclass col-sm-6
+        comment:
+
+    section1:
+        type: section
+
+    field_values:
+        # label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
+        prompt: 'janvince.smallcontactform::lang.settings.form_fields.add_values_prompt'
+        span: full
+        type: repeater
+        style: collapsed
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: type
+            condition: value[dropdown] or value[checkbox] or value[radio] or value[table]
+        form:
+            fields:
+                field_value_id:
+                    span: left
+                    label: 'janvince.smallcontactform::lang.settings.form_fields.field_value_id'
+                    type: text
+                field_value_content:
+                    span: right
+                    label: 'janvince.smallcontactform::lang.settings.form_fields.field_value_content'
+                    type: text
+
+    field_validation:
+            label: 'janvince.smallcontactform::lang.settings.form_fields.field_validation'
+            comment: 'janvince.smallcontactform::lang.settings.form_fields.field_validation_comment'
+            span: full
+            type: checkbox
+            cssClass: field-indent
+    answer:
+        label: Answer
+        type: number
+        span: auto
+
+    validation:
+        # label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
+        prompt: 'janvince.smallcontactform::lang.settings.form_fields.validation_prompt'
+        span: full
+        type: repeater
+        style: collapsed
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: field_validation
+            condition: checked
+        form:
+            fields:
+                validation_type:
+                    span: left
+                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation'
+                    type: dropdown
+                    emptyOption: 'janvince.smallcontactform::lang.settings.form_field_validation.select'
+                validation_error:
+                    span: right
+                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_error'
+                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_error_placeholder'
+                    type: text
+                validation_custom_type:
+                    span: left
+                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type'
+                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type_placeholder'
+                    comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_type_comment'
+                    commentHtml: true
+                    type: text
+                    trigger:
+                        action: show
+                        field: validation_type
+                        condition: value[custom]
+                validation_custom_pattern:
+                    span: right
+                    label: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern'
+                    placeholder: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern_placeholder'
+                    comment: 'janvince.smallcontactform::lang.settings.form_fields.validation_custom_pattern_comment'
+                    type: text
+                    trigger:
+                        action: show
+                        field: validation_type
+                        condition: value[custom]
+
+        
+
+    field_custom_code:
+        span: full
+        label: 'janvince.smallcontactform::lang.settings.form_fields.custom_code'
+        comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_comment'
+        type: codeeditor
+        size: large
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: type
+            condition: value[custom_code]
+
+    field_custom_code_twig:
+        span: left
+        label: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_twig'
+        comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_code_twig_comment'
+        type: checkbox
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: type
+            condition: value[custom_code]
+
+    field_custom_code_line:
+        span: full
+        type: section
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: type
+            condition: value[custom_code]
+
+    field_custom_content:
+        span: full
+        label: 'janvince.smallcontactform::lang.settings.form_fields.custom_content'
+        comment: 'janvince.smallcontactform::lang.settings.form_fields.custom_content_comment'
+        type: richeditor
+        size: large
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: type
+            condition: value[custom_content]
+
+    field_custom_content_section:
+        span: full
+        type: section
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: type
+            condition: value[custom_content]
+
+    section2:
+        type: section
+    swaplabel:
+        label: Swap label
+        type: switch
+        span: left
+
+    field_styling:
+        label: 'janvince.smallcontactform::lang.settings.form_fields.field_styling'
+        comment: 'janvince.smallcontactform::lang.settings.form_fields.field_styling_comment'
+        span: right
+        type: checkbox
+        
+        cssClass: field-indent
+
+    
+
+    wrapper_css:
+        span: left
+        label: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css'
+        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.wrapper_css_placeholder'
+        comment: col-sm-8
+        type: text
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: field_styling
+            condition: checked
+
+    label_css:
+        span: left
+        label: 'janvince.smallcontactform::lang.settings.form_fields.label_css'
+        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.label_css_placeholder'
+        comment: col-sm-4
+        type: text
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: field_styling
+            condition: checked
+
+    field_css:
+        span: right
+        label: 'janvince.smallcontactform::lang.settings.form_fields.field_css'
+        placeholder: 'janvince.smallcontactform::lang.settings.form_fields.field_css_placeholder'
+        type: text
+        trigger:
+            action: show
+            field: field_styling
+            condition: checked
+
+    section_validation:
+        type: section
+        cssClass: field-indent
+        trigger:
+            action: show
+            field: field_styling
+            condition: checked
+
+
+        
+
+
+        ## MAPPING
+
+       

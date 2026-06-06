@@ -1,0 +1,45 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    date:
+        label: Date
+        searchable: true
+    department:
+        label: Department
+        type: partial
+        path: $/bt/hr/models/wagebill/_department.htm
+    employeename:
+        label: Employee Name
+        relation: employee
+        select: concat(firstname, ' ', lastname)
+        searchable: true
+    shift:
+        label: Shift
+        searchable: true
+        select: CASE WHEN (shift =  '0' ) THEN 'Day' WHEN (shift = '1') THEN 'Night' ELSE 'null' END
+    shifthours:
+        label: Shift Hours
+    rate:
+        label: Rate Per Hour
+        format: R %.2f
+    start_time:
+        label: Start Time
+    end_time:
+        label: End Time
+    hours_worked:
+        label: Hours Worked
+    normal:
+        label: Normal Hours
+    hours_over:
+        label: Hours Over Normal Time
+    double:
+        label: Double Time
+    comment:
+        label: Leave
+        relation: leavetype
+        select: name

@@ -1,0 +1,56 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/finance/requestpo') ?>">Request P.O</a></li>
+        <li>Request P.O</li>
+    </ul>
+<?php Block::endPut() ?>
+    <?= Form::open(['class' => 'layout']) ?>
+        <?php if (!$this->fatalError): ?>
+   
+       <div style="background-color: #f2f2f2; text-align: center; padding: 10px 20px; border-radius: 10px; max-width: 100%; margin: 0 auto;">
+                <div class="header">
+                  <h3 style="color: #333; font-family: 'Metronic Pro', sans-serif; font-size: 1.5em; margin-bottom: 10px;">Please Read the Following Below</h3>
+                </div>
+                <div class="content" style="margin-top: 0; color: #555; font-family: 'Metronic Pro', sans-serif; font-size: 1.1em;">
+                    <p>1. Complete the form to request a Purchase Order (PO) from the finance team.</p>
+                <p>2. Click the "Create" button to generate the form, and then click the "Request PO From Finance" button to send a request email to the finance team:</p>
+                </div>
+        </div>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.creating_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-primary">
+                    <?= e(trans('backend::lang.form.create')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.creating_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-default">
+                    <?= e(trans('backend::lang.form.create_and_close')) ?>
+                </button>
+                <span class="btn-text">
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('bt/finance/requestpo') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/finance/requestpo') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+<?php endif ?>

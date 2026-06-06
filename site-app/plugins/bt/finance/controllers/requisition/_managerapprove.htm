@@ -1,0 +1,22 @@
+<div class="callout fade in callout-info no-subheader">
+    <div class="header">
+        <i class="icon-info"></i>
+        <h3>Head Office Manager Approval</h3>
+    </div>
+</div>
+
+<br>
+
+<?php if ($this->user->hasAccess('bt.finance.ho')): ?>
+<?php if ($this->user->hasAccess('bt.finance.fin')): ?>
+<?php if ($formModel->amount <= 2500): ?>
+<?= $this->relationRender('managerapprove') ?>
+<?php else: ?>
+<?= $this->relationRender('managerapprove', ['readOnly' => true]) ?>
+<?php endif; ?>
+<?php else: ?>
+<?= $this->relationRender('managerapprove') ?>
+<?php endif; ?>
+<?php else: ?>
+<?= $this->relationRender('managerapprove', ['readOnly' => true]) ?>
+<?php endif; ?>

@@ -1,0 +1,15 @@
+printitems:
+    label: Print Items
+    manage:
+        form: $/bt/inventory/models/printstickeritems/fields.yaml
+        list: $/bt/inventory/models/printstickeritems/columns.yaml
+    view:
+        list: $/bt/inventory/models/printstickeritems/columns.yaml
+        #recordUrl: /bt/production/printstickeritems/update/:id
+        toolbarButtons: create|delete
+        showCheckboxes: true
+        showSetup: true
+
+
+
+        

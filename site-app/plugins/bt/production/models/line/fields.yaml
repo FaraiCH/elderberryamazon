@@ -1,0 +1,84 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: Name
+        disabled: false
+        cssClass: noezanclass col-sm-6
+        span: storm
+    btmeter:
+        label: Meter Baila
+        select: name
+        type: relation
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    capacity:
+        label: Capacity p/h
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: number
+
+    max_weight:
+        label: Max Weight
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: number
+        format: %.0f kg
+
+    min_weight:
+        label: Min Weight
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: number
+        format: %.0f kg
+
+    online:
+        label: On Line
+        disabled: false
+        cssClass: noezanclass col-sm-6
+        span: storm
+        type: dropdown
+        options:
+            0: Off Line
+            1: On Line
+    sort_order:
+        label: Sort Order
+        type: number
+        cssClass: noezanclass col-sm-6
+        span: storm
+    note:
+        label: Message
+        disabled: false
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    pipes:
+        label: Pipe Spec to produce
+
+        span: full
+        type: repeater
+        style: collapsed
+        cssClass: field-indent
+
+        form:
+            fields:
+                pipe:
+                    cssClass: noezanclass col-sm-4
+                    span: storm
+                    label: pipe
+                    type: dropdown
+
+                min_weight:
+                    cssClass: noezanclass col-sm-4
+                    span: storm
+                    label: Min Weight
+                    type: text
+                max_weight:
+                    cssClass: noezanclass col-sm-4
+                    span: storm
+                    label: Max Weight
+                    type: text

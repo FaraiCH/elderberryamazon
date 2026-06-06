@@ -1,0 +1,47 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    batch_no: 'Batch No'
+
+    quote_no: 'Quote No'
+    quote_name: 'Client'
+    date:
+        label: Start Date
+        searchable: true
+        sortable: true
+    length:
+        label: Diameter (M)
+        searchable: true
+        sortable: true
+    pn:
+        label: PN
+        searchable: true
+        sortable: true
+    product:
+        label: Product Length (MM)
+        span: auto
+    sdr:
+        label: SDR
+        type: number
+        span: auto
+    qty:
+        label: Quantity
+        searchable: true
+        sortable: true
+    unitprice:
+        label: Unit Price
+        type: number
+        span: auto
+    totalamount:
+        label: Total Amount
+        type: number
+        span: auto
+    weights: 'Unit Weight'
+    totalweights: 'Total Weight'
+    created_at:
+        label: Entry Created Date

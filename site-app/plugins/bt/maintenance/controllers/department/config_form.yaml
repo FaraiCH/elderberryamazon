@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Department
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/department/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Department
+
+# Default redirect location
+defaultRedirect: bt/maintenance/department
+
+# Create page
+create:
+    title: Create Department
+    redirect: bt/maintenance/department/update/:id
+    redirectClose: bt/maintenance/department
+
+# Update page
+update:
+    title: Edit Department
+    redirect: bt/maintenance/department
+    redirectClose: bt/maintenance/department
+
+# Preview page
+preview:
+    title: Preview Department

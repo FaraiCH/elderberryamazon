@@ -1,0 +1,86 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    quote:
+        label: Quote No
+        tab: Setup
+        select: id
+        type: dropdown
+        span: auto
+        size: small
+        comment: <b>Only quotes with <span class='icon icon-cubes' style='background-color:#0a3576;color:white;padding:4px 8px;text-align:center;border-radius:5px;'> <b>CATALOGUE ITEMS</b></span> and <span class='icon icon-file' style='background-color:#0a3576;color:white;padding:4px 8px;text-align:center;border-radius:5px;'> <b>POs</b></span> will show.</b>
+        commentHtml: true
+        # comment: Select client related to the invoice. Add client on the LEFT Client tab
+        placeholder: -- select a client --
+
+    pickslip:
+        label: Pickslip No
+        select: id
+        type: dropdown
+        tab: Setup
+        span: auto
+        size: small
+        # comment: Select client related to the invoice. Add client on the LEFT Client tab
+        placeholder: -- select a client --
+        dependsOn: quote
+    schedule_date:
+        label: Fab Out Date
+        type: datepicker
+        size: small
+        span: auto
+    srn@update:
+        label: Linked SRN
+        type: dropdown
+        placeholder: -- Select SRN To Link
+        span: auto
+        size: small
+        comment: <b>Link to an <em>SRN</em> to use fabrication on the <em>SRN</em> Side. Only link if fabrication has returned</b>
+        commentHtml: true
+        dependsOn: quote
+
+    header1@update:
+        label: Pipes To Fabricate
+        type: section
+
+    pipes@update:
+        tab: Fabrication Pipes
+        type: partial
+        path: $/bt/sales/models/fabrication/_pipes_field.htm
+
+tabs:
+    fields:
+       
+        files_delivery@update:
+            label: Attach Fabrication Going Out Document
+            type: fileupload
+            tab: Documents Going Out
+            span: auto
+            mode: file
+        # images_delivery@update:
+        #     label: Images of Pipes Going Out
+        #     type: fileupload
+        #     tab: Documents Going Out
+        #     span: auto
+        #     comment: Upload  all related images ie Truck, Before and after
+        back_date@update:
+            label: Fab In Date
+            type: datepicker
+            tab: Documents Coming In
+            span: auto
+        files_coming@update:
+            label: Attach Fabrication Coming in Document
+            type: fileupload
+            tab: Documents Coming In
+            mode: file
+            span: auto
+        # images_coming@update:
+        #     label: Images of Pipes Coming In
+        #     type: fileupload
+        #     tab: Documents Coming In
+        #     comment: Upload  all related images ie Truck, Before and after
+        #     span: auto

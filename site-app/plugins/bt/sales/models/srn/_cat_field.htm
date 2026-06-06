@@ -1,0 +1,5 @@
+<?php if (isset($formModel->srnapprove) && $formModel->srnapprove->status_id == 1): ?>
+		<?= $this->relationRender('itemscat', ['readOnly' => true]) ?>
+<?php else: ?>
+		<?= $this->relationRender('itemscat') ?>
+<?php endif ?>

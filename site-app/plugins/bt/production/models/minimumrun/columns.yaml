@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    diametername:
+        label: Diameter (m)
+        relation: diameter
+        select: name
+        sortable: true
+    target_scrap:
+        label: Target Scrap %
+    factor:
+        label: Factor %
+    startup_scrap:
+        label: Start Up Scrap (m)
+    end_scrap:
+        label: End Scrap (m)
+    workmanship:
+        label: Workmanship (m)
+    other:
+        label: Other (m)
+    minimum_run:
+        label: Minimum Run

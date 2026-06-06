@@ -1,0 +1,10 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+export:
+    title: Export DB
+    modelClass: bt\factory\Models\AttendanceExport
+    list: $/bt/factory/models/attendance/columns.yaml
+    redirect: bt/factory/attendance
+    filename: attendance.csv

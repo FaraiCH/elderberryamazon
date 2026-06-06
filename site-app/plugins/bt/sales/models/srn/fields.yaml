@@ -1,0 +1,265 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: Current SRN No.
+        cssClass: noezanclass col-sm-6
+        span: storm
+        invisible: true
+        disabled: true
+    type:
+        label: Delivery Type
+        select: name
+        type: relation
+        cssClass: noezanclass col-sm-6
+        span: storm
+        placeholder: -- Select --
+    quote:
+        label: Quote Number
+        type: dropdown
+        placeholder: -- select a quote --
+        cssClass:  noezanclass col-sm-6
+        span: storm,
+        dependsOn:
+            - type
+    schedule:
+        label: Link SRN to Planned Schedule by Sales
+        cssClass: noezanclass col-sm-6
+        span: storm
+        # comment: Select client related to the invoice. Add client on the LEFT Client tab
+        placeholder: -- select plan --
+        type: dropdown
+        default: 0
+        dependsOn:
+            - quote
+    trip_sheet:
+        label: Trip Sheet
+        type: dropdown
+        cssClass: noezanclass col-sm-6
+        span: storm
+        placeholder: -- Select Trip Sheet --
+        dependsOn:
+            - type
+    stops:
+        label: Trip Stop No
+        type: dropdown
+        placeholder: -- Select Stop No --
+        cssClass: noezanclass col-sm-6
+        span: storm
+        comment: Add a trip stop to this delivery. The number will be the order it shows on a trip sheet
+        dependsOn:
+            - type
+    pickslip:
+        label: Pickup Slip Number
+        type: dropdown
+        placeholder:  -- Select Slip Number --
+        cssClass:  noezanclass col-sm-6
+        span: storm
+        dependsOn:
+            - quote
+    stock_order:
+        label: Available Stock Order
+        type: dropdown
+        cssClass: noezanclass col-sm-6
+        span: storm
+        placeholder: --Select Available Ordered Notification--
+    weight_bridge:
+        label: Weight Bridge After Load
+        type: number
+        span: storm
+        cssClass: noezanclass col-sm-6
+
+
+tabs:
+    fields:
+
+
+        client:
+            label: Client Name
+            type: relation
+            select: company_name
+            cssClass: noezanclass col-sm-6
+            span: storm
+            # comment: Select client related to the invoice. Add client on the LEFT Client tab
+            placeholder: -- select a client --
+            tab: Setup
+            dependsOn:
+                - schedule
+
+
+
+        deliveryprice:
+            label: Delivery Price
+            type: Number
+            cssClass: noezanclass col-sm-6
+            span: storm
+            required: true
+            trigger:
+                    action: show
+                    field: type
+                    condition: 'value[1]'
+                    required: true
+            tab: Setup
+
+
+        logistics_company:
+            label: Logistics Company
+            cssClass: noezanclass col-sm-6
+            span: storm
+            # comment: If Collection
+            tab: Setup
+
+
+
+
+        schedule_date:
+            label: Schedule Date
+            type: datepicker
+            cssClass: noezanclass col-sm-6
+            span: storm
+            tab: Setup
+            dependsOn:
+                - schedule
+
+        notes_srn:
+            label: Notes For SRN
+            cssClass: noezanclass col-sm-6
+            span: storm
+            tab: Setup
+            type: textarea
+            size: small
+        notes_delivery:
+            label: Notes For Delivery Note
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: textarea
+            size: small
+            tab: Setup
+            dependsOn:
+                - schedule
+        delivery_address:
+            label: Delivery Address
+            type: textarea
+            size: small
+            cssClass: noezanclass col-sm-6
+            span: storm
+            tab: Setup
+            dependsOn:
+                - schedule
+
+
+        srnapprove@update:
+            path: $/bt/sales/controllers/srn/_srnapprove.htm
+            tab: QC Approval
+            type: partial
+        plate_number:
+            label: Registration No
+            span: storm
+            cssClass: noezanclass col-sm-6
+            tab: Vehicle Details
+        vehicle:
+            label: Vehicle Type
+            placeholder: -- Select Vehicle Type --
+            tab: Vehicle Details
+            type: relation
+            select: name
+            span: storm
+            cssClass: noezanclass col-sm-6
+        vehicle_arrival:
+            label: Vehicle Arrival
+            type: datepicker
+            tab: Vehicle Details
+            span: storm
+            cssClass: noezanclass col-sm-6
+        vehicle_load_start:
+            label: Vehicle Load Start
+            type: datepicker
+            tab: Vehicle Details
+            span: storm
+            cssClass: noezanclass col-sm-6
+        vehicle_load_end:
+            label: Vehicle Load End
+            type: datepicker
+            tab: Vehicle Details
+            span: storm
+            cssClass: noezanclass col-sm-6
+        vehicle_departure:
+            label: Vehicle Departure
+            type: datepicker
+            tab: Vehicle Details
+            span: storm
+            cssClass: noezanclass col-sm-6
+        pipes@update:
+            tab: Delivery Pipes
+            type: partial
+            path: $/bt/sales/models/srn/_pipes_field.htm
+        catalogue@update:
+            label: Additional Catalogue Products
+            tab: Catalogue
+            type: partial
+            path: $/bt/sales/models/srn/_cat_field.htm
+
+        files_srn:
+            label: Attach SRN Documents ie Signed
+            type: fileupload
+            tab: SRN Documents
+            mode: file
+        qc_srn:
+            label: Attach QC-SRN Documents (ie Signed)
+            type: fileupload
+            tab: SRN Documents
+            mode: file
+        files_delivery:
+            label: Attach Delivery Note Documents ie Signed
+            type: fileupload
+            tab: Delivery Documents
+            mode: file
+        images_delivery:
+            label: Images
+            type: fileupload
+            tab: Delivery Documents
+            comment: Upload  all related images ie Truck, Before and after
+
+        files_collection:
+            label: Attach Collection Note Documents ie Signed
+            type: fileupload
+            tab: Collection Documents
+            mode: file
+
+        images_collection:
+            label: Images
+            type: fileupload
+            tab: Collection Documents
+            comment: Upload  all related images ie Truck, Before and after
+
+        active:
+            label: Is delivery completed
+            type: switch
+            on: yes
+            off: no
+            cssClass:  col-sm-6
+            span: storm
+            tab: Complete Delivery
+
+        fabrication:
+            label: Is Fabrication?
+            cssClass: noezanclass col-sm-6
+            span: storm
+            type: dropdown
+            span: auto
+            disabled: true
+            tab: Complete Delivery
+        reporting:
+            label: Reporting
+            tab: Complete Delivery
+            type: switch
+            on: yes
+            off: no
+#        weight_bridge:
+#            label: Weight Bridge
+#            tab: Weight Bridge
+#            type: number
+#            span: auto
+

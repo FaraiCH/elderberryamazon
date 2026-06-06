@@ -1,0 +1,26 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    name:
+        label: Category
+
+    straight:
+        label: Straight
+        type: number
+        format: R %.2f
+
+    coil:
+        label: Coil
+        type: number
+        format: R %.2f
+    updated_at:
+        label: Date Update
+        searchable: true
+        type: date
+    

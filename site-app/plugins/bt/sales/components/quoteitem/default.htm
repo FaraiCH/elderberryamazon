@@ -1,0 +1,52 @@
+{% flash %}
+          <div class="alert alert-{{ type }}">
+              {{ message }}
+          </div>
+      {% endflash %}
+
+        {% set itemobject = BTQuoteItem.quote %}
+
+{% if itemobject is not empty  %}
+<br>
+{% partial __SELF__ ~ '::quote' itemobject=itemobject  %}
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    
+    <a class="nav-item nav-link active" id="nav-response-tab" data-toggle="tab" href="#nav-response" role="tab" aria-controls="nav-response" aria-selected="false">Update Quote</a>
+
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Emailing</a>
+
+   <!--  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Preview</a> -->
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent" style="border: 1px solid #dee2e6; margin-top: -2px;" >
+ 
+
+  <div class="tab-pane fade" id="nav-profile"  role="tabpanel" aria-labelledby="nav-profile-tab" >
+    <div style="background: #fff; padding: 10px;">
+  	{% partial __SELF__ ~ '::email' quote=itemobject   %}
+  </div>
+  </div>
+
+  <div class="tab-pane fade   show active" id="nav-response" role="tabpanel" aria-labelledby="nav-response-tab">
+    <div style="background: #fff; padding: 10px;">
+  	 {% partial __SELF__ ~ '::response' quote=itemobject   %}
+    </div>
+  </div>
+
+<!--   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+  	<div style="background: #fff; padding: 10px;">
+	    	{% partial __SELF__ ~ '::showquote' quote=itemobject  %}
+	    </div>
+  </div> -->
+</div>
+
+
+
+  
+{% else %}
+	<div class="card-body">
+		<p>No Items</p>
+	</div>
+{% endif %}

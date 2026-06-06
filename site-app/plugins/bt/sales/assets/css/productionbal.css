@@ -1,0 +1,21 @@
+.form-control {
+    display: inline-block;
+    width: 30%;
+    height: 38px;
+    padding: 8px 13px 9px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #536061;
+    background-color: #fff;
+    background-image: none;
+  }
+
+.float-right {
+  float: right;
+}
+
+input {
+    color: inherit;
+    font: inherit;
+    margin: 6px;
+}

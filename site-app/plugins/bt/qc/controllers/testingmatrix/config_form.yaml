@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Testingmatrix
+
+# Model Form Field configuration
+form: $/bt/qc/models/testingmatrix/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\TestingMatrix
+
+# Default redirect location
+defaultRedirect: bt/qc/testingmatrix
+
+# Create page
+create:
+    title: Create Testing Matrix
+    redirect: bt/qc/testingmatrix/update/:id
+    redirectClose: bt/qc/testingmatrix
+
+# Update page
+update:
+    title: Edit Testing Matrix
+    redirect: bt/qc/testingmatrix
+    redirectClose: bt/qc/testingmatrix
+
+# Preview page
+preview:
+    title: Preview Testing Matrix

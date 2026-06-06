@@ -1,0 +1,6 @@
+export:
+    title: Export Petty Cash
+    modelClass: Bt\Finance\Models\PettyCashExport
+    list: $/bt/finance/models/pettycash/columns_export.yaml
+    redirect: bt/finance/pettycash
+    fileName: Petty_Cash.csv

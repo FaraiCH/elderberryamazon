@@ -1,0 +1,45 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    type:
+        label: Stock Type
+        disabled: false
+        select: name
+        type: relation
+    name:
+        label: Pipe Description
+        disabled: false
+        type: dropdown
+        options:
+            500mm PN10: 500mm PN10
+            400mm PN10: 400mm PN10
+            250mm PN10: 250mm PN10
+            500mm: 500mm
+            400mm: 400mm
+            250mm: 250mm
+
+    pipelenghts:
+        label: Unit Length
+        disabled: false
+        type: dropdown
+        options:
+            13: 13 mm
+            12: 12 mm
+            10: 10 mm
+            9: 9 mm
+            7: 7 mm
+            6: 6 mm
+            5: 5 mm
+            4: 4 mm
+    datestored:
+        label: Date Stores
+        disabled: false
+        description: When this pipe was scraped
+        type: datepicker    
+    quantity:
+        label: In Stock
+        disabled: false
+        type: number
+   

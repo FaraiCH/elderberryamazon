@@ -1,0 +1,5 @@
+<?php if(isset($record->employee->rate)): ?>
+    <?= 'R ' . number_format($record->employee->rate, 2, ',', '.') ?>
+<?php else: ?>
+        R 0.00
+<?php endif; ?>

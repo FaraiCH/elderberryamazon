@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    from_quote:
+        label: From Quote
+        searchable: true
+        relation: from_quote
+        select: concat(id, ' > ', company_name)
+        sortable: true
+    quote_item:
+        label: Quote Item
+        searchable: true
+        relation: quote_item
+        select: description
+        sortable: true
+    to_quote_id:
+        label: Destination Quote
+        relation: to_quote
+        select: concat(id, ' > ', company_name)
+        searchable: true
+        sortable: true
+#    qty:
+#        label: Quantity to Move
+
+    note:
+        label: Comment
+        searchable: true
+    piperapprove:
+        label: Approved by Management
+        type: partial
+        path: $/bt/sales/models/piperequest/_approve.htm

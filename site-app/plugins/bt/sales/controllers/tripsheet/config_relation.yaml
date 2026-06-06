@@ -1,0 +1,10 @@
+srns:
+    label: SRN
+    manage:
+        form: $/bt/sales/models/srn/fields.yaml
+        list: $/bt/sales/models/srn/columns_trip.yaml
+    view:
+        list: $/bt/sales/models/srn/columns_trip.yaml
+        showCheckboxes: false
+        toolbarButtons: false
+

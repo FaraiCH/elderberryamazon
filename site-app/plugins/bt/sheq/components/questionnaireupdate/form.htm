@@ -1,0 +1,122 @@
+<div class="card-box_old">
+  <form data-request="onUpateClientQuestion" class="myForm" data-request-flash data-request-validate>
+    <div class="box-body">
+      <div class="row">
+
+
+        <div class="col-sm-12">
+          <div class="qheader">
+                <h3>Propety Details</h3>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+          <p>Please complete the form below to update property details:</p>
+        </div>
+
+
+     
+            <div class="col-sm-12">
+              <div class="form-group row">
+                  <label   class="col-sm-4 col-form-label" for="municipality_id">Province</label>
+                  <div class="col-sm-8">
+                    <div class="form-control text-mute" style="font-weight: bold; " disabled  >{{qobj.property.province}}</div>
+                            
+                  </div>
+                </div>
+            </div>
+
+             <div class="col-sm-12">
+              <div class="form-group row">
+                  <label   class="col-sm-4 col-form-label" for="municipality_id">Municipality</label>
+                  <div class="col-sm-8">
+                    <div class="form-control text-mute" style="font-weight: bold; " disabled  >{{qobj.property.municname}}</div>
+                            
+                  </div>
+                </div>
+            </div>
+
+     
+
+
+       
+
+        <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="idck" class="col-sm-4 col-form-label" >Municipal Acc No:</label>
+              <div class="col-sm-8">
+                  <input type="number"  class="form-control" id="municipality_account_number" name="municipality_account_number" placeholder="" value="{{qobj.municipality_account_number}}" >
+              </div>
+            </div>
+          </div> 
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="idck" class="col-sm-4 col-form-label" >Municipal Acc Pin:</label>
+              <div class="col-sm-8">
+                  <input type="number" class="form-control" id="municipality_account_pin" name="municipality_account_pin" placeholder="" value="{{qobj.municipality_account_pin}}">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="idck" class="col-sm-4 col-form-label" >Municipal Rates Number:</label>
+              <div class="col-sm-8">
+                  <input type="number" class="form-control" id="municipality_rates_number" name="municipality_rates_number" placeholder="" value="{{qobj.municipality_rates_number}}">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="idck" class="col-sm-4 col-form-label" >Municipal Reference Number:</label>
+              <div class="col-sm-8">
+                  <input type="number" class="form-control" id="municipality_reference_number" name="municipality_reference_number" placeholder="" value="{{qobj.municipality_reference_number}}">
+              </div>
+            </div>
+          </div>
+          
+
+            <div class="col-sm-12">
+              <div class="form-group row">
+                  <label   class="qheader col-sm-12" for="category_id" style=""  ><h3>Use of property</h3></label>
+                  <div class="col-sm-12">
+                      <div class="row">
+
+
+                         
+                            {% set pc = QuestionnaireUpdate.getPropertyCategory() %}
+                          
+                          {% for key,item in pc %}
+                            <div class="col-sm-12"><p style="font-weight: bold;">{{item.name}}</p></div>
+                            {% for key_k,item_i in item.children %}
+                                <div class="col-sm-3">
+
+                                   {% set select = "" %}
+
+                                    {% for incat_key,incat_item in qobj.categories %}
+                                      {% if item_i.id == incat_item.id %}
+                                      {% set select = "checked" %}
+                                      {% endif %}
+                                    {% endfor %}  
+                                  <div class="form-check"><input type="checkbox"  name="usage[]" value="{{item_i.id}}" {{select}} class='form-check-input'><label class='form-check-label'>{{item_i.name}}</label></div>
+                              </div>
+                            {% endfor %}  
+                          {% endfor %}
+                      </div>
+                    
+                  </div>
+                </div>
+            </div>
+          
+            
+      </div>
+     
+
+    </div>
+    
+    <div class="box-footer">
+        <button data-stripe-load-indicator data-attach-loading type="submit"  class="btn btn-primary btn-block text-center" style="text-align: center;">Update</button>
+    </div>
+  </form>
+</div>

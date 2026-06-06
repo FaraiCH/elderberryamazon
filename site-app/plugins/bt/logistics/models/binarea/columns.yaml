@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    area:
+        label: Area/Bin Name
+    sub_location:
+        label: Sub Location
+    area_length:
+        label: Area Length in Metres
+    pipe_percentage:
+        label: Percentage
+        type: partial
+        path: $/bt/logistics/models/binarea/pipe_percentage.htm
+    max_pipe:
+        label: Max Pipe
+        type: number
+    is_active:
+        label: Is Active
+        type: switch
+

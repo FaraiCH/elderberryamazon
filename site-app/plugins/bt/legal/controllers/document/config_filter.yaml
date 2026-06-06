@@ -1,0 +1,16 @@
+scopes:
+    department:
+        label: Folders
+        modelClass: Bt\Legal\Models\Category
+        conditions: category_id in (:filtered)
+        nameFrom: name
+    createdby:
+        label: Created By
+        modelClass: Backend\Models\User
+        conditions: created_by in (:filtered)
+        nameFrom: first_name
+
+    assinged_date:
+        label: Date In Relation
+        type: daterange
+        conditions: assinged_date >= ':after' AND assinged_date <= ':before'

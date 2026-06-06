@@ -1,0 +1,46 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    start_date:
+        label: Start Date
+        type: datepicker
+        mode: date
+        span: auto
+    end_date:
+        label: End Date
+        type: datepicker
+        mode: date
+        span: auto
+    meter_charge:
+        label: Meter Charge
+        type: number
+        span: auto
+    net_access_charge:
+        label: Net Access Charge
+        type: number
+        span: auto
+    maximum_kva:
+        label: Maximum KVA
+        type: number
+        span: auto
+    peak:
+        label: Peak
+        type: number
+        span: auto
+    standard:
+        label: Standard
+        type: number
+        span: auto
+    off_peak:
+        label: Off Peak
+        type: number
+        span: auto
+    rand_per_kwh:
+        label: Blended R/KWH
+        type: number
+        span: auto

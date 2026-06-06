@@ -1,0 +1,9 @@
+
+{% if printpipe.is_scrap == 1 %}
+    <input type="number" data-track-input data-request="onCompare" step=".01"  name="weight" id="weight" value="{{printpipe.weight}}" class="form-control form-size text-center" required/>
+{% else %}
+    <input type="number" data-track-input data-request="onCompare" step=".01"  name="weight" id="weight" value="{{printpipe.weight}}" class="form-control form-size text-center"/>
+{% endif %}
+<div id="result">
+
+</div>

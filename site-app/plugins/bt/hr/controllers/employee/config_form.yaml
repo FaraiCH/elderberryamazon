@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Employee
+
+# Model Form Field configuration
+form: $/bt/hr/models/employee/fields.yaml
+
+# Model Class name
+modelClass: Bt\HR\Models\Employee
+
+# Default redirect location
+defaultRedirect: bt/hr/employee
+
+# Create page
+create:
+    title: Create Employee
+    redirect: bt/hr/employee/update/:id
+    redirectClose: bt/hr/employee
+
+# Update page
+update:
+    title: Edit Employee
+    redirect: bt/hr/employee
+    redirectClose: bt/hr/employee
+
+# Preview page
+preview:
+    title: Preview Employee

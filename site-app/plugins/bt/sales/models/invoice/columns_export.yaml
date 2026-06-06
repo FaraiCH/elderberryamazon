@@ -1,0 +1,32 @@
+columns:
+    id:
+        label: ID
+        searchable: true
+    srn_name:
+        label: SRN
+    srn_date:
+        label: SR Date
+    name:
+        label: Invoice Number
+        searchable: true
+    amount_made:
+        label: Amount
+
+    invoice_date:
+        label: Invoice Date
+    client_name:
+        label: Client
+    sales_name:
+        label: Sales Person
+    created_by_name: 'Created By'
+
+    updated_by_name: 'Updated By'
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date

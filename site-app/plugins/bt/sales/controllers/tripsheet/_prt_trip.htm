@@ -1,0 +1,118 @@
+
+<div style="padding: 20px 20px">
+    <div class="card">
+        <div class="card-body">
+        <?php 
+        $totalUnitsSum = 0;
+        $totalPriceSum = 0;
+        $totalWeightSum = 0;
+        ?>
+    <?php foreach($formModel->srns as $srn): ?>
+            <table class="table">
+    <tbody>
+        <tr class="text-white text-center" style="color: black; background: lightskyblue">
+            <td style="width:10%"><b>Stop #:</b> <span class="badge badge-primary"><?= $srn->stops ?></span></td>
+            <td style="width:10%"><b>Quote #:</b> <a href="/backend/bt/sales/newquote/update/<?= $srn->quote_id ?>" target="_blank"><?= $srn->quote_id ?></a></td>
+            <td style="width:10%"><b>SRN:</b> <a href="/backend/bt/sales/srn/update/<?= $srn->id ?>" target="_blank"><?= $srn->id ?></a></td>
+            <td style="width:20%"><b>Client #:</b> <?= $srn->quote->company_name ?></td>
+            <td style="width:30%"><b>Delivery Address:</b> <?= $srn->delivery_address ?></td>
+            <td style="width:15%"><b>Load Value :</b> R <?= number_format($formModel->deliveryprice, 2, '.', ',') ?></td>
+            <td  colspan="2"><a class="btn btn-primary" target="_blank" class="btn btn-info pull-right oc-icon-file-pdf-o"  href="/ccn/item/download/<?=   $srn->id ?>.pdf"> Collection Note</a></td>
+        </tr>
+    </tbody>
+</table>
+
+
+            <table class="table table-striped table-info">
+                <thead>
+                <tr>
+                    <th class="col" style="width: 30%">Item Description</th>
+                    <th class="col" style="width: 20%">Units</th>
+                    <th class="col" style="width: 20%">Price</th>
+                    <th class="col" style="width: 20%">Weight</th>
+                </tr>
+                </thead>
+                <tbody>
+                    
+                <?php 
+                    $count = 0;
+                    $totalUnits = 0;
+                    $totalPrice = 0;
+                    $totalWeight = 0;
+                 ?>
+                <?php foreach($srn->items as $sworks): ?>
+                    <tr>
+                        <?php if(isset($sworks->pipe->quoteitems->description)): ?>
+                            <td ><?= $sworks->pipe->quoteitems->description ?></td>
+                            <td><?= $sworks->units ?></td>
+                            <td>R <?= number_format($sworks->pipe->quoteitems->unitprice * $sworks->units, 2, '.', ',') ?></td>
+                            <td> <?= number_format($sworks->pipe->quoteitems->weight * $sworks->units, 2, '.', ',') ?> KG</td> 
+                            <?php 
+                            // Update cumulative values
+                            $totalUnits += $sworks->units;
+                            $totalPrice += $sworks->pipe->quoteitems->unitprice * $sworks->units;
+                            $totalWeight += $sworks->pipe->quoteitems->weight * $sworks->units;
+                            ?>
+                        <?php else: ?>
+                            <td>PIPE DELETED FROM QUOTE</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        <?php endif; ?>
+
+                        <?php $count++; ?>
+                    </tr>
+                <?php endforeach; ?>
+                
+                <?php foreach($srn->itemscat as $sworks): ?>
+                    <tr>
+                        <td><?= $sworks->qoutecat->description ?></td>
+                        <td><?= $sworks->units ?></td>
+                        <td>R<?= $sworks->qoutecat->unitprice ?></td>
+                        <td>Catalogue Item</td>
+                        <?php $count++; ?>
+                    </tr>
+                    <?php endforeach; ?>
+
+                <?php if($count == 0): ?>
+                    <tr>
+                        <td colspan="7" class="text-center"><span style="background: maroon; color: white">This is an empty SRN</span></td>
+                    </tr>
+
+                <?php endif; ?>
+                </tbody>
+                <?php if($count > 0): ?>
+                <tfoot>
+                    <tr>
+                        <td ><b>Totals</b></td>
+                        <td><?= $totalUnits ?></td>
+                        <td>R <?= number_format($totalPrice, 2, '.', ',') ?></td>
+                        <td><?= number_format($totalWeight, 2, '.', ',') ?> KG</td>
+                    </tr>
+                </tfoot>
+                <?php 
+                // Update sum of totals
+                $totalUnitsSum += $totalUnits;
+                $totalPriceSum += $totalPrice;
+                $totalWeightSum += $totalWeight;
+                ?>
+                <?php endif; ?>
+
+            </table>
+            <?php endforeach; ?>
+            <table class="table table-striped table-info">
+                <tfoot>
+                    <tr>
+                        <td style="width: 30%"><b>Sum of Totals</b></td>
+                        <td style="width: 20%"><b><?= $totalUnitsSum ?></b></td>
+                        <td style="width: 20%"><b>R <?= number_format($totalPriceSum, 2, '.', ',') ?></b></td>
+                        <td style="width: 20%"><b><?= number_format($totalWeightSum, 2, '.', ',') ?> KG</b></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>
+

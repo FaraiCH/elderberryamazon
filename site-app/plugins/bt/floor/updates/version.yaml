@@ -1,0 +1,9 @@
+1.0.1: 
+- First version of Floor
+- create_stockpipes_table.php
+- create_scrappipes_table.php
+- create_delivery_client_pipes_table.php
+- create_delivery_scrap_pipes_table.php
+- create_stocknames_table.php
+- create_stocksizes_table.php
+- create_stocktypes_table.php

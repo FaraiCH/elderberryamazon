@@ -1,0 +1,124 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/operator/home') ?>">Home</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php
+
+?>
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <div class="control-tabs content-tabs" data-control="tab">
+                <ul class="nav nav-tabs">
+                      <li class="nav-item active">
+                        <a class="active" id="profile-tab" data-toggle="tab" href="#csprofile" role="tab" aria-controls="profile" aria-selected="false">CS</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="" id="uploads-tab" data-toggle="tab" href="#uploads" role="tab" aria-controls="uploads" aria-selected="false">Upload Images</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="" id="csview-tab" data-toggle="tab" href="#csview" role="tab" aria-controls="csview" aria-selected="false">Control Sheet</a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="" id="preview_tab-tab" data-toggle="tab" href="#preview_tab" role="tab" aria-controls="preview_tab" aria-selected="false">Preview Actuals</a>
+                      </li>
+                </ul>
+                <div class="tab-content" id="myTabContent" style="background: #fff">
+                    <div class="tab-pane active" id="csprofile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div  class="popthis"  style="overflow: auto;">
+                            <div style="padding:20px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                                <div id="previewquote">
+                                    <?php if(empty($formModel->opendate) || $formModel->opendate == "0000-00-00" || $formModel->opendate == '0000-00-00 00:00:00'): ?>
+                                        <?= $this->makePartial('control_setup') ?>
+                                    <?php else: ?>
+                                        <?= $this->makePartial('prt_update') ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane " id="uploads" role="tabpanel" aria-labelledby="uploads-tab">
+                            <div style="padding: 0px 20px">
+                                <h3>Upload Images </h3>
+                                <?= $this->formRender() ?>
+                                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving ShiftInput..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                            </div>
+                        </div>
+
+                     <div class="tab-pane " id="csview" role="tabpanel" aria-labelledby="csview-tab">
+                        <div style="padding:20px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                            <h3>Control Sheet</h3>
+                            <?= $this->makePartial('prt_cspreview') ?>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="preview_tab" role="tabpanel" aria-labelledby="preview_tab-tab">
+
+                            <div class="form-preview" style="display: flex; justify-content: center;">
+                                <iframe src="/controlsheet/item/download/<?= $formModel->id ?>"
+                                        style="width: 100%; height: 1200px; border: 1px solid #fcfcfc;"></iframe>
+                            </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+               <!--  <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving ShiftInput..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving ShiftInput..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting ShiftInput..."
+                    data-request-confirm="Delete this shiftinput?">
+                </button> -->
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/operator/home') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/operator/home') ?>" class="btn btn-default">Return to shift inputs list</a></p>
+
+<?php endif ?>

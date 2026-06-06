@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Testtypes
+
+# Model Form Field configuration
+form: $/bt/qc/models/testtypes/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\Testtypes
+
+# Default redirect location
+defaultRedirect: bt/qc/testtypes
+
+# Create page
+create:
+    title: Create Testtype
+    redirect: bt/qc/testtypes/update/:id
+    redirectClose: bt/qc/testtypes
+
+# Update page
+update:
+    title: Edit Testtype
+    redirect: bt/qc/testtypes
+    redirectClose: bt/qc/testtypes
+
+# Preview page
+preview:
+    title: Preview Testtype

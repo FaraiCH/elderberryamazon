@@ -1,0 +1,217 @@
+
+<div class="card card-default mb-4 mt-3">
+    <div class="card-header py-2">
+        <b>Filter</b>
+    </div>
+
+    <div class="card-body py-2">
+        <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label for="startdate">Start Date: </label>
+            <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text">
+        </div>
+        <div class="form-group " style="padding-bottom: 20px">
+            <label for="enddate">End Date: </label>
+            <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text">
+        </div>
+        <div class="form-group" style="padding-top: 5px">
+            <label style="display: block" for="client">Client: </label>
+            <select id="client" name="client" style="width: 300px; display: block" class="form-control custom-select">
+                <option value="0">All</option>
+                <?php foreach($clients as $cl): ?>
+                <option value="<?= $cl->id ?>"<?php if(isset($client)) echo ($client == $cl->id)? 'selected = "selected"':''?>><?= $cl->company_name ?> | <?= $cl->id ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <div class="form-group"  style="padding-top: 5px">
+            <label style="display: block" for="pipe_class">Class: </label>
+            <select id="pipe_class" name="pipe_class" style="width: 100px; display: block" class="form-control custom-select">
+                <option value="0">All</option>
+                <?php foreach($pipe_class as $class): ?>
+                <option value="<?= $class->id ?>"<?php if(isset($pipeClass)) echo ($pipeClass == $class->id)? 'selected = "selected"':''?>><?= $class->name ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <div class="form-group"  style="padding-top: 5px">
+            <label style="display: block" for="pipe_length">Diameter: </label>
+            <select id="pipe_length" name="pipe_length" style="width: 100px; display: block" class="form-control custom-select">
+                <option value="0">All</option>
+                <?php foreach($pipe_length as $length): ?>
+                <option value="<?= $length->id ?>"<?php if(isset($pipeLength)) echo ($pipeLength == $length->id)? 'selected = "selected"':''?>><?= $length->name ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <button style="padding-top: 5px type="submit" class="btn btn-primary">Filter</button>
+        <?= Form::close()?>
+    </div>
+</div>
+
+<div class="control-list" style="overflow: auto;">
+<table class="table tabledownload_desc dt-responsive table-striped table-hover " style="width:100%">
+    <thead>
+    <tr>
+        <th class="just"><span>Client Name</span></th>
+        <th><span>Quote No</span></th>
+        <th class="just"><span>Sales Rep</span></th>
+        <th><span>PO</span></th>
+        <th class="just"><span>Date Created</span></th>
+        <th><span>Item</span></th>
+        <th><span>Order Qty</span></th>
+        <th><span>Unit Weight</span></th>
+        <th><span>Produced Qty</span></th>
+        <th><span>Extra Pipes</span></th>
+        <th><span>Delivered Qty</span></th>
+        <th class="just"><span>Yard</span></th>
+        <th><span>Prod. Back Order</span></th>
+        <th><span>Del. Back Order</span></th>
+        <th><span>SRN</span></th>
+        <th><span>Invoice</span></th>
+        <th><span></span></th>
+        <th><span></span></th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach($obj as $clientObj): ?>
+            <?php foreach($clientObj->items as $item): ?>
+                <?php
+                    $show = 1;
+
+                    if(($item->units - $srn_item['item'][$item->id] ) <= 0){
+                            $show = 0;
+                    }
+
+                ?>
+                <?php if($show == 1): ?>
+                    <tr>
+                        <td><?= $clientObj->client->company_name ?> | <?= $clientObj->client_id ?> </td>
+                        <td><?= $item->quote_id ?></td>
+                        <td><?= $clientObj->user->name . ' '. $clientObj->user->surname?></td>
+
+                        <td>
+                            <?php  if(strlen($clientObj->ponumber) > 10): ?>
+                                <?= substr($clientObj->ponumber,0, 10) ?>...
+                            <?php else: ?>
+                                <?= $clientObj->ponumber ?>
+                             <?php endif; ?>
+                        </td>
+
+
+                        <td><?= date_format($clientObj->created_at,"d-m-Y") ?></td>
+                        <td><?= $item->description ?></td>
+                        <td><?= $item->units ?></td>
+                        <td><?= $item->weight ?></td>
+                          <?php $produced = 0; ?>
+                    <?php if(isset($item->pipe->schedules)): ?>
+
+                        <td><?= $item->pipe->schedules->sum('total_units_passed_qc') ?></td>
+
+                        <?php $produced = $item->pipe->schedules->sum('total_units_passed_qc'); ?>
+
+                        <?php if($produced > $item->units): ?>
+                            <td style="background: #f4f347"><?= $produced - $item->units ?></td>
+                        <?php else: ?>
+                            <td>0</td>
+                        <?php endif; ?>
+
+                    <?php else: ?>
+                        <td>0</td>
+                        <td>0</td>
+                    <?php endif; ?>
+
+                    <?php if(isset($item->id)): ?>
+                        <td><?= $item->getSameItemDelivered($item->quote_id, $item->product_id, $item->unitlength, '', '')->sum('units')?></td>
+                        <td>
+                             <?= ($produced - $item->getSameItemDelivered($item->quote_id, $item->product_id, $item->unitlength, '', '')->sum('units'))<0?0:($produced - $item->getSameItemDelivered($item->quote_id, $item->product_id, $item->unitlength, '', '')->sum('units')); ?>
+                        </td>
+
+                        <?php $delivered = $item->getSameItemDelivered($item->quote_id, $item->product_id, $item->unitlength, '', '')->sum('units'); ?>
+
+                        <?php if($delivered > $produced): ?>
+                            <td><?= ($item->units - $produced)<0?0:($item->units - $delivered) ?></td>
+                        <?php else: ?>
+                            <td><?= ($item->units - $produced)<0?0:($item->units - $produced) ?></td>
+                        <?php endif; ?>
+
+                        <td><?= $item->units - $item->getSameItemDelivered($item->quote_id, $item->product_id, $item->unitlength, '', '')->sum('units') ?></td>
+
+                        <?php if(!empty($srn_item['srn'][$item->id])): ?>
+                            <td>
+                                <?php foreach($srn_item['srn'][$item->id] as $srns): ?>
+                                    <?php if(isset($srns)): ?>
+                                        <?= $srns ?>
+                                        <br>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </td>
+                            <td>
+                                <?php foreach($srn_item['invoice'][$item->id] as $first): ?>
+                                    <?php foreach($first as $invoice): ?>
+                                        <?php if(isset($invoice->name)): ?>
+                                            <?= $invoice->name ?>
+                                            <br>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </td>
+                        <?php else: ?>
+                            <td>-</td>
+                            <td>-</td>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><?= ($item->units)?></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    <?php endif; ?>
+                        <td style="text-align: center; font-size: 12px">
+                            <a data-toggle="modal" data-stripe-load-indicator data-attach-loading href="#content-confirmation" data-request="onPipeRequest" class="btn btn-primary btn-sm" data-request-data="id: <?= $item->id ?>">Associate</a>
+                        </td>
+                      <td style="text-align: center; font-size: 14px">
+                            <a
+                                type="button" data-request-confirm="Are you sure you want to remove this item [<?= $item->description ?>] from back order?" href="" data-request-data="id: <?= $item->id ?>"
+                                data-request="onRemove"
+                                class="text-danger oc-icon-trash" style="margin: 0px !important">
+
+                            </a>
+                        </td>
+
+                </tr>
+                <?php endif; ?>
+            <?php endforeach ?>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</div>
+<div class="control-popup modal fade" id="content-confirmation" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div id="piperequest">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script>
+    var startpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#startdate');
+    var endpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#enddate');
+</script>

@@ -1,0 +1,40 @@
+
+        <div style="text-align: center" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Pipe Association</h4>
+            </div>
+            <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+            <div class="form-group" style="padding-bottom: 20px">
+                <label style="display: block" for="from_quote">Form Quote: </label>
+                <input readonly style="display: block; width: 400px" id="from_quote" value="<?= $original_quote ?>" name="from_quote" type="text" class="form-control" >
+                <input type="hidden" id="myrep" value="<?= $myrep ?>" name="myrep" class="form-control" >
+            </div>
+            <div class="form-group " style="padding-bottom: 20px">
+                <label style="display: block" for="item">Item To Associate: </label>
+                <input readonly style="display: block; width: 400px" id="item" value="<?= $original_quote_item ?>" name="item" type="text" class="form-control" >
+            </div>
+            <div class="form-group" style="padding-top: 5px">
+                <label style="display: block" for="to_srn">Destination Srn: </label>
+                <select id="to_srn" name="to_srn" style="width: 400px; display: block" class="form-control custom-select">
+                    <option value="0">Select SRN</option>
+                    <?php foreach($srns as $s): ?>
+                    <option value="<?= $s->id ?>"<?php if(isset($srn)) echo ($srn == $s->id)? 'selected = "selected"':''?>>SRN No: <?= $s->id ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="form-group" style="padding-top: 5px">
+                <label style="display: block" for="quantity">Quantity: </label>
+                <select id="quantity" name="quantity" style="width: 400px; display: block" class="form-control custom-select">
+                    <option value="0">Select Quantity</option>
+                    <?php foreach($quantity as $q): ?>
+                    <option value="<?= $q ?>"<?php if(isset($quant)) echo ($quant == $q->id)? 'selected = "selected"':''?>><?= $q ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-stripe-load-indicator data-attach-loading class="btn btn-primary" data-request="onSaveOverrun" data-dismiss="modal"><span class="icon icon-plus"></span> Associate to SRN</button>
+                <button type="button" class="btn btn-danger"  data-dismiss="modal">Cancel</button>
+            </div>
+            <?= Form::close()?>
+        </div>

@@ -1,0 +1,107 @@
+invoice:
+    label: Invoice
+
+    manage:
+        form: $/bt/sales/models/invoice/fields.yaml
+        list: $/bt/sales/models/invoice/columns.yaml
+    view:
+        list: $/bt/sales/models/invoice/columns.yaml
+        toolbarButtons: create|delete
+
+responses:
+    label: Responses
+    manage:
+        form: $/bt/sales/models/quotereponse/fields.yaml
+        list: $/bt/sales/models/quotereponse/columns.yaml
+    view:
+        list: $/bt/sales/models/quotereponse/columns.yaml
+        toolbarButtons: create|delete
+paymenttracker:
+    label: Payment
+    manage:
+        form: $/bt/sales/models/paymenttracker/fields.yaml
+        list: $/bt/sales/models/paymenttracker/columns.yaml
+    view:
+        list: $/bt/sales/models/paymenttracker/columns.yaml
+        toolbarButtons: create|delete
+
+items:
+    label: Item
+    comment: Please do not delete if the ITEM has been sent to production
+    manage:
+        form: $/bt/sales/models/quoteitems/fields.yaml
+        list: $/bt/sales/models/quoteitems/columns.yaml
+    view:
+        list: $/bt/sales/models/quoteitems/columns.yaml
+        toolbarButtons: create|delete
+        showCheckboxes: true
+itemscat:
+    label: Catalogue
+    manage:
+        form: $/bt/sales/models/quoteitemcatalogue/fields.yaml
+        list: $/bt/sales/models/quoteitemcatalogue/columns.yaml
+    view:
+        list: $/bt/sales/models/quoteitemcatalogue/columns.yaml
+        toolbarButtons: create|delete
+requestqc:
+    label: Requests
+    manage:
+        form: $/bt/qc/models/reqcertificate/fields.yaml
+        list: $/bt/qc/models/reqcertificate/columns.yaml
+    view:
+        list: $/bt/qc/models/reqcertificate/columns.yaml
+        toolbarButtons: create|delete
+
+productionplan:
+    label: Production Plan
+    manage:
+        form: $/bt/sales/models/quoteproductionplan/fields.yaml
+        list: $/bt/sales/models/quoteproductionplan/columns.yaml
+    view:
+        list: $/bt/sales/models/quoteproductionplan/columns.yaml
+        toolbarButtons: create|delete
+dispatch:
+    label: Quote Logistics Load
+    manage:
+        form: $/bt/sales/models/dispatchitem/fields.yaml
+        list: $/bt/sales/models/dispatchitem/columns.yaml
+    view:
+        list: $/bt/sales/models/dispatchitem/columns.yaml
+        toolbarButtons: create|delete
+accept:
+    label: Quote Accept
+    manage:
+        form: $/bt/sales/models/quoteaccept/fields.yaml
+        list: $/bt/sales/models/quoteaccept/columns.yaml
+    view:
+        form: $/bt/sales/models/quoteaccept/fields.yaml
+        toolbarButtons: false
+        showCheckboxes: false
+
+quoteapproval:
+    label: Approve Quote Logistics
+    view:
+        form: $/bt/sales/models/quoteapproval/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/quoteapproval/fields.yaml
+        list: $/bt/sales/models/quoteapproval/columns.yaml
+
+quote_approval_intro:
+    label: Quote Approval Intro
+    manage:
+        form: $/bt/sales/models/quoteapprovalintro/fields.yaml
+        list: $/bt/sales/models/quoteapprovalintro/columns.yaml
+    view:
+        form: $/bt/sales/models/quoteapprovalintro/fieldsdisplay.yaml
+        toolbarButtons: update|delete
+
+quote_approval_activity_log:
+    label: Quote Approval Activity Log
+    manage:
+        form: $/bt/sales/models/quoteapprovalactivitylog/fields.yaml
+        list: $/bt/sales/models/quoteapprovalactivitylog/columns.yaml
+    view:
+        list: $/bt/sales/models/quoteapprovalactivitylog/columns.yaml
+        toolbarButtons: false
+        showCheckboxes: false

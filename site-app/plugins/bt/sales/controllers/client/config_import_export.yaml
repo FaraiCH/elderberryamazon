@@ -1,0 +1,12 @@
+import:
+    title: Import Clients
+    modelClass: Bt\Sales\Models\ClientImport
+    list: $/bt/sales/models/client/columns_export.yaml
+    redirect: bt/sales/client
+    # form: $/bt/sales/models/client/fields.yaml
+export:
+    title: Export Clients
+    modelClass: Bt\Sales\Models\ClientExport
+    list: $/bt/sales/models/client/columns_export.yaml
+    redirect: bt/sales/client
+    fileName: client-export.csv

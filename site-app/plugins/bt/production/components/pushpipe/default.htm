@@ -1,0 +1,96 @@
+{% flash %}
+    <div class="alert alert-{{ type }}">
+        {{ message }}
+    </div>
+{% endflash %}
+
+{% set itemobject = ProductionPushPipe.pipe %}
+
+{% if itemobject is not empty  %}
+{% set pipe = ProductionPushPipe.pipe %}
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-list"></i> PIPE PRODUCTION NO: {{pipe.id}}</h1>
+<div class="card" style="margin-top: 20px">
+	<table class="table table-sm">
+					
+					<tr><th>Start date</th><th>Due date</th><th>TOTAL Mass</th><th>Daily production target (Kg)</th><th>Production days</th><th>Projected date of completion</th></tr>
+					
+					<tr>
+						
+							{% autoescape false %}{% set isnotset = '<span class="text-danger">Not Set</span>' %}{% endautoescape %}
+						
+						<td>{% autoescape false %}{{(pipe.start_date)?pipe.start_date|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+						<td>{% autoescape false %}{{(pipe.due_date)?pipe.due_date|date("Y-m-d"):isnotset|raw}}{% endautoescape %}</td>
+						
+						{% set totalmass = pipe.quoteitems.units * pipe.pipe_target_weight %}
+
+						{% set effective_production_rate =  ((pipe.production_rate*(pipe.target_availability/100)*(1-(pipe.target_scrap_rate/100)))) %}
+
+
+						{% set dailproduction = effective_production_rate * 24 %}
+						<td>{{ totalmass }}</td>
+						<td>{{ dailproduction }}</td>
+						{% set productiondays = (totalmass/(effective_production_rate * 24)) %}
+						<td>{{productiondays|number_format(2, '.', ',')}}</td>
+						<td>{{pipe.start_date|date_modify("+" ~ productiondays|number_format(0, '.', ',') ~ " day")|date("Y-m-d") }}</td>
+					</tr>
+					
+				</table>
+</div>
+
+
+
+{% if itemobject.schedules is not empty %}
+	<div class="card" style="margin-top: 20px">
+		<div id="chart_unit" style="height: 300px;"></div>
+	</div>
+
+	<div class="card" style="margin-top: 20px">
+		<div id="chart_kg" style="height: 300px;"></div>
+	</div>
+{% endif %}
+
+
+
+<div class="row" style="margin-top: 20px;">
+  	<div class="col-sm-12">{% partial __SELF__ ~ '::form' pipe=itemobject   %}</div>
+  	<!-- <div class="col-sm-6">{% partial __SELF__ ~ '::materials' pipe=itemobject   %}</div> -->
+  	
+	<div class="col-sm-12" style="margin-top: 20px;">
+		{% if (pipe.start_date) %}
+			<div>
+	  			
+	  			<div class="card">
+					<div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
+						<h2>Schedule Details</h2>
+	  					<!-- <a class="btn btn-info " href="#" data-toggle="modal" data-target="#newModal"  ><i class="fa fa-edit"></i> New Schedule Day</a> -->
+					</div>
+					
+					
+						{% if itemobject.schedules is empty %}
+							<div class="card-body">	
+					  			<!-- <form data-request="onCreateSchedule" data-request-files data-request-flash>
+										<button type="submit" class="btn btn-primary btn-block mt-0 " data-attach-loading>create schedule</button>
+								</form> -->
+								<p>Schedule to be created by Production Manager</p>
+							</div>
+						{% else %}
+							{% partial __SELF__ ~ '::schedulelist' pipe_id=itemobject.id response=itemobject.schedules   %}
+						{% endif %}
+					
+				</div>
+	  			
+			</div>
+		{% else %}
+			<div class="alert alert-warning">
+				<h2>Schedule Details</h2>
+				<p>NOTE: Setup production details first to see pipe schedule</p>
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% else %}
+	<div class="card-body">
+		<p>No Items</p>
+	</div>
+{% endif %}

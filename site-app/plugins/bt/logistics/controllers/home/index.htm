@@ -1,0 +1,121 @@
+
+<div class="callout fade in callout-info ">
+<div class="header"><h3>SCHEDULED SRNS <a
+        href="<?= Backend::url('bt/logistics/stockrelease') ?>"
+        class="pull-right" style="color: #fff">
+        All SRN
+    </a>
+</h3> 
+
+     
+
+</div>
+<div class="content" style="padding: 5px;">
+    <table class="table table-sm">
+        <tr>
+            <th></th>
+            <th>SRN #</th>
+            <th>Quote</th>
+            <th>Schedule Date</th>
+            <th>Collection/Delivery</th>
+            <th>Truck Arrival Time</th>
+            <th>Load Start Time</th>
+            <th>Load End Time</th>
+            <th>Departure Time</th>
+          
+
+        </tr>
+        <?php foreach($todaysrn as $item ): ?>
+        <tr>
+            <td><a href="/backend/bt/logistics/stockrelease/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-pencil">Update</a></td>
+            <td><?= $item->id ?></td>
+            <td><?= $item->quote_id ?> - <?= $item->quote->company_name ?></td>
+
+             <?php
+                                $date = date_create( $item->schedule_date);
+                            
+                            ?>
+                        
+                        <td><?= date_format($date, 'D d M Y');?></td>
+           
+
+            <td><?= $item->type->name ?></td>
+            
+          
+            <td><?= $item->vehicle_arrival ?></td>
+            <td><?= $item->vehicle_load_start ?></td>
+            <td><?= $item->vehicle_load_end ?></td>
+            <td><?= $item->vehicle_departure ?></td>
+            
+
+        </tr>
+        <?php endforeach ?>
+
+    </table>
+</div>
+    <div style="padding: 8px 0px;  overflow: hidden;">
+         <div style="background: skyblue; color: whitesmoke; float: right; padding: 2px 4px ">Vehicle Requests</div>
+         <div style="background: darkblue; color: whitesmoke; float: right; padding: 2px 4px">Scheduled Deliveries and Collections</div>
+         <div style="background: orange; color: whitesmoke;float: right; padding: 2px 4px">SRNs Created and Scheduled</div>
+     </div>
+ <div class="callout fade in callout-success" style="clear: both; ">
+ 
+  <div class="header">
+    <h3>SCHEDULE</h3>
+  </div>
+
+
+  <div class="content">
+  <div id='calendar'></div>
+  </div>
+
+</div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/core/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/interaction/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/daygrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/timegrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/list/main.js"></script>
+
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      events: <?= json_encode($events) ?> //,
+
+      // eventClick: function(info) {
+      //   var eventObj = info.event;
+      //   $("#titleshow").empty().html("<p><i>"+eventObj.start+"</i></p><p>"+eventObj.title+"</p>");
+      //   $("#exampleModal").modal();
+
+
+      // }
+
+
+    });
+
+    calendar.render();
+
+
+
+
+  });
+$(document).ready(function () {
+
+});
+
+</script>

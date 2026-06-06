@@ -1,0 +1,39 @@
+<div class="quote-approval-form" id="quote-approval-form">
+    {% if __SELF__.quoteApprovalCompleted == true %}
+        {% partial __SELF__ ~ '::partials/quote_approval_completed' %}
+    {% else %}
+        <form
+            method="POST"
+            id="quote-approval-form"
+            data-request-validate data-request="onQuoteApproval"
+            data-request-update="'{{ __SELF__ }}::partials/quote_approval_completed': '#quote-approval-form'">
+            <div class="quote-approval-input-group">
+                <label for="name">Name(Required):</label>
+                <input type="text" name="name" id="name" placeholder="Name" required />
+                <div class="quote-approval-form-error" data-validate-for="name"></div>
+            </div>
+            <div class="quote-approval-input-group">
+                <label for="surname">Surname(Required):</label>
+                <input type="text" name="surname" id="surname" placeholder="Surname" required />
+                <div class="quote-approval-form-error" data-validate-for="surname"></div>
+            </div>
+            <div class="quote-approval-input-group">
+                <label for="surname">Signature(Required):</label>
+                <input type="hidden" name="signature" id="signature">
+                <div class="signature-canvas-wrapper">
+                    <canvas id="signature-canvas" class="signature-canvas"></canvas>
+                </div>
+                <button type="button" id="clear-signature" class="clear-signature">Clear Signature</button>
+                <div class="quote-approval-form-error" data-validate-for="signature"></div>
+            </div>
+            <div class="quote-approval-input-group">
+                <div class="quote-approval-checkbox-group">
+                    <input type="checkbox" name="terms" id="terms" required />
+                    <label for="terms">I've read the terms and conditions(Required):</label>
+                </div>
+                <div class="quote-approval-form-error" data-validate-for="terms"></div>
+            </div>
+            <button data-attach-loading>Approve Quote</button>
+        </form>
+    {% endif %}
+</div>

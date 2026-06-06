@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stock Room Block
+
+# Model Form Field configuration
+form: $/bt/inventory/models/stockroomblock/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\StockRoomBlock
+
+# Default redirect location
+defaultRedirect: bt/inventory/stockroomblock
+
+# Create page
+create:
+    title: Create Stock Room Block
+    redirect: bt/inventory/stockroomblock/update/:id
+    redirectClose: bt/inventory/stockroomblock
+
+# Update page
+update:
+    title: Edit Stock Room Block
+    redirect: bt/inventory/stockroomblock
+    redirectClose: bt/inventory/stockroomblock
+
+# Preview page
+preview:
+    title: Preview Stock Room Block

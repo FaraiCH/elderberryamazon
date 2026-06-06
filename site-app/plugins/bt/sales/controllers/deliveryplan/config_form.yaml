@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Delivery Plan
+
+# Model Form Field configuration
+form: $/bt/sales/models/deliveryplan/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\DeliveryPlan
+
+# Default redirect location
+defaultRedirect: bt/sales/deliveryplan
+
+# Create page
+create:
+    title: Create Delivery Plan
+    redirect: bt/sales/deliveryplan/update/:id
+    redirectClose: bt/sales/deliveryplan
+
+# Update page
+update:
+    title: Edit Delivery Plan
+    redirect: bt/sales/deliveryplan
+    redirectClose: bt/sales/deliveryplan
+
+# Preview page
+preview:
+    title: Preview Delivery Plan

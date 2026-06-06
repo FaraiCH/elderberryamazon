@@ -1,0 +1,20 @@
+<?php
+$count = 0;
+$invoice = 0;
+$payment = 0;
+if (isset($record->client->limit)) {
+    $count = $record->client->limit - $record->client->utilization;
+}
+?>
+<div style=" font-weight: bold; text-align: right; display: block; min-width: 100px">
+	<?php if($count > 0): ?>
+	    <span style="white-space: nowrap;" class="text-success">
+	        R <?php echo number_format($count,2) ?>
+	    </span>
+
+	<?php else: ?>
+	    <span style="white-space: nowrap;" class="text-danger" >
+	    	R <?php echo number_format($count,2) ?>
+	    </span>
+	<?php endif; ?>
+</div>

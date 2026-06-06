@@ -1,0 +1,43 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+        searchable: true
+    btmeter:
+        label: Meter Baila
+        searchable: true
+        relation: btmeter
+        select: name
+    sort_order:
+        label: Sort Order
+    capacity:
+        label: Capacity p/h
+        span: auto
+        type: number
+        format: %.0f kg
+
+    max_weight:
+        label: Max Weight
+        span: auto
+        type: number
+        format: %.0f kg
+
+    min_weight:
+        label: Min Weight
+        span: auto
+        type: number
+        format: %.0f kg
+
+    online:
+        label: On Line
+        searchable: true
+        type: switch
+    note:
+        label: Message
+        searchable: true

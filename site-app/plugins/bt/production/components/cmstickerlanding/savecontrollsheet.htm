@@ -1,0 +1,70 @@
+{% set controlsheet = CmStickerLanding.controlsheet %}
+{% set userDetails = CmStickerLanding.userDetails %}
+{% set binarea = CmStickerLanding.binarea %}
+{% set production_team = 0 %}
+{% set logistics_team = 0 %}
+
+{% for groups in userDetails.groups %}
+{% if groups.id == 36 %}
+{% set production_team = 1 %}
+{% endif %}
+{% if groups.id == 24 %}
+{% set logistics_team = 1 %}
+{% endif %}
+{% endfor %}
+{% if printpipe.controlsheets is empty %}
+
+{% if production_team == 1 %}
+{% if printpipe.controlsheets is empty %}
+<form enctype="multipart/form-data" data-request-files data-request="onSaveControl" data-request-flash id="savesticker_frm">
+    <div style="text-align: center;">
+        <div class="row no-gutters">
+            <div class="col-xs-8" style="padding-right: 10px " id="h_cs">
+                <p style="padding-top: 10px; text-align: left">Select Control Sheet:</p>
+                <select name="cs" id="cs" class="input-sm select_search form-control form-size" data-track-input data-request="onSetLength"  minlength="4" required style=" height: 400px">
+                    <option value="0" ><span style="color: #ccc">Select</span></option>
+                    {% for con in controlsheet %}
+                    <option {{printpipe.controlsheets.id == con.id?"selected":""}} value="{{con.id}}"> CS#: {{con.id}} JB#{{con.jobcard_id}}-{{con.batch_id}} </option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="col-xs-4 havecs hideme">
+                <p  style="padding-top: 10px; text-align: left">Start Up Scrap:</p>
+                <select name="scrap" id="scrap" data-track-input data-request="onConfirmScrap" class="form-control form-size"  minlength="4" required>
+                    <option value="2" ><span style="color: #ccc">No</span></option>
+                    {% if printpipe.is_scrap == 1 %}
+                    <option selected value="1">Yes</option>
+                    {% else %}
+                    <option value="1">Yes</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="col-xs-6 havecs hideme" style="padding-right: 10px " id="h_length">
+                <p style="padding-top: 10px">Pipe Length: </p>
+                <div id="length">
+                    {% partial __SELF__ ~ '::length_partial' %}
+                </div>
+            </div>
+            <div class="col-xs-6 havecs hideme" id="h_weight">
+                <p style="padding-top: 10px">Weight in KG:</p>
+                <div id="weight_part">
+                    {% partial __SELF__ ~ '::weight_partial' printpipe=printpipe %}
+                </div>
+            </div>
+            <div class="col-xs-12 havecs hideme">
+                <p style="padding-top: 10px">Take Weight Picture:</p>
+                <input type="file" id="weight_pic" name="weight_pic" class="form-control form-size text-center" >
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary btn-width btn-block havecs hideme" type="submit"><i class="fa fa-save"></i> Save</button>
+</form>
+{% endif %}
+{% else %}
+<div style="text-align: center;">
+    <h3 class="text-danger pb-4">Sticker Not Properly Set</h3>
+    <p>Please contact the production team for assistance in linking this sticker to a production control sheet.</p>
+</div>
+{% endif %}
+{% endif %}

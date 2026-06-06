@@ -1,0 +1,90 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    date:
+        label: Effective Date
+        mode: date
+    destination:
+        label: Destination
+    active:
+        label: Active
+        type: selectable
+    ton:
+        label: 1-Ton Price
+        type: number
+        format: R %.2f
+    ton_trailer:
+        label: 1-Ton and Trailer Price
+        type: number
+        format: R %.2f
+    ton_trailer_min_6m:
+        label: 6-Ton and Trailer Min 6m Bed Price
+        type: number
+        format: R %.2f
+
+    four_ton_trailer:
+        label: 4-Ton and Trailer
+        type: number
+        format: R %.2f
+#    ton_min_6m_bed:
+#        label: 8Ton Min 6m Bed Price
+#        type: number
+#        format: R %.2f
+    eight_ton:
+        label: 8-Ton
+        type: number
+        format: R %.2f
+    ten_ton_12m_trailer:
+        label: 10-Ton and 12m Trailer
+        type: number
+        format: R %.2f
+    trailer_12m:
+        label: 12m Trailer Price
+        type: number
+        format: R %.2f
+    trailer_18m:
+        label: 18m Trailer Price
+        type: number
+        format: R %.2f
+    bt_ton:
+        label: Bt 1-Ton Price
+        type: number
+        format: R %.2f
+    bt_ton_trailer:
+        label: Bt 1-Ton and Trailer Price
+        type: number
+        format: R %.2f
+    bt_ton_trailer_min_6m:
+        label: Bt 6-Ton and Trailer Min 6m Bed Price
+        type: number
+        format: R %.2f
+
+    bt_four_ton_trailer:
+        label: Bt 4-Ton and Trailer
+        type: number
+        format: R %.2f
+    bt_eight_ton:
+        label: Bt 8-Ton
+        type: number
+        format: R %.2f
+    bt_ten_ton_12m_trailer:
+        label: Bt 10-Ton and 12m Trailer
+        type: number
+        format: R %.2f
+    bt_trailer_12m:
+        label: Bt 12m Trailer Price
+        type: number
+        format: R %.2f
+    bt_trailer_18m:
+        label: Bt 18m Trailer Price
+        type: number
+        format: R %.2f
+#    curtain_side_link:
+#        label: Curtain Side Link Price
+#        type: number
+#        format: R %.2f

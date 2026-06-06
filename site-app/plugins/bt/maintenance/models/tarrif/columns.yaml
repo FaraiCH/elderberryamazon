@@ -1,0 +1,35 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    start_date:
+        label: Start Date
+        searchable: true
+    end_date:
+        label: End Date
+        searchable: true
+    meter_charge:
+        label: Meter Charge
+        searchable: true
+    net_access_charge:
+        label: Net Access Charge
+        searchable: true
+    maximum_kva:
+        label: Maximum KVA
+        searchable: true
+    peak:
+        label: Peak
+        searchable: true
+    standard:
+        label: Standard
+        searchable: true
+    off_peak:
+        label: Off Peak
+        searchable: true
+    rand_per_kwh:
+        label: Rand Per KWH
+        searchable: true

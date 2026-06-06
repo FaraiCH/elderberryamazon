@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Production Report
+
+# Model Form Field configuration
+form: $/bt/crm/models/productionreport/fields.yaml
+
+# Model Class name
+modelClass: Bt\CRM\Models\ProductionReport
+
+# Default redirect location
+defaultRedirect: bt/crm/productionreport
+
+# Create page
+create:
+    title: Create Production Report
+    redirect: bt/crm/productionreport/update/:id
+    redirectClose: bt/crm/productionreport
+
+# Update page
+update:
+    title: Edit Production Report
+    redirect: bt/crm/productionreport
+    redirectClose: bt/crm/productionreport
+
+# Preview page
+preview:
+    title: Preview Production Report

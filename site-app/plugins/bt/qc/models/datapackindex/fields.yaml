@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    name: 
+        label: Index Name        
+        span: auto
+    subcatof: 
+        label: Subcat Of
+        span: auto
+    orderno: 
+        label: Order
+        span: auto
+    abc: 
+        label: ABC
+        required: true
+    description: 
+        label: Description
+        span: auto
+        type: textarea

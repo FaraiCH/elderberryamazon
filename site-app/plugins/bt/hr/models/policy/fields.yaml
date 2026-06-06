@@ -1,0 +1,39 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    name:
+        label: Title
+        span: storm
+        cssClass: col-sm-4 col-md-4 col-lg-4
+    rev:
+        label: Optional Revision No
+        type: number
+        span: storm
+        cssClass: col-sm-4 col-md-4 col-lg-4
+    date:
+        label: Date
+        type: datepicker
+        mode: date
+        span: storm
+        cssClass: col-sm-4 col-md-4 col-lg-4
+
+    is_visible:
+        label: Visible to Public?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+    description:
+        label: Description
+        type: textarea
+    attach_file:
+        label: Document Uploads
+        type: fileupload
+        span: auto
+        mode: file
+

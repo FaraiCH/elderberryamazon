@@ -1,0 +1,16 @@
+<?php 
+  $doccount = 0;
+  if(count($record->contract))
+  		$doccount = count($record->contract);
+
+ ?>
+
+<?php if($doccount > 0 ): ?>
+<div style="background: green; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+    <span class="oc-icon-check"><?= $doccount ?> FILES
+</div>
+<?php else: ?>
+<div style="background: #ec3838; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+   <span class="oc-icon-exclamation-triangle">0 FILES</span>  
+</div>
+<?php endif; ?>

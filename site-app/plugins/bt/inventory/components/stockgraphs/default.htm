@@ -1,0 +1,325 @@
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div id="chart_stocklevel_active" style="width: 100%; height: 300px"></div>
+			</div>
+			<div class="col-sm-6">
+					<div id="chart_stocklevel" style="width: 100%; height: 300px"></div>
+			</div>
+		</div>
+	<br>
+	<div class="col-sm-12 stocklevel_table" >
+		<div class="card">
+
+			<div class="card-header" style="    display: flex; align-items: center; justify-content: space-between;">
+			<h3><i class="fa fa-archive"></i> Inventory/Materials In Cage</h3>
+			<a class="btn btn-info " href="/report/download/inventory/today.pdf"><i class="fa fa-cog"></i> Download For Report</a>
+		</div>
+		<div class="card-body">
+			{% set listentry = StockGraphs.StockReceiveSummary() %}
+			{% if listentry is not empty  %}
+			{% set total = 0 %}
+			{% set totalrelesed = 0 %}
+			{% set totalincage = 0 %}
+			{% set totalincage_active = 0 %}
+
+			{% set totalvalue = 0 %}
+			{% set totalused = 0 %}
+			{% set totalincage_shadrak = 0%}
+			<table class="table table-striped tabledownload " id="tablesimple">
+				<thead>
+				<tr>
+					<!-- <th>Date</th> -->
+					<th>Product Name</th>
+					<th>Active</th>
+					<th>Supplier</th>
+					<th>Supplier Batch</th>
+					<th>Delivery Date</th>
+					<th>Price Per KG</th>
+					<th>Delivery Weight</th>
+					<th>Released</th>
+					<th>Auto In-Cage</th>
+					<th>In-Cage</th>
+					<th>Value</th>
+					<th align="right">Used</th>
+				</tr>
+				</thead>
+				<tbody>
+					{%set bname = [] %}
+					{%set activebname = [] %}
+
+					{% for itemobject in listentry %}
+						{% set incagecount = 9999999999 %}
+
+						{% for rl in itemobject.incage %}
+							{% set incagecount = rl.kg %}
+						{% endfor %}
+
+						{% if incagecount == 9999999999 %}
+							{% set incagecount = 0 %}
+
+
+						{% endif %}
+
+						{% set total_auto_rl = 0 %}
+							{% for rl in itemobject.release %}
+								{% set total_auto_rl = total_auto_rl + rl.kg %}
+							{% endfor %}
+								{% set total_auto = (itemobject.weight - total_auto_rl) %}
+
+
+						{# if total_auto > 0 #}
+
+
+				        	<tr class="{{(total_auto < 1)? 'text-danger':''}}">
+								<!-- <td>{{itemobject.datecaptured|date("m/d/Y H:00")}}</td> -->
+								<td>{{itemobject.productname.name}}</td>
+								<td class='{{itemobject.active == 1?"text-success":""}}'>{{itemobject.active == 1?"YES":"No"}}</td>
+								<td>{{itemobject.productname.supplier.name}}</td>
+								<td>{{itemobject.supplier_batch}}</td>
+								<td>{{itemobject.date_of_receipt|date("m/d/Y")}}</td>
+
+								<td align="right">
+								R {{( itemobject.pricekg)|number_format(2, '.', ',')}}
+
+								</td>
+								<td align="right">
+									{{itemobject.weight}}
+									{% set total = total+itemobject.weight %}
+								</td>
+
+
+								<td align="right">
+									{% set total_auto_rl = 0 %}
+									{% for rl in itemobject.release %}
+										{% set total_auto_rl = total_auto_rl + rl.kg %}
+									{% endfor %}
+									{{total_auto_rl}} kg
+									{% set totalrelesed = totalrelesed + total_auto_rl %}
+								</td>
+								<td align="right">
+									{{itemobject.weight - total_auto_rl}} kg
+
+									{% set totalincage =  totalincage + (itemobject.weight - total_auto_rl)%}
+									{% if itemobject.active == 1%}
+										{% set totalincage_active =  totalincage_active + (itemobject.weight - total_auto_rl)%}
+									{% endif %}
+								</td>
+
+								<td align="right">
+									{% set incagecount = 9999999999 %}
+
+									{% for rl in itemobject.incage %}
+										{% set incagecount = rl.kg %}
+									{% endfor %}
+
+									{% if incagecount == 9999999999 %}
+
+										<span class="text-info" >
+										not available
+										</span>
+										{% set incagecount = 0 %}
+									{% else %}
+
+											{% if (incagecount != (itemobject.weight - total_auto_rl)) %}
+												<span class="text-warning" >
+													<i class="fa fa-exclamation-triangle"></i> {{incagecount}} kg
+													/ {{(incagecount - (itemobject.weight - total_auto_rl))}} kg
+												</span>
+											{% else  %}
+												{{incagecount}} kg
+											{% endif %}
+											{% set inincate =  incagecount|round %}
+
+
+
+											{% set found = 0 %}
+											{%set product = []  %}
+											{% for fix in bname %}
+												{% if fix.name == itemobject.productname.name %}
+													{%set product = product|merge([{name:itemobject.productname.name,y:(fix.y+inincate)}])  %}
+													{% set found = 1 %}
+												{% else  %}
+													{%set product = product|merge([{name:fix.name,y:fix.y}])  %}
+												{% endif %}
+											{% endfor %}
+											{% if found == 0 %}
+												{%set product = product|merge([{name:itemobject.productname.name,y:(inincate)}])  %}
+											{% endif %}
+
+
+
+											{% if itemobject.active ==  1%}
+												{% set found = 0 %}
+												{%set product = []  %}
+												{% for fix in activebname %}
+													{% if fix.name == itemobject.productname.name %}
+														{%set product = product|merge([{name:itemobject.productname.name,y:(fix.y+inincate)}])  %}
+														{% set found = 1 %}
+													{% else  %}
+														{%set product = product|merge([{name:fix.name,y:fix.y}])  %}
+													{% endif %}
+												{% endfor %}
+												{% if found == 0 %}
+													{%set product = product|merge([{name:itemobject.productname.name,y:(inincate)}])  %}
+												{% endif %}
+
+												{%set activebname = product  %}
+											{% endif %}
+											{%set bname = product  %}
+
+
+									{% endif %}
+									{% set totalincage_shadrak =  totalincage_shadrak + incagecount %}
+								</td>
+
+
+								<td align="right">
+								R {{((itemobject.weight - total_auto_rl) * itemobject.pricekg)|number_format(2, '.', ',')}}
+								{% set totalvalue = totalvalue + (itemobject.weight - total_auto_rl) * itemobject.pricekg %}
+								</td>
+
+								<td align="right">
+									{% set total_auto_used = 0 %}
+									{% for rl in itemobject.used %}
+										{% set total_auto_used = total_auto_used + rl.kg %}
+									{% endfor %}
+									{{total_auto_used}} kg
+									{% set totalused = totalused + total_auto_used  %}
+								</td>
+
+
+						     </tr>
+						    {# endif #}
+
+					{% endfor %}
+				</tbody>
+				<tfoot>
+						<tr>
+							<td align="left" colspan="6"><b>TOTAL</b></td>
+							<td align="right"><b>{{total|number_format(1, '.', ',')}} KG</b></td>
+							<td align="right"><b>{{totalrelesed|number_format(1, '.', ',')}} KG</b></td>
+							<td align="right"><b>{{totalincage|number_format(1, '.', ',')}} KG</b></td>
+							<td align="right"><b>{{totalincage_shadrak|number_format(1, '.', ',')}} KG</b></td>
+
+							<td align="right"><b>R {{(totalvalue)|number_format(2, '.', ',')}}</b></td>
+							<td align="right"><b>{{totalused|number_format(1, '.', ',')}} KG</b></td>
+
+
+					     </tr>
+
+				</tfoot>
+			</table>
+
+		</div>
+
+
+
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}
+
+		</div>
+	</div>
+
+
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="text-center totals">
+			<h1>Total Active</h1>
+			<h2 class="text-info">{{totalincage_active|number_format(1, '.', ',')}} KG
+			</h2>
+		</div>
+			</div>
+			<div class="col-sm-6">
+					<div class="text-center totals">
+			<h1>Total In Cage</h1>
+			<h2 class="text-info">{{totalincage|number_format(1, '.', ',')}} KG
+			</h2>
+		</div>
+			</div>
+		</div>
+ {% put scripts %}
+
+    <script type="text/javascript">
+        $(window).on('load',function(){
+        		Highcharts.chart('chart_stocklevel', {
+				    chart: {
+				        plotBackgroundColor: null,
+				        plotBorderWidth: null,
+				        plotShadow: false,
+				        type: 'pie'
+				    },
+				    title: {
+				        text: 'In Cage Material Level'
+				    },
+				    tooltip: {
+				        pointFormat: '{series.name}: {point.y:.Of} At <b>{point.percentage:.1f}%/{point.y} kg</b>'
+				    },
+				    plotOptions: {
+				        pie: {
+				            allowPointSelect: true,
+				            cursor: 'pointer',
+				            dataLabels: {
+				                enabled: true,
+				                format: '<b>{point.name}</b> / {point.y} kg: {point.percentage:.1f} % ',
+				                style: {
+				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				                }
+				            }
+				        }
+				    },
+				    series: [{
+				        name: 'Product',
+				        colorByPoint: true,
+				        data: {% autoescape false %}{{bname|json_encode()}}{% endautoescape %}
+
+				    }]
+				});
+
+        		Highcharts.chart('chart_stocklevel_active', {
+				    chart: {
+				        plotBackgroundColor: null,
+				        plotBorderWidth: null,
+				        plotShadow: false,
+				        type: 'pie'
+				    },
+				    title: {
+				        text: 'Active Material Level'
+				    },
+				    tooltip: {
+				        pointFormat: '{series.name}: {point.y:.Of} At <b>{point.percentage:.1f}%/{point.y} kg</b>'
+				    },
+				    plotOptions: {
+				        pie: {
+				            allowPointSelect: true,
+				            cursor: 'pointer',
+				            dataLabels: {
+				                enabled: true,
+				                format: '<b>{point.name}</b> / {point.y} kg: {point.percentage:.1f} % ',
+				                style: {
+				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				                }
+				            }
+				        }
+				    },
+				    series: [{
+				        name: 'Product',
+				        colorByPoint: true,
+				        data: {% autoescape false %}{{activebname|json_encode()}}{% endautoescape %}
+
+				    }]
+				});
+
+
+
+    	});
+    </script>
+{% endput %}

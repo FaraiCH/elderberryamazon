@@ -1,0 +1,12 @@
+import:
+    title: Import catalogue
+    modelClass: bt\sales\Models\CatalogueImport
+    list: $/bt/sales/models/catalogue/columns_export.yaml
+    redirect: bt/sales/catalogue
+
+export:
+    title: Export catalogue
+    modelClass: bt\sales\Models\CatalogueExport
+    list: $/bt/sales/models/catalogue/columns_export.yaml
+    redirect: bt/sales/catalogue
+    fileName: Sales_Catalogue.csv

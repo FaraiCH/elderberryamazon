@@ -1,0 +1,63 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    tool:
+        label: Tool Name
+        searchable: true
+        relation: tool
+        select: name
+
+    scheduledate:
+        label: Schedule Date
+        searchable: true
+        ignoreTimezone: true
+    daysleft:
+        label: Days Left
+        type: partial
+        # path: $/bt/mall/models/imageset/_image.htm
+        path: $/bt/maintenance/models/toolschecklist/_daysleft_column.htm
+        searchable: false
+        sortable: false
+       
+    status:
+        label: Status
+        searchable: true
+        relation: status
+        select: name
+    checklist:
+        label: checklist Type
+        searchable: true
+        relation: checklist
+        select: name
+
+    tool:
+        label: Equipment Type
+        searchable: true
+        relation: tool
+        select: name
+    scheduledate:
+        label: Schedule Date
+        searchable: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    download:
+        label: Download
+        type: partial
+        path: $/bt/maintenance/models/toolschecklist/_download_column.htm
+        sortable: false
+        clickable: false

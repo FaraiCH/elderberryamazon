@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        sortable: true
+    date:
+        label: Date Captured
+        searchable: true
+        sortable: true
+    type:
+        label: Equipment/Machine
+        searchable: true
+        relation: type
+        select: name
+        sortable: true
+    speed:
+        label: Start of Kilometres
+        searchable: true
+        sortable: true
+    intake:
+        label: Amount of Diesel Intake (L)
+        searchable: true
+        sortable: true
+    operator:
+        relation: operator
+        select: name
+        label: Operator Using Diesel
+        searchable: true
+        sortable: true

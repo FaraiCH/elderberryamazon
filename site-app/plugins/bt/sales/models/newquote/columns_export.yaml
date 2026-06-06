@@ -1,0 +1,115 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    client_name:
+        label: Client/Account
+    active_name:
+        label: Active
+
+    randperkg:
+        label: Rand Per KG
+    status_name:
+        label: Quote Status
+    production_name:
+        label: Production Status
+    ponumber:
+        label: PO Number
+        searchable: true
+    user_name:
+        label: Sales Person
+    billing_name:
+        label: Billing Name
+        searchable: true
+        invisible: true
+    company_name:
+        label: Company Name
+        searchable: true
+
+    totalincvat:
+        label: Total Inc Vat
+        searchable: false
+        type: number
+        format: R %.2f
+    show_invoiced:
+        label: Total Invoiced
+    transport_cost:
+        label: Transport Cost
+    destination:
+        label: Destination
+    km:
+        label: KM
+    intend_weight:
+        label: Intended Delivery Weight
+    trip_qty:
+        label: Trip Qty
+    rate:
+        label: Rate Per KM
+    deliveryamountmargins:
+        label: Delivery Margin
+        searchable: false
+        type: number
+        format: R %.2f
+        invisible: false
+
+    buyoutmargins:
+        label: Buyout Margin
+        searchable: false
+        type: number
+        format: R %.2f
+        invisible: false
+
+    paymenttracker_name:
+        label: Payment
+#    invoice_name:
+#        label: Invoice
+
+
+
+    reason_name:
+        label: Reason For Quote
+
+    nonreceived_name:
+        label: Receiving Order
+
+    agency:
+        label: Agency
+        invisible: true
+        searchable: false
+
+    closing_date:
+        label: Closing Date
+        searchable: false
+        invisible: true
+
+    created_at:
+        label: Date Created
+        searchable: false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

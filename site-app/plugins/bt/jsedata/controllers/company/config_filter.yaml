@@ -1,0 +1,8 @@
+scopes:
+    parent:
+        label: Industry
+        modelClass: Bt\JSEData\Models\Industry
+        conditions: industry_id in (:filtered)
+        nameFrom: name
+
+   

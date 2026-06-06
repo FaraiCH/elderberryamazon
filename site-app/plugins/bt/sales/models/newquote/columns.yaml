@@ -1,0 +1,153 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    client:
+        label: Client/Account
+        select: company_name
+        relation: client
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sales/models/newquote/_active.htm
+        searchable: false
+    status:
+        label: Quote Status
+        relation: status
+        select: name
+        searchable: false
+    ponumber:
+        label: PO Number
+        searchable: true
+    client_limit:
+        label: Credit Limit
+        type: partial
+        path: $/bt/sales/models/newquote/_limit_column.htm
+        sortable: false
+        searchable: false
+    client_utilization:
+        label: Utilization
+        type: partial
+        path: $/bt/sales/models/newquote/utilzation.htm
+        sortable: false
+        searchable: false
+    limitcount:
+        label: Credit Balance
+        type: partial
+        path: $/bt/sales/models/newquote/_limitcount_column.htm
+        sortable: false
+        searchable: false
+    qpush:
+        label: Production
+        type: partial
+        path: $/bt/sales/models/newquote/_productionstatus.htm
+        searchable: false
+        sortable: false
+    # commentsproduction:
+    #     label: Production Comments
+    #     relation: qpush
+    #     select: comments
+    user:
+        label: Sales Person
+        searchable: true
+        relation: user
+        select: name
+    billing_name:
+        label: Billing Name
+        searchable: true
+        invisible: true
+    company_name:
+        label: Company Name
+        searchable: true
+
+    totalincvat:
+        label: Total Inc Vat
+        searchable: false
+        type: number
+        format: R %.2f
+    rate_per_transport:
+        label: Rate/Transport
+        type: partial
+        path: $/bt/sales/models/newquote/_rate_per_transport.htm
+    deliveryamountsmade:
+        label: Delivery Amount
+        type: partial
+        path: $/bt/sales/models/newquote/_deliveryamounts.htm
+
+    #    deliveryamounthidden:
+    #        label: Delivery Amount/Hidden
+    #        searchable: false
+    #        type: number
+    #        format: R %.2f
+    #        invisible: false
+
+    show_invoiced:
+        label: Total Invoiced
+        invisible: false
+
+#    deliveryamounthidden:
+#        label: Delivery Amount/Hidden
+#        searchable: false
+#        type: number
+#        format: R %.2f
+#        invisible: false
+    deliveryamountmargins:
+        label: Delivery Margin
+        searchable: false
+        type: number
+        format: R %.2f
+        invisible: false
+
+    buyoutmargins:
+        label: Buyout Margin
+        searchable: false
+        type: number
+        format: R %.2f
+        invisible: false
+
+    paymenttracker:
+        label: Payment
+        type: partial
+        path: $/bt/sales/models/newquote/_paymenttraker.htm
+        searchable: false
+        sortable: false
+    invoicename:
+        label: Invoice
+        searchable: true
+        relation: invoice
+        select: name
+        invisible: false
+
+
+    reason:
+        label: Reason For Quote
+        searchable: false
+        relation: reason
+        select: name
+        invisible: true
+
+    nonreceived:
+        label: Receiving Order
+        searchable: false
+        relation: nonreceived
+        select: name
+        invisible: true
+
+
+    agency:
+        label: Agency
+        invisible: true
+        searchable: false
+
+    closing_date:
+        label: Closing Date
+        searchable: false
+        invisible: true
+
+    created_at:
+        label: Date Created
+        searchable: false

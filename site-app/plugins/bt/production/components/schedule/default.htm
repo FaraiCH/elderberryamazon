@@ -1,0 +1,72 @@
+{% if CmProductionSchedule.dtimer == 0 %}
+<div class="card text-center" style="margin-bottom: 20px">
+    <div class="card-header">
+        <h2>No Production Control Sheets</h2>
+    </div>
+</div>
+{% endif %}
+
+{% set response = CmProductionSchedule.listquote %}
+		{% set total = 0 %}
+
+			<div class="row">
+
+	        {% for item in response if item.citem is not empty %}
+	        	<div class="col-md-4">
+				<div class="card text-center  {{(date(item.opendate) < date('-0days') )? 'bg-light' : 'bg-info text-white' }} mb-1" style="">
+					<div class="card-header" style="font-size: 12px">CS: {{item.id}}: {{item.jobcard.pipe.quoteitems.description}} / {{item.jobcard.pipe.qpush.quote.company_name}}</div>
+					<table class=" table-sm table-secondary" style="margin: 0px;">
+						<thead>
+							<tr >
+								<th style="font-size: 12px">Run Date</th>
+								<th style="font-size: 12px">Shift</th>
+								<th style="font-size: 12px">Machine</th>
+								<th style="font-size: 12px">Total Qty</th>
+								<th style="font-size: 12px">Total Weight</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="font-size: 12px" >{{item.opendate?item.opendate|date("Y-m-d") :""}}</td>
+								<td style="font-size: 12px">{{item.shift}}</td>
+								<td style="font-size: 12px">{{item.btline.name}}</td>
+								<td style="font-size: 12px">{{item.citem.sum('hourly_production')}}</td>
+								<td style="font-size: 12px">{{item.citem.sum('actual_weight')}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="card-footer" style="font-size: 12px">
+                        <div style="font-size: 12px; float: left; width: 50%">
+                            Production Pipes Produced
+                        </div>
+						<div style="float: right;width:  50%">
+						{% set per = 0 %}
+                        {% if item.citem.sum('hourly_production') > 0 %}
+                            {% if item.jobcard.pipe.quoteitems.units > 0%}
+                                {% if item.jobcard.pipe.schedules.sum('total_units_passed_qc') > 0 %}
+                                    {% set per = (item.jobcard.pipe.schedules.sum('total_units_passed_qc')/item.jobcard.pipe.quoteitems.units) * 100 %}
+                                {% endif %}
+                                {% if per > 100 %}
+                                    {% set per =  100 %}
+                                {% endif %}
+                                    <div class="progress" style="margin: 0px; border-radius: 3px;display: block; height: 20px !important; overflow: hidden !important; background: #ccc !important">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{per}}" aria-valuemin="0" aria-valuemax="100" style="background: {{(per == 100)?'green':''}};width: {{per|number_format}}%;">
+                                            <span style="display: block; font-size: 14px; min-width: 50px !important;" >{{per|number_format}}%</span>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                            {% else %}
+                            <div style="font-size: 12px; float: left; width: 50%">
+                                Pipes Not Captured Yet
+                            </div>
+                       {% endif %}
+
+
+					</div>
+					  </div>
+				</div>
+				</div>
+
+	        {% endfor %}
+	    </div>

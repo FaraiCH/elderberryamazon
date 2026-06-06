@@ -1,0 +1,53 @@
+{% set listentry = CmDayToDay.loadList() %}
+{% if listentry is not empty  %}
+	{% set total = 0 %}
+
+		<div style="width: 100%; overflow: auto;">
+
+		<table class="table table-striped table-bordered tabledownload" id="tabledownload">
+				<thead>
+					<tr>
+						<th>Release Date</th>
+						<th>Supplier</th>
+						<th>Material</th>
+						<th>Batch</th>
+							
+						<th>Reason</th>	
+						<th>KG</th>
+						<th>Total</th>
+						<th>Date Created</th>
+						<th>Release By</th>	
+						<th>Update By</th>	
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in listentry %}
+			        	<tr class="{{(itemobject.kg < 1)? 'text-info':''}}">
+			        		<td>{{itemobject.datecaptured}}</td>
+			        		<td>{{itemobject.recieve.productname.supplier.name}}</td>
+			        		<td>{{itemobject.recieve.productname.name}}</td>
+			        		<td>{{itemobject.recieve.supplier_batch}}</td>
+			        		<td>{{itemobject.reason.name}}</td>
+			        		<td align="right">{{itemobject.kg}} kg</td>
+			        		{% set total = total + itemobject.kg %}
+			        		<td align="right">{{total}} kg</td>
+			        		<td>{{itemobject.created_at|date("m/d/Y")}}</td>
+			        		<td>{{itemobject.createdby.first_name}}</td>
+			        		<td>{{itemobject.updatedby.first_name}}</td>
+			             </tr>
+			        {% endfor %} 
+		        </tbody>
+		     
+    </table>
+</div>
+	
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

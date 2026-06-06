@@ -1,0 +1,30 @@
+
+
+{% set response = FloorPipes.getList() %}
+	{% set total = 0 %}
+		<table class="table table-striped table-bordered" id="tabledownload" >
+				<thead>
+					<tr>
+							<th>#</th>
+							<th>Pipe Description</th>
+							<th>Unit Length</th>
+			        		<th>Date Stored</th>
+			        		<th>Qty</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for item in response %}
+						<tr>
+			        		
+			        		<td>{{item.id}}</td>
+			        		<td>{{item.name}}</td>
+			        		<td>{{item.pipelenghts}}mm</td>
+			        		<td>{{item.datestored|date("Y-m-d")}}</td>
+			        		<td>{{item.quantity}}</td>
+			        		
+			             </tr>
+			        {% endfor %} 
+		        </tbody>
+		       
+    </table>

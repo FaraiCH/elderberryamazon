@@ -1,0 +1,81 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    priority:
+        span: right
+        label: Priority
+        type: dropdown
+        options:
+            1: 1 - Urgent
+            2: 2 - Not Urgent
+    department:
+        label: Department
+        select: name
+        type: relation
+        span: left
+    jobtype:
+        label: Schedule Type
+        select: name
+        type: relation
+        span: right
+
+    opendate:
+        label: Open Date
+        type: datepicker
+        mode: date
+        required: yes
+        span: left
+        ignoreTimezone: true
+
+    budget:
+        label: Budget
+        span: left
+        default: 0.0
+    budget_note:
+        label: Budget Note
+        span: right
+    job_summary:
+        label: Job Summary
+        type: textarea
+tabs:
+    fields:
+        assignedto@update:
+            label: Assigned To
+            select: name
+            type: relation
+            placeholder: -- Select Technichian --
+            span: left
+            tab: Setup
+
+        job_description@update:
+            label: Job Description
+            type: textarea
+            size: small
+            tab: Setup
+            span: right
+
+        status:
+            label: Schedule Status
+            select: name
+            type: relation
+            span: left
+            tab: Complete/Close Job
+
+        spares_used:
+            label: Spares Used
+            type: textarea
+            size: small
+            tab: Complete/Close Job
+            span: right
+        files:
+            label: Attach Documents
+            type: fileupload
+            tab: Upload Files
+            mode: file
+        comments@update:
+            label: Comments
+            type: textarea
+            size: small
+            tab: Comments

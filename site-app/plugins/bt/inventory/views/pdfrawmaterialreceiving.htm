@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 10px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+        .table-md td, .table-md th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 12px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+<div class="footer">
+    <p class="left">
+    <table border="0">
+        <tr>
+            <td valign="top" width="45%">
+                Doc: F-SC-20.0.5<br>
+                Effective: 2019/05/08 Rev: 0<br>
+                Prepared By: K Maphai<br>
+                Approved By: K Lekola
+            </td>
+            <td valign="top" width="45%">Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+            <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+
+    </p>
+
+</div>
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+                        <h2>Raw Material Recieving#{{'%04d'|format(quote.id)}}</h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+        <tr><td><br></td></tr>
+    <tr>
+        <td >
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="47%" valign="top">
+                        <br>
+                        <table width="100%" border="0" cellpadding="2px" cellspacing="0">
+                            <tr><td style="background: #ccc"  colspan="2" ><b>Received From:</b></td></tr>
+                            <tr><td><b>Spplier Number: {{quote.purchase.supplier.name}}</b></td></tr>
+                            <tr><td><b>Product: {{quote.productname.name}}</b></td></tr>
+                            <tr><td><b>Date: {{quote.date_of_receipt|date("Y-m-d")}}</b></td></tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+        {% if quote.bagBatches|length %}
+        {% set totalWeight = 0 %}
+        {% set totalActualWeight = 0 %}
+        <table class="table " >
+            <thead>
+                <tr>
+                    <th style="text-align: left;"><b>Bag No</b></th>
+                    <th style="text-align: left;"><b>Supplier Weight</b></th>
+                    <th style="text-align: left;"><b>Actual Weight</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bagBatch in quote.bagBatches %}
+                    <tr>
+                        <td>{{ bagBatch.bags }}</td>
+                        <td>{{ bagBatch.weight }}</td>
+                        <td>{{ bagBatch.actual_weight }}</td>
+                    </tr>
+                    {% set totalWeight = totalWeight + bagBatch.weight %}
+                    {% set totalActualWeight = totalActualWeight + bagBatch.actual_weight %}
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th style="text-align: left;"><b>Total</b></th>
+                    <th style="text-align: left;"><b>{{ totalWeight }}</b></th>
+                    <th style="text-align: left;"><b>{{ totalActualWeight }}</b></th>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p>No bags received yet.</p>
+    {% endif %}
+
+</body>
+</html>

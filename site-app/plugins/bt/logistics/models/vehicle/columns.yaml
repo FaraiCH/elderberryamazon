@@ -1,0 +1,101 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    images:
+        label: Image
+        type: partial
+        path: $/bt/logistics/models/vehicle/_image.htm
+        searchable: false
+        sortable: false
+        width: 80
+    name:    
+        label: Vehicle Name
+        type: text
+    num_plate:
+        label: Number Plate
+        type: text
+    next_service_km:
+        label: Next Service Kilometre
+        type: Number
+        format: %.1f km
+    servicetime:
+        label: Service Time
+        type: partial
+        path: $/bt/logistics/models/vehicle/_nextkmservice_column.htm
+        searchable: false
+        sortable: false
+    next_exp_license_disc:
+        label: Next Expery License Disc Date
+    licensedaysleft:
+        label: Days Left For License To Expery
+        type: partial
+        path: $/bt/logistics/models/vehicle/_licensedaysleft_column.htm
+        searchable: false
+        sortable: false
+    next_service_date:
+        label: Next Service Date
+    servicedaysleft:
+        label: Days Left For Next Service
+        type: partial
+        path: $/bt/logistics/models/vehicle/_servicedaysleft_column.htm
+        searchable: false
+        sortable: false
+    is_engine_ok:
+        label: Is Engine Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_isengine_column.htm
+        searchable: false
+        sortable: false
+    is_brakes_ok:
+        label: Is Brakes Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_brakes_column.htm
+        searchable: false
+        sortable: false
+    is_lights_ok:
+        label: Is Lights Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_lights_column.htm
+        searchable: false
+        sortable: false
+    is_tires_ok:
+        label: Is Tires Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_tires_column.htm
+        searchable: false
+        sortable: false
+    is_battery_ok:
+        label: Is Battery Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_battery_column.htm
+        searchable: false
+        sortable: false
+    is_mirrors_ok:
+        label: Is Mirrors Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_mirrors_column.htm
+        searchable: false
+        sortable: false
+    is_fuel_ok:
+        label: Is Fuel Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_fuel_column.htm
+        searchable: false
+        sortable: false
+    is_hazards_ok:
+        label: Is Hazards Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_hazards_column.htm
+        searchable: false
+        sortable: false
+    is_wipers_ok:
+        label: Is Wipers Ok?
+        type: partial
+        path: $/bt/logistics/models/vehicle/_wipers_column.htm
+        searchable: false
+        sortable: false

@@ -1,0 +1,203 @@
+article.client-quote-approval {
+    --primaryColor: #ffffff;
+    --secondaryColor: #000000;
+    --accentColor: #062f6e;
+    --bootstrapRed: #dc3545;
+    padding: 20px 0;
+}
+
+/*********************************** 
+tabs
+***********************************/
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: sans-serif;
+}
+
+.tabs-label {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #eeeeee;
+  margin-bottom: 0;
+}
+
+.tabs-label:first-child { 
+    background-color: green; 
+} 
+  
+.tabs-label:last-child {
+    background-color: crimson; 
+} 
+
+.tabs-radio {
+  display: none;
+}
+
+.tabs-content {
+  order: 1;
+  width: 100%;
+  display: none;
+  border: 1px solid var(--accentColor);
+  padding: 20px;
+}
+
+.tabs-radio:checked + .tabs-label {
+  font-weight: 600;
+  color: var(--primaryColor);
+  background-color: var(--accentColor);
+}
+
+.tabs-radio:checked + .tabs-label + .tabs-content {
+  display: initial;
+}
+
+/*********************************** 
+quote iframe
+***********************************/
+
+.quote-iframe {
+    position: relative;
+    width: 100%;
+    height: 450px;
+}
+
+.quote-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 640px) {
+    .quote-iframe {
+        height: 600px;
+    }
+}
+
+@media (min-width: 768px) {
+    .quote-iframe {
+        height: 900px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .quote-iframe {
+        height: 1400px;
+    }
+}
+
+/*********************************** 
+terms and conditions
+***********************************/
+
+ol.terms-and-conditions,
+ol.terms-and-conditions ol {
+    list-style-type: none;
+    counter-reset: item;
+    margin: 0;
+    padding: 0;
+}
+
+ol.terms-and-conditions li {
+    display: table;
+    counter-increment: item;
+    margin-bottom: 10px;
+}
+
+ol.terms-and-conditions li:before {
+    content: counters(item, ".") ". ";
+    display: table-cell;
+    padding-right: 5px;
+}
+
+/*********************************** 
+quote approval form
+***********************************/
+
+.quote-approval-form {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quote-approval-form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.quote-approval-form input[type=text],
+.quote-approval-form button {
+    width: 100%;
+    padding: 8px;
+}
+
+.quote-approval-form button {
+    background-color: var(--accentColor);
+    color: var(--primaryColor);
+    cursor: pointer;
+    border: 1px solid var(--accentColor);
+}
+
+.quote-approval-input-group,
+.quote-approval-checkbox-group {
+    margin-bottom: 15px;
+}
+
+.quote-approval-checkbox-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.quote-approval-form-error {
+    padding-top: 5px;
+    color: var(--bootstrapRed);
+    font-size: 1.2rem;
+}
+
+.signature-canvas-wrapper {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.signature-canvas {
+    border: 1px solid var(--accentColor);
+    background-color: var(--primaryColor);
+    background: #fff;
+    cursor: crosshair;
+    width: 100%;
+    height: auto;
+}
+
+.clear-signature {
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    padding: 8px;
+    background-color: var(--bootstrapRed)!important;
+}
+
+/*********************************** 
+quote approval completed
+***********************************/
+
+.quote-approval-completed {
+    border-radius: 3px;
+    padding: 25px;
+    color: var(--primaryColor);
+    background-color: var(--accentColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.quote-approval-completed-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}

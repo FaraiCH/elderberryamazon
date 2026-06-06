@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+}
+
+.table2 td, .table2 th {
+padding: 5px;
+vertical-align: top;
+border: 1px solid #000;
+
+word-wrap: break-word;
+
+}
+
+.table2 th,.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+            	{{quote.type.documentfooter}} <br><!--
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br> -->
+                E-mail: enquiries@bt-industrial.co.za<br>
+               	Prepared By:  TN Njeke<br>
+               	Approved By:  F Chamisa
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="35%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="65%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+							<p>11 Barnsley St, Benoni,Johannesburg, 1501<br><b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<p>ISO 9001 REF | 10.2 | Effective from 10.09.2019 | Revision 1 </p>
+							<h2>{{quote.type.documentheader}} {{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="100%" border="1" class="table2"  cellpadding="5px" cellspacing="0">
+					<tr><td width="30%"><b>Date:</b></td><td>{{quote.issue_date}}</td></tr>
+					<tr><td><b>Product Description:</b></td><td>{{quote.product_name}}</td></tr>
+					<tr><td><b>NC Number:</b></td><td>{{quote.id}}</td></tr>
+					<tr><td><b>Shift Affected:</b></td><td>{{quote.shift_affect}}</td></tr>
+					<tr><td><b>Quantity:</b></td><td>{{quote.qty}}</td></tr>
+					<tr><td><b>Client:</b></td><td>{{quote.customer_name}}</td></tr>
+					<tr><td><b>Quote #:</b></td><td>{{quote.quote_id}}</td></tr>
+					<tr><td><b>Department #:</b></td><td>{{quote.department.name}}</td></tr>
+					<tr><td><b>Closing Date:</b></td><td>{{quote.closing_date}}</td></tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br><br>
+				<h2>Part 1: Full description on non-conformance</h2>
+				{{quote.comments_customer}}
+
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br><br>
+				<h2>Part 2: Root Cause on the non-conformance</h2>
+				{{quote.comments_bt}}
+
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br><br>
+				<h2>Part 3: Corrective action implemented</h2>
+				{{quote.mitigation}}
+
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br><br>
+				<h2>Part 4: Preventive action implemented</h2>
+				{{quote.preventive_action}}
+
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br><br>
+				<h2>Part 5: Risk possed by the NCR on the business</h2>
+				{{quote.comments_risk}}
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br><br>
+				<h2>Part 6: Follow up</h2>
+				{{quote.follow_up}}
+
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+
+		<tr>
+			<td>
+				<div style="border: 1px solid #ccc; padding: 10px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Prepared By:</h4>
+					{% if quote.ncrpreppare is not empty and quote.ncrpreppare.status_id == 1 %}
+						<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+							<tr>
+								<td>NAME:</td>
+								<td style="border-bottom: 1px solid #ccc" width="40%" >
+									{{quote.ncrpreppare.createdby.first_name}} {{quote.ncrpreppare.createdby.last_name}}
+								</td>
+								<td>DATE:</td>
+								<td style="border-bottom: 1px solid #ccc" width="40%" >
+									{{quote.ncrpreppare.created_at|date("Y-m-d")}}
+								</td>
+
+							</tr>
+					</table>
+					 {% endif %}
+				</div>
+			</td>
+		</tr>
+
+
+		<tr><td><br></td></tr>
+
+		<tr>
+			<td>
+				<div style="border: 1px solid #ccc; padding: 10px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Approved By:</h4>
+					{% if quote.ncrapprove is not empty and quote.ncrapprove.status_id == 1 %}
+						<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+							<tr>
+								<td>NAME:</td>
+								<td style="border-bottom: 1px solid #ccc" width="40%" >
+									{{quote.ncrapprove.createdby.first_name}} {{quote.ncrapprove.createdby.last_name}}
+								</td>
+								<td>DATE:</td>
+								<td style="border-bottom: 1px solid #ccc" width="40%" >
+									{{quote.ncrapprove.created_at|date("Y-m-d")}}
+								</td>
+
+							</tr>
+					</table>
+					 {% endif %}
+				</div>
+			</td>
+		</tr>
+
+	</table>
+
+
+	</body>
+	</html>

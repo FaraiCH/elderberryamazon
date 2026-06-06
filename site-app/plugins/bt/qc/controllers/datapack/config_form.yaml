@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Datapack
+
+# Model Form Field configuration
+form: $/bt/qc/models/datapack/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\Datapack
+
+# Default redirect location
+defaultRedirect: bt/qc/datapack
+
+# Create page
+create:
+    title: Create Datapack
+    redirect: bt/qc/datapack/update/:id
+    redirectClose: bt/qc/datapack
+
+# Update page
+update:
+    title: Edit Datapack
+    redirect: bt/qc/datapack
+    redirectClose: bt/qc/datapack
+
+# Preview page
+preview:
+    title: Preview Datapack

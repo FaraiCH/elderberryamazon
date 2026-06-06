@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    rdate:
+        label: Date
+        type: date
+        format: Y-m-d
+    rtime:
+        label: Time
+        type: time
+    meter:
+        label: Meter  No
+        relation: meter
+        select: name
+
+    kwh:
+        label: KWH
+
+    kVArh:
+        label: KVARH
+
+    kva:
+        label: KVA
+
+    pf:
+        label: PF
+
+    status:
+        label: Status
+    blended_rkwh:
+        label: Blended R/KWH

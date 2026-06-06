@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Petty Cash
+
+# Model Form Field configuration
+form: $/bt/finance/models/pettycash/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\PettyCash
+
+# Default redirect location
+defaultRedirect: bt/finance/pettycash
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/finance/pettycash/update/:id
+    redirectClose: bt/finance/pettycash
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/finance/pettycash
+    redirectClose: bt/finance/pettycash
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

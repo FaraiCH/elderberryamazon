@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Dashboard
+
+# Model Form Field configuration
+form: $/bt/production/models/dashboard/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Dashboard
+
+# Default redirect location
+defaultRedirect: bt/production/dashboard
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/dashboard/update/:id
+    redirectClose: bt/production/dashboard
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/dashboard
+    redirectClose: bt/production/dashboard
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

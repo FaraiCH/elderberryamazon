@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    order:
+        label: Order
+        type: number
+        span: auto
+    name:
+        label: Name
+        span: auto
+    discount:
+        label: Discount
+        type: number
+        span: auto
+    active:
+        label: Is Active
+        span: auto
+        type: switch
+        on: Yes
+        off: No

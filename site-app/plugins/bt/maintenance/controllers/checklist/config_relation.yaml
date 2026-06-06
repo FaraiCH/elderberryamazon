@@ -1,0 +1,10 @@
+checkpoints:
+    label: Check Points
+    manage:
+        form: $/bt/maintenance/models/checkpoint/fields.yaml
+        list: $/bt/maintenance/models/checkpoint/columns.yaml
+    view:
+        list: $/bt/maintenance/models/checkpoint/columns.yaml
+        toolbarButtons: create
+
+        

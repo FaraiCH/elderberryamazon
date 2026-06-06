@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Data Mine
+
+# Model Form Field configuration
+form: $/bt/jsedata/models/datamine/fields.yaml
+
+# Model Class name
+modelClass: Bt\JSEData\Models\DataMine
+
+# Default redirect location
+defaultRedirect: bt/jsedata/datamine
+
+# Create page
+create:
+    title: Create Data Mine
+    redirect: bt/jsedata/datamine/update/:id
+    redirectClose: bt/jsedata/datamine
+
+# Update page
+update:
+    title: Edit Data Mine
+    redirect: bt/jsedata/datamine
+    redirectClose: bt/jsedata/datamine
+
+# Preview page
+preview:
+    title: Preview Data Mine

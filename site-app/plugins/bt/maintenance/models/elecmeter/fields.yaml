@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+   
+    name:
+        label: Label
+    
+tabs:
+    fields:
+        readings:
+            path: $/bt/maintenance/controllers/elecmeter/_readings.htm
+            label: Meter Readings Items
+            tab: readings
+            type: partial
+       
+        files:
+            label: Upload Files
+            type: fileupload
+            tab: Files
+            mode: file
+            comment: Please keep the file size below 3 Megabytes. Anything above that wont be uploaded
+

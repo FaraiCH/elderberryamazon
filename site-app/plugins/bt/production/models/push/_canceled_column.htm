@@ -1,0 +1,27 @@
+<?php
+	$canceled = 0;
+                    
+    foreach($record->quote->responses as $key=>$value){
+        
+            if($value->quote_status_id == 20){
+               $canceled = 1;
+
+            }
+        
+    } 
+?>  
+
+
+<?php if($canceled == 1): ?>
+<div style="background: red; color: #fff; padding: 2px; border-radius: 2px; text-align: center;">
+	
+	Cancel Production
+	
+</div>
+		
+<?php else: ?>
+	
+	<span class="oc-icon-check text-success">
+	    Contininue
+	</span>
+<?php endif; ?>

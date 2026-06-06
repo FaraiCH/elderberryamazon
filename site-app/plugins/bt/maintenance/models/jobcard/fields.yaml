@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    header2:
+        type: section
+        comment: Use this Form to request service/jobcard to be done by maintance team.
+
+    department:
+        label: Your Department
+        select: name
+        type: relation
+        span: auto
+    job_summary:
+        label: Subject
+        type: text
+        span: auto
+        comment: Example - Fix Door
+    job_description:
+        label: Job Description
+        type: textarea
+        comment: Example - Production door is broken, can you please send someone to fix urgent
+
+

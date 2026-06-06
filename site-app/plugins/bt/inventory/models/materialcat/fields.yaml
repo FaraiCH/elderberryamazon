@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: auto
+    name:
+        label: Category name
+        span: auto
+    notes:
+        label: Notes
+        span: auto

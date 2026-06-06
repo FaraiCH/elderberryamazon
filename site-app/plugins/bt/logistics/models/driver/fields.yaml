@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    first_name:
+        label: First Name
+        span: auto
+    last_name:
+        label: Last Name
+        span: auto
+    code: 
+      label: Drivers Code
+      span: auto
+    license_exp_date:
+      label: License Exp Date
+      type: datepicker
+      span: auto
+      mode: date
+      ignoreTimezone: true
+
+    driver_image:
+        label: Profile Photo
+        type: fileupload
+        tab: Traffic Offences
+    drivers_licence:
+        label: Drivers Licence
+        type: fileupload
+        tab: Traffic Offences
+        mode: file
+        tab: Files
+    

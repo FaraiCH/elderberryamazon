@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stock Release
+
+# Model Form Field configuration
+form: $/bt/inventory/models/stockrelease/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\StockRelease
+
+# Default redirect location
+defaultRedirect: bt/inventory/stockrelease
+
+# Create page
+create:
+    title: Create Stock Release
+    redirect: bt/inventory/stockrelease/update/:id
+    redirectClose: bt/inventory/stockrelease
+
+# Update page
+update:
+    title: Edit Stock Release
+    redirect: bt/inventory/stockrelease
+    redirectClose: bt/inventory/stockrelease
+
+# Preview page
+preview:
+    title: Preview Stock Release

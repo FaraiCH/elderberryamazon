@@ -1,0 +1,7 @@
+export:
+    title: Export subscribers
+    modelClass: Bt\Finance\Models\RequisitionExport
+    list: $/bt/finance/models/requisition/columns_export.yaml
+    redirect: bt/finance/requisition
+    fileName: requisition-export.csv
+

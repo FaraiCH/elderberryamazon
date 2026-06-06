@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Questionnaire
+
+# Model Form Field configuration
+form: $/bt/sheq/models/questionnaire/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Questionnaire
+
+# Default redirect location
+defaultRedirect: bt/sheq/questionnaire
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/questionnaire/update/:id
+    redirectClose: bt/sheq/questionnaire
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/questionnaire
+    redirectClose: bt/sheq/questionnaire
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

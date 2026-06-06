@@ -1,0 +1,239 @@
+{% set schedule = CmLogisticsSchedule.delivery %}
+{% set today = "now"|date("Y-m-d") %}
+{% set tomorrow = "+1 day"|date("Y-m-d") %}
+{% set dayafter = "+2 days"|date("Y-m-d") %}
+
+
+<div style="text-align:right;">Delivery Type: D = Delivery From BT, C = Collection , O = Other</div>
+<div style="padding: 0px 1px">
+
+    <div class="row">
+      <div class="col-lg-6 col-md-4">
+      <h3 class="card-header "style=" margin-bottom: 0;">Today<br>( {{today|date("D d M Y")}} )</h3>
+      <div class="card-body" style="flex-grow: 1; padding: 0px;">
+        {% set count = 0 %}
+        {% set total_units = 0 %}
+        {% set total_weight = 0 %}
+        {% set weights = 0 %}
+        {% set show_table = false %}
+        <table class="table table-striped table-bordered table-sm table-hover" style="background:#fff">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Quote</th>
+              <th>Sales Rep</th>
+              <th>Qty</th>
+              <th>Weight</th>
+              <th>Suburb</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for itemobject in schedule %}
+              {% if itemobject.schedule_date|date("Y-m-d") == today %}
+                {% set show_table = true %}
+                {% set total_units = total_units + itemobject.items.sum('units') + itemobject.itemscat.sum('units') %}
+                {% set tunits = itemobject.items.sum('units') + itemobject.itemscat.sum('units')  %}
+                <tr>               
+                  <td>{{itemobject.client.company_name}}</td>
+                  <td>{{itemobject.quote.id}}</td>
+                  <td>{{itemobject.createdby.first_name}}</td>
+                  <td style="text-align:center;">
+                      {{ tunits }}
+                  </td>
+                  {% set item_weight = 0 %}
+                          {% for item in itemobject.items %}
+                              {% if item.quotecat is not  null %}
+                                  {% set weight = item.quotecat.weight  %}
+                                  {% set item_weight = item_weight + tunits * weight  %}
+                              {% endif %}
+                          {% endfor %}
+                          {% for itemcat in itemobject.itemscat %}
+                              {% if itemcat.quotecat is not  null %}
+                                  {% set weight = itemcat.quotecat.weight  %}
+                                  {% set item_weight = item_weight + tunits * weight  %}
+                              {% endif %}
+                          {% endfor %}
+                          <td style="text-align:center;">
+                              {{ item_weight|number_format(2, '.', ',')  }} kg
+                          </td>
+                    <td>{{itemobject.suburb}}</td>
+                  {% if itemobject.type.id == 1 %}
+                    <td>D</td>
+                  {% elseif itemobject.type.id == 2 %}
+                    <td>C</td>
+                  {% elseif itemobject.type.id == 3 %}
+                    <td>O</td>
+                  {% endif %}
+                </tr>
+                {% set total_weight = total_weight + item_weight %}
+              {% endif %}
+            {% endfor %}
+          </tbody>
+          {% if show_table %}
+            <tfoot>
+              <tr>
+                 <td colspan="3"><b>Total:</b></td>
+                <td align="right">{{ total_units}} </td>
+                <td align="right">{{ total_weight|number_format(2, '.', ',') }} kg</td>
+              </tr>
+            </tfoot>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  <div class="col-lg-6 col-md-4">
+      <h3 class="card-header" style=" margin-bottom: 0;">Tomorrow<br>( {{tomorrow|date("D d M Y")}} )</h3>
+      <div class="card-body" style="flex-grow: 1; padding: 0px;">
+        {% set count = 0 %}
+        {% set total_units = 0 %}
+        {% set total_weight = 0 %}
+         {% set weights = 0 %}
+        {% set show_table = false %}
+        <table class="table table-striped table-bordered table-sm table-hover" style="background:#fff">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Quote</th>
+              <th>Sales Rep</th>
+              <th>Qty</th>
+              <th>Weight</th>
+              <th>Suburb</th>
+              <th>Type</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for itemobject in schedule %}
+              {% if itemobject.schedule_date|date("Y-m-d") == tomorrow %}
+                {% set show_table = true %}
+                {% set total_units = total_units + itemobject.items.sum('units') + itemobject.itemscat.sum('units') %}
+                {% set tunits = itemobject.items.sum('units') + itemobject.itemscat.sum('units')  %}
+                
+                <tr>               
+                  <td>{{itemobject.client.company_name}}</td>
+                  <td>{{itemobject.quote.id}}</td>
+                  <td>{{itemobject.createdby.first_name}}</td>
+
+                  <td style="text-align:center;">
+                      {{ tunits }}
+                  </td>
+                  {% set item_weight = 0 %}
+                          {% for item in itemobject.items %}
+                              {% if item.quotecat is not  null %}
+                                  {% set weight = item.quotecat.weight  %}
+                                  {% set item_weight = item_weight + tunits * weight  %}
+                              {% endif %}
+                          {% endfor %}
+                          {% for itemcat in itemobject.itemscat %}
+                              {% if itemcat.quotecat is not  null %}
+                                  {% set weight = itemcat.quotecat.weight  %}
+                                  {% set item_weight = item_weight + tunits * weight  %}
+                              {% endif %}
+                          {% endfor %}
+                          <td style="text-align:center;">
+                              {{ item_weight|number_format(2, '.', ',')  }} kg
+                          </td>
+                    <td>{{itemobject.suburb}}</td>
+                  {% if itemobject.type.id == 1 %}
+                    <td style="text-align:center;">D</td>
+                  {% elseif itemobject.type.id == 2 %}
+                    <td style="text-align:center;">C</td>
+                  {% elseif itemobject.type.id == 3 %}
+                    <td style="text-align:center;">O</td>
+                  {% endif %}
+                </tr>
+                {% set total_weight = total_weight + item_weight %}
+              {% endif %}
+            {% endfor %}
+          </tbody>
+          {% if show_table %}
+            <tfoot>
+              <tr>
+                <td colspan="3"><b>Total:</b></td>
+                <td align="right">{{ total_units}} </td>
+                <td align="right">{{ total_weight|number_format(2, '.', ',') }} kg</td>
+              </tr>
+            </tfoot>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+
+    <div class="ccol-lg-6 col-md-4">
+      <h3 class="card-header" style=" margin-bottom: 0;">DayAfter<br>( {{dayafter|date("D d M Y")}} )</h3>
+      <div class="card-body" style="flex-grow: 1; padding: 0px;">
+        {% set count = 0 %}
+        {% set total_units = 0 %}
+        {% set total_weight = 0 %}
+        {% set weights = 0 %}
+        {% set show_table = false %}
+        <table class="table table-striped table-bordered table-sm table-hover" style="background:#fff">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Quote</th>
+              <th>Sales Rep</th>
+              <th>Qty</th>
+              <th>Weight</th>
+              <th>Suburb</th>
+              <th>Delivery Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for itemobject in schedule %}
+              {% if itemobject.schedule_date|date("Y-m-d") == dayafter %}
+                {% set show_table = true %}
+                {% set total_units = total_units + itemobject.items.sum('units') + itemobject.itemscat.sum('units') %}
+                {% set tunits = itemobject.items.sum('units') + itemobject.itemscat.sum('units')  %}
+                <tr>               
+                  <td>{{itemobject.client.company_name}}</td>
+                  <td>{{itemobject.quote.id}}</td>
+                  <td>{{itemobject.createdby.first_name}}</td>
+
+                  <td style="text-align:center;">
+                      {{ tunits }}
+                  </td>
+                   {% set item_weight = 0 %}
+                          {% for item in itemobject.items %}
+                              {% if item.quotecat is not  null %}
+                                  {% set weight = item.quotecat.weight  %}
+                                  {% set item_weight = item_weight + tunits * weight  %}
+                              {% endif %}
+                          {% endfor %}
+                          {% for itemcat in itemobject.itemscat %}
+                              {% if itemcat.quotecat is not  null %}
+                                  {% set weight = itemcat.quotecat.weight  %}
+                                  {% set item_weight = item_weight + tunits * weight  %}
+                              {% endif %}
+                          {% endfor %}
+                          <td style="text-align:center;">
+                              {{ item_weight|number_format(2, '.', ',')  }} kg
+                          </td>
+                      <td>{{itemobject.suburb}}</td>
+                  {% if itemobject.type.id == 1 %}
+                    <td>D</td>
+                  {% elseif itemobject.type.id == 2 %}
+                    <td>C</td>
+                  {% elseif itemobject.type.id == 3 %}
+                    <td>O</td>
+                  {% endif %}
+                </tr>
+                {% set total_weight = total_weight + item_weight %}
+              {% endif %}
+            {% endfor %}
+          </tbody>
+          {% if show_table %}
+            <tfoot>
+              <tr>
+                <td colspan="3"><b>Total:</b></td>
+                <td align="right">{{ total_units}} </td>
+                <td align="right">{{ total_weight|number_format(2, '.', ',') }} kg</td>
+              </tr>
+            </tfoot>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

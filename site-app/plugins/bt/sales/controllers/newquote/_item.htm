@@ -1,0 +1,12 @@
+<h4><span style="color: red"><b>Please note that if you see an <em>In Production</em> date on the quote items bellow, you CANNOT delete them.</b></h4>
+<?php if(isset($formModel->quoteapproval->status_id)): ?>
+    <?php if ($formModel->quoteapproval->status_id == 1): ?>
+        <h4><span style="color: red">To amend the items, please ask EXCO to disapprove this quote</h4>
+            <?= $this->relationRender('items', ['readOnly' => true]) ?>
+        <?php else: ?>
+
+        <?= $this->relationRender('items') ?>
+    <?php endif ?>
+<?php else: ?>
+<?= $this->relationRender('items') ?>
+<?php endif; ?>

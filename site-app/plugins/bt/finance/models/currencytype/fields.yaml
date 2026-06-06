@@ -1,0 +1,16 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    name:
+        label: Currency Name
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    currency_symbol:
+        label: Currency Symbol
+        span: storm
+        cssClass: col-sm-6 col-md-6

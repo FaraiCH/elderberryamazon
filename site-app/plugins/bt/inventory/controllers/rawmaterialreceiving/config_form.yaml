@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Raw Material Receiving
+
+# Model Form Field configuration
+form: $/bt/inventory/models/rawmaterialreceiving/fields_disable.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\RawMaterialReceiving
+
+# Default redirect location
+defaultRedirect: bt/inventory/rawmaterialreceiving
+
+# Create page
+create:
+    title: Create Raw Material Receiving
+    redirect: bt/inventory/rawmaterialreceiving/update/:id
+    redirectClose: bt/inventory/rawmaterialreceiving
+
+# Update page
+update:
+    title: Edit Raw Material Receiving
+    redirect: bt/inventory/rawmaterialreceiving
+    redirectClose: bt/inventory/rawmaterialreceiving
+
+# Preview page
+preview:
+    title: Preview Raw Material Receiving

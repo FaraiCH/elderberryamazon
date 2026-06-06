@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Employee Quetionnaire Answer
+
+# Model Form Field configuration
+form: $/bt/sheq/models/employeequetionnaireanswer/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\EmployeeQuetionnaireAnswer
+
+# Default redirect location
+defaultRedirect: bt/sheq/employeequetionnaireanswer
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/employeequetionnaireanswer/update/:id
+    redirectClose: bt/sheq/employeequetionnaireanswer
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/employeequetionnaireanswer
+    redirectClose: bt/sheq/employeequetionnaireanswer
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

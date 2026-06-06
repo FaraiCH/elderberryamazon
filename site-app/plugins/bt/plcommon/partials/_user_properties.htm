@@ -1,0 +1,68 @@
+  <p class="flash-message static info">
+        Please use the property function to link and unlink property to an SLA
+    </p>
+
+    
+        <?php if (!empty($formModel->client) && !empty($formModel->client->properties) ): ?>
+            <?php  $test = $formModel->client->properties ?> 
+            <div class="list-preview list-flush">
+                <div class="control-list">
+                    <table class="table data" data-control="rowlink">
+                        <thead>
+                            <tr>
+                                
+                                <th><span>Property Name</span></th>
+                                <th><span>Municipality</span></th>
+                                <th><span>Type</span></th>
+                                <th><span>Township</span></th>
+                                <th><span>Building Name</span></th>
+                                <th><span>Associated Date</span></th>
+                                <th><span>Associated Status</span></th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($test as $item): ?>
+                                <tr>
+                                    <td>
+                                        <a href="/backend/rw/plproperties/property/update/<?= e($item->prop_id) ?>"><?= e($item->searchtext) ?></a>
+                                    </td>
+                                    <td>
+                                       <?= e($item->municname) ?> 
+                                    </td>
+                                    
+                                    <td>
+                                       <?= e($item->type->name) ?> 
+                                    </td>
+                                    <td>
+                                        <?= e($item->township) ?> 
+                                    </td>
+                                    <td>
+                                        <?= e($item->buildingname) ?> 
+                                    </td>
+
+                                    <td>
+                                        <?= e($item->pivot->created_at->format("Y-m-d")) ?> 
+                                    </td>
+                                     <td>
+                                        
+
+                                        <?php if($item->pivot->is_active == 1): ?>
+                                        <span class="oc-icon-circle text-success">
+                                        Yes
+                                        </span>
+                                        <?php else: ?>
+                                        <span class="oc-icon-circle text-danger">
+                                        No
+                                        </span>
+                                        <?php endif; ?>
+
+                                    </td>
+                                   
+                                   
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php endif ?>

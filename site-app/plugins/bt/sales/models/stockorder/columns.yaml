@@ -1,0 +1,61 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    quote_id:
+        label: Quote
+        searchable: true
+        type: number
+    deadline_date:
+        label: Deadline Date
+        type: partial
+        path: $/bt/sales/models/stockorder/_deadline_date.htm
+    days_past_deadline_date:
+        label: To Bill Days
+        type: partial
+        path: $/bt/sales/models/stockorder/_days_past_deadline_date.htm
+
+    srnid:
+        label: SRN ID
+        type: partial
+        path: $/bt/sales/models/stockorder/_srn.htm
+
+    srnscheduleddate:
+        label: SRN Schedule Date
+        type: partial
+        path: $/bt/sales/models/stockorder/_srn_date.htm
+
+    client:
+        label: Client
+        type: partial
+        path: $/bt/sales/models/stockorder/_client.htm
+
+    transport_type:
+        label: Transport Type
+        type: partial
+        path: $/bt/sales/models/stockorder/_transport_type.htm
+
+    salesperson:
+        label: Sales Person
+        type: partial
+        path: $/bt/sales/models/stockorder/_salesperson.htm
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+
+    created_at:
+        label: Date Created
+    download:
+      label: Download
+      type: partial
+      path: $/bt/sales/models/stockorder/_download_column.htm
+      sortable: false
+      clickable: false
+

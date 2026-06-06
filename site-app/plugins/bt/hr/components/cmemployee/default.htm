@@ -1,0 +1,23 @@
+
+
+  <div >
+     {% for item in CmEmployee.data  %}
+    <div style="float: left; width: 120px; margin: 5px">
+        <div class="card" style="padding-top: 5px;border: 1px solid #ccc; background: #fff; border-radius: 2px">
+            {% if item.profilepic %}
+                <div style="height: 120px; overflow: hidden;"><img src="{{ item.profilepic.getThumb(120, 'auto') }}" style="margin: 0px auto; display: block; max-width: 100%" alt=""/></div>
+            {% endif %}
+            <div style="padding: 5px 0px 0px 0px; text-align: center; ">
+                <h3 style="font-size: 12px" >{{ item.firstname }} {{ item.lastname }}</h3>
+                <p style="font-size: 8px" class="text-muted">{{ item.designation.name }}</p>
+                {# <p class="oc-icon-envelope-o"><a href="mailto: {{ item.email }}" target="_blank">{{ item.email }}</a></p>
+               	{% if user.phone %}
+                	<p class="oc-icon-phone"><a href="tel: {{ item.phone }}" target="_blank">{{ item.phone }}</a></p>
+                {% endif %}
+                #}
+            </div>
+        </div>
+        
+    </div>
+  {% endfor %}
+</div>

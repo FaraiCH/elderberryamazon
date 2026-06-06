@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Return Note
+
+# Model Form Field configuration
+form: $/bt/sales/models/returnnote/fields_c.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\ReturnNote
+
+# Default redirect location
+defaultRedirect: bt/sales/returnnote
+
+# Create page
+create:
+    title: Create Return Note
+    redirect: bt/sales/returnnote/update/:id
+    redirectClose: bt/sales/returnnote
+
+# Update page
+update:
+    title: Edit Return Note
+    redirect: bt/sales/returnnote
+    redirectClose: bt/sales/returnnote
+
+# Preview page
+preview:
+    title: Preview Return Note

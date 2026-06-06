@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Quoteitem
+
+# Model Form Field configuration
+form: $/bt/sales/models/quoteitems/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Quoteitems
+
+# Default redirect location
+defaultRedirect: bt/sales/quoteitems
+
+# Create page
+create:
+    title: Create Quoteitem
+    redirect: bt/sales/quoteitems/update/:id
+    redirectClose: bt/sales/quoteitems
+
+# Update page
+update:
+    title: Edit Quoteitem
+    redirect: bt/sales/quoteitems
+    redirectClose: bt/sales/quoteitems
+
+# Preview page
+preview:
+    title: Preview Quoteitem

@@ -1,0 +1,9 @@
+raw_material_items:
+    label: Raw Material Items
+    manage:
+        form: $/bt/production/models/rawproductionplanitem/fields.yaml
+        list: $/bt/production/models/rawproductionplanitem/columns.yaml
+    view:
+        list: $/bt/production/models/rawproductionplanitem/columns.yaml
+        form: $/bt/production/models/rawproductionplanitem/fields.yaml
+        toolbarButtons: create|delete

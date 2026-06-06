@@ -1,0 +1,51 @@
+{% if section == 1 %}
+    {% if controlsheets is not empty %}
+        <select name="new_control_sheet" id="new_control_sheet" class="select_search form-control form-size" data-track-input data-request="onSetNewControl"  minlength="4">
+            <option value="0" ><span style="color: #ccc">Choose Control Sheet</span></option>
+            {% for con in controlsheets %}
+                <option {{printpipe.controlsheets.id == con.id?"selected":""}} value="{{con.id}}"> {{con.id}}, #{{con.jobcard_id}}-{{con.batch_id}} </option>
+            {% endfor %}
+        </select>
+        <span class="text-center">
+            <a class="btn btn-danger btn-width btn-block text-white" data-request="onCancelSetNewControl">Cancel</a>
+        </span>
+    {% endif %}
+{% endif %}
+
+{% if section == 2 %}
+<form>
+    <input type="number" name="new_length" placeholder="Input Length" id="new_length" step="0.01" class="form-control form-size text-center"/>
+    <span class="text-center">
+        <a class="btn btn-primary btn-width btn-block text-white" data-request="onSaveNewLength"><i class="fa fa-save"></i> Save</a>
+    </span>
+</form>
+
+{% endif %}
+
+{% if section == 3 %}
+    <select name="new_binarea" id="new_binarea" data-request="onSaveNewBin" data-track-input=""  class="select_search form-control form-size"  minlength="4">
+        <option value="0">Choose Bin Area</option>
+        {% for bin in binarea %}
+            <option selected value="{{bin.id}}">{{bin.area}}</option>
+        {% endfor %}
+    </select>
+{% endif %}
+
+{% if section == 4 %}
+<form>
+    <input type="number" placeholder="Input Weight" name="new_weight" id="new_weight" step="0.01" class="form-control form-size text-center"/>
+    <span class="text-center">
+            <a class="btn btn-primary btn-width btn-block text-white" data-request="onSaveNewWeight"><i class="fa fa-save"></i> Save</a>
+    </span>
+</form>
+{% endif %}
+
+<script>
+    $(document).ready(function() {
+        $('.select_search').select2();
+        var config = { '.select_search': {} }
+        for (var selector in config) {
+            $(selector).select2(config[selector]);
+        }
+    })
+</script>

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Document
+
+# Model Form Field configuration
+form: $/bt/documents/models/document/fields.yaml
+
+# Model Class name
+modelClass: Bt\Documents\Models\Document
+
+# Default redirect location
+defaultRedirect: bt/documents/document
+
+# Create page
+create:
+    title: Create Document
+    redirect: bt/documents/document/update/:id
+    redirectClose: bt/documents/document
+
+# Update page
+update:
+    title: Edit Document
+    redirect: bt/documents/document
+    redirectClose: bt/documents/document
+
+# Preview page
+preview:
+    title: Preview Document

@@ -1,0 +1,240 @@
+
+
+<?php if (isset($dateheader)): ?>
+<br>
+ <div class="callout fade in callout-info ">
+                <div class="header">
+                    <i class="icon-search" style="font-size: 16px"></i>
+                    <h3><?= $propertyheader["parent"]["name"] ?> / <?= $propertyheader["name"] ?></h3>
+                   
+                </div>
+                                <?php if ($includeinflation): ?>
+                    <div class="header" style="background: #fcfcfc; text-transform: uppercase; border: 2px solid #d8eaf4; text-align: center; border-radius: 0px">
+                        <i class="icon-info" style="font-size: 16px"></i>
+                        <h3>Inflation Included: <?= $inflationyear  ?> at <?= $inflationyear_value ?> </h3>
+                   
+                    </div>
+                <?php endif ?>
+                <div class="content">
+                    <i style="text-align: right;display: block;">Zoom enabled on the graph</i>
+
+                    <div style="height: 400px;  margin-bottom: 20px" id="chart_unit"></div>
+                    
+                  
+                    
+
+    <div  style="overflow: auto; padding-bottom: 20px ">
+        <table class="table  table-striped table-bordered tabledownload" width="100%"  cellpadding="4px" style="font-size: 11px">
+          <thead>
+            <tr>
+                <th><span><b>COMPANY</b></span></th>
+                <th><span><b>INDUSTRY</b></span></th>
+                 <?php if (!$checkreport): ?>
+                        <th><span><b>CHANGE REPORTING</b></span></th>
+                <?php endif ?>
+                <?php if (!$fixmonth): ?>
+                        <th><span><b>MONTH</b></span></th>
+                <?php endif ?>
+
+                <?php $dateh = array(); ?>
+                 <?php $series = array(); ?>
+                 <?php foreach($dateheader as $key=>$value): ?>
+                    <th nowrap="nowrap" style="text-align: right"><span><b><?= $value["datea_h"] ?></b></span></th>
+
+                   <?php  $dateh[] = $value["datea_h"]; ?>
+                <?php endforeach ?>
+            </tr>
+
+          </thead>
+
+          <tbody>
+            <?php if (isset($monster)): ?>
+                <?php foreach($monster as $m=>$item): ?>
+                    <tr>
+
+                        <td nowrap="nowrap"><?= $item["name"] ?></b> / <?= $item["ticker"] ?></td>
+
+                        <td nowrap="nowrap"><?= $item["industry"] ?></td>
+
+                        <?php $repeat = 0; ?>  
+                        
+                        <?php foreach($item['months'] as $mkey=>$mine): ?>
+                            <?php if ($repeat==1): ?>
+                                <tr >
+                                    <td nowrap="nowrap"><?= $item["name"] ?></b> / <?= $item["ticker"] ?></td>
+                                    <td  nowrap="nowrap"><?= $item["industry"] ?></td>
+                                   
+                            <?php endif ?>
+
+                             <?php if (!$checkreport): ?>
+                                 <td nowrap="nowrap" style="background:<?php echo($item['monthscount'] > 1)?'yellow':''; ?>">
+                                <?php if (!$fixmonth): ?>
+                                    <?php echo(count($item['months']) > 1)?"TRUE":"FALSE" ?>
+                                <?php else: ?>
+                                         <?php echo($item['monthscount'] > 1)?"TRUE":"FALSE" ?>
+                                <?php endif ?>
+                            <?php endif ?>
+                        </td>
+
+                             <?php if (!$fixmonth): ?>
+                                    <td nowrap="nowrap"  ><?= $mkey ?></td>
+                            <?php endif ?>
+                            <?php $pvaue = 0; ?>  
+                            <?php $p = array(); ?>
+                            <?php $m = array(); ?>
+                            
+
+                            <?php foreach($dateheader as $key=>$value): ?>
+                                <td  nowrap="nowrap" style="text-align: right;" >
+                                    
+                                    <?php foreach($mine as $d=>$data): ?>
+                                        <?php if ($value["datea_h"] == $d): ?>
+                                            <?php
+                                                $m[$d] = $data["value"];
+                                                if(isset($m[$d-1])){
+                                                    $pvaue =$data["value"] - $m[$d-1];
+                                                } 
+                                            ?>
+                                           <?= $displaycur?$data["cur"]:"" ?> <?= $removedecimals?number_format($pvaue, 2):number_format($pvaue, 0) ?> 
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+
+                                    <?php  $p[] = intval($pvaue); ?>
+                                </td>
+
+                            <?php endforeach ?>
+                            </tr>
+                            <?php $repeat = 1; ?>
+
+                            <?php 
+                                if(count($p) > 0){
+                                    if($fixmonth){
+                                        $series[] = array("name"=>$item["ticker"],"data"=>$p);
+                                    }else{
+                                        $series[] = array("name"=>$item["ticker"]." - ".$mkey,"data"=>$p);
+                                    }
+                                } 
+                            ?>
+                            
+
+                        <?php endforeach ?>
+                       <?php if ($repeat==0): ?>
+                                <td nowrap="nowrap" ></td>
+                            
+                            <?php foreach($dateheader as $key=>$value): ?>
+                                <td style="text-align: right" nowrap="nowrap" >
+                                    
+                                </td>
+
+                            <?php endforeach ?>
+
+
+                                </tr>
+                            <?php endif ?>
+                    
+                <?php endforeach ?>
+            <?php endif ?>
+          </tbody>
+
+    </table>
+      </div>
+                        
+                </div>
+            </div>
+
+
+             <script type="text/javascript">
+                function test2(){
+                    
+                     Highcharts.chart('chart_unit', {
+                        chart: {
+                            type: 'spline',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: '<?= $propertyheader["parent"]["name"] ?>'
+                        },
+                        // subtitle: {
+                        //     text: 'Source: WorldClimate.com'
+                        // },
+                        xAxis: {
+
+                            categories: <?= json_encode($dateh) ?> 
+                        },
+                        yAxis: {
+                            title: {
+                                text: '<?= $propertyheader["name"] ?>'
+                            }
+                        },
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        },
+                        series: <?= json_encode($series) ?> 
+                    });
+
+
+                      $('.tabledownload').DataTable( {
+        "pageLength": 25,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':contains("Office")'
+                }
+            },
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+
+
+    $('.tabledownload_desc').DataTable( {
+        "pageLength": 25,
+        "order": [[ 0, "desc" ]],
+        "scrollX": true,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':contains("Office")'
+                }
+            },
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+
+    } );
+
+    $('.tabledownload_desc tbody')
+        .on( 'mouseenter', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+        } );
+
+    $(".dt-button").addClass("btn");
+    $(".dt-button").addClass("btn-info");
+    $(".dt-button").addClass("btn-sm");
+    $(".dt-buttons").addClass("pull-left");
+                    
+   
+
+                  }
+                test2();
+
+          
+
+                   
+
+
+            </script>
+   
+<?php endif ?>

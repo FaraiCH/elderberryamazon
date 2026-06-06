@@ -1,0 +1,672 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        h3{
+            font-size: 14px;
+            margin-top: 10px;
+            padding-top: 0px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px
+
+        }
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid black;
+            font-size: 8px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+        #downloadtable th{
+            color: whitesmoke;
+            background: rgb(4,36,100);
+        }
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+{% if type == 0 %}
+<h3 class="text-center col-md-6">BT Weekly Production Plan for {{start|date("d/m/Y")}}-{{end|date("d/m/Y")}}</h3>
+<h3 class="col-md-6">Date Version: {{now}}</h3>
+{% else %}
+<h3 class="text-center col-md-6">BT Order Plan for {{start|date("d/m/Y")}}-{{end|date("d/m/Y")}}</h3>
+<h3 class="col-md-6">Date Version: {{now}}</h3>
+{% endif %}
+
+<!--<div style="background: #ececec; padding: 5px" >-->
+<!--    <table width="100%" border="1" style="border: 1px solid #333" cellpadding="5px" cellspacing="0">-->
+<!--        <tr>-->
+<!--            <td width="100%">The current production plan's total tonnage is {{total_weight}} tonnes.</td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</div>-->
+<table class="table table-striped table-bordered  table-hover" style="font-size: 16px; table-layout:fixed" id="downloadtable">
+    <thead>
+    <tr>
+        <th style="font-size: 16px" colspan="1"><b></b></th>
+        <th style="font-size: 16px" colspan="1"><b></b></th>
+        <th style="font-size: 16px" colspan="4"><b>Pipe Description</b></th>
+        <th style="font-size: 16px" colspan="4"><b>Production Status</b></th>
+        <th style="font-size: 16px" colspan="2"><b>Costs</b></th>
+        <th style="font-size: 16px" colspan="3"><b>Material</b></th>
+        {% if type == 0 %}
+            <th style="font-size: 16px" colspan="3"><b>Dates</b></th>
+        {% else %}
+            <th style="font-size: 16px" colspan="1"><b>Dates</b></th>
+        {% endif %}
+        <th colspan="6" style="font-size: 16px"><b>Machine</b></th>
+    </tr>
+    <tr>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Quote</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Client</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" colspan="4"><b>Pipe Item</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Units Ordered</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Units Planned</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Units Produced</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Balance</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap="" ><b>Price Per Pipe <br>(R)</b></th>
+        <th style="font-size: 12px;   vertical-align: middle;" ><b>R/Kg</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Unit Weight (KG)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Tonnage (KG)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Tonnage Price <br>(R)</b></th>
+        <th style="font-size: 11px; vertical-align: middle;" nowrap=""><b>Quote Received</b></th>
+        {% if type == 0 %}
+            <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Start Date</b></th>
+            <th style="font-size: 12px; vertical-align: middle;" ><b>Due Date</b></th>
+        {% endif %}
+<!--        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Planned Invoicing <br>(R)</b></th>-->
+<!--        <th style="font-size: 12px; vertical-align: middle;" nowrap=""><b>Planned GP @35% <br>(R)</b></th>-->
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Baila 1 Estimated Runtime (H)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Baila 2 Estimated Runtime (H)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Baila 3 Estimated Runtime (H)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Baila 4 Estimated Runtime (H)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Baila 5 Estimated Runtime (H)</b></th>
+        <th style="font-size: 12px; vertical-align: middle;" ><b>Baila 6 Estimated Runtime (H)</b></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set tonnage = 0 %}
+    {% set tonnage1 = 0 %}
+    {% set tonnage2 = 0 %}
+    {% set tonnage3 = 0 %}
+    {% set tonnage4 = 0 %}
+    {% set tonnage5 = 0 %}
+    {% set tonnage6 = 0 %}
+    {% set firstday = 0 %}
+    {% set secondday = 0 %}
+    {% set thirdday = 0 %}
+    {% set fourthday = 0 %}
+    {% set fifthday = 0 %}
+    {% set sixthday = 0 %}
+    {% set totalprice = 0 %}
+
+    {% set totalinvoice = 0 %}
+    {% set gp = 0 %}
+    {% set production_date = '' %}
+    {% for mainobject in obj %}
+    {% set counter = 0 %}
+
+    {% set balance = 0 %}
+
+    {% for subobject in mainobject.planitems %}
+
+    {% set production_date = subobject.quote.responses.where('quote_status_id', 14).first().created_at %}
+    {% set quote_cancel = subobject.quote.responses.where('quote_status_id', 15).first().created_at %}
+    {% set production_cancel = subobject.quote.responses.where('quote_status_id', 20).first().created_at %}
+    {% set over = 0 %}
+    {% set produced = 0 %}
+
+    {% if subobject.item.pipe.schedules.sum('total_units_passed_qc') > 0 %}
+        {% for item in subobject.item.pipe.schedules %}
+            {% set over = over + item.btaccount.where('unitlength', subobject.item.unitlength).sum('units') %}
+        {% endfor %}
+        {% set produced = subobject.item.pipe.schedules.sum('total_units_passed_qc') + over %}
+        {% set balance = (subobject.item.pipe.schedules.sum('total_units_passed_qc') + over - subobject.qty)|abs %}
+    {% else %}
+            {% set produced = 0 %}
+            {% set balance = subobject.qty %}
+    {% endif %}
+    {% if type == 0 %}
+        {% if produced == subobject.item.units %}
+            <tr style="background-color: green">
+        {% endif %}
+        {% if produced > subobject.item.units %}
+            <tr style="background-color: lightskyblue">
+        {% endif %}
+        {% if produced < subobject.item.units %}
+            <tr>
+        {% endif %}
+    {% else %}
+        {% if subobject.quote.qpush.approved.status_id == 1 %}
+            {% if produced == subobject.item.units %}
+                <tr style="background-color: green">
+            {% endif %}
+            {% if produced > subobject.item.units %}
+                <tr style="background-color: lightskyblue">
+            {% endif %}
+            {% if produced < subobject.item.units %}
+                <tr>
+            {% endif %}
+        {% else %}
+            <tr style="background-color: maroon; color: white;">
+        {% endif %}
+    {% endif %}
+
+            {% if counter == 0 %}
+
+            <td style="font-size: 12px;">{{subobject.quote.id}}</td>
+            <td style="font-size: 12px">{{subobject.quote.company_name}}</td>
+            {% else %}
+            <td style="font-size: 12px"></td>
+            <td style="font-size: 12px"></td>
+            {% endif %}
+            <td colspan="4" style="font-size: 11px;">{{subobject.item.description}}</td>
+            <td style="font-size: 12px; text-align: right">{{subobject.item.units|number_format(0, '.',' ')}}</td>
+            <td style="font-size: 12px; text-align: right">{{subobject.qty|number_format(0)}}</td>
+            <td style="font-size: 12px; text-align: right">
+                {{produced}}
+            </td>
+
+            <td style="font-size: 12px; text-align: right">{{balance}}</td>
+            {% if balance > 0 %}
+                {% set balance = balance - over %}
+            {% endif %}
+            <td style="font-size: 12px; text-align: right" nowrap="">{{subobject.item.unitprice|number_format(0, '.',' ')}}</td>
+            <td style="font-size: 12px; text-align: right">{{subobject.item.priceperkg|number_format(2, '.',' ')}}</td>
+            <td style="font-size: 12px; text-align: right; text-align: right">{{subobject.item.weight|number_format(2, '.',' ')}}</td>
+
+
+
+            {% set mykg = 0 %}
+
+            {% set mykg = mykg + subobject.item.weight * balance %}
+
+            {% set tonnage = tonnage + mykg %}
+            {% set tonnageprice = subobject.item.priceperkg * mykg %}
+            {% set totalprice = totalprice + tonnageprice %}
+            <td style="font-size: 12px; text-align: right" >
+                {{mykg|number_format(0, '.',' ')}}
+            </td>
+            <td style="font-size: 12px;text-align: right" nowrap="">{{tonnageprice|number_format(0, '.',' ')}}</td>
+            {% if counter == 0 %}
+
+            <td style="font-size: 12px;" >{{production_date|date('d F')}}</td>
+                {% if type == 0 %}
+                    <td style="font-size: 12px;" >{{mainobject.startdate|date('d F')}}</td>
+                    <td style="font-size: 12px;" >{{mainobject.enddate|date('d F')}}</td>
+                {% endif %}
+            {% else %}
+            <td style="font-size: 12px"></td>
+                {% if type == 0 %}
+                    <td style="font-size: 12px"></td>
+                    <td style="font-size: 12px"></td>
+                {% endif %}
+            {% endif %}
+<!--            <td style="font-size: 12px; text-align: right" nowrap="">{{(subobject.item.unitprice * subobject.qty)|number_format(0, '.',' ')}}</td>-->
+
+<!--            {% set totalinvoice = totalinvoice + (subobject.item.unitprice * subobject.qty) %}-->
+
+<!--            <td style="font-size: 12px; text-align: right" nowrap="">{{((subobject.item.unitprice * subobject.qty) * 0.35)|number_format(0, '.',' ')}}</td>-->
+<!--            {% set gp = gp + ((subobject.item.unitprice * subobject.qty) * 0.35) %}-->
+
+            <!--                <td style="font-size: 12px" >-->
+            <!--                    {% for subobject in mainobject.planitems %}-->
+            <!--                    <b> &nbsp; {{subobject.item.description}}:{{subobject.qty}}</b>-->
+            <!--                    <br>-->
+            <!--                    {% endfor %}-->
+            <!--                </td>-->
+            {% if mainobject.line_id == 2 %}
+            <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+                {% set man = mykg/500 %}
+                {{man|number_format(0, '.',' ')}}
+                {% set tonnage2 = tonnage2 + mykg %}
+                {% set firstday = firstday + man %}
+            </td>
+            {% else %}
+            <td style="font-size: 12px" >
+
+
+
+            </td>
+            {% endif %}
+            {% if mainobject.line_id == 1 %}
+            <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+                {% set man = mykg/500 %}
+                {{man|number_format(0, '.',' ')}}
+                {% set tonnage1 = tonnage1 + mykg %}
+                {% set secondday = secondday + man %}
+            </td>
+            {% else %}
+            <td style="font-size: 12px" >
+
+
+
+            </td>
+            {% endif %}
+
+            {% if mainobject.line_id == 3 %}
+            <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+                {% set man = mykg/280 %}
+                {{man|number_format(0, '.',' ')}}
+                {% set tonnage3 = tonnage3 + mykg %}
+                {% set thirdday = thirdday + man %}
+            </td>
+            {% else %}
+            <td style="font-size: 12px" >
+
+
+
+            </td>
+            {% endif %}
+            {% if mainobject.line_id == 4 %}
+            <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+                {% set man = mykg/150 %}
+                {{man|number_format(0, '.',' ')}}
+                {% set tonnage4 = tonnage4 + mykg %}
+                {% set fourthday = fourthday + man %}
+            </td>
+            {% else %}
+            <td style="font-size: 12px" >
+
+
+
+            </td>
+            {% endif %}
+            {% if mainobject.line_id == 5 %}
+            <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+                {% set man = mykg/150 %}
+                {{man|number_format(0, '.',' ')}}
+                {% set tonnage5 = tonnage5 + mykg %}
+                {% set fifthday = fifthday + man %}
+            </td>
+            {% else %}
+            <td style="font-size: 12px" >
+
+
+
+            </td>
+            {% endif %}
+            {% if mainobject.line_id == 6 %}
+            <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+                {% set man = mykg/280 %}
+                {{man|number_format(0, '.',' ')}}
+                {% set tonnage6 = tonnage6 + mykg %}
+                {% set sixthday = sixthday + man %}
+            </td>
+            {% else %}
+            <td style="font-size: 12px" >
+
+
+
+            </td>
+            {% endif %}
+        </tr>
+    {% set counter = counter + 1 %}
+    {% endfor %}
+    {% for subobjectcat in mainobject.planitemscat %}
+        {% set production_date = subobjectcat.quote.responses.where('quote_status_id', 14).first().created_at %}
+    <tr>
+        {% if counter == 0 %}
+        <td style="font-size: 12px">{{subobjectcat.quote.id}}</td>
+        <td style="font-size: 12px">{{subobjectcat.quote.company_name}}</td>
+        {% else %}
+        <td style="font-size: 12px"></td>
+        <td style="font-size: 12px"></td>
+        {% endif %}
+        <td colspan="4" style="font-size: 11px;">{{subobjectcat.item.description}}</td>
+        <td style="font-size: 12px; text-align: right">{{subobjectcat.item.units|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{subobjectcat.qty|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">0</td>
+        <td style="font-size: 12px; text-align: right">{{subobjectcat.qty}}</td>
+        <td style="font-size: 12px; text-align: right" nowrap="">{{subobjectcat.item.unitprice|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{subobjectcat.item.priceperkg|number_format(2, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right" >{{subobjectcat.item.weight|number_format(2, '.',' ')}}</td>
+
+
+
+        {% set mykg = 0 %}
+
+        {% set mykg = mykg + subobjectcat.item.weight * subobjectcat.qty %}
+
+        {% set tonnage = tonnage + mykg %}
+
+        {% set tonnageprice = subobjectcat.item.priceperkg * mykg %}
+        {% set totalprice = totalprice + tonnageprice %}
+
+        <td style="font-size: 12px; text-align: right" >
+            {{mykg|number_format(0, '.',' ')}}
+        </td>
+        <td style="font-size: 12px;text-align: right" nowrap="">{{tonnageprice|number_format(0, '.',' ')}}</td>
+        {% if counter == 0 %}
+        <td style="font-size: 12px;" >{{production_date|date('d F')}}</td>
+            {% if type == 0 %}
+                <td style="font-size: 12px;" >{{mainobject.startdate|date('d F')}}</td>
+                <td style="font-size: 12px;" >{{mainobject.enddate|date('d F')}}</td>
+            {% endif %}
+        {% else %}
+        <td style="font-size: 12px"></td>
+            {% if type == 0 %}
+                <td style="font-size: 12px"></td>
+                <td style="font-size: 12px"></td>
+            {% endif %}
+        {% endif %}
+<!--        <td style="font-size: 12px; text-align: right" nowrap="">{{(subobjectcat.item.unitprice * subobjectcat.qty)|number_format(0, '.',' ')}}</td>-->
+
+<!--        {% set totalinvoice = totalinvoice + (subobjectcat.item.unitprice * subobjectcat.qty) %}-->
+<!--        <td style="font-size: 12px; text-align: right" nowrap="">{{((subobjectcat.item.unitprice * subobjectcat.qty) * 0.35)|number_format(0, '.',' ')}}</td>-->
+<!--        {% set gp = gp + ((subobjectcat.item.unitprice * subobjectcat.qty) * 0.35) %}-->
+        <!--                <td style="font-size: 12px" >-->
+        <!--                    {% for subobject in mainobject.planitems %}-->
+        <!--                    <b> &nbsp; {{subobject.item.description}}:{{subobject.qty}}</b>-->
+        <!--                    <br>-->
+        <!--                    {% endfor %}-->
+        <!--                </td>-->
+        {% if mainobject.line_id == 2 %}
+        <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+            {% set man = mykg/500 %}
+            {{man|number_format(0, '.',' ')}}
+            {% set tonnage2 = tonnage2 + mykg %}
+            {% set firstday = firstday + man %}
+        </td>
+        {% else %}
+        <td style="font-size: 12px" >
+
+
+
+        </td>
+        {% endif %}
+        {% if mainobject.line_id == 1 %}
+        <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+            {% set man = mykg/500 %}
+            {{man|number_format(0, '.',' ')}}
+            {% set tonnage1 = tonnage1 + mykg %}
+            {% set secondday = secondday + man %}
+        </td>
+        {% else %}
+        <td style="font-size: 12px" >
+
+
+
+        </td>
+        {% endif %}
+
+        {% if mainobject.line_id == 3 %}
+        <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+            {% set man = mykg/280 %}
+            {{man|number_format(0, '.',' ')}}
+            {% set tonnage3 = tonnage3 + mykg %}
+            {% set thirdday = thirdday + man %}
+        </td>
+        {% else %}
+        <td style="font-size: 12px" >
+
+
+
+        </td>
+        {% endif %}
+        {% if mainobject.line_id == 4 %}
+        <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+            {% set man = mykg/150 %}
+            {{man|number_format(0, '.',' ')}}
+            {% set tonnage4 = tonnage4 + mykg %}
+            {% set fourthday = fourthday + man %}
+        </td>
+        {% else %}
+        <td style="font-size: 12px" >
+
+
+
+        </td>
+        {% endif %}
+        {% if mainobject.line_id == 5 %}
+        <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+            {% set man = mykg/220 %}
+            {{man|number_format(0, '.',' ')}}
+            {% set tonnage5 = tonnage5 + mykg %}
+            {% set fifthday = fifthday + man %}
+        </td>
+        {% else %}
+        <td style="font-size: 12px" >
+
+
+
+        </td>
+        {% endif %}
+
+        {% if mainobject.line_id == 6 %}
+        <td style="font-size: 12px; text-align: right; background: rgb(4,36,100); color: whitesmoke;" >
+            {% set man = mykg/280 %}
+            {{man|number_format(0, '.',' ')}}
+            {% set tonnage6 = tonnage6 + mykg %}
+            {% set sixthday = sixthday + man %}
+        </td>
+        {% else %}
+        <td style="font-size: 12px" >
+
+
+
+        </td>
+        {% endif %}
+    </tr>
+    {% set counter = counter + 1 %}
+    {% endfor %}
+    {% set counter = 0 %}
+    {% endfor %}
+
+    <tr aria-rowspan="2">
+        <td style="font-size: 11px; background: rgb(4,36,100); color: whitesmoke;" colspan="2"> <b>Total <br>Tonnage (kg)</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;"  colspan="11"><b></b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" nowrap=""><b>{{tonnage|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan="" nowrap=""><b>{{totalprice|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 16px; background: rgb(4,36,100); color: whitesmoke;" colspan=""></td>
+        {% if type == 0 %}
+        <td style="font-size: 16px; background: rgb(4,36,100); color: whitesmoke;" colspan=""></td>
+        <td style="font-size: 16px; background: rgb(4,36,100); color: whitesmoke;" colspan=""></td>
+        {% endif %}
+<!--        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan="" nowrap=""><b>{{totalinvoice|number_format(0, '.',' ')}}</b></td>-->
+<!--        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan="" nowrap=""><b>{{gp|number_format(0, '.',' ')}}</b></td>-->
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan=""><b>{{tonnage2|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan=""><b>{{tonnage1|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan=""><b>{{tonnage3|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan=""><b>{{tonnage4|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan=""><b>{{tonnage5|number_format(0, '.',' ')}}</b></td>
+        <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;text-align: right" colspan=""><b>{{tonnage6|number_format(0, '.',' ')}}</b></td>
+    </tr>
+    <tr>
+        <td style="font-size: 11px; background: rgb(4,36,100); color: whitesmoke;" colspan="2"><b>Total Production Hours</b></td>
+        {% if type == 0 %}
+            <td style="font-size: 12px;" colspan="16"></td>
+        {% else %}
+            <td style="font-size: 12px;" colspan="14"></td>
+        {% endif %}
+
+        <td style="font-size: 12px; text-align: right">{{firstday|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{secondday|number_format(0)}}</td>
+
+        <td style="font-size: 12px; text-align: right">{{thirdday|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{fourthday|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{fifthday|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{sixthday|number_format(0, '.',' ')}}</td>
+    </tr>
+    <tr>
+        <td style="font-size: 11px; background: rgb(4,36,100); color: whitesmoke;" colspan="2"> <b>Production Days</b></td>
+        {% if type == 0 %}
+            <td style="font-size: 12px;" colspan="16"></td>
+        {% else %}
+            <td style="font-size: 12px;" colspan="14"></td>
+        {% endif %}
+
+        <td style="font-size: 12px; text-align: right">{{(firstday/24)|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{(secondday/24)|number_format(0, '.',' ')}}</td>
+
+        <td style="font-size: 12px; text-align: right">{{(thirdday/24)|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{(fourthday/24)|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{(fifthday/24)|number_format(0, '.',' ')}}</td>
+        <td style="font-size: 12px; text-align: right">{{(sixthday/24)|number_format(0, '.',' ')}}</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<div class="float-left">
+    <table class="table table-striped table-bordered  table-hover" style="font-size: 16px; width: 50%;">
+        <thead>
+        <tr>
+            <td colspan="2" style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke; text-align: center;">Formula Table</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Total Tonnage</td>
+            <td style="font-size: 12px;">= Sum(Tonnage)</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Production Hours</td>
+            <td style="font-size: 12px;">= Tonnage/Kg processed per hour on machine</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Total Production Hours</td>
+            <td style="font-size: 12px;">= Sum(Production Hours)</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Total Production Days</td>
+            <td style="font-size: 12px;">=Total Production Hours/24</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<br>
+<div class="float-right">
+    <table class="table table-striped table-bordered  table-hover" style="font-size: 16px; width: 50%;">
+        <thead>
+        <tr>
+            <td colspan="3" style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke; text-align: center;">Baila Formula Table</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Baila 1 KG Processed Per Hour</td>
+            <td style="font-size: 12px;">= 6000kg(12 Hours)/12</td>
+            <td style="font-size: 12px;">500kg per hour</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Baila 2 KG Processed Per Hour</td>
+            <td style="font-size: 12px;">= 6000kg(12 Hours)/12</td>
+            <td style="font-size: 12px;">500kg per hour</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Baila 3 KG Processed Per Hour</td>
+            <td style="font-size: 12px;">= 3360kg(12 Hours)/12</td>
+            <td style="font-size: 12px;">280kg per hour</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Baila 4 KG Processed Per Hour</td>
+            <td style="font-size: 12px;">= 1800kg(12 Hours)/12</td>
+            <td style="font-size: 12px;">150kg per hour</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Baila 5 KG Processed Per Hour</td>
+            <td style="font-size: 12px;">= 1800kg(12 Hours)/12</td>
+            <td style="font-size: 12px;">150kg per hour</td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; background: rgb(4,36,100); color: whitesmoke;">Baila 6 KG Processed Per Hour</td>
+            <td style="font-size: 12px;">= 3360kg(12 Hours)/12</td>
+            <td style="font-size: 12px;">280kg per hour</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align: left">
+    <h4>Legend</h4>
+    <p><span style="background-color: lightskyblue;"><b>Blue: Complete with Extra</b> </span></p>
+    <p><span style="background-color: green"><b>Green: Complete with no Extras</b></span></p>
+    <p><span style="background-color: maroon; color: white"><b>Dark Red: Not Approved For Production</b></span></p>
+</div>
+
+</body>
+</html>

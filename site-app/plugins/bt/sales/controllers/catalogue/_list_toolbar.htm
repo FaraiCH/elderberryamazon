@@ -1,0 +1,35 @@
+<div data-control="toolbar">
+    <a
+        href="<?= Backend::url('bt/sales/catalogue/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        New Catalogue
+    </a>
+    <a
+        href="<?= Backend::url('bt/sales/supplier') ?>"
+        class="btn btn-info oc-icon-id-card">
+        Suppliers
+    </a>
+    <a
+        href="<?= Backend::url('bt/sales/catalogue/export') ?>"
+        class="btn btn-info oc-icon-cloud-download">
+        Export DB
+    </a>
+    <a
+        href="<?= Backend::url('bt/sales/catalogue/import') ?>"
+        class="btn btn-info oc-icon-cloud-upload">
+        Import DB
+    </a>
+   <!--  <button
+        class="btn btn-danger oc-icon-trash-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+        data-request="onDelete"
+        data-request-confirm="Are you sure you want to delete the selected Catalogues?"
+        data-trigger-action="enable"
+        data-trigger=".control-list input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', 'disabled')"
+        data-stripe-load-indicator>
+        Delete selected
+    </button> -->
+</div>

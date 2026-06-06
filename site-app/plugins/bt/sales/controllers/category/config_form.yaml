@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/bt/sales/models/category/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Category
+
+# Default redirect location
+defaultRedirect: bt/sales/category
+
+# Create page
+create:
+    title: Create Category
+    redirect: bt/sales/category/update/:id
+    redirectClose: bt/sales/category
+
+# Update page
+update:
+    title: Edit Category
+    redirect: bt/sales/category
+    redirectClose: bt/sales/category
+
+# Preview page
+preview:
+    title: Preview Category

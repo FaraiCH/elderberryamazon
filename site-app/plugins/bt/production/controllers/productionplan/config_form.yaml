@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Production Plan
+
+# Model Form Field configuration
+form: $/bt/production/models/productionplan/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\ProductionPlan
+
+# Default redirect location
+defaultRedirect: bt/production/productionplan
+
+# Create page
+create:
+    title: Create Production Plan
+    redirect: bt/production/productionplan/update/:id
+    redirectClose: bt/production/productionplan
+
+# Update page
+update:
+    title: Edit Production Plan
+    redirect: bt/production/productionplan
+    redirectClose: bt/production/productionplan
+
+# Preview page
+preview:
+    title: Preview Production Plan

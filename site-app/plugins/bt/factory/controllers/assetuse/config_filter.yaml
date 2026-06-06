@@ -1,0 +1,18 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+  employee:
+    label: FilterBy Employee
+    type: group
+    conditions: employee_id in (:filtered)
+    modelClass: Bt\HR\Models\Employee 
+    options: getEmployeeOptions
+
+  asset:
+    label: FilterBy Asset Type
+    type: group
+    conditions: asset_id in (:filtered)
+    modelClass: Bt\factory\Models\Assetuse 
+    options: getAssettypeOptions

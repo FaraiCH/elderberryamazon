@@ -1,0 +1,102 @@
+<div class="control-list">
+    <table class="table data" data-control="rowlink">
+		<?php 
+			$obj = Bt\PLCommon\Models\Settings::listLookParent(); 
+		?>
+		<thead>
+			<tr>
+				<th><span>Username</span></th>
+				<th><span>login</span></th>
+				<?php 
+					foreach ($obj["permissions"] as $key => $value){
+	            		echo "<th><span>$key</span></th>";
+					}
+	    		?>
+			</tr>
+		</thead>
+
+		<tbody>			
+				<?php 
+					
+					foreach ($obj["users"] as $key => $value){
+						echo "<tr>";
+	            		echo "<td><a href='/backend/backend/users/update/".$value->id."'>".$value->first_name." ".$value->last_name."</span></td>";
+	            		echo "<td><span>".$value->login."</span></td>";
+
+	            		foreach ($obj["permissions"] as $p => $pv){
+	            			$found = 0;
+	            			if(is_array($value->permissions))
+	            				foreach ($value->permissions as $up => $upv){
+	            					if($up == $p){
+	            						$found = $upv;
+	            					}
+	            				}
+	            			if($found==0){
+	            				echo ' <td  class="text-center">
+					                    <span class="list-badge badge-warning">
+					                        <i class="icon-exclamation"></i>
+					                    </span>
+					                    Pending
+					                </td>';
+	            			}
+	            			if($found== 1){
+	            				echo '<td  class="text-center">
+				                    <span class="list-badge badge-success">
+				                        <i class="icon-check"></i>
+				                    </span>
+				                    Approved
+				                </td>';
+	            			}
+	            			if($found==-1){
+	            				echo '<td class="text-center">
+				                    <span class="list-badge badge-danger">
+				                        <i class="icon-times"></i>
+				                    </span>
+				                    Blocked
+				                </td>';
+	            			}
+		            		
+						}
+
+	            		echo "<tr>";
+					}
+
+			
+	    		?>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<style type="text/css">
+   table {
+  text-align: center;
+}
+.control-list {
+  width: 100%;
+  height: 75vh;
+  overflow: scroll;
+}
+table th,
+table td {
+  white-space: nowrap;
+  padding: 10px 20px;
+  font-family: Arial;
+}
+table tr th:first-child,
+table td:first-child {
+  position: sticky;
+  width: 100px;
+  left: 0;
+  z-index: 10;
+  background: #fff;
+}
+table tr th:first-child {
+  z-index: 11;
+}
+table tr th {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background: #fff;
+}
+</style>

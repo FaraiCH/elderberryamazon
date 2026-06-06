@@ -1,0 +1,24 @@
+
+{% if company is not empty and quote is not empty %}
+    <div style="border-radius: 10px; border-color: rgba(45,53,88,0.84); background: rgba(45,53,88,0.84);color: whitesmoke; text-align: center">
+        <h2 style="margin: 5px 5px;"> <b>CREDIT BALANCE: R {{ (company.limit - company.utilization)|number_format(2, '.', ',')}}</b></h2>
+    </div>
+{% else %}
+    {% if quote is not empty  %}
+        {% if quote.client is empty %}
+            <div style="border-radius: 10px; border-color: rgba(45,53,88,0.84); background: rgba(45,53,88,0.84);color: whitesmoke; text-align: center">
+                <h2 style="margin: 5px 5px;"> <b>CLIENT NOT LINKED FOR CREDIT BALANCE</b></h2>
+            </div>
+        {% else %}
+            <div style="border-radius: 10px; border-color: rgba(45,53,88,0.84); background: rgba(45,53,88,0.84);color: whitesmoke; text-align: center">
+                <h2 style="margin: 5px 5px;"> <b>CREDIT BALANCE: R {{ (quote.client.limit - quote.client.utilization)|number_format(2, '.', ',')}}</b></h2>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% if company is not empty %}
+        <div style="border-radius: 10px; border-color: rgba(45,53,88,0.84); background: rgba(45,53,88,0.84);color: whitesmoke; text-align: center">
+            <h2 style="margin: 5px 5px;"> <b>CREDIT BALANCE: R {{ company|number_format(2, '.', ',')}}</b></h2>
+        </div>
+    {% endif %}
+{% endif %}

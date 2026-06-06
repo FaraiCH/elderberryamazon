@@ -1,0 +1,33 @@
+fields:
+    status_section:
+        type: section
+        commentHtml: yes
+    status_id:
+        label: Approve Quote Logistics
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+
+    createdby:
+        label: Created By
+        disabled: true
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        span: auto
+        placeholder: -- select a status --
+        comment: Please ignore, this field will be automated
+
+    updatedby:
+        label: Updated By
+        disabled: true
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        span: auto
+        placeholder: -- select a status --
+        comment: Please ignore, this field will be automated
+
+    note:
+        label: Comment Reasons
+        type: textarea
+

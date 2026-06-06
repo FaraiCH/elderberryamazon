@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Print Sticker
+
+# Model Form Field configuration
+form: $/bt/production/models/printsticker/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\PrintSticker
+
+# Default redirect location
+defaultRedirect: bt/production/printsticker
+
+# Create page
+create:
+    title: Create Print Sticker
+    redirect: bt/production/printsticker/update/:id
+    redirectClose: bt/production/printsticker
+
+# Update page
+update:
+    title: Edit Print Sticker
+    redirect: bt/production/printsticker
+    redirectClose: bt/production/printsticker
+
+# Preview page
+preview:
+    title: Preview Print Sticker

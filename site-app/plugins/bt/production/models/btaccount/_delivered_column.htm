@@ -1,0 +1,8 @@
+
+<?php if(isset($record->pipe->delivered)): ?>
+	<?php
+	echo $record->pipe->delivered()->sum('units');
+	
+?>
+
+<?php endif; ?>

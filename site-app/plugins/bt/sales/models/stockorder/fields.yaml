@@ -1,0 +1,46 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+    quote@create:
+        label: Quote Number
+        type: dropdown
+        placeholder: -- select a quote --
+        span: auto
+        dependsOn:
+            - type
+    quote@update:
+        label: Quote Number
+        type: dropdown
+        placeholder: -- select a quote --
+        span: auto
+        disabled: true
+        dependsOn:
+            - type
+    deadline_date:
+        label: Deadline Date
+        type: datepicker
+        span: auto
+    transport_type:
+        placeholder: -- Select a transport type ---
+        label: Transport Type
+        type: relation
+        select: name
+        span: auto
+
+tabs:
+    fields:
+        pipes@update:
+            tab: HDPE Pipes
+            type: partial
+            path: $/bt/sales/models/stockorder/_pipes_field.htm
+        catalogue@update:
+            tab: Catalogue
+            type: partial
+            path: $/bt/sales/models/srn/_cat_field.htm
+

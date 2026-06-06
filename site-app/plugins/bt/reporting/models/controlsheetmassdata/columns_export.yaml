@@ -1,0 +1,63 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ControlSheet ID
+        searchable: true
+    csname:
+        label: ControlSheet Name
+    batch_no:
+        label:  Batch No
+        searchable: true
+    cs_created_date:
+        label: ControlSheet Created Date
+    cs_run_date:
+        label: ControlSheet Run Date
+    quote_id:
+        label: Quote No
+        searchable: true
+    description:
+        label: Description
+        searchable: true
+    ordered_units:
+        label: Ordered Units
+    ordered_priceperkg:
+        label: Ordered Price Per KG
+    ordered_unitlength:
+        label: Ordered Unit Length
+    ordered_unitweight:
+        label: Ordered Unit Weight
+    ordered_totalweight:
+        label: Ordered Total Weight
+    plan_id:
+        label: Production Plan No
+    cs_total_weight:
+        label: ControlSheet Total Weight
+    shift:
+        label: Shift
+        searchable: true
+    baila:
+        label: Production Line
+        searchable: true
+    company_name:
+        label: Company Name
+        searchable: true
+    original_order:
+        label: Original Order
+        searchable: true
+    plan_target_qty:
+        label: Production Plan Target Qty
+    count_sticker:
+        label: Sticker Counter
+    lebo_total_units_passed_qc:
+        label: Total Units Passed QC
+    lebo_total_units_produced:
+        label: Total Units Produced
+    lebo_weight_scrap_kg:
+        label: Weight Scrap
+    lebo_over_weight_kg:
+        label: Over Weight
+
+

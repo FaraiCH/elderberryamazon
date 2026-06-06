@@ -1,0 +1,116 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date_of_receipt:
+        label: Date
+        disabled: false
+        type: datepicker
+        span: left
+   
+    supplier_batch:
+        label: Supplier Batch
+        disabled: false
+        span: right
+    productname:
+        label: Product
+        disabled: false
+        select: name
+        type: relation
+        span: left
+    product_code:
+          label: Product Code
+          disabled: false
+          tab: Product
+          span: right
+    pricekg:       
+        label: Price Per kg
+        type: number
+        span: left
+        comment: Used to calculate material value
+    active:       
+        label: Active/Hide
+        type: switch
+        span: right
+    # virgin:
+    #     label: Is Virgin
+    #     disabled: false
+    #     type: dropdown
+    #     options:
+    #         1: Yes
+    #         0: No
+    #     span: left
+    # regrind:
+    #     label: Is Regrind
+    #     disabled: false
+    #     type: dropdown
+    #     options:
+    #         1: Yes
+    #         0: No
+    #     span: right
+  
+tabs:
+    fields:
+        bags:
+            label: Bags
+            disabled: false
+            type: number
+            tab: Bags & Weight
+            span: left
+        weight:
+            label: Weight in KG
+            disabled: false
+            tab: Bags & Weight
+            span: right
+        damagedbags:
+            label: Damaged Bags in KG
+            disabled: false
+            type: number
+            tab: Bags & Weight
+            span: left
+        mfi:
+          label: MFI
+          disabled: false
+          tab: MFI
+          span: left
+        mfifiles:
+          label: MFI Result Files
+          type: fileupload
+          tab: MFI
+          mode: file
+
+        pallet_number:
+            label: Number Of Palletts
+            disabled: false
+            type: number
+            tab: Delivery Details
+            span: left
+        number_of_trucks:
+            label: Number Of Trucks
+            disabled: false
+            type: number
+            tab: Delivery Details
+            span: right
+        container_number:
+            label: Container Number
+            disabled: false
+            tab: Delivery Details
+            span: left
+        truck_number_plate:
+            label: Truck Number Plate
+            disabled: false 
+            tab: Delivery Details
+            span: right
+        notes:
+            label: Notes
+            disabled: false
+            tab: Comments
+        files:
+            label: Document Files
+            type: fileupload
+            tab: Upload Files
+            mode: file

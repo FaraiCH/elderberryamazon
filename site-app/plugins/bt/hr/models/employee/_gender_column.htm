@@ -1,0 +1,15 @@
+<?php if(isset($record->gender) && $record->gender == 0): ?>
+<span >
+	    Male
+</span>
+
+<?php elseif(isset($record->gender) && $record->gender == 1): ?>
+	<span >
+	    Female
+	</span>
+<?php else: ?>
+	<span style="background: #ec3838; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+	Not Set
+	</span>
+<?php endif; ?>
+

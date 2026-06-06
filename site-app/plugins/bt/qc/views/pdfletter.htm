@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+    background: url(https://bailaerp.bt-industrial.co.za/storage/app/media/bt_new_cover.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+}
+
+.table2 td, .table2 th {
+padding: 5px;
+vertical-align: top;
+border: 1px solid #000;
+
+word-wrap: break-word;
+
+}
+
+.table2 th,.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 5px;
+    left: 0%;
+    height: 7%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 88%;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left" style="margin-left: 36px; margin-bottom: 10px">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za<br>
+                Document No: QC-RF-HDPE-037<br>
+                Version: 1
+
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+							<p>11 Barnsley St, Benoni,Johannesburg, 1501<br><b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>BT-DATAPACK-{{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="100%" border="1" cellpadding="5px" cellspacing="0">
+					<tr style="background: whitesmoke"><td><b>Datapack Name:</b></td><td>{{quote.name}}</td></tr>
+					<tr style="background: whitesmoke"><td><b>Description:</b></td><td>{{quote.summary}}</td></tr>
+					<tr style="background: whitesmoke"><td width="30%"><b>Date:</b></td><td>{{quote.created_at|date("Y-m-d")}}</td></tr>
+					<tr style="background: whitesmoke"><td><b>Client:</b></td><td>{{quote.quote.company_name}}</td></tr>
+					<tr style="background: whitesmoke"><td><b>Quote #:</b></td><td>{{quote.quote_id}}</td></tr>
+
+					{% for items in quote.quote.items %}
+						{% if items.id == quote.item_id  %}
+			     			<tr style="background: whitesmoke"><td><b>Item:</b></td><td>{{items.description}}</td></tr>
+						{% endif %}
+		     		{% endfor %}
+
+
+
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td>
+				<br><br>
+				<h2>Table of Contents</h2>
+				<table   width="100%" border="0" cellpadding="5px" cellspacing="0">
+	               	<tbody>
+				   	{% for values in dtindex %}
+		     			<tr>
+		     				<td width="30px"><b><a href="#bt-{{values.id}}">{{values.numbering}}.</a></b></td>
+		     				<td><b>{{values.altname}}</b></td>
+		     				<td width="30px"><b>{{values.altlabel}}</b></td>
+		     			</tr>
+		     		{% endfor %}
+		     		</tbody>
+	     		</table>
+
+			</td>
+		</tr>
+
+	</table>
+	<!-- <div class="page-break"></div>
+	<h2>Summary</h2>
+			   	<table  class="table2" width="100%" border="1" cellpadding="5px" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="sort-desc"><a href="/">Title</a></th>
+                        <th class="sort-desc"><a href="/">File</a></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+		     		{% for key in csarray|keys %}
+		     			<tr>
+		     				<td>Controlsheets</td>
+		     				<td>{{key}}</td>
+		     			</tr>
+		     		{% endfor %}
+		     		{% for key in batcharray|keys %}
+		     			<tr>
+		     				<td>BAC</td>
+		     				<td>{{key}}</td>
+		     			</tr>
+		     		{% endfor %}
+        		</tbody>
+       			</table> -->
+
+
+
+	{% for values in dtindex %}
+		<div class="page-break"></div>
+			<div style="padding-top: 300px">
+				<h1 style="text-align: center; font-size: 28px;">SECTION {{values.altlabel}}</h1>
+			</div>
+			<div style="padding-top: 100px">
+				<h2 id="bt-{{values.id}}" style="text-align: center">{{values.altname}}</h2>
+			</div>
+		</div>
+	{% endfor %}
+	</body>
+	</html>

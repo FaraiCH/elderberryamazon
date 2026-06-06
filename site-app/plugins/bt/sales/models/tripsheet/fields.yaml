@@ -1,0 +1,70 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    driver_name:
+        label: Driver Name
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    truck_reg_number:
+        label: Truck Reg Number
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    transporter:
+        label: Transport
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    deliveryprice:
+        label: Delivery Price
+        type: inputcurrency
+        cssClass: noezanclass col-sm-6
+        span: storm
+    vehicle:
+        label: Vehicle Type
+        placeholder: -- Select Vehicle Type --
+        tab: Vehicle Details
+        type: relation
+        select: name
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    vehicle_arrival:
+        label: Vehicle Arrival
+        type: datepicker
+        tab: Vehicle Details
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    vehicle_load_start:
+        label: Vehicle Load Start
+        type: datepicker
+        tab: Vehicle Details
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    vehicle_load_end:
+        label: Vehicle Load End
+        type: datepicker
+        tab: Vehicle Details
+        cssClass: noezanclass col-sm-6
+        span: storm
+
+    vehicle_departure:
+        label: Vehicle Departure
+        type: datepicker
+        tab: Vehicle Details
+        cssClass: noezanclass col-sm-6
+        span: storm
+    notes:
+        label: Notes
+        type: textarea
+    srns:
+        type: partial
+        path: $/bt/sales/controllers/tripsheet/_srns.htm

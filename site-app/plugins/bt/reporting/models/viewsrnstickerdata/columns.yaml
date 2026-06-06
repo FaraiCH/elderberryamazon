@@ -1,0 +1,46 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: SRN No
+        searchable: true
+
+    pickslip_id:
+        label: Pickslip No
+        searchable: true
+
+    schedule_date:
+        label: SRN Schedule Date
+        
+    quote_id:
+        label: Quote No
+        searchable: true
+
+    company_name:
+        label: Company Name
+        searchable: true
+
+    checkstatus:
+        label: Qty Check
+        type: partial
+        path: $/bt/reporting/models/viewsrnstickerdata/_checkunits.htm
+        searchable: false
+        sortable: false
+        invisible: false
+
+
+    srn_sum_unit:
+        label: Total SRN Qty
+        
+    count_sicker:
+        label: Total Sticker Count
+        
+    srn_created_by:
+        label: Created BY
+        searchable: true
+    created_at:
+        label: Dated Created
+
+

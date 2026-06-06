@@ -1,0 +1,83 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    tester@update:
+        type: partial
+        path: $/bt/qc/models/datapack/_runs.htm
+    name:
+        label: Document Name
+        searchable: true
+        span: auto
+        required: true
+
+    summary:
+        label: Document Summary
+        searchable: true
+        span: auto
+    quote_id:
+        label: Quote Number
+        type: dropdown
+        span: auto
+        placeholder: -- select a quote --
+    item_id:
+        label: Item
+        type: dropdown
+        dependsOn: quote_id
+        span: auto
+        placeholder: -- select a Item --
+    # template:
+    #   label: Template
+    #   type: fileupload
+    #   mode: file
+    #   span: auto
+    header:
+      label: header
+      type: fileupload
+      mode: file
+      span: auto
+    footer:
+      label: footer
+      type: fileupload
+      mode: file
+      span: auto
+
+    qualityplan:
+      label: Upload Quality Plan File
+      type: fileupload
+      mode: file
+      span: auto
+    _section1:
+      label: Datapack
+      type: section
+      comment: Add section to datapack output.
+    dataoptions:
+      type: repeater
+      titleFrom: index
+      form:
+          fields:
+              numbering:
+                label: Number
+                cssClass: noezanclass col-sm-3
+                span: storm
+
+              index:
+                label: Function To Include
+                type: dropdown
+                cssClass: noezanclass col-sm-3
+                span: storm
+              altname:
+                label: Altenative Name
+                type: text
+                cssClass: noezanclass col-sm-3
+                span: storm
+
+              altlabel:
+                label: Altenative Label/Letters
+                type: text
+                cssClass: noezanclass col-sm-3
+                span: storm

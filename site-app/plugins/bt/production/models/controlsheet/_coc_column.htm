@@ -1,0 +1,12 @@
+<?php if(isset($record) && isset($record->scheduleday) && isset($record->scheduleday->usedmaterials)): ?>
+	<?php
+		foreach ($record->scheduleday->usedmaterials as $key => $value) {
+			if(isset($value->receiving) && isset($value->receiving->productname) && $value->receiving->productname->name != "BT - Regrind")
+                if(isset($value->receiving->productname->cat_id))
+                    if($value->receiving->productname->cat_id == 1)
+	                    echo '<a href="/lab/coc/download/'.$value->raw_material_receivings_id.'/'.$record->scheduleday->pipe_id.'/'.$record->id.'.pdf" target="_blank" class="btn btn-secondary btn-sm">COC '.$value->receiving->productname->name.'</a>';
+	    }
+	?>
+
+
+<?php endif; ?>

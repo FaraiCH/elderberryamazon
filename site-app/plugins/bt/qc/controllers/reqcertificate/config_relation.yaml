@@ -1,0 +1,10 @@
+
+approvecoc:
+    label: Approve COC
+    view:
+        form: $/bt/qc/models/approvecoc/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/qc/models/approvecoc/fields.yaml
+        list: $/bt/qc/models/approvecoc/columns.yaml
+

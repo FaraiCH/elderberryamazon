@@ -1,0 +1,189 @@
+<div class="alert alert-primary">
+    <div class="header">
+        <h3 style="text-align: center ">Maintenance Dashboard</h3>
+    </div>
+</div>
+<?php if(isset($user)): ?>
+<?php if($user == 'manager'): ?>
+
+<div class="col-md-6 col-sm-3">
+    <div class="callout fade in callout-warning no-subheader">
+        <div class="header">
+            <h3 style="text-align: center">New Job Cards</h3>
+        </div>
+        <table class="table tabledownload_desc dt-responsive table-striped table-hover" id="tabledownload" data-control="rowlink" width="100%">
+        <thead>
+        <tr style="background: #0f0c73;">
+            <th style="text-align: center; color: whitesmoke" colspan="5">All New Job Cards</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Job Card Summary</th>
+            <th>Department</th>
+            <th>Created By</th>
+            <th>Date Created</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach($jobcardObj as $jobcard): ?>
+            <?php if(!isset($jobcard->status->id) && !isset($jobcard->assignedto->id)): ?>
+            <tr>
+                <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+                <td><?= $jobcard->job_summary ?></td>
+                <td><?= $jobcard->department->name ?></td>
+                <td><?= $jobcard->createdby->first_name ?> <?= $jobcard->createdby->last_name ?></td>
+                <td><?= date_format($jobcard->created_at, 'Y-m-d') ?></td>
+            </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="col-md-6 col-sm-3">
+    <div class="callout fade in callout-danger no-subheader">
+        <div class="header">
+            <h3 style="text-align: center">Open Job Cards</h3>
+        </div>
+        <table class="table tabledownload_desc dt-responsive table-striped table-hover" id="tabledownload" data-control="rowlink" width="100%">
+        <thead>
+        <tr style="background: #0f0c73; color: white">
+            <th style="text-align: center; color: whitesmoke" colspan="6">All Open Job Cards</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Job Card Summary</th>
+            <th>Technician</th>
+            <th>Department</th>
+            <th>Date Created</th>
+            <th>Date Opened</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($jobcardObj as $jobcard): ?>
+        <?php if(isset($jobcard->status->id) && $jobcard->status->id != 5): ?>
+            <tr>
+                <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+                <td><?= $jobcard->job_summary ?></td>
+                <?php if(isset($jobcard->assignedto->name)): ?>
+                    <td><?= $jobcard->assignedto->name ?></td>
+                <?php else: ?>
+                    <td>None</td>
+                <?php endif; ?>
+                <td><?= $jobcard->department->name ?></td>
+                <td><?= date_format($jobcard->created_at, 'Y-m-d') ?></td>
+                <?php if(isset($jobcard->jobcardapprove->created_at)): ?>
+                    <td><?= $jobcard->jobcardapprove->created_at ?></td>
+                <?php else: ?>
+                    <td></td>
+                <?php endif; ?>
+            </tr>
+        <?php endif; ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    </div>
+</div>
+<?php endif; ?>
+
+<?php if($user == 'supervisor'): ?>
+
+<div class="callout fade in callout-warning no-subheader">
+    <div class="header">
+        <h3 style="text-align: center">Open Job Cards</h3>
+    </div>
+    <table class="table tabledownload_desc dt-responsive table-striped table-hover" id="tabledownload" data-control="rowlink" width="100%">
+    <thead>
+        <tr style="background: #0f0c73; color: white">
+            <th style="text-align: center; color: whitesmoke" colspan="6">All Open Job Cards</th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Job Card Summary</th>
+            <th>Technician</th>
+            <th>Department</th>
+            <th>Date Created</th>
+            <th>Date Opened</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($jobcardObj as $jobcard): ?>
+    <?php if(isset($jobcard->status->id) && $jobcard->status->id != 5): ?>
+    <tr>
+        <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+        <td><?= $jobcard->job_summary ?></td>
+        <?php if(isset($jobcard->assignedto->name)): ?>
+        <td><?= $jobcard->assignedto->name ?></td>
+        <?php else: ?>
+        <td>None</td>
+        <?php endif; ?>
+        <td><?= $jobcard->department->name ?></td>
+        <td><?= date_format($jobcard->created_at, 'Y-m-d') ?></td>
+        <?php if(isset($jobcard->jobcardapprove->created_at)): ?>
+            <td><?= $jobcard->jobcardapprove->created_at ?></td>
+        <?php else: ?>
+            <td></td>
+        <?php endif; ?>
+    </tr>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+</div>
+<?php endif; ?>
+
+<?php if($user == 'tech'): ?>
+
+<div class="callout fade in callout-warning no-subheader">
+    <div class="header">
+        <h3 style="text-align: center">Open Job Cards</h3>
+    </div>
+<table class="table tabledownload_desc dt-responsive table-striped table-hover" id="tabledownload" data-control="rowlink" width="100%">
+    <thead>
+    <tr style="background: #0f0c73; color: white">
+        <th style="text-align: center; color: whitesmoke" colspan="6">All Open Job Cards</th>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <th>Job Card Summary</th>
+        <th>Technician</th>
+        <th>Department</th>
+        <th>Date Created</th>
+        <th>Date Opened</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($jobcardObj as $jobcard): ?>
+    <?php if(isset($jobcard->status->id) && $jobcard->status->id != 5): ?>
+    <tr>
+        <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+        <td><?= $jobcard->job_summary ?></td>
+        <?php if(isset($jobcard->assignedto->name)): ?>
+            <td><?= $jobcard->assignedto->name ?></td>
+        <?php else: ?>
+            <td>None</td>
+        <?php endif; ?>
+        <td><?= $jobcard->department->name ?></td>
+        <td><?= date_format($jobcard->created_at, 'Y-m-d') ?></td>
+        <?php if(isset($jobcard->jobcardapprove->created_at)): ?>
+            <td><?= $jobcard->jobcardapprove->created_at ?></td>
+        <?php else: ?>
+            <td></td>
+        <?php endif; ?>
+    </tr>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif; ?>
+</div>
+<?php else: ?>
+
+<div class="callout fade in callout-danger no-subheader">
+    <div class="header">
+        <h3 style="text-align: center">Job Card Dashboard is for Maintenance Staff Only</h3>
+    </div>
+<?php endif; ?>

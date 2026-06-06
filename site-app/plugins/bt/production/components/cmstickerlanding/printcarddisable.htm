@@ -1,0 +1,167 @@
+{% set userDetails = CmStickerLanding.userDetails %}
+{% set production_team = 0 %}
+{% set logistics_team = 0 %}
+{% set quote_item = '' %}
+{% for group in userDetails.groups %}
+{% if group.id == 36 %}
+{% set production_team = 1 %}
+{% endif %}
+{% if group.id == 24 %}
+{% set logistics_team = 1 %}
+{% endif %}
+{% endfor %}
+<table class="table table-striped">
+    <tr>
+        <td nowrap=""><b>Control Sheet:</b></td>
+        <td>
+            <div id="edit_control">
+                #{{printpipe.controlsheet_id}}, <b>Batch:</b> {{printpipe.controlsheets.jobcard_id}} - {{printpipe.controlsheets.batch_id}}
+            </div>
+
+        </td>
+
+    </tr>
+
+    {% if printpipe.is_scrap == 1 %}
+    <tr>
+        <td><b>Production Output:</b></td>
+        <td>Scrap</td>
+    </tr>
+    <tr>
+        <td><b>Scrap Weight:</b></td>
+        <td>{{printpipe.weight > 0?printpipe.weight:'<span class="text-danger">Not Set</span>'}} kg</td>
+    </tr>
+    <tr>
+        <td><b>Bin:</b></td>
+        <td>{{printpipe.binarea_id > 0?printpipe.binarea.area:'<span class="text-danger">Not Set</span>'}}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td><b>Pipe:</b></td>
+        <td>
+            <div id="edit_length">
+                {% if printpipe.quote_item is empty %}
+                    {{printpipe.controlsheets.jobcard.pipe.quoteitems.product.Diameter.name}}mm - {{printpipe.unit_length > 0?printpipe.unit_length|number_format(1):0}}m {{printpipe.controlsheets.jobcard.pipe.quoteitems.product.PNRating.name}}
+                    {% if production_team == 1 %}
+                        {% if printpipe.pickslip_id is empty %}
+
+                            {% if printpipe.unit_length == 0 or printpipe.unit_length is empty %}
+                            <div class="alert alert-danger">
+                                The length is 0m. Please edit the length.
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                        {% set quote_item = printpipe.quote_item %}
+                        {{quote_item.product.Diameter.name}}mm - {{printpipe.unit_length > 0?printpipe.unit_length|number_format(1):0}}m {{quote_item.product.PNRating.name}}
+                        {% if production_team == 1 %}
+                        {% if printpipe.pickslip_id is empty %}
+
+                            {% if printpipe.unit_length == 0 or printpipe.unit_length is empty %}
+                            <div class="alert alert-danger">
+                                The length is 0m. Please edit the length.
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </td>
+    </tr>
+
+    {% if printpipe.quote_item is empty %}
+        <tr>
+            <td><b>Client:</b></td><td> {{printpipe.controlsheets.jobcard.pipe.quoteitems.quote.company_name}}</td>
+        </tr>
+
+        <tr>
+            <td><b>Quote:</b></td><td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.quote.id}}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td><b>Client:</b></td><td> {{quote_item.quote.company_name}}</td>
+        </tr>
+
+        <tr>
+            <td><b>Quote:</b></td><td>{{quote_item.quote.id}}</td>
+        </tr>
+
+    {% endif %}
+    <tr>
+        <td><b> Pick Slip:</b></td>
+
+        <td>
+            <div id="edit_pickslip">
+                {{printpipe.pickslip_id > 0?printpipe.pickslip_id:'<span class="text-danger">Not Set</span>'}}
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        <td><b> SRN:</b></td><td>{{printpipe.srn_id > 0?printpipe.srn_id:'<span class="text-danger">Not Set</span>'}}
+
+    </td>
+    </tr>
+
+    <tr>
+        <td><b>Bin:</b></td>
+        <td>
+            <div id="edit_bin">
+                {{printpipe.binarea_id > 0?printpipe.binarea.area:'<span class="text-danger">Not Set</span>'}}
+
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Weight:</b></td>
+        <td>
+            <div id="edit_weight">
+                {{printpipe.weight > 0?printpipe.weight:'<span class="text-danger">Not Set</span>'}} kg
+                {% if production_team == 1 %}
+                {% if printpipe.pickslip_id is empty %}
+
+                {% if printpipe.weight == 0 or printpipe.weight is empty %}
+                <div class="alert alert-danger">
+                    The weight is 0kg. Please edit the weight.
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+            </div>
+        </td>
+    </tr>
+
+    {% if printpipe.weight_pic is not empty %}
+    <tr>
+        <td><b></b></td><td>{{printpipe.makeThumb(printpipe.weight_pic.getPath())|raw}}</td>
+    </tr>
+    {% endif %}
+
+
+    <tr>
+        <td><b>QC Status:</b></td>
+        <td>{{printpipe.qcstatus_id > 0?printpipe.qcstatus.name:'<span class="text-danger">Not Set</span>'}}</td>
+    </tr>
+
+    {% if printpipe.reason.id is not empty %}
+    <tr>
+        <td><b> QC Reason:</b></td><td>{{printpipe.reason.reason}}</td>
+    </tr>
+    {% endif %}
+    {% if printpipe.fail_pic is not empty %}
+    <tr>
+        <td><b></b></td><td>{{printpipe.makeThumb(printpipe.fail_pic.getPath())|raw}}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        {% endif %}
+
+
+</table>
+
+{% if printpipe.is_scrap != 1 %}
+{% if printpipe.release_date is not empty %}
+<div class="alert alert-success text-center" role="alert">This Item Has Been Released</div>
+{% endif %}
+{% endif %}

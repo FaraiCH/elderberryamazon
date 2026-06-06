@@ -1,0 +1,21 @@
+scopes:
+    # status:
+    #     label: Production Status
+    #     modelClass: Bt\Production\Models\Status
+    #     conditions: status_id in (:filtered)
+    #     nameFrom: name
+    quote:
+        label: Client Name
+        modelClass: Bt\Sales\Models\Client
+        scope: filterByClient
+        nameFrom: company_name
+    # fileawayyes:
+    #     label: Active
+    #     modelClass: Bt\Maintenance\Models\YesNo
+    #     conditions: fileaway in (:filtered)
+    #     nameFrom: name
+
+    caliberation_expiery_date:
+        label: Production Date
+        type: daterange
+        conditions: production_date >= ':after' AND production_date <= ':before'

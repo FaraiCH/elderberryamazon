@@ -1,0 +1,57 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+      label: ID
+      disabled: true
+      span: auto
+
+    document_name:
+      label: Document Name
+      span: auto
+
+    rev:
+      label: Rev
+      span: auto
+
+    iso_ref:
+      label: ISO Ref
+      span: auto
+
+    document_type:
+      label: Document Type
+      span: auto
+
+    area:
+      label: Area
+      span: auto
+
+    allocated_number:
+      label: Allocated Number
+      span: auto
+
+    document_number:
+      label: Document Number
+      span: auto
+
+    revised_effective_date:
+      label: Revised Effective Date
+      span: auto
+      type: datepicker
+      mode: date
+
+    first_issue_date:
+      label: First issue Date
+      span: auto
+      type: datepicker
+      mode: date
+
+    files:
+      label: Upload Files
+      type: fileupload
+      tab: Files
+      mode: file
+
+

@@ -1,0 +1,32 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    schedule_date:
+        label: Schedule Date
+        searchable: true
+    client:
+        label: Client
+        searchable: true
+    address:
+        label: Address
+        searchable: true
+    truck_number_plate:
+        label: Truck Number Plate
+        searchable: true
+    pipedescription:
+        label: Pipe Description
+        searchable: true
+    weight_kg:
+        label: Weight In KG
+        searchable: true
+    quantity:
+        label: Quantity
+        searchable: true
+    notes:
+        label: Notes
+        searchable: true

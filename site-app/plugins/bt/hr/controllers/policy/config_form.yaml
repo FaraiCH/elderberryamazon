@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Policy
+
+# Model Form Field configuration
+form: $/bt/hr/models/policy/fields.yaml
+
+# Model Class name
+modelClass: Bt\Hr\Models\Policy
+
+# Default redirect location
+defaultRedirect: bt/hr/policy
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/hr/policy/update/:id
+    redirectClose: bt/hr/policy
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/hr/policy
+    redirectClose: bt/hr/policy
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

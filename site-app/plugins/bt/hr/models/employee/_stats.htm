@@ -1,0 +1,34 @@
+<?php $stats = array(); ?>
+
+<?php if(isset($model->leave)): ?>
+<div class="text-center"><span class="icon icon-warning-sign text-warning" style="font-family: Arial"> Leave Days Taken: <?= $model->leave->sum('days') ?></span></div>
+
+<!--get leave days and put into stats-->
+    <?php foreach($model->leave as $leave): ?>
+        <?php if(isset($leave->type->name)): ?>
+             <?php $stats[$leave->type_id] = $leave->type->name; ?>
+             <?php $stats[$leave->type_id][0] = $model->leave->where('type_id', $leave->type_id)->sum('days'); ?>
+        <?php endif ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+<hr>
+<div>
+    <div class="header">
+        <?php foreach($leaves as $allLeave): ?>
+
+        <div class="col-md-4 col-sm-4"  style="border: 1px solid #2a62bc; border-radius: 10px">
+            <p><?= $allLeave->name?></p>
+            <?php if(isset($stats[$allLeave->id])): ?>
+
+            <p><?= $stats[$allLeave->id][0] ?></p>
+            <?php else: ?>
+            <p>0</p>
+            <?php endif ?>
+        </div>
+        <?php endforeach; ?>
+
+    </div>
+</div>
+
+
+

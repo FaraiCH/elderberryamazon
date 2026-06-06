@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Catalogue
+
+# Model Form Field configuration
+form: $/bt/sales/models/catalogue/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Catalogue
+
+# Default redirect location
+defaultRedirect: bt/sales/catalogue
+
+# Create page
+create:
+    title: Create Catalogue
+    redirect: bt/sales/catalogue/update/:id
+    redirectClose: bt/sales/catalogue
+
+# Update page
+update:
+    title: Edit Catalogue
+    redirect: bt/sales/catalogue
+    redirectClose: bt/sales/catalogue
+
+# Preview page
+preview:
+    title: Preview Catalogue

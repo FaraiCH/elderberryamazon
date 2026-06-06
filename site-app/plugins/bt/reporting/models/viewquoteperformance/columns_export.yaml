@@ -1,0 +1,131 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    cs_run_date_long:
+        label: Controlsheet Run Date Long
+    client:
+        label: Client
+        searchable: true
+    shift:
+        label: Shift
+    baila:
+        label: Baila
+    quote_id:
+        label: Quote No
+        searchable: true
+    description:
+        label: Description
+        searchable: true
+    class:
+        label: Class
+    diameter:
+        label: Diameter
+    ordered_units:
+        label: Ordered Unit
+    ordered_unitlength:
+        label: Ordered Unit Length
+    ordered_unitweight:
+        label: Ordered Unit Weight
+    unitproductionweight:
+        label: Unit Production Weight
+    ordered_totalweight:
+        label: Ordered Total Weight
+    totalproductionweight:
+        label: Total Production Weight
+    ordered_totalcost:
+        label: Ordered Total Cost
+        type: number
+        format: R %.2f
+    assigned_cost_zar:
+        label: Assigned Cost ZAR
+        type: number
+        format: R %.2f
+    purge_cost:
+        label: Purge Cost
+        type: number
+        format: R %.2f
+    5_p_scrap_ls_spillage_weight: 
+        label: Scrap Spillage Weight
+    5_scrap_ls_spillage_cost:
+        label: Scrap Spillage Cost
+        type: number
+        format: R %.2f
+    sales_purchase_order_value_zar:
+        label: Sales Purchase Ordered Value ZAR
+        type: number
+        format: R %.2f
+    ordered_priceperkg:
+        label: Ordered Price Per KG
+    raw_mix_cost:
+        label: Raw Mix Cost
+        type: number
+        format: R %.2f
+    total_units_produced:
+        label: Total Units Produced
+    planned_pre_pargins_zar:
+        label: Planned Pre Pargins ZAR
+        type: number
+        format: R %.2f
+    planned_pre_margins:
+        label: Planned Pre Margins
+    kgm_production:
+        label: Mass Production KG
+    pipe_weight_per_length_target:
+        label: Pipe Weight Per Length Target
+    production_total_weight:
+        label: :Production Total Weight
+    assigned_cost:
+        label: Assigned Cost
+        type: number
+        format: R %.2f
+    actual_production_cost:
+        label: Actual Production Cost
+        type: number
+        format: R %.2f
+    actual_margins_zar:
+        label: Actual Margins ZAR
+        type: number
+        format: R %.2f
+    purge_cost_zar:
+        label: Purge Cost ZAR
+        type: number
+        format: R %.2f
+    weight_scrap_kg:
+        label: Weight Scrap KG
+    lab_sample_weight_kg:
+        label: Lab Sample Weight KG
+    overrun_weight:
+        label: Overrun Weight
+    scrap_cost_zar:
+        label: Scrap Cost ZAR
+        type: number
+        format: R %.2f
+    csname:
+        label: Controlsheet Name
+    batch_no:
+        label: Batch No
+    cs_created_date:
+        label: Controlsheet Created Date
+    cs_run_date:
+        label: Controlsheet Run Date
+    plan_id:
+        label: Production Plan No
+    cs_total_weight:
+        label: Controlsheet Total Weight
+    original_order:
+        label: Original Order
+    plan_target_qty:
+        label: Plan Target Quantity
+    count_sticker:
+        label: Count Sticker
+    lebo_total_units_passed_qc:
+        label: Total Units Passed QC
+    lebo_over_weight_kg:
+        label: Over Weight KG
+    
+    

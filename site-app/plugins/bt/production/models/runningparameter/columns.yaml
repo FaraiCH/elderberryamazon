@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    btlinename:
+        label: Baila Machine
+        relation: btline
+        select: name
+
+    diametername:
+        label: Diameter
+        relation: diameter
+        select: name
+
+    pnratingname:
+        label: PN Rating
+        relation: pnrating
+        select: name
+
+    screw_speed:
+        label: Screw Speed
+    haul_speed:
+        label: Haul Off Speed
+    torque:
+        label: Torque
+    vacuum1:
+        label: Vacuum V1
+    vacuum2:
+        label: Vacuum V2

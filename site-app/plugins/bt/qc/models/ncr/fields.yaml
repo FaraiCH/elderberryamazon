@@ -1,0 +1,125 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    #     span: auto
+    type:
+        label: NCR Type
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: -- select --
+
+    department:
+        label: Department
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: -- select a department --
+
+    customer_name:
+      label: Customer Name
+      span: auto
+
+    issue_date:
+        label: Issue Date
+        span: auto
+        type: datepicker
+        mode: date
+
+    product_name:
+      label: Product Name
+      span: auto
+
+    quote:
+        label: Quote Number  
+        select: id
+        type: relation
+        span: auto
+        placeholder: -- select a quote --
+
+    shift_affect:
+        label: Shift Affect
+        span: auto
+
+    qty:
+        label: Quantity
+        type: number
+        span: auto
+
+    
+
+    isresolved:
+        label: Is Resolved?      
+        type: switch
+        on: yes
+        off: no
+        span: auto
+    
+
+    closing_date:
+        label: Closing Date
+        type: datepicker
+        mode: date
+        span: auto
+tabs: 
+    fields:
+        
+        comments_customer:
+            label: Full Description Of Non-Conformance
+            type: textarea
+            size: small
+            span: left
+            tab: Part 1
+        comments_bt:
+            label: Root Cause Of Non-Conformance
+            type: textarea
+            size: small
+            span: auto
+            tab: Part 2
+        mitigation:
+            label: Corrective Action Taken Implemented
+            type: textarea
+            size: small
+            span: auto
+            tab: Part 3
+        preventive_action:
+            label: Preventitive Action Implemented
+            type: textarea
+            size: small
+            span: auto
+            tab: Part 4
+        comments_risk:
+            label: Risks Possed By The NCR On The Business
+            type: textarea
+            size: small
+            span: auto
+            tab: Part 5
+
+        follow_up:
+            label: Follow Up
+            type: textarea
+            size: small
+            span: auto
+            tab: Part 6
+        files:
+            label: Upload Files
+            type: fileupload
+            mode: file
+            span: auto
+            tab: Files
+        ncrpreppare@update:
+            path: $/bt/qc/controllers/ncr/_prepare.htm
+            tab: Prepare By
+            type: partial
+        ncrapprove@update:
+            path: $/bt/qc/controllers/ncr/_approve.htm
+            tab: Approve By
+            type: partial
+

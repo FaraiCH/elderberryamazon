@@ -1,0 +1,63 @@
+<div class="callout fade in callout-info no-subheader">
+    <div class="header">
+        <i class="icon-info"></i>
+        <h3>Shift Inputs/Actuals</h3>
+    </div>
+</div>
+<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+                    
+                    <tr>
+                        <th >JOB CARD:</th><td class="border">
+                           
+                            <?= $formModel->jobcard_id ?>
+                        </td> 
+                        <th >CLIENT:</th><td class="border"><?= $formModel->jobcard->pipe->qpush->quote->company_name ?></td>
+                        <th   >MATERIAL: VIRGIN</th><td style="text-align: right"  class="border" nowrap="nowrap">%</td>
+                    </tr>
+                   
+
+                    <tr>
+                        <th  >DATE:</th>
+                        <td   class="border" nowrap="nowrap"><?= $formModel->opendate ?></td>
+                        <th   >TIME:</th>
+                        <td   class="border" nowrap="nowrap"><?= $formModel->opendate ?></td>
+                        <th   >MATERIAL: RECYCLE</th><td style="text-align: right"  class="border" nowrap="nowrap">%</td>
+                    </tr>
+                    
+                    <tr>
+                        <th >PRODUCT:</th><td class="border"><?= $formModel->jobcard->pipe->quoteitems->description ?></td>
+                        <th >STANDARD WEIGHT:</th><td class="border"><?= $formModel->standardweight ?></td>
+                        <th   >OPERATOR:</th><td   class="border" nowrap="nowrap">
+                            <?= $formModel->assignedto?$formModel->assignedto->name:"" ?></td>
+                    </tr>
+                    
+                    <tr>
+                        <th >PIPE LENGTH:</th><td class="border"><?= $formModel->pipelenght ?></td>
+                        <th >RAW MATERIAL:</th><td class="border"><?= $formModel->rawmaterialpe ?></td>
+                        <th >PIPE SIZE:</th><td class="border"><?= $formModel->pipesize ?></td>
+                    </tr>
+                    
+                    <tr>
+                        <th >PRODUCTION LINE:</th><td class="border"><?= $formModel->btline->name ?></td>
+
+                        <th >QUOTE #:</th><td class="border"><?= $formModel->jobcard->pipe->quoteitems->quote_id ?>
+                        </td>
+                        <th >SHIFT:</th><td class="border"><?= $formModel->shift ?></td>
+                    </tr>
+                    
+                </table>
+
+
+<br>
+<?php if ($this->user->hasAccess('bt.production.approve')): ?>
+        <?= $this->relationRender('citem') ?>
+<?php else: ?>
+        <?= $this->relationRender('citem', ['readOnly' => true]) ?>
+<?php endif ?>
+
+<div class="form-preview" style="display: flex; justify-content: center;">
+        <iframe src="/controlsheet/item/download/<?= $formModel->id ?>"
+                style="width: 100%; height: 1200px; border: 1px solid #fcfcfc;"></iframe>
+    </div>
+
+

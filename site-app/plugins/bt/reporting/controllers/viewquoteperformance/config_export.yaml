@@ -1,0 +1,7 @@
+# form: $/bt/sales/models/client/fields.yaml
+export:
+    title: Export Quote Performance
+    modelClass: Bt\Reporting\Models\QuotePerformanceExport
+    list: $/bt/reporting/models/viewquoteperformance/columns_export.yaml
+    redirect: bt/reporting/viewquoteperformance
+    fileName: Quote_Performance_Export.csv

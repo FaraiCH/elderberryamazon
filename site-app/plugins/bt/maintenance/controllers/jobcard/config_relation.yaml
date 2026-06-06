@@ -1,0 +1,8 @@
+jobcardapprove:
+    label: Approve Job Card
+    view:
+        form: $/bt/maintenance/models/jobcardapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/maintenance/models/jobcardapprove/fields.yaml
+        list: $/bt/maintenance/models/jobcardapprove/columns.yaml

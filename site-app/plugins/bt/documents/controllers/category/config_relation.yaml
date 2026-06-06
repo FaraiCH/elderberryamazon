@@ -1,0 +1,10 @@
+subcategory:
+    label: Sub Folders
+    manage:
+        form: $/bt/documents/models/sub/fields.yaml
+        list: $/bt/documents/models/sub/columns.yaml
+    view:
+        list: $/bt/documents/models/sub/columns.yaml
+        toolbarButtons: create
+
+        

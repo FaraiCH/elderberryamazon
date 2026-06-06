@@ -1,0 +1,161 @@
+<table id="scanned">
+    <thead>
+    <tr style="background: #0a3576; color: white">
+        <th colspan="15" style="text-align: center; font-size: 20px">Production VS Sales</th>
+    </tr>
+    <tr style="background: #0a3576; color: white">
+        <th>Pipe State</th>
+        <th>Quote</th>
+        <th>Client</th>
+        <th>Sticker No</th>
+        <th>Batch</th>
+        <th>Description</th>
+        <th>Sticker Scanned Date</th>
+        <th>Production Scanned</th>
+        <th>Production Date</th>
+        <th>Control Sheet Date</th>
+        <th>Weight</th>
+        <th>QC Passed</th>
+        <th>Pick Slip No</th>
+        <th>Pick Slip Date</th>
+        <th>Srn ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($stickerObj as $sticker): ?>
+        <?php
+            // Adjusting the production date by adding 2 hours
+            $production_date = date('Y-m-d H:i:s', strtotime($sticker->production_date . ' + 2 hours'));
+
+            // Adjusting the control sheet date by adding 2 hours
+            $controlsheet_date = date('Y-m-d', strtotime($sticker->controlsheets->opendate . ' + 2 hours'));
+
+            // Converting the dates to DateTime objects
+            $productionDateTime = new DateTime($production_date);
+            $controlsheetDateTime = new DateTime($controlsheet_date);
+
+            // Extracting just the date parts
+            $productionDateOnly = $productionDateTime->format('Y-m-d');
+            $controlsheetDateOnly = $controlsheetDateTime->format('Y-m-d');
+
+            // Calculate the date two days before the production date
+            $twoDaysBeforeProduction = date('Y-m-d', strtotime($productionDateOnly . ' -2 days'));
+        ?>
+
+        <?php if(isset($sticker->dispatch_date)): ?>
+            <?php if($sticker->dispatch_date >= "2024-07-29 06:00:00"): ?>
+                <tr>
+                    <td>Sale</td>
+                    <?php if(isset($sticker->quote_item->id)): ?>
+                        <td><?= $sticker->quote_item->quote_id ?></td>
+                        <td><?= $sticker->quote_item->quote->company_name ?></td>
+                    <?php else: ?>
+                        <td></td>
+                        <td></td>
+                    <?php endif; ?>
+                        <td><?= $sticker->sticker_id . "-" . $sticker->counter ?></td>
+                        <td><?= $sticker->controlsheets->jobcard_id . "-" . $sticker->controlsheets->batch_id ?></td>
+                    <?php if(isset($sticker->quote_item->id)): ?>
+                        <td>HDPE PE 100 <?= $sticker->quote_item->product->PNRating->name . " " . $sticker->quote_item->product->Diameter->name . "mm " . $sticker->unit_length . "m length" ?></td>
+                    <?php else: ?>
+                        <td></td>
+                    <?php endif; ?>
+                        <td><?= date("Y-m-d H:i:s", strtotime($sticker->sticker_scanned_date.' + 2 hours')) ?></td>
+                    <td>
+                        <?php if(isset($sticker->production_date)): ?>
+                        Yes
+                        <?php else: ?>
+                        No
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if(isset($sticker->production_date)): ?>
+                        <?= date("Y-m-d H:i:s", strtotime($sticker->production_date.' + 2 hours')) ?>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if(isset($sticker->controlsheets->opendate)): ?>
+                        <?= date("Y-m-d H:i:s", strtotime($sticker->controlsheets->opendate.' + 2 hours')) ?>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?= $sticker->weight ?>
+                    </td>
+                    <td>
+                        <?php if($sticker->qcstatus_id == 1): ?>
+                        Yes
+                        <?php else: ?>
+                        No
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $sticker->pickslip_id ?></td>
+                    <td><?= $sticker->dispatch_date ?></td>
+                    <td><?= $sticker->srn_id ?></td>
+                </tr>
+            <?php endif; ?>
+        <?php endif ?>
+        <?php if($production_date >= "2024-07-29 06:00:00"): ?>
+            <?php if($productionDateOnly == $controlsheetDateOnly || $controlsheetDateOnly >= $twoDaysBeforeProduction): ?>
+                <tr>
+                    <td>Production</td>
+                    <?php if(isset($sticker->quote_item->id)): ?>
+                    <td><?= $sticker->quote_item->quote_id ?></td>
+                    <td><?= $sticker->quote_item->quote->company_name ?></td>
+                    <?php else: ?>
+                    <td></td>
+                    <td></td>
+                    <?php endif; ?>
+                    <td><?= $sticker->sticker_id . "-" . $sticker->counter ?></td>
+                    <td><?= $sticker->controlsheets->jobcard_id . "-" . $sticker->controlsheets->batch_id ?></td>
+                    <?php if(isset($sticker->quote_item->id)): ?>
+                    <td>HDPE PE 100 <?= $sticker->quote_item->product->PNRating->name . " " . $sticker->quote_item->product->Diameter->name . "mm " . $sticker->unit_length . "m length" ?></td>
+                    <?php else: ?>
+                    <td></td>
+                    <?php endif; ?>
+                    <td><?= date("Y-m-d H:i:s", strtotime($sticker->sticker_scanned_date.' + 2 hours')) ?></td>
+                    <td>
+                        <?php if(isset($sticker->production_date)): ?>
+                        Yes
+                        <?php else: ?>
+                        No
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if(isset($sticker->production_date)): ?>
+                        <?= date("Y-m-d H:i:s", strtotime($sticker->production_date.' + 2 hours')) ?>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if(isset($sticker->controlsheets->opendate)): ?>
+                        <?= date("Y-m-d H:i:s", strtotime($sticker->controlsheets->opendate.' + 2 hours')) ?>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?= $sticker->weight ?>
+                    </td>
+                    <td>
+                        <?php if($sticker->qcstatus_id == 1): ?>
+                        Yes
+                        <?php else: ?>
+                        No
+                        <?php endif; ?>
+                    </td>
+                    <td><?= $sticker->pickslip_id ?></td>
+                    <td><?= $sticker->dispatch_date ?></td>
+                    <td><?= $sticker->srn_id ?></td>
+                </tr>
+            <?php endif ?>
+        <?php endif; ?>
+    <?php endforeach ?>
+    </tbody>
+</table>
+
+<script>
+    let table = new DataTable('#scanned', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        }
+    });
+</script>

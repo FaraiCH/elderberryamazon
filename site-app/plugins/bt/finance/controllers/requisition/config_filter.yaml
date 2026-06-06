@@ -1,0 +1,43 @@
+scopes:
+
+    project:
+        label: Company
+        modelClass: Bt\Finance\Models\Project
+        conditions: project_id in (:filtered)
+        nameFrom: name
+        # default: [1]
+    requestby:
+        label: Requested By
+        modelClass: Backend\Models\User
+        conditions: requestedby_id in (:filtered)
+        nameFrom: first_name
+    createdby:
+        label: Created By
+        modelClass: Backend\Models\User
+        conditions: created_by in (:filtered)
+        nameFrom: first_name
+    req_project:
+        label: Requisition Project
+        modelClass: Bt\Finance\Models\RequisitionProject
+        conditions: req_project_id in (:filtered)
+        nameFrom: name
+    expense:
+        label: CapEx/OpEx
+        type: group
+        conditions: expense in (:filtered)
+        modelClass: Bt\Finance\Models\Requisition
+        nameFrom: expense
+        options:
+            1: OpEx
+            2: CapEx
+    req_date:
+        label: Date
+        type: daterange
+        conditions: req_date >= ':after' AND req_date <= ':before'
+    archived:
+        label: Archived
+        type: switch
+        default: 1
+        conditions:
+            - archived <> true
+            - archived = true

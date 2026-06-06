@@ -1,0 +1,18 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+  assettype:
+    label: FilterBy Asset Type
+    type: group
+    conditions: assettype in (:filtered)
+    modelClass: Bt\factory\Models\Assettype 
+    nameFrom: assettype
+
+  brand:
+    label: FilterBy Brand
+    type: group
+    conditions: brand in (:filtered)
+    modelClass: Bt\factory\Models\Assettype 
+    nameFrom: brand

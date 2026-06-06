@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Vendor
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/vendor/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Vendor
+
+# Default redirect location
+defaultRedirect: bt/maintenance/vendor
+
+# Create page
+create:
+    title: Create Vendor
+    redirect: bt/maintenance/vendor/update/:id
+    redirectClose: bt/maintenance/vendor
+
+# Update page
+update:
+    title: Edit Vendor
+    redirect: bt/maintenance/vendor
+    redirectClose: bt/maintenance/vendor
+
+# Preview page
+preview:
+    title: Preview Vendor

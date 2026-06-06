@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Data Pack Index
+
+# Model Form Field configuration
+form: $/bt/qc/models/datapackindex/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\DataPackIndex
+
+# Default redirect location
+defaultRedirect: bt/qc/datapackindex
+
+# Create page
+create:
+    title: Create Data Pack Index
+    redirect: bt/qc/datapackindex/update/:id
+    redirectClose: bt/qc/datapackindex
+
+# Update page
+update:
+    title: Edit Data Pack Index
+    redirect: bt/qc/datapackindex
+    redirectClose: bt/qc/datapackindex
+
+# Preview page
+preview:
+    title: Preview Data Pack Index

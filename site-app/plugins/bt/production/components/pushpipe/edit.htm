@@ -1,0 +1,14 @@
+
+                  
+{% if item is not empty %}
+  <form data-request="onUpdateSchedule" data-request-data="id: {{item.id}}"  data-request-flash data-request-validate data-request-files>
+    <div class="row">
+      {% partial __SELF__ ~ '::formedit' item=item %}
+   
+    </div>
+    <button type="submit" class="btn btn-secondary btn-sm btn-block">Update</button>
+  </form>
+{% else %}
+  <div class="alert">Fetching data...</div>
+{% endif %}
+             

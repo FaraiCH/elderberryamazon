@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    datereceived:
+        label: Date
+        searchable: true
+    product:
+        label: Product
+        searchable: true
+        relation: productname
+        select: name
+    bags:
+        label: Bags
+        searchable: true 
+    kg:
+        label: kg
+        searchable: true

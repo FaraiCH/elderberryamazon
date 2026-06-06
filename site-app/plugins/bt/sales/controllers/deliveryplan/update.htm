@@ -1,0 +1,109 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sales/deliveryplan') ?>">Delivery Plan</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+
+ <h3>Supporting Files</h3>
+            <div class="control-list">
+                <table class="table data">
+                    <thead>
+                        <tr>
+                            <th class="sort-desc"><a href="/">Title</a></th>
+                            <th class="sort-desc"><a href="/">File</a></th>
+                            <th class="active sort-asc"><a href="/">Created</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                <?php $countfile = 0; ?>
+                <?php if (isset($formModel->quote)): ?>
+
+                    <?php if (isset($formModel->quote->invoice)): ?>
+
+                        <?php
+                        foreach($formModel->quote->invoice as $key=>$value){
+                            if($value->file){
+                                $countfile++;
+                                echo '<tr><td>Invoice '.$countfile.': '.$value->name.'</td><td><a target="_blank" href="'.$value->file->path.'">'.$value->file->file_name.'</a></td><td>'.$value->created_at.'</td></tr>';
+                            }
+                        }
+                    ?>
+
+
+                    <?php endif ?>
+                <?php endif ?>
+
+                <?php
+                    if (isset($formModel->quote)){
+                    foreach($formModel->quote->responses as $key=>$value){
+
+                            if($value->file){
+                                echo '<tr><td>'.(!empty($value->status)?$value->status->name:" *** Invalid Status = ".$value->quote_status_id).'</td><td>'.'<a href="'.$value->file->path.'" target="_blank">'.$value->file->file_name.'</a></td><td>'.$value->created_at.'</td></tr>';
+
+                                if($value->quote_status_id == 10 || $value->quote_status_id == 9){
+                                    $countfile++;
+                                }
+                            }
+
+                    }
+                    }
+                ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving DeliveryPlan..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving DeliveryPlan..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting DeliveryPlan..."
+                    data-request-confirm="Delete this deliveryplan?">
+
+                    <button class="btn btn-primary pull-right" data-request="onSendlNotification" data-stripe-load-indicator data-request-flash>Send Notification</button>
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/sales/deliveryplan') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/sales/deliveryplan') ?>" class="btn btn-default">Return to delivery plan list</a></p>
+
+<?php endif ?>

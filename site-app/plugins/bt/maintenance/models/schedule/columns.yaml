@@ -1,0 +1,57 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    active:
+        label: Print
+        type: partial
+        path: $/bt/maintenance/models/schedule/_active.htm
+
+    btline:
+        label: Plant Item
+        searchable: true
+        relation: btline
+        select: name
+    assignedto:
+        label: Assigned To
+        searchable: true
+        relation: assignedto
+        select: name
+        invisible: true
+        
+    job_summary:
+        label: Project Description
+        searchable: true
+    budget:
+        label: budget
+        searchable: true
+        format: R %.2f
+    scheduledate:
+        label: Schedule Date
+        searchable: true
+        type: datetime
+        format: d-m-Y
+    status:
+        label: Status
+        searchable: true
+        relation: status
+        select: name
+    actiontype:
+        label: Action/Type
+        searchable: true
+        relation: actiontype
+        select: name
+
+    machinestatus:
+        label: Machine Status
+        relation: machinestatus
+        select: name
+        invisible: true   
+
+    priority:
+      label: Priority Rate
+      invisible: true

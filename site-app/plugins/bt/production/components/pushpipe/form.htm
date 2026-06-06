@@ -1,0 +1,34 @@
+	{% set partnames = ProductionPushPipe.loadPartNames() %}
+	{% set prodlines = ProductionPushPipe.loadProductionLines() %}
+		<div class="card" >
+	  		<div class="card-header">
+	  			<h2>Update Production Details</h2>
+	  		</div>
+
+	  		<table class="table">
+	  			<tr>
+	  				<th>Start Date</th>
+	  				<th>Due Date</th>
+	  				<th>Pipe target Weight (Kg)</th>
+	  				<th>Assigned Production line</th>
+	  				<th>Production Rate Kg/h:</th>
+	  				<th>Target scrap rate</th>
+	  				<th>Target availability</th>
+	  				<th>Changeover days</th>
+	  			</tr>
+	  			<tr>
+	  				<td>{{ pipe.start_date|date("Y-m-d") }}</td>
+	  				<td>{{ pipe.due_date|date("Y-m-d") }}</td>
+	  				<td>{{pipe.pipe_target_weight}}</td>
+	  				<td>{{pipe.btline.name}}</td>
+	  				<td>{{pipe.production_rate}}</td>
+	  				<td>{{pipe.target_scrap_rate}}</td>
+	  				<td>{{pipe.target_availability}}</td>
+	  				<td>{{pipe.changeover_days}}</td>
+
+	  				
+	  			</tr>
+	  			
+	  		</table>
+		</div>
+

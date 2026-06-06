@@ -1,0 +1,15 @@
+<?php  
+    $cont = 0;
+    if(isset($record->items))
+    {
+        foreach($record->items as $i)
+        {
+                $cont += $i['quantity_return'];              
+        }
+       echo $cont;
+    }
+?>
+
+
+
+

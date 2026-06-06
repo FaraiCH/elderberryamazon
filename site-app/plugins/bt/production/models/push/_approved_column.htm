@@ -1,0 +1,15 @@
+
+<?php if(isset($record->approved->status_id) && $record->approved->status_id == 1): ?>
+	<span class="oc-icon-check text-success">
+	    Yes
+	</span>
+<?php  elseif(isset($record->approved->status_id) && $record->approved->status_id == 0): ?>
+<span class="oc-icon-minus-circle text-danger">
+	Declined
+	</span>
+<?php else: ?>
+	<span class="oc-icon-circle text-info">
+		Pending
+	</span>
+<?php endif; ?>
+

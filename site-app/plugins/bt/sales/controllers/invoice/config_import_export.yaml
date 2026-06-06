@@ -1,0 +1,7 @@
+
+export:
+    title: Export Clients
+    modelClass: Bt\Sales\Models\InvoiceMainExport
+    list: $/bt/sales/models/invoice/columns_export.yaml
+    redirect: bt/sales/invoice
+    fileName: invoice-export.csv

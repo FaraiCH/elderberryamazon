@@ -1,0 +1,61 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    category_id:
+        label: category_id 
+
+    product_id:
+        label: parent_product_id
+
+    supplier_id:
+        label: supplier_id
+
+    name:
+        label: Product Name
+    
+    product_code:
+        label: Product Code
+
+    description:
+        label: Description
+    
+   
+    price:
+        label: Selling Price
+       
+    supplierprice:
+        label: Supplier Price
+
+    gp: 
+        label: Gross Profit   
+
+      
+    active:
+        label: Is Product Active    
+
+    size:
+        label: Size
+        
+    qty: 
+        label: Qty
+        
+
+    next_price_date:
+        label: Next Price Update Date
+        
+    imageurl:
+        label: Image URL
+    
+
+
+    created_at:
+        label: Created At
+
+    updated_at: 
+        label: Updated At

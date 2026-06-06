@@ -1,0 +1,58 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    formtitle:
+      label: Form Title/Description 
+      comment: Give the form a title for what is it for
+      
+
+    form_date:
+      label: Form Date
+      span: auto
+      type: datepicker
+
+    customsno:
+      label: Customs No
+      default: 21892301
+      span: auto
+
+    toname:
+      label: To
+      default: SARS
+      span: auto
+
+    towhom:
+      label: To Whom
+      default: To whom it may concern.
+      span: auto
+
+    
+    listgoods:
+          label: List Of Goods
+          type: repeater
+          titleFrom: product
+
+          form: 
+            fields:
+                product:
+                  label: Commecial Description of Goods
+                  type: text
+                  default: HDPE PE 100 XXX mm (XX Meters)    
+
+                quantity:
+                  label: Quantity
+                  type: number
+
+                  
+    signature:
+      label: Signature on Report
+      disabled: false
+      select: concat(firstname, ' ', lastname)
+      placeholder: -- select a person signature --
+      type: relation
+      span: auto

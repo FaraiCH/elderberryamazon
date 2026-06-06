@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    employee:
+        label: employee_number
+        relation: employee
+        select: employeenumber 
+        searchable: true
+        sortable: true
+    name:
+        label: name
+        relation: employee
+        select: firstname
+        searchable: true
+        sortable: true
+
+    surname:
+        label: surname
+        relation: employee
+        select: lastname
+        searchable: true
+        sortable: true        
+    hours:
+        label: Hours
+        type: number
+    workDate:
+        label: Work Day
+        type: date 
+        searchable: true
+        sortable: true

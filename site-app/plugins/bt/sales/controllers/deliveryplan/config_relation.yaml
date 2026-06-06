@@ -1,0 +1,16 @@
+items:
+    label: Items
+    manage:
+        form: $/bt/sales/models/deliveryitem/fields.yaml
+        list: $/bt/sales/models/deliveryitem/columns.yaml
+    view:
+        list: $/bt/sales/models/deliveryitem/columns.yaml
+        toolbarButtons: create|delete
+itemscat:
+    label: Catalogue Items
+    manage:
+        form: $/bt/sales/models/deliverycatalogue/fields.yaml
+        list: $/bt/sales/models/deliverycatalogue/columns.yaml
+    view:
+        list: $/bt/sales/models/deliverycatalogue/columns.yaml
+        toolbarButtons: create|delete

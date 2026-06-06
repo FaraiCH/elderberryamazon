@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    quoteitem_id:
+        label: Ordered Item
+        type: dropdown
+        options: listFirstQuoteItems
+        # comment: Item in quote
+        placeholder: -- select a Item --
+    # pipe_id:
+    #     label: Ordered Item
+    #     type: dropdown
+    #     options: listQuoteitems
+    #     comment: Pipes list above shows matching pipe class and length with the Item In Quote
+    #     placeholder: -- select a Pipe --
+    #     dependsOn: quoteitem_id
+    units:
+        label: Units
+        type: dropdown
+        dependsOn: quoteitem_id
+
+        placeholder: -- select a Units --
+        comment: Units MAX will be automated from the "Pipe Item" selected
+    # unitdescription:
+    #     label: Unit Description
+    #     span: right

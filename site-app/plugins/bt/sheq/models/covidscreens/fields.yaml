@@ -1,0 +1,50 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    capturedate:
+      label: Date
+      type: datepicker
+      span: auto
+
+    no_screen:
+        label: Employees Screened
+        type: Number
+        span: auto
+
+
+    potential_infection:
+        label: Employees who declared symptoms
+        type: Number
+        span: auto
+
+    no_infected:
+        label: Employees Infected
+        type: Number
+        span: auto
+
+    highest_temperature:
+        label: Highest Temperature
+        type: Number
+        span: auto
+
+    notes:
+        label: Notes
+        label: Note/Comment
+        type: textarea
+
+    images:
+        label: Upload Images
+        type: fileupload
+        span: auto
+
+    files:
+        label: Upload Files
+        type: fileupload
+        tab: Upload Files
+        mode: file
+        span: auto

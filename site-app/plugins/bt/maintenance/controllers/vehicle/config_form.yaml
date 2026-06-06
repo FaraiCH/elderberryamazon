@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Vehicle
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/vehicle/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Vehicle
+
+# Default redirect location
+defaultRedirect: bt/maintenance/vehicle
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/maintenance/vehicle/update/:id
+    redirectClose: bt/maintenance/vehicle
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/maintenance/vehicle
+    redirectClose: bt/maintenance/vehicle
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

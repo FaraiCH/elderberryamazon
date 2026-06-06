@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    quotecat_id:
+        label: Catalogue Item
+        type: dropdown
+        options: listCatalogueitems
+        comment: Item linked to the production pipes. Only Item passed QC
+        placeholder: -- select a Pipe --  
+    units:
+        label: Units
+        type: dropdown
+        dependsOn: quotecat_id
+        
+        placeholder: -- select a Units --
+        comment: Units MAX will be automated from the "Pipe Item" selected

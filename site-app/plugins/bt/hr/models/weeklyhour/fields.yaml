@@ -1,0 +1,37 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    date:
+        label: Date
+        type: datepicker
+        mode: date
+        span: auto
+    total_hours_weekly:
+        label: Normal Time
+        type: number
+        span: auto
+    total_overtime_weekly:
+        label: Over-Time 1.5
+        type: number
+        span: auto
+    sat_overtime_weekly:
+        label: Saturday Over-Time
+        type: number
+        span: auto
+    sund_overtime_weekly:
+        label: Sunday Over-Time
+        type: number
+        span: auto
+    department:
+        label: Departments
+        select: name
+        type: relation
+        path: $/bt/hr/controllers/weeklyhour/_filterform.htm
+        placeholder: -- select a department --
+        span: auto
+

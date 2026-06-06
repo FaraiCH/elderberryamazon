@@ -1,0 +1,660 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 10px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 20px;
+}
+h2{
+font-size: 16px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+.border{
+	border: 1px solid #000;
+	height: 15px;
+}
+.text-success{
+	color: green
+}
+.text-danger{
+	color: red
+}
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+               	<table border="0">
+            		<tr>
+            			<td valign="top" width="45%">
+                Doc: F-QMS-9.5.53<br>
+                Effective: 2019/03/03 Rev: 1<br>
+                Prepared By: T Ntjeke<br>
+                Approved By: F Chamisa
+                </td>
+                <td valign="top" width="45%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+
+            </p>
+
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="30%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="70%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501 <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>EXTRUSION PRODUCTIONS JOB CARD #{{quote.prefix_dn?quote.prefix_dn:'BT-JC-'}}{{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="97%" border="0" cellpadding="2px" cellspacing="2px">
+
+					<tr>
+						<th >Client:</th><td class="border">{{quote.pipe.qpush.quote.company_name}}</td>
+						<th >Quote:</th><td class="border">{{quote.pipe.qpush.quote_id}}</td>
+						<th >Invoice:</th><td class="border">
+							{% if quote.pipe.qpush.invoice is not empty %}
+								{{quote.pipe.qpush.invoice.name}}
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th width="20%" >Date:</th>
+						<td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("Y-m-d") :""}}</td>
+						<th  width="20%" >Time:</th>
+						<td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("H:i") :""}}</td>
+						<th  width="20%" >Supervisor:</th><td   width="20%"class="border" nowrap="nowrap">{{quote.assignedto.name}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Product Description:</th><td class="border">{{quote.pipe.quoteitems.description}}</td>
+						<!-- <th >Order Quantity:</th><td class="border">{{quote.orderqty}}</td> -->
+						<th >Order Quantity:</th><td class="border">{{quote.pipe.quoteitems.units}}</td>
+						<th >Lengths in/M:</th><td class="border">{{quote.pipe.quoteitems.unitlength}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Override: Description:</th><td class="border">{{quote.product_description}}</td>
+						<th >Override: Quantity:</th><td class="border">{{quote.orderqty}}</td>
+						<th >Override: Lengths in/M:</th><td class="border">{{quote.lengthsinm}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Changeover time allowed:</th>
+						<td class="border">{{quote.changeover_time_allowed}}</td>
+						<th >Coiler OD:</th>
+						<td class="border">{{quote.coiler_od}}</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr><td style="background: #ccc"  colspan="6" ><b>Changeover Parts</b></td></tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Die Size:</th><td class="border">{{quote.die_size}}</td>
+						<th >Mendril Size:</th><td class="border">{{quote.mendril_size}}</td>
+						<th >Calibrator Size:</th><td class="border">{{quote.calibrator_size}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr><td style="background: #ccc"  colspan="6" ><b>Machine Pararmeters</b></td></tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th >Screw Speed:</th><td class="border">{{quote.screw_speed}}</td>
+						<th >Haull Of Speed:</th><td class="border">{{quote.haull_of_speed}}</td>
+						<th >Machine Torque:</th><td class="border">{{quote.machine_torque}}</td>
+					</tr>
+					<tr>
+						<th >Melt Pressure:</th><td>{{quote.melt_pressure}}</td>
+						<th ></th><td></td>
+						<th ></th><td></td>
+					</tr>
+					<tr>
+						<th >Vacuum Pressure 1:</th><td class="border">{{quote.vacuum_pressure1}}</td>
+						<th >Vacuum Pressure 2:</th><td class="border">{{quote.vacuum_pressure2}}</td>
+						<th >Vacuum Pressure 3:</th><td class="border">{{quote.vacuum_pressure3}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+			<tr>
+			<td >
+				<table width="97%" border="0" cellpadding="2px" cellspacing="2px">
+					<tr><td style="background: #ccc"  colspan="12" ><b>Temperature Profiles</b></td></tr>
+					<tr><td colspan="12" ><b>Barrel Zones</b></td></tr>
+					<tr>
+						{% for i in 1..7 %}
+						    <th >BZ{{ i }}</th>
+						{% endfor %}
+						<th >ADAPTOR</th>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="border">{{quote.BZ1}}</td>
+						<td class="border">{{quote.BZ2}}</td>
+						<td class="border">{{quote.BZ3}}</td>
+						<td class="border">{{quote.BZ4}}</td>
+						<td class="border">{{quote.BZ5}}</td>
+						<td class="border">{{quote.BZ6}}</td>
+						<td class="border">{{quote.BZ7}}</td>
+						<td class="border">{{quote.ADAPTOR}}</td>
+						<td></td>
+					</tr>
+
+					<!-- <tr>
+						{% for i in 1..12 %}
+						    <td><br></td>
+						{% endfor %}
+					</tr> -->
+					<tr><td colspan="12" ><b>Die zones</b></td></tr>
+					<tr>
+						{% for i in 1..12 %}
+						    <th  width="8%" >DZ{{ i }}</th>
+						{% endfor %}
+					</tr>
+					<tr>
+						<td class="border">{{quote.DZ1}}</td>
+						<td class="border">{{quote.DZ2}}</td>
+						<td class="border">{{quote.DZ3}}</td>
+						<td class="border">{{quote.DZ4}}</td>
+						<td class="border">{{quote.DZ5}}</td>
+						<td class="border">{{quote.DZ6}}</td>
+						<td class="border">{{quote.DZ7}}</td>
+						<td class="border">{{quote.DZ8}}</td>
+						<td class="border">{{quote.DZ9}}</td>
+						<td class="border">{{quote.DZ10}}</td>
+						<td class="border">{{quote.DZ11}}</td>
+						<td class="border">{{quote.DZ12}}</td>
+					</tr>
+					<!-- <tr>
+						{% for i in 1..12 %}
+						    <td><br></td>
+						{% endfor %}
+					</tr> -->
+					<tr>
+						{% for i in 13..24 %}
+						    <th >DZ{{ i }}</th>
+						{% endfor %}
+					</tr>
+					<tr>
+						<td class="border">{{quote.DZ13}}</td>
+						<td class="border">{{quote.DZ14}}&nbsp;</td>
+						<td class="border">{{quote.DZ15}}</td>
+						<td class="border">{{quote.DZ16}}</td>
+						<td class="border">{{quote.DZ17}}</td>
+						<td class="border">{{quote.DZ18}}</td>
+						<td class="border">{{quote.DZ19}}</td>
+						<td class="border">{{quote.DZ20}}</td>
+						<td class="border">{{quote.DZ21}}</td>
+						<td class="border">{{quote.DZ22}}</td>
+						<td class="border">{{quote.DZ23}}</td>
+						<td class="border">{{quote.DZ24}}</td>
+					</tr>
+
+
+
+
+
+				</table>
+			</td>
+		</tr>
+
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="97%" border="0" cellpadding="2px" cellspacing="2px">
+
+
+					<tr>
+						<th width="30%" >Printing requirments:</th>
+						<td  width="70%" class="border" nowrap="nowrap">{{quote.printing_requirments}}</td>
+
+					</tr>
+
+					<tr>
+						<td></td>
+						<td></td>
+
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="97%" border="0" cellpadding="2px" cellspacing="2px">
+					<tr>
+						<th width="25%" >Production Start Date:</th>
+						<td  width="25%" class="border" nowrap="nowrap">{{quote.production_startdatetime?item.production_startdatetime|date("Y-m-d") :""}}</td>
+
+
+						<th  width="25%" >Time:</th>
+						<td  width="25%" class="border" nowrap="nowrap">{{quote.production_startdatetime?item.production_startdatetime|date("H:i") :""}}</td>
+
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th width="25%" >Production Finished Date:</th>
+						<td  width="25%" class="border" nowrap="nowrap">{{quote.production_finishdatetime?item.production_finishdatetime|date("Y-m-d") :""}}</td>
+
+
+						<th  width="25%" >Time:</th>
+						<td  width="25%" class="border" nowrap="nowrap">{{quote.production_finishdatetime?item.production_finishdatetime|date("H:i") :""}}</td>
+
+					</tr>
+
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+
+
+
+		<tr>
+			<td>
+				<div>
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Materials To Use:</h4>
+					{% set totaldayvalue = 0 %}
+					{% set totaldaykg = 0 %}
+					{% if quote.materials is not empty  %}
+						<table style="width: 100%" class="table">
+							<tr>
+								<th>Product Name</th>
+								<th>Batch</th>
+								<th width="100">Weight</th>
+								<th>Comment</th>
+							</tr>
+							{% for use in quote.materials %}
+							<tr>
+								<td>{{use.recieve.productname.name}}</td>
+								<td>{{use.recieve.supplier_batch}}</td>
+								<td>{{use.kg}}
+								{% set totaldaykg = totaldaykg + use.kg %} kg</td>
+
+								<td>{{use.note}}</td>
+
+							</tr>
+							{% endfor %}
+							<tfoot>
+								<tr>
+									<th colspan="2"></th>
+									<th>{{totaldaykg}} kg</th>
+
+									<th></th>
+								</tr>
+							</tfoot>
+						</table>
+					{% else %}
+						No Items
+					{% endif %}
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 5px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Approved By Management:
+					{% if quote.jobcardapprove is not empty and quote.jobcardapprove.status_id == 1 %}
+
+                                <span class="oc-icon-check text-success">
+                                    Yes
+                                </span>
+
+                            {% else %}
+                                <span class="oc-icon-circle text-danger">
+                                No
+                                </span>
+                            {% endif %}
+                            </h4>
+
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 5px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Operator:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 5px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Manager:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<br>
+			<h2 style="background: #ececec; text-align: center; padding: 4px">Spec check start up</h2>
+			<div style="width: 100%; display: block">
+			<table width="95%" border="1"  ca cellpadding="2px" cellspacing="0">
+				<tr>
+					<td width="30%"><b>Time start and stop</b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="30%"><b>Motor speed(screw)</b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+
+				</tr>
+				<tr>
+					<td width="30%"><b>Haull off speed</b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+
+				</tr>
+				<tr>
+					<td width="30%"><b>Torque</b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+
+				</tr>
+				<tr>
+					<td width="30%" align="right"><b>
+                        {% for item in quote.controlsheets %}
+                        <span style="float: left">(Max Wall: {{item.maxwall}})</span>
+                        {% endfor %}
+                        Max wall: 1
+
+                    </b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+				</tr>
+
+				{% for i in 2..7 %}
+					<tr>
+						<td width="30%" align="right"><b>{{i}}</b></td>
+						<td width="17.5%">&nbsp;</td>
+						<td width="17.5%">&nbsp;</td>
+						<td width="17.5%">&nbsp;</td>
+						<td width="17.5%">&nbsp;</td>
+					</tr>
+				{% endfor %}
+
+
+				<tr>
+					<td width="30%" align="right"><b>
+                        {% for item in quote.controlsheets %}
+                        <span style="float: left">(Min Wall: {{item.minwall}})</span>
+                        {% endfor %}
+
+                        Min wall: 8</b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+
+				</tr>
+				<tr>
+					<td width="30%" align="right"><b>Ave wall:</b></td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+					<td width="17.5%">&nbsp;</td>
+
+				</tr>
+
+
+			</table>
+		</div>
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 5px;">
+
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>SUPERVISOR NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+						<tr>
+							<td>NAME OF QC:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+
+
+
+	</table>
+
+
+	</body>
+	</html>

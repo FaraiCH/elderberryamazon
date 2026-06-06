@@ -1,0 +1,407 @@
+{% if response is not empty  %}
+	{% set total = 0 %}
+	{% set datagraph_kg = [] %}
+	{% set datagraph_units = [] %}
+	{% set seriesgraph_kg = [] %}
+
+	{% set t_target_units_produced = [] %}
+	{% set t_total_units_produced = [] %}
+	{% set t_total_units_passed_qc = [] %}
+	{% set t_total_units_fail_qc = [] %}
+	{% set t_Running_total_of_failed_pipes = [] %}
+	{% set t_Running_total_of_pipes_produced = [] %}
+	{% set t_Running_total_of_passed_Units = [] %}
+
+	{% set t_target_kg_processed = [] %}
+	{% set t_total_kg_processed = [] %}
+	{% set t_weight_scrap_kg = [] %}
+	{% set t_Running_total_of_weight_processed_kg = [] %}
+	{% set t_over_weight_kg = [] %}
+	{% set t_Wasted_material_kg = [] %}
+	
+	
+	
+	
+	
+	
+
+	<div style="width: 100%; overflow: auto;">
+		<table class="table table-striped table-bordered table-sm table-hover" id="tabledownload">
+			<thead>
+				<tr>
+					<th colspan="3"></th>
+					
+					<th class="text-center" colspan="2">TARGETS</th>
+					<th class="text-center" colspan="14">ACTUAL</th>
+					<th class="text-center" colspan="14">DEVIATIONS</th>
+				</tr>
+				<tr>
+					<th></th>
+					<th>Day</th>
+					<th>Date</th>
+					<th>Target KG Processed</th>
+					<th>Target Units Produced</th>
+					<th>Total KG processed</th>
+					<th>Total Units produced</th>
+					<th>Total units passed QC</th>
+					<th>Total units failed QC</th>
+					<th>Running total of weight processed (Kg) {% set Running_total_of_weight_processed_kg =0  %}</th>
+					<th>Running total of pipes produced {% set Running_total_of_pipes_produced =0  %}</th>
+					<th>Running total of passed units{% set Running_total_of_passed_Units =0  %}</th>
+					<th>Running total of failed pipes{% set Running_total_of_failed_pipes =0  %}</th>
+					<th>Weight of scrap (Kg)</th>
+					<th>Scrap %</th>
+					<th>Over weight (Kg)</th>
+					<th>Over weight %</th>
+					<th>Wasted material (Kg)</th>
+					<th>Waste %</th>
+					<th>Deviation on KG Processed</th>
+					<th>Deviation on units produced</th>
+					<th>Reason for Deviation on KG processed</th>
+					<th>Reason for QC Fail</th>
+					<th>Reason for overweight</th>
+					<th>Recovery plan or general notes</th>
+					<th>Material used</th>
+					<th>Batch numbers</th>
+					<th>Running hours</th>
+					<th>Utilisation</th>
+					<th>Avilability</th>
+					<th>Maintenance/technical issues to report</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+		        {% for item in response %}
+
+		        	
+
+					<tr class="{{(item.total_kg_processed > 0)?'':'text-warning'}}">
+		        		<td>
+		        			<a class="dropdown-item" href="#" data-toggle="modal" data-target="#editModal"  data-request="onGetWallEdit"
+		    data-request-data="id: {{item.id}}"
+		    data-request-update="'{{__SELF__ ~ '::edit'}}': '#wall-edit'"><i class="fa fa-edit"></i></a>
+						</td>
+						<td>{{item.production_days}}</td>
+						<td nowrap="nowrap" >{{item.production_date}}</td>
+						<td>{{item.target_kg_processed}}</td>
+						<td>{{item.target_units_produced}}</td>
+						<td>{{item.total_kg_processed}}</td> 
+						<td>{{item.total_units_produced}}</td> 
+						<td>{{item.total_units_passed_qc}}</td> 
+						<td>{{item.total_units_produced - item.total_units_passed_qc}}</td> 
+						<td>{% set Running_total_of_weight_processed_kg = Running_total_of_weight_processed_kg + item.total_kg_processed %}
+						{{Running_total_of_weight_processed_kg}}</td> 
+						<td>
+							{% set Running_total_of_pipes_produced = Running_total_of_pipes_produced + item.total_units_produced %}
+						{{Running_total_of_pipes_produced}}
+
+						</td> 
+						<td>{% set Running_total_of_passed_Units = Running_total_of_passed_Units + item.total_units_passed_qc %}
+						{{Running_total_of_passed_Units}}</td> 
+						<td>
+						{% set Running_total_of_failed_pipes = Running_total_of_failed_pipes + (item.total_units_produced - item.total_units_passed_qc) %}
+						{{Running_total_of_failed_pipes}}
+					</td> 
+						<td>{{item.weight_scrap_kg}}</td> 
+						<td>{{(item.total_kg_processed > 0)?((item.weight_scrap_kg*100)/item.total_kg_processed)|number_format(1, '.', ','):0}}%</td> 
+						<td>{{item.over_weight_kg}}</td> 
+						<td>{{(item.total_kg_processed > 0)?((item.over_weight_kg*100)/item.total_kg_processed)|number_format(1, '.', ','):0}}%</td> 
+						<td>{{item.weight_scrap_kg + item.over_weight_kg}}</td> 
+						<td>{{(item.total_kg_processed > 0)?(((item.weight_scrap_kg + item.over_weight_kg)*100)/item.total_kg_processed)|number_format(1, '.', ','):0}}%</td> 
+						<td>{{item.target_kg_processed - item.total_kg_processed}}</td> 
+						<td>{{item.target_units_produced-item.total_units_produced}}</td> 
+						<td>{{item.reason_deviation_processed}}</td>
+						<td>{{item.reason_qc_Fail}}</td>
+						<td>{{item.reason_overweight}}</td> 
+						<td>{{item.recovery_plan}}</td>
+						<td>{{item.material_used}}</td>
+						<td>{{item.batch_numbers}}</td> 
+						<td>{{item.running_hours}}</td> 
+						<td>{{(item.target_units_produced > 0)?((item.total_units_produced*100)/item.target_units_produced)|number_format(0, '.', ','):0}}%</td> 
+						<td>{{(item.running_hours > 0)?((item.running_hours*100)/24)|number_format(1, '.', ','):0}}%</td> 
+						<td>{{item.maintenance}}</td> 
+		             </tr>
+
+		             {% set dataline_k = {
+		        		year:item.production_date,
+		        		park1:item.target_kg_processed,
+		        		park2:item.total_kg_processed,
+		        		park3:Running_total_of_weight_processed_kg,		        		
+		        		park4:item.weight_scrap_kg
+
+		        		} %}
+
+		        	{% set dataline_u = {
+		        		year:item.production_date,
+		        		park1:item.target_units_produced,
+		        		park2:item.total_units_produced,
+		        		park3:(item.total_units_produced - item.total_units_passed_qc)
+
+		        		} %}
+
+		        	{% if item.total_kg_processed > 0 %}
+			        	{% set usedate = item.production_date|date("m/d/Y 00:00:00", false) %}
+			        	{% set usedate = (usedate| date('U')) *1000 + 2*3600*1000 %}
+
+			        	{% set t_target_units_produced = t_target_units_produced|merge([[usedate, item.target_units_produced]]) %}
+			        	{% set t_total_units_produced = t_total_units_produced|merge([[usedate, item.total_units_produced]]) %}
+			        	{% set t_total_units_passed_qc = t_total_units_passed_qc|merge([[usedate, item.total_units_passed_qc]]) %}
+			        	{% set t_total_units_fail_qc = t_total_units_fail_qc|merge([[usedate, (item.total_units_produced - item.total_units_passed_qc)]]) %}
+
+			        	{% set t_Running_total_of_failed_pipes = t_Running_total_of_failed_pipes|merge([[usedate, Running_total_of_failed_pipes]]) %}
+
+			        	{% set t_Running_total_of_pipes_produced = t_Running_total_of_pipes_produced|merge([[usedate, Running_total_of_pipes_produced]]) %}
+
+			        	{% set t_Running_total_of_passed_Units = t_Running_total_of_passed_Units|merge([[usedate, Running_total_of_passed_Units]]) %}
+
+			        	{% set t_target_kg_processed = t_target_kg_processed|merge([[usedate, item.target_kg_processed]]) %}
+			        	{% set t_total_kg_processed = t_total_kg_processed|merge([[usedate, item.total_kg_processed]]) %}
+			        	{% set t_weight_scrap_kg = t_weight_scrap_kg|merge([[usedate, item.weight_scrap_kg]]) %}
+
+			        	{% set t_over_weight_kg = t_over_weight_kg|merge([[usedate, item.over_weight_kg]]) %}
+
+			        	{% set t_Wasted_material_kg = t_Wasted_material_kg|merge([[usedate, (item.weight_scrap_kg + item.over_weight_kg)]]) %}
+
+			        	
+			        	
+
+
+			        	{% set t_Running_total_of_weight_processed_kg = t_Running_total_of_weight_processed_kg|merge([[usedate, Running_total_of_weight_processed_kg]]) %}
+
+
+
+
+			        {% endif%}
+
+		        	
+		        	
+		        		
+
+		             {% set datagraph_units = datagraph_units| merge([dataline_u]) %}
+		             
+		        {% endfor %} 
+	        </tbody>
+		       
+    </table>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-edit"></i> Edit Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          	<div class="modal-body">
+          		<div id="wall-edit">{% partial __SELF__ ~ '::edit'  %}</div>
+
+      		</div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+            
+            <input type="hidden" name="walltype_id" value="2">
+          </div>
+        </div>
+      </div>
+  </div>
+  
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}
+
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-edit"></i> New Schedule Day</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          	<div class="modal-body">
+
+          		<form data-request="onNewSchedule" data-request-flash data-request-validate data-request-files>
+			    <div class="row">
+			    	<div class="col-sm-12">
+					    <span class="text-danger" data-validate-for="name"></span>
+					    <div class="input-group mb-3">
+					      <div class="input-group-prepend">
+					        <span class="input-group-text label-small" id="basic-at" >Production Day</span>
+					      </div>
+					      <input id="production_days" name="production_days" required="required" type="text" class="form-control mt-0" >
+					    </div>
+					</div>
+					<div class="col-sm-12">
+					    <span class="text-danger" data-validate-for="name"></span>
+					    <div class="input-group mb-3">
+					      <div class="input-group-prepend">
+					        <span class="input-group-text label-small" id="basic-at" >Production Date</span>
+					      </div>
+					      <input id="production_date" name="production_date" required="required"  value='{{ now|date("Y-m-d") }}' type="text" class="form-control mt-0 datepicker2" >
+					    </div>
+					</div>
+
+			      {% partial __SELF__ ~ '::formedit' item=null %}
+			   
+			    </div>
+			    <button type="submit" class="btn btn-secondary btn-sm btn-block">Update</button>
+			  </form>
+
+      		</div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+            
+            <input type="hidden" name="walltype_id" value="2">
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+      {% put scripts %}
+			
+			<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+            <script type="text/javascript">
+                $(window).on('load',function(){
+                  
+
+					Highcharts.chart('chart_unit', {
+					    title: {
+					        text: 'PIPE PRODUCTION NO: {{pipe_id}}'
+					    },
+
+					    subtitle: {
+					        text: 'Target Units Vs Units Produced'
+					    },
+
+						xAxis: {
+					        type: 'datetime'
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'Units'
+					        }
+					    },
+
+					    series: [{
+					        name: 'Target Units',
+					        data: {% autoescape false %}{{t_target_units_produced|json_encode()}}{% endautoescape %}
+					    }, {
+					        name: 'Total Produced',
+					        data: {% autoescape false %}{{t_total_units_produced|json_encode()}}{% endautoescape %}
+					    }, {
+					        name: 'Total Passed QC',
+					        data: {% autoescape false %}{{t_total_units_passed_qc|json_encode()}}{% endautoescape %}
+					    }, {
+					        name: 'Total Failed QC',
+					        data: {% autoescape false %}{{t_total_units_fail_qc|json_encode()}}{% endautoescape %}
+					    }, {
+					        name: 'Running Total Of Failed Pipes',
+					        data: {% autoescape false %}{{t_Running_total_of_failed_pipes|json_encode()}}{% endautoescape %}
+					    }, {
+					        name: 'Running Total Of Passed Units',
+					        data: {% autoescape false %}{{t_Running_total_of_passed_Units|json_encode()}}{% endautoescape %}
+					   	}, {
+					        name: 'Running Total Of Pipes Produced',
+					        data: {% autoescape false %}{{t_Running_total_of_pipes_produced|json_encode()}}{% endautoescape %}
+					    }
+
+
+					    ],
+
+					    plotOptions: {
+					        series: {
+					            marker: {
+					                enabled: false
+					            }
+					        }
+					    },
+					    
+
+					    responsive: {
+					        rules: [{
+					            condition: {
+					                maxWidth: 500
+					            },
+					            chartOptions: {
+					                legend: {
+					                    layout: 'horizontal',
+					                    align: 'center',
+					                    verticalAlign: 'bottom'
+					                }
+					            }
+					        }]
+					    }
+
+					});
+
+					Highcharts.chart('chart_kg', {
+					    title: {
+					        text: 'PIPE PRODUCTION NO: {{pipe_id}}'
+					    },
+
+					    subtitle: {
+					        text: 'Target KG Vs KG Produced'
+					    },
+
+						xAxis: {
+					        type: 'datetime'
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'KG'
+					        }
+					    },
+
+					    series: [{
+					        name: 'Target Processed',
+					        data: {% autoescape false %}{{t_target_kg_processed|json_encode()}}{% endautoescape %}
+					    }, {
+					        name: 'Total Processed',
+					        data: {% autoescape false %}{{t_total_kg_processed|json_encode()}}{% endautoescape %}
+					    
+					    }, {
+					        name: 'Wasted Material',
+					        data: {% autoescape false %}{{t_Wasted_material_kg|json_encode()}}{% endautoescape %}
+					    }
+
+					    ],
+
+					    plotOptions: {
+					        series: {
+					            marker: {
+					                enabled: false
+					            }
+					        }
+					    },
+
+
+					    responsive: {
+					        rules: [{
+					            condition: {
+					                maxWidth: 500
+					            },
+					            chartOptions: {
+					                legend: {
+					                    layout: 'horizontal',
+					                    align: 'center',
+					                    verticalAlign: 'bottom'
+					                }
+					            }
+					        }]
+					    }
+
+					});
+            });
+            </script>
+        {% endput %}

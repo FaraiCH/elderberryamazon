@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    type:
+        label: Stock Type
+        searchable: true
+        relation: type
+        select: name
+    name:
+        label: Pipe Description
+        searchable: true
+    pipelenghts:
+        label: Unit Length
+        searchable: false
+    datestored:
+        label: Date Stores
+        searchable: true
+    quantity:
+        label: quantity
+        searchable: true

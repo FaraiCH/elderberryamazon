@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: View Scrap Data
+
+# Model Form Field configuration
+form: $/bt/reporting/models/viewscrapdata/fields.yaml
+
+# Model Class name
+modelClass: Bt\Reporting\Models\ViewScrapData
+
+# Default redirect location
+defaultRedirect: bt/reporting/viewscrapdata
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/reporting/viewscrapdata/update/:id
+    redirectClose: bt/reporting/viewscrapdata
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/reporting/viewscrapdata
+    redirectClose: bt/reporting/viewscrapdata
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

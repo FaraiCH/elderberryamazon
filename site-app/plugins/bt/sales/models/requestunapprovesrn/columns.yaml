@@ -1,0 +1,52 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    created_by:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    # id:
+    #     label: ID
+    #     searchable: true
+    download:
+        label: Stock Release Note Unapproval Form
+        type: partial
+        path: $/bt/sales/models/requestunapprovesrn/_download.htm
+        clickable: false
+
+    reason:
+        label: Reason for unapproval
+
+        
+
+    is_used:
+        label: Is Used
+        type: switch
+
+    downloadsigned:
+        label: Download Signed File
+        type: partial
+        path: $/bt/sales/models/requestunapprovesrn/_downloadfile.htm
+        clickable: false
+    
+    # updated_by:
+    #     label: Updated By
+    #     searchable: true
+    #     relation: updatedby
+    #     select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    # updated_at:
+    #     label: Date Updated
+    #     format: d-m-Y
+    #     type: date
+    

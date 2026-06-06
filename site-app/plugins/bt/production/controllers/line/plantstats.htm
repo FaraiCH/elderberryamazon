@@ -1,0 +1,101 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/production/line') ?>">Line</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+ <div class="callout fade in callout-info ">
+  
+  <div class="content">
+
+    <div class="card" style="margin-top: 20px">
+      <div id="chart_kg" style="height: 400px;"></div>
+    </div>
+    <p>Note: Actuals are calculated from the "Material Used" tab under "Production Schedule" managed my Production team.</p>
+
+  
+  </div>
+  
+</div>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+            <script type="text/javascript">
+                $(window).on('load',function(){
+                  
+
+         
+
+          Highcharts.chart('chart_kg', {
+            chart: {
+                        type: 'column'
+                    },
+              title: {
+                  text: 'Plant Utilisation'
+              },
+
+              subtitle: {
+                  text: '2020 Statistics (Capacity Vs Actual)'
+              },
+
+            xAxis: {
+                  type: 'datetime'
+              },
+              yAxis: {
+                  title: {
+                      text: 'KG'
+                  },
+                  plotLines: [{
+                    value: <?= $avarage ?>,
+                    color: 'gray',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'Avarage <?= number_format($avarage) ?> kg'
+                    }
+                }, {
+                    value: <?= $capacity ?>,
+                    color: 'gold',
+                    dashStyle: 'shortdash',
+                    width: 2,
+                    label: {
+                        text: 'Potential Capacity <?= number_format($capacity) ?> kg'
+                    }
+                }]
+              },
+
+              series: <?= json_encode($stats) ?> ,
+
+              plotOptions: {
+                  series: {
+                      marker: {
+                          enabled: false
+                      }
+                  }
+              },
+
+
+              responsive: {
+                  rules: [{
+                      condition: {
+                          maxWidth: 500
+                      },
+                      chartOptions: {
+                          legend: {
+                              layout: 'horizontal',
+                              align: 'center',
+                              verticalAlign: 'bottom'
+                          }
+                      }
+                  }]
+              }
+
+          });
+            });
+            </script>
+
+

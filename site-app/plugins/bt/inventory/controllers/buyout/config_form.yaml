@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Buy Out
+
+# Model Form Field configuration
+form: $/bt/inventory/models/buyout/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\BuyOut
+
+# Default redirect location
+defaultRedirect: bt/inventory/buyout
+
+# Create page
+create:
+    title: Create Buy Out
+    redirect: bt/inventory/buyout/update/:id
+    redirectClose: bt/inventory/buyout
+
+# Update page
+update:
+    title: Edit Buy Out
+    redirect: bt/inventory/buyout
+    redirectClose: bt/inventory/buyout
+
+# Preview page
+preview:
+    title: Preview Buy Out

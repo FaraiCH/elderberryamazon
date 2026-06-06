@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+#        span: storm
+#        cssClass: col-sm-6 col-md-6
+    name:
+        label: Department
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    short_name:
+        label: Short Name
+        span: storm
+        cssClass: col-sm-6 col-md-6
+#    emps_in_department:
+#        label: No of Employees in Departments
+#        span: storm
+#        type: number
+#        cssClass: col-sm-6 col-md-6
+#    total_hours:
+#        label: Total Hours Allocated
+#        span: storm
+#        type: number
+#        cssClass: col-sm-6 col-md-6

@@ -1,0 +1,16 @@
+items:
+    label: Pipe
+    manage:
+        form: $/bt/sales/models/fabricationitem/fields.yaml
+        list: $/bt/sales/models/fabricationitem/columns.yaml
+    view:
+        list: $/bt/sales/models/fabricationitem/columns.yaml
+        toolbarButtons: create|delete
+fabapprove:
+    label: Approve Fabrication
+    view:
+        form: $/bt/sales/models/fabapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/fabapprove/fields.yaml
+        list: $/bt/sales/models/fabapprove/columns.yaml

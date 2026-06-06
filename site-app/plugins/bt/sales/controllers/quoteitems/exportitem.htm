@@ -1,0 +1,55 @@
+<?= Form::open(['class' => 'layout']) ?>
+    <div class="layout-row">
+        <div class="row">
+            <div class="form-group col-md-4" style="padding-bottom: 20px">
+                <label for="quote">Quote No: </label>
+                <select id="quote" name="quote" class="form-control custom-select">
+                    <option value="0">- Select A Quote -</option>
+                    <?php foreach($quotelist as $quote): ?>
+                        <option value="<?= $quote->id ?>"><?= $quote->id ?> | <?= $quote->company_name ?> </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+
+            <div class="form-group col-md-4" style="padding-top: 25px">
+                <button type="submit" data-request="onDateFilter"  class="btn btn-primary">Apply Filters</button>
+            </div>
+            <div class="col-md-12">
+                <p>If you do not select a quote. You will get data for quote items starting from January 2023</p>
+                <p>If you do not apply filters, your changes won't be saved. Changes will also revert after 30 minutes.</p>
+            </div>
+        </div>
+    </div>
+<br>
+<div class="form-buttons">
+    <a href="/backend/bt/sales/export/quote/items"
+        data-keyboard="false"
+        class="btn btn-primary">
+        Export records
+    </a>
+</div>
+
+<?= Form::close() ?>
+
+<script>
+    var startpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#quoteend');
+    var endpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#quotestart');
+</script>

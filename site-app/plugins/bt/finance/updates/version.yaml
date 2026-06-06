@@ -1,0 +1,50 @@
+1.0.1:
+- First version of Finance
+- create_requisitions_table.php
+- create_req_line_approves_table.php
+- create_req_manager_approves_table.php
+- create_req_finance_approves_table.php
+- create_projects_table.php
+1.0.2:
+- Card Records
+- create_card_records_table.php
+1.0.3:
+- Petty Cash
+- create_petty_cashes_table.php
+1.0.4:
+- payment type
+- create_payment_types_table.php
+1.0.5:
+- update payment
+1.0.5b:
+- update petty
+1.0.6:
+- update payment
+1.0.7:
+- Petty Cash approve
+- create_petty_cash_approves_table.php
+1.0.8:
+- update
+1.0.9:
+- update payment
+1.0.9b:
+- update
+1.0.10:
+- Update Req
+1.1.0:
+- Create Requisition
+- create_requisition_projects_table.php
+1.1.1:
+- Create Currency Type
+- create_currency_types_table.php
+1.1.2:
+  - Create Request PO
+  - create_request_p_os_table.php
+  - create_response_p_os_table.php
+1.1.4:
+- Make Seeder
+- SeederTest.php
+1.1.3:
+- Approved Petty Line Manager
+- create_petty_line_approves_table.php
+

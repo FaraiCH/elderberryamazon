@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: View Quote Performance
+
+# Model Form Field configuration
+form: $/bt/reporting/models/viewquoteperformance/fields.yaml
+
+# Model Class name
+modelClass: Bt\Reporting\Models\ViewQuotePerformance
+
+# Default redirect location
+defaultRedirect: bt/reporting/viewquoteperformance
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/reporting/viewquoteperformance/update/:id
+    redirectClose: bt/reporting/viewquoteperformance
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/reporting/viewquoteperformance
+    redirectClose: bt/reporting/viewquoteperformance
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

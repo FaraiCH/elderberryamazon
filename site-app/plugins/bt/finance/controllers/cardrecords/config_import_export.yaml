@@ -1,0 +1,6 @@
+export:
+    title: Export Card Records
+    modelClass: Bt\Finance\Models\CardRecordsExport
+    list: $/bt/finance/models/cardrecords/columns_export.yaml
+    redirect: bt/finance/cardrecords
+    fileName: Card_Records.csv

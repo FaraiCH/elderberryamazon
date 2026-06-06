@@ -1,0 +1,118 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    idno:
+        label: ID Number
+    employment_date:
+        label: Employee Date
+
+    employeenumber:
+        label: Employee Number
+        searchable: true
+    is_user_active:
+        label: Active?
+
+    firstname:
+        label: First Name
+        searchable: true
+    secondname:
+        label: Second Name
+    lastname:
+        label: Last Name
+        searchable: true
+    ethnicity:
+        relation: ethnicity
+        select: name
+        label: Ethnicity
+    gender:
+        label: Gender
+    email:
+        label: email
+        invisible: true
+    phone:
+        label: Phone
+
+    street1:
+        label: Street 1
+
+    street2:
+        label: Street 2
+
+    city:
+        label: City
+
+    country:
+        label: Country
+
+    company:
+        label: Company Name
+        relation: company
+        select: name
+
+    type:
+        label: Employment Type
+        select: name
+        relation: type
+
+    department:
+        label: Department
+        select: name
+        relation: department
+
+    designation:
+        label: Designation
+        select: name
+        relation: designation
+    nextofkin_name:
+            label: Next Of Kin Name
+    nextofkin_phone:
+        label: Next Of Kin Phone
+    dob:
+        label: Date Of Birth
+    acc_holder_name:
+        label: Account Holder Name
+    acc_number:
+        label: Account Number
+
+    bankname:
+        label: Bank Name
+
+    branchcode:
+        label: Branch Code
+
+    branchname:
+        label: branchname
+
+    termination_date:
+        label: Termination Date
+
+    termination_reason:
+        label: Reason  for Termination/Leaving
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

@@ -1,0 +1,19 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    date:
+        label: Date of Incident
+    what:
+        label: What wrongdoing occurred?
+    who:
+        label: Who did the wrongdoing?
+
+    where:
+        label: Where did this happen (Unit, location)?
+    how:
+        label: What enabled this to happen (How)?

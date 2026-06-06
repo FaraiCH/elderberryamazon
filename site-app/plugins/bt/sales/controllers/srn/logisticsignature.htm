@@ -1,0 +1,9 @@
+<?php if (isset($this->srnapprove->id)): ?>
+    <?php if(isset($this->user->hasPermission('bt.sales.logiticsignature')): ?>
+        <?= $this->relationRender('logisticsignature') ?>
+    <?php else: ?>
+        <?= $this->relationRender('logisticsignature', ['readOnly' => true]) ?>
+    <?php endif; ?>
+<?php else: ?>
+    <?= $this->relationRender('logisticsignature', ['readOnly' => true]) ?>
+<?php endif ?>

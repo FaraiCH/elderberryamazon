@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Petty Cash Usage
+
+# Model Form Field configuration
+form: $/bt/finance/models/cardrecords/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\CardRecords
+
+# Default redirect location
+defaultRedirect: bt/finance/cardrecords
+
+# Create page
+create:
+    title: Create Petty Cash Usage
+    redirect: bt/finance/cardrecords/update/:id
+    redirectClose: bt/finance/cardrecords
+
+# Update page
+update:
+    title: Edit Petty Cash Usage
+    redirect: bt/finance/cardrecords
+    redirectClose: bt/finance/cardrecords
+
+# Preview page
+preview:
+    title: Preview Petty Cash Usage

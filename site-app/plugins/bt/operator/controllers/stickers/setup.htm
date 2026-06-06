@@ -1,0 +1,78 @@
+
+<div id="sticker-header" class="alert">
+    <div class="row">
+        <?php if(isset($controlsheet_id)): ?>
+            <div id="title" class="col-md-6">
+                <span class="icon icon-pencil icon"></span> <b>Pipe Stickers</b>
+            </div>
+        <?php else: ?>
+            <div class="col-md-12">
+                 <span class="icon icon-pencil icon"></span> <b>Pipe Stickers</b>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php if(isset($controlsheet_id)): ?>
+        <div>
+            <h4 style="text-align: center"><b>Control Sheet: <?= $controlsheet_id . " JB#" . $controlsheetObj->jobcard_id . "-" . $controlsheetObj->batch_id . " (" . $controlsheetObj->jobcard->pipe->quoteitems->quote->company_name . ")"; ?>   </b></h4>
+        </div>
+    <?php endif; ?>
+</div>
+<?php if(!isset($controlsheet_id)): ?>
+<div id="page">
+    <div id="container">
+        <?= Form::open() ?>
+            <div class="form-group">
+                <select name="controlsheet" id="controlsheet" class="custom-select" data-handler="onSearchControlSheet" data-minimum-input-length="1">
+                    <option value="">-- Select Control Sheet</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" data-request="onSelectControl">Setup Stickers</button>
+        <?= Form::close() ?>
+    </div>
+    <?php else: ?>
+        <div id="stickerlist">
+            <?= Form::open(['class' => 'layout', 'enctype' => 'multipart/form-data']) ?>
+            <table class="table tabledownload_desc table-hover" style="width:100%">
+                <thead>
+                <tr>
+                    <td width="20%"><b>Sticker No</b></td>
+                    <td width="10%"><b>Pipe Length (m)</b></td>
+                    <td width="10%"><b>Weight (Kg)</b></td>
+                    <td width="10%"><b>Start Up Scrap?</b></td>
+                    <td width="10%"><b>QC Status</b></td>
+                    <td width="10%">Edit</td>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                <?php if(!empty($stickers)): ?>
+                    <?php $counter = 0; ?>
+                    <?php foreach($stickers as $sticker): ?>
+                        <tr id="stickerlist_<?= $sticker->id ?>">
+                            <td style="text-align: center"><?= $sticker->sticker_id . "-" . $sticker->counter ?></td>
+                            <td><?= $sticker->unit_length ?></td>
+                            <td><?= $sticker->weight ?></td>
+                            <?php if($sticker->is_scrap > 0): ?>
+                                <td>Yes</td>
+                            <?php else: ?>
+                                <td>No</td>
+                            <?php endif; ?>
+                            <?php if(!empty($sticker->qcstatus)): ?>
+                                <td><?= $sticker->qcstatus->name ?></td>
+                            <?php else: ?>
+                                <td>None</td>
+                            <?php endif; ?>
+                            <td><button class="btn btn-info edit_button" id="edit_button_<?= $counter ?>" onclick="checkSave(this.id, this.value)" data-request="onEditList" data-request-data="{sticker_id: <?= $sticker->sticker_id ?>, counter: <?= $sticker->counter ?>}" type="submit">Edit</button></td>
+                        </tr>
+                        <?php $counter++ ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                </tbody>
+            </table>
+            <?= Form::close() ?>
+            <button id="createsticker" onclick="additemjs(<?= $controlsheetObj->batch_id ?>, <?= $controlsheetObj->jobcard_id ?>, <?= $controlsheetObj->id ?>)" class="btn btn-primary">Create New Sticker</button>
+            <a href="../setup" class="btn btn-primary">Return To Setup</a>
+        </div>
+    <?php endif ?>
+</div>
+
+

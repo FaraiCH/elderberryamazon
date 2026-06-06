@@ -1,0 +1,11 @@
+<div class="report-widget">
+    <h3>BT Industrial ERP</h3>
+
+    <?php if (!isset($error)): ?>
+
+		<iframe src="/logo" style="border: none" height="600px"  width="100%" title="W3Schools Free Online Web Tutorials"></iframe>
+
+    <?php else: ?>
+        <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+</div>

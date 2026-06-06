@@ -1,0 +1,43 @@
+<?php namespace Bt\IT\Updates;
+
+use Schema;
+use October\Rain\Database\Schema\Blueprint;
+use October\Rain\Database\Updates\Migration;
+
+class CreateJobsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('bt_it_jobs', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->integer('employee_id')->unsigned()->nullable()->index();
+            $table->integer('department_id')->unsigned()->nullable()->index();
+            $table->integer('status_id')->nullable();
+            $table->string('name')->nullable();
+            $table->date('expected_date')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('created_by')->unsigned()->nullable()->index();
+            $table->integer('updated_by')->unsigned()->nullable()->index();
+            $table->timestamps();
+        });
+
+        Schema::table('bt_it_jobs', function(Blueprint $table) {
+            $table->integer('complet_percentage')->default(0);
+            $table->integer('isagent')->nullable();
+            $table->integer('difficulty')->nullable();
+            $table->integer('project_id')->unsigned()->nullable()->index()->default(1);
+            $table->integer('type_id')->unsigned()->nullable()->index()->default(1);
+            $table->integer('archived')->nullable()->default(0);
+            $table->integer('responder_id')->unsigned()->nullable()->index();
+            $table->integer('ticketstage_id')->unsigned()->nullable()->index();
+            $table->date('completed_date')->nullable();
+            $table->integer('assignedto_id')->nullable();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('bt_it_jobs');
+    }
+}

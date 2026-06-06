@@ -1,0 +1,110 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+# columns:
+#     id:
+#         label: ID
+#         searchable: false
+#     name:
+#         label: Business Name
+#         searchable: true
+#     contactperson:
+#         label: Contact Person
+#         searchable: true
+#     contactnumber:
+#         label: Cell Number
+#         searchable: true
+#     contacttel:
+#         label: Tel
+#         searchable: true
+#     address:
+#         label: Address 1
+#         searchable: true
+#     address2:
+#         label: Address 2
+#         searchable: true
+#     city:
+#         label: City
+#         searchable: true
+#     country:
+#         label: Country
+#         searchable: true
+#     welike:
+#         label: Good Standing
+#         searchable: true
+#     vendor_type:
+#         label: Vendor/Service Type
+#         searchable: true
+#         select: name
+ 
+columns:
+    risklevel_id:
+        label: Risk Level
+        type: partial
+        # path: $/bt/mall/models/imageset/_image.htm
+        path: $/bt/maintenance/models/vendor/_risklevel.htm
+        searchable: false
+        sortable: false
+        width: 80
+
+    vendor_type:
+        label: Category
+        searchable: true
+        relation: vendor_type
+        select: name
+    country:
+        label: Country
+        searchable: true
+        relation: country
+        select: name
+    city:
+        label: city
+        searchable: true
+    welike:
+        label: Good Standing
+        type: switch
+    is_blacklisted:
+        label: Blacklisted by BT
+        type: switch
+    name:
+        label: Company Name
+        searchable: true
+    contactperson:
+        label: Contact Name
+        searchable: true
+    contactemail:
+        label: Contact Email
+        invisible: true
+        searchable: true
+    contactnumber:
+        label: Contact Number
+        searchable: true
+    addres1:
+        label: Physical Address
+        invisible: true
+        searchable: true
+    created_at:
+        label: Create At
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        type: date
+        invisible: true
+
+    addres2:
+        label: Postal Address
+        invisible: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true

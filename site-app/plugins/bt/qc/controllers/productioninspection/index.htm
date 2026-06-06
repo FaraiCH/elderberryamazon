@@ -1,0 +1,141 @@
+
+ <div class="callout fade in callout-info " style=" padding: 0; margin: 0;">
+  <div class="header"><h3>TODAYS PRODUCTION</h3></div>
+  <div class="content" style=" padding: 10px;">
+  <table class="table">
+    <tr>
+      <th>CS <span>No</span></th>
+      <th>Pipe</th>
+      <th>Material To Use</th>
+      <th>Sheet Date</th>
+      <th>Shift</th>
+      <th>Line</th>
+      <th>Operator</th>
+      <th>Quote</th>
+      <th>Pipe Qty</th>
+      <th>Scrap</th>
+      <th></th>
+
+    </tr>
+    <?php foreach($today as $item ): ?>
+      <tr>
+          <td style="padding: 0; "><?= $item->id ?></td>
+          <?php if(isset( $item->jobcard->pipe->quoteitems->description)): ?>
+          <td><?= $item->jobcard->pipe->quoteitems->description ?></td>
+          <?php endif; ?>
+          <td>
+              <?php
+                $conObj = array();
+                if(!empty($item->controlmaterial)){
+                    foreach($item->controlmaterial as $mat){
+                        $conObj[] = $mat->material->productname->name ." - Batch: " . $mat->material->supplier_batch;
+                    }
+                }
+                $open = date_create($item->opendate);
+              ?>
+              <?=  implode(', ', $conObj); ?>
+          </td>
+          <?php if(empty($item->opendate) || $item->opendate == "0000-00-00" || $item->opendate == '0000-00-00 00:00:00'): ?>
+                <td><a href="/backend/bt/qc/shiftinputs/update/<?= $item->id ?>" title="Created at: <?= $item->created_at ?>" class="btn btn-warning btn-sm oc-icon-warning">Not Set</a></td>
+          <?php else: ?>
+                <td><?= date_format($open, 'Y-m-d') ?></td>
+          <?php endif; ?>
+          <?php if(!empty($item->shift)): ?>
+                <td><?= $item->shift ?></td>
+          <?php else: ?>
+                <td><a href="/backend/bt/qc/shiftinputs/update/<?= $item->id ?>" class="btn btn-warning btn-sm oc-icon-warning">Not Set</a></td>
+          <?php endif; ?>
+          <td><?= $item->btline->name?$item->btline->name:"" ?></td>
+          <td><?= $item->assignedto?$item->assignedto->name:"" ?></td>
+          <?php if(isset( $item->jobcard->pipe->quoteitems->quote_id)): ?>
+          <td><?= $item->jobcard->pipe->quoteitems->quote_id ?> - <?= $item->jobcard->pipe->quoteitems->quote->company_name ?> </td>
+           <?php endif; ?>
+          <td><?= $item->citem?$item->citem->sum('hourly_production'):0 ?></td>
+          <td><?= $item->citem?$item->citem->sum('hourly_scrap'):0 ?> kg</td>
+          <td><a href="/backend/bt/qc/shiftinputs/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-plus"> Actuals</a></td>
+
+      </tr>
+      <?php endforeach ?>
+
+    </table>
+  </div>
+
+</div>
+ <div class="callout fade in callout-success">
+  <div class="header">
+    <h3>PRODUCTION/CONTROL SHEET SCHEDULE</h3>
+  </div>
+  <div class="content">
+  <div id='calendar'></div>
+  </div>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Control Scheet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="titleshow"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/core/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/interaction/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/daygrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/timegrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/list/main.js"></script>
+
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      events: <?= json_encode($events) ?> //,
+
+      // eventClick: function(info) {
+      //   var eventObj = info.event;
+      //   $("#titleshow").empty().html("<p><i>"+eventObj.start+"</i></p><p>"+eventObj.title+"</p>");
+      //   $("#exampleModal").modal();
+
+
+      // }
+
+
+    });
+
+    calendar.render();
+
+
+
+
+  });
+$(document).ready(function () {
+
+});
+
+</script>
+

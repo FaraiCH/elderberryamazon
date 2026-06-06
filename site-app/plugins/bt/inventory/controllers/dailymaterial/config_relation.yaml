@@ -1,0 +1,9 @@
+
+dailyincage:
+    label: In Cage Material
+    manage:
+        form: $/bt/inventory/models/cagematerial/fields_daily.yaml
+        list: $/bt/inventory/models/cagematerial/columns_daily.yaml
+    view:
+        list: $/bt/inventory/models/cagematerial/columns_daily.yaml
+        toolbarButtons: create|delete

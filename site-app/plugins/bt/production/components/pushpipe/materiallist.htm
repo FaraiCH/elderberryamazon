@@ -1,0 +1,30 @@
+{% if response is not empty  %}
+	{% set total = 0 %}
+		<table class="table table-striped table-bordered table-sm" >
+				<thead>
+					<tr>
+					
+						<th>Assigned Materials</th>
+						<th>Mix Ratio</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for item in response %}
+						<tr>
+			        		
+			        		<td>{{item.productname.name}}</td>
+			        		<td>{{item.mixratio}}</td>
+			        		
+			             </tr>
+			        {% endfor %} 
+		        </tbody>
+		       
+    </table>
+  
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

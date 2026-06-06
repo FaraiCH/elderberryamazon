@@ -1,0 +1,59 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    btline:
+        label: Line
+        select: name
+        type: relation
+        span: auto
+    size:
+        label: Size in MM
+        type: number
+        span: auto
+
+    startdate:
+        label: Start Date
+        span: auto
+        type: datepicker
+
+    enddate:
+        label: End Date
+        span: auto
+        type: datepicker
+    status:
+        label: Schedule Status
+        select: name
+        type: relation
+        span: auto
+    changeover_hours:
+        label: Changeover Hours
+        type: number
+        default: 1.5
+        span: auto
+
+    comments:
+        label: Comments
+        span: auto
+        type: textarea
+        size: small
+    type:
+        label: Report
+        type: switch
+        span: auto
+        on: Orders
+        off: Pro
+tabs:
+    fields:
+        items:
+          path: $/bt/production/controllers/productionplan/_items.htm
+          tab: Plan Items
+          type: partial
+        itemscat:
+            path: $/bt/production/controllers/productionplan/_itemscat.htm
+            tab: Plan Items catalogue
+            type: partial
+
+

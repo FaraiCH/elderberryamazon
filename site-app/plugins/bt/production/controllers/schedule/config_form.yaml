@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Schedule
+
+# Model Form Field configuration
+form: $/bt/production/models/schedule/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Schedule
+
+# Default redirect location
+defaultRedirect: bt/production/schedule
+
+# Create page
+create:
+    title: Create Schedule
+    redirect: bt/production/schedule/update/:id
+    redirectClose: bt/production/schedule
+
+# Update page
+update:
+    title: Edit Schedule
+    redirect: bt/production/schedule
+    redirectClose: bt/production/schedule
+
+# Preview page
+preview:
+    title: Preview Schedule

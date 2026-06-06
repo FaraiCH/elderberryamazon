@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    schedule_date:
+        label: Start Date
+       
+
+    return_date:
+        label: End Date
+
+    vehicle:
+        label: Vehicle
+        select: name
+        relation: vehicle
+    # requestby:
+    #     label: Requested By
+    #     relation: requestby
+    #     select: concat(first_name, ' ', last_name)
+    logisticapprove:
+        label: Approved?
+        type: partial
+        path: $/bt/logistics/models/schedule/_approved_column.htm
+
+    usagetype:
+        label: Usage Type
+        select: name
+        relation: usagetype
+    department:
+        label: Department
+        select: name
+        relation: department

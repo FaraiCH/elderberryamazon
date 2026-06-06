@@ -1,0 +1,25 @@
+receiving:
+    label: Receiving
+    manage:
+        form: $/bt/inventory/models/rawmaterialreceiving/fields.yaml
+        list: $/bt/inventory/models/rawmaterialreceiving/columns.yaml
+    view:
+        list: $/bt/inventory/models/rawmaterialreceiving/columns.yaml
+        toolbarButtons: create|delete
+approved:
+    label: Approve Purchase
+    view:
+        form: $/bt/inventory/models/purchaseapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/inventory/models/purchaseapprove/fields.yaml
+        list: $/bt/inventory/models/purchaseapprove/columns.yaml
+poitems:
+    label: Purchase Order Items
+    manage:
+        form: $/bt/inventory/models/purchaseitems/fields.yaml
+        list: $/bt/inventory/models/purchaseitems/columns.yaml
+    view:
+        list: $/bt/inventory/models/purchaseitems/columns.yaml
+        toolbarButtons: create|delete
+        

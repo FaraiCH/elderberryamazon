@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Vehicle
+
+# Model Form Field configuration
+form: $/bt/logistics/models/vehicle/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\Vehicle
+
+# Default redirect location
+defaultRedirect: bt/logistics/vehicle
+
+# Create page
+create:
+    title: Create Vehicle
+    redirect: bt/logistics/vehicle/update/:id
+    redirectClose: bt/logistics/vehicle
+
+# Update page
+update:
+    title: Edit Vehicle
+    redirect: bt/logistics/vehicle
+    redirectClose: bt/logistics/vehicle
+
+# Preview page
+preview:
+    title: Preview Vehicle

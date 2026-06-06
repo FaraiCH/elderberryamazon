@@ -1,0 +1,6 @@
+<?php
+$quotes = $record->quotes;
+?>
+<?php foreach ($quotes as $quote): ?>
+    <?= isset($quote->id) ? e($quote->id ) : 'N/A'; ?><br>
+<?php endforeach; ?>

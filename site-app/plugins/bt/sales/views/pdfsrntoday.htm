@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 11px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+							<h2>Schedule PIPES: {{ "now"|date("m/d/Y H:i") }} </h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+
+
+		<tr>
+			<td>
+				{% set response = quote %}
+
+				{% set total = 0 %}
+		<table class="table table-striped table-bordered tabledownload" id="tabledownload" >
+				<thead>
+					<tr>
+							<th>#</th>
+							<th>Completed</th>
+							<th>Type</th>
+							<th>Schedule Date</th>
+							<th>Company</th>
+							<th>Contact Name</th>
+			        		<th>Contact Number</th>
+			        		<th>Delivery Address</th>
+			        		<th>Physical Address</th>
+			        		<th>Pipe Count</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% set totalcount = 0 %}
+			        {% for item in response %}
+						<tr>
+							<td>{{'%04d'|format(item.id)}}</td>
+			        		<td>{{item.active?"Yes":"No"}}</td>
+			        		<td>{{item.type.name}}</td>
+			        		<td nowrap="nowrap">{{item.schedule_date|date("Y-m-d")}}</td>
+			        		<td>{{item.client.company_name}}</td>
+			        		<td>{{item.client.contact_name}}</td>
+			        		<td>{{item.client.contact_number}}</td>
+			        		<td>{{item.client.delivery_address}}</td>
+			        		<td>{{item.client.physical_address}}</td>
+			        		{% set mincount = 0 %}
+			        		  {% for list in item.items %}
+			        		  	{% set mincount = mincount + list.units %}
+			        		  {% endfor %}
+			        		 <td>{{mincount}}</td>
+			        		 {% set totalcount = mincount + totalcount %}
+
+
+			             </tr>
+			        {% endfor %}
+		        </tbody>
+		        <tfoot>
+		        	<tr>
+		        		<td colspan="9" align="right"><b>Total</b></td>
+		        		<td><b>{{totalcount}}</b></td>
+		        	</tr>
+		        </tfoot>
+
+    </table>
+
+			</td>
+		</tr>
+
+
+
+
+	</table>
+
+
+	</body>
+	</html>

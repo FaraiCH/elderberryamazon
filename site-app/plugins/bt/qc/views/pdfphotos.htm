@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.card{
+	border: 1px solid #ccc; height: 250px; width: 340px; margin-left: 10px; padding: 5px;
+	margin-bottom: 10px
+}
+h4{
+	background: #ccc; padding: 5px;
+	margin: 0px 0px 10px 0px;
+	text-align: center;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+							<p>11 Barnsley St, Benoni,Johannesburg, 1501<br><b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>PHOTOS OF SAMPLES</h2>
+                            {% if quote.supplier_batch.productname.name is not empty %}
+                                <p><b>PRODUCT NAME:</b> {{quote.supplier_batch.productname.name}}, <b>MATERIAL BATCH NUMBER:</b> {{quote.supplier_batch.supplier_batch}}</p>
+                            {% else %}
+							    <p><b>PRODUCT NAME:</b> {{quote.productname.name}}, <b>MATERIAL BATCH NUMBER:</b> {{quote.supplier_batch}}</p>
+                            {% endif %}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+
+
+
+	</table>
+
+       <table>
+           <tr>
+               <td>
+                   {% if quote.mfi_image and quote.mfi_image is not empty %}
+                   {% for item in quote.mfi_image %}
+                   {% if item is not empty %}
+                   <div class="card">
+                       <h4>MFI: PRE TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+                   {% endif%}
+
+                   {% endfor %}
+                   {% endif%}
+               </td>
+               <td>
+                   {% if quote.mfi_image_post and quote.mfi_image_post is not empty %}
+                   {% for item in quote.mfi_image_post %}
+
+                   {% if item is not empty %}
+                   <div class="card">
+                       <h4>MFI: POST TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+                   {% endif%}
+
+                   {% endfor %}
+                   {% endif%}
+               </td>
+               <td>
+                   {% if quote.iot_image and quote.iot_image is not empty %}
+                   {% for item in quote.iot_image %}
+                   {% if item is not empty %}
+                   <div class="card">
+                       <h4>OIT PRE TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+                   {% endif%}
+
+                   {% endfor %}
+                   {% endif%}
+               </td>
+           </tr>
+           <tr>
+               <td>
+                   {% if quote.iot_image_post and quote.iot_image_post is not empty %}
+                   {% for item in quote.iot_image_post %}
+
+                   {% if item is not empty %}
+                   <div class="card">
+                       <h4>OIT POST TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+                   {% endif%}
+
+                   {% endfor %}
+                   {% endif%}
+               </td>
+               <td>
+                   {% if quote.thermal_image and quote.thermal_image is not empty %}
+
+
+                   {% for item in quote.thermal_image %}
+
+                   {% if item is not empty %}
+                   <div class="card">
+                       <h4>THERMAL REVISION TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+                   {% endif %}
+                   {% endfor %}
+                   {% endif%}
+               </td>
+               <td>
+                   {% if quote.elongation_image and quote.elongation_image is not empty %}
+
+                   {% for item in quote.elongation_image %}
+
+                   {% if item is not empty %}
+                   <div class="card">
+                       <h4>ELONGATION AT BREAK AFTER TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+                   {% endif %}
+                   {% endfor %}
+                   {% endif%}
+               </td>
+           </tr>
+       </table>
+       <table>
+           <tr>
+
+                   {% if quote.hydro_image and quote.hydro_image is not empty %}
+
+                   {% for item in quote.hydro_image %}
+
+                   {% if item is not empty %}
+               <td>
+                   <div class="card">
+                       <h4>HYDROSTATIC TEST</h4>
+                       <img src="{{item.path}}" style="display: block; width: 100%; height: 200px;">
+                   </div>
+               </td>
+                   {% endif %}
+                   {% endfor %}
+                   {% endif%}
+
+           </tr>
+       </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>
+	</html>

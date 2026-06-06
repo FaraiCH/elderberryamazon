@@ -1,0 +1,115 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        clickable: false
+    sticker:
+        label: Sticker No
+        clickable: false
+        searchable: true
+    controlsheetid:
+        label: Control Sheet
+        relation: controlsheet
+        select: id
+        clickable: false
+        searchable: true
+
+    controlsheetname:
+        label: Batch No
+        relation: controlsheet
+        select: concat(jobcard_id, '-', batch_id)
+        clickable: false
+        searchable: true
+    sticker_scanned_date:
+        label: Sticker Scanned Date
+        clickable: false
+        searchable: true
+    contronsheet_production_date:
+        label: Control Sheet Production Date
+        type: date
+        clickable: false
+        searchable: true
+    pipesize:
+        label: Diameter
+        clickable: false
+        searchable: true
+
+    pn_rating:
+        label: PN Rating
+    Baila:
+        label: Baila Machine
+        clickable: false
+    stick_pipe_lenght:
+        label: Sticker Pipe Length
+        clickable: false
+        searchable: true
+    is_scrap:
+        label: Is Scrap (Production)
+        type: selectable
+        options:
+            0: No
+            1: Yes
+        clickable: false
+        searchable: true
+    qcstatus_id:
+        label: QC Status
+        type: selectable
+        options:
+            0: Pass
+            1: Pass
+            2: Fail
+            3: On Hold
+            4: Scrap
+        clickable: false
+        searchable: true
+    quote:
+        label: Quote
+        relation: quote
+        select: id
+        clickable: false
+        searchable: true
+    st_weight:
+        label: Actual Weight (KG)
+        clickable: false
+        searchable: true
+    q_unit_weight:
+        label: Standard weight (KG)
+        clickable: false
+        searchable: true
+    price_per_kg:
+        label: R/kg per quote
+        clickable: false
+        searchable: true
+    company_name:
+        label: Client
+        clickable: false
+    pickslip:
+        label: Pick Slip
+        relation: pickslip
+        select: id
+        clickable: false
+        searchable: true
+    dispatch_date:
+        label: Dispatch Date
+        clickable: false
+        searchable: true
+    stock_age:
+        label: Stock Age
+        clickable: false
+        searchable: true
+    sticker_age:
+        label: Sticker Age
+        clickable: false
+        searchable: true
+    fail_pic:
+        label: Fail Pic
+        type: partial
+        path: $/bt/reporting/models/viewstickerdata/fail_pic.htm
+        clickable: false
+
+
+

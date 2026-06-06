@@ -1,0 +1,26 @@
+<div data-control="toolbar">
+   <!--  <a
+        href="<?= Backend::url('bt/finance/cardrecords/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        New Petty Cash Usage
+    </a> -->
+<!-- 
+    <button
+        class="btn btn-danger oc-icon-trash-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+        data-request="onDelete"
+        data-request-confirm="Are you sure you want to delete the selected Petty Cash Usage?"
+        data-trigger-action="enable"
+        data-trigger=".control-list input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', 'disabled')"
+        data-stripe-load-indicator>
+        Delete selected
+    </button> -->
+    <h3>List of records of how petty cash was used. <br>To add please click on the Petty Cash requested on the <a href="<?= Backend::url('bt/finance/pettycash') ?>">petty cash page</a> and add.</h3>
+     <a href="<?= Backend::url('bt/finance/cardrecords/export/') ?>"
+       class="btn btn-success oc-icon-download">
+        Export Records
+    </a>
+</div>

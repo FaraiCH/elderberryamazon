@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Raw Material Recon
+
+# Model Form Field configuration
+form: $/bt/inventory/models/rawmaterialrecon/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\RawMaterialRecon
+
+# Default redirect location
+defaultRedirect: bt/inventory/rawmaterialrecon
+
+# Create page
+create:
+    title: Create Raw Material Recon
+    redirect: bt/inventory/rawmaterialrecon/update/:id
+    redirectClose: bt/inventory/rawmaterialrecon
+
+# Update page
+update:
+    title: Edit Raw Material Recon
+    redirect: bt/inventory/rawmaterialrecon
+    redirectClose: bt/inventory/rawmaterialrecon
+
+# Preview page
+preview:
+    title: Preview Raw Material Recon

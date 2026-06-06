@@ -1,0 +1,11 @@
+
+mines:
+    label: Data Mime
+    manage:
+        form: $/bt/jsedata/models/datamine/less_fields.yaml
+        list: $/bt/jsedata/models/datamine/less_columns.yaml
+       
+    view:
+        list: $/bt/jsedata/models/datamine/less_columns.yaml
+        recordUrl: /bt/jsedata/datamine/update/:id
+        toolbarButtons: create

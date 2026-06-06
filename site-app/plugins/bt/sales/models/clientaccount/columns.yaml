@@ -1,0 +1,42 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    amount:
+        label: Amount
+        searchable: true
+        type: number
+        format: R %.2f
+    quote:
+        label: Quote
+        relation: quote
+        select: concat(id,' > ', company_name)
+    note:
+        label: Notes
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+   
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        

@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+#    $table->integer('push_id')->nullable()->unsigned()->index();
+#    $table->integer('pipe_id')->nullable()->unsigned()->index();
+    pipe:
+        label: Pipe
+        select: id
+
+        span: auto
+        type: dropdown
+
+        #DROPDOEN
+    start_date_delay:
+        label: Start date delay
+        searchable: true
+        type: datepicker
+        span: auto
+        mode: date
+    expected_date_resume:
+        label: Expected date resume
+        searchable: true
+        type: datepicker
+        span: auto
+        mode: date
+
+    no_pipes:
+        label: Number of pipes affected
+        disabled: false
+        span: auto
+        type: number
+
+
+    delayreason:
+        label: Delay eason
+        select: name
+        type: relation
+        span: right

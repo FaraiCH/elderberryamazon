@@ -1,0 +1,4 @@
+<?php
+    if($record->purchaseitem->sum('buy_price') != null)
+        echo 'R'. number_format($record->purchaseitem->sum('buy_price'), 2, ',', ' ');
+?>

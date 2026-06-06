@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Attendance
+
+# Model Form Field configuration
+form: $/bt/factory/models/attendance/fields.yaml
+
+# Model Class name
+modelClass: Bt\Factory\Models\Attendance
+
+# Default redirect location
+defaultRedirect: bt/factory/attendance
+
+# Create page
+create:
+    title: Create Attendance
+    redirect: bt/factory/attendance/update/:id
+    redirectClose: bt/factory/attendance
+
+# Update page
+update:
+    title: Edit Attendance
+    redirect: bt/factory/attendance
+    redirectClose: bt/factory/attendance
+
+# Preview page
+preview:
+    title: Preview Attendance

@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    project:
+        label: Project
+        type: relation
+        nameFrom: name
+        placeholder: --- Select ---
+        span: auto
+
+    projectdate:
+        label: Deadline Date
+        type: datepicker
+        span: auto
+    title:
+        label: Title of Project
+        span: auto
+    body:
+        label: Description
+        type: richeditor
+        toolbarButtons: fullscreen|bold|italic|underline|colo|align|formatOL|formatUL|insertLink|insertImage|insertFile|insertTable|undo|redo|clearFormatting|html
+        size: small
+        span: auto
+    status:
+        label: Active
+        type: switch
+        span: auto
+    

@@ -1,0 +1,49 @@
+<h3 style="text-align: center; background: whitesmoke;margin:0 20px 0px 0px;padding:0;">Production Dashboard</h3>
+
+
+
+
+
+
+<div id='calendar'></div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/core/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/interaction/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/daygrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/timegrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/list/main.js"></script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        },
+        navLinks: true, // can click day/week names to navigate views
+        businessHours: true, // display business hours
+        editable: true,
+        events: <?= json_encode($events) ?>,
+
+        eventRender: function(info) {
+            // Customize the event rendering
+            info.el.querySelector('.fc-title').innerHTML +=
+                '<br><a href="' + info.event.url + '" class="btn btn-primary">View</a>';
+        }
+    });
+
+    calendar.render();
+});
+
+$(document).ready(function () {
+    // Additional document ready code if needed
+});
+
+
+</script>

@@ -1,0 +1,7 @@
+# form: $/bt/sales/models/client/fields.yaml
+export:
+    title: Export Production Schedule
+    modelClass: Bt\Production\Models\ScheduleExport
+    list: $/bt/production/models/schedule/columns_export.yaml
+    redirect: bt/production/schedule
+    fileName: Production_Schedule.csv

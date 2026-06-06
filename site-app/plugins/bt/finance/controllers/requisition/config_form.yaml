@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Requisition
+
+# Model Form Field configuration
+form: $/bt/finance/models/requisition/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\Requisition
+
+# Default redirect location
+defaultRedirect: bt/finance/requisition
+
+# Create page
+create:
+    title: Create Requisition
+    redirect: bt/finance/requisition/update/:id
+    redirectClose: bt/finance/requisition
+
+# Update page
+update:
+    title: Edit Requisition
+    redirect: bt/finance/requisition
+    redirectClose: bt/finance/requisition
+
+# Preview page
+preview:
+    title: Preview Requisition

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Employee Contract
+
+# Model Form Field configuration
+form: $/bt/hr/models/employeecontract/fields.yaml
+
+# Model Class name
+modelClass: Bt\Hr\Models\EmployeeContract
+
+# Default redirect location
+defaultRedirect: bt/hr/employeecontract
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/hr/employeecontract/update/:id
+    redirectClose: bt/hr/employeecontract
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/hr/employeecontract
+    redirectClose: bt/hr/employeecontract
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

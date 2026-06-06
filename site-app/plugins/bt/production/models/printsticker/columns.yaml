@@ -1,0 +1,40 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: Printing ID
+        searchable: true
+    stickercount:
+        label: Stickers Created
+    controlcount:
+        label: Production Count
+        type: partial
+        path: $/bt/production/models/printsticker/_control_count.htm
+    qcstatuscount:
+        label: QC Count
+        type: partial
+        path: $/bt/production/models/printsticker/_qcstatus_count.htm
+    pickcount:
+        label: Pick Slip Count
+        type: partial
+        path: $/bt/production/models/printsticker/pickslip_count.htm
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    # updatedby:
+    #     label: Updated By
+    #     searchable: true
+    #     relation: updatedby
+    #     select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    # updated_at:
+    #     label: Date Updated
+    #     format: d-m-Y
+    #     type: date

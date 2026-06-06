@@ -1,0 +1,262 @@
+
+
+            	<div class="row">
+            			<div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="agency"></span>
+                        <div class="input-group mb-1">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text  label-small" id="basic-at" >Agency Name</span>
+                          </div>
+                          <input id="agency" name="agency" value="{{copy.agency}}"  type="text" class="form-control mt-0" placeholder="">
+                        </div>
+                    </div>
+
+                   <div class="col-sm-6" style="padding-right: 0px;">
+                   	{% set client = BTNewQuote.loadClient() %}
+                        <span class="text-danger" data-validate-for="amountdiscount"></span>
+												<div class="input-group mb-">
+													<div class="input-group-prepend">
+													<span class="input-group-text label-small" id="basic-at">Select Existing Client</span>
+													</div>
+													<select id="client_id" name="client_id" class="form-control mt-0 counttext" data-request="onBusinessClient" data-track-input="true">
+														<option > </option>
+														{% for obType in client %}
+															    <option value="{{ obType.id }}"> {{ obType.company_name }}</option>
+															{% endfor %}
+													</select>
+												</div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                    	<h4 class="mt-3">Business Information</h4>
+                    </div>
+            		<div class="col-md-6">
+
+						<div class="">
+
+							<div class="">
+								<div class="row">
+									<div class="col-sm-12">
+				                        <span class="text-danger" data-validate-for="billing_name"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req label-small" id="basic-at" >Billing To</span>
+				                          </div>
+				                          <input id="billing_name" name="billing_name" value="{{copy.billing_name}}" required="required" type="text" class="form-control mt-0" placeholder="First Names">
+				                        </div>
+				                    </div>
+				                	<div class="col-sm-12">
+				                        <span class="text-danger" data-validate-for="company_name"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req label-small" id="basic-at" >Business Name</span>
+				                          </div>
+				                          <input id="company_name" name="company_name" value="{{copy.company_name}}" required="required" type="text" class="form-control mt-0" placeholder="">
+				                        </div>
+				                    </div>
+				                    <div class="col-sm-6" style="padding-right: 0px;">
+				                        <span class="text-danger" data-validate-for="reg_number"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text label-small" id="basic-at" >Reg Number</span>
+				                          </div>
+				                          <input id="reg_number" name="reg_number" value="{{copy.reg_number}}" type="text" class="form-control mt-0" placeholder="">
+				                        </div>
+				                    </div>
+				                    <div class="col-sm-6">
+				                        <span class="text-danger" data-validate-for="vat_number"></span>
+				                        <div class="input-group mb-0">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text label-small" id="basic-at" >VAT Number</span>
+				                          </div>
+				                          <input id="vat_number" name="vat_number" value="{{copy.vat_number}}" type="text" class="form-control mt-0" placeholder="">
+				                        </div>
+				                    </div>
+
+				                 </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h4></h4>
+						<div>
+							<div>
+								<div class="row">
+				                	<div class="col-sm-12" style="padding-right: 0px;">
+				                        <span class="text-danger" data-validate-for="physical_address"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req label-small" id="basic-at" >Physical/Delivery Address</span>
+				                          </div>
+				                          <input id="physical_address" name="physical_address" value="{{copy.physical_address}}"  required="required" type="text" class="form-control mt-0" placeholder="">
+				                          <input id="physical_code" name="physical_code" value="{{copy.physical_code}}"  required="required" type="text" class="form-control mt-0" style="width: 80px" placeholder="Code">
+				                        </div>
+				                    </div>
+				                    <div class="col-sm-12" style="padding-right: 0px;">
+				                        <span class="text-danger" data-validate-for="postal_address"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text label-small" id="basic-at" >Postal Address</span>
+				                          </div>
+				                          <input id="postal_address" name="postal_address"  value="{{copy.postal_address}}"  type="text" class="form-control mt-0" placeholder="">
+				                          <input id="postal_code" name="postal_code"  value="{{copy.postal_code}}"  type="text" class="form-control mt-0" style="width: 80px" placeholder="Code">
+				                        </div>
+				                    </div>
+				                    <div class="col-sm-6" style="padding-right: 0px;">
+				                        <span class="text-danger" data-validate-for="phone"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req label-small" id="basic-at" >Telephone</span>
+				                          </div>
+				                          <input id="phone" name="phone" value="{{copy.phone}}"  required="required" type="text" class="form-control mt-0" placeholder="">
+				                        </div>
+				                    </div>
+
+				                    <div class="col-sm-6" style="padding-right: 0px;">
+				                        <span class="text-danger" data-validate-for="email"></span>
+				                         <div class="input-group mb-0">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req" id="basic-at">Email Address</span>
+				                          </div>
+				                          <input id="email" name="email" value="{{copy.email}}"  required="required" type="email" class="form-control mt-0" placeholder="Email Address">
+				                        </div>
+				                    </div>
+
+				                 </div>
+							</div>
+						</div>
+					</div>
+
+						<div class="col-md-12" style="margin-top: 20px">
+						<div class="">
+							<div class="">
+								<h4>Quote Details</h4>
+							</div>
+							<div class="">
+								<div class="row">
+
+				                    <div class="col-sm-6">
+				                        <span class="text-danger" data-validate-for="phone"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req label-small" id="basic-at" >Closing Date</span>
+				                          </div>
+
+				                          <input id="closing_date" name="closing_date"
+
+				                            required="required" type="text" class="datepicker form-control mt-0"  placeholder="YYYY-MM-DD">
+
+
+				                        </div>
+				                    </div>
+
+				                    <div class="col-sm-6">
+				                        <span class="text-danger" data-validate-for="email"></span>
+				                         <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req" id="basic-at">Reason For Quote</span>
+				                          </div>
+				                          <select id="reason_for_quote_id" name="reason_for_quote_id" class="form-control input-sm" >
+						  	 {% for obType in BTNewQuote.loadReasonForQuote() %}
+	                              {% set selected = '' %}
+	                                {% if obType.id == copy.reason_for_quote_id %}
+	                                    {% set selected = 'selected="selected"' %}
+
+	                                {% endif %}
+	                                <option {{selected}} value="{{obType.id}}">{{obType.name}}</option>
+	                                {% set selected = '' %}
+	                            {% endfor %}
+							 </select>
+				                        </div>
+				                    </div>
+				                    <div class="col-sm-6">
+				                        <span class="text-danger" data-validate-for="email"></span>
+				                         <div class="input-group mb-0">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req" id="basic-at">Receiving Order</span>
+				                          </div>
+				                        <!--   <input id="email" name="email" value="{{copy.email}}"  required="required" type="email" class="form-control mt-0" placeholder="Email Address"> -->
+				                          <select id="received_non_received_order_id" name="received_non_received_order_id" class="form-control input-sm" >
+                					  	 {% for obType in BTNewQuote.loadReceivedNonReceived() %}
+                              {% set selected = '' %}
+                                {% if obType.id == copy.received_non_received_order_id %}
+                                    {% set selected = 'selected="selected"' %}
+
+                                {% endif %}
+                                <option {{selected}} value="{{obType.id}}">{{obType.name}}</option>
+                                {% set selected = '' %}
+                            {% endfor %}
+						 </select>
+
+				                        </div>
+				                    </div>
+
+				                         <div class="col-sm-6">
+                                                        <div class="input-group mb-1">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text label-small" id="basic-at">Quote Reference: &nbsp;&nbsp;<i></i></span>
+                                                            </div>
+
+                                                            <input name="quote_ref"class="form-control mt-0"
+                                                                   id="quote_ref" >
+                                                        </div>
+                                                    </div>
+										           <div class="col-sm-12">
+														<h4 style="padding-top: 20px">Buy Outs</h4>
+													</div>
+
+													<div class="col-sm-6">
+				                        <span class="text-danger" data-validate-for="buyoutmargins"></span>
+				                        <div class="input-group mb-1">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text label-small" id="basic-at" > Buy Out Margin: &nbsp;&nbsp; <i>Amount BT is making from buyouts</i></span>
+				                          </div>
+
+				                          <input id="buyoutmargins" name="buyoutmargins" type="text" class=" form-control mt-0" placeholder="0.00" >
+
+
+
+				                        </div>
+				                    </div>
+
+
+
+				                 </div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+				</div>
+
+{% if copy.items %}
+		<script type="text/javascript">
+	 		$("#additemholder").empty();
+	 		$("#additionalholder").empty();
+	 	</script>
+	 {% for item in copy.items %}
+	 	<script type="text/javascript">
+	 		additemjs_load({{item.product_id}},{{item.units}},{{item.unitlength}},{{item.priceperkg}});
+	 	</script>
+	 {% endfor %}
+{% else %}
+    <script type="text/javascript">
+        $("#additemholder").empty();
+    </script>
+{% endif %}
+{% if copy.itemscat %}
+    {% for item in copy.itemscat %}
+        <script type="text/javascript">
+            addseconditemjs_load({{item.product_id}},{{item.units}}, {{item.unitprice}});
+        </script>
+    {% endfor %}
+{% else %}
+    <script type="text/javascript">
+        $("#additionalholder").empty();
+    </script>
+{% endif %}
+<script type="text/javascript">$( "#updatepreview" ).trigger( "click" );</script>

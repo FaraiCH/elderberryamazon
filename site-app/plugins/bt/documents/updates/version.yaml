@@ -1,0 +1,6 @@
+1.0.1: 
+- First version of Documents
+- create_categories_table.php
+- create_subs_table.php
+- create_documents_table.php
+

@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    date:
+        label: Date
+    total_hours_weekly:
+        label: Normal Time
+        type: number
+    total_overtime_weekly:
+        label: Over-Time 1.5 
+        type: number
+    sat_overtime_weekly:
+        label: Saturday Over-Time
+        type: number
+    sund_overtime_weekly:
+        label: Sunday Over-Time
+        type: number
+    department:
+        label: Department
+        select: name
+        relation: department
+

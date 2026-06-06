@@ -1,0 +1,54 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+# fields:
+#     btline:
+#         label: Line
+#         disabled: false
+#         select: name
+#         type: relation
+#     datestored:
+#         label: Date Stores
+#         disabled: false
+#         description: When this pipe was scraped
+#         type: datepicker
+#     weight_kg:
+#         label: Weight In KG
+#         disabled: false
+#         type: number
+#     diameter:
+#         label: Pipe Diameter
+#         disabled: false
+#         select: name
+#         type: relation
+#     code:
+#         label: Code On Pipe
+#         disabled: false
+#     notes:
+#         label: Notes
+#         disabled: false
+#         type: textarea
+#         size: large
+
+fields:
+    datestored:
+        label: Date To Scrap
+        disabled: false
+        comment: When this pipe was scraped
+        type: datepicker
+        span: left
+    weight_kg:
+        label: Weight In KG
+        disabled: false
+        type: number
+        span: right
+        comment: Actual weight, please weight if possible
+
+    notes:
+        label: Notes
+        disabled: false
+        type: textarea
+        size: small
+        comment: Why are you scrapping manualy
+
+    

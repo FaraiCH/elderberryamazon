@@ -1,0 +1,8 @@
+1.0.1:
+  - First version of legal
+  - create_documents_table.php
+1.0.2:
+  - Create Subs and Categories
+  - create_categories_table.php
+  - create_subs_table.php
+

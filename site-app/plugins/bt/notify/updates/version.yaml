@@ -1,0 +1,4 @@
+1.0.1: 
+- First version of Notify
+- create_daily_emails_table.php
+- create_projectdates_table.php

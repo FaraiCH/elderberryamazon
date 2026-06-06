@@ -1,0 +1,93 @@
+<div class="control-list" style="overflow: auto;">
+    <table class="table " style="width:100%">
+        <thead>
+            <tr>
+                        
+                <th style="text-transform: uppercase;"><span>Month</span></th>
+                
+                
+                 <?php foreach($targetsmonster as $key => $item): ?>
+                 		<th    style="text-transform: uppercase; text-align: center;">
+                 			<span><?= $item['month'] ?> <?= $item['year'] ?></span>
+                 		</th>
+                 <?php endforeach ?>
+            </tr>
+
+            <!-- <tr>
+                        
+                <th style="text-transform: uppercase;"><span>CAT</span></th>
+                
+                
+                 <?php foreach($targetsmonster as $key_m => $item_m): ?>
+                 		<?php foreach($targetscats as $key => $item): ?>
+	                 		<th   style="text-transform: uppercase; text-align: center;">
+	                 			<span><?= $item['name'] ?></span>
+	                 		</th>
+                 		<?php endforeach ?>
+                 <?php endforeach ?>
+            </tr> -->
+
+           
+
+        </thead>
+        <tbody>
+
+            <?php foreach($targetscats as $key => $item): ?>
+                <tr>
+                    <th  colspan="100"  style="text-transform: uppercase; text-align: left; background-color: #202e48; ">
+                        <span style="color: #fff;"><?= $item['name'] ?></span>
+                    </th>
+                </tr>
+
+                <tr>
+                    <td>Target</td>
+
+                    <?php foreach($targetsmonster as $key_m => $item_m): ?>
+                        <?php if(isset($item_m['arr_cat'][$item['id']]) ): ?>
+                        
+                            <td style="text-transform: uppercase; text-align: center;">
+                                <?= (isset($item_m["arr_cat"][$item['id']]) )?$item_m["arr_cat"][$item['id']]["target"]:"0" ?>
+                                
+                            </td>
+                        <?php else: ?>                        
+                            <td>&nbsp;</td>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </tr>
+
+                <tr>
+                    <td>Price For Coils</td>
+                    <?php foreach($targetsmonster as $key_m => $item_m): ?>
+                       <?php if(isset($item_m['arr_cat'][$item['id']]) ): ?>
+                            <td style="text-transform: uppercase; text-align: center;">
+                                R <?= (isset($item_m["arr_cat"][$item['id']]) )?$item_m["arr_cat"][$item['id']]["coil"]:"0" ?>
+                                
+                            </td>
+                        <?php else: ?>                        
+                            <td>&nbsp;</td>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </tr>
+
+                 
+                <tr>
+                        <td>Price For straights</td>
+                        <?php foreach($targetsmonster as $key_m => $item_m): ?>
+                            <?php if(isset($item_m['arr_cat'][$item['id']]) ): ?>
+                                <td style="text-transform: uppercase; text-align: center;">
+                                    R <?= (isset($item_m["arr_cat"][$item['id']]) )?$item_m["arr_cat"][$item['id']]["straight"]:"0" ?>
+                                    
+                                </td>
+                            <?php else: ?>                        
+                                <td>&nbsp;</td>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                </tr>
+                
+
+            <?php endforeach ?>
+               
+        	
+        </tbody>
+    </table>
+</div>

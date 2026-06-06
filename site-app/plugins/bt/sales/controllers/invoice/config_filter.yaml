@@ -1,0 +1,5 @@
+scopes:
+    created_at:
+        label: Invoice Date
+        type: daterange
+        conditions:  created_at >= ':after' AND  created_at <= ':before'

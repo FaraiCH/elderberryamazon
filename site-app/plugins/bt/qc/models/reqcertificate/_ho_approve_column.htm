@@ -1,0 +1,16 @@
+<?php if($record->approvecoc): ?>
+
+	<?php if($record->approvecoc->status_id == 1): ?>
+		<span class="oc-icon-check text-success">
+		    Yes
+		</span>
+	<?php else: ?>
+		<span class="oc-icon-window-close text-danger">
+	        Rejected
+	    </span>
+	<?php endif; ?>
+<?php else: ?>
+	<span class="oc-icon-circle text-mute">
+		No
+	</span>
+<?php endif; ?>

@@ -1,0 +1,99 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    productname:
+        label: Product Name
+        type: partial
+        path: $/bt/production/models/materialused/_productname_column.htm
+        invisible: true
+
+    schedule:
+        label: Production
+        type: partial
+        path: $/bt/qc/controllers/labresults/_scedule_day.htm
+        sortable: false
+        clickable: false
+    schedulepipe:
+        label: Pipe
+        type: partial
+        path: $/bt/qc/controllers/labresults/_scedule_pipe.htm
+        sortable: false
+        clickable: false
+    cs:
+        label: CS Id
+        type: partial
+        path: $/bt/qc/controllers/labresults/_cs_id.htm
+        sortable: false
+        clickable: false
+    download:
+        label: CS Results
+        type: partial
+        path: $/bt/qc/controllers/labresults/_download_results.htm
+        sortable: false
+        clickable: false
+    downloadbac:
+        label: BAC
+        type: partial
+        path: $/bt/qc/controllers/labresults/_download_bac.htm
+        sortable: false
+        clickable: false
+
+    raw_material_release_id:
+        label: Release ID
+        invisible: true
+    scheduleday_qty:
+        label: Unit Psd Qc
+        searchable: true
+        relation: scheduleday
+        select: total_units_passed_qc
+
+    scheduleday_scrap:
+        label: Scrap
+        searchable: true
+        relation: scheduleday
+        select: weight_scrap_kg
+
+    batch:
+        label: Batch
+        searchable: true
+        relation: receiving
+        select: supplier_batch
+        invisible: true
+
+    kg:
+        label: KG
+        searchable: true
+        type: number
+
+        invisible: true
+    note:
+        label: Comment
+        searchable: true
+        invisible: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

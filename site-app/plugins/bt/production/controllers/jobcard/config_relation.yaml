@@ -1,0 +1,40 @@
+# jobcardapprove:
+#     label: Approve Job Card
+#     view:
+#         form: $/bt/production/models/jobcardapprove/fields.yaml
+#         toolbarButtons: update
+#     manage:
+#         form: $/bt/production/models/jobcardapprove/fields.yaml
+#         list: $/bt/production/models/jobcardapprove/columns.yaml
+materials:
+    label: Materials
+    manage:
+        form: $/bt/production/models/jobcardmaterial/fields.yaml
+        list: $/bt/production/models/jobcardmaterial/columns.yaml
+    view:
+        list: $/bt/production/models/jobcardmaterial/columns.yaml
+        recordUrl: /bt/production/jobcardmaterial/update/:id
+        toolbarButtons: create|delete
+        # toolbarButtons: false
+        # showCheckboxes: false
+        # showSetup: false
+controlsheets:
+    label: Control Sheet
+    manage:
+        form: $/bt/production/models/controlsheet/fields.yaml
+        list: $/bt/production/models/controlsheet/columns.yaml
+
+    view:
+        list: $/bt/production/models/controlsheet/columns.yaml
+        #recordUrl: /bt/production/controlsheet/update/:id
+        toolbarButtons: create|delete
+batch:
+    label: Batch
+    manage:
+        form: $/bt/production/models/jobcardbatch/fields.yaml
+        list: $/bt/production/models/jobcardbatch/columns.yaml
+
+    view:
+        list: $/bt/production/models/jobcardbatch/columns.yaml
+        #recordUrl: /bt/production/controlsheet/update/:id
+        toolbarButtons: create|delete

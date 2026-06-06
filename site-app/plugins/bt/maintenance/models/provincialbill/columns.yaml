@@ -1,0 +1,57 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    start_date:
+        label: Start Date
+    end_date:
+        label: Start Date
+    line:
+        label: Baila Machine
+        relation: line
+        select: name
+
+
+    off_peak_kwh:
+        label: Off Peak KWH
+
+    off_peak_amount:
+        label: Off Peak Amount
+
+
+
+    standard_kwh:
+        label: Standard KWH
+
+    standard_amount:
+        label: Standard Amount
+        format: R %.2f
+
+
+    on_peak_kwh:
+        label: On Peak KWH
+
+    on_peak_amount:
+        label: On Peak Amount
+
+        format: R %.2f
+
+
+    max_demand_amount:
+        label: Max Demand Amount
+
+        format: R %.2f
+
+    fixed_charge_amount:
+        label: Fixed Charge
+
+        format: R %.2f
+
+    network_access_amount:
+        label: Network Access
+        format: R %.2f
+

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stockname
+
+# Model Form Field configuration
+form: $/bt/floor/models/stockname/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\Stockname
+
+# Default redirect location
+defaultRedirect: bt/floor/stockname
+
+# Create page
+create:
+    title: Create Stockname
+    redirect: bt/floor/stockname/update/:id
+    redirectClose: bt/floor/stockname
+
+# Update page
+update:
+    title: Edit Stockname
+    redirect: bt/floor/stockname
+    redirectClose: bt/floor/stockname
+
+# Preview page
+preview:
+    title: Preview Stockname

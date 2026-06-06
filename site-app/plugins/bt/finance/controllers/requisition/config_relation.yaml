@@ -1,0 +1,26 @@
+lineapprove:
+    label: Approve By Line Manager
+    view:
+        form: $/bt/finance/models/reqlineapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/finance/models/reqlineapprove/fields.yaml
+        list: $/bt/finance/models/reqlineapprove/columns.yaml
+
+managerapprove:
+    label: Approve By Manager
+    view:
+        form: $/bt/finance/models/reqmanagerapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/finance/models/reqmanagerapprove/fields.yaml
+        list: $/bt/finance/models/reqmanagerapprove/columns.yaml
+financeapprove:
+    label: Approve By Fanance
+    view:
+        form: $/bt/finance/models/reqfinanceapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/finance/models/reqfinanceapprove/fields.yaml
+        list: $/bt/finance/models/reqfinanceapprove/columns.yaml
+

@@ -1,0 +1,20 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        
+    first_name:
+        label: First Name
+        span: auto
+    last_name:
+        label: Last Name
+        span: auto
+    code: 
+      label: Drivers Code
+      span: auto
+    license_exp_date:
+      label: License Exp Date

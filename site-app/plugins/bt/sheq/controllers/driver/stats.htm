@@ -1,0 +1,130 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/sheq/driver') ?>">PPE</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<div class="callout fade in callout-info ">
+
+    <div class="content">
+
+        <div class="card" style="margin-top: 20px">
+            <div id="chart_kg" style="height: 450px;"></div>
+
+            <div style="padding: 10px">
+                <table class="table" style="width: 100%;border-collapse:collapse; font-size: 13px; border: 1px solid #ccc; border-color: #ccc" cellspacing="0px" cellpadding="2px"  border="1">
+                    <thead>
+                    <tr>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Name</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Surname</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Issue Date</th>
+                        <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Expiry Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php
+                foreach ($schedules as $key => $i) {
+                    echo '<tr>';
+                        $color= "lightblue";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->name.'</td>';
+
+                        $color= "lightblue";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->surname.'</td>';
+
+                        $color= "white";
+                        echo '<td align="center" style="background-color: '.$color.'">'.$i->issue.'</td>';
+
+                        if(isset($i->expiry) && $i->expiry >= date("Y-m-d"))
+                        {
+                            $color= "green";
+                            echo '<td align="center" style="background-color: '.$color.'; color: whitesmoke">'.$i->expiry.'</td>';
+                        }
+                        else
+                        {
+                            $color= "red";
+                            echo '<td align="center" style="background-color: '.$color.'; color: whitesmok">'.$i->expiry.'</td>';
+                        }
+
+                        echo '<tr>';
+                        }
+                        ?>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+
+
+
+
+        Highcharts.chart('chart_kg', {
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Driver License Stats'
+            },
+
+            subtitle: {
+                text: 'Staff Data'
+            },
+
+            xAxis: {
+                title: {
+                    text:  'Active/Expired'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Totals'
+                },
+                plotLines: [
+                ]
+            },
+
+            series: <?= json_encode($stats) ?> ,
+
+            plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+    });
+</script>

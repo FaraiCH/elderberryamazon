@@ -1,0 +1,189 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    timeofreading:
+        label: Time of reading
+        type: datepicker
+    hopper_temperature:
+        label: Hopper Temperature
+        type: number
+
+tabs:
+    # stretch: true
+    # lazy:
+    #     - Die Temp 1 to 10
+    fields:
+
+        wall_thikness_n:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Wall Thikness - N
+
+        max_wall_ne:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - NE
+          comments: Check max on control shift
+
+        max_wall_e:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - E
+          comments: Check max on control shift
+
+        max_wall_se:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - SE
+          comments: Check max on control shift
+
+        max_wall_s:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - S
+          comments: Check max on control shift
+
+        max_wall_sw:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - SW
+          comments: Check max on control shift
+
+        min_wall_w:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Min Wall - W
+          comments: Check MIN on control shift
+
+        min_wall_nw:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Min Wall - NW
+          comments: Check MIN on control shift
+
+        avr_wall:
+          tab: Thickness
+          span: auto
+          type: number
+          label: AVR Wall
+
+        pipe_od:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Pipe OD
+
+        ovality:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Ovality
+
+        actual_weight:
+          tab: Production
+          span: auto
+          type: number
+          label: Actual Weight
+
+        actual_lenght:
+          tab: Production
+          span: auto
+          type: number
+          label: Actual Lenght
+
+        pipe_number_start:
+          tab: Production
+          span: auto
+          type: number
+          label: Pipe Number Start
+          comments: From 1 to 100
+
+        pipe_number_end:
+          tab: Production
+          span: auto
+          type: number
+          label: Pipe Number End
+          comments: From 1 to 100
+
+        outside_workmanship:
+          tab: Production
+          span: auto
+          label: Outside Workmanship
+          type: switch
+          On: Good
+          off: Bad
+
+        inside_workmanship:
+          tab: Production
+          span: auto
+          label: Inside Workmanship
+          type: switch
+          On: Good
+          off: Bad
+
+        printer_clear:
+          tab: Production
+          span: auto
+          label: Printer Clear
+          type: switch
+          On: Good
+          off: Bad
+
+
+        printer_correct:
+          tab: Production
+          span: auto
+          label: Printer Correct
+          type: switch
+          On: Good
+          off: Bad
+
+        end_squire:
+          tab: Production
+          span: auto
+          label: End Squire
+          type: switch
+          On: Good
+          off: Bad
+
+        material:
+          tab: Material
+          type: repeater
+          titleFrom: supliername
+
+          form:
+            fields:
+                supliername:
+                  label: Suplier
+                  type: dropdown
+                  comments: Select Suplier and Batch
+
+                # batch:
+                #   label: batch
+                #   type: text
+
+
+        recycle_material_batch:
+          tab: Material
+          label: Recycle Material Batch
+
+
+
+
+
+
+
+

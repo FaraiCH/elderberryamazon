@@ -1,0 +1,138 @@
+<div class="card card-default mb-4 mt-3">
+    <div class="card-header py-2">
+        <b>Filter</b>
+    </div>
+    <div class="card-body py-2">
+        <?= Form::open(['class' => 'form-inline']) ?>
+        <div class="form-group" style="padding-bottom: 20px">
+            <label for="startdate">Start Date: </label>
+            <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text">
+        </div>
+        <div class="form-group " style="padding-bottom: 20px">
+            <label for="enddate">End Date: </label>
+            <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text">
+        </div>
+        <button style="padding-top: 5px type="submit" class="btn btn-primary">Filter</button>
+        <?= Form::close()?>
+    </div>
+</div>
+<div class="control-list" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-hover d data" style="width:100%" data-control="rowlink">
+        <thead>
+        <tr>
+            <th style="text-transform: uppercase;"><span>Client</span></th>
+            <th style="text-transform: uppercase;"><span>Quote</span></th>
+            <th style="text-transform: uppercase;"><span>Sales Rep</span></th>
+            <th style="text-transform: uppercase;"><span>Price<br> Per KG</span></th>
+            <th style="text-transform: uppercase;"><span>Total KG Quoted<br> & Produced</span></th>
+            <th style="text-transform: uppercase;"><span>Total KG <br> to Process</span></th>
+            <th style="text-transform: uppercase;"><span>Weight Advantage</span></th>
+            <th style="text-transform: uppercase;"><span>Weight Advantage <br> Perc</span></th>
+            <th style="text-transform: uppercase;"><span>Total<br> Price Quoted</span></th>
+            <th style="text-transform: uppercase;"><span>Blended <br>R/Kg</span></th>
+            <th style="text-transform: uppercase;"><span>Production <br>Initial Date</span></th>
+            <th style="text-transform: uppercase;"><span>KG <br>Processed</span></th>
+            <th style="text-transform: uppercase;"><span>Revenue <br>Generated</span></th>
+            <th style="text-transform: uppercase;"><span>Raw Materials <br>cost</span></th>
+            <th style="text-transform: uppercase;"><span>Margin</span></th>
+            <th style="text-transform: uppercase;"><span>Planned <br>Margin</span></th>
+            <th style="text-transform: uppercase;"><span>Scrap</span></th>
+            <th style="text-transform: uppercase;"><span>Overweight</span></th>
+            <th style="text-transform: uppercase;"><span>Total <br>Waste</span></th>
+            <th style="text-transform: uppercase;"><span>Remove <br>Weight Adv</span></th>
+            <th style="text-transform: uppercase;"><span>Net Cost Of Waste</span></th>
+            <th style="text-transform: uppercase;"><span>Realised <br>Margin</span></th>
+            <th style="text-transform: uppercase;"><span>Realised <br>Margin Perc</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $count = 0; ?>
+        <?php foreach($pipe_calculated as $key => $item): ?>
+            <tr>
+                <td><?= $pipe_calculated[$key]['client'] ?></td>
+                <td><?= $key ?></td>
+                <td><?= $pipe_calculated[$key]['user'] ?></td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['pricekg'],2, '.', ',') ?></td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['weight_quoted'],2, '.', ',') ?> KG</td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['weight_to_process'],2, '.', ',') ?> KG</td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['weight_advant'],2, '.', ',') ?> KG</td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['weight_advant_perc']*100,2, '.', ',') ?> %</td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['quote_price'],2, '.', ',') ?></td>
+                <td nowrap align="right">R <?= $bp->price ?></td>
+                <td><?= $pipe_calculated[$key]['date'] ?></td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['kg_processed'],1, '.', ',') ?> KG</td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['price'],2, '.', ',')  ?></td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['kg_price'],2, '.', ',')  ?></td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['margin'],2, '.', ',')  ?></td>
+                <?php
+                $denominator = $pipe_calculated[$key]['price'];
+                $result = ($denominator != 0) ? ($pipe_calculated[$key]['margin'] / $denominator) * 100 : 0;
+                $formattedResult = number_format($result, 0, '.', ',') . ' %';
+                ?>
+
+                <td nowrap align="right"><?= $formattedResult ?></td>
+
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['weight_scrap_kg'],1, '.', ',')  ?> KG</td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['over_weight_kg'],1, '.', ',')  ?> KG</td>
+                <td nowrap align="right"><?= number_format($pipe_calculated[$key]['waste'],1, '.', ',')  ?> KG</td>
+                <td nowrap align="right"> <?= number_format($pipe_calculated[$key]['remove_weight'] ,1, '.', ',') ?> KG</td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['net_cost'],2, '.', ',')  ?></td>
+                <td nowrap align="right">R <?= number_format($pipe_calculated[$key]['realised_margin'] ,2, '.', ',')  ?></td>
+                <td nowrap align="right"><?= number_format(($pipe_calculated[$key]['realised_margin_perc'])*100 ,1, '.', ',')  ?> %</td>
+            </tr>
+        <?php  $count++; ?>
+        <?php endforeach ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td align="left" colspan="1"><b>TOTALS</b></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_weight_quoted'],1, '.', ',') ?> KG</td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_weight_to_process'],1, '.', ',')?> KG</td>
+            <td style="text-align: right" nowrap="nowrap"><?=  number_format($total_calculated['total_weight_advant'],1, '.', ',')?> KG</td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format(($total_calculated['total_weight_advant_per']/$count)*100,2, '.', ',')?> %</td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($total_calculated['total_quote_price'],2, '.', ',')?></td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($bp->price,2, '.', ',') ?></td>
+            <td></td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_kg_processed'],1, '.', ',') ?> KG</td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($total_calculated['total_price'],2, '.', ',') ?></td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($total_calculated['total_kg_price'] ,2, '.', ',') ?></td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($total_calculated['total_margin'],2, '.', ',') ?></td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format(($total_calculated['total_planned_margin']/$count) ,2, '.', ',') ?> %</td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_scrap'],1, '.', ',') ?> KG</td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_overweight'] ,1, '.', ',') ?> KG</td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_waste'] ,1, '.', ',') ?> KG</td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format($total_calculated['total_remove_weight'] ,1, '.', ',') ?> KG</td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($total_calculated['total_net_cost'],2, '.', ',') ?> </td>
+            <td style="text-align: right" nowrap="nowrap">R <?= number_format($total_calculated['total_realised_margin'] ,2, '.', ',') ?> </td>
+            <td style="text-align: right" nowrap="nowrap"><?= number_format(($total_calculated['total_realised_margin_perc']/$count) *100,1, '.', ',') ?> %</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script>
+    var startpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        enableMask: true,
+        format: 'yyyy-MM-dd HH:mm:ss',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#startdate');
+    var endpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        enableMask: true,
+        format: 'yyyy-MM-dd HH:mm:ss',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#enddate');
+</script>

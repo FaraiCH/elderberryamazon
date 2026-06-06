@@ -1,0 +1,17 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+
+    name:
+        label: Label - Transport Type
+        span: auto
+
+    to_column:
+        label: Link To Column
+        span: auto
+

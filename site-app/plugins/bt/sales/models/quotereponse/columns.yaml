@@ -1,0 +1,38 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    quote_status_id:
+      label: ID
+    candelete:
+      label: Can delete 
+      relation: status
+      select: candelete
+      type: switch
+    status:
+      label: Status 
+      relation: status
+      select: name
+    
+    response:
+      label: comment
+
+    amountpaid:
+      label: Paid Amount
+    amountdiscount:
+      label: Discount
+    additionalamount:
+      label: Additional Amount
+
+    files_count:
+      label: Att Files 
+      relation: file
+      # useRelationCount: true
+      select: file_name
+    created_at:
+      label: Date Requested
+      type: date
+    updated_at:
+      label: Date Updated
+      type: date

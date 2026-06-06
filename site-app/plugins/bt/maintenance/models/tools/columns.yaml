@@ -1,0 +1,54 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        invisible: true
+    images:
+        label: Image
+        type: partial
+        # path: $/bt/mall/models/imageset/_image.htm
+        path: $/bt/maintenance/models/tools/_image.htm
+        searchable: false
+        sortable: false
+        width: 80
+    equipment_type:
+        label: Equipment Type
+        searchable: true
+        relation: equipment_type
+        select: name
+    name:
+        label: Equipment Description
+        searchable: true
+
+    partcode:
+        label: Part Code
+        searchable: true
+        invisible: true
+    make:
+        label: Make
+        searchable: true
+        invisible: true
+    serialnumber:
+        label: Serial Number
+        searchable: true
+
+    caliberation_date:
+        label: Calibration Date
+        searchable: true
+        invisible: true
+    caliberation_expiery_date:
+        label: Calibration Expiery Date
+        searchable: true
+
+    fileawayyes:
+        label: Active
+        relation: fileawayyes
+        select: name
+    notes:
+        label: Notes
+        searchable: true
+        invisible: true

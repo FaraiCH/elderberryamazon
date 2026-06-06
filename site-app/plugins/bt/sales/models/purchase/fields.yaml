@@ -1,0 +1,86 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    quote:
+        label: Quote No
+        type: relation
+        select: concat('Quote No', ':',' ',id, ' > ', ' Client:', ' ', company_name)
+        placeholder: --Select Quote--
+        span: auto
+    
+    section_break@create:
+        label:
+        type: section
+        commentHtml: yes
+        comment: <h3 style='color:white;background:steelblue'>Please Choose a Quote and Press <em>Create</em> Before Making a Purchase Order</h3>
+
+    purchase_date:
+        label: Purchase Date 
+        span: auto
+        type: datepicker
+        mode: date
+
+   
+    supplier_name:
+        label: Supplier Name
+        span: auto
+
+
+    order_no:
+        label: Order No
+        span: auto
+    reference:
+        label: Reference
+        span: auto
+    exclusive:
+        label: Amount Exclusive
+        type: inputcurrency
+        span: auto
+    vat_amount:
+        label: VAT Amount
+        type: inputcurrency
+        span: auto
+    total:
+        label: Total Inc
+        type: inputcurrency
+        span: auto
+    
+    del_date:
+        label: Delivery Date
+        span: auto
+        type: datepicker
+        mode: date
+    status:
+        label: Status
+        span: auto
+
+    file:
+        label: PO Documents
+        type: fileupload
+        tab: Upload Files
+        mode: file
+    
+    comment: 
+        label: Comment
+        type: textarea
+
+
+
+tabs:
+    fields:
+        purchaseitems@update:
+            type: partial
+            tab: Purchase
+            path: $/bt/sales/models/purchase/_item.htm
+            label: Purchase Items
+        supplier@update:
+            label: Supplier Name
+            type: relation
+            select: name
+            tab: Supplier Details
+            placeholder: -- Select Supplier --
+            span: auto
+

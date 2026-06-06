@@ -1,0 +1,46 @@
+{% set stickers = CmpPrintpipesticker.sticker %}
+{% set appurl = CmpPrintpipesticker.appurl %}
+{% set pagebreak = '' %}
+{% set pagecount  = 0 %}
+{% for print in stickers %}
+
+    {% set pagecount  = pagecount + 1 %}
+
+    {% if pagecount == 4 %}
+        <p style="height: 3px; margin:0px; padding:0px " class="pagebreakprint"></p>
+        {% set pagecount  = 1 %}
+    {% endif %}
+    {% set pagebreak ='pagebreakprint' %}
+
+    <!-- <div class="printcard"  style="" >
+        <div class="printcardimg" style="   ">
+            <div id="element_{{ print.counter }}"></div>
+        </div>
+        <div class="printcardtext" style="">
+            BT Industrial<br>ST Date: {{print.print.created_at|date("Y/m/d") }}<br>ST #: {{print.sticker_id}}-{{print.counter}}
+        </div>
+    </div> -->
+
+    <div style=" padding-left: 20px; height: 545px; overflow: hidden;">
+        <table  class="printcard" width="100%">
+            <tr>
+                <td width="400px" style="padding-top: 20px"> <div id="element_{{ print.counter }}"></div></td>
+                <td class="printcardtext"> BT Industrial<br>ST Date: {{print.print.created_at|date("Y/m/d") }}<br>ST #: {{print.sticker_id}}-{{print.counter}}</td>
+            </tr>
+
+        </table>
+        <script>
+            var barcode_{{ print.counter }} = new ej.barcodegenerator.QRCodeGenerator({
+                width: '400px',
+                height: '400px',
+                displayText: { visibility: false },
+                mode: 'SVG',
+                name: "main",
+                value: '{{appurl}}/printlanding/{{print.sticker_id}}/{{ print.counter }}'
+            });
+            barcode_{{ print.counter }}.appendTo('#element_{{ print.counter }}');
+        </script>
+    </div>
+{% endfor %}
+
+

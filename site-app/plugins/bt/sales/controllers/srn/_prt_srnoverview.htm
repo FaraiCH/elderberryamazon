@@ -1,0 +1,83 @@
+
+<div style="padding: 20px 20px">
+    <div class="card">
+        <div class="header">
+            <h3>SRNs Created for the Same Quote</h3>
+        </div>
+        <div class="card-body">
+    <?php foreach($formModel->quote->srn as $srn): ?>
+            <table class="table table-striped table-info">
+                <thead>
+                <tr>
+                     <th class="col">ID</th>
+                    <th class="col">Quote</th>
+                    <th class="col">Item Description</th>
+                    <th class="col">Units</th>
+                    <th class="col">Price</th>
+                    <th class="col">Weight</th>
+                    <th class="col">Item Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td colspan="7" class="text-white text-center" style="color: white; background: lightskyblue">
+                            <b><a  href="/backend/bt/sales/srn/update/<?= $srn->id ?>" target="_blank">SRN No: <?= $srn->id ?> </a></b>
+                        </td>
+                    </tr>
+                    <?php $count = 0; ?>
+                <?php foreach($srn->items as $sworks): ?>
+                    <tr>
+                        <td><?= $sworks->id ?></td>
+                        <td><?= $formModel->quote_id ?></td>
+                        <?php if(isset($sworks->pipe->quoteitems->description)): ?>
+                            <td><?= $sworks->pipe->quoteitems->description ?></td>
+                            <td><?= $sworks->units ?></td>
+                            <td style="color: white; background: lightskyblue"><b>R<?= $sworks->pipe->quoteitems->unitprice ?></b></td>
+                            <td><?= $sworks->pipe->quoteitems->weight ?></td>
+                            <td><?= $sworks->created_at ?></td>
+                        <?php else: ?>
+                            <td>PIPE DELETED FROM QUOTE</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        <?php endif; ?>
+
+                        <?php $count++; ?>
+                    </tr>
+                <?php endforeach; ?>
+                <?php foreach($srn->itemscat as $sworks): ?>
+                    <tr>
+                        <td><?= $sworks->id ?></td>
+                        <td><?= $formModel->quote_id ?></td>
+                        <?php if(!empty($sworks->qoutecat)): ?>
+                            <td><?= $sworks->qoutecat->description ?></td>
+                            <td><?= $sworks->units ?></td>
+                            <td style="color: white; background: lightskyblue"><b>R<?= $sworks->qoutecat->unitprice ?></b></td>
+                        <?php else: ?>
+                            <td>Name Not Available</td>
+                            <td><?= $sworks->units ?></td>
+                            <td style="color: white; background: lightskyblue">Price Not Available</td>
+                        <?php endif; ?>
+                        <td>Catalogue Item</td>
+                        <td><?= $sworks->created_at ?></td>
+                        <?php $count++; ?>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php if($count == 0): ?>
+                    <tr>
+                        <td colspan="7" class="text-center"><span style="background: maroon; color: white">This is an empty SRN</span></td>
+                    </tr>
+
+                <?php endif; ?>
+                </tbody>
+            </table>
+
+            <br>
+            <?php endforeach; ?>
+
+        </div>
+    </div>
+</div>

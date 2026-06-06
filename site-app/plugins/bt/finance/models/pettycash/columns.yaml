@@ -1,0 +1,87 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    subject:
+        label: Item(s) To Purchase
+    lineapproval:
+        label: Line Manager Approved
+        type: partial
+        path: $/bt/finance/models/pettycash/line_approval.htm
+        sortable: false
+    pettycashapprove:
+      label: Approved
+      type: partial
+      path: $/bt/finance/models/pettycash/_approved_column.htm
+      sortable: false
+    completed:
+        label: Completed?
+        type: partial
+        path: $/bt/finance/models/pettycash/_completed_column.htm
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sales/models/newquote/_active.htm
+    date:
+        label: Date To Purchase
+    amount:
+        label: Amount Requesting
+        type: number
+        format: R %.2f
+    amount_left:
+        label: Amount Left After Purchase
+        type: number
+        format: R %.2f
+    paymenttype:
+        label: Payment Type
+        select: name
+        relation: paymenttype
+    uploads:
+        label: Slip Uploads
+        type: partial
+        path: $/bt/finance/models/pettycash/_req.htm
+    req:
+        label: Signed Requisitions
+        type: partial
+        path: $/bt/finance/models/pettycash/_uploads.htm
+
+    requested_to:
+        label: Request Petty Cash To?
+        relation: requestedtomanager
+        select: concat(name, ' ', surname)
+        searchable: true
+        invisible: false
+
+    message:
+        label: Message
+        invisible: true
+        searchable: true
+        sortable: false
+
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

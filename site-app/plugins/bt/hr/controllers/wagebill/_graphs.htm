@@ -1,0 +1,188 @@
+<div class="callout fade in callout-info ">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="chart_kg" ></div>
+        </div>
+
+        <div class="col-sm-6">
+            <div id="chart_p"></div>
+        </div>
+    </div>
+
+</div>
+<style type="text/css">
+    body{
+        color: #212529;font-size: 12px;
+        font-family: sans-serif;
+        word-wrap: break-word;
+        background:  url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) center center;
+        padding: 0px;
+        margin:0px;
+        line-height: 20px;
+        font-family: 'Roboto', sans-serif;
+    }
+    @page { margin:0px; padding: 0px;font-family: 'Roboto'}
+    html { margin:0px; padding: 0px }
+
+    .highcharts-data-table table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        background: white;
+        min-width: 100%;
+        margin-top: 10px;
+        font-family: sans-serif;
+        font-size: 0.9em;
+    }
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        border: 1px solid silver;
+        padding: 0.5em;
+    }
+    .highcharts-data-table tr:nth-child(even),
+    .highcharts-data-table thead tr {
+        background: #f8f8f8;
+    }
+    .highcharts-data-table tr:hover {
+        background: #eff;
+    }
+    .highcharts-data-table caption {
+        border-bottom: none;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+<script type="text/javascript">
+        $.ajax({
+            url: '/update-weekly-graph/',
+            method: 'POST',
+            async: true,
+            success: function (data) {
+                Highcharts.chart('chart_kg', {
+                    chart: {
+                        type: 'column',
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: 'Hourly Wages'
+                    },
+
+                    subtitle: {
+                        text: 'Readings'
+                    },
+
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        title: {
+
+                            text: 'Hours'
+
+                        },
+
+                    },
+                    series: data,
+
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+            }
+        });
+
+        $.ajax({
+            url: '/update-weekly-pie/',
+            method: 'POST',
+            async: true,
+            success: function (data) {
+                Highcharts.chart('chart_p', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Total Weekly Hours Percentage'
+                    },
+                    subtitle: {
+                        text: 'Department'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series:[ {
+                        colorByPoint: true,
+                        name: 'Weekly Hours',
+                        data: data
+            }],
+                exporting: {
+                    buttons: {
+                        contextButton: {
+                            enabled: false
+                        },
+                        exportButton: {
+                            text: 'Download',
+                                // Use only the download related menu items from the default
+                                // context button
+                                menuItems: [
+                                'downloadPNG',
+                                'downloadCSV',
+                                'downloadPDF',
+                                'downloadSVG'
+                            ]
+                        }
+                    }
+                }
+            });
+            }
+        });
+
+
+
+
+
+
+</script>

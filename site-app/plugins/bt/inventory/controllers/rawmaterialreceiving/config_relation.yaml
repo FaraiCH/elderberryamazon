@@ -1,0 +1,49 @@
+release:
+    label: Material Release
+    manage:
+        form: $/bt/inventory/models/stockrelease/fields.yaml
+        list: $/bt/inventory/models/stockrelease/columns.yaml
+    view:
+        list: $/bt/inventory/models/stockrelease/columns.yaml
+        toolbarButtons: create
+request:
+    label: Material Request
+    manage:
+        form: $/bt/inventory/models/requestmaterial/fields.yaml
+        list: $/bt/inventory/models/requestmaterial/columns.yaml
+    view:
+        list: $/bt/inventory/models/requestmaterial/columns.yaml
+        toolbarButtons: create
+
+used:
+    label: Material Used
+    # manage:
+    #     form: $/bt/production/models/materialused/fields.yaml
+    #     list: $/bt/production/models/materialused/columns.yaml
+    view:
+        list: $/bt/production/models/materialused/columns.yaml
+        toolbarButtons: false
+        showCheckboxes: false
+        showSetup: false
+        showSorting: false
+
+incage:
+    label: In Cage Material
+    manage:
+        form: $/bt/inventory/models/cagematerial/fields.yaml
+        list: $/bt/inventory/models/cagematerial/columns.yaml
+    view:
+        list: $/bt/inventory/models/cagematerial/columns.yaml
+        toolbarButtons: create
+
+bagBatches:
+    label: Bags Received
+    manage:
+        form: $/bt/inventory/models/bagbatch/fields.yaml
+        list: $/bt/inventory/models/bagbatch/columns.yaml
+    view:
+        list: $/bt/inventory/models/bagbatch/columns.yaml
+        toolbarButtons: false
+        showCheckboxes: false
+        showSetup: false
+        showSorting: false

@@ -1,0 +1,12 @@
+export:
+    title: Export Quote
+    modelClass: Bt\Sales\Models\ScheduleExport
+    list: $/bt/sales/models/deliveryplan/columns_export.yaml
+    redirect: bt/sales/deliveryplan
+    fileName: delivery-plan-export.csv
+defaultFormatOptions:
+    delimiter: ';'
+    enclosure: '"'
+    escape: '\'
+    encoding: 'utf-8'
+

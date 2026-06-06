@@ -1,0 +1,10 @@
+products:
+    label: Products
+    manage:
+        form: $/bt/sales/models/supplierstock/fields.yaml
+        list: $/bt/sales/models/supplierstock/columns.yaml
+       
+    view:
+        list: $/bt/sales/models/supplierstock/columns.yaml
+        #recordUrl: /bt/production/controlsheet/update/:id
+        toolbarButtons: create

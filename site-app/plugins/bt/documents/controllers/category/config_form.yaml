@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Department
+
+# Model Form Field configuration
+form: $/bt/documents/models/category/fields.yaml
+
+# Model Class name
+modelClass: Bt\Documents\Models\Category
+
+# Default redirect location
+defaultRedirect: bt/documents/category
+
+# Create page
+create:
+    title: Create Department
+    redirect: bt/documents/category/update/:id
+    redirectClose: bt/documents/category
+
+# Update page
+update:
+    title: Edit Department
+    redirect: bt/documents/category
+    redirectClose: bt/documents/category
+
+# Preview page
+preview:
+    title: Preview Department

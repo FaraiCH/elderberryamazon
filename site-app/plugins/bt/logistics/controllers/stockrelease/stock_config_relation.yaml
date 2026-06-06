@@ -1,0 +1,60 @@
+items:
+    label: Pipe
+    manage:
+        form: $/bt/sales/models/srnitem/fields.yaml
+        list: $/bt/sales/models/srnitem/stock_columns.yaml
+    view:
+        list: $/bt/sales/models/srnitem/stock_columns.yaml
+        toolbarButtons: create|delete
+itemscat:
+    label: Product Catalogue
+    manage:
+        form: $/bt/sales/models/srncatalogue/fields.yaml
+        list: $/bt/sales/models/srncatalogue/columns.yaml
+    view:
+        list: $/bt/sales/models/srncatalogue/columns.yaml
+        toolbarButtons: create|delete
+srnapprove:
+    label: Approve SRN By QC
+    view:
+        form: $/bt/sales/models/srnapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/srnapprove/fields.yaml
+        list: $/bt/sales/models/srnapprove/columns.yaml
+returnnote:
+    label: Return Note
+    manage:
+        form: $/bt/sales/models/returnnote/fields.yaml
+        list: $/bt/sales/models/returnnote/columns.yaml
+    view:
+        list: $/bt/sales/models/returnnote/columns.yaml
+        toolbarButtons: create|delete
+
+requestunapprove:
+    label: Request Unapproval
+    manage:
+        form: $/bt/sales/models/requestunapprovesrn/fields.yaml
+        list: $/bt/sales/models/requestunapprovesrn/columns.yaml
+    view:
+        list: $/bt/sales/models/requestunapprovesrn/columns.yaml
+        toolbarButtons: create|delete
+        showCheckboxes: true
+
+logisticsignature:
+    label: Logistics Signature
+    view:
+        form: $/bt/sales/models/logisticsignature/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/logisticsignature/fields.yaml
+        list: $/bt/sales/models/logisticsignature/columns.yaml
+clientsignature:
+    label: Client Signature
+    view:
+        form: $/bt/sales/models/clientsignature/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/sales/models/clientsignature/fields.yaml
+        list: $/bt/sales/models/clientsignature/columns.yaml
+

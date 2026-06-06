@@ -1,0 +1,170 @@
+<?php
+// Get the formatted date from the request parameter
+$requestDate = (new DateTime(request('date', '')))->format('Y-m-d');
+?>
+<!-- Page Title -->
+<h2 class="page-title m-0 mb-3 p-0" style="">
+    Date: <?= $requestDate ?>
+</h2>
+<!-- Total Weight Cards -->
+<div class="row">
+    <div class="cards col-sm-3">
+        <h4 class="description">Material Incage</h4>
+        <p>
+            <span class="oc-icon icon-balance-scale ">
+                <?= number_format($totals["incage"], 2, '.', ',') ?> KG
+            </span>
+        </p>
+    </div>
+
+    <div class="cards col-sm-3">
+        <h4 class="description">Total Ordered Weight</h4>
+        <p>
+            <span class="oc-icon oc-icon-calendar-o">
+                <?= number_format($totals["ordered_weight"], 2, '.', ',') ?> KG
+            </span>
+        </p>
+    </div>
+
+    <div class="cards col-sm-3">
+        <h4 class="description">Total Production Weight</h4>
+        <p>
+            <span class="oc-icon icon-tasks">
+                <?= number_format($totals["production_weight"], 2, '.', ',') ?> KG
+            </span>
+        </p>
+    </div>
+
+    <div class="cards col-sm-3">
+        <h4 class="description">Ordered Total Cost</h4>
+        <p>
+            <span class="oc-icon oc-icon-file-text">
+                R <?= number_format($totals["ordered_cost"], 2, '.', ',') ?>
+            </span>
+        </p>
+    </div>
+</div>
+
+<!-- Material Incage Section -->
+<div class="callout fade in callout-info m-0 mb-3 p-0" style="padding: 10px; margin: 10px; border-radius: 5px;">
+    <!-- Section Header -->
+    <div class="header" style="background-color: #3498db; color: #fff; padding: 10px;">
+        <h3>Material Incage</h3>
+    </div>
+
+    <!-- Section Content -->
+    <div class="content p-2">
+        <!-- Material Table -->
+        <table class="table" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 10px; text-align: left;"># <span>ID</span></th>
+                    <th style="padding: 10px; text-align: left;">Batch No</th>
+                    <th style="padding: 10px; text-align: left;">Material Receiving</th>
+                    <th style="padding: 10px; text-align: left;">Material Incage KG</th>
+                    <th style="padding: 10px; text-align: left;">Comments</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through materials and display in the table -->
+                <?php foreach ($material as $materials): ?>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;"><?= $materials->id ?></td>
+                        <td style="padding: 10px;"><?= $materials->materialreceiving->supplier_batch ?></td>
+                        <td style="padding: 10px;"><?= $materials->materialreceiving->productname->name ?></td>
+                        <td style="padding: 10px;"><?= number_format($materials->kg, 2, '.', ',') . " KG" ?></td>
+
+                        <td style="padding: 10px;"><?= $materials->comments ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="callout fade in callout-info m-0 mb-3 p-0" style="padding: 10px; margin: 10px; border-radius: 5px;">
+    <!-- Section Header -->
+    <div class="header" style="background-color: #3498db; color: #fff; padding: 10px;">
+        <h3>Control Sheet</h3>
+    </div>
+
+    <!-- Section Content -->
+    <div class="content p-2">
+        <!-- Material Table -->
+        <table class="table" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 10px; text-align: left;"># <span>ID</span></th>
+                    <th style="padding: 10px; text-align: left;">Controlsheet Run Date</th>
+                    <th style="padding: 10px; text-align: left;">Quote No</th>
+                    <th style="padding: 10px; text-align: left;">Client</th>
+                    <th style="padding: 10px; text-align: left;">Shift</th>
+                    <th style="padding: 10px; text-align: left;">Baila</th>
+                    <th style="padding: 10px; text-align: left;">Batch No</th>
+                    <th style="padding: 10px; text-align: left;">Description</th>
+                    <th style="padding: 10px; text-align: left;">Ordered Total Weight</th>
+                    <th style="padding: 10px; text-align: left;">Total Production Weight</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through materials and display in the table -->
+                <?php foreach ($cs as $control): ?>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;"><?= $control->id ?></td>
+                        <td style="padding: 10px;"><?= (new DateTime($control->cs_run_date))->format('Y-m-d') ?></td>
+                        <td style="padding: 10px;"><?= $control->quote_id ?></td>
+                        <td style="padding: 10px;"><?= $control->client ?></td>
+                        <td style="padding: 10px;"><?= $control->shift ?></td>
+                        <td style="padding: 10px;"><?= $control->baila ?></td>
+                        <td style="padding: 10px;"><?= $control->batch_no ?></td>
+                        <td style="padding: 10px;"><?= $control->description ?></td>
+                        <td style="padding: 10px;"><?= number_format($control->ordered_totalweight, 2, '.', ',') . " KG" ?></td>
+                        <td style="padding: 10px;"><?= number_format($control->totalproductionweight, 2, '.', ',') . " KG" ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="callout fade in callout-info m-0 mb-3 p-0" style="padding: 10px; margin: 10px; border-radius: 5px;">
+    <!-- Section Header -->
+    <div class="header" style="background-color: #3498db; color: #fff; padding: 10px;">
+        <h3>SRN</h3>
+    </div>
+
+    <!-- Section Content -->
+    <div class="content p-2">
+        <!-- Material Table -->
+        <table class="table" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 10px; text-align: left;"># <span>SRN No</span></th>
+                    <th style="padding: 10px; text-align: left;">Pickslip No</th>
+                    <th style="padding: 10px; text-align: left;">SRN Schedule Date</th>
+                    <th style="padding: 10px; text-align: left;">Quote No</th>
+                    <th style="padding: 10px; text-align: left;">Company Name</th>
+                    <th style="padding: 10px; text-align: left;">Total SRN Qty</th>
+                    <th style="padding: 10px; text-align: left;">Total Sticker Count</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through materials and display in the table -->
+                <?php foreach ($srn as $srns): ?>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;"><?= $srns->id ?></td>
+                        <td style="padding: 10px;"><?= $srns->pickslip_id ?></td>
+                        <td style="padding: 10px;"><?=(new DateTime($srns->schedule_date))->format('Y-m-d') ?></td>
+                        <td style="padding: 10px;"><?= $srns->quote_id ?></td>
+                        <td style="padding: 10px;"><?= $srns->company_name ?></td>
+                        <td style="padding: 10px;"><?= $srns->srn_sum_unit ?></td>
+                        <td style="padding: 10px;"><?= $srns->count_sicker ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
+</div>

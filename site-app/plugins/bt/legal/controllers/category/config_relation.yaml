@@ -1,0 +1,9 @@
+subcategory:
+    label: Sub Folders
+    manage:
+        form: $/bt/legal/models/sub/fields.yaml
+        list: $/bt/legal/models/sub/columns.yaml
+    view:
+        list: $/bt/legal/models/sub/columns.yaml
+        toolbarButtons: create
+

@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 11px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>12 Barnsley Street, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>INVENTORY/MATERIAL UPDATE: {{ "now"|date("m/d/Y H:i") }} </h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+
+
+		<tr>
+			<td>
+				{% set listentry = quote %}
+			{% if listentry is not empty  %}
+				{% set total = 0 %}
+				{% set totalrelesed = 0 %}
+				{% set totalincage = 0 %}
+				{% set totalvalue = 0 %}
+				{% set totalused = 0 %}
+				{% set totalincage_shadrak = 0%}
+				<table class="table table-striped " id="tablesimple">
+					<thead>
+					<tr>
+						<!-- <th>Date</th> -->
+						<th>Product Name</th>
+						<th>Supplier</th>
+						<th>Supplier Batch</th>
+						<th>Delivery Date</th>
+						<th>Price Per KG</th>
+						<th>Start Weight</th>
+						<th>Released</th>
+						<th>Auto In-Cage</th>
+						<th>In-Cage</th>
+						<th>Value</th>
+						<th align="right">Used</th>
+					</tr>
+					</thead>
+					<tbody>
+
+						{% for itemobject in listentry %}
+							{% set total_auto_rl = 0 %}
+							{% for rl in itemobject.release %}
+								{% set total_auto_rl = total_auto_rl + rl.kg %}
+							{% endfor %}
+								{% set total_auto = (itemobject.weight - total_auto_rl) %}
+				        	<tr class="{{(total_auto < 1)? 'text-danger':''}}">
+								<!-- <td>{{itemobject.datecaptured|date("m/d/Y H:00")}}</td> -->
+								<td>{{itemobject.productname.name}}</td>
+								<td>{{itemobject.purchase.supplier.name}}</td>
+								<td>{{itemobject.supplier_batch}}</td>
+								<td>{{itemobject.date_of_receipt|date("m/d/Y")}}</td>
+								<td align="right">
+								R {{( itemobject.pricekg)|number_format(2, '.', ',')}}
+
+								</td>
+								<td align="right">
+									{{itemobject.weight}}
+									{% set total = total+itemobject.weight %}
+								</td>
+
+
+								<td align="right">
+									{% set total_auto_rl = 0 %}
+									{% for rl in itemobject.release %}
+										{% set total_auto_rl = total_auto_rl + rl.kg %}
+									{% endfor %}
+									{{total_auto_rl}} kg
+									{% set totalrelesed = totalrelesed + total_auto_rl %}
+								</td>
+								<td align="right">
+									{{itemobject.weight - total_auto_rl}} kg
+
+									{% set totalincage =  totalincage + (itemobject.weight - total_auto_rl)%}
+								</td>
+
+								<td align="right">
+									{% set incagecount = 9999999999 %}
+
+									{% for rl in itemobject.incage %}
+										{% set incagecount = rl.kg %}
+									{% endfor %}
+
+									{% if incagecount == 9999999999 %}
+
+										<span class="text-info" >
+										not available
+										</span>
+									{% else %}
+
+											{% if (incagecount != (itemobject.weight - total_auto_rl)) %}
+												<span class="text-warning" >
+													<i class="fa fa-exclamation-triangle"></i> {{incagecount}} kg
+													/ {{(incagecount - (itemobject.weight - total_auto_rl))}} kg
+												</span>
+											{% else  %}
+												{{incagecount}} kg
+											{% endif %}
+
+
+									{% endif %}
+									{% set totalincage_shadrak =  totalincage_shadrak + incagecount %}
+								</td>
+
+
+								<td align="right">
+								R {{((itemobject.weight - total_auto_rl) * itemobject.pricekg)|number_format(2, '.', ',')}}
+								{% set totalvalue = totalvalue + (itemobject.weight - total_auto_rl) * itemobject.pricekg %}
+								</td>
+
+								<td align="right">
+									{% set total_auto_used = 0 %}
+									{% for rl in itemobject.used %}
+										{% set total_auto_used = total_auto_used + rl.kg %}
+									{% endfor %}
+									{{total_auto_used}} kg
+									{% set totalused = totalused + total_auto_used  %}
+								</td>
+
+
+						     </tr>
+
+						{% endfor %}
+					</tbody>
+					<tfoot>
+							<tr>
+								<td align="left" colspan="5"><b>TOTAL</b></td>
+								<td align="right"><b>{{total|number_format(1, '.', ',')}} KG</b></td>
+								<td align="right"><b>{{totalrelesed|number_format(1, '.', ',')}} KG</b></td>
+								<td align="right"><b>{{totalincage|number_format(1, '.', ',')}} KG</b></td>
+								<td align="right"><b>{{totalincage_shadrak|number_format(1, '.', ',')}} KG</b></td>
+
+								<td align="right"><b>R {{(totalvalue)|number_format(2, '.', ',')}}</b></td>
+								<td align="right"><b>{{totalused|number_format(1, '.', ',')}} KG</b></td>
+
+
+						     </tr>
+
+					</tfoot>
+				</table>
+				{% else %}
+					<div class="card-body">
+						<p>No Items</p>
+					</div>
+				{% endif %}
+
+			</td>
+		</tr>
+
+
+
+
+	</table>
+
+
+	</body>
+	</html>

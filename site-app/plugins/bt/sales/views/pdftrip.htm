@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 10px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+        .table-md td, .table-md th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 12px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+<div class="footer">
+    <p class="left">
+    <table border="0">
+        <tr>
+            <td valign="top" width="45%">
+                Doc: F-SC-20.0.5<br>
+                Effective: 2019/05/08 Rev: 0<br>
+                Prepared By: K Maphai<br>
+                Approved By: K Lekola
+            </td>
+            <td valign="top" width="45%">Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>E-mail: enquiries@bt-industrial.co.za</td>
+
+
+            <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+
+    </p>
+
+</div>
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+                        <h2>TRIPSHEET#{{'%04d'|format(quote.id)}}</h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr>
+        <td >
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="47%" valign="top">
+                        <br>
+                        <table width="100%" border="0" cellpadding="2px" cellspacing="0">
+                            <tr><td style="background: #ccc"  colspan="2" ><b>Driver Information:</b></td></tr>
+                            <tr><td><b>Driver Name: {{quote.driver_name}}</b></td></tr>
+                            <tr><td><b>Truck Reg Number: {{quote.truck_reg_number}}</b></td></tr>
+                            <tr><td><b>Date: {{quote.schedule_date|date("Y-m-d")}}</b></td></tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+</table>
+
+        {% for srn in quote.srns %}
+            <table  width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-md">
+                <tbody>
+                    <tr style="background: #ccc">
+                        <td style="width:8%"><b>Stop #:</b> <span class="badge badge-primary">{{ srn.stops }}</span></td>
+                        <td style="width:12%"><b>Quote #:</b> {{ srn.quote_id }}</td>
+                        <td style="width:8%"><b>SRN:</b>{{ srn.id }}</td>
+                        <td style="width:30%"><b>Client #:</b> {{ srn.quote.company_name }}</td>
+                        <td style="width:25%"><b>Delivery Address:</b> {{ srn.delivery_address }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table  width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-md">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;" class="col">Item Description</th>
+                        <th style="text-align:left;" class="col">Units</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set count = 0 %}
+                    {% set totalUnits = 0 %}
+                    {% for sworks in srn.items %}
+                        <tr>
+                            {% if sworks.pipe.quoteitems.description is defined %}
+                                <td>{{ sworks.pipe.quoteitems.description }}</td>
+                                <td>{{ sworks.units }}</td>
+
+                                {% set totalUnits = totalUnits + sworks.units %}
+                            {% else %}
+                                <td>PIPE DELETED FROM QUOTE</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                            {% endif %}
+                            {% set count = count + 1 %}
+                        </tr>
+                    {% endfor %}
+
+                    {% for sworks in srn.itemscat %}
+                        <tr>
+                            <td>{{ sworks.qoutecat.description }}</td>
+                            <td>{{ sworks.units }}</td>
+                            <td>Catalogue Item</td>
+                            {% set count = count + 1 %}
+                        </tr>
+                    {% endfor %}
+
+                    {% if count == 0 %}
+                        <tr>
+                            <td colspan="7" class="text-center"><span style="background: maroon; color: white">This is an empty SRN</span></td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+                {% if count > 0 %}
+                <tfoot>
+                    <tr>
+                        <td><b>Totals</b></td>
+                        <td>{{ totalUnits }}</td>
+                    </tr>
+                </tfoot>
+                {% endif %}
+            </table>
+            <br>
+        {% endfor %}
+
+
+
+
+</body>
+</html>

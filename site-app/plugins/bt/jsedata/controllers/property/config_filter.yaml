@@ -1,0 +1,9 @@
+scopes:
+    parent:
+        label: Parent Category
+        modelClass: Bt\JSEData\Models\Property
+        conditions: parent_id in (:filtered)
+        nameFrom: name
+        scope: scopeParents
+
+   

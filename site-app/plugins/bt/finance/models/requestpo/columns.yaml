@@ -1,0 +1,32 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    suppliername:
+        label: New Supplier Name
+    supplier:
+        label: Supplier Name
+        select: name
+        relation: supplier
+        placeholder: -- select Supplier --
+        span: auto
+    total_amount_incvat:
+        label: Total Amount Include Vat
+        type: partial
+        path: $/bt/finance/models/requestpo/_currency_column.htm
+    exp_date:
+        label: Expiry Date(Optional)
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

@@ -1,0 +1,6 @@
+export:
+    title: Export Audit
+    modelClass: Bt\SHEQ\Models\AuditExport
+    list: $/bt/sheq/models/audits/columns.yaml
+    redirect: bt/sheq/audits
+    fileName: Audit-Export.csv

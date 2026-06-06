@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    name:
+        label: Destination
+        type: text
+        span: auto
+    kilometers:
+        label: kilometers Captured
+        type: Number
+        span: auto
+
+tabs:
+    
+    fields:
+        transportfee@update:
+          path: $/bt/sales/controllers/transportfee/_transportfee.htm
+          tab: Transport Fee
+          type: partial
+

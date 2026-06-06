@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Equipment Type
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/equipmenttype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\EquipmentType
+
+# Default redirect location
+defaultRedirect: bt/maintenance/equipmenttype
+
+# Create page
+create:
+    title: Create Equipment Type
+    redirect: bt/maintenance/equipmenttype/update/:id
+    redirectClose: bt/maintenance/equipmenttype
+
+# Update page
+update:
+    title: Edit Equipment Type
+    redirect: bt/maintenance/equipmenttype
+    redirectClose: bt/maintenance/equipmenttype
+
+# Preview page
+preview:
+    title: Preview Equipment Type

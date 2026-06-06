@@ -1,0 +1,64 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    company:
+        label: Company
+        select: name
+        relation: company
+    ticker:
+        label: JSE Ticker
+        select: concat(ticker, '/', altticker)
+        relation: company
+    
+    parentp:
+        label: Property A
+        type: partial
+        path: $/bt/jsedata/models/datamine/_parentproperty.htm
+        
+        invisible: false
+
+    propertytest:
+        label: Property B
+        
+        select: name
+        relation: property
+
+
+    datea:
+        label: Date A
+
+    dateb:
+        label: Date B
+    cur:
+        label: cur
+
+    value:
+      label: Value
+      type: number
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        
+      
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

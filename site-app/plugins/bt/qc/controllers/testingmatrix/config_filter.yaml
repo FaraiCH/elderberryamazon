@@ -1,0 +1,17 @@
+scopes:
+    testtype:
+        label: Test Type
+        modelClass: Bt\QC\Models\Testtypes
+        conditions: testtype_id in (:filtered)
+        nameFrom: name
+    createdby:
+        label: Created By
+        modelClass: Backend\Models\User
+        conditions: created_by in (:filtered)
+        nameFrom: first_name
+
+    test_date:
+        label: Test Date
+        type: daterange
+        modelClass: Bt\Qc\Models\Testtypes
+        conditions: test_date >= ':after' AND test_date <= ':before'

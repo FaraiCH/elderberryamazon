@@ -1,0 +1,31 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+   
+
+    quoteoriginbatch:
+        label: Batch No
+        type: partial
+        path: $/bt/sales/models/srnitem/_quotebatch_column.htm
+        sortable: false 
+
+    pipe_id:
+        label: Description
+        type: partial
+        path: $/bt/sales/models/srnitem/_description_column.htm  
+    # batch:
+    #     label: Batch
+    #     type: partial
+    #     path: $/bt/sales/models/srnitem/_batch_column.htm  
+    units:
+        label: Units
+    # description:
+    #     label: Alt Description
+    # unitdescription:
+    #     label: Alt Unit
+
+
+
+

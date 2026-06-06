@@ -1,0 +1,84 @@
+<div data-control="toolbar">
+    <a
+        href="<?= Backend::url('bt/production/productionplan/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        New Production Plan
+    </a>
+    <a data-toggle="modal" href="#content-confirmation" class="btn btn-primary btn-lg">Production/Order Plan</a>
+    <div class="control-popup modal fade" id="content-confirmation" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Choose Which Plan to Export</h4>
+                </div>
+                <?= Form::open(['class'=>'form-inline']) ?>
+                <div class="modal-body">
+                    <div class="form-group" style="max-width: 40%;">
+                        <label for="openstart">Start Date: </label>
+                        <input id="openstart" value="<?= e($startdate) ?>" name="openstart" type="text">
+                    </div>
+                    <br>
+                    <div class="form-group" style="max-width: 40%;">
+                        <label for="openend">End Date: </label>
+                        <input id="openend" value="<?= e($enddate) ?>" name="openend" type="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <button data-request="onMyDate" data-request-data="{type: 0}" class="btn btn-outline-primary oc-icon-file-pdf-o">
+                            Download Production Plan (.pdf)
+                        </button>
+                        <button data-request="onMyDate" data-request-data="{type: 1}" class="btn btn-outline-primary oc-icon-file-pdf-o">
+                            Download Order Plan (.pdf)
+                        </button>
+
+                    </div>
+                </div>
+                <?= Form::close() ?>
+            </div>
+        </div>
+    </div>
+
+
+<!--    <a href="<?= Backend::url('bt/production/productionplan/export') ?>"-->
+<!--       class="btn btn-outline-success oc-icon-download">-->
+<!--        Export Production Plan (.xlsx)-->
+<!--    </a>-->
+
+    <button
+        class="btn btn-danger oc-icon-trash-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+        data-request="onDelete"
+        data-request-confirm="Are you sure you want to delete the selected Production Plans?"
+        data-trigger-action="enable"
+        data-trigger=".control-list input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', 'disabled')"
+        data-stripe-load-indicator>
+        Delete selected
+    </button>
+</div>
+<script>
+    var startpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#openstart');
+    var endpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#openend');
+</script>

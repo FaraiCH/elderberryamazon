@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Driver
+
+# Model Form Field configuration
+form: $/bt/logistics/models/driver/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\Driver
+
+# Default redirect location
+defaultRedirect: bt/logistics/driver
+
+# Create page
+create:
+    title: Create Driver
+    redirect: bt/logistics/driver/update/:id
+    redirectClose: bt/logistics/driver
+
+# Update page
+update:
+    title: Edit Driver
+    redirect: bt/logistics/driver
+    redirectClose: bt/logistics/driver
+
+# Preview page
+preview:
+    title: Preview Driver

@@ -1,0 +1,35 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    date:
+        label: Date of Incident
+        type: datepicker
+        span: auto
+    who:
+        label: Who did the wrongdoing?
+        span: auto
+    where:
+        label: Where did this happen (Unit, location)?
+        span: auto
+    what:
+        label: What wrongdoing occurred?
+        type: textarea
+        span: auto
+    how:
+        label: What enabled this to happen (How)?
+        type: textarea
+        span: auto
+    witness_doc:
+            label: Witness Document
+            span: auto
+            type: fileupload
+            mode: file
+    reported:
+        label: Was the matter reported before?
+        type: checkbox
+        span: auto

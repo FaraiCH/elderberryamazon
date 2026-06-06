@@ -1,0 +1,5 @@
+<?php
+    if(isset($record->sell_price) && isset($record->buy_price))
+
+    echo number_format(($record->sell_price - $record->buy_price)/($record->sell_price + $record->buy_price) * 100 , 2, ',', ' '). '%';
+?>

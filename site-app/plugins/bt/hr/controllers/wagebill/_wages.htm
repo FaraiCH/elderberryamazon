@@ -1,0 +1,907 @@
+
+<div tabindex="0" class="e-card" id="basic">
+    <div class="e-card-header">
+        <div class="e-card-header-caption">
+            <div style="color: white" class="e-card-header-title">INPUT WAGE BILL FOR (<?= $empObj['name'] ?>)  <?= $noweeks ?> DAY(S)</div>
+        </div>
+    </div>
+    <div class="e-card-content">
+        <form name="form-check" id="form-check">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>No</th>
+                        <th width="100px">Date</th>
+                        <th>Day</th>
+                        <th width="100px">Shifts</th>
+                        <th>Start Hour</th>
+                        <th>End Hour</th>
+                        <th>Hours Worked</th>
+                        <th>Normal</th>
+                        <th>T/2 (Overtime)</th>
+                        <th>2T (Double)</th>
+                        <th>Shift Cancellation</th>
+                        <th width="100px">Leave/Holiday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($weeks as $key => $week): ?>
+                <tr>
+                    <?php if (empty($empObj['status'][$key])): ?>
+                        <td><span class="text text-primary">NEW</span></td>
+                    <?php else: ?>
+                        <td><span class="text text-danger">UPDATE</span></td>
+                    <?php endif ?>
+                    <?php if($week['Day'] == 'Sun' || $week['Day'] == 'Sat'): ?>
+                        <td style="background: #f9efad"><?= $key + 1 ?></td>
+                        <td style="background: #f9efad">
+                            <?=$week['Date'] ?>
+                        </td>
+                        <td style="background: #f9efad"><?= $week['Day'] ?></td>
+
+                        <form>
+
+                            <td style="background: #f9efad">
+                                <div class="form-group dropdown-field">
+                                    <select name="shift[]" onchange="GetMe(this.id, this.value)" id="shift<?=$key ?>" class="form-control custom-select">
+                                        <option <?php if (empty($empObj['shift'][$key])) echo 'selected="selected" '; ?> value="null">Select</option>
+                                        <option <?php if (isset($empObj['shift'][$key])) if ($empObj['shift'][$key] == 0) echo 'selected="selected" '; ?>value="0">Day</option>
+                                        <option <?php if (isset($empObj['shift'][$key])) if ($empObj['shift'][$key] == 1) echo 'selected="selected" '; ?> value="1">Night</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <input value="<?= $shifthours ?>" type="hidden" name="shifthours" id="shifthours<?=$key ?>">
+                            <input value="<?= $rate ?>" type="hidden" name="rate" id="rate<?=$key ?>">
+                            <input value="<?=$week['Date'] ?>" type="hidden" name="week[]" id="date<?=$key ?>">
+                            <input value="<?= $week['Day'] ?>" type="hidden" name="day[]" id="day<?=$key ?>">
+                            <input value="<?= $employee ?>" type="hidden" name="employee" id="employee<?=$key ?>">
+                            <input value="<?= $noweeks ?>" type="hidden" name="noweeks" id="noweeks<?=$key ?>">
+                            <input value="<?= $start_date ?>" type="hidden" name="start_date" id="start_date<?=$key ?>">
+                            <td style="background: #f9efad"><input text="start_time" name="start_time[]" id="starttime<?=$key ?>"></td>
+                            <td style="background: #f9efad"><input text="end_time" name="end_time[]" id="endtime<?=$key ?>"></td>
+                            <td style="background: #f9efad"><input readonly text="total" name="total[]" id="total<?=$key ?>"></td>
+                            <td style="background: #f9efad"><input readonly text="normal" name="normal[]" id="normal<?=$key ?>" ></td>
+                            <td style="background: #f9efad"><input readonly text="over" name="over[]" id="over<?=$key ?>"></td>
+                            <td style="background: #f9efad"><input readonly text="double" name="double[]" id="double<?=$key ?>"></td>
+                            <td style="background: #f9efad"><input readonly text="cancel" name="cancel[]" id="cancel<?=$key ?>"></td>
+                            <td style="background: #f9efad">
+                                <div class="form-group dropdown-field">
+                                <select onchange="GetComment(this.id, this.value)" name="comment[]" id="comment<?=$key ?>" class="form-control custom-select">
+                                    <option value="null">Select</option>
+                                    <?php foreach($commentObj as $comment): ?>
+                                    <?php if (!empty($empObj['comment'][$key])): ?>
+                                        <?php if($empObj['comment'][$key] == $comment->id):  ?>
+                                            <option selected="selected" value="<?= $comment->id ?>"><?= $comment->name ?> </option>
+                                        <?php else: ?>
+                                            <option value="<?= $comment->id ?>"><?= $comment->name ?> </option>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <option value="<?= $comment->id ?>"><?= $comment->name ?> </option>
+                                    <?php endif; ?>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            </td>
+                        </form>
+                    <?php else: ?>
+                        <td><?= $key + 1 ?></td>
+                        <td>
+                            <?=$week['Date'] ?>
+                        </td>
+                        <td><?= $week['Day'] ?></td>
+
+                        <form>
+
+                            <td>
+                                <div class="form-group dropdown-field">
+                                    <select name="shift[]" onchange="GetMe(this.id, this.value)" id="shift<?=$key ?>" class="form-control custom-select">
+                                        <option <?php if (empty($empObj['shift'][$key])) echo 'selected="selected" '; ?> value="null">Select</option>
+                                        <option <?php if (isset($empObj['shift'][$key])) if ($empObj['shift'][$key] == 0) echo 'selected="selected" '; ?>value="0">Day</option>
+                                        <option <?php if (isset($empObj['shift'][$key])) if ($empObj['shift'][$key] == 1) echo 'selected="selected" '; ?> value="1">Night</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <input value="<?= $shifthours ?>" type="hidden" name="shifthours" id="shifthours<?=$key ?>">
+                            <input value="<?= $rate ?>" type="hidden" name="rate" id="rate<?=$key ?>">
+                            <input value="<?=$week['Date'] ?>" type="hidden" name="week[]" id="date<?=$key ?>">
+                            <input value="<?= $week['Day'] ?>" type="hidden" name="day[]" id="day<?=$key ?>">
+                            <input value="<?= $employee ?>" type="hidden" name="employee" id="employee<?=$key ?>">
+                            <input value="<?= $noweeks ?>" type="hidden" name="noweeks" id="noweeks<?=$key ?>">
+                            <td><input text="start_time" name="start_time[]" id="starttime<?=$key ?>"></td>
+                            <td><input text="end_time" name="end_time[]" id="endtime<?=$key ?>"></td>
+                            <td><input readonly text="total" name="total[]" id="total<?=$key ?>"></td>
+                            <td><input readonly text="normal" name="normal[]" id="normal<?=$key ?>" ></td>
+                            <td><input readonly text="over" name="over[]" id="over<?=$key ?>"></td>
+                            <td><input readonly text="double" name="double[]" id="double<?=$key ?>"></td>
+                            <td><input readonly text="cancel" name="cancel[]" id="cancel<?=$key ?>"></td>
+                            <td style="background: #f9efad"> <div class="form-group dropdown-field">
+                                <select onchange="GetComment(this.id, this.value)" name="comment[]" id="comment<?=$key ?>" class="form-control custom-select">
+                                    <option value="null">Select</option>
+                                    <?php foreach($commentObj as $comment): ?>
+                                    <?php if (!empty($empObj['comment'][$key])): ?>
+                                    <?php if($empObj['comment'][$key] == $comment->id):  ?>
+                                        <option selected="selected" value="<?= $comment->id ?>"><?= $comment->name ?> </option>
+                                    <?php else: ?>
+                                        <option value="<?= $comment->id ?>"><?= $comment->name ?> </option>
+                                    <?php endif; ?>
+                                    <?php else: ?>
+                                    <option value="<?= $comment->id ?>"><?= $comment->name ?> </option>
+                                    <?php endif; ?>
+                                    <?php endforeach ?>
+                                </select>
+                            </div></td>
+                        </form>
+                    <?php endif; ?>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <button data-stripe-load-indicator data-attach-loading
+                    type="submit"
+                    data-request-files
+                    data-request="onSubmit"
+                    data-dismiss="modal"
+                    class="btn btn-primary btn-block text-center" style="text-align: center; width: 30%">
+                Save Wage Bill
+            </button>
+        </form>
+    </div>
+</div>
+
+<?php if(isset($empObj['shift'])): ?>
+    <?php if($empObj['shift'][0] == 0 || $empObj['shift'][0] == 1): ?>
+        <script type="text/javascript">
+            // Function to add properties to form elements such as TextboX, Dropwon and TimePicker
+            ej.base.enableRipple(true);
+            var empObj = <?= json_encode($empObj) ?>;
+            var myWeek = <?= $noweeks ?>;
+            var normalWork = <?= $shifthours ?>;
+            for(var  i = 0; i <= myWeek; i++) {
+                if(empObj['first'][i]){
+                    var timepicker = new ej.calendars.TimePicker({
+                        placeholder: 'Select a time',
+                        value: empObj['first'][i],
+                        // sets the format property to display the time value in 24 hours format.
+                        format: 'HH:mm:ss',
+                        // specify the interval value.
+                        change: onChange
+                    });
+                    timepicker.appendTo('#starttime' + i);
+                    var timepicker2 = new ej.calendars.TimePicker({
+                        placeholder: 'Select a time',
+                        value: empObj['second'][i],
+                        // sets the format property to display the time value in 24 hours format.
+                        format: 'HH:mm:ss',
+                        // specify the interval value.
+                        change: onChange
+                    });
+                    timepicker2.appendTo('#endtime' + i);
+                    // initialize AutoComplete component
+                    var shift = new ej.dropdowns.AutoComplete({
+                        //set the data to dataSource property
+                        dataSource: [
+                            'Day', 'Night'
+                        ],
+                        value: empObj['shift'][i],
+                        // set the placeholder to AutoComplete input element
+                        required: true,
+                        showPopupButton: true,
+                    });
+                    // shift.appendTo('#shift' + i);
+                    var inputobj = new ej.inputs.TextBox({
+                        value: empObj['total'][i],
+                        type: 'number',
+                        disabled: true
+                    });
+                    inputobj.appendTo('#total' + i);
+                    var normal2 = new ej.inputs.TextBox({
+                        value: empObj['normal'][i],
+                        type: 'number',
+                        change: onChangeNormal
+                    });
+                    normal2.appendTo('#normal' + i);
+                    var over = new ej.inputs.TextBox({
+                        value: empObj['over'][i],
+                        type: 'number',
+                        disabled: true
+                    });
+                    over.appendTo('#over' + i);
+                    var double = new ej.inputs.TextBox({
+                        value: empObj['double'][i],
+                        type: 'number',
+                        disabled: true
+                    });
+                    double.appendTo('#double' + i);
+
+                    var canc = new ej.inputs.TextBox({
+                        value: empObj['cancel'][i],
+                        type: 'number',
+                    });
+                    canc.appendTo('#cancel' + i);
+                }else{
+                    var timepicker = new ej.calendars.TimePicker({
+                        placeholder: 'Select a time',
+                        // sets the format property to display the time value in 24 hours format.
+                        format: 'HH:mm:ss',
+                        // specify the interval value.
+                        change: onChange
+                    });
+                    timepicker.appendTo('#starttime' + i);
+                    var timepicker2 = new ej.calendars.TimePicker({
+                        placeholder: 'Select a time',
+                        // sets the format property to display the time value in 24 hours format.
+                        format: 'HH:mm:ss',
+                        // specify the interval value.
+                        change: onChange
+                    });
+                    timepicker2.appendTo('#endtime' + i);
+                    // initialize AutoComplete component
+                    var shift = new ej.dropdowns.AutoComplete({
+                        //set the data to dataSource property
+                        dataSource: [
+                            'Day', 'Night'
+                        ],
+                        // set the placeholder to AutoComplete input element
+                        placeholder: 'Select',
+                        required: true,
+                        showPopupButton: true,
+                    });
+                    // shift.appendTo('#shift' + i);
+                    var inputobj = new ej.inputs.TextBox({
+                        type: 'number',
+                        value: 0.0,
+                        disabled: true
+                    });
+                    inputobj.appendTo('#total' + i);
+
+                    var normal2 = new ej.inputs.TextBox({
+                        type: 'number',
+                        value: 0.0,
+                        change: onChangeNormal
+                    });
+                    normal2.appendTo('#normal' + i);
+
+                    var over = new ej.inputs.TextBox({
+                        type: 'number',
+                        value: 0.0,
+                        disabled: true
+                    });
+                    over.appendTo('#over' + i);
+                    var double = new ej.inputs.TextBox({
+                        type: 'number',
+                        value: 0.0,
+                        disabled: true
+                    });
+                    double.appendTo('#double' + i);
+                    var canc = new ej.inputs.TextBox({
+                        type: 'number',
+                        value: 0.0,
+                    });
+                    over.appendTo('#cancel' + i);
+
+                }
+            }
+            function onChange(args){
+                var id = args.element.id;
+                var res = id.replace(/\D/g, "");
+                getTimePicked(res);
+            }
+            // Can the choices you made in time and update
+            function getTimePicked(numb) {
+                var firstVal = document.getElementById('starttime'+ numb).value;
+                var secondVal = document.getElementById('endtime'+ numb).value;
+                var firstTime = parseFloat(firstVal.substring(0, 2));
+                var secondTime = parseFloat(secondVal.substring(0,2));
+                var shift = document.getElementById('shift'+ numb).value;
+                var normal = parseFloat(document.getElementById('normal' + numb).value);
+                var day = document.getElementById('day' + numb).value;
+                var firstThirty =  parseFloat(firstVal.substring(3));
+                var secondThirty =  parseFloat(secondVal.substring(3));
+                var comment =  document.getElementById('comment' + numb).value;
+                var pointFive = 0;
+                var pointFive2 = 0;
+                if(firstThirty == 30) {
+                    pointFive = 0.5;
+                }
+                if(secondThirty == 30){
+                    pointFive2 = 0.5
+                }
+                if(day === 'Sun' || comment == 7){
+                    // This has all of Sundays formals and public holidays
+                    document.getElementById('normal' + numb).value = 0.0;
+                    if(shift == 0) {
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+
+                            if(firstThirty == 30 && secondThirty != 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+                                if(comment == 7){
+                                    document.getElementById('double' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('normal' + numb).value = 0.0;
+                                }
+                            }
+                            if(firstThirty != 30 && secondThirty == 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) - pointFive -  pointFive2);
+                                if(comment == 7){
+                                    document.getElementById('double' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('normal' + numb).value = 0.0;
+                                }
+                            }
+
+                            var total =  document.getElementById('total' + numb).value;
+
+                            if( document.getElementById('cancel' + numb).value == 1){
+                                document.getElementById('normal' + numb).value = total;
+                            }else{
+                                if(normalWork <= 12 || comment == 7){
+                                    document.getElementById('double' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('over' + numb).value = total;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+                            }
+
+
+                        }else{
+                            document.getElementById('total' + numb).value = Math.abs(firstTime - secondTime);
+                            if( document.getElementById('cancel' + numb).value == 1){
+                                document.getElementById('normal' + numb).value = Math.abs(firstTime - secondTime);
+                            }else {
+                                if (normalWork <= 12 || comment == 7) {
+                                    document.getElementById('double' + numb).value = Math.abs(firstTime - secondTime);
+                                    document.getElementById('over' + numb).value = 0.0;
+                                } else {
+                                    document.getElementById('over' + numb).value = Math.abs(firstTime - secondTime);
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+                            }
+
+                        }
+
+                    }else if(shift == 1){
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24)  - pointFive -  pointFive2;
+                            var total = document.getElementById('total' + numb).value;
+                            if(firstThirty == 30 && secondThirty != 30){
+                                document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2;
+                                if(comment == 7){
+                                    document.getElementById('double' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('normal' + numb).value = 0.0;
+                                }
+                            }
+                            if(firstThirty != 30 && secondThirty == 30){
+                                document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                                if(comment == 7){
+                                    document.getElementById('double' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('normal' + numb).value = 0.0;
+                                }
+                            }
+
+                            if( document.getElementById('cancel' + numb).value == 1){
+                                document.getElementById('normal' + numb).value = total;
+                            }else {
+                                if (normalWork <= 12) {
+                                    document.getElementById('double' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+
+                                } else {
+                                    document.getElementById('over' + numb).value = total;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+                                if(comment == 7){
+                                    document.getElementById('double' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('normal' + numb).value = 0.0;
+                                }
+                            }
+
+                        }else{
+                            if(document.getElementById('cancel' + numb).value == 1){
+                                document.getElementById('total' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                                document.getElementById('normal' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                            }else {
+                                if (normalWork <= 12) {
+                                    document.getElementById('total' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                                    document.getElementById('double' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                                    document.getElementById('over' + numb).value = 0.0;
+
+                                } else {
+                                    document.getElementById('total' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                                    document.getElementById('over' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                                    document.getElementById('double' + numb).value = 0.0;
+
+                                }
+
+                            }
+                            if(comment == 7){
+                                document.getElementById('double' + numb).value = Math.abs((-secondTime + firstTime) - 24) - pointFive - pointFive2;
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('normal' + numb).value = 0.0;
+                            }
+
+                        }
+                    }
+                }else if(day === 'Sat'){
+                    // This has all of Saturdays Formulas
+                    if(shift == 0) {
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+
+                            if(firstThirty == 30 && secondThirty != 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+                            }
+                            if(firstThirty != 30 && secondThirty == 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) - pointFive -  pointFive2);
+                            }
+
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                            }else{
+                                document.getElementById('normal' + numb).value = normalWork;
+                            }
+                            if(normalWork <= 12){
+                                document.getElementById('over' + numb).value =  total;
+                                document.getElementById('normal' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }
+                            else {
+                                if(total <= normalWork){
+                                    document.getElementById('over' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                }
+                                document.getElementById('double' + numb).value = 0.0;
+                            }
+
+                        }else{
+                            document.getElementById('total' + numb).value = Math.abs(firstTime - secondTime);
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                            }else{
+                                document.getElementById('normal' + numb).value = normalWork;
+                            }
+                            if (normalWork <= 12) {
+                                document.getElementById('over' + numb).value = total;
+                                document.getElementById('double' + numb).value = 0.0;
+                                document.getElementById('normal' + numb).value = 0.0;
+                            } else {
+                                if(total <= normalWork){
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+
+                            }
+
+
+                        }
+
+                    }else if(shift == 1){
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            if(normalWork <= 12){
+                                document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24)  - pointFive -  pointFive2;
+                                var total = document.getElementById('total' + numb).value;
+                                if(firstThirty == 30 && secondThirty != 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2;
+                                }
+                                if(firstThirty != 30 && secondThirty == 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                                }
+                                var total = document.getElementById('total' + numb).value;
+                                document.getElementById('over' + numb).value = total;
+                                document.getElementById('double' + numb).value = 0.0;
+
+                            }else{
+                                document.getElementById('total' + numb).value =  total;
+                                if(firstThirty == 30 && secondThirty != 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2;
+                                }
+                                if(firstThirty != 30 && secondThirty == 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                                }
+                                var total =  document.getElementById('total' + numb).value;
+                                if(total <= normalWork){
+                                    document.getElementById('normal' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('normal' + numb).value = normalWork;
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+
+                            }
+
+                        }else{
+                            if(normalWork <= 12){
+                                document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24) ;
+                                var total =  document.getElementById('total' + numb).value;
+
+                                document.getElementById('over' + numb).value = total;
+                                document.getElementById('double' + numb).value = 0.0;
+
+                            }else{
+                                document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24) ;
+                                var total =  document.getElementById('total' + numb).value;
+                                if(total < normalWork){
+                                    document.getElementById('normal' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('normal' + numb).value = normalWork;
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                else if(day === 'Fri'){
+                    // This has all of Saturdays Formulas
+                    if(shift == 0) {
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+
+                            if(firstThirty == 30 && secondThirty != 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+                            }
+                            if(firstThirty != 30 && secondThirty == 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) - pointFive -  pointFive2);
+                            }
+
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                            }else{
+                                document.getElementById('normal' + numb).value = normalWork;
+                            }
+                            if(normalWork == 12){
+                                document.getElementById('over' + numb).value =  total;
+                                document.getElementById('normal' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }
+                            else {
+                                if(total <= normalWork){
+                                    document.getElementById('over' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                }
+                                document.getElementById('double' + numb).value = 0.0;
+                            }
+
+                        }else{
+                            document.getElementById('total' + numb).value = Math.abs(firstTime - secondTime);
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                            }else{
+                                document.getElementById('normal' + numb).value = normalWork;
+                            }
+                            if (normalWork == 12) {
+                                document.getElementById('over' + numb).value = total;
+                                document.getElementById('double' + numb).value = 0.0;
+                                document.getElementById('normal' + numb).value = 0.0;
+                            } else {
+                                if(total <= normalWork){
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+
+                            }
+
+
+                        }
+
+                    }else if(shift == 1){
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            if(normalWork == 12){
+                                document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24)  - pointFive -  pointFive2;
+                                var total = document.getElementById('total' + numb).value;
+                                if(firstThirty == 30 && secondThirty != 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2;
+                                }
+                                if(firstThirty != 30 && secondThirty == 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                                }
+                                var total = document.getElementById('total' + numb).value;
+                                document.getElementById('over' + numb).value = total;
+                                document.getElementById('double' + numb).value = 0.0;
+
+                            }else{
+                                document.getElementById('total' + numb).value =  total;
+                                if(firstThirty == 30 && secondThirty != 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2;
+                                }
+                                if(firstThirty != 30 && secondThirty == 30){
+                                    document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                                }
+                                var total =  document.getElementById('total' + numb).value;
+                                if(total <= normalWork){
+                                    document.getElementById('normal' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('normal' + numb).value = normalWork;
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+
+                            }
+
+                        }else{
+                            if(normalWork == 12){
+                                document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24) ;
+                                var total =  document.getElementById('total' + numb).value;
+
+                                document.getElementById('over' + numb).value = total;
+                                document.getElementById('double' + numb).value = 0.0;
+
+                            }else{
+                                document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24) ;
+                                var total =  document.getElementById('total' + numb).value;
+                                if(total < normalWork){
+                                    document.getElementById('normal' + numb).value = total;
+                                    document.getElementById('over' + numb).value = 0.0;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }else{
+                                    document.getElementById('normal' + numb).value = normalWork;
+                                    document.getElementById('over' + numb).value = total - normalWork;
+                                    document.getElementById('double' + numb).value = 0.0;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                else{
+                    if(shift == 0) {
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+
+                            if(firstThirty == 30 && secondThirty != 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) + 1 - pointFive -  pointFive2);
+                            }
+                            if(firstThirty != 30 && secondThirty == 30){
+                                document.getElementById('total' + numb).value =  Math.abs((firstTime - secondTime) - pointFive -  pointFive2);
+                            }
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('normal' + numb).value = normalWork;
+                                document.getElementById('over' + numb).value =  total - normalWork;
+                            }
+                        }else{
+                            document.getElementById('total' + numb).value = Math.abs(firstTime - secondTime);
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('normal' + numb).value = normalWork;
+                                document.getElementById('over' + numb).value = total - normalWork;
+                            }
+                        }
+
+                    }else if(shift == 1){
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24)  - pointFive -  pointFive2;
+
+                            if(firstThirty == 30 && secondThirty != 30){
+                                document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2;
+                            }
+                            if(firstThirty != 30 && secondThirty == 30){
+                                document.getElementById('total' + numb).value =  Math.abs((- secondTime + firstTime) - 24) - pointFive -  pointFive2 + 1;
+                            }
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('normal' + numb).value = normalWork;
+                                document.getElementById('over' + numb).value = total - normalWork;
+                            }
+                        }else{
+                            document.getElementById('total' + numb).value = Math.abs((- secondTime + firstTime) - 24)  - pointFive -  pointFive2 ;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total <= normalWork){
+                                document.getElementById('normal' + numb).value = total;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('normal' + numb).value = normalWork;
+                                document.getElementById('over' + numb).value = total - normalWork;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            function addDays(date, days) {
+                var result = new Date(date + ' ' + '06:00:00');
+                result.setDate(result.getDate() + days);
+                return result;
+            }
+            function GetComment(id, mycomment){
+                // Reset Everything
+                var txt = id;
+                var numb = txt.match(/\d/g);
+                numb = numb.join("");
+                var normal =  document.getElementById('normal' + numb).value;
+                var total =  document.getElementById('total' + numb).value;
+                document.getElementById('over' + numb).value = 0.0
+                document.getElementById('double' + numb).value = 0.0
+                document.getElementById('cancel' + numb).setAttribute("readonly", "")
+                document.getElementById('cancel' + numb).value = 0;
+                if(mycomment == 8){
+                    document.getElementById('normal' + numb).value = total;
+                    document.getElementById('total' + numb).value = total;
+                    document.getElementById('cancel' + numb).removeAttribute('readonly');
+                    document.getElementById('cancel' + numb).value = 1;
+                }
+                else if(mycomment == 7){
+                    document.getElementById('normal' + numb).value = 0.0;
+                    document.getElementById('over' + numb).value = 0.0;
+                    document.getElementById('double' + numb).value = total;
+                    document.getElementById('total' + numb).value = total;
+                }else if(mycomment == 3){
+                    document.getElementById('normal' + numb).value = 0.0;
+                    document.getElementById('total' + numb).value = 0.0;
+                }
+            }
+            // Get your shift choices and update
+            function GetMe(id, myShift){
+                var txt = id;
+                var numb = txt.match(/\d/g);
+                numb = numb.join("");
+                var normal = parseFloat(document.getElementById('normal' + numb).value);
+                var day = document.getElementById('day' + numb).value;
+                var firstVal = document.getElementById('starttime'+ numb).value;
+                var secondVal = document.getElementById('endtime'+ numb).value;
+                var firstTime = parseFloat(firstVal.substring(0, 2));
+                var secondTime = parseFloat(secondVal.substring(0,2));
+                var firstThirty =  parseFloat(firstVal.substring(3));
+                var secondThirty =  parseFloat(secondVal.substring(3));
+                var comment =  document.getElementById('comment' + numb).value;
+                if(day === 'Sun' || comment == 7){
+                    if(myShift == 0){
+                        document.getElementById('starttime'+ numb).value = '';
+                        document.getElementById('endtime'+ numb).value = '';
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value = 0.0;
+                            document.getElementById('normal' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normalWork){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('double' + numb).value = 0.0;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }else{
+                            document.getElementById('total' + numb).value = 0.0;
+                            document.getElementById('normal' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normalWork){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('double' + numb).value = 0.0;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }
+                    }
+                    if(myShift == 1){
+                        document.getElementById('starttime'+ numb).value = '';
+                        document.getElementById('endtime'+ numb).value = '';
+                        document.getElementById('normal' + numb).value = 0.0;
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normalWork){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('double' + numb).value = 0.0;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }else{
+
+                            document.getElementById('total' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normalWork){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('double' + numb).value = 0.0;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }
+                    }
+                    if(myShift == null){
+                        document.getElementById('starttime'+ numb).value = '';
+                        document.getElementById('endtime'+ numb).value = '';
+                    }
+                }else{
+                    if(myShift == 0){
+                        document.getElementById('starttime'+ numb).value = '';
+                        document.getElementById('endtime'+ numb).value = '';
+                        document.getElementById('normal' + numb).value = 0.0;
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normalWork){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }else{
+                            if(total < normalWork){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('total' + numb).value = 0.0;
+                                var total =  document.getElementById('total' + numb).value;
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }
+                    }
+                    if(myShift == 1){
+                        document.getElementById('starttime'+ numb).value = '';
+                        document.getElementById('endtime'+ numb).value = '';
+                        document.getElementById('normal' + numb).value = 0.0;
+                        if(firstThirty == 30 || secondThirty == 30) {
+                            document.getElementById('total' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normal){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }else{
+                            document.getElementById('total' + numb).value = 0.0;
+                            var total =  document.getElementById('total' + numb).value;
+                            if(total < normal){
+                                document.getElementById('over' + numb).value = 0.0;
+                                document.getElementById('double' + numb).value = 0.0;
+                            }else {
+                                document.getElementById('over' + numb).value = 0.0;
+                            }
+                        }
+                    }
+                    if(myShift == null){
+                        document.getElementById('starttime'+ numb).value = '';
+                        document.getElementById('endtime'+ numb).value = '';
+                    }
+                }
+
+            }
+            function onChangeNormal(args){
+                // When someone types in normal, make changes in hours
+                //Todo
+            }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+
+
+

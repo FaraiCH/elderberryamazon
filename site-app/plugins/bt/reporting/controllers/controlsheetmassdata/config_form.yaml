@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Control Sheet Mass Data
+
+# Model Form Field configuration
+form: $/bt/reporting/models/controlsheetmassdata/fields.yaml
+
+# Model Class name
+modelClass: Bt\Reporting\Models\ControlSheetMassData
+
+# Default redirect location
+defaultRedirect: bt/reporting/controlsheetmassdata
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/reporting/controlsheetmassdata/update/:id
+    redirectClose: bt/reporting/controlsheetmassdata
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/reporting/controlsheetmassdata
+    redirectClose: bt/reporting/controlsheetmassdata
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Newquote
+
+# Model Form Field configuration
+form: $/bt/sales/models/newquote/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Newquote
+
+# Default redirect location
+defaultRedirect: bt/sales/newquote
+downloadUrl: /quote/item/download/:id
+# Create page
+create:
+    title: Create Newquote
+    redirect: bt/sales/newquote/update/:id
+    redirectClose: bt/sales/newquote
+
+# Update page
+update:
+    title: Edit Quote
+    redirect: bt/sales/newquote
+    redirectClose: bt/sales/newquote
+
+# Preview page
+preview:
+    title: Preview Quote

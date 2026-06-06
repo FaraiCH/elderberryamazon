@@ -1,0 +1,14 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    subject:
+        label: Subject 
+    
+    body:
+        label: Body
+        type: richeditor
+        toolbarButtons: bold|italic
+        size: huge
+        

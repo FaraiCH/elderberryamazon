@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Requested Certificates
+
+# Model Form Field configuration
+form: $/bt/qc/models/reqcertificate/fields.yaml
+
+# Model Class name
+modelClass: Bt\Qc\Models\Reqcertificate
+
+# Default redirect location
+defaultRedirect: bt/qc/reqcertificate
+
+# Create page
+create:
+    title: Create Reqcertificate
+    redirect: bt/qc/reqcertificate/update/:id
+    redirectClose: bt/qc/reqcertificate
+
+# Update page
+update:
+    title: Edit Requested Certificates
+    redirect: bt/qc/reqcertificate
+    redirectClose: bt/qc/reqcertificate
+
+# Preview page
+preview:
+    title: Preview Requested Certificates

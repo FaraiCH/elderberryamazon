@@ -1,0 +1,57 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    quotes:
+        label: Quote No
+        relation: quotes
+        select: concat(id, ' > ', company_name)
+        searchable: true
+    approvecoc:
+        label: Approved
+        type: partial
+        path: $/bt/qc/models/reqcertificate/_ho_approve_column.htm
+        sortable: false
+    coc:
+        label: COC Requested?
+        type: partial
+        path: $/bt/qc/models/reqcertificate/_coc.htm
+    coa:
+        label: COA Requested?
+        type: partial
+        path: $/bt/qc/models/reqcertificate/_coa.htm
+    notes:
+        label: Notes
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: first_name
+    updatedby:
+        label: Updated By
+        relation: updatedby
+        select: first_name
+        searchable: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+    requestqc:
+        label: Send Request TO QC
+        type: partial
+        path: $/bt/qc/models/reqcertificate/_sendemail_column.htm
+        sortable: false
+        clickable: false
+
+
+

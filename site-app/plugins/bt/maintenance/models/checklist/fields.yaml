@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Checklist Name
+        required: true
+        comment: Example - Forklift Daily Maintenance
+
+    instructions:
+        label: Instructions
+        type: textarea
+        size: small
+        

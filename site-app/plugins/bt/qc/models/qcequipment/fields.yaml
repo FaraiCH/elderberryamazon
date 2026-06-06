@@ -1,0 +1,50 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    name:
+        label: Equipment Name
+        disabled: false
+        type: text
+        span: auto
+    model_number:
+        label: Model Number
+        span: auto
+    serial_number:
+        label: Serial Number
+        disabled: false
+        type: text
+        span: auto
+    supplier_name:
+        label: Manufacture/Supplier
+        disabled: false
+        span: auto
+    caliberation_date:
+        label: Caliberation Date
+        disabled: false
+        type: datepicker
+        mode: date
+        span: auto
+    caliberation_expiry_date:
+        label: Caliberation Expiry Date
+        disabled: false
+        type: datepicker
+        mode: date
+        span: auto
+   
+tabs:
+  fields:
+    images:
+        label: Images
+        type: fileupload
+        tab: Images
+        span: auto
+    files:
+        label: Equipment Files
+        type: fileupload
+        tab: Upload Files
+        mode: file
+        tab: Files
+        span: auto

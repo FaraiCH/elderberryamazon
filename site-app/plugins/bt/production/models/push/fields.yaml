@@ -1,0 +1,57 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        
+        date_of_accepted:
+            label: Start Date
+            type: datepicker
+            span: auto
+            mode: date
+            tab: Setup
+            comment: Add start date and end date before setting Status to "Started/Inprogress".
+        date_of_completed:
+            label: Estimated Date Of Complition
+            type: datepicker
+            span: auto
+            mode: date
+            tab: Setup
+            comment: Add start date and end date before setting Status to "Started/Inprogress".
+
+        status:
+            label: Production Status
+            type: relation
+            select: name
+            comment: Setting status to "Started/Inprogress" will create production PIPES on "PRODUCTION PIPE" tab. It will also add side menu links on "Front End Dashboard".
+            span: auto
+            tab: Setup
+        blendedprice:
+            label: Blended Price
+            type: relation
+            select: concat('R',price, ' ',locked_date)
+            placeholder: --- Select Blended Price Per KG ---
+            span: auto
+            tab: Setup
+
+        # approved@update:
+        #     path: $/bt/production/controllers/push/_approve.htm
+        #     tab: Approve By Management
+        #     type: partial
+        productiondelay@update:
+            path: $/bt/production/controllers/push/_delayreasons.htm
+            tab: Production Delay
+            type: partial
+
+        comments:
+            label: Comments
+            type: textarea
+            size: small
+            tab: Communication
+        comments:
+            label: Comments
+            type: textarea
+            tab: Quote Performance
+
+

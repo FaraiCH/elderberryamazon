@@ -1,0 +1,88 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    #    id:
+    #        label: ID
+    #        disabled: true
+    vehicle_type:
+        label: Delivery Options
+        type: dropdown
+        span: auto
+        placeholder: -- Select Who Will be Delivering --
+        options:
+            bt: BT Delivery
+            custom: Custom
+    destination:
+        label: Destination
+        type: dropdown
+        placeholder: -- Sele4ct Destination --
+        span: auto
+        dependsOn: vehicle_type
+    vehicle:
+        label: Vehicle
+        type: dropdown
+        placeholder: -- Select Vehicle --
+        span: auto
+        dependsOn: destination
+    vihicle_load_weight:
+        label: Intended Load Weight in KG
+        type: number
+        span: auto
+        disabled: true
+        dependsOn: vehicle
+
+    #    vehicle_load_min_lenth:
+    #        label: Vehicle Min Length
+    #        type: number
+    #        span: auto
+
+    qty:
+        label: Trip Quantity
+        type: number
+        span: auto
+        dependsOn: vehicle
+    discount:
+        label: Discount Percentage
+        type: number
+        span: auto
+        dependsOn: qty
+    unit_price:
+        label: Price Per Trip
+        type: inputcurrency
+        disabled: true
+        span: auto
+        dependsOn: discount
+    total:
+        label: Total Cost
+        type: inputcurrency
+        span: auto
+        disabled: true
+        dependsOn: discount
+    rate_per_transport:
+        label: Rate/Transport
+        type: inputcurrency
+        span: auto
+        disabled: true
+        dependsOn: total
+    vehicle_load_max_length:
+        label: Vehicle Max Length
+        type: number
+        span: auto
+    danages_required:
+        label: Danages Required?
+        type: switch
+        on: Yes
+        off: No
+        span: left
+    hide:
+        label: Hide On Quote?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+    comment:
+        label: Comments
+        placeholder: Justify Any Discounts Added to the Delivery
+        type: textarea

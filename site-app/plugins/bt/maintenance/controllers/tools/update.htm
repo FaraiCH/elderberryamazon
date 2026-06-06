@@ -1,0 +1,97 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/maintenance/tools') ?>">Equipments</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            
+
+            <div class="control-tabs content-tabs" data-control="tab">
+                    <ul class="nav nav-tabs">
+                      
+                          <li class="nav-item">
+                            <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tools</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Usage</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="active" id="checklist-tab" data-toggle="tab" href="#checklist" role="tab" aria-controls="checklist" aria-selected="false">Checklist</a>
+                          </li>
+                          
+                          
+          
+                    </ul>
+                    <div class="tab-content" id="myTabContent" style="background: #fff">
+                        
+                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div style="padding: 0px 20px"><h3>Tools</h3> <?= $this->formRender() ?></div>
+                        </div>
+                        <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div style="padding: 0px 20px"><h3>Usage</h3><?= $this->relationRender('usage') ?></div>
+                        </div>
+                         <div class="tab-pane" id="checklist" role="tabpanel" aria-labelledby="checklist-tab">
+                            <div style="padding: 0px 20px"><h3>Checklist</h3><?= $this->relationRender('checklist') ?></div>
+                        </div>
+
+                       
+
+                    </div>
+                </div>
+
+            
+        </div>
+
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Tool..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Tool..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <?php if($this->user->is_superuser): ?>
+                    <button
+                        type="button"
+                        class="oc-icon-trash-o btn-icon danger pull-right"
+                        data-request="onDelete"
+                        data-load-indicator="Deleting Tool..."
+                        data-request-confirm="Delete this tool?">
+                    </button>
+                <?php endif; ?>
+
+                <a target="_blank" class="btn btn-primary pull-right " href="/tools/item/download/<?=   $formModel->id ?>.pdf">Download Tool Details/PDF</a>
+                <a target="_blank" class="btn btn-primary pull-right " href="/checklist/item/download/<?=   $formModel->id ?>.pdf">Download Checklist/PDF</a>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/maintenance/tools') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/maintenance/tools') ?>" class="btn btn-default">Return to tools list</a></p>
+
+<?php endif ?>

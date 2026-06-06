@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/bt/sheq/models/category/fields.yaml
+
+# Model Class name
+modelClass: Bt\SHEQ\Models\Category
+
+# Default redirect location
+defaultRedirect: bt/sheq/category
+
+# Create page
+create:
+    title: Create Category
+    redirect: bt/sheq/category/update/:id
+    redirectClose: bt/sheq/category
+
+# Update page
+update:
+    title: Edit Category
+    redirect: bt/sheq/category
+    redirectClose: bt/sheq/category
+
+# Preview page
+preview:
+    title: Preview Category

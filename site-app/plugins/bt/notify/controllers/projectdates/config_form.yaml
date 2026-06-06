@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Projectdate
+
+# Model Form Field configuration
+form: $/bt/notify/models/projectdates/fields.yaml
+
+# Model Class name
+modelClass: Bt\Notify\Models\Projectdates
+
+# Default redirect location
+defaultRedirect: bt/notify/projectdates
+
+# Create page
+create:
+    title: Create Projectdate
+    redirect: bt/notify/projectdates/update/:id
+    redirectClose: bt/notify/projectdates
+
+# Update page
+update:
+    title: Edit Projectdate
+    redirect: bt/notify/projectdates
+    redirectClose: bt/notify/projectdates
+
+# Preview page
+preview:
+    title: Preview Projectdate

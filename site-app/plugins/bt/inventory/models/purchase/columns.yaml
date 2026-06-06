@@ -1,0 +1,70 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    approved:
+        label: Approved
+        type: partial
+        path: $/bt/inventory/models/purchase/_approved_column.htm
+    completed:
+        label: Completed?
+        type: partial
+        path: $/bt/inventory/models/purchase/_completed_column.htm
+    date_of_puchase:
+        label: Date Of Puchase
+        searchable: true
+
+    expected_date_of_receipt:
+        label: Expected Delivery Date
+        searchable: true
+
+    supplier:
+        label: Supplier
+        searchable: true
+        relation: supplier
+        select: name
+    po_number:
+        label: PO Number
+        searchable: true
+
+    # productnames:
+    #     label: Products
+
+    weight:
+        label: Weight
+        type: number
+        format: %.0f KG
+
+    deliveredweight:
+        label: Delivered Weight
+        type: partial
+        path: $/bt/inventory/models/purchase/_delivered_column.htm
+
+    deliveredpercentance:
+        label: Delivered %
+        type: partial
+        path: $/bt/inventory/models/purchase/_deliveredpercentance_column.htm
+
+        
+
+
+
+
+    price:
+        label: Price in Rands
+        type: number
+        format: R %.2f
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

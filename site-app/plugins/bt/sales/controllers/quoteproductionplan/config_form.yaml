@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Quote Production Plan
+
+# Model Form Field configuration
+form: $/bt/sales/models/quoteproductionplan/fields_column.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\QuoteProductionPlan
+
+# Default redirect location
+defaultRedirect: bt/sales/quoteproductionplan
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/quoteproductionplan/update/:id
+    redirectClose: bt/sales/quoteproductionplan
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/quoteproductionplan
+    redirectClose: bt/sales/quoteproductionplan
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

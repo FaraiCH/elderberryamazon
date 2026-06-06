@@ -1,0 +1,154 @@
+
+   <div class="card card-default mb-4 mt-3">
+   		<div class="card-header py-2">
+   			<b>Filter</b>
+   		</div>
+            <div class="card-body  py-2">
+                <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+
+				  <div class="form-group">
+				    <label for="sales">Sales Person</label>
+				    <select id="sales" name="sales" type="text"  class="pickme form-control input-md mx-1" style="max-width: 150px;">
+				    	<option></option>
+				    	<?php  foreach($groupusers->users as $user): ?>
+				    	<option value="<?= $user->id ?>"<?php if(isset($sales)) echo ($sales == $user->id)? 'selected = "selected"':''?>><?= $user->name ?> - <?= $user->surname ?></option>
+				    	<?php endforeach ?>
+				    </select>
+				   </div>
+                <div class="form-group">
+                    <label for="client">Client</label>
+                    <select id="client" name="client" type="text"  class="pickme form-control input-md mx-1" style="max-width: 150px;">
+                        <option></option>
+                        <?php  foreach($clientobject as $cl): ?>
+                        <option value="<?= $cl->id ?>"<?php if(isset($client)) echo ($client == $cl->id)? 'selected = "selected"':''?>><?= $cl->company_name ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pipe">Pipe</label>
+                    <select id="pipe" name="pipe" type="text"  class="pickme form-control input-md mx-1" style="max-width: 150px;" >
+                        <option></option>
+                        <?php  foreach($itemsobject as $items): ?>
+                        <option value="<?= $items->id ?>"<?php if(isset($pipe)) echo ($pipe == $items->id)? 'selected = "selected"':''?>><?= $items->description ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+
+				  <button type="submit" class="btn btn-primary">Filter</button>
+                <?= Form::close()?>
+            </div>
+     </div>
+
+     <table class="table tabledownload_desc dt-responsive table-striped table-hover " style="width:100%">
+            <thead>
+            <tr>
+            	<th><span>ITEM ID</span></th>
+                <th><span>Quote</span></th>
+                <th><span>PO Number</span></th>
+                <th class="just"><span>Company Name</span></th>
+                <th><span>Sales Person</span></th>
+                <th><span>Age</span></th>
+                <th class="just"><span>Pipe</span></th>
+                <th><span>Ordered</span></th>
+                <th><span>Delivered</span></th>
+                <th><span>Back Order</span></th>
+                <th><span>Weight</span></th>
+                <th class="just"><span>Value</span></th>
+                <th><span>Remove</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            	 <?php
+                                      $t_ordered = 0;
+                                      $t_delived = 0;
+                                      $t_backorder = 0;
+                                      $t_weight = 0;
+                                      $t_value = 0;
+                                     ?>
+
+            <?php  foreach($list as $quote): ?>
+            	<?php foreach($quote->items as $itemobject): ?>
+            		<?php #if (isset($itemobject->pipe->delivered) && ($itemobject->pipe->delivered->sum("units") > 0) && (($itemobject->units - $itemobject->pipe->delivered->sum("units") ) > 0) ): ?>
+
+            		
+		            	<tr class="just">
+		            		<td><?= $itemobject->id ?></td>
+			                <td><?= $itemobject->quote_id ?></td>
+			                <td><?= $quote->ponumber ?></td>
+			                <td><?= $quote->client->company_name ?></td>
+			                <td><?= $quote->user->name ?></td>
+			                <td>
+			                	 <?php
+
+									$datetime1 = new DateTime();
+
+									$datetime2 = new DateTime($quote->created_at);
+
+									$difference = $datetime1->diff($datetime2);
+		            			?>
+			                    <?=
+									$difference->days
+			                    ?> days
+			                </td>
+
+			                <td><?= $itemobject->description ?></td>
+
+			                <?php $t_ordered += $itemobject->units ?>
+			                <td  style="text-align: center;"><?= $itemobject->units ?></td>
+
+			                <?php if (isset($itemobject->pipe->delivered)): ?>
+
+				                <?php $t_delived += $itemobject->pipe->delivered->sum("units")  ?>
+				                <td  style="text-align: center;"><?= $itemobject->pipe->delivered->sum("units") ?></td>
+
+				                <?php $t_backorder += $itemobject->units - $itemobject->pipe->delivered->sum("units")  ?>
+				                <td  style="text-align: center;" >
+				                    <?= ($itemobject->units - $itemobject->pipe->delivered->sum("units")) ?>
+				                </td>
+
+				                <?php $t_weight += (($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->weight) ?>
+				                <td style="text-align: right;" >
+				                    <?= number_format(($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->weight,1, '.', ',') ?> kg
+				                </td>
+
+				                <?php $t_value += (($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->unitprice)  ?>
+				                <td style="text-align: right;" >R
+				                    <?= number_format(($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->unitprice,2, '.', ',') ?>
+				                </td>
+			                <?php else: ?>
+				                <td style="text-align: center;">0</td>
+
+				                <?php $t_backorder += $itemobject->units ?>
+				                <td style="text-align: center;"><?= $itemobject->units ?></td>
+
+				                <?php $t_weight += ($itemobject->units  * $itemobject->weight) ?>
+				                <td style="text-align: right;" ><?= number_format($itemobject->units * $itemobject->weight,1, '.', ',') ?> kg</td>
+
+				                <?php $t_value += ($itemobject->units * $itemobject->unitprice)  ?>
+				                <td class="just" style="text-align: right;" >R <?= number_format($itemobject->units * $itemobject->unitprice,2, '.', ',') ?></td>
+
+			                <?php endif ?>
+			                <td style="text-align: center; font-size: 14px">
+			                    <a
+			                        type="button" data-request-confirm="Are you sure?" href="" data-request-data="id: <?= $itemobject->id ?>"
+			                        data-request="onRemove"
+			                        class="text-danger oc-icon-trash" style="margin: 0px !important">
+
+			                    </a>
+			                </td>
+
+			            </tr>
+			      
+            	<?php endforeach ?>
+            <?php endforeach ?>
+
+            </tbody>
+            <tfoot>
+        </table>
+       </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+

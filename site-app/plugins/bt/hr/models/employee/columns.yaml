@@ -1,0 +1,92 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    company:
+        label: Company
+        relation: company
+        select: name
+    profilepic:
+        label: Profile
+        type: partial
+        path: $/bt/hr/models/employee/_image.htm
+        searchable: false
+        sortable: false
+        width: 80
+    is_user_active:
+        label: Is User Active?
+        type: partial
+        path: $/bt/hr/models/employee/_disabled.htm
+        searchable: true
+        sortable: true
+    is_emergency:
+        label: Is Employee Emergency?
+        type: partial
+        path: $/bt/hr/models/employee/_emergency.htm
+        searchable: true
+        sortable: true
+
+    employeenumber:
+        label: Employee Number
+        searchable: true
+    pay_roll:
+        label: Payroll
+        type: selectable
+        searchable: true
+        sortable: true
+    firstname:
+        label: First Name
+        searchable: true
+    lastname:
+        label: Last Name
+        searchable: true
+    email:
+        label: Email
+        invisible: true
+    gender:
+        label: Gender
+        type: partial
+        path: $/bt/hr/models/employee/_gender_column.htm
+    type:
+        label: Employment Type
+        select: name
+        relation: type
+        invisible: true
+    ethnicity:
+        relation: ethnicity
+        select: name
+        label: Ethnicity
+    department:
+        label: Department
+        select: name
+        relation: department
+    designation:
+        label: Designation
+        select: name
+        relation: designation
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

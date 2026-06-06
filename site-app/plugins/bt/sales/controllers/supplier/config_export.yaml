@@ -1,0 +1,6 @@
+export:
+    title: Export Supplier
+    modelClass: Bt\Sales\Models\SupplierExport
+    list: $/bt/sales/models/supplier/columns_export.yaml
+    redirect: bt/sales/supplier
+    fileName: supplier-export.csv

@@ -1,0 +1,17 @@
+scopes:
+    sales_rep:
+        label: Sales Person
+        modelClass: RainLab\User\Models\User
+        conditions: user_id in (:filtered)
+        options: getSalesOptions
+    
+    poamount:
+        label: PO Amount
+        type: numberrange
+        conditions: poamount >= ':min' and poamount <= ':max'
+
+        
+    created_at:
+        label: Date Created
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'

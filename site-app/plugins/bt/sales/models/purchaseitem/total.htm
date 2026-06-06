@@ -1,0 +1,6 @@
+<?php
+    if(isset($record->sell_price) && isset($record->buy_price))
+
+
+echo 'R'. number_format(($record->units * $record->buy_price) , 2, ',', ' ');
+?>

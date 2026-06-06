@@ -1,0 +1,426 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    timeofreading:
+        label: Time of reading
+        type: datepicker
+    hopper_temperature:
+        label: Hopper Temperature
+        type: number
+
+tabs:
+    stretch: true
+    lazy:
+        - Die Temp 1 to 10
+    fields:
+        barel_zone1:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 1
+        barel_zone2:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 2
+        barel_zone3:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 3
+        barel_zone4:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 4
+        barel_zone5:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 5
+        barel_zone6:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 6
+        barel_zone7:
+          tab: Barel Temp
+          span: auto
+          type: number
+          label: Barel Zone 7
+
+        barel_zone_adaptor:
+          tab: Barel Temp
+          span: auto
+          label: Barel Zone Adaptor
+          type: number
+
+        die_zone1:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 1
+
+        die_zone2:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 2
+
+        die_zone3:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 3
+
+        die_zone4:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 4
+
+        die_zone5:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 5
+
+        die_zone6:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 6
+
+        die_zone7:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 7
+
+        die_zone8:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 8
+
+        die_zone9:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 9
+
+        die_zone10:
+          tab: Die Temp 1 to 10
+          span: auto
+          type: number
+          label: Die Zone 10
+
+        die_zone11:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 11
+
+        die_zone12:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 12
+
+        die_zone13:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 13
+
+        die_zone14:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 14
+
+        die_zone15:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone X
+
+        die_zone16:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 16
+
+        die_zone17:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 17
+
+        die_zone19:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 19
+
+        die_zone20:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 20
+
+        die_zone21:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 21
+
+        die_zone22:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 22
+
+        die_zone23:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 23
+
+        die_zone24:
+          tab: Die Tem 11 - 24
+          span: auto
+          type: number
+          label: Die Zone 24
+        motor_speed:
+          tab: Speed/Torque/Reading
+          span: auto
+          type: number
+          label: Motor Speed
+        haul_off_speed:
+          tab: Speed/Torque/Reading
+          span: auto
+          type: number
+          label: Haul Off Speed
+        machine_torque:
+          tab: Speed/Torque/Reading
+          span: auto
+          type: number
+          label: Machine Torque
+
+        vacuum_1_reading:
+          tab: Speed/Torque/Reading
+          span: auto
+          type: number
+          label: Vacuum 1 Reading
+        vacuum_2_reading:
+          tab: Speed/Torque/Reading
+          span: auto
+          type: number
+          label: Vacuum 2 Reading
+        vacuum_3_reading:
+          tab: Speed/Torque/Reading
+          span: auto
+          type: number
+          label: Vacuum 3 Reading
+
+        wall_thikness_n:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Wall Thikness - N
+
+        max_wall_ne:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - NE
+          comments: Check max on control shift
+
+        max_wall_e:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - E
+          comments: Check max on control shift
+
+        max_wall_se:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - SE
+          comments: Check max on control shift
+
+        max_wall_s:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - S
+          comments: Check max on control shift
+
+        max_wall_sw:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Max Wall - SW
+          comments: Check max on control shift
+
+        min_wall_w:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Min Wall - W
+          comments: Check MIN on control shift
+
+        min_wall_nw:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Min Wall - NW
+          comments: Check MIN on control shift
+
+        avr_wall:
+          tab: Thickness
+          span: auto
+          type: number
+          label: AVR Wall
+
+        pipe_od:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Pipe OD
+
+        ovality:
+          tab: Thickness
+          span: auto
+          type: number
+          label: Ovality
+
+        actual_weight:
+          tab: Production
+          span: auto
+          type: number
+          label: Actual Weight
+
+        actual_lenght:
+          tab: Production
+          span: auto
+          type: number
+          label: Actual Lenght
+
+        pipe_number_start:
+          tab: Production
+          span: auto
+          type: number
+          label: Pipe Number Start 
+          comments: From 1 to 100
+
+        pipe_number_end:
+          tab: Production
+          span: auto
+          type: number
+          label: Pipe Number End
+          comments: From 1 to 100
+
+        outside_workmanship:
+          tab: Production
+          span: auto
+          label: Outside Workmanship
+          type: switch         
+          On: Good
+          off: Bad
+            
+        inside_workmanship:
+          tab: Production
+          span: auto
+          label: Inside Workmanship
+          type: switch         
+          On: Good
+          off: Bad
+
+        printer_clear:
+          tab: Production
+          span: auto
+          label: Printer Clear
+          type: switch         
+          On: Good
+          off: Bad
+
+
+        printer_correct:
+          tab: Production
+          span: auto
+          label: Printer Correct
+          type: switch         
+          On: Good
+          off: Bad
+
+        end_squire:
+          tab: Production
+          span: auto
+          label: End Squire
+          type: switch         
+          On: Good
+          off: Bad
+
+        hourly_production:
+          tab: Production
+          type: number
+          span: left
+          label: Hourly Production
+
+        hourly_scrap:
+          tab: Production
+          type: number
+          span: auto
+          label: Hourly Scrap
+
+        reasonscrap:
+          span: auto
+          tab: Production
+          label: Reason Scrap
+          type: relation
+          select: reason
+          placeholder: -- Select If Scrap --
+
+        comments:
+          tab: Production
+          label: Production Comments
+          type: textarea
+          size: small
+          span: auto
+
+        material:
+          tab: Material
+          type: repeater
+          titleFrom: supliername
+
+          form: 
+            fields:
+                supliername:
+                  label: Suplier
+                  type: dropdown
+                  comments: Select Suplier and Batch
+
+                # batch:
+                #   label: batch
+                #   type: text
+
+                  
+        recycle_material_batch:
+          tab: Material
+          label: Recycle Material Batch
+
+                
+
+
+
+          
+
+

@@ -1,0 +1,137 @@
+<?php
+	$class = 'callout-success';
+
+    if (count($list ) == 0){
+    echo "<p class='flash-message static error'>Back Order Is Empty. Most Likely the date that was tracking the production as expired</p>";
+}
+?>
+<div class="control-breadcrumb">
+    <ul>
+        <li><a href="/backend/bt/sales/newquote">List</a></li>
+        <li>Back Orders</li>
+    </ul>                                        </div>
+
+<div  id="monstertable">
+
+<?php $totalBack = 0; ?>
+
+        <table class="table tabledownload_desc dt-responsive table-striped table-hover " style="width:100%">
+            <thead>
+            <tr>
+                 <th><span>Production ID</span></th>
+                 <th><span>Production Date</span></th>
+                <th><span>Quote</span></th>
+                <th class="just"><span>Company Name</span></th>
+                <th><span>Sales Person</span></th>
+                <th><span>Age</span></th>
+                <th class="just"><span>Pipe</span></th>
+                <th><span>Ordered</span></th>
+                <th><span>Delivered</span></th>
+                <th><span>Back Order</span></th>
+                <th><span>Weight</span></th>
+                <th class="just"><span>Value</span></th>
+                <th><span>Remove</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php  foreach($list as $client): ?>
+            <?php if (isset($client->gotbackorder)): ?>
+
+            <?php
+                                      $t_ordered = 0;
+                                      $t_delived = 0;
+                                      $t_backorder = 0;
+                                      $t_weight = 0;
+                                      $t_value = 0;
+                                     ?>
+
+            <?php foreach($client->quotes as $quote): ?>
+
+            <?php foreach($quote->items as $itemobject): ?>
+            <?php
+
+                                                    $datetime1 = new DateTime();
+
+                                                    $datetime2 = new DateTime($quote->created_at);
+
+            $difference = $datetime1->diff($datetime2);
+            ?>
+            <?php if ( $difference->days < 300 && isset($itemobject->gotbackorder) && $itemobject->gotbackorder == 1 ): ?>
+            <tr class="just">
+
+                <td><?= isset($quote->qpush)?$quote->qpush->id:"-" ?></td>
+                <td><?= isset($quote->qpush)?$quote->qpush->created_at:"-" ?></td>
+                <td><?= $itemobject->quote_id ?></td>
+                <td><?= $client->company_name ?></td>
+                <td><?= $quote->user->name ?></td>
+                <td>
+                    <?=
+
+                                                         $difference->days
+
+                    ?> days
+                </td>
+
+                <td><?= $itemobject->description ?></td>
+
+                <?php $t_ordered += $itemobject->units ?>
+                <td  style="text-align: center;"><?= $itemobject->units ?></td>
+
+                <?php if (isset($itemobject->pipe->delivered)): ?>
+
+                <?php $t_delived += $itemobject->pipe->delivered->sum("units")  ?>
+                <td  style="text-align: center;"><?= $itemobject->pipe->delivered->sum("units") ?></td>
+
+                <?php $t_backorder += $itemobject->units - $itemobject->pipe->delivered->sum("units")  ?>
+                <td  style="text-align: center;" >
+                    <?= ($itemobject->units - $itemobject->pipe->delivered->sum("units")) ?>
+                </td>
+
+                <?php $t_weight += (($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->weight) ?>
+                <td style="text-align: right;" >
+                    <?= number_format(($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->weight,1, '.', ',') ?> kg
+                </td>
+
+                <?php $t_value += (($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->unitprice)  ?>
+                <td style="text-align: right;" >R
+                    <?= number_format(($itemobject->units - $itemobject->pipe->delivered->sum("units")) * $itemobject->unitprice,2, '.', ',') ?>
+                </td>
+                <?php else: ?>
+                <td style="text-align: center;">0</td>
+
+                <?php $t_backorder += $itemobject->units ?>
+                <td style="text-align: center;"><?= $itemobject->units ?></td>
+
+                <?php $t_weight += ($itemobject->units  * $itemobject->weight) ?>
+                <td style="text-align: right;" ><?= number_format($itemobject->units * $itemobject->weight,1, '.', ',') ?> kg</td>
+
+                <?php $t_value += ($itemobject->units * $itemobject->unitprice)  ?>
+                <td class="just" style="text-align: right;" >R <?= number_format($itemobject->units * $itemobject->unitprice,2, '.', ',') ?></td>
+
+                <?php endif ?>
+                <td style="text-align: center; font-size: 14px">
+                    <a
+                        type="button" data-request-confirm="Are you sure?" href="" data-request-data="id: <?= $itemobject->id ?>"
+                        data-request="onRemove"
+                        class="text-danger oc-icon-trash" style="margin: 0px !important">
+
+                    </a>
+                </td>
+
+            </tr>
+            <?php endif ?>
+            <?php endforeach ?>
+            <?php endforeach ?>
+            <?php endif ?>
+            <?php endforeach ?>
+            </tbody>
+            <tfoot>
+        </table>
+       </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+
+
+

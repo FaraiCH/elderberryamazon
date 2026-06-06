@@ -1,0 +1,8 @@
+
+
+<?php if ($this->user->hasAccess('bt.production.admin')): ?>
+		<?= $this->relationRender('productiondelay') ?>
+<?php else: ?>
+		<?= $this->relationRender('productiondelay', ['readOnly' => true]) ?>
+<?php endif ?>
+

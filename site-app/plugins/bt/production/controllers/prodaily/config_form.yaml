@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Prodaily
+
+# Model Form Field configuration
+form: $/bt/production/models/prodaily/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Prodaily
+
+# Default redirect location
+defaultRedirect: bt/production/prodaily
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/prodaily/update/:id
+    redirectClose: bt/production/prodaily
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/prodaily
+    redirectClose: bt/production/prodaily
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

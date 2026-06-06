@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+							<h2>MAINTENANCE SCHEDULE #{{quote.prefix_dn?quote.prefix_dn:'BT-MS-'}}{{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="5px" cellspacing="0">
+					<tr><td style="background: #ccc"  colspan="2" ><b>Details:</b></td></tr>
+					<tr><th width="30%" >BT Line:</th><td width="70%">{{quote.btline.name}}</td></tr>
+					<tr><th >Date:</th><td nowrap="nowrap">{{quote.scheduledate?item.scheduledate|date("Y-m-d") :""}}</td></tr>
+					<tr><th >Schedule Type:</th><td>{{quote.actiontype.name}}</td></tr>
+					<tr><th >Summary:</th><td>{{quote.job_summary}}</td></tr>
+					<tr><th >Assigned To:</th><td>{{quote.assignedto.name}}</td></tr>
+					<tr><th >Status:</th><td>{{quote.status.name}}</td></tr>
+					<tr><th >Machine Status:</th><td>{{quote.machinestatus.name}}</td></tr>
+					<tr><th >Job Description:</th><td>{{quote.instruction_notes}}</td></tr>
+					<tr><th >Completion Note:</th><td>{{quote.completion_notes}}</td></tr>
+					<tr><th >Spares Used:</th><td>{{quote.spares_used}}</td></tr>
+					<tr><th >Budget:</th><td>R{{quote.budget}}</td></tr>
+					<tr><th >Budget Note:</th><td>{{quote.budget_note}}</td></tr>
+					<tr><th >Priority:</th><td>{{quote.priority}}</td></tr>
+				</table>
+			</td>
+		</tr>
+
+
+		<tr><td><br></td></tr>
+
+		<tr>
+
+			<td valign="top">
+				<br>
+				<table width="100%" border="0" cellpadding="5px" cellspacing="0">
+					<tr><td style="background: #ccc"  colspan="2" ><b>Completion Information:</b></td></tr>
+
+					<tr><td width="30%"><b>Date Completed:</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+					<tr><td width="30%"><b>Spares Used :</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+					<tr><td width="30%"><b>&nbsp;</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+					<tr><td width="30%"><b>&nbsp;</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+					<tr><td width="30%"><b>Comments:</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+					<tr><td width="30%"><b>&nbsp;</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+					<tr><td width="30%"><b>&nbsp;</b></td><td width="70%" style="border-bottom: 1px solid #000">&nbsp;</td></tr>
+
+				</table>
+				<br>
+			</td>
+
+
+		<tr>
+			<td>
+				<div style="border: 1px solid #ccc; padding: 10px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Employee:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 10px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Supervisor:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br>
+				<div style="border: 1px solid #ccc; padding: 10px;">
+					<h4 style="font-size: 15px; margin: 0px; padding: 0px">Management:</h4>
+					<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+						<tr>
+							<td>NAME:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>DATE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+							<td>SIGNATURE:</td>
+							<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+
+
+	</table>
+
+
+	</body>
+	</html>

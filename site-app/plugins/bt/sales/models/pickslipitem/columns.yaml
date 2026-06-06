@@ -1,0 +1,67 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID.
+        searchable: true
+
+    thisquote:
+        label: Quote
+        type: partial
+        path: $/bt/sales/models/pickslipitem/_quotethis_column.htm
+        sortable: false
+
+    quoteorigin:
+        label: Item From
+        type: partial
+        path: $/bt/sales/models/pickslipitem/_quoteorigin_column.htm
+        sortable: false
+    quoteoriginbatch:
+        label: Batch No
+        type: partial
+        path: $/bt/sales/models/pickslipitem/_quotebatch_column.htm
+        sortable: false
+
+    pipe_id:
+        label: Description
+        type: partial
+        path: $/bt/sales/models/pickslipitem/_description_column.htm
+    # batch:
+    #     label: Batch
+    #     type: partial
+    #     path: $/bt/sales/models/srnitem/_batch_column.htm
+    units:
+        label: Units
+    # description:
+    #     label: Alt Description
+    # unitdescription:
+    #     label: Alt Unit
+
+    # createdby:
+    #     label: Create By
+    #     searchable: true
+    #     relation: createdby
+    #     select: concat(first_name, ' ', last_name)
+    #     invisible: false
+    # updatedby:
+    #     label: Updated By
+    #     searchable: true
+    #     relation: updatedby
+    #     select: concat(first_name, ' ', last_name)
+    #     invisible: false
+    # created_at:
+    #     label: Date Created
+    #     format: d-m-Y
+    #     type: date
+    #     invisible: false
+    # updated_at:
+    #     label: Date Updated
+    #     format: d-m-Y
+    #     type: date
+    #     invisible: false
+
+
+
+

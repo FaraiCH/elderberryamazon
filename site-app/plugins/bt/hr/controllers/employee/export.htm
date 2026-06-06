@@ -1,0 +1,61 @@
+<?= Form::open(['class' => 'layout']) ?>
+        <div class="layout-row">
+            <div class="form-group col-md-3"  style="padding-top: 5px">
+                <label style="display: block" for="active">Active: </label>
+                <select id="active" name="active" style="width: 100px; display: block" class="form-control custom-select">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3"  style="padding-top: 5px">
+                <label style="display: block" for="gender">Gender: </label>
+                <select id="gender" name="gender" style="width: 100px; display: block" class="form-control custom-select">
+                    <option value="all" >All</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3"  style="padding-top: 5px">
+                <label style="display: block" for="ethnicity">Ethnicity: </label>
+                <select id="ethnicity" name="ethnicity" style="width: 100px; display: block" class="form-control custom-select">
+                    <option value="all" >All</option>
+                    <?php foreach($ethnicity as $eth): ?>
+                        <option value="<?= $eth->id ?>"><?= $eth->name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group col-md-3"  style="padding-top: 5px">
+                <div class="row" style="display: inline-block">
+                    <label for="age_format">Age Group: </label>
+                    <select id="age_format" name="age_format" style="min-width: 50%; display: block" class="form-control custom-select">
+                        <option value="all" >Ignore Age Group</option>
+                        <option value="=" >Equal To</option>
+                        <option value=">">Younger Than</option>
+                        <option value="<">Older Than</option>
+                    </select>
+                    <input id="age" name="age" style="min-width: 50%" class="form-control form-input" data-track-input="" data-request="onReq" >
+                </div>
+            </div>
+            <p>If you do not apply filters, your changes won't be saved. Changes will also revert after 30 minutes.</p>
+            <div class="col-md-3" style="padding-top: 32px">
+                <button type="submit" data-request="onEmployeeFilter"  class="btn btn-primary">Apply Filters</button>
+            </div>
+        </div>
+<br>
+<br>
+    <div class="layout-row">
+        <?= $this->exportRender() ?>
+    </div>
+
+    <div class="form-buttons">
+        <button
+            type="submit"
+            data-control="popup"
+            data-handler="onExportLoadForm"
+            data-keyboard="false"
+            class="btn btn-primary">
+            Export records
+        </button>
+    </div>
+
+<?= Form::close() ?>

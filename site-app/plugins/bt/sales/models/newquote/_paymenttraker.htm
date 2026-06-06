@@ -1,0 +1,6 @@
+<?php if(isset($record->paymenttracker) && $record->paymenttracker): ?>
+	<div style="width: 100px">R <?php echo number_format($record->paymenttracker->sum('amount'),2, '.', ','); ?></div>
+	
+<?php endif; ?>
+
+

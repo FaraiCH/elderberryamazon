@@ -1,0 +1,13 @@
+scopes:
+    date:
+        label: Visitor Arrival Date
+        type: daterange
+        conditions: date >= ':after' AND date <= ':before'
+    isinvited:
+        label: Visitors Invited
+        type: switch
+        default:
+        conditions:
+            - invited <> true
+            - invited = true
+

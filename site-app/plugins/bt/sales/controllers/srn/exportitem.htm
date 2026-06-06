@@ -1,0 +1,64 @@
+
+<?= Form::open(['class' => 'layout']) ?>
+    <div class="layout-row">
+        <div class="row">
+
+            <div class="form-group col-md-3" style="padding-bottom: 20px">
+                <label for="srnstart">Start Date: </label>
+                <input id="srnstart" value="<?= e($srnstart) ?>" name="srnstart" type="text">
+            </div>
+            <div class="form-group col-md-3" style="padding-bottom: 20px">
+                <label for="srneend">End Date: </label>
+                <input id="srneend" value="<?= e($srneend) ?>" name="srneend" type="text">
+            </div>
+            <div class="form-group col-md-3" style="padding-bottom: 20px">
+                <label for="srn">SRN No: </label>
+                <select id="srn" name="srn" class="form-control custom-select">
+                    <option value="0">- Select An SRN -</option>
+                    <?php foreach($srnlist as $srn): ?>
+                        <option value="<?= $srn->id ?>"><?= $srn->id  ?>  | <?= $srn->quote->company_name ?> </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3" style="padding-top: 25px">
+                <button type="submit" data-request="onDateItemFilter"  class="btn btn-primary">Apply Filters</button>
+            </div>
+            <div class="col-md-12">
+                <p>Failure to apply filters will result in unsaved changes, which, in turn, will automatically revert after a 30-minute interval..</p>
+            </div>
+        </div>
+    </div>
+<br>
+<div class="form-buttons">
+    <a href="/backend/bt/sales/export/srn/items"
+        data-keyboard="false"
+        class="btn btn-primary">
+        Export records
+    </a>
+</div>
+
+<?= Form::close() ?>
+
+<script>
+    var startpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#srneend');
+    var endpicker = new ej.calendars.DateTimePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#srnstart');
+</script>

@@ -1,0 +1,39 @@
+<div id="page">
+    <div class="container">
+        <div style="padding: 0 25%">
+            <div class="panel" style=" text-align: center; background-color: #f4f4f4; border: 1px solid #ddd;border-radius: 4px;padding: 15px;">
+                <h3>Control Sheet No: <?= $controlsheet_id ?></h3>
+            </div>
+        </div>
+        <div style="padding: 20px 0"></div>
+        <!-- Generate Form Using PHP -->
+        <?= Form::open() ?>
+            <!-- Generate Sticker No Ajax -->
+            <div style="padding: 0 25%; text-align: center">
+                <div class="form-group">
+                    <h5>Sticker No</h5>
+                    <!-- Generate Sticker Number Inputs -->
+                    <?= $sticker_no ?>
+                    or
+                    <br>
+                    <h5>Camera</h5>
+                    <div style="text-align: center">
+                        <input type="file" accept="image/*" capture="camera">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- Generate Ajax Inputs -->
+                    <h5>Weight</h5>
+                    <?= $weight_input ?>
+                    <h5>Length</h5>
+                    <?= $length_input ?>
+                </div>
+            </div>
+            <!-- Generate Submit button -->
+            <div style="padding: 20px 0"></div>
+            <?= $button ?>
+        <?= Form::close() ?>
+    </div>
+</div>
+
+

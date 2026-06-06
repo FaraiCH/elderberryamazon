@@ -1,0 +1,13 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+   
+    name:
+        label: Category name
+        searchable: true
+    parent_id:
+        label: parent
+        
+    

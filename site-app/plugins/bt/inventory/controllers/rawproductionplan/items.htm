@@ -1,0 +1,5 @@
+<?php if ($this->user->hasAccess('bt.production.admin')): ?>
+    <?= $this->relationRender('raw_material_items') ?>
+<?php else: ?>
+    <?= $this->relationRender('raw_material_items', ['readOnly' => true]) ?>
+<?php endif ?>

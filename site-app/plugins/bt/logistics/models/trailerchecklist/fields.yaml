@@ -1,0 +1,73 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date:
+        label: Date To Captured
+        type: datepicker
+        span: auto
+        mode: date
+
+tabs:
+    
+    fields:
+        is_lights_ok:
+            label: Is Lights Ok?
+            type: switch
+            tab: Lights
+            on: Yes
+            off: No
+        lights_comments:
+            label: Comment About Lights
+            tab: Lights
+            span: auto
+        is_hazards_ok:
+            label: Is Hazards Ok?
+            tab: Lights
+            type: switch
+            on: Yes
+            off: No
+        hazards_comments:
+            label: Comment About Hazards
+            tab: Lights
+            span: auto
+
+        is_brakes_ok:
+            label: Is Brakes Ok?
+            tab: Control
+            type: switch
+            on: Yes
+            off: No
+        brakes_comments:
+            label: Comment About Brakes
+            tab: Control
+            span: auto
+        is_tires_ok:
+            label: Is Right Tires Ok?
+            tab: Exterior
+            type: switch
+            on: Yes
+            off: No
+        tires_comments:
+            label: Comment About Right Tires
+            tab: Exterior
+            span: auto
+        is_lefttires_ok:
+            label: Is Left Tires Ok?
+            tab: Exterior
+            type: switch
+            on: Yes
+            off: No
+        leftlights_comments:
+            label: Comment About Left Tires
+            tab: Exterior
+            span: auto
+
+        
+        
+
+

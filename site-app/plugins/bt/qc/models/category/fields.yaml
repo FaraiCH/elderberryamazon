@@ -1,0 +1,9 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    name: 
+        label: Department Name
+        required: true

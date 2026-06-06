@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Ethnicity
+
+# Model Form Field configuration
+form: $/bt/hr/models/ethnicity/fields.yaml
+
+# Model Class name
+modelClass: Bt\Hr\Models\Ethnicity
+
+# Default redirect location
+defaultRedirect: bt/hr/ethnicity
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/hr/ethnicity/update/:id
+    redirectClose: bt/hr/ethnicity
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/hr/ethnicity
+    redirectClose: bt/hr/ethnicity
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,9 @@
+#signature-control {
+    height: 300px;
+    max-width: 100%;
+}
+
+#signature {
+    border: 1px solid black;
+    background: white;
+}

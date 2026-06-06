@@ -1,0 +1,17 @@
+scopes:
+    status:
+        label: Status
+        type: group
+        conditions: status in (:filtered)
+        options:
+            0: Pending
+            1: Completed
+    created_at:
+        label: Date Record Created
+        type: date
+        conditions: created_at >= ':filtered'
+    auditdate:
+        label: Scheduled Audit Date
+        type: daterange
+        conditions: auditdate >= ':after' AND auditdate <= ':before'
+

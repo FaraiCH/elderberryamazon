@@ -1,0 +1,15 @@
+scopes:
+    incident_no:
+        label: Incident No
+        type: number
+        conditions: incident_no = ':filtered'
+    incident_date:
+        label: Date of occurrence
+        type: daterange
+        conditions: incident_date >= ':after' AND incident_date <= ':before'
+    invest_date:
+        label: Date of investigation
+        type: daterange
+        conditions:  invest_date >= ':after' AND invest_date <= ':before'
+
+

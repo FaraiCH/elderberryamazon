@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: P N Rating
+
+# Model Form Field configuration
+form: $/bt/sales/models/pnrating/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\PNRating
+
+# Default redirect location
+defaultRedirect: bt/sales/pnrating
+
+# Create page
+create:
+    title: Create P N Rating
+    redirect: bt/sales/pnrating/update/:id
+    redirectClose: bt/sales/pnrating
+
+# Update page
+update:
+    title: Edit P N Rating
+    redirect: bt/sales/pnrating
+    redirectClose: bt/sales/pnrating
+
+# Preview page
+preview:
+    title: Preview P N Rating

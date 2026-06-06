@@ -1,0 +1,66 @@
+{% if CmProjectdates.dtimer == 0 %}
+<div class="card text-center" style="margin-bottom: 20px">
+    <div class="card-header">
+        <h2>No Upcoming Projects</h2>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="row">
+	{% for item in CmProjectdates.data  %}
+		<div class="col-sm-6">
+	 		<div class="card text-center" style="margin-bottom: 20px">
+			  <div class="card-header">
+			    <h3>{{item.title}} </h3>
+			  </div>
+			  <div class="card-body" style="min-height: 300px">
+
+			    <p class="card-text" style="font-size: 18px">{{item.body|raw}}</p>
+			     <p class="card-text text-muted" style="font-size: 18px;" >Date: <b>{{item.projectdate}}</b></p>
+
+			  </div>
+			  <div class="card-footer text-muted"  style="min-height: 120px">
+			    <div class="countdown" style="font-weight: bold; font-size: 30px; color: #ea2121; padding-bottom: 0px">
+					<span id="pd_clock_{{item.id}}"></span>
+		        </div>
+			  </div>
+			</div>
+		</div>
+
+
+         {% put scripts %}
+        <script type="text/javascript">
+		$(document).ready(function () {
+			$('#pd_clock_{{item.id}}').countdown('{{item.projectdate}}')
+			.on('update.countdown', function(event) {
+				var format = '%H:%M:%S';
+				if(event.offset.totalDays > 0) {
+					format = '%-d day%!d ' + format;
+				}
+				if(event.offset.weeks > 0) {
+					format = '%-w week%!w ' + format;
+				}
+				$(this).html(event.strftime(format));
+			})
+			.on('finish.countdown', function(event) {
+				$(this).html('&nbsp;')
+				.parent().addClass('disabled');
+
+			});
+		});
+		</script>
+		{% endput %}
+
+ {% endfor%}
+</div>
+
+ {% put scripts %}
+ 	    <script type="text/javascript" src="{{ 'assets/vendor/jquery.countdown-2.0.4/jquery.countdown.min.js'|theme }}"></script>
+
+
+
+ {% endput %}
+
+
+

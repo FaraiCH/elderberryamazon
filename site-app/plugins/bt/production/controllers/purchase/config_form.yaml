@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Purchase
+
+# Model Form Field configuration
+form: $/bt/production/models/purchase/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Purchase
+
+# Default redirect location
+defaultRedirect: bt/production/purchase
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/purchase/update/:id
+    redirectClose: bt/production/purchase
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/purchase
+    redirectClose: bt/production/purchase
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

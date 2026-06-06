@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    amount:
+        label: Amount
+        span: auto
+        type: number
+        comment: Negative amount(-R1) = Spend / Positive = Payment
+
+    quote:
+        label: Quote
+        type: relation
+        select: concat(id,' > ', company_name)
+        span: auto
+        placeholder: --- select quote if spending ---
+        comment: Select quote spending or spanding
+       
+    note: 
+        label: Notes
+        span: auto
+        type: textarea
+        size: small

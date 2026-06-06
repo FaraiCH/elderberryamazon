@@ -1,0 +1,17 @@
+
+<?php if(isset($record->planitems)): ?>
+
+<?php
+		$count = 0;
+		foreach ($record->planitems as $key => $value) {
+            if(isset($value->item->weight)){
+			    $count = $count + ($value->item->weight  * $value->qty);
+            }
+	    }
+	?>
+
+	<?php
+		echo $count." kg";
+	?>
+
+<?php endif; ?>

@@ -1,0 +1,260 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/documents/document') ?>">Document</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+<?php $count = 0 ?>
+<?php if($formModel->back_users->count() > 0): ?>
+<?php if($formModel->checkMe() === $formModel->createdby->id): ?>
+<?= Form::open(['class' => 'layout']) ?>
+
+<div class="layout-row">
+    <div class="control-tabs content-tabs" data-control="tab">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Meeting</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="active" id="preview_tab-tab" data-toggle="tab" href="#preview_tab" role="tab" aria-controls="preview_tab" aria-selected="false">Attendees </a>
+            </li>
+
+
+
+
+        </ul>
+        <div class="tab-content" id="myTabContent" style="background: #fff">
+            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div style="padding: 0px 20px">
+                    <?= $this->formRender() ?>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="preview_tab" role="tabpanel" aria-labelledby="preview_tab-tab">
+                <div class="form-preview" style="display: flex; justify-content: center;">
+                    <?= $this->relationRender('back_users') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <button
+            type="submit"
+            data-request="onSave"
+            data-request-data="redirect:0"
+            data-hotkey="ctrl+s, cmd+s"
+            data-load-indicator="Saving Document..."
+            class="btn btn-primary">
+            <u>S</u>ave
+        </button>
+        <button
+            type="button"
+            data-request="onSave"
+            data-request-data="close:1"
+            data-hotkey="ctrl+enter, cmd+enter"
+            data-load-indicator="Saving Document..."
+            class="btn btn-default">
+            Save and Close
+        </button>
+        <!-- <button
+            type="button"
+            class="oc-icon-trash-o btn-icon danger pull-right"
+            data-request="onDelete"
+            data-load-indicator="Deleting Document..."
+            data-request-confirm="Delete this document?">
+        </button> -->
+        <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/documents/document') ?>">Cancel</a>
+                </span>
+    </div>
+</div>
+
+<?= Form::close() ?>
+
+<?php else: ?>
+<?php foreach($formModel->back_users as $user): ?>
+<?php if($formModel->checkMe() === $user->id): ?>
+<?php $count += 1; ?>
+<?php endif; ?>
+<?php endforeach; ?>
+<?php if($count > 0): ?>
+<?php if($user->pivot['user_rights'] == 0): ?>
+<div class="form-preview">
+    <?= $this->formRenderPreview() ?>
+</div>
+<?php else: ?>
+<?= Form::open(['class' => 'layout']) ?>
+<div class="form-preview">
+    <?= $this->formRender() ?>
+</div>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <button
+            type="submit"
+            data-request="onSave"
+            data-request-data="redirect:0"
+            data-hotkey="ctrl+s, cmd+s"
+            data-load-indicator="Saving Document..."
+            class="btn btn-primary">
+            <u>S</u>ave
+        </button>
+        <button
+            type="button"
+            data-request="onSave"
+            data-request-data="close:1"
+            data-hotkey="ctrl+enter, cmd+enter"
+            data-load-indicator="Saving Document..."
+            class="btn btn-default">
+            Save and Close
+        </button>
+        <!-- <button
+            type="button"
+            class="oc-icon-trash-o btn-icon danger pull-right"
+            data-request="onDelete"
+            data-load-indicator="Deleting Document..."
+            data-request-confirm="Delete this document?">
+        </button> -->
+        <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/documents/document') ?>">Cancel</a>
+                </span>
+    </div>
+</div>
+
+<?= Form::close() ?>
+<?php endif; ?>
+<?php else: ?>
+<div class="callout fade in callout-danger no-subheader text-center">
+    <div class="header">
+        <i class="icon-warning"></i>
+        <h3><b>You Do Not Have Access To This Page. </b></h3>
+    </div>
+</div>
+<?php endif; ?>
+<?php endif; ?>
+<?php else: ?>
+<?php if($formModel->checkMe() === $formModel->createdby->id): ?>
+<?php if (!$this->fatalError): ?>
+
+<?= Form::open(['class' => 'layout']) ?>
+
+<div class="layout-row">
+    <div class="control-tabs content-tabs" data-control="tab">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Meeting</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="active" id="preview_tab-tab" data-toggle="tab" href="#preview_tab" role="tab" aria-controls="preview_tab" aria-selected="false">Attendees </a>
+            </li>
+
+
+
+
+        </ul>
+        <div class="tab-content" id="myTabContent" style="background: #fff">
+            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div style="padding: 0px 20px">
+                    <?= $this->formRender() ?>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="preview_tab" role="tabpanel" aria-labelledby="preview_tab-tab">
+                <div class="form-preview" style="display: flex; justify-content: center;">
+                    <?= $this->relationRender('back_users') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <button
+            type="submit"
+            data-request="onSave"
+            data-request-data="redirect:0"
+            data-hotkey="ctrl+s, cmd+s"
+            data-load-indicator="Saving Document..."
+            class="btn btn-primary">
+            <u>S</u>ave
+        </button>
+        <button
+            type="button"
+            data-request="onSave"
+            data-request-data="close:1"
+            data-hotkey="ctrl+enter, cmd+enter"
+            data-load-indicator="Saving Document..."
+            class="btn btn-default">
+            Save and Close
+        </button>
+        <!-- <button
+            type="button"
+            class="oc-icon-trash-o btn-icon danger pull-right"
+            data-request="onDelete"
+            data-load-indicator="Deleting Document..."
+            data-request-confirm="Delete this document?">
+        </button> -->
+        <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/documents/document') ?>">Cancel</a>
+                </span>
+    </div>
+</div>
+
+<?= Form::close() ?>
+
+<?php else: ?>
+
+<p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<p><a href="<?= Backend::url('bt/documents/document') ?>" class="btn btn-default">Return to document list</a></p>
+
+<?php endif ?>
+<?php else: ?>
+<?= Form::open(['class' => 'layout']) ?>
+
+<div class="form-preview">
+    <?= $this->formRender() ?>
+</div>
+
+<div class="form-buttons">
+    <div class="loading-indicator-container">
+        <button
+            type="submit"
+            data-request="onSave"
+            data-request-data="redirect:0"
+            data-hotkey="ctrl+s, cmd+s"
+            data-load-indicator="Saving Document..."
+            class="btn btn-primary">
+            <u>S</u>ave
+        </button>
+        <button
+            type="button"
+            data-request="onSave"
+            data-request-data="close:1"
+            data-hotkey="ctrl+enter, cmd+enter"
+            data-load-indicator="Saving Document..."
+            class="btn btn-default">
+            Save and Close
+        </button>
+        <!-- <button
+            type="button"
+            class="oc-icon-trash-o btn-icon danger pull-right"
+            data-request="onDelete"
+            data-load-indicator="Deleting Document..."
+            data-request-confirm="Delete this document?">
+        </button> -->
+        <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/documents/document') ?>">Cancel</a>
+                </span>
+    </div>
+</div>
+<?= Form::close() ?>
+<?php endif ?>
+<?php endif; ?>

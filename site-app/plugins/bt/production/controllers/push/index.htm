@@ -1,0 +1,5 @@
+<?php if($this->user->hasPermission(['bt.production.analysis'])): ?>
+<div style="padding:0px 20px">
+	<h3 style="margin:  0px;padding: 4px; color: #fff; background: #333; font-size: 24; text-transform:uppercase">Blended Price</h3><?= $this->printBlendedPrices() ?></div>
+<?php endif; ?>
+<?= $this->listRender() ?>

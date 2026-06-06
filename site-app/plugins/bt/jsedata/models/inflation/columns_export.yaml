@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    i_year:
+        label: i_year
+
+    i_jan:
+        label: i_jan
+
+    i_feb:
+        label: i_feb

@@ -1,0 +1,178 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/inventory/rawmaterialreceiving/releasesummary') ?>">Raw Material Release</a></li>
+        <li>Manage Material Release</li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+        <div class="scoreboard">
+                <div data-control="toolbar">
+                    
+                    <div class="scoreboard-item title-value">
+                        <h4>Product</h4>
+                        <p class="oc-icon-bullhorn"> 
+                           
+                             <?= isset($formModel->productname) ? e($formModel->productname->name) : '' ?>
+                            
+                        </p>
+                        <p class="description"></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Supplier Batch</h4>
+                        <p class="oc-icon-info"> <?= e($formModel->supplier_batch) ?></p>
+                        <p class="description"></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Supplier Weight in KG</h4>
+                        <p><?= e($formModel->weight) ?></p>
+                        <p class="description"></p>
+                    </div>
+                    <?php
+                    $totalWeight = 0;
+                    foreach ($formModel->bagBatches as $bagBatch) {
+                        $totalWeight += $bagBatch->actual_weight;
+                    }
+                    ?>
+                    <div class="scoreboard-item title-value">
+                        <h4>Actual Weight in KG</h4>
+                        <p><?php echo $totalWeight; ?></p>
+                        <p class="description"></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>mfi</h4>
+                        <p class="positive"><?= e($formModel->mfi)?></p>
+                        <p class="description"></p>
+                    </div>
+
+                </div>
+            </div>
+
+
+         <div class="layout-row">
+            
+
+             <!-- <div style="padding: 0px 0px"><h3>Receiving Raw Material</h3></div> -->
+            <div class="control-tabs content-tabs" data-control="tab">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a id="myform-tab" data-toggle="tab" href="#myform" role="tab" aria-controls="myform" aria-selected="false">Activate Material</a>
+                    </li>
+
+                     <?php if (($this->user->hasAccess('bt.inventory.permission_release')) == 1 ): ?>
+                      <li class="nav-item">
+                        <a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Material Release</a>
+                      </li>
+                    <?php endif ?>
+
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_Request')) == 1 ): ?>
+
+                      <li class="nav-item">
+                        <a  id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Material Request</a>
+                      </li>
+                      <?php endif ?>
+
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_incage')) == 1 ): ?>
+
+                      <li class="nav-item">
+                        <a  id="incage-tab" data-toggle="tab" href="#incage" role="tab" aria-controls="incage" aria-selected="false">In Cage</a>
+                      </li>
+
+                       <?php endif ?>
+                       
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_used')) == 1 ): ?>
+                      <li class="nav-item">
+                        <a  id="used-tab" data-toggle="tab" href="#used" role="tab" aria-controls="used" aria-selected="false">Material Used</a>
+                      </li>
+                      <?php endif ?>    
+                      <?php if (($this->user->hasAccess('bt.inventory.permission_used')) == 1 ): ?>
+                      <li class="nav-item">
+                        <a  id="bagBatches-tab" data-toggle="tab" href="#bagBatches" role="tab" aria-controls="bagBatches" aria-selected="false">Bags Received</a>
+                      </li>
+                      <?php endif ?>
+      
+                </ul>
+                <div class="tab-content" id="myTabContent" style="background: #fff">
+                    
+                    <div class="tab-pane active" id="myform" role="tabpanel" aria-labelledby="myform-tab">
+                        <div style="padding: 20px 20px"><!-- <h3>Active Material</h3> --><?= $this->formRender() ?></div>
+                    </div>
+
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_release')) == 1 ): ?>
+                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div style="padding: 0px 20px"><h3>Material Release</h3><?= $this->relationRender('release') ?></div>
+                    </div>
+                    <?php endif ?>
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_Request')) == 1 ): ?>
+                    <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                        <div style="padding: 0px 20px"><h3>Material Request</h3><?= $this->relationRender('request') ?></div>
+                    </div>
+                    <?php endif ?>
+
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_incage')) == 1 ): ?>
+                    <div class="tab-pane" id="incage" role="tabpanel" aria-labelledby="incage-tab">
+                        <div style="padding: 0px 20px"><h3>In Cage</h3><?= $this->relationRender('incage') ?></div>
+                    </div>
+                    <?php endif ?>
+
+                    <?php if (($this->user->hasAccess('bt.inventory.permission_used')) == 1 ): ?>
+                         <div class="tab-pane" id="used" role="tabpanel" aria-labelledby="used-tab">
+                            <div style="padding: 0px 20px"><h3>Material Used</h3><?= $this->relationRender('used') ?></div>
+                        </div>
+                    <?php endif ?> 
+
+                   <?php if (($this->user->hasAccess('bt.inventory.permission_used')) == 1 ): ?>
+                         <div class="tab-pane" id="bagBatches" role="tabpanel" aria-labelledby="bagBatches-tab">
+                            <div style="padding: 10px 10px"><a target="_blank" class="btn btn-info pull-right " href="/rawmaterialreceiving/item/download/<?=   $formModel->id ?>.pdf" >Bags Received PDF</a></div>
+                            <div ><h3>Bags Received</h3>
+                                <?= $this->relationRender('bagBatches') ?></div>
+                        </div>
+                    <?php endif ?> 
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving RawMaterialReceiving..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving RawMaterialReceiving..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+               <!--  <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting RawMaterialReceiving..."
+                    data-request-confirm="Delete this rawmaterialreceiving?">
+                </button> -->
+                <span class="btn-text">
+                     <a href="<?= Backend::url('bt/inventory/rawmaterialreceiving/releasesummary') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/inventory/rawmaterialreceiving') ?>" class="btn btn-default">Return to raw material receiving list</a></p>
+
+<?php endif ?>

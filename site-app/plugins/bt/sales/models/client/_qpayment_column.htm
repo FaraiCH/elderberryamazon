@@ -1,0 +1,7 @@
+<?php
+$payment = 0;
+foreach($record->quotes as $key=>$value){
+	$payment += $value->paymenttracker->sum('amount');
+} 
+?>
+<?php echo number_format($payment,2) ?>

@@ -1,0 +1,29 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: auto
+    name:
+        label: Property Name
+        span: auto
+    altnamea:
+        label: altnamea 
+        span: auto
+    altnameb:
+        label: altnameb 
+        span: auto
+    altnamec:
+        label: altnamec 
+        span: auto
+    
+    parent:
+        label: Parent
+        span: left
+        scope: parents
+        type: relation
+        nameFrom: name
+        emptyOption: empty

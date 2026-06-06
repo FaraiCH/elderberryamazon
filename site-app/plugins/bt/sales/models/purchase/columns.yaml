@@ -1,0 +1,73 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    purchase_date:
+        label: Purchase Date 
+    quote_t:
+        label: Quote No
+        relation: quote
+        select: concat(id,' ', '>',' ', company_name)
+
+   
+    supplier_name:
+        label: Supplier Name
+
+    order_no:
+        label: Order No
+    reference:
+        label: Reference
+    clienttotal:
+        label: Quote Inc Vat
+        relation: quote
+        select: totalincvat
+        # type: number
+        searchable: false
+        # format: R %.2f
+        type: partial
+        path: $/bt/production/models/push/_currency_column.htm
+
+    catiteamamout:
+        label: Catalogue Quoted Amount
+        # type: number
+        searchable: false
+        # format: R %.2f
+        type: partial
+        # path: $/bt/plcommon/partials/_cataloque_column.htm
+        path: $/bt/sales/models/purchase/_catamout.htm
+    total:
+        label: PO Amount
+        # type: number
+        searchable: false
+        # format: R %.2f
+        type: partial
+        path: $/bt/plcommon/partials/_currency_column.htm
+
+    
+    del_date:
+        label: Delivery Date
+   
+    
+    status:
+        label: Status
+    
+
+    # totalcost:
+    #     label: Total Unit Buying Cost
+    #     type: partial
+    #     path: $/bt/sales/models/purchase/totalcost.htm
+
+    # totalcostsell:
+    #     label: Total Buying Cost
+    #     type: partial
+    #     path: $/bt/sales/models/purchase/totalcostsell.htm
+    # download:
+    #     label: Download Purchase Order
+    #     type: partial
+    #     path: $/bt/sales/models/purchase/download.htm
+    #     clickable: false
+

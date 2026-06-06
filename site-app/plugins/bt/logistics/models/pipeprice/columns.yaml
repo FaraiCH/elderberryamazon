@@ -1,0 +1,52 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    batch:
+        label: Batch ID
+        relation: batch
+        select: concat(jobcard_id, ' - ',id )
+        searchable: true
+        sortable: true
+    quote:
+        label: Customer
+        relation: quote
+        select: concat(id, ' > ', company_name)
+        span: auto
+        disabled: true
+    date:
+        label: Start Date
+        searchable: true
+        sortable: true
+    length:
+        label: Diameter (M)
+        searchable: true
+        sortable: true
+    pn:
+        label: PN
+        searchable: true
+        sortable: true
+    product:
+        label: Product Length (MM)
+        span: auto
+    sdr:
+        label: SDR
+        type: number
+        span: auto
+    qty:
+        label: Quantity
+        searchable: true
+        sortable: true
+    unitprice:
+        label: Unit Price
+        type: number
+        span: auto
+    totalamount:
+        label: Total Amount
+        type: number
+        span: auto
+

@@ -1,0 +1,32 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+
+    surname:
+        label: Surname
+    questionnaire:
+        relation: questionnaire
+        select: name
+        searchable: true
+        sortable: true
+    status:
+        label: Status
+        type: partial
+        path: $/bt/sheq/models/employeequestionnaire/status.htm
+    start_date:
+        label: Questionnaire Start Date
+    end_date:
+        label: Questionnaire End Date
+
+    download_link:
+        label: Download
+        type: partial
+        path: $/bt/sheq/models/employeequestionnaire/_link.htm
+        clickable: false

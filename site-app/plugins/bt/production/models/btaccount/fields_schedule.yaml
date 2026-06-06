@@ -1,0 +1,119 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+
+    _section1:
+        label: Link BT Pipes To Production
+        type: section
+        comment: All BT Account pipes must be linked to a production schedule. A pipe has to be produced in a quote to exist on the floor.
+
+    quote:
+        label: From Quote
+        type: dropdown
+        #type: relation
+        #select: concat(id,' / ', company_name)
+        span: storm
+        cssClass: col-md-4 col-sm-4 col-lg-4
+        placeholder: -- select a quote --
+        comment: Quote that have been pushed to production
+
+    fromschedule:
+        label: From Scheduled Production
+        type: dropdown
+        dependsOn: quote
+        span: storm
+        cssClass: col-md-4 col-sm-4 col-lg-4
+
+    catalogueitem:
+        label: From Catalogue
+        type: dropdown
+        dependsOn: quote
+        span: storm
+        cssClass: col-md-4 col-sm-4 col-lg-4
+
+    _section2:
+        label: Setup BT Account/Pipe Properties
+        type: section
+        comment: Schedule dates, Pipes / Cuts
+
+
+    description@update:
+        label: Pipe description
+        span: auto
+
+    push_id@create:
+        label: Account
+        type: dropdown
+        options: listAccountitems
+        span: auto
+
+    schedule_date@create:
+        label:  Date and Time
+        type: datepicker
+        span: auto
+    schedule_date@update:
+        label:  Date and Time
+        type: datepicker
+        span: auto
+        disabled: true
+
+    product_id@create:
+        label: Pipe/Product
+        type: dropdown
+        options: listProductitems
+        span: auto
+    priceperkg@create:
+        label: Price Per kg
+        type: number
+        span: auto
+        default: 28.00
+
+    priceperkg@update:
+        label: Price Per kg
+        type: number
+        span: auto
+        default: 28.00
+        disabled: true
+
+
+    units@create:
+        label: Units
+        type: number
+        span: auto
+    units@update:
+        label: Units
+        type: number
+        span: auto
+        disabled: false
+
+    unitlength@create:
+        label: Unit Length
+        type: number
+        span: auto
+    unitlength@update:
+        label: Unit Length
+        type: number
+        span: auto
+        disabled: false
+    notes:
+        label: Comments
+        type: textarea
+        size: small
+        comment: Why are you adding this to BT Account
+        span: auto
+    createjb@create:
+        label: Create Job Card
+        type: switch
+        comment: Set to OFF if you dont want to create the jobcard, only Takesure and QC should
+tabs:
+  fields:
+    pipe@update:
+        path: $/bt/production/controllers/btaccount/_pipe.htm
+        tab: Pipe
+        type: partial
+    schedule@update:
+        path: $/bt/production/controllers/btaccount/_schedule.htm
+        tab: Schedule
+        type: partial

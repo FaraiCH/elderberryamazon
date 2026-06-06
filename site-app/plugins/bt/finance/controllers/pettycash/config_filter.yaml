@@ -1,0 +1,14 @@
+scopes:
+    paymenttype:
+        label: Payment Type
+        modelClass: Bt\Finance\Models\PaymentType
+        conditions: paymenttype_id in (:filtered)
+        nameFrom: name
+    amount:
+        label: Amount Requesting
+        type: numberrange
+        conditions: amount >= ':min' and amount <= ':max'
+    created_at:
+        label: Date Created
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'

@@ -1,0 +1,30 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+   
+
+    description:
+        label: Description
+        span: left
+
+    weight:
+        label: Weight
+        span: right
+        type: number
+
+    unitprice:
+        label: Unit Price
+        span: left
+        type: number
+
+    price:
+        label: Price
+        span: right
+        type: number
+
+    units:
+        label: Units
+        type: number
+        span: left

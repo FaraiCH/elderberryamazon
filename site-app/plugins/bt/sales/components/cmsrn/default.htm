@@ -1,0 +1,58 @@
+
+
+{% set response = CmSrn.getList() %}
+	{% set total = 0 %}
+		<table class="table table-striped table-bordered tabledownload" id="tabledownload" >
+				<thead>
+					<tr>
+							<th>#</th>
+							<th>Completed</th>
+							<th>Type</th>
+							<th>Schedule Date</th>
+							<th>Company</th>
+							<th>Contact Name</th>
+			        		<th>Contact Number</th>
+			        		<th>Delivery Address</th>
+			        		<th>Physical Address</th>
+			        		<th>Pipe Count</th>
+			        		<th>Downloan SRN</th>
+			        		<th>Downloan DN</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% set totalcount = 0 %} 
+			        {% for item in response %}
+						<tr>
+			        		<td>{{'%04d'|format(item.id)}}</td>
+			        		<td>{{item.active?"Yes":"No"}}</td>
+			        		
+			        		<td>{{item.type.name}}</td>
+			        		<td>{{item.schedule_date|date("Y-m-d")}}</td>
+			        		<td>{{item.client.company_name}}</td>
+			        		<td>{{item.client.contact_name}}</td>
+			        		<td>{{item.client.contact_number}}</td>
+			        		<td>{{item.client.delivery_address}}</td>
+			        		<td>{{item.client.physical_address}}</td>
+			        		{% set mincount = 0 %} 
+			        		  {% for list in item.items %}
+			        		  	{% set mincount = mincount + list.units %} 
+			        		  {% endfor %}
+			        		 <td>{{mincount}}</td>
+			        		 {% set totalcount = mincount + totalcount %} 
+			        		
+			        		<td><a class="btn btn-primary btn-sm" href="/srn/item/download/{{item.id}}.pdf">SRN <i class="fa fa-download"></i></a></td>
+			        		<td><a class="btn btn-primary btn-sm" href="/dn/item/download/{{item.id}}.pdf">Delivery Note <i class="fa fa-download"></i></a></td>
+			             </tr>
+			        {% endfor %} 
+		        </tbody>
+		        <tfoot>
+		        	<tr>
+		        		<td colspan="9" align="right"><b>Total</b></td>
+		        		<td><b>{{totalcount}}</b></td>
+		        		<td></td>
+		        		<td></td>
+		        	</tr>
+		        </tfoot>
+		       
+    </table>

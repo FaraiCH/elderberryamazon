@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Visitor
+
+# Model Form Field configuration
+form: $/bt/boardroom/models/visitor/fields.yaml
+
+# Model Class name
+modelClass: Bt\Boardroom\Models\Visitor
+
+# Default redirect location
+defaultRedirect: bt/boardroom/visitor
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/boardroom/visitor/update/:id
+    redirectClose: bt/boardroom/visitor
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/boardroom/visitor
+    redirectClose: bt/boardroom/visitor
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

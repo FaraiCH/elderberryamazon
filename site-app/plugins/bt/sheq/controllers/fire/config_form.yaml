@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Fire
+
+# Model Form Field configuration
+form: $/bt/sheq/models/fire/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Fire
+
+# Default redirect location
+defaultRedirect: bt/sheq/fire
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/fire/update/:id
+    redirectClose: bt/sheq/fire
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/fire
+    redirectClose: bt/sheq/fire
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

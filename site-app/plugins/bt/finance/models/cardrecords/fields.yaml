@@ -1,0 +1,68 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+    project:
+        label: BT Division
+        type: relation
+        select: name
+        span: auto
+    storename:
+        label: Store/Supplier Name
+        span: auto
+    purchase_date:
+        label: Date
+        type: datepicker
+        span: auto
+        mode: date
+    mainitem:
+        label: Main Item In The Slip
+        comment: For easy to search. 1 to 2 items
+
+    amount:
+        label: Amount
+        type: number
+        span: auto
+   
+    purchasedby:
+        label: Purchased By
+        type: relation
+        select: concat(name, ' ', surname)
+        span: auto
+        placeholder: -- select --
+    approvedby:
+        label: Requisition Approved By
+        type: relation
+        select: concat(name, ' ', surname)
+        span: auto
+        placeholder: -- select --
+        comment: This is optional, It can go to KL directly
+   
+   
+  
+tabs:
+    
+    fields:
+        signed_requisition:
+            label: Upload Signed Sequisition File
+            type: fileupload
+            span: auto
+            tab: Signed Requisition
+            mode: file
+        slips:
+            label: Upload Petty Cash Slips
+            type: fileupload
+            span: auto
+            tab: Upload Petty Cash Slips
+            mode: file
+            comment: Additional supporting files, you can upload more than 1
+        comments:
+          label: Comments
+          type: textarea
+          size: small
+          tab: Comments

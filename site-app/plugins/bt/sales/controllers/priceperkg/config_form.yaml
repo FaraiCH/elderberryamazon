@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Price Per Kg
+
+# Model Form Field configuration
+form: $/bt/sales/models/priceperkg/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\PricePerKg
+
+# Default redirect location
+defaultRedirect: bt/sales/priceperkg
+
+# Create page
+create:
+    title: Create Price Per Kg
+    redirect: bt/sales/priceperkg/update/:id
+    redirectClose: bt/sales/priceperkg
+
+# Update page
+update:
+    title: Edit Price Per Kg
+    redirect: bt/sales/priceperkg
+    redirectClose: bt/sales/priceperkg
+
+# Preview page
+preview:
+    title: Preview Price Per Kg

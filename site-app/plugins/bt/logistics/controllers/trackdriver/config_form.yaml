@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Trackdriver
+
+# Model Form Field configuration
+form: $/bt/logistics/models/trackdriver/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\Trackdriver
+
+# Default redirect location
+defaultRedirect: bt/logistics/trackdriver
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/trackdriver/update/:id
+    redirectClose: bt/logistics/trackdriver
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/trackdriver
+    redirectClose: bt/logistics/trackdriver
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

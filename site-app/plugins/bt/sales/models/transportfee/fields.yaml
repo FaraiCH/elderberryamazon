@@ -1,0 +1,120 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date:
+        label: Effective Date
+        type: datepicker
+        mode: date
+        span: auto
+    transportratesdestination:
+        label: Destination
+        disabled: false
+        select: CONCAT(name,' - ', kilometers)
+        type: relation
+        span: auto
+        placeholder: -- select destination --
+
+    active:
+        label: Active?
+        type: switch
+        span: auto
+        on: Yes
+        off: No
+tabs:
+    fields:
+        ton:
+            label: 1-Ton Price
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        ton_trailer:
+            label: 1-Ton and Trailer Price
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        four_ton_trailer:
+            label: 4-Ton & Trailer
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        ton_trailer_min_6m:
+            label: 6-Ton and Trailer Min 6m Bed Price
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        eight_ton:
+            label: 8-Ton
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        ten_ton_12m_trailer:
+            label: 10-Ton and 12m Trailer
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        trailer_12m:
+            label: 12m Trailer Price
+            type: number
+            tab: Outsourced Rates
+            span: auto
+        trailer_18m:
+            label: 18m Trailer Price
+            type: number
+            tab: Outsourced Rates
+            span: auto
+    #    curtain_side_link:
+    #        label: Curtain Side Link Price
+    #        type: number
+    #        span: auto
+
+
+
+        bt_ton:
+            label: 1-Ton Price
+            type: number
+            tab: BT Truck Rates
+            span: auto
+        bt_ton_trailer:
+            label: 1-Ton and Trailer Price
+            type: number
+            span: auto
+            tab: BT Truck Rates
+        bt_four_ton_trailer:
+            label: 4-Ton & Trailer
+            type: number
+            tab: BT Truck Rates
+            span: auto
+        bt_ton_trailer_min_6m:
+            label: 6-Ton and Trailer Min 6m Bed Price
+            type: number
+            tab: BT Truck Rates
+            span: auto
+        bt_eight_ton:
+            label: 8-Ton
+            type: number
+            tab: BT Truck Rates
+            span: auto
+        bt_ten_ton_12m_trailer:
+            label: 10-Ton and 12m Trailer
+            type: number
+            tab: BT Truck Rates
+            span: auto
+        bt_trailer_12m:
+            label: 12m Trailer Price
+            type: number
+            tab: BT Truck Rates
+            span: auto
+        bt_trailer_18m:
+            label: 18m Trailer Price
+            type: number
+            tab: BT Truck Rates
+            span: auto
+    #    curtain_side_link:
+    #        label: Curtain Side Link Price
+    #        type: number
+    #        span: auto

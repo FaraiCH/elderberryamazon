@@ -1,0 +1,6 @@
+import:
+    title: Import ElectricityMeter
+    modelClass: Bt\Maintenance\Models\ElectricityImport
+    list: $/bt/maintenance/models/electricity/columns_export.yaml
+    redirect: bt/maintenance/electricity
+    

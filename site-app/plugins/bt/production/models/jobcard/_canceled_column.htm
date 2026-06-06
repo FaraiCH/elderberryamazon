@@ -1,0 +1,10 @@
+
+<?php if($record->status_id == 4): ?>
+	<span style="color: #fff; background: red; display: block; padding: 2px; font-weight: bold;">
+	    Cancelled
+	</span>
+<?php else: ?>
+	<span style="color:grey">
+		<?php echo $record->status->name?>
+	</span>
+<?php endif; ?>

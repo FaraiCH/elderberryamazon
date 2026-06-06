@@ -1,0 +1,47 @@
+<div class="callout fade in callout-info ">
+    <div class="header"><h3>QC SRN APROVAL</h3></div>
+    <div class="content" style="padding: 5px;">
+        <table class="table table-sm">
+            <tr>
+                <th></th>
+                <th>SRN #</th>
+                <th>Quote</th>
+                <th>Schedule Date</th>
+                <th>Collection/Delivery</th>
+                <th>Approved By QC</th>
+            </tr>
+            <?php foreach($todaysrn as $item ): ?>
+            <tr>
+                <td><a href="/backend/bt/logistics/stockrelease/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-pencil">Update</a></td>
+                <td><?= $item->id ?></td>
+                <td><?= $item->quote_id ?> - <?= $item->quote->company_name ?></td>
+
+                 <?php
+                                    $date = date_create( $item->schedule_date);
+
+                                ?>
+
+                            <td><?= date_format($date, 'D d M Y');?></td>
+
+
+                <td><?= $item->type->name ?></td>
+                <td>
+                    <?php if (!empty($item->srnapprove)): ?>
+                        Yes
+                    <?php else: ?>
+                        No
+                    <?php endif; ?>
+                </td>
+                <td><?= $item->vehicle_departure ?></td>
+
+
+            </tr>
+            <?php endforeach ?>
+
+        </table>
+    </div>
+
+
+</div>
+
+

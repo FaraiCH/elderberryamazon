@@ -1,0 +1,35 @@
+ <div class="callout fade in callout-info no-subheader">
+        <div class="header">
+            <i class="icon-info"></i>
+            <h3>You can only release material that has been delivered. </h3>
+        </div>
+    </div>
+    <div class="form-preview">
+       <table class="table">
+	    	<thead>
+	    		<tr><th>#</th><th>ID</th><th>Product</th><th>Batch</th><th>mfi</th><th>weight</th><th>Used Weight</th></tr>
+	    	</thead>
+	    	<tbody>
+				<?php foreach($products as $key => $field) : ?>
+					<tr>
+						<td class="p-r-md" style="vertical-align: top;"><?php echo($key+1); ?></td>
+						<td class="p-r-md" style="vertical-align: top;"><?php echo($field->id); ?></td>
+						<td class="p-r-md" style="vertical-align: top;"><?php echo($field->productname->name); ?></td>
+						<td class="p-r-md" style="vertical-align: top;"><?php echo($field->supplier_batch); ?></td>
+						<td class="p-r-md" style="vertical-align: top;"><?php echo($field->mfi); ?></td>
+						<td class="p-r-md" style="vertical-align: top;"><?php echo($field->weight); ?> kg</td>
+						<td class="p-r-md" style="vertical-align: top;">
+						<?php $countweight = 0; ?>
+						<?php foreach($field->release as $key_b => $field_b) : ?>
+								<?php $countweight += kg; ?>
+							<?php endforeach ?>
+
+							<?php echo($countweight); ?> kg</td>
+						
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+              
+
+		</table>
+	</div>

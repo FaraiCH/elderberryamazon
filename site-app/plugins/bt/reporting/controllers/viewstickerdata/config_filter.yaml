@@ -1,0 +1,48 @@
+scopes:
+    controlsheet:
+        label: Control Sheet
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: controlsheet_id in (:filtered)
+        options: getControlsheets
+    quote:
+        label: Quote Number
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: quote_no in  (:filtered)
+        options: getQuotes
+    pickslip:
+        label: Pick Slip
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: pickslip_id in  (:filtered)
+        options: getPickslip
+    qcstatus:
+        label: QC Status
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: qcstatus_id in  (:filtered)
+        options: getQCStatus
+    scrap:
+        label: Production Scrap?
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: is_scrap in  (:filtered)
+        options: getProductionScrap
+    pipesize:
+        label: Pipe Size
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: pipesize in  (:filtered)
+        options: getPipeSize
+    pn_rating:
+        label: PN Rating
+        modelClass: Bt\Reporting\Models\ViewStickerData
+        conditions: pn_rating in  (:filtered)
+        options: getPNRating
+    pipe_length:
+        label: Pipe Length
+        type: number
+        conditions: stick_pipe_lenght in (:filtered)
+    dispatch_date:
+        label: Dispatch Date
+        type: daterange
+        conditions: dispatch_date >= ':after' AND dispatch_date <= ':before'
+    contronsheet_production_date:
+        label: Control Sheet Date
+        type: daterange
+        conditions: contronsheet_production_date >= ':after' AND contronsheet_production_date <= ':before'

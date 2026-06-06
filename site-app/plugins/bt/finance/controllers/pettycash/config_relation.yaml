@@ -1,0 +1,27 @@
+
+lineapprove:
+    label: Approve By Line Manager
+    view:
+        form: $/bt/finance/models/pettylineapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/finance/models/pettylineapprove/fields.yaml
+        list: $/bt/finance/models/pettylineapprove/columns.yaml
+
+pettycashapprove:
+    label: Approve Petty Cash
+    view:
+        form: $/bt/finance/models/pettycashapprove/fields.yaml
+        toolbarButtons: update
+    manage:
+        form: $/bt/finance/models/pettycashapprove/fields.yaml
+        list: $/bt/finance/models/pettycashapprove/columns.yaml
+
+cardrecords:
+    label: Card Records
+    manage:
+        form: $/bt/finance/models/cardrecords/fields.yaml
+        list: $/bt/finance/models/cardrecords/columns.yaml
+    view:
+        list: $/bt/finance/models/cardrecords/columns.yaml
+        toolbarButtons: create|delete

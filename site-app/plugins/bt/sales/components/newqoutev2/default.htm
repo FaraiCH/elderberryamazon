@@ -1,0 +1,266 @@
+{% if user %}
+        {% flash success %}
+            <p>{{message}}</p>
+        {% endflash %}
+
+
+        	{% partial __SELF__ ~ '::companyfilterform'  %}
+
+
+             <form data-request="onSave"  data-request-flash data-request-validate>
+
+
+
+            	<div id="formquote">{% partial __SELF__ ~ '::form'  %}</div>
+                 <br>
+                 {% partial __SELF__ ~ '::baseprice'  %}
+				<h4 style="background: #495057; color: #fff; border-radius: 4px; font-weight: 200; font-size: 18px" class="p-2 pt-1 mt-2" >Quote Items</h4>
+
+				<div class="row">
+
+					<div class="col-sm-12 mb-3">
+						<span class="text-danger" data-validate-for="vat"></span>
+						<h2>Include VAT: <input type="checkbox" checked="" name="vat" id="vat" value="0.15"> Yes
+					</div>
+
+					<div class="col-md-12 mb-3">
+						<div class="card mb-3">
+							<div class="card-header  " style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+								<strong>Delivery Requirements</strong>
+							</div>
+
+							<div class="row px-4 py-2">
+								<div class="col-sm-6">
+									<span class="text-danger" data-validate-for="requestdelivery"></span>
+									<div class="input-group mb-1">
+										<div class="input-group-prepend">
+											<span class="input-group-text label-small" id="basic-at">Request Delivery</span>
+										</div>
+										<select id="requestdelivery" required="Yes" name="requestdelivery"  class="form-control input-sm">
+											<option value="0">No</option>
+											<option value="1">Yes</option>
+										</select>
+
+									</div>
+									<!-- <span>Set <u>Request Delivery</u> to "YES" if you want to email team to set delivery details</span> -->
+								</div>
+
+								<div class="col-sm-6">
+									<span class="text-danger" data-validate-for="deliverytype"></span>
+									<div class="input-group mb-1">
+										<div class="input-group-prepend">
+											<span class="input-group-text label-small" id="basic-at">Delivery Type</span>
+										</div>
+										<select id="deliverytype" required="Yes" name="deliverytype"  class="form-control input-sm">
+											<option value="1">Delivery From BT</option>
+											<option value="2">Collection</option>
+										</select>
+									</div>
+									<!-- <span>Set <u>Request Delivery</u> to "YES" if you want to email team to set delivery details</span> -->
+								</div>
+							</div>
+
+
+							<div class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
+								<a href="https://bailaerp.bt-industrial.co.za/backend/bt/sales/transportfee" target="_blank" class="btn btn-info btn-sm " style="float: right; margin-bottom: 10px;">View Destination Rates</a>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header  " style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+								<span>Pipe Items</span>
+							</div>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th width="50%">Product</th>
+
+										<th>Length</th>
+										<th width="90px">Units</th>
+										<th width="120px" nowrap="">Per KG</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody id="additemholder"></tbody>
+							</table>
+
+							<div>
+								<div style="display: none">
+									<select id="additem_product" class="form-control">
+										{% for obType in BTNewQuoteV2.loadProduct() %}
+			                                <option value="{{obType.id}}">{{obType.PNRating.name}} X {{obType.Diameter.name}} mm Dia</option>
+			                            {% endfor %}
+
+									</select>
+									<input style="width: 60px;" type="text"  placeholder="0.0" id="additem_unitlength">
+
+
+								</div>
+							</div>
+
+								<div class="card-footer" style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+									<a class="btn btn-info btn-sm " id="additemjs" style="color: #fff" ><i class="fa fa-plus"></i> Add New Item</a>
+							        <a class="btn btn-danger btn-sm pull-right " id="clearitemjs" style="color: #fff" ><i class="fa fa-minus"></i> Clear Items</a>
+
+								</div>
+
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="card" >
+							<div class="card-header  " style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+								<span>Additional Items</span>
+							</div>
+
+							<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th width="50%">Product</th>
+											<th width="50%">Sell Price (R)</th>
+											<th width="90px">Units</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody id="additionalholder">
+
+									</tbody>
+								</table>
+
+							<div >
+
+
+
+
+								<div style="display: none">
+									<select id="addseconditem_product" class="form-control">
+										{% set btype = BTNewQuoteV2.loadSecondsProduct() %}
+										{% for obType in btype %}
+			                                <option value="{{obType.id}}">{{obType.id}} :{{obType.name}} X R{{obType.price}}</option>
+			                            {% endfor %}
+
+
+									</select>
+
+								</div>
+							</div>
+
+								<div class="card-footer" style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+									<a class="btn btn-info btn-sm " id="addseconditemjs" style="color: #fff" ><i class="fa fa-plus"></i> Add New Item</a>
+							        <a class="btn btn-danger btn-sm pull-right " id="clearsecondjs" style="color: #fff" ><i class="fa fa-minus"></i> Clear Items</a>
+								</div>
+						</div>
+					</div>
+
+                    <div class="col-md-12" style="padding-top: 20px">
+                        <div class="card">
+                            <div class="card-header" style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+                                <span >Delivery Details</span>
+                                <span style="float: right">Rates Update | {{rateupdate}}</span>
+                            </div>
+
+                            <table class="table w-100">
+								<tbody id="additemdeliveryholder" />
+                            </table>
+
+
+							<div hidden>
+								<select id="delivery_type" name="delivery_type" class="select_search">
+                                    <option value="custom">Custom</option>
+									<option value="bt">BT Delivery</option>
+								</select>
+
+								<select id="destination" name="destination" class="select_search">
+									<option value="0">-- Select Destination --</option>
+									{% set bdestinations = BTNewQuoteV2.onLoadDeliveryDestination() %}
+									{% for destination in bdestinations %}
+									<option value="{{destination.id}}">{{destination.id}} - {{destination.name}}</option>
+									{% endfor %}
+								</select>
+
+								<select id="vehicle_type" name="vehicle_type" class="select_search">
+									<option value="0">-- Select Vehicle Type --</option>
+									{% set bdestinations = BTNewQuoteV2.onLoadDelveryVehicleType() %}
+									{% for destination in bdestinations %}
+									<option value="{{destination.to_column}}">{{destination.id}} - {{destination.name}}</option>
+									{% endfor %}
+								</select>
+
+								<select style="width:100px" id="trip_qty" name="trip_qty" class="select_search">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+
+                            <div class="card-footer" style="height: 50px;display: flex; justify-content: space-between; align-items: center;">
+                                <a class="btn btn-info btn-sm " id="adddeliveryItem" style="color: #fff" ><i class="fa fa-plus"></i> Add New Item</a>
+                                <a class="btn btn-danger btn-sm pull-right " id="cleardeliveryjs" style="color: #fff" ><i class="fa fa-minus"></i> Clear Items</a>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-12 mb-3">
+						<div class="card border-primary" style="margin-top: 20px">
+							<div class="card-header" style="height: 50px;">
+								Quote Preview <a  id="updatepreview" data-request="onUpdatepreview"  data-request-update="'{{__SELF__ ~ '::previewquote'}}': '#previewquote'" data-attach-loading data-request-flash class="btn btn-info btn-sm" style="color: #fff;float: right"><i class="fa fa-sync"></i> Refresh Preview</a>
+							</div>
+
+								<span id="previewquote" >{% partial __SELF__ ~ '::previewquote'  %}</span>
+
+						</div>
+					</div>
+				</div>
+
+                  <div class="col-sm-12">
+                        <span class="text-danger" data-validate-for="notes"></span>
+                         <div class="input-group mb-">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text label-small" id="basic-at">Add note to quote</span>
+                            </div>
+
+                             <textarea
+                                name="notes"
+                                type="text"
+                                class="form-control mt-0 counttext"
+                                id="preview_text" ></textarea>
+                        </div>
+
+                  </div>
+
+				</div>
+				<!-- <hr>
+				<h2>Finish Quote</h2>
+                <div >
+                	<input type="radio" name="set_status" id="set_status_1" value="1" > <span  id="set_status_1_text">Complete (Auto send quote by email to client)</span>
+                	<input type="radio" name="set_status" id="set_status_2" checked value="2" > InComplete (Edit later to add discount and delivery)
+                	<input type="radio" name="set_status" id="set_status_3" value="3" > Quote canceled (Store Quote but dont use)
+                </div> -->
+              <button type="submit" class="btn btn-primary btn-block mt-4 " data-attach-loading>Submit</button>
+
+            </form>
+
+
+            {% put scripts %}
+
+    <script type="text/javascript">
+
+			var pricing = {% autoescape false %}{{BTNewQuoteV2.loadSecondsProductArray()}}{% endautoescape %};
+
+
+
+    </script>
+{% endput %}
+
+    {%else%}
+        <p>User not loged in</p>
+    {%endif%}

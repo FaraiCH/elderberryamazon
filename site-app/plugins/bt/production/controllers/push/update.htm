@@ -1,0 +1,1122 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/production/push') ?>">Productions</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?php
+        foreach($formModel->quote->responses as $key=>$value){
+
+            if($value->quote_status_id == 20){
+                 echo '<div class="callout fade in callout-danger">
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="callout"
+                        aria-hidden="true">&times;</button>
+                    <div class="header">
+                        <i class="icon-warning"></i>
+                        <h3>Warning! Production Canceled</h3>
+                        <p>Production has been canceled by <b>'.$value->user->name.'</b></p>
+                    </div>
+                    <div class="content">
+                        <p>Date Canceled: '.$value->created_at.'</p>
+                    </div>
+                </div>';
+            }
+        }
+    ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+        <div class="scoreboard">
+                <div data-control="toolbar">
+                    <div class="scoreboard-item title-value">
+                        <h4>Client</h4>
+                        <?php if (isset($formModel->quote->client)): ?>
+                            <p>
+                               <?= e($formModel->quote->client->company_name) ?>
+                            </p>
+                         <?php else: ?>
+                                <p class="text-danger" >**Client not set</p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="scoreboard-item title-value">
+                        <h4>Approved By Management</h4>
+                    <p>
+                           <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+                                <span class="oc-icon-check text-success">
+                                    Yes
+                                </span>
+
+                            <?php elseif(isset($formModel->approved) && $formModel->approved->status_id == 0): ?>
+                                <span class="oc-icon-minus-circle text-danger">
+                                    Declined
+                                </span>
+
+                            <?php else: ?>
+                                <span class="oc-icon-circle text-info">
+                                Pending
+                                </span>
+                            <?php endif; ?>
+                        </p>
+
+                    </div>
+
+                     <div class="scoreboard-item title-value">
+                        <h4>Credit Balance</h4>
+
+                        <?php if (isset($formModel->quote->client->limit)): ?>
+                        <p class="">
+
+                           <?php
+                                $balance = $formModel->quote->client->limit - $formModel->quote->client->utilization;
+                            ?>
+
+                         R <?php echo number_format($balance,2, '.', ',');?>
+                        </p>
+                        <p class="description text-info">Limit set to: R <?php echo number_format(($formModel->quote->client->limit),2, '.', ',');?></p>
+                         <?php else: ?>
+                                <p class="text-danger" >Limit not set</p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="scoreboard-item title-value">
+                        <h4>COD/Account</h4>
+
+                        <?php if (isset($formModel->quote->client->is_cod) && $formModel->quote->client->is_cod > 0): ?>
+                        <p class="text-info">COD</p>
+                        <?php else: ?>
+                        <p class="text-primary" >Account</p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4 style="padding-bottom: 10px">Overview</h4>
+                        <a target="_blank" class="btn btn-primary pull-right " href="/sales/report/download/<?=   $formModel->quote->id ?>/<?= $formModel->quote->user_id ?>">Quote + Production + Delivery</a>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Quote</h4>
+                        <p><a  href="/backend/bt/sales/newquote/update/<?= $formModel->quote->id ?>" target="_blank"><?= $formModel->quote->id ?></a></p>
+                    </div>
+
+                    <div class="scoreboard-item title-value">
+                        <h4 style="font-size: 14px;">Delivery Requested</h4>
+                        <?php
+                            if(isset($formModel->quote->deliveryrequest)){
+                              if($formModel->quote->deliveryrequest == 1 ){
+                                    echo '<p><span style="font-size:30px; color: green;" class="oc-icon-check text-success"></span>
+                                    Yes
+                                </p>';
+                            $sum = $formModel->quote->deliveryamount + $formModel->quote->deliveryamounthidden;
+                            if($formModel->quote->dispatch->sum('total') > 0){
+                                $sum = $formModel->quote->dispatch->sum('total');
+                            }
+                            echo "Amount: R".number_format($sum, 2, '.', ',');
+                                }else{
+                                    echo '<p><span style="font-size:30px; color: red;"  class="oc-icon-circle text-danger"></span>
+                                    No
+                                </p>';
+                                }
+                            }else{
+                               echo '<p class="oc-icon-circle text-danger">
+                                No
+                              </p>';
+                            }
+
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        <div class="layout-row">
+            <div class="control-tabs content-tabs" data-control="tab">
+                    <ul class="nav nav-tabs">
+                        <?php if($formModel->quote_id !== 284): ?>
+                        <li class="nav-item active">
+                            <a class="active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Order Details</a>
+                          </li>
+                          <li class="nav-item">
+                                <a id="support-tab" data-toggle="tab" href="#support" role="tab" aria-controls="support" aria-selected="false">Documents</a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="" id="support-tab" data-toggle="tab" href="#support" role="tab" aria-controls="support" aria-selected="false">Documents</a>
+                            </li>
+                        <?php endif; ?>
+                           <!--  <li class="nav-item">
+                                <a id="delivery-tab" data-toggle="tab" href="#delivery" role="tab" aria-controls="delivery" aria-selected="false">Delivery Documents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="productionfiles-tab" data-toggle="tab" href="#productionfiles" role="tab" aria-controls="productionfiles" aria-selected="false">Production Documents</a>
+                              </li> -->
+
+                        <li class="nav-item">
+                            <a class="" id="response-tab" data-toggle="tab" href="#response" role="tab" aria-controls="response" aria-selected="false">Communication</a>
+                        </li>
+
+                          <li class="nav-item">
+                            <a class="" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Production Setup</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Approve BY Management</a>
+                          </li>
+                           <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+                              <li class="nav-item">
+                                <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Pipes To Produce</a>
+                              </li>
+                              <?php endif; ?>
+
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent" style="background: #fff">
+
+
+
+
+                        <?php
+                                        $per = 0;
+                                        $count = 0;
+                        ?>
+                        <?php if($formModel->quote_id != 284): ?>
+                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div style="padding: 20px">
+
+                            <?php if(isset($formModel->quote) && !empty($formModel->quote->items) && count($formModel->quote->items) > 0): ?>
+
+                            <h4>HDPE Pipe On Quote To Schedule</h4>
+
+                            <div style="padding: 20px,width: 100%; overflow: auto;">
+                           <table class="table data">
+                                        <thead>
+                                            <tr>
+                                                <th class="sort-desc"><a href="/">Continue <br>To Run</a></th>
+                                                <th class="sort-desc"><a href="/">Pushed <br>To Prod</a></th>
+                                                <th class="sort-desc" style="text-align:right;"><a href="/">Total Price</a></th>
+                                                <th class="sort-desc"><a href="/">Unit Price</a></th>
+                                                <th class="sort-desc"><a href="/">Client R/KG</a></th>
+                                                 <th class="sort-desc"><a href="/">Blended R/KG</a></th>
+                                                <th class="sort-desc"><a href="/">Class</a></th>
+                                                <th class="sort-desc" style="text-align:right;"><a href="/">Units</a></th>
+                                                <th class="active sort-asc" style="text-align:right;"><a href="/">Total Weight</a></th>
+                                                <th class="active sort-asc" style="text-align:right;"><a href="/">Production Cost</a></th>
+                                                <th class="active sort-asc" style="text-align:right;"><a href="/">Potential Profit</a></th>
+                                            </tr>
+                                        </thead>
+                                    <tbody>
+
+
+                                    <?php
+
+                                        foreach($formModel->quote->items as $dkey=>$dvalue){
+                                            echo '<tr >';
+                                                if($dvalue->isbackorder == 1){
+                                                    echo '<td><span class="oc-icon-check text-success"> Yes</span></td>';
+                                                }else{
+                                                      echo '<td><span class="oc-icon-check text-danger"> Cancelled</span></td>';
+                                                }
+                                                 if(!empty($dvalue->pipe)){
+                                                    echo '<td><span class="oc-icon-check text-success"> Yes</span></td>';
+                                                }else{
+                                                      echo '<td><span class="oc-icon-check text-danger"> No</span></td>';
+                                                }
+                                            echo    '<td style="text-align:right;">R '.number_format($dvalue->price,2, '.', ',').'</td>';
+                                            echo '<td style="text-align:right;">R '.number_format($dvalue->unitprice,2, '.', ',').'</td>';
+                                            echo '<td style="text-align:right;">R '.number_format($dvalue->priceperkg,2, '.', ',').'</td>';
+                                            echo '<td style="text-align:right;">R '.number_format((!empty($formModel->blendedprice)?$formModel->blendedprice->price:0),2, '.', ',').'</td>';
+                                            echo '<td>'.((isset($dvalue->description))?$dvalue->description:"***Item might have been removed").'</td>';
+
+
+                                            if(!empty($dvalue->pipe) && $dvalue->pipe->original_items_count > 0 && $dvalue->pipe->original_items_count  != $dvalue->units){
+                                                   echo '<td style="text-align:right;"><span style="color: red">'.$dvalue->pipe->original_items_count.' Old</span> VS '.$dvalue->units.'</td>';
+                                                }else{
+                                                     echo '<td style="text-align:right;">'.$dvalue->units.'</td>';
+                                                }
+
+                                            //echo '<td style="text-align:right;">'.number_format($dvalue->weight,2, '.', ',').' KG</td>';
+                                            echo '<td style="text-align:right;">'.number_format($dvalue->totalweight,2, '.', ',').' KG</td>';
+                                            if(!empty($formModel->blendedprice)){
+                                                echo '<td style="text-align:right;">R '.number_format(($dvalue->totalweight*$formModel->blendedprice->price),2, '.', ',').'</td>';
+                                                 echo '<td style="text-align:right;">R '.number_format(($dvalue->totalweight*$dvalue->priceperkg)-($dvalue->totalweight*$formModel->blendedprice->price),2, '.', ',').'</td>';
+                                            }else{
+                                                echo '<td>Not Set</td><td>Not Set</td>';
+                                            }
+                                            echo '</tr>';
+
+                                        }
+
+
+                                    ?>
+                                    </tbody>
+
+                                    <tfoot>
+
+
+                                    <?php
+                                            echo '<tr >';
+                                            echo '<td></td>';
+                                            echo '<td></td>';
+                                            echo '<th nowrap style="text-align:right;">R '.number_format($formModel->quote->items->sum("price"),2, '.', ',').'</th>';
+                                            echo '<td></td>';
+                                            echo '<th style="text-align:right;">R '.number_format($formModel->quote->items->sum("price")/$formModel->quote->items->sum("totalweight"),2, '.', ',').'</th>';
+
+                                             echo '<th style="text-align:right;">R '.number_format((!empty($formModel->blendedprice)?$formModel->blendedprice->price:0),2, '.', ',').'</th>';
+                                             echo '<td></td>';
+                                            echo '<th style="text-align:right;">'.$formModel->quote->items->sum("units").'</th>';
+
+                                            echo '<th style="text-align:right;">'.number_format($formModel->quote->items->sum("totalweight"),2, '.', ',').' KG</th>';
+                                            if(!empty($formModel->blendedprice)){
+                                                echo '<th style="text-align:right;">R '.number_format(($formModel->quote->items->sum("totalweight")*$formModel->blendedprice->price),2, '.', ',').'</th>';
+                                                 echo '<th style="text-align:right;">R '.number_format(($formModel->quote->items->sum("totalweight")*($formModel->quote->items->sum("price")/$formModel->quote->items->sum("totalweight")))-($formModel->quote->items->sum("totalweight")*$formModel->blendedprice->price),2, '.', ',').'</th>';
+                                            }else{
+                                                echo '<th>Not Set</th><th>Not Set</th>';
+                                            }
+                                            echo '</tr>';
+
+                                            if(!empty($formModel->blendedprice)){
+                                                echo '<tr >';
+                                                echo '<td colspan="10"></td>';
+                                                $p = ($formModel->quote->items->sum("totalweight")*($formModel->quote->items->sum("price")/$formModel->quote->items->sum("totalweight")))-($formModel->quote->items->sum("totalweight")*$formModel->blendedprice->price);
+                                                $tp  = $formModel->quote->items->sum("price");
+
+                                                echo '<th style="text-align:right;">'.number_format(($p/$tp)*100,1, '.', ',').' %</th>';
+                                                echo '</tr>';
+                                            }
+
+
+
+                                    ?>
+                                    </tfoot>
+                                </table>
+                            </div>
+                                    <?php endif; ?>
+                                    <?php if(isset($formModel->quote) && !empty($formModel->quote->itemscat) && count($formModel->quote->itemscat) > 0): ?>
+                                <h4>Catalogue Pipe On Quote To Schedule</h4>
+                           <table class="table data">
+                                        <thead>
+                                            <tr>
+                                                <th class="sort-desc"><a href="/">Is Production Required</a></th>
+                                                <th class="sort-desc"><a href="/">Description On Quote</a></th>
+                                                <th class="sort-desc"><a href="/">BT HDPE Class</a></th>
+                                                <th class="sort-desc"><a href="/">Unit Length</a></th>
+                                                <th class="sort-desc"><a href="/">Price KG</a></th>
+                                                <th class="sort-desc"><a href="/">Units</a></th>
+                                                <th class="active sort-asc"><a href="/">Weight</a></th>
+                                                <th class="active sort-asc"><a href="/">Total Weight</a></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                    <?php
+
+                                        foreach($formModel->quote->itemscat as $dkey=>$dvalue){
+                                            if(isset($dvalue->product) ){
+                                                echo '<tr>';
+                                                if($dvalue->catalogue->production_required == 1){
+                                                    echo '<td><span class="oc-icon-circle text-success">Yes</span></td>';
+                                                    }else{
+                                                        echo '<td><span class="oc-icon-circle text-danger">No</span></td>';
+                                                }
+                                                 echo '<td>'.$dvalue->description.'</td>';
+
+                                                 echo '<td>'.(isset($dvalue->product)?$dvalue->product->name:"&nbsp;").'</td>';
+                                                 echo '<td>'.$dvalue->unitlength.' M</td>';
+                                                 echo '<td>R '.number_format($dvalue->priceperkg,2, '.', ',').'</td>';
+                                                 echo '<td>'.$dvalue->units.'</td>';
+                                                 echo '<td>'.$dvalue->weight.' KG</td>';
+                                                 echo '<td>'.$dvalue->totalweight.' KG</td>';
+                                                echo '</tr>';
+                                            }else{
+                                               echo '<tr>';
+                                                if($dvalue->catalogue->production_required == 1){
+                                                    echo '<td><span class="oc-icon-circle text-success">Yes</span></td>';
+                                                    }else{
+                                                        echo '<td><span class="oc-icon-circle text-danger">No</span></td>';
+                                                }
+                                                 echo '<td>'.$dvalue->description.'</td>';
+                                                 echo '<td>*** Not Linked to HPDPE ***</td>';
+                                                 echo '<td>&nbsp;</td>';
+                                                 echo '<td>&nbsp;</td>';
+                                                 echo '<td>'.$dvalue->units.'</td>';
+                                                 echo '<td>&nbsp;</td>';
+                                                 echo '<td>&nbsp;</td>';
+                                                echo '</tr>';
+                                            }
+
+                                        }
+
+
+                                    ?>
+                                    </tbody>
+                                </table>
+                                  <?php endif; ?>
+                            </div>
+
+
+
+                            <div style="padding: 0px 20px">
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+
+                                        <?php
+                                        $count = 0;
+                                        foreach($formModel->quote->items as $key=>$value){
+                                            if(isset($value->product))
+                                            if ($value->product->value > 0 && $value->unitlength > 0) {
+                                                $count = $count + $value->units;
+                                            }
+
+                                        }
+
+                                        $vs = 0;
+                                        if(isset($formModel->pipes))
+                                        foreach($formModel->pipes as $pkey=>$pvalue){
+                                            if(isset($pvalue->schedules))
+                                            {
+                                                $vs = $vs + $pvalue->schedules()->sum('total_units_passed_qc') + $pvalue->getTotalExtras();
+                                            }
+
+                                        }
+
+                                    ?>
+                                    <?php if($count == 0): ?>
+                                        <span class="text-info" >
+                                            not available
+                                            </span>
+                                    <?php else: ?>
+                                        <?php
+                                        $per = 0;
+                                        if($vs > 0)
+                                            $per = ($vs/$count) * 100;
+                                            if($per > 100)
+                                                $per = 100;
+
+                                            if($formModel->status_id == 3)
+                                                $per = 100;
+                                            ?>
+
+
+
+
+                                    <?php endif; ?>
+                                        <h3 style="text-align: center;">PRODUCTION</h3>
+                                        <?php if($per == 100): ?>
+                                        <div
+                                                class="control-chart centered wrap-legend"
+                                                data-control="chart-pie"
+                                                data-size="<?php echo number_format(200, 0); ?>"
+                                                data-center-text="Completed">
+                                                <ul>
+
+                                                    <li>Ordered Pipes <?php echo number_format($count, 0); ?><span><?php echo number_format($count, 0); ?></span></li>
+
+
+
+                                                </ul>
+                                            </div>
+                                        <?php else: ?>
+                                           <div
+                                                class="control-chart centered wrap-legend"
+                                                data-control="chart-pie"
+                                                data-size="<?php echo number_format(200, 0); ?>"
+                                                data-center-text="<?php echo number_format($per, 0); ?>%">
+                                                <ul>
+                                                    <li>Produced Pipes <?php echo number_format($vs, 0);?><span><?php echo number_format($per, 0);?></span></li>
+                                                    <li>Ordered Pipes <?php echo number_format($count, 0); ?><span><?php echo number_format(100-$per, 0); ?></span></li>
+
+
+
+                                                </ul>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <div class="col-sm-3">
+
+                                        <?php
+                                        $count = 0;
+                                        foreach($formModel->quote->items as $key=>$value){
+                                            if(isset($value->product))
+                                            if ($value->product->value > 0 && $value->unitlength > 0) {
+                                                $count = $count + $value->units;
+                                            }
+
+                                        }
+
+                                        $vs = 0;
+                                        if(isset($formModel->quote))
+                                            if(isset($formModel->quote->srn))
+                                                foreach($formModel->quote->srn as $pkey=>$pvalue){
+                                                    if(isset($pvalue->items))
+                                                        $vs = $vs + $pvalue->items()->sum('units');
+
+
+                                                }
+
+                                    ?>
+                                    <?php if($count == 0): ?>
+                                        <span class="text-info" >
+                                            not available
+                                            </span>
+                                    <?php else: ?>
+                                        <?php
+                                            $per = 0;
+                                            if($vs > 0)
+                                                $per = ($vs/$count) * 100;
+                                                if($per > 100)
+                                                    $per = 100;
+                                                ?>
+
+
+
+
+                                    <?php endif; ?>
+                                        <h3 style="text-align: center;">DELIVERY</h3>
+                                       <div
+                                            class="control-chart centered wrap-legend"
+                                            data-control="chart-pie"
+                                            data-size="<?php echo number_format(200, 0); ?>"
+                                            data-center-text="<?php echo number_format($per, 0); ?>%">
+                                            <ul>
+                                                <li>Deliverd Pipes <?php echo number_format($vs, 0);?> <span><?php echo number_format($per, 0);?></span></li>
+                                                <li>Ordered Pipes <?php echo number_format($count, 0);?> <span><?php echo number_format(100-$per, 0); ?></span></li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                         <h3 style="text-align: center;">INVOICE</h3>
+                                            <?php
+
+                                                $total = $formModel->quote->totalincvat;
+                                                $amount = $formModel->quote->invoice()->sum('amount');
+                                                $per = 0;
+                                                if($total > 0)
+                                                    $per = ($amount/$total) * 100;
+                                            ?>
+                                    <div
+                                            class="control-chart centered wrap-legend"
+                                            data-control="chart-pie"
+                                            data-size="<?php echo number_format(200, 0); ?>"
+                                            data-center-text="<?php echo number_format($per, 0); ?>%">
+                                            <ul>
+                                                <li>Invoiced R <?php echo number_format($amount,2, '.', ',');?><span ><?php echo number_format($per,2, '.', ',');?></span></li>
+
+                                                <li>Total Quote R <?php echo number_format($total,2, '.', ','); ?><span ><?php echo number_format(100-$per,2, '.', ','); ?></span></li>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                         <h3 style="text-align: center;">PAYMENT</h3>
+                                            <?php
+
+                                                $total = $formModel->quote->totalincvat;
+                                                $amount = $formModel->quote->paymenttracker()->sum('amount');
+                                                $per = 0;
+                                                if($total > 0)
+                                                $per = ($amount/$total) * 100;
+                                            ?>
+                                    <div
+                                            class="control-chart centered wrap-legend"
+                                            data-control="chart-pie"
+                                            data-size="<?php echo number_format(200, 0); ?>"
+                                            data-center-text="<?php echo number_format($per, 0); ?>%">
+                                            <ul>
+                                                <li>Paid R <?php echo number_format($amount,2, '.', ',');?><span ><?php echo number_format($per,2, '.', ',');?></span></li>
+
+                                                <li>Total Quote R <?php echo number_format($total,2, '.', ','); ?><span ><?php echo number_format(100-$per,2, '.', ','); ?></span></li>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <?php
+                                        if(isset($formModel->pipes)){
+                                         if($formModel->id != 41){
+                                            foreach($formModel->pipes as $pkey=>$pvalue){
+                                                echo '<div class="col-sm-6"><div  style="margin-top: 20px; border-radius: 4px;border: 1px solid #ccc; padding: 4px">';
+                                                echo '<h3 style="text-align: center;"><a href="http://bailaerp.bt-industrial.co.za/production/'.$formModel->id.'/'.$pvalue->id.'" target="_blank">'.(isset($pvalue->quoteitems->description)?$pvalue->quoteitems->description:"**Item might have been removed").'</a></h3>';
+                                                if(isset($pvalue->schedules)){
+                                                    $values = array();
+                                                    $values[] = json_encode(array(
+strtotime($formModel->created_at)*1000 + 2*3600*1000, 0));
+
+                                                    $dates = "";
+                                                    $countdev = 0;
+                                                    foreach($pvalue->schedules as $skey=>$svalue){
+                                                        if($svalue->total_units_passed_qc > 0){
+                                                        $values[] = json_encode(array(
+strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_passed_qc + $svalue->btaccount->where('unitlength', $pvalue->quoteitems->unitlength)->sum('units')));
+
+
+
+                                                        $dates =$svalue->production_date;
+                                                        $countdev = $countdev + $svalue->total_units_passed_qc + $svalue->btaccount->where('unitlength', $pvalue->quoteitems->unitlength)->sum('units');
+                                                        }
+                                                    }
+                                                    echo '<div data-control="chart-line"
+                                                        data-time-mode="weeks"
+                                                        style="height: 200px"
+                                                        class="height-200"
+                                                        data-chart-options="xaxis: {mode: \'time\'}">
+                                                        <span
+                                                            data-chart="dataset"
+                                                            data-set-color="#008dc9"
+                                                            data-set-data="'.join(",",$values).'"
+                                                            data-set-name="Visits">
+                                                        </span>
+                                                    </div>';
+                                                    echo '<div style="text-align: center; padding-top: 10px">
+                                                                <h4>Last Update: '.$dates.'</h4>
+                                                                <p class="description">Units Passed QC: <b>'.$countdev.'</b></p>
+                                                                <p><a href="http://bailaerp.bt-industrial.co.za/production/'.$formModel->id.'/'.$pvalue->id.'" target="_blank" class="btn btn-primary">View Pipe Data</a></p>
+
+                                                        </div>';
+                                                }
+
+                                                echo '</div></div>';
+                                            }
+                                        }
+                                    }
+
+                                    ?>
+
+
+
+                                </div>
+                                <hr>
+                                <h4>Order Details</h4>
+
+
+                                <div class="control-list">
+                                        <table class="table data">
+                                            <thead>
+                                                <tr>
+                                                    <th><a href="/">Production ID</a></th>
+                                                    <th><a href="/">Client Name</a></th>
+                                                    <th><a href="/">Quote Number</a></th>
+                                                    <th><a href="/">PO Number</a></th>
+                                                    <th><a href="/">Invoice</a></th>
+                                                    <th><a href="/">Order Status</a></th>
+                                                    <th><a href="/">Price/KG</a></th>
+                                                    <th><a href="/">Total Inc Vat</a></th>
+                                                    <th><a href="/">Pripes To Produce</a></th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <?= e($formModel->id)?>
+                                                    </td>
+                                                    <td><?= e($formModel->quote->company_name) ?></td>
+                                                    <td><a  href="/backend/bt/sales/newquote/update/<?= e($formModel->quote->id) ?>" target="_blank"><?= e($formModel->quote->id) ?></a></td>
+                                                    <?php if(isset($formModel->ponumber)): ?>
+                                                        <td><?= e($formModel->ponumber)?></td>
+                                                    <?php else: ?>
+                                                        <td>None</td>
+                                                    <?php endif; ?>
+                                                     <td><?php if ($formModel->quote->invoice): ?>
+                                <?php
+                        foreach($formModel->quote->invoice as $key=>$value){
+
+                                echo $value->name.' ';
+
+                        }
+                    ?>
+
+                             <?php endif ?></td>
+                                                    <td><?= e($formModel->status->name)?></td>
+
+                                                    <td><?php
+                                                        $count = 9999999999;
+                                                        foreach($formModel->quote->items as $key=>$value){
+                                                            if(isset($value->product))
+                                                            if ($value->product->value > 0 && $value->unitlength > 0) {
+                                                                $count = (($value->unitprice/$value->product->value)/$value->unitlength);
+                                                            }
+
+                                                        }
+                                                    ?>
+                                                    <?php if($count == 9999999999): ?>
+                                                        <span class="text-info" >
+                                                            not available
+                                                            </span>
+                                                    <?php else: ?>
+                                                        <?php if($count > 0): ?>
+                                                            <span class="text-success">
+                                                                R <?php echo number_format($count, 2); ?>
+                                                            </span>
+
+                                                        <?php else: ?>
+                                                            <span class="text-danger" >
+                                                            R <?php echo $count; ?>
+                                                            </span>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?></td>
+                                                    <td>R <?php echo number_format($formModel->quote->totalincvat,2, '.', ','); ?></td>
+                                                    <td><?= e(count($formModel->pipes))?></td>
+                                                </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <?php if($formModel->quote_id == 284): ?>
+                            <div class="tab-pane active" id="support" role="tabpanel" aria-labelledby="support-tab">
+                        <?php else: ?>
+                            <div class="tab-pane" id="support" role="tabpanel" aria-labelledby="support-tab">
+                        <?php endif; ?>
+                            <div style="padding: 20px 20px">
+                                <?php $countfile = 0; ?>
+                                <?php if ($formModel->quote->invoice): ?>
+                                <?php
+            foreach($formModel->quote->invoice as $key=>$value){
+                                if($value->file){
+                                $countfile++;
+
+                                }
+                                }
+                                ?>
+                                <?php endif ?>
+
+                                <?php
+
+                foreach($formModel->quote->responses as $key=>$value){
+                                if(isset($value)){
+                                if($value->file){
+                                if(isset($value->status)){
+
+                                }
+                                }
+
+                                if($value->quote_status_id == 10 || $value->quote_status_id == 9){
+                                $countfile++;
+                                }
+                                }
+                                }
+
+
+                                ?>
+
+
+                            </div>
+                        <!-- </div>
+
+
+
+
+
+
+
+                        <div class="tab-pane" id="delivery" role="tabpanel" aria-labelledby="delivery-tab"> -->
+                            <div style="padding: 0px 20px">
+
+                                     <?= $this->makePartial('prt_documents') ?>
+
+                               <h4>Delivery Documents</h4>
+                                <div class="control-list">
+                                    <table class="table data">
+                                        <thead>
+                                            <tr>
+                                                <th class="sort-desc"><a href="/">SRN ID</a></th>
+                                                <th class="sort-desc"><a href="/">SCHEDULE DATE</a></th>
+                                                <th class="sort-desc"><a href="/">INVOICED</a></th>
+                                                <th class="sort-desc"><a href="/">DOC STATUS</a></th>
+                                                <th class="sort-desc"><a href="/">DELIVERY TYPE</a></th>
+                                                <th class="active sort-asc"><a href="/">NOTES</a></th>
+                                                <th class="active sort-asc"><a href="/">SRN FILE</a></th>
+                                                <th class="active sort-asc"><a href="/">DELIVERY FILE</a></th>
+                                                <th class="active sort-asc"><a href="/">COLLECTION FILE</a></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                    <?php
+
+                                        foreach($formModel->quote->srn as $dkey=>$dvalue){
+                                            echo '<tr><td>'.$dvalue->id.'</td><td>'.$dvalue->schedule_date.'</td>';
+
+                                            if(isset($dvalue->quote->invoice) && count($dvalue->quote->invoice) > 0 ){
+                                                echo '<td><span class="oc-icon-circle text-success">Yes</span></td>';
+                                            }else{
+                                                echo '<td><span class="oc-icon-circle text-danger">No</span></td>';
+                                            }
+
+                                            $doccount = 0;
+                                            if(count($dvalue->files_srn))
+                                                $doccount++;
+                                              if(count($dvalue->files_delivery))
+                                                $doccount++;
+                                              if(count($dvalue->files_collection))
+                                                $doccount++;
+
+
+
+                                            if($doccount >= 2 ){
+                                                echo '<td><div style="background: green; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">COMPLETED</div></td>';
+                                            }else{
+                                                echo '<td><div style="background: #ec3838; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;"><span class="oc-icon-exclamation-triangle">INCOMPLETE</span></div></td>';
+                                            }
+
+                                            echo '<td>'.$dvalue->type->name.'</td>';
+                                            echo '<td>'.$dvalue->notes_srn.'</td>';
+                                            echo '<td>';
+                                            foreach($dvalue->files_srn as $key=>$value){
+                                                if($value){
+                                                    echo '<a href="'.$value->path.'" target="_blank">'.$value->file_name.'</a> ';
+                                                }
+                                            }
+                                            echo '</td>';
+
+                                            echo '<td>';
+                                            foreach($dvalue->files_delivery as $key=>$value){
+                                                if($value){
+                                                    echo '<a href="'.$value->path.'" target="_blank">'.$value->file_name.'</a> ';
+                                                }
+                                            }
+                                            echo '</td>';
+
+                                            echo '<td>';
+                                            foreach($dvalue->files_collection as $key=>$value){
+                                                if($value){
+                                                    echo '<a href="'.$value->path.'" target="_blank">'.$value->file_name.'</a> ';
+                                                }
+                                            }
+                                            echo '</td>';
+                                            echo '</tr>';
+
+                                            echo '<tr><td></td><td colspan="8"> ';
+
+                                            foreach($dvalue->images_delivery as $key=>$value){
+                                                if($value){
+                                                    echo '<a rel="prettyPhoto" href="'.$value->path.'" target="_blank"><img alt="Delivery" title="Delivery" class="media-object img-fluid rounded"  style="width: 200px"  src="'.$value->path.'"/></a> ';
+                                                }
+                                            }
+                                            foreach($dvalue->images_collection as $key=>$value){
+                                                if($value){
+                                                    echo '<a rel="prettyPhoto" href="'.$value->path.'" target="_blank"><img alt="Colletion" title="Collection" class="media-object img-fluid rounded" style="width: 200px" src="'.$value->path.'"/></a> ';
+                                                }
+                                            }
+                                            if( (count($dvalue->images_delivery) + count($dvalue->images_collection)) == 0)
+                                                    echo '<div style="text-align: center;"> No Images uploaded</div>';
+
+                                            echo '</td></tr>';
+
+
+                                        }
+
+
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </div>
+                        <!-- </div>
+
+
+
+                        <div class="tab-pane" id="productionfiles" role="tabpanel" aria-labelledby="productionfiles-tab" -->
+                            <div style="padding: 0px 20px">
+                                <?php if($formModel->quote_id != 284): ?>
+                               <h4>Production Documents</h4>
+                                <div class="control-list">
+                                    <table class="table data">
+                                        <thead>
+                                            <tr>
+                                                <th class="sort-desc"><a href="/">Jobcard ID</a></th>
+                                                <th class="sort-desc"><a href="/">Batch ID</a></th>
+                                                <th class="sort-desc"><a href="/">CS ID</a></th>
+                                                <th class="sort-desc"><a href="/">CS Shift</a></th>
+                                                <th class="sort-desc"><a href="/">File</a></th>
+                                                <th class="active sort-asc"><a href="/">Date</a></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                    <?php
+
+                                        foreach($formModel->pipes as $dkey=>$dvalue){
+                                            echo '<tr><td colspan="6"><b>'.(isset($dvalue->quoteitems->description)?$dvalue->quoteitems->description:"***Item might have been removed").'</b></td></tr>';
+                                            foreach($dvalue->jobcard as $ckey=>$cvalue){
+                                                foreach($cvalue->controlsheets as $key=>$value){
+
+                                                    if($value->file){
+                                                        echo '<tr><td>'.$cvalue->id.'</td><td>'.$value->batch_id.'</td><td>'.$value->id.'</td><td>'.$value->shift.'</td><td>'.'<a href="'.$value->file->path.'" target="_blank">'.$value->file->file_name.'</a></td><td>'.$dvalue->opendate.'</td></tr>';
+
+                                                    }
+                                                }
+                                            }
+                                        }
+
+
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <?php endif; ?>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="response" role="tabpanel" aria-labelledby="response-tab">
+                            <div style="padding: 20px 20px">
+                                <h4>Production Communication</h4>
+                                 <div style="border: 1px solid #ccc; padding: 20px; background: #fff"><?= e($formModel->comments) ?></div>
+                               <h4>Quote Communication</h4>
+                                <div class="control-list">
+                                    <table class="table data">
+                                        <thead>
+                                            <tr>
+                                                <th class="sort-desc"><a href="/">BY</a></th>
+                                                <th class="sort-desc"><a href="/">Status</a></th>
+                                                <th class="sort-desc"><a href="/">Comment</a></th>
+                                                <th class="active sort-asc"><a href="/">Date</a></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                    <?php
+
+
+                                        foreach($formModel->quote->responses as $key=>$value){
+
+                                                if($value){
+                                                    if(isset($value->status)){
+                                                    echo '<tr><td>'.$formModel->quote->user->name.'</td><td>'.$value->status->name.'</td><td>'.$value->response.'</td><td>'.$value->created_at.'</td></tr>';
+                                                    }
+                                                }
+
+                                        }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="details" role="tabpanel" aria-labelledby="details-tab">
+                            <div style="padding: 20px 20px">
+                                <h4>Production Setup</h4>
+                                <?= $this->formRender() ?></div>
+                        </div>
+
+                        <div class="tab-pane" id="details" role="tabpanel" aria-labelledby="details-tab">
+                            <div style="padding: 20px 20px">
+                                <h4>Delivery Data</h4>
+                                 <?php
+                                    $delpricetotal = 0.00;
+                                    foreach($formModel->quote->itemscat as $dkey=>$dvalue){
+                                        if (preg_match("/transport/i",$dvalue->description) || preg_match("/delivery/i",$dvalue->description)) {
+
+                                              $delpricetotal += $dvalue->price;
+
+                                        }
+
+                                    }
+                                ?>
+
+                                <table class="table data">
+                                    <thead><tr>
+                                                <th style="text-align: right;"><span>Delivery Amount <br>(Quote Item)</span></th>
+                                                <th style="text-align: right;"><span>Delivery Amount <br>(Hidden From Quote)</span></th>
+                                                <th style="text-align: right;"><span>Delivery Amount Margins</span></th>
+                                                <?php if($delpricetotal > 0): ?>
+                                                    <th style="text-align: center;"><span>Delivery In Catalogues</span></th>
+                                                  <?php endif; ?>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align: right;">
+                                                R
+                                                <?php if($formModel->quote->deliveryamount > 0): ?>
+                                                    <?php echo number_format($formModel->quote->deliveryamount,2, '.', ',');?>
+                                                <?php else: ?>
+                                                    <?= number_format($formModel->quote->dispatch->where('hide', 0)->sum('total'),2, '.', ','); ?>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="text-align: right;">R
+                                                <?php if($formModel->quote->deliveryamounthidden > 0): ?>
+                                                    <?php echo number_format($formModel->quote->deliveryamounthidden,2, '.', ',');?>
+                                                <?php else: ?>
+                                                    <?= number_format($formModel->quote->dispatch->where('hide', 1)->sum('total'),2, '.', ','); ?>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="text-align: right;">R<?php echo number_format($formModel->quote->deliveryamountmargins,2, '.', ',');?></td>
+
+                                            <?php if($delpricetotal > 0): ?>
+                                                <td>
+                                                    <table class="table data">
+                                                        <thead>
+                                                            <tr><th>Description</th><th>Units</th><th>Unit Price</th><th>Total Price</th></tr>
+                                                        </thead>
+                                                        <tbody>
+                                                          <?php
+                                                            $delpricetotal = 0.00;
+                                                            foreach($formModel->quote->itemscat as $dkey=>$dvalue){
+                                                                if (preg_match("/transport/i",$dvalue->description) || preg_match("/delivery/i",$dvalue->description)) {
+                                                                   echo '<tr>';
+                                                                     echo '<td>'.$dvalue->description.'</td>';
+                                                                     echo '<td>'.$dvalue->units.'</td>';
+                                                                     echo '<td style="text-align: right;">R'.number_format($dvalue->unitprice,2, '.', ',').'</td>';
+                                                                     echo '<td style="text-align: right;">R'.number_format($dvalue->price,2, '.', ',').'</td>';
+                                                                      $delpricetotal += $dvalue->price;
+                                                                    echo '</tr>';
+                                                                }
+                                                            }
+                                                        ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr><td colspan="4" style="text-align: right; font-weight: bold; font-size;  16px">R<?php echo number_format($delpricetotal,2, '.', ',');?></td></tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </td>
+                                             <?php endif; ?>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                        <h4>Approve By Management</h4>
+                                 <?= $this->relationRender('approved') ?>
+                            </div>
+                        </div>
+
+
+                        <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+
+                            <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                                <div style="padding: 20px 20px"><h4>Production Pipes</h4>
+                                    <p>Click of the production pipe to update.</p>
+                                     <?php if (count($formModel->pipes)>0): ?>
+                                            <?= $this->relationRender('pipes') ?>
+                                     <?php else: ?>
+                                     <div class="callout fade in callout-danger no-icon">
+                                        <div class="header">
+                                            <h3>No Pipe Available!</h3>
+                                            <ul>
+                                                <li>You need to set production status to "Started". After saved you can refresh the page to see the pipe schedules.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <?php endif ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                    <!-- Show Tab only if a user has analytics permissions -->
+
+                        <!-- Quote performance tab -->
+<!--                        <div class="tab-pane" id="quote-performance" role="tabpanel" aria-labelledby="quote-performance-tab">-->
+<!--                            <div style="padding: 20px 20px">-->
+<!--                                <h4>Quote Performance</h4>-->
+
+<!--                            <?php if(!empty($formModel->view_quote_performane) && ($formModel->view_quote_performane->count() > 0)): ?>-->
+<!--                                <?= $this->relationRender('view_quote_performane') ?>-->
+<!--                            <?php else: ?>-->
+<!--                                <div class="text-center">-->
+<!--                                    <h4>Unable to find Control Sheet Linked.</h4>-->
+<!--                                </div>-->
+
+<!--                            <?php endif; ?>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!-- /Quote performance tab -->
+
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Push..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+               <!--  <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Push..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Push..."
+                    data-request-confirm="Delete this push?">
+                </button> -->
+
+               <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
+
+                    <?php else: ?>
+                       <?php if (($this->user->hasAccess('bt.production.approve')) != 1 ): ?>
+                            <?php if ($countfile > 1): ?>
+                                <button class="btn btn-primary pull-right" data-request="onSendRequestProductionNotification" data-stripe-load-indicator data-request-flash>Request  Approval</button>
+                            <?php else: ?>
+                                <div class="pull-right">
+
+                                    <div class="callout fade in callout-warning">
+                                                <button
+                                                    type="button"
+                                                    class="close"
+                                                    data-dismiss="callout"
+                                                    aria-hidden="true">&times;</button>
+                                                <div class="header">
+                                                    <i class="icon-warning"></i>
+                                                    <h3>Request  Approval</h3>
+
+                                                </div>
+                                                <div class="content">
+                                                    <p>Function not available. You need all 2 (<?= e($countfile) ?> of 2) Documents to be attached to the qoute (Signed Quote, PO  and Invoice File).</p>
+                                                </div>
+                                            </div>
+
+                                </div>
+
+                            <?php endif ?>
+                    <?php endif ?>
+                <?php endif; ?>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/production/push') ?>" class="btn btn-default">Return to Production Item list</a></p>
+
+<?php endif ?>

@@ -1,0 +1,10 @@
+1.0.1:
+- First version of IT
+- create_jobs_table.php
+- create_jobapproves_table.php
+- create_job_types_table.php
+- create_task_responses_table.php
+1.0.2:
+- create_ticket_stages_table.php
+1.0.3:
+  - update jobs table

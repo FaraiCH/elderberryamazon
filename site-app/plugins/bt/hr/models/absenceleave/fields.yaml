@@ -1,0 +1,71 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    employee:
+        label: Employee
+        disabled: false
+        select: concat(firstname,' ', lastname)
+        type: relation
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    status:
+        label: Status
+        disabled: false
+        select: name
+        type: relation
+        span: storm
+        cssClass: col-sm-6 col-md-6
+#    days:
+#        label: Days Taken
+#        type: number
+#        span: auto
+    start_date:
+        label: Start Date
+        type: datepicker
+        tab: General
+        mode: date
+        span: storm
+        cssClass: col-sm-6 col-md-6
+
+    end_date:
+        label: End Date
+        type: datepicker
+        tab: General
+        mode: date
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    type:
+        label: Type
+        placeholder: -- Select Leave Taken --
+        disabled: false
+        select: name
+        type: relation
+        span: storm
+        cssClass: col-sm-6 col-md-6
+    days:
+        label: Days Used
+        type: number
+        span: storm
+        dependsOn: type
+        placeholder: -- Choose Days Absent --
+        cssClass: col-sm-6 col-md-6
+    notes:
+        label: Notes
+        type: textarea
+        size: small
+        span: storm
+        cssClass: col-sm-12 col-md-12
+
+    files:
+        label: Files
+        type: fileupload
+        tab: Termination
+        mode: file
+        comment: Any files related to the Leave/Absence/
+
+

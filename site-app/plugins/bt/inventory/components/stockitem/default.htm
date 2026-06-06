@@ -1,0 +1,82 @@
+{% set item=BTStockItem.mpe %}
+
+<table class="table table-borderd">
+	<tr><td><br><b><u>Delivery Type</u></b></td><td></td></tr>
+	<tr><td><b>Created By</b></td><td>{{item.user.name}} {{item.user.surname}}</td></tr>
+	<tr><td><b>Number Plate Of Truck</b></td><td>{{item.truck_number_plate}}</td></tr>
+	<tr><td><b>Container Number</b></td><td>{{item.container_number}}</td></tr>
+	
+	<tr><td><b>Date of receipt</b></td><td>{{item.date_of_receipt|date("Y-m-d")}}</td></tr>
+	
+	<tr><td><br><b><u>Product</u></b></td><td></td></tr>
+	<tr><td><b>Product Name</b></td><td>{{item.productname.name}}</td></tr>
+	<tr><td><b>Supplier Batch</b></td><td>{{item.supplier_batch}}</td></tr>
+	
+	<tr><td><b>Pallet/Bags</b></td><td>
+		{% if item.received_in > 0  %}
+  			{{item.receivedtypes.name}}
+  		{% endif %}
+
+  		{% if item.bagsother > 0  %}
+  			{{item.bagsother}} bags
+  		{% endif %}
+	</td></tr>
+	
+</table>
+
+	<hr class="mt-5">
+	{% if item.instock == 1 %}
+	{% set stockout=item.stockout %}
+	{#<form data-request="onStockOut" data-request-files data-request-flash data-request-validate>
+		<div class="card card-primary mt-">
+			<div class="card-header">
+				<h2>Take Stock Out</h2>
+			</div>
+			<div class="alert-info card-body">Submit the form below to take stock out</div>
+			<div class="card-body">
+				 <div class="input-group mb-3 " style="display: none;">
+		            <div class="input-group-prepend">
+		              <span class="input-group-text label-small" id="basic-at">Stock Id</span>
+		            </div>
+		         	<input type="text" class="form-control" id="updatehole" required="required" name="updatehole" value="{{item.id}}">
+		        </div>
+				<div class="input-group mb-0">
+		            <div class="input-group-prepend">
+		              <span class="input-group-text label-small" id="basic-at">Notes</span>
+		            </div>
+		         
+		             <textarea
+		                name="notes"
+		                type="text"
+		                class="form-control mt-0 counttext"
+		                id="preview_text" ></textarea>
+
+		        </div>
+
+		       
+		        
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Take Stock Out</button>
+			</div>
+		</div>
+
+	</form>#}
+	{% else %}
+		{% set stockout = item.stockout %}
+		<div class="alert alert-warning" role="alert">
+  				Stock out.
+		</div>
+		<table class="table table-borderd">
+	
+	<tr><td><b>Taken Out Date At</b></td><td>{{stockout.created_at|date("Y-m-d")}}</td></tr>
+	<tr><td><b>Taken Out By</b></td><td>{{stockout.user.name}} {{stockout.user.surname}}</td></tr>	
+	<tr><td><b>File</b></td><td>{% if stockout.file is not empty %} <a target="_blank" href="{{stockout.file.path}}">Download</a>{% endif %}</td></tr>
+	<tr><td><b>Note</b></td><td>{{stockout.note}}</td></tr>
+
+</table>
+
+
+{% endif %}
+<hr>
+<button onclick="goBack()" class="btn btn-info">Go Back</button>

@@ -1,0 +1,32 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    name:
+        label: Name Of Equipment
+        span: auto
+
+    service:
+        label: Date Serviced
+        type: datepicker
+        mode: datetime
+        span: auto
+
+    date:
+        label: Next Service
+        type: datepicker
+        mode: datetime
+        span: auto
+    fire_doc:
+        label: File
+        type: fileupload
+        span: auto
+        mode: file
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx
+
+
+

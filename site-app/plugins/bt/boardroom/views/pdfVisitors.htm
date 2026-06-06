@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+h3{
+font-size: 14px;
+margin-top: 10px;
+padding-top: 0px;
+border-bottom: 1px solid #ccc;
+margin-bottom: 10px
+
+}
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+
+.table2 td, .table2 th {
+padding: 4px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 14px;
+word-wrap: break-word;
+height: 10px;
+
+}
+
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left"><b>F-SC-11.1.2</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b style="color: red">CONTROLLED DOCUMENT</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Rev. 0</b><br><br>
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="30%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="70%" style="text-align: center;">
+							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley Rd, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>Vistor List: {{ "now"|date("Y/m/d") }}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+
+	<table width="100%" border="1" cellpadding="2px" cellspacing="0px" style="font-size: 11px; border: 1px solid #ccc">
+    <thead>
+
+    
+    </thead>
+    <tbody>
+    <tr>
+
+		<th style="background: #ececec">Date</th>
+		<th style="background: #ececec"> Name and Surname of Visitors</th>
+		<th style="background: #ececec"> Company</th>
+		<th style="background: #ececec">Name and Surname of Host</th>
+		<th style="background: #ececec">Location</th>
+		<th style="background: #ececec">Number of Attendees</th>
+    </tr>
+    {% for visitor in visitors %}
+    <tr>
+        <td nowrap="">{{visitor.date}}</td>
+        <td > {{visitor.visitorname}}</td>
+        <td >{{visitor.company}} </td>
+        <td >{{visitor.hostname}}</td>
+        {% if visitor.location == 0 %}
+		    <td >Boardroom</td>
+		{% elseif visitor.location == 1 %}
+		    <td >KL Office</td>
+		{% elseif visitor.location == 2 %}
+		    <td >KM Office</td>
+		{% elseif visitor.location == 3 %}
+		    <td >FC Office</td>
+		{% elseif visitor.location == 4 %}
+		    <td >MG Office</td>
+		{% elseif visitor.location == 5 %}
+		    <td >BM Office</td>
+		{% elseif visitor.location == 6 %}
+		    <td >GC Office</td>
+		{% elseif visitor.location == 7 %}
+		    <td >PTM Office</td>
+		{% elseif visitor.location == 8 %}
+		    <td >SMP Office</td>
+		{% elseif visitor.location == 9 %}
+		    <td >NSI Office</td>
+		{% else %}
+		    <td ></td>
+		{% endif %}
+
+        <td style="text-align:center;">{{visitor.no_of_attendees}}</td>
+    </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+			</td>
+		</tr>
+
+
+	</table>
+
+
+
+
+
+
+
+	</body>
+	</html>

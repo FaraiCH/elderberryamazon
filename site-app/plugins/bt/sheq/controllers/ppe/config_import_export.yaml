@@ -1,0 +1,6 @@
+export:
+    title: Export PPE
+    modelClass: Bt\SHEQ\Models\PpeExport
+    list: $/bt/sheq/models/ppe/columns.yaml
+    redirect: bt/sheq/ppe
+    fileName: PPE-Export.csv

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Audit
+
+# Model Form Field configuration
+form: $/bt/sheq/models/audits/fields.yaml
+
+# Model Class name
+modelClass: Bt\SHEQ\Models\Audits
+
+# Default redirect location
+defaultRedirect: bt/sheq/audits
+
+# Create page
+create:
+    title: Create Audit
+    redirect: bt/sheq/audits/update/:id
+    redirectClose: bt/sheq/audits
+
+# Update page
+update:
+    title: Edit Audit
+    redirect: bt/sheq/audits
+    redirectClose: bt/sheq/audits
+
+# Preview page
+preview:
+    title: Preview Audit

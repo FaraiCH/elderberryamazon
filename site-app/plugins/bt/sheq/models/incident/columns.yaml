@@ -1,0 +1,24 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    incident_no:
+        label: Incident No
+        searchable: true
+
+    incident_date:
+        label: Date of occurrence
+        searchable: true
+    invest_date:
+        label: Date of investigation
+        searchable: true
+    name:
+        label: What Happened?
+        searchable: true
+
+

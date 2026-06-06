@@ -1,0 +1,9 @@
+<div data-control="toolbar">
+    <a
+        href="<?= Backend::url('bt/sales/stockorder/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        <?= e(trans('backend::lang.list.create_button', ['name'=>'Available Order Notification'])) ?>
+    </a>
+
+    <h3 style="margin:10px 0px 0px 0px ; text-transform: none;"><b>To Bill Days</b> = Days past deadline date - now date. If SRN exists <b>To Bill Days</b> = deadline date - SRN Schedule Date</h3>
+</div>

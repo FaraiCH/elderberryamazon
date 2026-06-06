@@ -1,0 +1,123 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id@update:
+    #     label: ID
+    #     disabled: true
+    schedule_date:
+        label: Start Date
+        type: datepicker
+        minDate: now
+        # mode: date
+        span: auto
+        ignoreTimezone: true
+
+    return_date:
+        label: End Date
+        type: datepicker
+        minDate: now
+        # mode: date
+        span: auto
+        ignoreTimezone: true
+    quote:
+        label: Quote Number  
+        select: concat(id, ' > ', company_name)
+        type: relation
+        span: auto
+        placeholder: -- select a quote --
+    department:
+        label: Department
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: -- select --
+    vehicle:
+        label: Vehicle
+        disabled: false
+        select: CONCAT(name,' - ', num_plate)
+        type: relation
+        span: auto
+        placeholder: -- select --
+    usagetype:
+        label: Usage Type
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: -- select --
+    driver@update:
+        label: Driver
+        disabled: false
+        select: concat(first_name, ' ', last_name)
+        type: relation
+        span: auto
+        placeholder: -- select --
+    # requestby:
+    #     label: Requested By
+    #     type: relation
+    #     select: concat(first_name, ' ', last_name)
+    #     span: auto
+    #     placeholder: -- select --
+
+    addressto:
+        label: Address To
+        type: textarea
+        size: small
+        span: auto
+    # notes:
+    #     label: Notes
+    #     type: textarea
+    #     size: small
+    #     span: auto
+
+tabs:
+    fields:
+        mileage_start@update:
+            label: Starting Mileage
+            type: number
+            tab: Usage
+            span: auto
+        mileage_end@update:
+            label: Ending Mileage
+            type: number
+            tab: Usage
+            span: auto
+       
+        trafficoffense_notes@update:
+            label: Notes and Comments
+            type: textarea
+            size: small
+            tab: Traffic Offences
+        trafficoffense_images@update:
+            label: Images
+            type: fileupload
+            tab: Traffic Offences
+        trafficoffense_files@update:
+            label: Files
+            type: fileupload
+            tab: Traffic Offences
+            mode: file
+            tab: Files
+        damages_notes@update:
+            label: Notes and Comments
+            type: textarea
+            size: small
+            tab: Damages
+        damage_images@update:
+            label: Images
+            type: fileupload
+            tab: Damages
+        damage_files@update:
+            label: Files
+            type: fileupload
+            tab: Damages
+            mode: file
+            tab: Files
+
+        logisticapprove@update:
+            path: $/bt/logistics/controllers/schedule/_approve.htm
+            tab: Approve By Management
+            type: partial

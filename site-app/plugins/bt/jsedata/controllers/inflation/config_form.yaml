@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Inflation
+
+# Model Form Field configuration
+form: $/bt/jsedata/models/inflation/fields.yaml
+
+# Model Class name
+modelClass: Bt\JSEData\Models\Inflation
+
+# Default redirect location
+defaultRedirect: bt/jsedata/inflation
+
+# Create page
+create:
+    title: Create Inflation
+    redirect: bt/jsedata/inflation/update/:id
+    redirectClose: bt/jsedata/inflation
+
+# Update page
+update:
+    title: Edit Inflation
+    redirect: bt/jsedata/inflation
+    redirectClose: bt/jsedata/inflation
+
+# Preview page
+preview:
+    title: Preview Inflation

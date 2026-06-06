@@ -1,0 +1,12 @@
+<div class="row mt-3 text-left">
+    <div class="col-sm-6">
+        <label for="wall-thickness-min">Wall thickness min</label>
+        <input type="number" name="wall-thickness-min" class="form-control form-size rounded" id="wall-thickness-min" aria-describedby="wall-thickness-min-help" placeholder="Wall thickness min" value="{{ __SELF__.wallThicknessMin }}">
+        <small id="wall-thickness-min-help" class="form-text text-muted">Standard min: {{ __SELF__.standardWallThicknessMin }}</small>
+    </div>
+    <div class="col-sm-6">
+        <label for="wall-thickness-max">Wall thickness max</label>
+        <input type="number" name="wall-thickness-max" class="form-control form-size rounded" id="wall-thickness-max" aria-describedby="wall-thickness-max-help" placeholder="Wall thickness max" value="{{ __SELF__.wallThicknessMax }}">
+        <small id="wall-thickness-max-help" class="form-text text-muted">Standard max: {{ __SELF__.standardWallThicknessMax }}</small>
+    </div>
+</div>

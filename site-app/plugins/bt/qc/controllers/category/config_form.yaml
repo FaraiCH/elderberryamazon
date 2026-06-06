@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Category
+
+# Model Form Field configuration
+form: $/bt/qc/models/category/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\Category
+
+# Default redirect location
+defaultRedirect: bt/qc/category
+
+# Create page
+create:
+    title: Create Category
+    redirect: bt/qc/category/update/:id
+    redirectClose: bt/qc/category
+
+# Update page
+update:
+    title: Edit Category
+    redirect: bt/qc/category
+    redirectClose: bt/qc/category
+
+# Preview page
+preview:
+    title: Preview Category

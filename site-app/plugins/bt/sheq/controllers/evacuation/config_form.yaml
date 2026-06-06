@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Evacuation
+
+# Model Form Field configuration
+form: $/bt/sheq/models/evacuation/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Evacuation
+
+# Default redirect location
+defaultRedirect: bt/sheq/evacuation
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/evacuation/update/:id
+    redirectClose: bt/sheq/evacuation
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/evacuation
+    redirectClose: bt/sheq/evacuation
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

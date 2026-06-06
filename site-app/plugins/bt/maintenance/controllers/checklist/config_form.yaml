@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Checklist
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/checklist/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Checklist
+
+# Default redirect location
+defaultRedirect: bt/maintenance/checklist
+
+# Create page
+create:
+    title: Create Checklist
+    redirect: bt/maintenance/checklist/update/:id
+    redirectClose: bt/maintenance/checklist
+
+# Update page
+update:
+    title: Edit Checklist
+    redirect: bt/maintenance/checklist
+    redirectClose: bt/maintenance/checklist
+
+# Preview page
+preview:
+    title: Preview Checklist

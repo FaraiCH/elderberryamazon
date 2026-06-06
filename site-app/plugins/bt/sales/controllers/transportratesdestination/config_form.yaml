@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Transport Rates Destination
+
+# Model Form Field configuration
+form: $/bt/sales/models/transportratesdestination/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\TransportRatesDestination
+
+# Default redirect location
+defaultRedirect: bt/sales/transportratesdestination
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/transportratesdestination/update/:id
+    redirectClose: bt/sales/transportratesdestination
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/transportratesdestination
+    redirectClose: bt/sales/transportratesdestination
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

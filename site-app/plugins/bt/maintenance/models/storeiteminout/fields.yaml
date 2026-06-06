@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    quantity:
+        label: Quantity
+        disabled: false
+        type: number
+        span: auto
+    in_out_status_status_id:
+        label: Is The Product In or Out?
+        placeholder: -- Choose In Or  Out --
+        type: dropdown
+        span: auto
+            

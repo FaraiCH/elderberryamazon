@@ -1,0 +1,10 @@
+piperapprove:
+    label: Pipe Approval
+    manage:
+        form: $/bt/sales/models/piperapprove/fields.yaml
+        list: $/bt/sales/models/piperapprove/columns.yaml
+    view:
+        form: $/bt/sales/models/piperapprove/fields.yaml
+
+        toolbarButtons: update
+

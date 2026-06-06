@@ -1,0 +1,158 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    checkedout:
+        label: Checked Out
+        type: switch
+
+    production_date:
+        label: Prod. Date
+        searchable: true
+        type: date
+    id:
+        label: ID
+        searchable: true
+        invisible: true
+    shiftno:
+        label: Shift
+        type: number
+
+    quote:
+        label: Quote
+        type: partial
+        path: $/bt/production/models/schedule/_quote_column.htm
+        invisible: false
+        searchable: false
+    client:
+        label: Client
+        type: partial
+        path: $/bt/production/models/schedule/_client_column.htm
+        invisible: false
+        searchable: false
+
+    product:
+        label: Product
+        type: partial
+        path: $/bt/production/models/schedule/_product_column.htm
+        invisible: false
+        searchable: false
+    # updatedby:
+    #     label: Updated By
+    #     searchable: true
+    #     relation: updatedby
+    #     select: concat(first_name, ' ', last_name)
+    unitprice:
+        label: Price Quoted
+        invisible: false
+        type: partial
+        path: $/bt/production/models/schedule/_currency_column.htm
+        searchable: false
+            
+    priceperpipe:
+        label: Cost Produced
+        invisible: false
+        type: partial
+        path: $/bt/production/models/schedule/_costproduced_column.htm
+    materialvalue:
+        label: Material Cost 
+        invisible: false
+        type: partial
+        path: $/bt/production/models/schedule/_currency_column.htm
+        searchable: false
+
+    production_costperkg:
+        label: KG Cost
+        invisible: false
+        type: partial
+        path: $/bt/production/models/schedule/_currency_column.htm
+        searchable: false
+
+    total_cost_schedule:
+        label: Production Cost
+        invisible: false
+        type: partial
+        path: $/bt/production/models/schedule/_currency_column.htm
+    weight_scrap_kg:
+        label: Scrap
+        searchable: true
+        type: number
+        format: %.1f kg
+    total_scrap_cost:
+        label: Scrap Cost
+        invisible: false
+        type: partial
+        path: $/bt/production/models/schedule/_currency_column.htm
+        searchable: false
+
+
+    
+    # scheduled:
+    #     label: scheduled
+    #     type: partial
+    #     path: $/bt/production/models/schedule/_scheduled.htm
+
+    controlsheet_id:
+        label: Controlsheet ID
+        type: number
+        #relation: controlsheet
+        #select: concat(id, ' ', shift)
+        searchable: true
+
+    # assignedto:
+    #     label: Operator Name    
+    #     relation: assignedto
+    #     select: name
+    
+    # target_kg_processed:
+    #     label: Target KG #Processed
+    #     searchable: true
+    #     type: number
+    #     format: %.1f kg
+    # target_units_produced:
+    #     label: Target Qty # Produced
+    #     searchable: true
+    #     type: number
+    #     format:  %.0f Pipes
+    
+    total_kg_processed:
+        label: KG Processed
+        searchable: false
+        type: number
+        format: %.1f kg
+    total_units_produced:
+        label: Qty Produced
+        searchable: false
+    total_units_passed_qc:
+        label: Passed QC
+        searchable: false
+    extra:
+        label: Extra Pipes
+        searchable: false
+    # scrapcode:
+    #     label: Scrap Code   
+    #     select: concat(code, ' > ', reason)
+    #     relation: scrapcode
+        
+    over_weight_kg:
+        label: Over Weight
+        searchable: true
+        type: number
+        format: %.1f kg
+    material_used:
+        label: Material Used
+        searchable: true
+        invisible: true
+    batch_numbers:
+        label: Batch Numbers
+        searchable: true
+        invisible: true
+    # running_hours:
+    #     label: Running Hours
+    #     searchable: true
+    #     invisible: true
+    # maintenance:
+    #     label: Maintenance
+    #     searchable: true
+    #     invisible: true

@@ -1,0 +1,679 @@
+.clearboth{
+    clear: both;
+}
+.noezanclass{
+    padding-left: 14px; 
+    padding-bottom: 4px; 
+      font-size: 12px;
+      padding-right: 0px;
+}
+
+.noezanheader h4{
+    color: #fff;
+    background: #202e48;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+
+.noezanheader2 h4{
+ 
+    background: #ccc;
+    border-radius: 3px;
+    padding: 4px 8px;
+}
+
+.noezan_checkboxlist{
+    padding-left: 0px; 
+    padding-bottom: 0px; 
+      font-size: 12px;
+}
+
+.help-block,.form-group label{
+ font-size: 12px;   
+}
+
+
+ .noezanclass label{
+    float: left;
+    padding-top: 3px;
+    width: 30%;
+    font-size: 12px;
+
+}
+
+.noezan_checkboxlist_col-sm-3 .field-checkboxlist-inner{
+        display: list-item;
+
+}
+
+.noezan_checkboxlist_col-sm-3 .custom-checkbox{
+    width: 24.5%;
+    display: inline-flex;
+}
+.col-clear-left{
+    clear: left;
+}
+
+#Form-outsideTabs .row{
+  /*  float:  left;
+    width:  26%;
+   
+    padding-right: 15px;
+        padding-left: 15px;*/
+}
+
+.noezanclass .row{
+    width:  100%;
+ 
+    margin: 0px;
+}
+.noezanclass .row .col-md-7,.noezanclass .row .col-md-5{
+         margin: 0px;
+         padding: 0px;
+}
+.noezanclass .row .col-md-5{
+         
+         padding-left: 5px;
+}
+
+.col-mt-70{
+    margin-top:  -70px;
+}
+.table.table-sm > tbody > tr > td{
+    padding: 2px
+}
+table.table.data thead td, table.table.data thead th,table.table.data,.noezan_checkboxlist label{
+      font-size: 12px;
+}
+
+.noezan_checkboxlist .radio, .noezan_checkboxlist .checkbox{
+    margin-bottom: 2px;
+}
+
+.noezan_checkboxlist .field-checkboxlist:not(.is-scrollable) .field-checkboxlist-inner, .noezan_checkboxlist .field-checkboxlist .field-checkboxlist-inner{
+padding: 0px;
+border-radius: 4px;
+background: #fafbfd;
+border: none;   
+
+}
+
+.noezanclass span.select2, .noezanclass .form-control, .noezanclass .field-datepicker{
+    float: right;
+    width: 70%;
+}
+
+form.noezanclass span.select2, form.noezanclass .form-control, form.noezanclass .field-datepicker{
+    float: none;
+    width: 100%;
+}
+
+.noezanclass .field-datepicker .form-control{
+    width: 100%;
+
+}
+
+
+.noezanclass .input-with-icon>.icon {
+    position: absolute;
+    z-index: 10;
+    padding: 9px;
+}
+
+.hidden_input input, .hidden_input label{
+    display: none;
+}
+
+.hidden_input{
+    min-height: 35px
+}
+
+.rw_class_ruler{
+    padding: 0px;
+}
+
+.rw_class_ruler hr{
+    margin: 10px 0px 10px 0px;
+}
+
+.noezanclass .select2-container--default .select2-selection--single {
+    height: 30px;
+    line-height: 1.42857143;
+    padding: 4px 15px 4px 6px;
+}
+.field-section h4{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.noezanclass, .noezanclass .select2-container--default .select2-selection{
+    font-size: 12px;
+}
+
+
+.noezanclass .form-control{
+    height: 30px;
+    padding: 4px 9px 9px;
+    font-size: 12px;
+}
+
+
+
+/*.layout>.layout-cell .layout-relative {
+    position: relative;
+    height: 100%;
+    background: red;
+    width: 1480px;
+}
+.layout>#layout-body{
+      background: red;
+    width: 1520px;
+    overflow: auto;
+
+}*/
+
+/*.layout{
+    width: 1920px;
+}*/
+
+/*#layout-canvas{
+    min-width: 1900px;
+}
+*/
+#layout-mainmenu .navbar{
+    height: 60px;
+}
+
+#layout-mainmenu .navbar ul.mainmenu-items[data-main-menu] {
+    margin-top: 3px;
+}
+
+.float-left{
+    float: left;
+    width: 200px;
+}
+
+
+.control-tabs>div.tab-content>div.tab-pane{
+        padding: 10px 0 0 0
+}
+
+.control-tabs.secondary-tabs>div.tab-content>div.tab-pane {
+    padding-top: 4px;
+}
+
+.relation-behavior.relation-view-multi, .relation-behavior.relation-view-single,.form-group, .form-group.layout-item{
+    padding-bottom: 10px;
+}
+
+.control-tabs.primary-tabs>div>ul.nav-tabs>li a>span.title{
+    padding: 4px 21px 2px 25px;
+    font-size: 12px;
+}
+
+ .control-tabs.secondary-tabs>div>ul.nav-tabs>li a{
+        font-size: 12px;    
+ }
+
+.top-icon-small .btn-icon{
+    font-size:  16px;
+}
+
+.relation-behavior.relation-view-multi .control-list, .relation-behavior.relation-view-single .control-list{
+        border-top: none;
+}
+
+.v-color{
+    width: 100%;
+    display:  block;
+    background-color: blue ;
+    height: 20px;
+}
+
+.layout-row > .control-filter {
+    background-color: #f0ad4e;
+    border-radius: 4px;
+}
+.control-filter a {
+    color: rgb(251 251 251);
+}
+.btn-primary {
+    background: #df7332;
+}
+
+.title-value p{
+    font-size: 22px;
+}
+
+.proptype_color_1{
+    color:  #d3bf4b;
+}
+
+.proptype_color_2{
+    color:  #6eb43f;
+}
+
+.proptype_color_3{
+    color:  #559cbe;
+}
+
+a.pill{
+   
+    border:  1px solid #fcfcfc;
+    border-radius: 4px;
+    display: block;
+        padding: 5px;
+        background: #fff;
+        margin-bottom: 10px;
+        font-size: 14px;
+        
+}
+
+.control-tabs.content-tabs > ul.nav-tabs li.active{
+     background-color: #f0ad4e;
+      border: #f0ad4e;
+}
+
+.tarrif_value{
+    border:  1px solid #ccc;
+    width:  60px;
+}
+
+.tarrif_rate{
+    border:  1px solid #ccc;
+    width:  60px;
+    height: 20px;
+}
+
+table.table.data thead td > a, table.table.data thead th > a, table.table.data thead td > span, table.table.data thead th > span,.table-sm table.table.data tbody tr td:first-child, .table-sm table.table.data tbody td, .table-sm table.table.data tbody th, .table-sm table.table.data thead th{
+    padding: 5px;
+}
+.tarrif_description{
+   background-color: #f0f0f0;
+   padding: 2px 10px;
+
+}
+
+td.tdname{
+    background: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.form-check-input{
+        margin-left: -1.5em;
+}
+
+.form-check label{
+    padding-left:10px;
+}
+
+.form-check input{
+    margin-top: 6px;
+    float: left;
+}
+
+.qheader h3{
+    margin: 0px 0px 10px 0px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #505458;
+    font-family: 'Roboto', sans-serif;
+    border-bottom:  1px solid #eeeeee ;
+    padding: 0px 0px 5px 0px;
+
+}
+
+.check-box-4 .form-check{
+    float: left;
+    width:  33%;
+}
+
+.col-hide-label .col-form-label {
+    display: none;
+}
+
+.col-header .col-form-label{
+    font-weight: bold;
+}
+
+.summary {
+    margin: 0px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: .9em;
+}
+
+.summary th {
+    background-color: #BEBEBE;
+   
+    padding: 5px;
+}
+
+.summary td {
+    padding: 5px 10px;
+   
+    vertical-align: top
+}
+
+.summary .col-1 {
+    width: 3%;
+    text-align: center;
+
+}
+
+.summary .col-2 {
+    width: 10%;
+}
+
+.summary .col-3 {
+    width: 16%;
+}
+
+.summary .col-4 {
+    width: 18%;
+   
+}
+
+.summary .col-5 {
+    width: 14%;
+ 
+}
+
+.summary .col-6 {
+    width: 13%;
+    text-align: right;
+}
+
+
+.summary .col-7 {
+    width: 12%;
+    text-align: right;
+}
+.summary .col-8 {
+    width: 14%;
+    text-align: right;
+}
+
+
+.alignright{
+   text-align: right;
+}
+
+.alignleft{
+   text-align: left;
+}
+
+.summary .bt {
+   
+}
+
+.summary .sum-price .col-4 {
+
+}
+
+.card-box {
+    padding: 20px;
+    border: 1px solid rgba(54, 64, 74, 0.08);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+    background-color: #fff;
+    clear: both;
+}
+
+div.scoreboard  .row div.scoreboard-item{
+    padding: 10px;
+    border: 1px solid rgba(54, 64, 74, 0.08);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+    background-color: #fff;
+    min-height: 90px; 
+    margin-right: 0px;
+    display: block;
+    box-shadow: 0 2px 2px rgb(0 0 0 / 3%), 0 1px 0 rgb(0 0 0 / 3%);
+}
+
+.control-tabs.content-tabs > ul.nav-tabs li a{
+
+    padding: 11px 15px;
+}
+
+.title-value p {
+        font-size: 16px;
+
+}
+
+.content-header {
+    position: relative;
+    padding: 10px 0px 10px 10px;
+    box-shadow: 0 2px 2px rgb(0 0 0 / 3%), 0 1px 0 rgb(0 0 0 / 3%);
+        background: #fff;
+            margin: -20px -20px -20px -20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #505458;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 4px;
+}
+
+.table-sm .control-breadcrumb li{
+    font-size: 12px;
+}
+
+.table-sm .icon-asterisk{
+    font-size: 9px;
+}
+.control-treelist li > div.record > span{
+    
+}
+
+
+
+.control-treelist li > div.record.data-status > span:before {
+ display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 30px;
+  top: 5px;
+  color: #e58b54;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  content: "\f105";
+-webkit-transform: rotate(0deg) translate(2px, -2px);
+    -ms-transform: rotate(0deg) translate(2px, -2px);
+    transform: rotate(0deg) translate(2px, -2px);
+   -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  font-size: 18px;
+}
+
+.control-treelist li > div.record  span{
+width: 90%;
+}
+.control-treelist li > div.record.data-status-expanded > span:before {
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 30px;
+  top: 5px;
+  color: #333333;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  content: "\f105";
+  -webkit-transform: rotate(90deg) translate(5px, -3px);
+  -ms-transform: rotate(90deg) translate(5px, -3px);
+  transform: rotate(90deg) translate(5px, -3px);
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  font-size: 18px;
+}
+
+.updatetag{
+  position: absolute;  
+  right: 0px;
+  top: 5px;
+}
+
+.control-treelist li > div.record:hover{
+background: #ccc;
+}
+
+
+.m-1{
+    margin: 1px;
+}
+
+.auto-height{
+    height: 60px;
+    overflow: hidden;
+    border:  1px dotted #cccccc;
+    padding: 1px;
+}
+
+.auto-height-slim{
+    height: 35px;
+    overflow: hidden;
+    border:  1px dotted #cccccc;
+    padding: 1px;
+}
+
+.auto-height:hover,.auto-height-slim:hover{
+    height: auto;
+    overflow: hidden;
+}
+
+.auto-height .btn{
+    padding: 2px 5px;
+    margin: 1px !important;
+}
+
+.scoreboard .row .col-sm-3,.scoreboard .row .col-sm-2{
+    padding-right: 0px ;
+}
+
+.scoreboard .row .col-sm-3:last-child,.scoreboard .row .col-sm-2:last-child{
+    padding-right: 10px ;
+}
+.title-value p{
+        line-height: 22px;
+        font-size: 14px;
+}
+
+
+.scoreboard .title-value h4{
+    margin-bottom: 5px ;
+    font-size: 14px;
+    color: #000;
+}
+.scoreboard p.description{
+    margin-top: 5px ;
+}
+
+.myeditablediv{
+    display: block;
+    clear: both;
+}
+
+.inside_file_link i{
+    color: #aaa6a6;
+    padding-left: 40px;
+    font-size: 12px;
+}
+
+.taskhistory i{
+    color: #aaa6a6;
+    padding-left: 2px;
+    font-size: 12px;
+}
+
+.taskhistory span{
+    color: #aaa6a6;
+  
+    font-size: 12px;
+}
+
+li.taskhistory{
+padding-left: 7px;
+}
+
+.content-header .switch-field {
+ padding-bottom: 0px;
+
+     }
+
+ .control-tabs.content-tabs > .tab-content > .tab-pane div.list-header, .control-tabs.content-tabs > .tab-content > .tab-pane div.padded-container, .control-tabs.content-tabs > .tab-content > .tab-pane div.toolbar-widget{
+     padding-top: 0px;
+ }
+
+ table tr.vlrow_156_0 td{
+    background-color: #ddebf7 !important;
+ }
+  table  tr.vlrow_156_1 td{
+    background-color: #bdd7ee !important ;
+ }
+
+  table tr.vlrow_157_0 td{
+    background-color: #fce4d6 !important;
+ }
+  table  tr.vlrow_157_1 td{
+    background-color: #f8cbad !important ;
+ }
+
+ .taskh1{
+    text-align: center;
+    background: #6f98dd;
+    color: #ffff;
+    PADDING: 4PX;
+    FONT-SIZE: 26PX;
+    margin: 0px 27px 10px 0px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+ }
+.taskh1 span{
+   
+    color: #030303;
+    margin-left: 20px;
+    text-transform: capitalize;
+}
+ .h4 {
+    background-color: #7d8490;
+    margin: -5px 0px 10px -10px;
+    padding: 5px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.h5{
+    border-bottom: 1px solid #aab2c0;
+    margin: 5px 0px 10px 0px;
+    padding: 5px 5px 5px 0px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.form-group-preview .form-control {
+    min-height: 29px;
+}
+.noezanclass.pl-0{
+    padding-left: 0px;
+}
+.mb-1{
+    margin-bottom: 10px;
+}

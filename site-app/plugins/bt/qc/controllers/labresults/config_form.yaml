@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Lab Result
+
+# Model Form Field configuration
+form: $/bt/qc/models/labresults/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\LabResults
+
+# Default redirect location
+defaultRedirect: bt/qc/labresults
+
+# Create page
+create:
+    title: Create Lab Result
+    redirect: bt/qc/labresults/update/:id
+    redirectClose: bt/qc/labresults
+
+# Update page
+update:
+    title: Edit Lab Result
+    redirect: bt/qc/labresults
+    redirectClose: bt/qc/labresults
+
+# Preview page
+preview:
+    title: Preview Lab Result

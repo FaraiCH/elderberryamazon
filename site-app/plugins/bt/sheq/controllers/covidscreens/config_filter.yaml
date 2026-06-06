@@ -1,0 +1,26 @@
+scopes:
+    capturedate:
+        label: Date
+        type: daterange
+        conditions: capturedate >= ':after' AND capturedate <= ':before'
+
+    no_screen:
+        label: Screened
+        type: Number
+        conditions: no_screen >= ':filtered'
+
+
+    potential_infection:
+        label: Symptoms
+        type: Number
+        conditions: potential_infection >= ':filtered'
+
+    no_infected:
+        label: Infected
+        type: Number
+        conditions: no_infection >= ':filtered'
+
+    highest_temperature:
+        label: Temperature
+        type: Number
+        conditions: no_infection >= ':filtered'

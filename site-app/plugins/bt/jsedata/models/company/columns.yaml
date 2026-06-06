@@ -1,0 +1,54 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Company Name
+        searchable: true
+        
+    ticker:
+        label: JSE Ticker
+        searchable: true
+    altticker:
+        label: ALT Ticker
+        searchable: true
+    industry:
+        label: Industry
+        select: name
+        relation: industry
+
+    isspecial:
+        label: Is special
+        type: switch
+        invisible: false
+
+    mines_count:
+        label: Data Count
+        relation: mines
+        useRelationCount: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+        

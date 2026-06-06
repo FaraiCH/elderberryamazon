@@ -1,0 +1,36 @@
+usedmaterials:
+    label: Used Material
+    manage:
+        form: $/bt/production/models/materialused/fields.yaml
+        list: $/bt/production/models/materialused/columns.yaml
+    view:
+        list: $/bt/production/models/materialused/columns.yaml
+       
+        toolbarButtons: create|delete
+
+
+scrapcodes:
+    label: Scrap Codes
+    view:
+        list: $/bt/production/models/scrapcodes/columns.yaml
+    manage:
+        list: $/bt/production/models/scrapcodes/columns.yaml
+        recordsPerPage: 10
+        showPageNumbers: true
+        showSearch: true
+        showSorting: true
+    pivot:
+        form: $/bt/production/models/scrapcodes/fields.yaml
+
+btaccount:
+    label: btaccount
+    manage:
+        form: $/bt/production/models/btaccount/fields.yaml
+        list: $/bt/production/models/btaccount/columns.yaml
+    view:
+        list: $/bt/production/models/btaccount/columns.yaml
+        form: $/bt/production/models/btaccount/fields_schedule.yaml
+        toolbarButtons: create|delete
+
+
+    

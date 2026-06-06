@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Supplier
+
+# Model Form Field configuration
+form: $/bt/sales/models/supplier/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Supplier
+
+# Default redirect location
+defaultRedirect: bt/sales/supplier
+
+# Create page
+create:
+    title: Create Supplier
+    redirect: bt/sales/supplier/update/:id
+    redirectClose: bt/sales/supplier
+
+# Update page
+update:
+    title: Edit Supplier
+    redirect: bt/sales/supplier
+    redirectClose: bt/sales/supplier
+
+# Preview page
+preview:
+    title: Preview Supplier

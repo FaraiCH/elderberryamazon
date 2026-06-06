@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    start_date_delay:
+        label: Start Date Delay
+        searchable: true
+
+    expected_date_resume:
+        label: Expected Date Resume
+        searchable: true
+
+    no_pipes:
+        label: Number of pipes affected
+        type: number
+
+
+    delayreason:
+        label: Delay Reason
+        select: name
+        relation: delayreason
+
+    downloadqc:
+        label: Email To Sales
+        type: partial
+        ##AJAX BUTTON
+        path: $/bt/production/models/productiondelay/_sendemail_column.htm
+        sortable: false
+        clickable: false

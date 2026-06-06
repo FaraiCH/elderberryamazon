@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Team
+
+# Model Form Field configuration
+form: $/bt/sheq/models/team/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Team
+
+# Default redirect location
+defaultRedirect: bt/sheq/team
+
+# Create page
+create:
+    title: Create Team
+    redirect: bt/sheq/team/update/:id
+    redirectClose: bt/sheq/team
+
+# Update page
+update:
+    title: Edit Team
+    redirect: bt/sheq/team
+    redirectClose: bt/sheq/team
+
+# Preview page
+preview:
+    title: Preview Team

@@ -1,0 +1,10 @@
+<?php if(!empty($record->file)): ?>
+<span class="oc-icon-check text-success">
+	    <?php $record->file->file_name; ?>
+	</span>
+<?php else: ?>
+<span class="oc-icon-circle text-danger">
+	No File
+</span>
+<?php endif; ?>
+

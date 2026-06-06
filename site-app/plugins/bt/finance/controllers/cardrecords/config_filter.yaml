@@ -1,0 +1,28 @@
+scopes:
+    # financeapprove:
+    #     label: Paid
+    #     modelClass: Bt\Finance\Models\ReqFinanceApprove
+    #     conditions: requesition_id in (:filtered)
+    #     nameFrom: name
+    project:
+        label: Company
+        modelClass: Bt\Finance\Models\Project
+        conditions: project_id in (:filtered)
+        nameFrom: name
+        # default: [1]
+    purchasedby:
+        label: Purchased By
+        modelClass: RainLab\User\Models\User
+        conditions: purchasedby_id in (:filtered)
+        nameFrom: name
+    # approvedby:
+    #     label: Created By
+    #     modelClass: RainLab\User\Models\User
+    #     conditions: created_by in (:filtered)
+    #     nameFrom: name
+
+    purchase_date:
+        label: Date
+        type: daterange
+        conditions: purchase_date >= ':after' AND purchase_date <= ':before'
+   

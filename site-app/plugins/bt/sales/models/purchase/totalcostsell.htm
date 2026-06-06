@@ -1,0 +1,15 @@
+<?php
+    $totalby = 0;
+    if($record->purchaseitem->sum('buy_price') != null)
+    {
+        foreach($record->purchaseitem as $mine)
+        {
+             $totalby = $totalby + ($mine->buy_price * $mine->units);
+        }
+        echo 'R'. number_format($totalby, 2, ',', ' ');
+    }
+    else
+    {
+        echo 'R'. number_format($totalby, 2, ',', ' ');
+    }
+?>

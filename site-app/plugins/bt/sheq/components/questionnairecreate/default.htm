@@ -1,0 +1,33 @@
+
+
+<div class="blob" style="padding: 0px">
+  <p>{{obj.description|raw}}</p>
+</div>
+
+ 
+  <p class="text-center">Please complete the form below to start the questions:</p>
+  <div class="card-body contactForm">
+    <form data-request="onSaveClientQuestion" class="myForm"
+  		   data-request-flash data-request-validate>
+         <div class="row">
+          
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label  required" for="contactForm-companyname">First Name</label>
+              <input id="name" name="name" placeholder="First Name" class="form-control" type="text" required="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label  required" for="contactForm-companyname">Surname</label>
+              <input id="surname" name="surname"  placeholder="Surname" class="form-control" type="text" required="">
+            </div>
+          </div>
+         
+        </div>
+
+        <button data-stripe-load-indicator data-attach-loading type="submit"  class="btn btn-primary btn-block text-center btn-cst" style="text-align: center;">Next</button>
+      
+    </form>
+  </div>
+</div>

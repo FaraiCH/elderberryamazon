@@ -1,0 +1,71 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    employee:
+        label: Employee
+        select: concat(firstname,' ', lastname)
+        relation: employee
+    status:
+        label: Status
+        select: name
+        relation: status
+    days:
+        label: Days Used
+    type:
+        label: Type
+        select: name
+        relation: type
+        span: auto
+    start_date:
+        label: Start Date
+    end_date:
+        label: End Date
+    notes:
+        label: Notes
+#    days:
+#        label: Days Used
+#    sick_leave:
+#        label: Sick Leave Left
+#        type: partial
+#        path: $/bt/hr/models/absenceleave/_sick.htm
+#    family_leave:
+#        label: Family Leave Left
+#        type: partial
+#        path: $/bt/hr/models/absenceleave/_maternity_leave.htm
+#    maternity_leave:
+#        label: Maternity Leave Left
+#        type: partial
+#        path: $/bt/hr/models/absenceleave/_anual_days.htm
+#    annual_leave:
+#        label: Annual Leave Left
+#        type: partial
+#        path: $/bt/hr/models/absenceleave/_family.htm
+#    time_leave:
+#        label: Without Pay Leave Left
+#        type: partial
+#        path: $/bt/hr/models/absenceleave/time_without.htm
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

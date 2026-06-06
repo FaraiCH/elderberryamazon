@@ -1,0 +1,39 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    production_date: 
+        label: Production Date
+    week_id:
+        label: Week ID
+    year_id:
+        label: Year 
+    shift_id:
+        label: Shift
+    quote_id:
+        label: Quote No
+    description:
+        label: Description
+    line_id:
+        label: Line ID
+    baila:
+        label: Baila
+    product_id:
+        label: Production ID
+    controlsheet_id:
+        label: Controlsheet No
+    total_weight:
+        label: Total Weight
+    total_kg_processed:
+        label: Total KG Processed
+    weight_scrap_kg:
+        label: Weight Scrap KG
+    over_weight_kg: 
+        label: Over Weight KG
+    sum_kwh:
+        label: Sum KWH
+    

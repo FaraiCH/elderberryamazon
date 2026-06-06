@@ -1,0 +1,22 @@
+
+<?php if($value->id == 1): ?>
+	<span class="oc-icon-exclamation-circle text-warning">
+	    <?php echo $value->name; ?>
+	</span>
+<?php elseif($value->id == 2): ?>
+	<span class="oc-icon-coffee text-success">
+	    <?php echo $value->name; ?>
+	</span>
+<?php elseif($value->id == 3): ?>
+	<span class="oc-icon-star text-info">
+	    <?php echo $value->name; ?>
+	</span>
+<?php elseif($value->id == 4): ?>
+	<span class="oc-icon-exclamation-circle text-danger">
+	    <?php echo $value->name; ?>
+	</span>
+<?php else: ?>
+	<span class="oc-icon-circle text-muted">
+	<?php echo $value->name; ?>
+	</span>
+<?php endif; ?>

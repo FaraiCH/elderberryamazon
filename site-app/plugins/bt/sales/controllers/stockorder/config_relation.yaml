@@ -1,0 +1,16 @@
+items:
+    label: Pipe
+    manage:
+        form: $/bt/sales/models/stockoderitem/fields.yaml
+        list: $/bt/sales/models/stockoderitem/columns.yaml
+    view:
+        list: $/bt/sales/models/stockoderitem/columns.yaml
+        toolbarButtons: create|delete
+itemscat:
+    label: Product Catalogue
+    manage:
+        form: $/bt/sales/models/stockoderitemcatalogue/fields.yaml
+        list: $/bt/sales/models/stockoderitemcatalogue/columns.yaml
+    view:
+        list: $/bt/sales/models/stockoderitemcatalogue/columns.yaml
+        toolbarButtons: create|delete

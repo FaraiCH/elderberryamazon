@@ -1,0 +1,7 @@
+<?php if( isset($record->quote->client) &&  ($record->quote->client->limit > 0)): ?>
+	<div style="text-align: right; white-space: nowrap;">R <?php echo number_format(($record->quote->client->limit/1000),2, '.', ','); ?></div>
+<?php else: ?>
+	<div class="text-danger" style="text-align: right; white-space: nowrap;">
+	    Not Set
+	</div>
+<?php endif; ?>

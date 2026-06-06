@@ -1,0 +1,384 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  pipe_id@create:
+    label: Pipe In Quote for production
+    type: dropdown
+    options: listPipeItem
+    comment: List of production pipes that have Status of Requested or Stated
+    placeholder: -- select a production --
+
+  pipe_id@update:
+    label: Pipe In Qoute for production
+    type: dropdown
+    options: listPipeUpdateItem
+    placeholder: -- select a production --
+
+  opendate:
+    label: Open Date and Time
+    type: datepicker
+  assignedto:
+    label: Assigned To
+    select: name
+    type: relation
+    span: left
+  product_description:
+    label: Product Description
+    span: right
+
+  orderqty:
+    label: Order Quantity
+    type: number
+    span: left
+  lengthsinm:
+    label: lengths in/M
+    type: number
+    span: right
+  btline:
+    label: Line
+    select: name
+    type: relation
+    span: left
+
+  total_tonnage:
+    label: Total Tonnage
+    span: right
+  runrate_kg_hr:
+    label: Runrate/kg-hr
+    span: left
+
+  changeover_time_allowed:
+    label: Changeover Time Allowed
+    span: right
+  coiler_od:
+    label: Coiler OD
+    span: auto
+    type: number
+  # priority:
+  #   span: right
+  #   label: priority
+  #   type: dropdown
+  #   options:
+  #       1: 1 - Urgent
+  #       2: 2 - Not Urgent
+  # department:
+  #   label: Department
+  #   select: name
+  #   type: relation
+  #   span: left
+  # jobtype:
+  #   label: Schedule Type
+  #   select: name
+  #   type: relation
+  #   span: right
+
+  # opendate:
+  #   label: Open Date
+  #   type: datepicker
+  #   required: yes
+
+  # budget:
+  #   label: Budget
+  #   span: left
+  #   default: 0.0
+  # budget_note:
+  #   label: Budget Note
+  #   span: right
+tabs:
+  fields:
+    # assignedto:
+    #   label: Assigned To
+    #   select: name
+    #   type: relation
+    #   span: left
+    #   tab: Setup
+
+    die_size:
+      label: Die Size
+      tab: Changeover Part
+      span: left
+
+    mendril_size:
+      label: Mendril Size
+      tab: Changeover Part
+      span: right
+
+    calibrator_size:
+      label: Calibrator Size
+      tab: Changeover Part
+      span: left
+
+    screw_speed:
+      label: Screw Speed
+      tab: Machine Pararmeters
+      span: left
+
+    haull_of_speed:
+      label: Haull Of Speed
+      tab: Machine Pararmeters
+      span: right
+
+    machine_torque:
+      label: Machine Torque
+      tab: Machine Pararmeters
+      span: left
+
+    melt_pressure:
+      label: Melt Pressure
+      tab: Machine Pararmeters
+      span: right
+
+    vacuum_pressure1:
+      label: Vacuum Pressure 1
+      tab: Machine Pararmeters
+      span: left
+
+    vacuum_pressure2:
+      label: Vacuum Pressure 2
+      tab: Machine Pararmeters
+      span: right
+
+    vacuum_pressure3:
+      label: Vacuum Pressure 3
+      tab: Machine Pararmeters
+      span: left
+
+    BZ1:
+      label: BZ1
+      tab: Barrel Zones
+      span: left
+      default: 190
+
+    BZ2:
+      label: BZ2
+      tab: Barrel Zones
+      span: right
+      default: 190
+    BZ3:
+      label: BZ3
+      tab: Barrel Zones
+      span: left
+      default: 190
+    BZ4:
+      label: BZ4
+      tab: Barrel Zones
+      span: right
+      default: 190
+    BZ5:
+      label: BZ5
+      tab: Barrel Zones
+      span: left
+      default: 190
+    BZ6:
+      label: BZ6
+      tab: Barrel Zones
+      span: right
+      default: 190
+    BZ7:
+      label: BZ7
+      tab: Barrel Zones
+      span: left
+      default: 190
+    ADAPTOR:
+      label: ADAPTOR
+      tab: Barrel Zones
+      span: right
+      default: 200
+    DZ1:
+      label: DZ1
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ2:
+      label: DZ2
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ3:
+      label: DZ3
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ4:
+      label: DZ4
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ5:
+      label: DZ5
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ6:
+      label: DZ6
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ7:
+      label: DZ7
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ8:
+      label: DZ8
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ9:
+      label: DZ9
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ10:
+      label: DZ10
+      tab: Die Zones
+      span: right
+      default: 200
+
+    DZ11:
+      label: DZ12
+      tab: Die Zones
+      span: left
+      default: 200
+
+    DZ12:
+      label: DZ12
+      tab: Die Zones
+      span: right
+      default: 200
+
+    DZ13:
+      label: DZ13
+      tab: Die Zones
+      span: left
+      default: 200
+
+    DZ14:
+      label: DZ14
+      tab: Die Zones
+      span: right
+      default: 200
+
+    DZ15:
+      label: DZ15
+      tab: Die Zones
+      span: left
+      default: 200
+
+    DZ16:
+      label: DZ16
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ17:
+      label: DZ17
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ18:
+      label: DZ18
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ19:
+      label: DZ19
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ20:
+      label: DZ20
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ21:
+      label: DZ21
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ22:
+      label: DZ22
+      tab: Die Zones
+      span: right
+      default: 200
+    DZ23:
+      label: DZ23
+      tab: Die Zones
+      span: left
+      default: 200
+    DZ24:
+      label: DZ24
+      tab: Die Zones
+      span: right
+      default: 200
+    printing_requirments:
+      label: Printing Requirments
+      tab: Printing Requirments
+      default: SABS SANS4427-2 PE100 \##### SDR###PN### BT-INDUSTRIAL BATCH DATE/TIME
+
+    production_startdatetime:
+      label: Production Start Date & Time
+      tab: Printing Requirments
+      type: datepicker
+
+    production_finishdatetime:
+      label: Production Finish  Date & Time
+#      tab: Printing Requirments
+#      type: datepicker
+
+    # jobcardapprove@update:
+    #   path: $/bt/production/controllers/jobcard/_approve.htm
+    #   tab: Approve By Management
+    #   type: partial
+    # materials:
+      path: $/bt/production/controllers/jobcard/_materials.htm
+      tab: Materials
+      type: partial
+    # controlsheets:
+    #   path: $/bt/production/controllers/jobcard/_controlsheets.htm
+    #   tab: Control Sheets
+    #   type: partial
+
+
+
+
+
+    # status:
+    #   label: Schedule Status
+    #   select: name
+    #   type: relation
+    #   span: left
+    #   tab: Complete/Close Job
+
+    # spares_used:
+    #   label: Spares Used
+    #   type: textarea
+    #   size: small
+    #   tab: Complete/Close Job
+    #   span: right
+    status:
+      label: Schedule Status
+      select: name
+      type: relation
+      span: left
+      tab: Complete/Close Job
+
+    notes:
+      label: Notes
+      type: textarea
+      tab: Complete/Close Job
+      size: small
+      span: right
+
+    file:
+      label: Attach Documents
+      type: fileupload
+      tab: Complete/Close Job
+      mode: file
+
+    shiftfiles:
+      label: Attache Shift Handover
+      type: fileupload
+      tab: Shift Handover
+      mode: file

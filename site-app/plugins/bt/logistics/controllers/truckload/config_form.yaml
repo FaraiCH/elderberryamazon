@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Truckload
+
+# Model Form Field configuration
+form: $/bt/sales/models/pickslip/pick_stock_fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Pickslip
+
+# Default redirect location
+defaultRedirect: bt/logistics/home/truck
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/truckload/update/:id
+    redirectClose: bt/logistics/home/truck
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/truckload
+    redirectClose: bt/logistics/home/truck
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

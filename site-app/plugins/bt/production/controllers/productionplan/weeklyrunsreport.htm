@@ -1,0 +1,221 @@
+
+
+
+<div class="row" >
+
+
+    <div class="col-sm-12" style="margin-top: 10px">
+        <div class="card">
+            <div id="chart_production_weekly_kg" style="width: 100%; height: 430px;"></div>
+        </div>
+    </div>
+</div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script type="text/javascript">
+
+
+        $(window).on('load',function(){
+                Highcharts.chart('chart_production_weekly_kg', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Weekly Production'
+                    },
+                    subtitle: {
+                            text: 'Target Kg Vs Kg Produced'
+                        },
+
+                    xAxis: {
+                        categories:  <?= json_encode($graph["name"]) ?>,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Kg'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.0f} Kg</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: <?= json_encode($graph["data"]) ?>,
+                });
+        });
+    </script>
+
+<form class="pull-right form-inline" >
+    <div class="form-group px-2 " style="padding-bottom: 5px">
+        <label for="pick_company">Filter By Client: </label>
+        <select class="form-control custom-select" style="width: 200px;" name="pick_company" id="pick_company">
+            <option value="0" >All Clients</option>
+            <?php foreach($all_clients as $client):  ?>
+                <?php if($chosen_company == $client->id): ?>
+                    <option selected="selected" value="<?= $client->id ?>"><?= $client->company_name ?></option>
+                <?php else: ?>
+                    <option value="<?= $client->id ?>"><?= $client->company_name ?></option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<div class="control-list">
+
+          <table class="table data" data-control="rowlink">
+            <thead>
+                <tr>
+
+                        <th style="text-transform: uppercase;"><span>START WEEK</span></th>
+                        <th style="text-transform: uppercase;"><span>Month</span></th>
+                        <!-- <th style="text-transform: uppercase;"><span>Target kg <br>Processed</span></th> -->
+                        <th style="text-transform: uppercase;"><span>Control Sheet <br>Total kg <br>Processed</span></th>
+
+                        <!-- <th style="text-transform: uppercase;"><span>Baila 1 kg <br>Processed</span></th>
+                        <th style="text-transform: uppercase;"><span>Baila 2 kg <br>Processed</span></th>
+                        <th style="text-transform: uppercase;"><span>Baila 3 kg <br>Processed</span></th>
+                        <th style="text-transform: uppercase;"><span>Baila 4 kg <br>Processed</span></th> -->
+
+                        <th style="text-transform: uppercase;"><span>Total kg <br>processed avg <br>(In 7 Days)</span></th>
+                        <th style="text-transform: uppercase;"><span>Weight <br>Scrap kg</span></th>
+                        <th style="text-transform: uppercase;"><span>Overweight <br>Weight kg</span></th>
+                        <th style="text-transform: uppercase;"><span>Wasted <br>Material kg</span></th>
+                        <th style="text-transform: uppercase;"><span>Material Used <br>(Sum from Schedule) Kg</span></th>
+                        <th style="text-transform: uppercase;"><span>KG Processed <br>+<br>WASTED MATERIAL</span></th>
+                        <th style="text-transform: uppercase;"><span>MATERIAL <br>difference </span></th>
+                        <th style="text-transform: uppercase;"><span>Target Units <br>Produced</span></th>
+                        <th style="text-transform: uppercase;"><span>Total Units <br>Produced</span></th>
+                        <th style="text-transform: uppercase;"><span>Total Units <br>Produced avg</span></th>
+                        <th style="text-transform: uppercase;"><span>Invoiced <br>Amount</span></th>
+                        <th style="text-transform: uppercase;"><span>Delivered <br>Weight KG</span></th>
+                        <th style="text-transform: uppercase;"><span>Delivered <br>HPDE Amount</span></th>
+                        <th style="text-transform: uppercase;"><span>Delivered Buyout <br>Weight kg</span></th>
+                        <th style="text-transform: uppercase;"><span>Delivered <br>Buyout Amount</span></th>
+                        <th style="text-transform: uppercase;"><span>Income Payment <br>Amount</span></th>
+                        <th style="text-transform: uppercase;"><span>Material <br>Recieve kg</span></th>
+                        <th style="text-transform: uppercase;"><span>Material <br>Recieve Value</span></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php $target_kg_processed = 0; ?>
+                <?php $total_kg_processed = 0; ?>
+                <?php $total_kg_processed_avg = 0; ?>
+                <?php $weight_scrap_kg = 0; ?>
+                <?php $over_weight_kg = 0; ?>
+                <?php $used_kg = 0; ?>
+                <?php $target_units_produced = 0; ?>
+                <?php $total_units_produced = 0; ?>
+                <?php $total_units_produced_avg = 0; ?>
+                <?php $fail_pipe = 0; ?>
+
+
+                 <?php foreach($monster as $key => $item): ?>
+                    <?php if(isset($item["target_kg_processed"]) ): ?>
+                        <tr>
+                            <td nowrap="nowrap"><?= $item["name"] ?></td>
+                             <td nowrap="nowrap"><?= $item["month"] ?> <?= $item["year"] ?></td>
+                            <!-- <td align="right"><?= intval($item["target_kg_processed"]) ?></td> -->
+                            <td align="right"><?= intval($item["total_kg_processed"]) ?></td>
+
+                            <!-- <td align="right"><?= isset($item["baila_1"])?intval($item["baila_1"]):"-" ?></td>
+                            <td align="right"><?= isset($item["baila_2"])?intval($item["baila_2"]):"-" ?></td>
+                            <td align="right"><?= isset($item["baila_3"])?intval($item["baila_3"]):"-" ?></td>
+                            <td align="right"><?= isset($item["baila_4"])?intval($item["baila_4"]):"-" ?></td> -->
+
+                            <td align="right"><?= intval($item["total_kg_processed_avg"]) ?></td>
+                            <td align="right"><?= intval($item["weight_scrap_kg"]) ?></td>
+                            <td align="right"><?= intval($item["over_weight_kg"]) ?></td>
+                            <td align="right"><?= intval($item["over_weight_kg"]+$item["weight_scrap_kg"]) ?></td>
+                            <?php $totalwaste = $item["over_weight_kg"]+$item["weight_scrap_kg"] ?>
+                            <?php $color = (( $totalwaste + intval($item["total_kg_processed"]) ) == (isset($item["used_kg"])?intval($item["used_kg"]):0))?'':'#f96d6d' ?>
+
+                            <td align="right"><?= isset($item["used_kg"])?number_format($item["used_kg"],1):"-" ?></td>
+                            <td align="right" ><?= number_format($totalwaste + intval($item["total_kg_processed"]),0) ?></td>
+                            <td align="right" style="background:<?= $color ?>">
+                                <?= number_format( ( ( $totalwaste + intval($item["total_kg_processed"]) ) - (isset($item["used_kg"])?intval($item["used_kg"]):0)),0) ?>
+                                    
+                            </td>
+                            <td align="right"><?= ($item["target_units_produced"]) ?></td>
+                            <td align="right"><?= ($item["total_units_produced"]) ?></td>
+                            <td align="right"><?= intval($item["total_units_produced_avg"]) ?></td>
+                            <td align="right">R <?= number_format($item["invoicedamount"],2, '.', ',') ?></td>
+
+                            <td align="right"><?= isset($item["stockweight"])?number_format($item["stockweight"],2, '.', ','):"-" ?></td>
+                            <td align="right">R <?= isset($item["stockvalue"])?number_format($item["stockvalue"],2, '.', ','):"-" ?></td>
+                            <td align="right"><?= isset($item["catstockweight"])?number_format($item["catstockweight"],1, '.', ','):"-" ?></td>
+                            <td align="right">R <?= isset($item["catstockvalue"])?number_format($item["catstockvalue"],2, '.', ','):"-" ?></td>
+                            <td align="right">R <?= isset($item["paymentamount"])?number_format($item["paymentamount"],2, '.', ','):"-" ?></td>
+                            <td align="right"><?= isset($item["materialreceivetotalkg"])?intval($item["materialreceivetotalkg"]):"-" ?></td>
+                             <td align="right">R <?= isset($item["materialreceivetotalprice"])?number_format($item["materialreceivetotalprice"],2, '.', ','):"-" ?></td>
+
+
+                            <?php $target_kg_processed = $target_kg_processed + $item["target_kg_processed"]; ?>
+                            <?php $total_kg_processed = $total_kg_processed + $item["total_kg_processed"]; ?>
+                            <?php $total_kg_processed_avg = $total_kg_processed_avg + $item["total_kg_processed_avg"]; ?>
+                            <?php $weight_scrap_kg = $weight_scrap_kg + $item["weight_scrap_kg"]; ?>
+                            <?php $over_weight_kg = $over_weight_kg + $item["over_weight_kg"]; ?>
+                            <?php $used_kg = $used_kg + (isset($item["used_kg"])?$item["used_kg"]:0); ?>
+                            <?php $target_units_produced = $target_units_produced + $item["target_units_produced"]; ?>
+                            <?php $total_units_produced = $total_units_produced + $item["total_units_produced"]; ?>
+                            <?php $total_units_produced_avg = $total_units_produced_avg + $item["total_units_produced_avg"]; ?>
+                            <?php $fail_pipe = $fail_pipe + $item["fail_pipe"]; ?>
+
+                         </tr>
+                     <?php endif ?>
+                <?php endforeach ?>
+
+            </tbody>
+
+
+        </table>
+    </div>
+<style type="text/css">
+   table {
+  text-align: center;
+}
+.control-list {
+  width: 100%;
+  height: 75vh;
+  overflow: scroll;
+}
+table th,
+table td {
+  white-space: nowrap;
+  padding: 10px 20px;
+  font-family: Arial;
+}
+table tr th:first-child,
+table td:first-child {
+  position: sticky;
+  width: 100px;
+  left: 0;
+  z-index: 10;
+  background: #fff;
+}
+table tr th:first-child {
+  z-index: 11;
+}
+table tr th {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background: #fff;
+}
+</style>

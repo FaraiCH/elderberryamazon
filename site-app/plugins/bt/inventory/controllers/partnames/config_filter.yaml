@@ -1,0 +1,12 @@
+scopes:
+    category:
+        label: Cagetory
+        modelClass: Bt\Inventory\Models\MaterialCat
+        conditions: cat_id in (:filtered)
+        nameFrom: name
+
+    supplier:
+        label: Supplier
+        modelClass: Bt\Inventory\Models\Supplier
+        conditions: supplier_id in (:filtered)
+        nameFrom: name

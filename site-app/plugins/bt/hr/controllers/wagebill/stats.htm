@@ -1,0 +1,80 @@
+
+<?= Form::open(['class'=>'form-inline']) ?>
+    <div class="form-group" style="padding-bottom: 0px">
+        <label for="startdate">Start Date: </label>
+        <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text">
+    </div>
+    <div class="form-group " style="padding-bottom: 0px">
+        <label for="enddate">End Date: </label>
+        <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text">
+    </div>
+
+    <div class="form-group dropdown-field" style="padding-top: 24px">
+        <select name="department" class="form-control custom-select" style="width: 300px" >
+            <option value="0">Select Department</option>
+            <?php foreach($departments as $department): ?>
+                <option value="<?= $department->id?>"<?php if(isset($selectquote)) echo ($selectquote == $department->id)? 'selected = "selected"':''?>><?= $department->name?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    <div class="form-group" style="padding-top: 24px">
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+    <div class="form-group " style="padding-top: 24px">
+        <a href="/home/wages/" class="btn btn-primary">Download Report</a>
+    </div>
+
+<?= Form::close() ?>
+
+<div style="margin: 50px">
+    <div class="e-card">
+
+        <div class="e-card-title">Weekly Wage Hours </div>
+
+        <div class="e-card-content">
+            Here in the weekly hours, you can see the number of hours per employee dependant on the shift. This takes the shift time and rate into account. Filter out departments and date ranges to get more acute data.
+        </div>
+    </div>
+</div>
+<div class="tab-pane pane-bordered">
+    <div style="padding: 20px; background: #fff;">
+        <?= $this->makePartial('graphs') ?>
+    </div>
+</div>
+
+<div class="control-tabs content-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#contentTabTwo"> Wage Hours Summary</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane pane-bordered active">
+            <div style="padding: 20px; background: #fff">
+                <?= $this->makePartial('summary') ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var startpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            startpicker.show();
+        },
+    });
+    startpicker.appendTo('#startdate');
+    var endpicker = new ej.calendars.DatePicker({
+        placeholder: 'Click The Calender Button..',
+        // sets the format.
+        format: 'yyyy-MM-dd',
+        focus: function () {
+            // To open the popup upon input click
+            endpicker.show();
+        },
+    });
+    endpicker.appendTo('#enddate');
+</script>

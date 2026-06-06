@@ -1,0 +1,92 @@
+
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/sales/newquote') ?>">Quote</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+
+
+ <div class="">
+
+  <div class="content">
+       <div class="card card-default mb-4 mt-3">
+
+                <div class="card-body  py-2">
+
+                    <?= Form::open(['class'=>'form-inline']) ?>
+
+                      <div class="form-group" style="padding-bottom: 0px">
+                        <label for="startdate">Start Date: </label>
+                        <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text" placeholder="YYYY-MM-DD:" class="startpicker form-control input-md mx-1" style="width: 200px;" required="">
+                       </div>
+                      <div class="form-group " style="padding-bottom: 0px">
+                        <label for="enddate">End Date: </label>
+                        <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text" placeholder="YYYY-MM-DD:" class="endpicker form-control input-md mx-1" required="" style="width: 200px;">
+                      </div>
+
+                        <?= $this->makePartial('options') ?>
+
+                      <div class="form-group " style="padding-bottom: 0px">
+                      <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                    <?= Form::close() ?>
+                </div>
+         </div>
+    </div>
+</div>
+
+<?= $this->makePartial('graph') ?>
+
+
+
+<div class="control-tabs content-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#contentTabOne">Targets</a></li>
+        <li><a href="#contentTabTwo">Monthly Sales</a></li>
+        <li><a href="#contentTabThree">Weekly Sales</a></li>
+        <li><a href="#contentTabThree">Invoices</a></li>
+        <li><a href="#contentTabThree">SRNs</a></li>
+        <li><a href="#contentTabThree">Production Balance</a></li>
+        <li><a href="#contentTabThree">Production Balance Pipe Items</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane pane-bordered active">
+            <div style="padding: 20px; background: #fff">
+                    <?= $this->makePartial('targetlist') ?>
+            </div>
+        </div>
+        <div class="tab-pane pane-bordered">
+            <div style="padding: 20px; background: #fff;">
+                <?= $this->makePartial('summary') ?>
+            </div>
+        </div>
+        <div class="tab-pane pane-bordered">
+            <div style="padding: 20px; background: #fff;">
+                <?= $this->makePartial('sales') ?>
+            </div>
+        </div>
+        <div class="tab-pane pane-bordered">
+            <div style="padding: 20px; background: #fff;">
+                <?= $this->makePartial('invoices') ?>
+            </div>
+        </div>
+        <div class="tab-pane pane-bordered">
+            <div style="padding: 20px; background: #fff;">
+                <?= $this->makePartial('srns') ?>
+            </div>
+        </div>
+        <div class="tab-pane pane-bordered">
+            <div style="padding: 20px; background: #fff;">
+                <?= $this->makePartial('productionbalance') ?>
+            </div>
+        </div>
+        <div class="tab-pane pane-bordered">
+            <div style="padding: 20px; background: #fff;">
+                <?= $this->makePartial('productionbalanceitem') ?>
+            </div>
+        </div>
+
+    </div>
+</div>

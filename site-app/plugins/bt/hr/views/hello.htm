@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <style type="text/css">
+        :root {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #0c0c80;
+        }
+
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 11px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        tr.status_3 td{
+            background: rgb(162, 251, 165)
+        }
+    </style>
+</head>
+<body>
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni, Johannesburg <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h3>Weekly Staff Hours: {{ start }} - {{ end }} </h3>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+{% set count = 0 %}
+{% set zero = 0 %}
+
+<table width="100%" class="table-bordered" cellpadding="2">
+    <thead>
+        <tr style="background: #0c0c80; color: #eee;">
+            <th>Department</th>
+            {% for key, w in weekly %}
+            <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for maindate, weeker in weeksHeader %}
+            <tr>
+                <td style="border: 1px solid black;">
+                    Wk - {{weeker}}
+                    {% set count = count + 1 %}
+                </td>
+                {% for department, weks in weekly %}
+                    {% set zero = 0 %}
+                    {% for subdate, wek in weks |sort %}
+                        {% if subdate == maindate %}
+                            {% set zero = 1 %}
+                            <td style="border: 1px solid black; text-align: right">{{wek}}</td>
+                        {% endif %}
+                    {% endfor %}
+                    {% if zero == 0 %}
+                        <td style="border: 1px solid black; text-align: right">0.0</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td nowrap="" style="background: #A9A9A9; color: whitesmoke; border: 1px solid black">Overtime 1.5</td>
+            {% for key, tot in weekly %}
+            <td style="background: #A9A9A9; color: whitesmoke;border: 1px solid black; text-align: right">{{tot['TotalOT']|number_format(2, '.', ',')}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td nowrap="" style="background: #A9A9A9; color: whitesmoke; border: 1px solid black">Saturday Total</td>
+            {% for key, tot in weekly %}
+            <td style="background: #A9A9A9; color: whitesmoke;border: 1px solid black; text-align: right">{{tot['satOT']|number_format(2, '.', ',')}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td nowrap="" style="background: #A9A9A9; color: whitesmoke; border: 1px solid black">Sunday Total</td>
+            {% for key, tot in weekly %}
+            <td style="background: #A9A9A9; color: whitesmoke;border: 1px solid black; text-align: right">{{tot['sunOT']|number_format(2, '.', ',')}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td nowrap="" style="background: #A9A9A9; color: whitesmoke; border: 1px solid black">Total Hours</td>
+            {% for key, tot in weekly %}
+            <td style="background: #A9A9A9; color: whitesmoke;border: 1px solid black; text-align: right">{{tot['sumsOT']|number_format(2, '.', ',')}}</td>
+            {% endfor %}
+        </tr>
+    </tfoot>
+</table>
+
+</body>
+</html>

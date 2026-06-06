@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    catalogue:
+        label: Catalogue In quote
+        type: dropdown
+        span: storm
+        cssClass: noezanclass col-md-6 col-sm-6
+        placeholder: --- Select ---
+    units:
+        label: Qty
+        span: storm
+        cssClass: noezanclass col-md-6 col-sm-6
+        type: number

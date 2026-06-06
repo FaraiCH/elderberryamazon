@@ -1,0 +1,126 @@
+<style>
+    h1.page-title {
+        margin-bottom: 20px;
+    }
+
+    .cards {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 20px;
+        font-size: 1.35rem;
+    }
+
+    .card-item-header {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin-bottom: -1px;
+    }
+
+    .card-item-body table {
+        border-collapse: collapse;
+        width: 100%;
+        padding: 0;
+    }
+
+    .card-item-body table th,
+    .card-item-body table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .card-item-body table td:first-child {
+        font-Weight: 600;
+    }
+
+    .card-item-body table th {
+        padding: 10px;
+    }
+
+    .card-item-header,
+    .card-item-body table th {
+        border: 1px solid #d7e1ea;
+        background-color: #f0f4f8;
+    }
+</style>
+
+<h1 class="page-title">
+    Date: <?= $url_date ?>
+</h1>
+
+<div class="cards">
+
+<?php foreach($production_plans as $p): ?>
+<div class="card-item">
+    <div class="card-item-header">
+        <div>
+            <strong>Quotation No:</strong> <?= $p->quote_id ?>
+        </div>
+
+        <div>
+            <strong>Baila:</strong> <?= $p->baila ?>
+        </div>
+
+        <div>
+            <strong>Pipe Description:</strong> <?= trim(str_replace('HDPE PE 100 ', '', $p->description)) ?>
+        </div>
+    </div>
+
+    <div class="card-item-body">
+        <table id="customers">
+            <tr>
+                <th></th>
+                <th>Planned</th>
+                <th>Actaual</th>
+            </tr>
+            <tr>
+                <td>Sold vs Produced No of Pipes</td>
+                <td><?= $p->plan_target_qty?></td>
+                <td><?= $p->lebo_total_units_produced ?></td>
+            </tr>
+            <tr>
+                <td>Standard vs Actual Pipe Weight</td>
+                <td><?= $p->ordered_unitweight ?></td>
+                <td><?= $p->ordered_unitweight ?></td>
+            </tr>
+            <tr>
+                <td>Standard vs Actual Pipe Length</td>
+                <td><?= $p->ordered_unitlength ?></td>
+                <td><?= $p->stick_pipe_lenght ?></td>
+            </tr>
+            <tr>
+                <td>Standard vs Actual Pipe Weight per Length</td>
+                <td><?= number_format($p->ordered_unitweight * $p->ordered_unitlength, 2, '.', ',') . ' KG' ?></td>
+                <td><?= number_format($p->ordered_unitweight * $p->ordered_unitlength, 2, '.', ',') . ' KG' ?></td>
+            </tr>
+            <tr>
+                <td>Standard vs Actual Scrap</td>
+                <td>-</td>
+                <td><?= $p->lebo_weight_scrap_kg ?></td>
+            </tr>
+            <tr>
+                <td>Overweight</td>
+                <td>-</td>
+                <td><?= $p->lebo_over_weight_kg ?></td>
+            </tr>
+            <tr>
+                <td>Sold Price</td>
+                <td><?= 'R ' . number_format($p->plan_target_qty * $p->ordered_priceperkg, 2, '.', ',') ?></td>
+                <td><?= 'R ' . number_format($p->lebo_total_units_produced * $p->ordered_priceperkg, 2, '.', ',') ?></td>
+            </tr>
+            <tr>
+                <td>Total Order vs Production Weight</td>
+                <td><?= $p->ordered_totalweight ?></td>
+                <td><?= $p->cs_total_weight ?></td>
+            </tr>
+            <tr>
+                <td>Total Order vs Production Value</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<?php endforeach; ?>
+
+</div>

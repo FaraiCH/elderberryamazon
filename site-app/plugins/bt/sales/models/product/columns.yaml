@@ -1,0 +1,88 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    active:
+        label: Active
+        type: switch
+
+    PNRating:
+        label: PNRating
+        searchable: true
+        relation: PNRating
+        select: name
+
+    Diameter:
+        label: Diameter
+        searchable: true
+        relation: Diameter
+        select: name
+        type: number
+        format: %.2f mm
+
+    value:
+        label: Mass (kg/m)
+        type: number
+        searchable: true
+
+    production_value:
+        label: Production Mass (kg/m)
+        type: number
+        searchable: true
+    old_mass:
+        label: Old Mass
+    new_mass:
+        label: New Mass
+    od_min:
+        label: od_min
+        type: number
+
+
+    od_max:
+        label: od_max
+        type: number
+    ovality_max:
+        label: ovality_max
+        type: number
+    coil:
+        label: coil
+        type: number
+    wt_min:
+        label: wt_min
+        type: number
+    wt_max:
+        label: wt_max
+        type: number
+    wt_ave:
+        label: wt_ave
+        type: number
+    pipe_id:
+        label: pipe_id
+        type: number
+
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+

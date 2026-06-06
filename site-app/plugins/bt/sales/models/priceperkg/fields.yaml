@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    amount:
+        label: Price Per KG
+        disabled: false
+    # active:
+    #     label: Is Active
+    #     disabled: false
+   

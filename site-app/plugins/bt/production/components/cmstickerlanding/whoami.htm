@@ -1,0 +1,16 @@
+<div style="text-align: center;  font-size: 11px; padding: 20px 0px">
+
+{% for group in usergroups %}
+
+    {% if group.id == 20 %}
+        {{ group.name}} 
+    {% endif %}
+    {% if group.id == 24 %}
+        {{ group.name}}
+    {% endif %}
+    {% if group.id == 36  %}
+        {{ group.name}} 
+    {% endif %}
+{% endfor %}
+<a class="btn btn-info pull-right" style="color:#fff" href="/stickerhome">Search Sticker</a>
+</div>

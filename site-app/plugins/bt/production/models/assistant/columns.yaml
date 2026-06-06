@@ -1,0 +1,16 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true;
+    employee_name:
+        label: Employee
+        relation: employee
+        select: concat(firstname, ' ', lastname)
+    start_shift:
+        label: Shift Start
+    end_shift:
+        label: End Shift

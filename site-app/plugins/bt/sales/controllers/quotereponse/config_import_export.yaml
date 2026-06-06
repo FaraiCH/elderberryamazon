@@ -1,0 +1,6 @@
+export:
+    title: Export Responses
+    modelClass: Bt\Sales\Models\ExportResponse
+    list: $/bt/sales/models/quotereponse/columns_export.yaml
+    redirect: bt/sales/quotereponse
+    fileName: response.csv

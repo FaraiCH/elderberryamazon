@@ -1,0 +1,12 @@
+scopes:
+    ismanaged:
+        label: Is Managed?
+        modelClass: Bt\Sales\Models\Category
+        type: switch
+        on: Yes
+        off: No
+        default: 1
+        conditions:
+            - ismanaged <> true
+            - ismanaged = true
+        nameFrom: name

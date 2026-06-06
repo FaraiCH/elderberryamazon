@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Stock Release
+
+# Model Form Field configuration
+form: $/bt/sales/models/srn/stockfields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Srn
+
+# Default redirect location
+defaultRedirect: bt/logistics/home/srn
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/stockrelease/update/:id
+    redirectClose: bt/logistics/stockrelease
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/stockrelease
+    redirectClose: bt/logistics/home/srn
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

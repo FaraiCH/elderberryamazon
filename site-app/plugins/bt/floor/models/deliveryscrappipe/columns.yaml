@@ -1,0 +1,62 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    schedule_date:
+        label: Scrap Date
+        searchable: true
+    company:
+        label: Company
+        searchable: true
+    address:
+        label: Address
+        invisible: true
+    truck_number_plate:
+        label: Truck Number Plate
+        invisible: true
+    weight_kg:
+        label: Weight
+        searchable: true
+        type: number
+        format: %.1f kg
+    floor_kg:
+        label: Scrap To Date
+        searchable: true
+        type: number
+        format: %.1f kg
+    supplier_qty:
+        label: Supplier Weight
+        searchable: true
+        type: number
+        format: %.1f kg
+    supplier_totalincvat:
+        label: Supplier Price
+        type: number
+        format: R %.2f
+    notes:
+        label: Notes
+        searchable: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

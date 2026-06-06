@@ -1,0 +1,62 @@
+1.0.1:
+- First version of SHEQ
+- create_audits_table.php
+- create_covid_screens_table.php
+
+- create_injuries_table.php
+1.0.2:
+- Create PPE
+
+- create_ppes_table.php
+1.0.3:
+- Create Incident
+- create_incidents_table.php
+- create_teams_table.php
+1.0.4:
+- Create Drivers Table
+- create_drivers_table.php
+1.0.5:
+- Create Medicals Table
+- create_medicals_table.php
+1.0.6:
+- Create Fires Table
+- create_fires_table.php
+1.0.7:
+- Create Documents Table
+- create_categories_table.php
+- create_documents_table.php
+- create_subs_table.php
+1.0.8:
+- Update PPE
+1.0.9:
+- Update Audits
+1.1.0:
+- Create Evac
+- create_evacuations_table.php
+1.1.0b:
+- Update PPE
+1.1.1:
+- Create Supplier
+- create_suppliers_table.php
+1.1.2:
+- Update PPE
+1.1.3:
+- Create Training
+- create_trainings_table.php
+1.1.4:
+- Update PPE
+- create_ppetypes_table.php
+1.1.5:
+- Restore Training
+1.1.6:
+- Create Questions
+- create_question_elements_table.php
+- create_questions_table.php
+- create_questionnaires_table.php
+- create_employee_questionnaires_table.php
+- create_employee_quetionnaire_answers_table.php
+1.1.7:
+- Update PPE
+1.1.8:
+  - Create Whistle Blower
+  - create_whistle_blowers_table.php

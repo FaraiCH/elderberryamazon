@@ -1,0 +1,17 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    name:
+        label: name
+
+    documentheader:
+      label: Document Header
+
+    documentfooter:
+      label: Document Footer    
+            

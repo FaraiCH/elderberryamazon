@@ -1,0 +1,97 @@
+<style>
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-weekday {
+    border: 1px solid #d7e1ea;
+    background-color: #f0f4f8;
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.calendar-day {
+    border-bottom: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+    padding: 0.25rem;
+    text-align: center;
+    min-height: 150px;
+    line-height: 150px;
+    transition: background-color 0.2s ease-in-out;
+    color: inherit;
+}
+
+.calendar-day:hover {
+    background-color: #f0f4f8;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.calendar-day-current,
+.calendar-day-current:hover {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+.calendar-day:nth-child(7n + 1) {
+    border-left: 1px solid #d1d5db;
+}
+
+.calendar-day-disabled {
+    color: #d1d5db;
+}
+
+
+</style>
+
+<h1 class="page-title">
+
+</h1>
+
+<div class="calendar">
+    <!-- Week days -->
+    <div class="calendar-weekday">Mon</div>
+    <div class="calendar-weekday">Tue</div>
+    <div class="calendar-weekday">Wed</div>
+    <div class="calendar-weekday">Thu</div>
+    <div class="calendar-weekday">Fri</div>
+    <div class="calendar-weekday">Sat</div>
+    <div class="calendar-weekday">Sun</div>
+
+    <!-- Days of the previous month -->
+    <div class="calendar-day calendar-day-disabled">30</div>
+    <div class="calendar-day calendar-day-disabled">31</div>
+
+    <!-- Days of the current month -->
+    <?php  foreach($dateRange as $key => $value): ?>
+    <a href="productiondailyreport/dailydata?query=<?= $value ?>" class="calendar-day <?= ($value === $currentDate) ? 'calendar-day-current' : '' ?>">
+        <?= $value ?>
+    </a>
+    <?php endforeach ?>
+
+    <!-- The current day -->
+    <div class="calendar-day">...</div>
+
+    <!-- Days of the next month -->
+    <div class="calendar-day calendar-day-disabled">1</div>
+    <div class="calendar-day calendar-day-disabled">2</div>
+</div>
+
+
+<ul hidden>
+
+<?php  foreach($dateRange as $date): ?>
+
+<li>
+    <a href="productiondailyreport/dailydata?query=<?= $date ?>">
+        <?= $date ?>
+        <?= ($date === $currentDate) ? ' - Today' : '' ?>
+    </a>
+</li>
+
+<?php endforeach ?>
+
+</ul>

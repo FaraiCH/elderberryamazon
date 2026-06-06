@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Ppetype
+
+# Model Form Field configuration
+form: $/bt/sheq/models/ppetype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Ppetype
+
+# Default redirect location
+defaultRedirect: bt/sheq/ppetype
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/ppetype/update/:id
+    redirectClose: bt/sheq/ppetype
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/ppetype
+    redirectClose: bt/sheq/ppetype
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

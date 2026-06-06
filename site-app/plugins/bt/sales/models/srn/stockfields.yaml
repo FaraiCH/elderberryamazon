@@ -1,0 +1,61 @@
+fields:
+    header1:
+        type: section
+        label: 1. Pick Slip and Weight
+        cssClass: noezanheader
+
+    pickslip:
+        label: Pickslip
+        type: dropdown
+        placeholder: Choose Pick Slip
+        span: auto
+        disabled: true
+    weight_bridge:
+        label: Weight Bridge After Load
+        type: number
+        span: auto
+    header2:
+        type: section
+        label: 2. Approval
+        cssClass: noezanheader
+    srnapprove@update:
+        path: $/bt/sales/controllers/srn/_srnapprove.htm
+        tab: QC Approval
+        type: partial
+    header3:
+        type: section
+        label: 3. Loaded Pipes
+        cssClass: noezanheader
+    pipes@update:
+        tab: Delivery Pipes
+        type: partial
+        path: $/bt/sales/models/srn/items_disabled.htm
+    header4:
+        type: section
+        label: 4. Loaded Catalogues
+        cssClass: noezanheader
+    catalogue@update:
+        label: Additional Catalogue Products
+        tab: Catalogue
+        type: partial
+        path: $/bt/sales/models/srn/catalgue_disabled.htm
+    header5:
+        type: section
+        label: 5. Take Pictures
+        cssClass: noezanheader
+
+    images_weight_bridge:
+            label: Weight Bridge Pictures
+            type: fileupload
+            tab: Delivery Documents
+            comment: Upload  all related images  weight  bridge, Before and after
+            span: auto
+    images_delivery:
+            label: Pictures On Truck With Stock
+            type: fileupload
+            tab: Delivery Documents
+            comment: Upload  all related images ie Truck, Before and after
+            span: auto
+
+
+

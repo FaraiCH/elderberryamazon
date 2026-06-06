@@ -1,0 +1,31 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    # productname:
+    #     label: Product
+    #     disabled: true
+    #     select: name
+    #     type: relation
+    #     span: left
+
+    # supplier_batch:
+    #     label: Supplier Batch
+    #     disabled: true
+    #     span: right
+   
+    # weight:
+    #     label: Weight in KG
+    #     disabled: true
+    #     span: left
+
+    # mfi:
+    #   label: MFI
+    #   disabled: true
+    #   span: right
+
+    active:       
+        label: Active or Deactivate Material
+        type: switch

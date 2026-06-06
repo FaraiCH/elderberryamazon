@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Medical
+
+# Model Form Field configuration
+form: $/bt/sheq/models/medical/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Medical
+
+# Default redirect location
+defaultRedirect: bt/sheq/medical
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/medical/update/:id
+    redirectClose: bt/sheq/medical
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/medical
+    redirectClose: bt/sheq/medical
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

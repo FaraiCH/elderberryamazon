@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    date:
+        label: Date of Drill
+        type: datepicker
+        mode: date
+        span: auto
+    comment:
+        label: Comments
+        span: auto
+        type: textarea
+    files:
+        label: Attachements
+        type: fileupload
+        span: auto
+        mode: file
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx
+

@@ -1,0 +1,71 @@
+<div class="col-sm-12" style="padding: 10px">
+        <table class="table table-striped table-bordered table-sm" id="tablesimple" >
+            <thead>
+                <tr>
+                  <td style="background: #0c0c80; color: whitesmoke;">Date</td>
+                  <?php foreach($schedules as $sch => $value): ?>
+                  <td value="" style="background: #0c0c80; color: whitesmoke;"><?= $sch ?></td>
+                   <?php endforeach ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($hours as $key => $weekly): ?>
+                  <tr>
+                    <td value=""><?= $weekly ?></td>
+                    <?php $counter = 0 ?>
+                    <?php foreach ($schedules as $sch => $value): ?>
+                      <?php foreach ($value as $datekey => $val): ?>
+                        <?php if ($datekey == $weekly): ?>
+                          <td style="text-align: right"><?= $val ?></td>
+                          <?php $counter++; ?>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    <?php endforeach ?>
+                  </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td nowrap="" style="background: #A9A9A9; color: whitesmoke;">Normal-Time</td>
+                    <?php foreach($totals as $key => $totalValue): ?>
+                        <td style="background: #A9A9A9; color: whitesmoke;text-align: center;"><?= $totalValue['Total'] ?></td>
+                    <?php endforeach ?>
+                </tr>
+                <tr>
+                    <td nowrap="" style="background: #A9A9A9; color: whitesmoke;">OverTime 1.5</td>
+                    <?php foreach($totalsOT as $key => $totalsOTValue): ?>
+                        <td style="background: #A9A9A9; color: whitesmoke;text-align: center;"><?=$totalsOTValue['TotalOT']  ?></td>
+                    <?php endforeach ?>
+                </tr>
+                <tr>
+                    <td nowrap="" style="background: #A9A9A9; color: whitesmoke;">Saturday</td>
+                    <?php foreach($totalsatOT as $key => $totalsatOTValue): ?>
+                        <td style="background: #A9A9A9; color: whitesmoke;text-align: center;"><?=$totalsatOTValue['satOT']  ?></td>
+                    <?php endforeach ?>
+                </tr>
+                <tr>
+                    <td nowrap="" style="background: #A9A9A9; color: whitesmoke;">Sunday</td>
+                    <?php foreach($TotalsunOT as $key => $totalsunOTValue): ?>
+                        <td style="background: #A9A9A9; color: whitesmoke;text-align: center;"><?=$totalsunOTValue['sunOT']  ?></td>
+                    <?php endforeach ?>
+                </tr>
+                <tr>
+                    <td nowrap="" style="background: #0c0c80; color: whitesmoke;">Total-Time</td>
+                    <?php foreach($sumOT as $key => $totalsumOTValue): ?>
+                        <td style="background: #0c0c80; color: whitesmoke;text-align: center;"><?=$totalsumOTValue['sumsOT']  ?></td>
+                    <?php endforeach ?>
+                </tr>
+                <!--
+                <tr>
+                    <td nowrap="" style="background: #0c0c80; color: whitesmoke;">Average Hours</td>
+                    <?php foreach($sumOT as $key => $totalsumOTValue): ?>
+                        <td style="background: #0c0c80; color: whitesmoke;text-align: center;">
+                             <?php //number_format($totalsumOTValue['sumsOT'] / $counter, 2) ?>
+                        </td>
+                    <?php endforeach ?>
+
+                </tr>
+                -->
+            </tfoot>
+        </table>
+    </div>

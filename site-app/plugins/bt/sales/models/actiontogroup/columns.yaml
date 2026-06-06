@@ -1,0 +1,14 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    groupname:
+      label: Group Name
+      relation: group
+      searchable: true
+      select: name
+

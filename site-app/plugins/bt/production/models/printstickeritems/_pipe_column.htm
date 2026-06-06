@@ -1,0 +1,11 @@
+
+<?php if(isset($record->pipe)): ?>
+	<?php
+	 	$inv = "Quote ".$record->pipe->qpush->quote->id;
+        
+        
+        echo $record->pipe->qpush->quote->company_name." ($inv) :".$record->pipe->quoteitems->description;
+
+?>
+
+<?php endif; ?>

@@ -1,0 +1,63 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    description:
+        label: Name
+        searchable: true
+
+    units:
+        label: Qty
+        type: number
+
+    unitprice:
+        label: Unit Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+
+    price:
+        label: Price
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+    product:
+        label: BT HDPE Pipe
+        select: name
+        relation: product
+
+    unitlength:
+        label: Unit Length
+
+    priceperkg:
+        label: Price Per KG
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+
+    weight:
+        label: Weight
+        format:  "$%.2f kg"
+    totalweight:
+        label: Total Weight
+        format:  "$%.2f kg"
+
+    priceweightunit:
+        label: Price Weight Unit
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+
+    priceweighttotal:
+        label: Price Weight Total
+        type: partial
+        path: $/bt/sales/models/quoteitems/_currency_column.htm
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date

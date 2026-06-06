@@ -1,0 +1,102 @@
+<div class="card card-default mb-4 mt-3">
+    <div class="card-header py-2">
+        <b>Filter</b>
+    </div>
+    <div class="card-body py-2">
+        <?= Form::open(['method' => 'post', 'class' => 'form-inline']) ?>
+        <div class="form-group" style="padding-top: 20px">
+            <label for="quote">Quote Number</label>
+            <select id="quote" name="quote" style="width: 300px" class="form-control custom-select">
+                <option value="0">Select Quote</option>
+                <?php foreach($quoteObj as $cl): ?>
+                <option value="<?= $cl->id ?>"<?php if(isset($selectquote)) echo ($selectquote == $cl->id)? 'selected = "selected"':''?>><?= $cl->id . '  ' . $cl->company_name ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <?= Form::close()?>
+    </div>
+</div>
+<?php $count = 0; ?>
+<?php $first_date = null?>
+<div class="tab-pane pane-bordered">
+    <div style="position: relative;" class="control-tabs master callout fade in"  data-control="tab" data-closable>
+        <div class="content tab-content" style="padding-top: 10px" >
+            <div>
+                <div class="control-list">
+                    <table class="table data">
+                        <thead>
+                        <tr>
+                            <th><span>Quote</span></th>
+                            <th><span>Client</span></th>
+                            <th><span>PO</span></th>
+                            <th><span>Condition</span></th>
+                            <th><span>Date</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($quoteLive->id)): ?>
+                                <?php foreach($quoteLive->responses as $condition): ?>
+                                    <tr>
+                                        <?php if($count == 0): ?>
+                                            <td>
+                                                <?= $quoteLive->id ?>
+                                            </td>
+                                            <td>
+                                                <?= $quoteLive->client->company_name ?>
+                                            </td>
+                                            <td>
+                                                <?= $quoteLive->ponumber ?>
+                                            </td>
+                                        <?php else: ?>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        <?php endif ?>
+                                        <td>
+                                            <?= $condition->status->name ?>
+                                        </td>
+                                        <td>
+                                            <?php if($count == 0): ?>
+                                                <?= $condition->created_at ?>
+                                                <?php $first_date = date_format($condition->created_at, 'Y-m-d') ?>
+                                            <?php else: ?>
+                                                <?= $condition->created_at ?>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <?php $count++ ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="callout fade in callout-success">
+    <div class="content">
+        <div id='calendar'></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                timeZone: 'local',
+                initialDate: <?= $first_date  ?>,
+                navLinks: true, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                editable: true,
+                events: <?= json_encode($calender) ?>,
+            });
+        calendar.render();
+    });
+</script>

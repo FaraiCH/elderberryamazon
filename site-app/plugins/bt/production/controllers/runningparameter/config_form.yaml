@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Running Parameter
+
+# Model Form Field configuration
+form: $/bt/production/models/runningparameter/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\RunningParameter
+
+# Default redirect location
+defaultRedirect: bt/production/runningparameter
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/production/runningparameter/update/:id
+    redirectClose: bt/production/runningparameter
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/production/runningparameter
+    redirectClose: bt/production/runningparameter
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

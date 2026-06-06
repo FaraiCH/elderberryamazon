@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Equipment Register
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/equipmentregister/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\EquipmentRegister
+
+# Default redirect location
+defaultRedirect: bt/maintenance/equipmentregister
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/maintenance/equipmentregister/update/:id
+    redirectClose: bt/maintenance/equipmentregister
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/maintenance/equipmentregister
+    redirectClose: bt/maintenance/equipmentregister
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

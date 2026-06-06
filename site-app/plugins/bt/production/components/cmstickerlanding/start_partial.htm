@@ -1,0 +1,20 @@
+{% set qcreason = CmStickerLanding.reason %}
+{% set printpipe = CmStickerLanding.item %}
+
+{% if printpipe.qcstatus.id == 2 or printpipe.qcstatus.id == 3 %}
+    Reason:
+    <select name="qcreason" id="qcreason" class="select_search form-control form-size"  minlength="4" minlength="4" data-track-input data-request="onStickerLandingReason">
+        <option value="0">Select Reason</option>
+        {% for reason in qcreason %}
+            {% if printpipe.reason.id == reason.id %}
+                <option selected value="{{reason.id}}">{{reason.reason}}</option>
+            {% else %}
+                <option value="{{reason.id}}">{{reason.reason}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    <div id="wall-thickness">
+        {% partial __SELF__ ~ '::wall_thickness_partial' %}
+    </div>
+{% endif %}

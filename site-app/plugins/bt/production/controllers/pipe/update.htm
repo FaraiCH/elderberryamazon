@@ -1,0 +1,137 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/production/push') ?>">Productions</a></li>
+        <li><a href="<?= Backend::url('bt/production/push') ?>">
+             QT <?= e($formModel->qpush->quote->id) ?> : <?= e($formModel->qpush->quote->company_name) ?>
+
+
+            </a></li>
+        <?php if(isset($formModel->quoteitems->description)): ?>
+            <li>Pipe: <?= e($formModel->quoteitems->description) ?>
+            </li>
+        <?php else: ?>
+            <li>PIPE HAS BEEN DELETED FROM QUOTE</li>
+        <?php endif ?>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+     <div class="scoreboard">
+                <div data-control="toolbar">
+
+
+                    <div class="scoreboard-item title-value">
+                        <h4>Production Item</h4>
+                        <p class="oc-icon-address-card-o"> <?= e($formModel->qpush->quote->company_name) ?></p>
+                        <p class="description">Status: <b><?= e($formModel->qpush->status->name)?></b></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Pipe Description</h4>
+                        <?php if(isset($formModel->quoteitems->description)): ?>
+                            <p><?= e($formModel->quoteitems->description) ?></p>
+                        <?php else: ?>
+                            <p>PIPE HAS BEEN DELETED FROM QUOTE</p>
+                        <?php endif ?>
+                        <p class="description"></p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Dated Requested</h4>
+                        <p class="positive"><?= e($formModel->qpush->created_at)?></p>
+                        <p class="description"></p>
+                    </div>
+
+                </div>
+            </div>
+
+
+         <div class="layout-row">
+            <div class="control-tabs content-tabs" data-control="tab">
+                    <ul class="nav nav-tabs">
+
+                          <li class="nav-item active ">
+                            <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pipe Details</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Schedule Days</a>
+                          </li>
+
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent" style="background: #fff">
+
+                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div style="padding: 0px 20px"><h3>Pipe Details</h3> <?= $this->formRender() ?></div>
+                        </div>
+                        <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div style="padding: 0px 20px"><h3>Schedule Days</h3>
+
+                                <?php if (count($formModel->schedules) > 0): ?>
+                                    <?= $this->relationRender('schedules') ?>
+                                <?php else: ?>
+                                  <?php if ($formModel->start_date): ?>
+                                        <!-- <form data-request="onCreateSchedule" data-request-files data-request-flash>
+                                                <button type="submit" class="btn btn-primary btn-block mt-0 " data-attach-loading>create schedule</button>
+                                        </form>
+ -->
+                                        <button class="btn btn-primary"  data-request-flash data-request-loading data-request="onCreateSchedule" data-request-data="id: <?php echo($formModel->id); ?>">Create Schedule</button>
+                                    <?php else: ?>
+
+
+                                        <div class="callout fade in callout-info no-subheader">
+                                            <div class="header">
+                                                <i class="icon-info"></i>
+                                                <h3>NOTE: Setup production details first to see pipe schedule</h3>
+                                            </div>
+                                        </div>
+                                    <?php endif ?>
+                                <?php endif ?>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Pipe..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+               <!--  <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Pipe..."
+                    class="btn btn-default">
+                    Save and Close
+                </button> -->
+
+              <!--   <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/production/pipe') ?>">Cancel</a>
+                </span> -->
+
+                <a target="_blank" class="btn btn-primary pull-right " href="/pipe/item/download/<?=   $formModel->id ?>">Download Pipe Details/PDF</a>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/production/pipe') ?>" class="btn btn-default">Return to pipe list</a></p>
+
+<?php endif ?>

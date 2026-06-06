@@ -1,0 +1,38 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    usedby:
+      label: Used By
+      searchable: true
+      relation: usedby
+      select: name
+    opendate:
+      label: Date
+      type: date
+      format:  d F Y
+    inout:
+      label: In / Out
+      searchable: true
+      relation: inout
+      select: name
+    quantity:
+      label: Qty
+    reason:
+      label: reason
+    condition:
+      label: Condition
+      searchable: true
+      relation: condition
+      select: name
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Assetuse
+
+# Model Form Field configuration
+form: $/bt/factory/models/assetuse/fields.yaml
+
+# Model Class name
+modelClass: Bt\Factory\Models\Assetuse
+
+# Default redirect location
+defaultRedirect: bt/factory/assetuse
+
+# Create page
+create:
+    title: Create Assetuse
+    redirect: bt/factory/assetuse/update/:id
+    redirectClose: bt/factory/assetuse
+
+# Update page
+update:
+    title: Edit Assetuse
+    redirect: bt/factory/assetuse
+    redirectClose: bt/factory/assetuse
+
+# Preview page
+preview:
+    title: Preview Assetuse

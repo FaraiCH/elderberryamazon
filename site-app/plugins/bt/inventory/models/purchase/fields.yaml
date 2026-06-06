@@ -1,0 +1,122 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date_of_puchase:
+        label: Date Of Purchase
+        disabled: false
+        type: datepicker
+        cssClass: noezanclass col-sm-4
+        span: storm
+        mode: date
+
+
+
+    expected_date_of_receipt:
+        label: Expected Delivery Date
+        disabled: false
+        type: datepicker
+        cssClass: noezanclass col-sm-4
+        span: storm
+        mode: date
+
+    is_completed:
+        label: Is delivery Completed?
+        type: switch
+        span: storm
+        cssClass:  col-sm-3
+        options:
+            0: Not Completed
+            1: Completed
+tabs:
+    fields:
+        supplier:
+          label: Supplier
+          disabled: false
+          select: name
+          type: relation
+          cssClass: noezanclass col-sm-6
+          span: storm
+          tab: Supplier
+
+        supplier_batch:
+          label: Supplier Batch
+          disabled: false
+          tab: Supplier
+          cssClass: noezanclass col-sm-6
+          span: storm
+        weight:
+          label: Total Weight in KG
+          type: number
+          disabled: false
+          tab: Product
+          cssClass: noezanclass col-sm-6
+          span: storm
+
+        poitems:
+          path: $/bt/inventory/controllers/purchase/_poitems.htm
+          tab: Product
+          type: partial
+        pricekg:
+          label: Price per KG
+          disabled: false
+          tab: Pricing
+          cssClass: noezanclass col-sm-6
+          span: storm
+        price:
+          label: Total Price in Rands
+          disabled: true
+          tab: Pricing
+          cssClass: noezanclass col-sm-6
+          span: storm
+          dependsOn:
+            - pricekg
+          comment: Total price must includ VAT (System will calculate the total in the PO (Price inc VAT- Vat) )
+        price_excl:
+          label: Total Price Exclusive Vat
+          disabled: true
+          tab: Pricing
+          cssClass: noezanclass col-sm-6
+          span: storm
+          dependsOn:
+            - price
+        vat:
+          label: Total VAT
+          disabled: true
+          tab: Pricing
+          cssClass: noezanclass col-sm-6
+          span: storm
+          dependsOn:
+            - price
+        transportcost:
+          label: Transport Cost In Rands
+          disabled: false
+          tab: Pricing
+          cssClass: noezanclass col-sm-6
+          span: storm
+        po_number:
+          label: PO Number
+          disabled: false
+          tab: Pricing
+          cssClass: noezanclass col-sm-6
+          span: storm
+        pricefiles:
+          label: Price Files
+          type: fileupload
+          tab: Pricing
+          mode: file
+
+
+        notes:
+          label: Notes
+          disabled: false
+          tab: Comments
+        approved@update:
+          path: $/bt/inventory/controllers/purchase/_approve.htm
+          tab: Approve By Management
+          type: partial
+

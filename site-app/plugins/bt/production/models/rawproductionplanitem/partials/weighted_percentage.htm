@@ -1,0 +1,5 @@
+<?php
+
+echo number_format(($record->weight_kg / $record->raw_material_plan->raw_material_items->sum('weight_kg')) * 100, 2, '.', '');
+
+?>

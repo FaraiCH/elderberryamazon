@@ -1,0 +1,193 @@
+<?php
+	$class = 'callout-success';
+?>
+
+<?php if (count($list ) == 0): ?>
+
+  
+
+    <p class="flash-message static error">No Production Planned</p>
+   
+
+<?php endif ?>
+
+    <div style="margin-bottom: 20px;">
+    	<button onclick="window.print()" class="btn btn-primary oc-icon-print">Print This Page</button>	
+    </div>
+
+  	<div class="control-tabs content-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#contentTabOne">Production Calendar</a></li>
+        <li><a href="#contentTabTwo">Production List</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane pane-bordered active">
+            
+
+        	<!-- -------------------------- -->
+
+
+        	<div class="callout fade in callout-success">
+ 
+  <div class="content">
+  <div id='calendar'></div>
+  </div>
+  
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Control Scheet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="titleshow"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/core/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/interaction/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/daygrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/timegrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/list/main.js"></script>
+
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+     
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      events: <?= json_encode($events) ?> //,
+
+
+
+    });
+
+    calendar.render();
+
+  });
+$(document).ready(function () {
+
+});
+
+</script>
+
+        	<!-- ------------------------------------------------ -->
+
+        </div>
+        <div class="tab-pane pane-bordered">
+            <?php $totalkg = 0; ?>
+				<?php foreach($list as $item): ?>
+					    <div style="position: relative;" class="control-tabs master callout fade in <?= $class?>"  data-control="tab" data-closable>
+					    	<?php
+					    		$class = 'callout-warning';
+							?>
+					    	<div class="header" style="padding: 10px 10px">
+					    		 <i class="icon-coffee"></i>
+							        <h3 style="font-size: 16px"><?= $item->size ?> mm / <?= $item->btline->name ?></h3>
+							        <p> <span  class="oc-icon-bell-o"><b><?= $item->status->name ?></b></span> <?= date("D j M Y, g:i a",strtotime($item->startdate)) ?> <b>To</b> <?= date("D j M Y, g:i a",strtotime($item->enddate)) ?></p>
+					    	</div>
+							
+					    	<div class="content tab-content" style="padding-top: 10px" >
+					    		<div>
+					    			<p style="font-size: 16px">  
+					    			Change Over <span  class="oc-icon-clock-o"> <b><?= $item->changeover_hours ?> h</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					    			 <span  class="oc-icon-commenting-o"> <?= $item->comments ?></span></p>
+								        
+					    		<div class="control-list">
+								    <table class="table data">
+								        <thead>
+								            <tr>
+								                <th><span>Priority</span></th>
+								                <th><span>Quote</span></th>
+								                <th><span>Client</span></th>
+								                <th><span>Item</span></th>
+								                <th><span>Qty</span></th>
+								                <th style="text-align: right"><span>Weight P/M</span></th>
+								                <th style="text-align: right"><span>Total Weight</span></th>
+								            </tr>
+								        </thead>
+
+								        <tbody>
+								        	<?php
+												$countkg = 0;?>
+
+								        	<?php foreach($item->planitems as $val): ?>
+									            <tr>
+									                <td><?php  for ($i=0; $i < $val->prodorder; $i++): ?>
+						    							<span class="oc-icon-star" style="color: #e5a91a" ></span>
+														<?php endfor ?>
+													</td>
+									                 <td><?= $val->quote_id ?></td>
+									                 <td><?= $val->quote->company_name ?></td>
+									                 <td><?= $val->item->description ?></td>
+									                 <td><?= $val->qty ?></td>
+									                 <td style="text-align: right"><?= $val->item->weight ?> kg</td>
+									                 <td style="text-align: right"><?= ($val->qty * $val->item->weight) ?> kg</td>
+									                <?php
+														$countkg += ($val->qty * $val->item->weight);
+													?>
+									            </tr>
+								            <?php endforeach ?>
+								        </tbody>
+								        <tfoot>
+								        	<tr>
+								            	<th colspan="6" style="text-align: right">Total</th> <th style="text-align: right"><?= $countkg ?> kg</th>
+								            </tr>
+								        </tfoot>
+								    </table>
+								</div>
+							</div>
+							</div>
+						</div>
+				    			<?php $totalkg += $countkg;?>
+				  <?php endforeach ?>
+
+
+				  	<table class="table data">
+				  		<tbody>
+				  			<tr style="font-size: 16px">
+					  			<td>Total: </td>
+					  			<td text align="right"><?= number_format($totalkg, 2) ?>  kg</td>
+					  		</tr>
+					  		<tr style="font-size: 16px">
+					  			<td>Material Incage: </td>
+					  			<td text align="right"><?= number_format($incage, 2) ?>  kg</td>
+					  		</tr>
+						</tbody>
+						<tfoot>
+						  		<tr style="font-size: 16px">
+						  			<td><b>Material Incage VS Required: </b></td>                               
+						  			<td text align="right"><b><?= number_format($incage - $totalkg, 2) ?>  kg</b></td>
+						  		</tr>
+						  	</tfoot>
+				  	</table>
+
+        </div>
+    </div>
+</div>
+
+  	
+
+  

@@ -1,0 +1,7 @@
+
+export:
+    title: Export Bt Employees
+    modelClass: Bt\HR\Models\EmployeeExport
+    list: $/bt/hr/models/employee/columns_export.yaml
+    redirect: bt/hr/employee
+    fileName: requisition-export.csv

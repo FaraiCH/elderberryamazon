@@ -1,0 +1,45 @@
+scopes:
+    pay_roll:
+        label: Payroll
+        type: group
+        conditions: pay_roll in (:filtered)
+        modelClass: Bt\HR\Models\Employee
+        nameFrom: pay_roll
+        options:
+            1: BT
+            0: EXPRESS
+
+    project:
+        label: Company
+        modelClass: Bt\Finance\Models\Project
+        conditions: company_id in (:filtered)
+        nameFrom: name
+        # default: [1]
+    department:
+        label: Department
+        modelClass: Bt\HR\Models\Department
+        conditions: department_id in (:filtered)
+        nameFrom: name
+
+    designation:
+        label: Designation
+        modelClass: Bt\HR\Models\Designation
+        conditions: designation_id in (:filtered)
+        nameFrom: name
+
+
+    createdby:
+        label: Created By
+        modelClass: Backend\Models\User
+        conditions: created_by in (:filtered)
+        nameFrom: first_name
+
+    is_user_active:
+        label: Is User Active?
+        type: switch
+        default: 1
+        conditions:
+            - is_user_active <> true
+            - is_user_active = true
+    
+        

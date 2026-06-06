@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+
+    material:
+        label: Material To Used
+        type: dropdown
+        placeholder: -- Select a Material --
+
+    measurement:
+        label: Measurement Type
+        type: dropdown
+        span: auto
+        placeholder: -- Select Measurement --
+    kg_per_measurement:
+        label: Measurement in KG's
+        span: auto
+        comment: Virgin 25kg = 1 Bag,  Regrin 10kg = 1 Bucket,  Master Batch 0.5kg = 1 Cup,  Desicant 0.25 = 1 Cup,
+        dependsOn: measurement
+        type: number
+

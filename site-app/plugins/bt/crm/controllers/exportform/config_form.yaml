@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Export Form
+
+# Model Form Field configuration
+form: $/bt/crm/models/exportform/fields.yaml
+
+# Model Class name
+modelClass: Bt\CRM\Models\ExportForm
+
+# Default redirect location
+defaultRedirect: bt/crm/exportform
+
+# Create page
+create:
+    title: Create Export Form
+    redirect: bt/crm/exportform/update/:id
+    redirectClose: bt/crm/exportform
+
+# Update page
+update:
+    title: Edit Export Form
+    redirect: bt/crm/exportform
+    redirectClose: bt/crm/exportform
+
+# Preview page
+preview:
+    title: Preview Export Form

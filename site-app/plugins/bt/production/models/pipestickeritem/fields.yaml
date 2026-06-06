@@ -1,0 +1,61 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    controlsheet_id:
+        label: Controlsheet Id
+        type: dropdown
+        span: auto
+        placeholder: -- Select Control Sheet--
+    batch_id:
+        label: Batch No
+        type: dropdown
+        span: right
+        dependsOn: controlsheet_id
+    counter:
+        label: Counter
+        type: number
+        span: auto
+        disabled: true
+    unit_length:
+        label: Unit Length
+        type: number
+        span: auto
+    binarea_id@update:
+        label: Bin Area
+        type: dropdown
+        placeholder: -- Select Bin Area --
+        span: auto
+    qcstatus_id@update:
+        label: QC Status
+        type: dropdown
+        placeholder: -- Select QC Status --
+        span: auto
+    fail_pic@update:
+        label: Fail Pipe
+        span: auto
+        type: fileupload
+    is_extra:
+        label: Is Extra
+        type: switch
+        span: auto
+    reason_id@update:
+        label: QC Reason
+        type: dropdown
+        placeholder: -- Select Reason --
+        comment: Reason for Fail or On Hold. Leave empty for any other option.
+        span: auto
+
+    weight@update:
+        label: Pipe Weight
+        comment: from Weightometer
+        span: auto
+
+    weight_pic@update:
+        label: Weight Pic
+        span: auto
+        type: fileupload

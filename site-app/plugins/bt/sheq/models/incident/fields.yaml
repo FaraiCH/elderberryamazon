@@ -1,0 +1,65 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#   id:
+#       label: ID
+#       disabled: true
+#       span: auto
+   incident_no:
+       label: Incident No
+       comment: Only For Externals
+       span: auto
+   incident_date:
+       label: Date of Occurence
+       span: auto
+       type: datepicker
+       ignoreTimezone: true
+
+   invest_date:
+       label: Date of Investigation
+       span: auto
+       type: datepicker
+       ignoreTimezone: true
+   name:
+       label: What Happened?
+       span: auto
+       type: textarea
+   root:
+        label: Root Cause
+        type: textarea
+        span: auto
+   control:
+       label: Control Measures
+       type: textarea
+       span: auto
+   close_date:
+       label: Close of Incident
+       type: datepicker
+       span: auto
+       ignoreTimezone: true
+   recall_date:
+       label: Incident Recall
+       type: datepicker
+       span: auto
+       ignoreTimezone: true
+   files:
+       label: Files
+       type: fileupload
+       mode: file
+       comments: Upload files related to the injury
+       span: auto
+   teams:
+       type: repeater
+       titleFrom: team
+
+       form:
+           fields:
+               team:
+                   label: Team Member
+                   span: auto
+                   type: relation
+                   select: name
+                   placeholder: -- Select --
+

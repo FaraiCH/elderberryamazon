@@ -1,0 +1,68 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    opendate:
+        label: Scheduled Date
+        relation: controlsheet
+        select: opendate
+        format: Y-m-d
+        type: date
+
+    shift:
+        label: Shift
+        relation: controlsheet
+        select: shift
+
+    
+
+    timeofreading:
+        label: Time of reading
+
+
+    actual_weight:
+        type: number
+        label: Actual Weight
+
+    actual_lenght:
+        type: number
+        label: Actual Lenght
+       
+    hourly_production:
+          type: number
+          label: Hourly Production
+
+    hourly_scrap:
+        type: number
+        label: Hourly Scrap
+
+    reasonscrap:
+        label: Reason For Scrap
+        relation: reasonscrap
+        select: concat(code,' ', reason)
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

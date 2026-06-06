@@ -1,0 +1,9 @@
+<?php if(isset($value) && is_array($value) && !empty($value) && count($value) > 0):  ?> 
+    <span class="oc-icon-circle text-success">
+         <?php echo count($value); ?>
+    </span>
+<?php else: ?>
+    <span class="oc-icon-circle text-danger">
+        0
+    </span>
+<?php endif; ?>

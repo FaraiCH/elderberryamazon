@@ -1,0 +1,23 @@
+<?php
+  $doccount = 0;
+if(isset($record->file) && !empty($record->file))
+    $doccount++;
+
+if(isset($record->fileinspectionreport) && !empty($record->fileinspectionreport))
+    $doccount++;
+
+?>
+
+<?php if($doccount == 2 ): ?>
+<div style="background: green; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+    <span class="oc-icon-bullseye">(2/2) COMPLETED</span>
+</div>
+<?php elseif($doccount == 1): ?>
+<div style="background: gold; color: white; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+    <span class="oc-icon-exclamation-triangle">(1/2) PARTIALLY COMPLETED</span>
+</div>
+<?php else: ?>
+<div style="background: #ec3838; color: white; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+    <span class="oc-icon-stop-circle">(0/2) INCOMPLETE</span>
+</div>
+<?php endif; ?>

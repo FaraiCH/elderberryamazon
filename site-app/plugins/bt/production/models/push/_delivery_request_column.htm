@@ -1,0 +1,20 @@
+<?php
+    if(isset($record->quote->deliveryrequest)){
+      if($record->quote->deliveryrequest == 1 ){
+            echo '<span class="oc-icon-check text-success">
+            Yes
+        </span>';
+    
+        }else{
+            echo '<span class="oc-icon-circle text-danger">
+            No
+        </span>';
+        }  
+    }else{
+       echo '<span class="oc-icon-circle text-danger">
+        No
+      </span>';
+    }
+
+
+?>

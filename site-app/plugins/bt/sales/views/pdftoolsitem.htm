@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="60%" style="text-align: center;">
+							<h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>BT TOOLS {{'%04d'|format(quote.id)}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="48%" valign="top">
+							<table width="100%" border="0" cellpadding="5px" cellspacing="0">
+
+								<tr><td width="50%"><b>Equipment Type:</b></td><td width="50%">{{quote.equipment_type.name}}</td></tr>
+								{% if quote.partcode is not empty %}
+									<tr><td width="50%"><b>Part Code:</b></td><td width="50%">{{quote.partcode}}</td></tr>
+								{% endif %}
+								<tr><td width="50%"><b>Equipment Description:</b></td><td width="50%">{{quote.name}}</td></tr>
+
+								<tr><td width="50%"><b>Quantity:</b></td><td width="50%">{{quote.quantity}} {{quote.quantitytype.name}}</td></tr>
+
+								{% if quote.make is not empty %}
+									<tr><td width="50%" valign="top" ><b>Make:</b></td><td width="50%">{{quote.make}}</td></tr>
+								{% endif %}
+								{% if quote.serialnumber is not empty %}
+									<tr><td width="50%" valign="top" ><b>Serial Number:</b></td><td width="50%">{{quote.serialnumber}}</td></tr>
+								{% endif %}
+								{% if quote.modelnumber is not empty %}
+									<tr><td width="50%" valign="top" ><b>Model Number:</b></td><td width="50%">{{quote.modelnumber}}</td></tr>
+								{% endif %}
+								{% if quote.size is not empty %}
+									<tr><td width="50%" valign="top" ><b>Size:</b></td><td width="50%">{{quote.size}}</td></tr>
+								{% endif %}
+								{% if quote.suppliername is not empty %}
+									<tr><td width="50%" valign="top" ><b>Manufacture/Supplier:</b></td><td width="50%">{{quote.suppliername}}</td></tr>
+								{% endif %}
+								{% if quote.notes is not empty %}
+									<tr><td width="50%" valign="top" ><b>Notes/Comments:</b></td><td width="50%">{{quote.notes}}</td></tr>
+								{% endif %}
+							</table>
+						</td>
+						<td></td>
+						<td width="48%" valign="top" >
+							<table width="100%" border="0" cellpadding="5px" cellspacing="0">								<tr><td width="50%"><b>Created At:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}
+									</td></tr>
+									<tr><td width="50%"><b>Updated At:</b></td><td width="50%">{{quote.updated_at|date("Y-m-d")}}
+									</td></tr>
+								{% if quote.puchased_date is not empty %}
+									<tr><td width="50%"><b>Date Of Purchase:</b></td><td width="50%">{{quote.puchased_date|date("Y-m-d")}}
+									</td></tr>
+								{% endif %}
+								{% if quote.price > 0 %}
+									<tr><td width="50%" valign="top" ><b>Price:</b></td><td width="50%">R{{quote.price}}</td></tr>
+								{% endif %}
+								{% if quote.caliberation_date is not empty %}
+									<tr><td width="50%"><b>Caliberation Date:</b></td><td width="50%">{{quote.caliberation_date|date("Y-m-d")}}</td></tr>
+								{% endif %}
+								{% if quote.caliberation_expiery_date is not empty %}
+									<tr><td width="50%"><b>Caliberation Expiery Date:</b></td><td width="50%">{{quote.caliberation_expiery_date|date("Y-m-d")}}</td></tr>
+								{% endif %}
+								<tr><td width="50%"><b>Active:</b></td><td width="50%">{{quote.fileawayyes.name}}</td></tr>
+
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+
+
+		<tr>
+			<td>
+				{% for image in quote.images %}
+
+                       <img class="img-fluid gallery-flex" style="max-width: 300px" src="{{ image.path }}" alt="">
+
+                {% endfor %}
+
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<br>
+				<h2>History</h2>
+				<table width="100%" border="1" cellpadding="2px" cellspacing="0px" style="font-size: 11px; border: 1px solid #ccc">
+					<thead>
+						<tr>
+							<th style="background: #ececec">#</th>
+							<th style="background: #ececec">Date</th>
+							<th style="background: #ececec">Used By</th>
+							<th style="background: #ececec">Qty</th>
+							<th style="background: #ececec">In or Out</th>
+							<th style="background: #ececec">Reason</th>
+							<th style="background: #ececec">Condition</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% set counter = 0 %}
+				        {% for itemobject in quote.usage %}
+
+				        	<tr>
+				        		<td>{{itemobject.id}}</td>
+								<td>{{itemobject.opendate|date("Y-m-d")}}</td>
+
+								<td>{{itemobject.usedby.name}}</td>
+								<td>{{itemobject.quantity}}</td>
+								<td>{{itemobject.inout.name}}</td>
+								<td>{{itemobject.reason}}</td>
+								<td>{{itemobject.condition}}</td>
+				             </tr>
+				             {% if itemobject.images.count > 0%}
+				             	<tr>
+				             		<td colspan="7">
+						             	{% for image in itemobject.images %}
+
+		                       				<img class="img-fluid gallery-flex" style="max-height: 200;max-width: 200px" src="{{ image.path }}" alt=""><br>
+
+		                				{% endfor %}
+		                			</td>
+                			{% endif %}
+
+				        {% endfor %}
+
+			        </tbody>
+   		 		</table>
+
+			</td>
+		</tr>
+
+
+
+
+
+	</table>
+
+
+	</body>
+	</html>

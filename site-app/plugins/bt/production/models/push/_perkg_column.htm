@@ -1,0 +1,24 @@
+<?php
+	$count = 0.00;
+	if(isset($record->quote) && !empty($record->quote->items) && count($record->quote->items) > 0){
+		if($record->quote->items->sum("totalweight") > 0)
+		$count = $record->quote->items->sum("price")/$record->quote->items->sum("totalweight");
+	}
+			
+?>
+<?php if($count == 9999999999): ?>
+	<span class="text-info" >
+	    not set
+	    </span>
+<?php else: ?>
+	<?php if($count > 0): ?>
+	    <span class="text-success">
+	        R <?php echo number_format($count,2, '.', ','); ?>
+	    </span>
+
+	<?php else: ?>
+	    <span class="text-danger" >
+	    R <?php echo $count; ?>
+	    </span>
+	<?php endif; ?>
+<?php endif; ?>

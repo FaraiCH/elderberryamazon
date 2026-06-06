@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Elec Meter Reading
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/elecmeterreading/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\ElecMeterReading
+
+# Default redirect location
+defaultRedirect: bt/maintenance/elecmeterreading
+
+# Create page
+create:
+    title: Create Elec Meter Reading
+    redirect: bt/maintenance/elecmeterreading/update/:id
+    redirectClose: bt/maintenance/elecmeterreading
+
+# Update page
+update:
+    title: Edit Elec Meter Reading
+    redirect: bt/maintenance/elecmeterreading
+    redirectClose: bt/maintenance/elecmeterreading
+
+# Preview page
+preview:
+    title: Preview Elec Meter Reading

@@ -1,0 +1,53 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    name:    
+        label: Vehicle Name
+        type: text
+        span: auto
+    num_plate:
+        label: Number Plate
+        type: text
+        span: auto
+    next_service_km:
+        label: Next Service Kilometre
+        type: Number
+        span: auto
+    next_exp_license_disc:
+        label: Next Expery License Disc Date
+        type: datepicker
+        mode: date
+        span: auto
+    next_service_date:
+        label: Next Service Date
+        type: datepicker
+        mode: date
+        span: auto
+
+tabs:
+    fields:
+        vehiclechecklist:
+          path: $/bt/logistics/controllers/vehicle/_checklist.htm
+          tab: Vehicle Checklist Records
+          type: partial
+        vehiclefuelusage:
+          path: $/bt/logistics/controllers/vehicle/_usage.htm
+          tab: Vehicle Fuel Usage Records
+          type: partial
+        files:
+            label: Service Report
+            type: fileupload
+            tab: Upload Files
+            mode: file
+            tab: Files
+            span: auto
+        images:
+            label: Images
+            type: fileupload
+            tab: Images
+            span: auto

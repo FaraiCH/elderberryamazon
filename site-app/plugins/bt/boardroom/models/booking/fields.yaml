@@ -1,0 +1,86 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    section1:
+        type: section
+        cssClass: text-center
+        comment: <h3>Booking (Availability Status)</h3>
+        commentHtml: true
+        dependsOn: duration
+    boardroom_name:
+        label: Boardroom Names
+        type: dropdown
+        placeholder: -- Select Boardroom Names --
+        span: auto
+    subject:
+        label: Subject
+        span: auto
+    date:
+        label: Date
+        type: datepicker
+        mode: date
+        # minDate: now
+        span: auto
+    start_time:
+        label: Start Time
+        type: datepicker
+        mode: time
+        # minDate: now
+        span: auto
+        dependsOn: date
+    duration:
+        label: Duration
+        type: dropdown
+        placeholder: Select Duration
+        dependsOn: start_time
+        span: auto
+    bookedby:
+        label: Booked By
+        type: relation
+        select: concat(name, ' ', surname)
+        placeholder: -- Select  --
+        span: auto
+    departments:
+        type: repeater
+        commentAbove: <h3>Please select Department(s) </h3>
+        commentHtml: true
+        prompt: Choose Departments
+        form:
+            fields:
+                department:
+                    label: Department
+                    span: auto
+                    type : relation
+                    placeholder: Select Departments
+                    select: name
+    no_of_attendees:
+        label: Number of Attendees
+        type: Number
+        span: auto
+    booking_type:
+        label: Booking Type(Internal/External)
+        type: dropdown
+        placeholder: -- Select Booking Type --
+        span: auto
+    status@update:
+        label: Booking Status
+        type: dropdown
+        placeholder: -- Select Booking Status --
+        span: auto
+    notes:
+        label: Notes
+        type: textarea
+        size: small
+        span: auto
+
+tabs:
+    fields:
+        bookingapproval@update:
+          path: $/bt/boardroom/controllers/booking/_approve.htm
+          tab: Approval
+          type: partial

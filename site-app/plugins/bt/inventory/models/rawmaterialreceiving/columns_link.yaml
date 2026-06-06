@@ -1,0 +1,122 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    purchase_id:
+        label: Purchase ID
+        searchable: true
+    date_of_receipt:
+        label: Date Received
+        searchable: true
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sales/models/newquote/_active.htm
+        width: 100px
+    # purchase_id:
+    #     label: purchase_id
+    #     searchable: true
+    #     conditions: purchase_id > 0
+    # container_number:
+    #     label: Container Number
+    #     searchable: true
+    #     invisible: true
+    # truck_number_plate:
+    #     label: Truck Number Plate
+    #     searchable: true
+    #     invisible: true
+    
+    product:
+        label: Product
+        searchable: true
+        relation: productname
+        select: name
+    supplier_batch:
+        label: Supplier Batch
+        searchable: true
+    # product_code:
+    #     label: Product Code
+    #     invisible: true
+
+    # virgin:
+    #     label: virgin
+    #     searchable: true
+    # regrind:
+    #     label: regrind
+    #     searchable: true
+    bags:
+        label: Bags
+        searchable: true
+        invisible: true
+    weight:
+        label: Weight
+        searchable: true
+        type: number
+        format: %.1f kg
+    pricekg:
+        label: Price Per kg
+        searchable: true
+        type: number
+        format: R %.2f
+    releasedcount:
+        label: Released
+        type: partial
+        path: $/bt/inventory/models/rawmaterialreceiving/_releasedcount_column.htm
+        sortable: false
+        searchable: false
+        width: 100px
+    requestcount:
+        label: Request
+        type: partial
+        path: $/bt/inventory/models/rawmaterialreceiving/_requestcount_column.htm
+        sortable: false
+        searchable: false
+        width: 100px
+    incagecount:
+        label: In Cage
+        type: partial
+        path: $/bt/inventory/models/rawmaterialreceiving/_incagecount_column.htm
+        sortable: false
+        searchable: false
+        width: 100px
+    usedcount:
+        label: Used
+        type: partial
+        path: $/bt/inventory/models/rawmaterialreceiving/_usedcount_column.htm
+        sortable: false
+        searchable: false
+        width: 100px
+
+    # damagedbags:
+    #     label: Damaged Bags
+    #     searchable: true
+    #     invisible: true
+    mfi:
+        label: Mfi
+        searchable: true
+        invisible: true
+    pallet_number:
+        label: Pallet Number
+        searchable: true
+        invisible: true
+    number_of_trucks:
+        label: Number of Trucks
+        searchable: true
+        invisible: true
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+ 

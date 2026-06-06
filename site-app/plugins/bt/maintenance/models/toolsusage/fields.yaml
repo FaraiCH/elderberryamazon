@@ -1,0 +1,44 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    inout:
+      label: Tool/Equiment In Or Out   
+      select: name
+      type: relation
+      span: left    
+
+    usedby:
+      label: Used By    
+      select: name
+      type: relation
+      span: right
+    opendate:
+        label: Date
+        disabled: false
+        type: datepicker
+        span: left
+    quantity:
+        label: Quantity
+        disabled: false
+        type: number
+        span: right
+    reason:
+      label: Reason
+      span: left
+    
+    condition:
+        label: Condition
+        select: name
+        type: relation
+        span: right
+
+    images:
+        label: Images Of Tool/Equiment
+        type: fileupload
+        tab: Images
+    files:
+        label: Files Singed
+        type: fileupload
+        mode: file

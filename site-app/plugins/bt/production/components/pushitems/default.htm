@@ -1,0 +1,154 @@
+{% set itemobject = ProductionPushItems.pushitem %}
+{% set btype = ProductionPushItems.loadStatus() %}
+{% flash %}
+    <div class="alert alert-{{ type }}">
+        {{ message }}
+    </div>
+{% endflash %}
+
+<div class="card ">
+	<div class="card-header">
+		Quote Details (BT-{{itemobject.id}})
+	</div>
+	
+	<div class="card-body">
+
+		<table class="table table-striped " id="table">
+			<thead>
+			<tr>
+			<th>INVOICE #</th>
+			<th>CLIENT</th>
+			<th>DATE REQUESTED</th>
+			<th>DATE TO START</th>
+			<th>DATE TO COMPLETE</th>
+			<th>STATUS</th>
+			
+			</tr>
+			</thead>
+			<tbody>
+				
+					<tr>
+						<td>BT{{itemobject.quote.id}}</td>
+						<td>{{itemobject.quote.company_name}}</td>
+						<td>{{itemobject.created_at|date("Y-m-d")}}</td>
+						<td>{{(itemobject.date_of_accepted)?itemobject.date_of_accepted|date("Y-m-d"):''}}</td>
+						<td>{{(itemobject.date_of_completed)?itemobject.date_of_completed|date("Y-m-d"):''}}</td>
+						<td>{{itemobject.status.name}}</td>
+					</tr>
+				
+			</tbody>
+		</table>
+
+
+		{% if itemobject.pipes is  empty %}
+
+			<h3>Production Items</h3>
+			<table class="table table-sm">
+			<thead>
+			<tr>
+				<th>#</th>
+				<th class="text-center" >Pipe Diameter</th>	
+				<th class="text-left" >Description</th>	
+				<th class="text-center" >Units</th>	
+				<th class="text-center" >Unit Length</th>	
+				<th class="text-center" >Weight</th>
+				<th class="text-center" >Total Weight</th>
+				<th class="text-center" >Estimated Days</th>
+								
+				
+			</tr>
+			</thead>
+			<tbody>
+			{% set counter = 0 %}
+			{% for item in itemobject.quote.items %}
+				{% set counter = counter + 1 %}
+				<tr>
+					<td>{{counter}}</td>
+					<td class="text-center">{{item.product.Diameter.name}}</td>	    
+					<td>{{item.description}}</td>	
+					<td class="text-center">{{item.units}}</td>	
+					<td class="text-center">{{item.unitlength|number_format(0, '.', ',')}}</td>		  
+					<td class="text-center">{{item.weight|number_format(0, '.', ',')}}</td>
+					<td class="text-center">{{item.totalweight|number_format(0, '.', ',')}}</td>
+					<td class="text-center">{{(item.totalweight/((700*0.98*(1-0.03))*24))|number_format(0, '.', ',')}}</td>
+			     </tr>
+			{% endfor %} 
+			</tbody>
+
+			</table>
+		{% endif %}
+	</div>
+</div>
+
+{% for pipe in itemobject.pipes %}
+<div class="card" style="margin-top: 20px">
+	<div class="card-header" style="    display: flex; align-items: center; justify-content: space-between;">
+		<span>PIPE PRODUCTION NO: {{pipe.id}}</span>
+		<a class="btn btn-info "  href="{{ 'production/pipe'|page({'item': itemobject.id,'pipe': pipe.id}) }}"><i class="fa fa-cog"></i> Update Production Details, Materials & Schedule</a>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-sm-4">
+				<table class="table table-sm">
+					<tr><th colspan="2">INVOICE DETAILS</th></tr>
+					<tr><td>Pipe Diameter</td><td>{{pipe.quoteitems.product.Diameter.name}}</td></tr>
+					<tr><td>Description</td><td>{{pipe.quoteitems.description}}</td></tr>
+					<tr><td>Units</td><td>{{pipe.quoteitems.units}}</td></tr>
+					<tr><td>Unit Length</td><td>{{pipe.quoteitems.unitlength|number_format(0, '.', ',')}}</td></tr>
+					<tr><td>Weight</td><td>{{pipe.quoteitems.weight|number_format(1, '.', ',')}}</td></tr>
+				</table>
+			</div>
+			<div class="col-sm-4">
+				<table class="table table-sm">
+					<tr><th colspan="2">PRODUCTION DETAILS</th></tr>
+					<tr><td>Pipe target Weight (Kg)</td><td>{{pipe.pipe_target_weight}}</td></tr>
+					<tr><td>Assigned Production line</td><td>{{pipe.line_id}}</td></tr>
+					<tr><td>Production Rate Kg/h</td><td>{{pipe.production_rate}}</td></tr>
+					<tr><td>Target scrap rate</td><td>{{pipe.target_scrap_rate}}%</td></tr>
+					<tr><td>Target Avilability</td><td>{{pipe.target_availability}}%</td></tr>
+					<tr><td>Effective Production rate</td><td>
+						{{((pipe.production_rate*(pipe.target_availability/100)*(1-(pipe.target_scrap_rate/100))))}}
+					</td></tr>
+					<tr><td>Changeover days</td><td>{{pipe.changeover_days}}</td></tr>
+				</table>
+			</div>
+			<div class="col-sm-4">
+				
+				{% partial __SELF__ ~ '::materiallist' response=pipe.materials   %}
+				
+			</div>
+			<div class="col-sm-12">
+				
+				<table class="table table-sm">
+					<tr><th colspan="6" class="card-header">Agreed Production Schedule </th></tr>
+					<tr><th>Start Date</th><th>Due Date</th><th>Total Mass</th><th>Daily Production Target (Kg)</th><th>Production Days</th><th>Projected Date Of Completion</th></tr>
+					
+					<tr>
+						
+							{% autoescape false %}{% set isnotset = '<span class="text-danger">Not Set</span>' %}{% endautoescape %}
+						
+						<td>{% autoescape false %}{{(pipe.start_date)?pipe.start_date|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+						<td>{% autoescape false %}{{(pipe.due_date)?pipe.due_date|date("Y-m-d"):isnotset|raw}}{% endautoescape %}</td>
+						
+						{% set totalmass = pipe.quoteitems.units * pipe.pipe_target_weight %}
+
+						{% set effective_production_rate =  ((pipe.production_rate*(pipe.target_availability/100)*(1-(pipe.target_scrap_rate/100)))) %}
+
+						{% set dailproduction = effective_production_rate * 24 %}
+						<td>{{ totalmass }}</td>
+						<td>{{ dailproduction }}</td>
+
+						{% set productiondays = (totalmass/(effective_production_rate * 24)) %}
+						<td>{{productiondays|number_format(2, '.', ',')}}</td>
+						<td>{{pipe.start_date|date_modify("+" ~ productiondays|number_format(0, '.', ',') ~ " day")|date("Y-m-d") }}</td>
+					</tr>
+					
+				</table>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+{% endfor %} 
+

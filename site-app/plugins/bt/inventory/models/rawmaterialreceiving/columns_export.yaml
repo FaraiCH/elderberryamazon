@@ -1,0 +1,101 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    supplier_name: 'Manufacturer'
+    supplier_batch:
+        label: Batch
+        searchable: true
+    date_of_receipt:
+        label: Date Received
+        searchable: true
+
+    mfi:
+        label: MFI
+        searchable: true
+
+    mfi_post:
+        label: Post MFI
+        searchable: true
+
+    purchase_id:
+        label: Purchase ID
+        searchable: true
+    product_code:
+        label: Product Code
+
+    active_name: 'Active'
+#    //active:
+#        label: Active
+#        type: partial
+#        path: $/bt/sales/models/newquote/_active.htm
+    # purchase_id:
+    #     label: purchase_id
+    #     searchable: true
+    #     conditions: purchase_id > 0
+    # container_number:
+    #     label: container_number
+    #     searchable: true
+    # truck_number_plate:
+    #     label: truck_number_plate
+    #     searchable: true
+
+    productname_value: 'Product'
+#    //product:
+#        label: Product
+#        searchable: true
+#        relation: productname
+#        select: name
+
+
+    # virgin:
+    #     label: virgin
+    #     searchable: true
+    # regrind:
+    #     label: regrind
+    #     searchable: true
+    bags:
+        label: Bags
+        searchable: true
+    weight:
+        label: Weight
+        searchable: true
+    pricekg:
+        label: Price Per kg
+        searchable: true
+        type: number
+        format: R %.2f
+
+    damagedbags:
+        label: Damaged Bags
+        searchable: true
+#    mfi_comply:
+#        label: MFI
+#        searchable: true
+
+
+    pallet_number:
+        label: Pallet Number
+        searchable: true
+    number_of_trucks:
+        label: Number of Trucks
+        searchable: true
+    released_n: 'Released To Be Used'
+    used_name: 'Used'
+    not_used: 'Not Used'
+    created_by_name: 'Created By'
+    updated_by_name: 'Updated By'
+#    //createdby:
+#        label: Create By
+#        searchable: true
+#        relation: createdby
+#        select: concat(first_name, ' ', last_name)
+#    //updatedby:
+#        label: Updated By
+#        searchable: true
+#        relation: updatedby
+#        select: concat(first_name, ' ', last_name)

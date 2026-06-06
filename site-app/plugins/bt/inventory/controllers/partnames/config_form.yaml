@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Product Name
+
+# Model Form Field configuration
+form: $/bt/inventory/models/partnames/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\PartNames
+
+# Default redirect location
+defaultRedirect: bt/inventory/partnames
+
+# Create page
+create:
+    title: Create Part Name
+    redirect: bt/inventory/partnames/update/:id
+    redirectClose: bt/inventory/partnames
+
+# Update page
+update:
+    title: Edit Part Name
+    redirect: bt/inventory/partnames
+    redirectClose: bt/inventory/partnames
+
+# Preview page
+preview:
+    title: Preview Part Name

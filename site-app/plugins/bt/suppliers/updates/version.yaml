@@ -1,0 +1,7 @@
+1.0.1:
+  - First version of suppliers
+  - create_materialsuppliers_table.php
+1.0.2:
+- Create Categories
+- create_categories_table.php
+- create_vendors_table.php

@@ -1,0 +1,5 @@
+1.0.1:
+- First version of Boardroom
+- create_bookings_table.php
+- create_booking_approvals_table.php
+- create_visitors_table.php

@@ -1,0 +1,20 @@
+{% if printpipe.release_date is empty %}
+<div class="myform">
+    <form>
+        <div>
+            <p>Are you going to release this item?</p>
+            <select name="release" id="release" class="select_search form-control form-size"  minlength="4">
+                <option value="0">Select</option>
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-width btn-block" data-request="onRelease"
+                    data-request-confirm="Are you sure you want to release this pipe?">Save</button>
+        </div>
+    </form>
+</div>
+{% endif %}
+
+

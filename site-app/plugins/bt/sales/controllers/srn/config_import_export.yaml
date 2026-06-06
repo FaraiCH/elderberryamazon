@@ -1,0 +1,6 @@
+export:
+    title: Export Srn
+    modelClass: Bt\Sales\Models\SrnExport
+    list: $/bt/sales/models/srn/columns_export.yaml
+    redirect: bt/sales/srn
+    fileName: srn-export.csv

@@ -1,0 +1,100 @@
+
+<div class="row" >
+
+	<div class="col-sm-12" >
+		<div class="card">
+			<div id="chart_production_weekly_pipes" style="width: 100%; height: 230px;"></div>
+		</div>
+	</div>
+    <div class="col-sm-12" style="margin-top: 10px">
+        <div class="card">
+            <div id="chart_production_weekly_kg" style="width: 100%; height: 230px;"></div>
+        </div>
+    </div>
+</div>
+
+ {% put scripts %}
+{% set graph = RunningScheduleGraphs.getWeeklyProductionGraphPipes() %}
+    <script type="text/javascript">
+    	$(window).on('load',function(){
+				Highcharts.chart('chart_production_weekly_pipes', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Weekly Production'
+                    },
+                    subtitle: {
+                            text: 'Target Units Vs Units Produced'
+                        },
+                    
+                    xAxis: {
+                        categories:  {% autoescape false %}{{graph.name|json_encode()}}{% endautoescape %},
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Unit/Pipes'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.0f} Units/Pipes</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series:  {% autoescape false %}{{graph.data|json_encode()}}{% endautoescape %},
+                });
+    	});
+        {% set graph = RunningScheduleGraphs.getWeeklyProductionGraph() %}
+        $(window).on('load',function(){
+                Highcharts.chart('chart_production_weekly_kg', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Weekly Production'
+                    },
+                    subtitle: {
+                            text: 'Target Kg Vs Kg Produced'
+                        },
+                    
+                    xAxis: {
+                        categories:  {% autoescape false %}{{graph.name|json_encode()}}{% endautoescape %},
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Kg'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.0f} Kg</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series:  {% autoescape false %}{{graph.data|json_encode()}}{% endautoescape %},
+                });
+        });
+    </script>
+{% endput %}
+	

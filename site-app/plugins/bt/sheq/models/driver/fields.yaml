@@ -1,0 +1,40 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+#        span: auto
+    name:
+        label: Name
+        span: auto
+    surname:
+        label: Surname
+        span: auto
+    issue:
+        label: Issue Date
+        type: datepicker
+        mode: date
+        span: auto
+        maxDate: now
+    expiry:
+        label: Expired Date
+        type: datepicker
+        mode: date
+        span: auto
+#    status:
+#        label: Status
+#        type: radio
+#        span: auto
+#        options:
+#            0: Active
+#            1: Expired
+
+    license_file:
+        label: License
+        type: fileupload
+        span: auto
+        mode: file
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx

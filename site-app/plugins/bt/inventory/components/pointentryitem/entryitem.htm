@@ -1,0 +1,30 @@
+<div class="card card-primary mb-3">
+	<div class="card-header">
+		Item #{{itemobject.id}} - {{itemobject.date_of_receipt|date("Y-m-d")}}
+	</div>
+	<table class="table table-striped table-bordered card-body mb-0 table-sm" id="tabledownload">
+		<thead>
+			<tr>
+				
+				
+				
+				<th>Type Of Inventory</th>
+				<th>Point Of Entry</th>
+				<th>Truck No. Plate</th>
+				<th>Cotainer No.</th>
+				
+			</tr>
+		</thead>
+		<tbody>			
+	    	<tr>
+	    		
+	    		<td>{{itemobject.inventorytypes.name}}</td>
+	          	<td>{{itemobject.entrytypes.name}}</td>
+	          	<td>{{itemobject.truck_number_plate}}</td>
+	          	<td>{{itemobject.container_number}}</td>
+	          	
+	         </tr>
+		</tbody>
+	</table>
+</div>
+  

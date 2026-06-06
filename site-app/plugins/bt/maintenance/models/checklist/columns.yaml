@@ -1,0 +1,26 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Equipment Description
+        searchable: true
+    
+    instructions:
+        label: Instructions
+        invisible: true
+    checkpoint_count:
+      label: Check Points 
+      relation: checkpoints
+      useRelationCount: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

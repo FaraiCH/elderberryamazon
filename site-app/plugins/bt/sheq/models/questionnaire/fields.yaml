@@ -1,0 +1,37 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    name:
+        label: Name
+        span: auto
+
+    sort_order:
+        label: Sort Order
+        type: number
+        span: auto
+    introduction:
+        label: Introduction
+        size: small
+        span: auto
+        type: textarea
+    description:
+        label: Description
+        size: small
+        oc.commentPosition: ''
+        span: auto
+        type: textarea
+    active:
+        label: Active
+        searchable: true
+        type: switch
+        span: auto
+        cssClass:  col-sm-6
+    questions@update:
+        path: $/bt/sheq/controllers/questionnaire/_rel_questions.htm
+        type: partial

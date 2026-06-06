@@ -1,0 +1,107 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: Ticket No
+        searchable: true
+
+    name:
+        label: Ticket Name
+        searchable: true
+    # project:
+    #     label: Project
+    #     relation: project
+    #     select: name
+
+    type:
+        label: Type
+        relation: type
+        select: name
+        invisible: true
+    archived:
+        label: Archived
+        type: switch
+        invisible: true
+    status:
+        label: Status
+        searchable: true
+        relation: status
+        select: name
+    ticketstage:
+        label: Ticket Stage
+        searchable: true
+        relation: ticketstage
+        select: name
+    approved:
+        label: Approved
+        type: partial
+        path: $/bt/production/models/push/_approved_column.htm
+
+    complet_percentage_view:
+        label: Percentage Completed
+
+        type: partial
+        path: $/bt/it/models/job/_percentage_column.htm
+
+
+
+
+    difficulty:
+        label: Difficulty Level
+
+        type: partial
+        path: $/bt/it/models/job/_dificultylevel.htm
+
+    isagent:
+        label: Is it agent
+        type: partial
+        path: $/bt/it/models/job/_switch.htm
+
+
+
+    expected_date:
+        label: Expected Date
+        invisible: true
+    completed_date:
+        label: Completed Date
+        invisible: false
+    department:
+        label: Department
+        searchable: true
+        relation: department
+        select: name
+
+    responder:
+        label: Task Responder
+        searchable: true
+        relation: responder
+        select: concat(first_name, ' ', last_name)
+        
+    assignedto:
+        label: Assigned To
+        searchable: true
+        relation: assignedto
+        select: name
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

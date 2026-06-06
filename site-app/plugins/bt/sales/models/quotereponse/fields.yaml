@@ -1,0 +1,38 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    status:
+      label: Status
+      type: relation
+      select: concat(id," - ",name)
+      disabled: true
+      span: left
+    
+    response:
+      label: Comment
+      span: right
+
+    amountpaid@update:
+      label: Paid Amount
+      comment: Use front end to add amount. Only update here if you made a mistake
+      span: left
+
+    amountdiscount@update:
+      label: Discount
+      comment: Use front end to add amount. Only update here if you made a mistake
+      span: right
+    additionalamount@update:
+      label: Additional Amount i.e Delivery amount
+      comment: Use front end to add amount. Only update here if you made a mistake
+      span: left
+    file:
+      label: Attach Documents
+      type: fileupload
+      tab: Upload Files
+      mode: file
+      span: right
+    
+      

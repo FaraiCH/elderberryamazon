@@ -1,0 +1,71 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    injurydate:
+      label: Date of Injury
+      type: datepicker
+      span: auto
+
+    status:
+        label: Status
+        span: auto
+        type: dropdown
+        placeholder: -- Select --
+        options:
+            1: Pending
+            2: On - Going
+            3: Closed
+
+    scale_of_injury:
+      label: Scale Of Injury
+      span: auto
+      type: balloon-selector
+      options:
+          1: minor
+          2: moderate
+          3: serious
+    firstname:
+      label: First Name
+      span: auto
+
+    lastname:
+      label: Last Name
+      span: auto
+
+    description_of_injury:
+      label: Description Of Incident/Injury
+      type: textarea
+      size: small
+      span: auto
+
+    description_of_first_aid_applied:
+      label: Description Of First AID Applied
+      type: textarea
+      size: small
+      span: auto
+
+
+    items_used_to_treat:
+      label: Control Measures
+      type: textarea
+      size: small
+      span: auto
+    images:
+        label: Injury Images
+        type: fileupload
+        comments: Upload Images on the injury
+        span: auto
+
+    files:
+        label: Files
+        type: fileupload
+        tab: Upload Files
+        mode: file
+        tab: Files
+        comments: Upload files related to the injury
+        span: auto

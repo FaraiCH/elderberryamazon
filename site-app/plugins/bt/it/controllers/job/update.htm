@@ -1,0 +1,81 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/it/job') ?>">Tasks</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <h4 style="text-align: center; background: #ccc; padding: 20px"> Ticket Name:  Tck #<?= $formModel->id ?> </h4>
+
+        <div class="layout-row">
+
+            <div class="control-tabs content-tabs" data-control="tab">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="false">Ticket</a>
+                          </li>
+                         
+                           <li class="nav-item">
+                            <a  id="responses-tab" data-toggle="tab" href="#responses" role="tab" aria-controls="responses" aria-selected="false">Responses</a>
+                          </li>
+                    </ul>
+                     <div class="tab-content" id="myTabContent" style="background: #fff">
+                        <div class="tab-pane active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                            <div style="padding: 20px 20px"><?= $this->formRender() ?></div>
+                        </div>
+                        <div class="tab-pane" id="responses" role="tabpanel" aria-labelledby="responses-tab">
+                            <div style="padding: 0px 20px"><h3>Responses</h3>
+                               
+                                <?= $this->relationRender('responses') ?>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Job..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Job..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Job..."
+                    data-request-confirm="Delete this job?">
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/it/job') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/it/job') ?>" class="btn btn-default">Return to job list</a></p>
+
+<?php endif ?>

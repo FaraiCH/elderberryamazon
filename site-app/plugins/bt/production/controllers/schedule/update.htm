@@ -1,0 +1,177 @@
+<?php Block::put('breadcrumb') ?>
+    <?php if(isset($formModel)): ?>
+     <ul>
+        <li><a href="<?= Backend::url('bt/production/push') ?>">Productions</a></li>
+        <li><a href="<?= Backend::url('bt/production/push') ?>">
+
+           QT <?= e($formModel->pipe->qpush->quote->id) ?> : <?= e($formModel->pipe->qpush->quote->company_name) ?>
+
+
+            </a></li>
+        <?php if(isset($formModel->pipe->quoteitems->description)): ?>
+        <li><a href="<?= Backend::url('bt/production/pipe/update/'.$formModel->pipe->id) ?>">Pipe: <?= e($formModel->pipe->quoteitems->description) ?></a>
+            <?php else: ?>
+            <li>ITEM HAS BEEN DELETED FROM QUOTE</li>
+        <?php endif ?>
+        </li>
+        <li>Date: <?= e($formModel->production_date) ?> / Day: <?= e($formModel->production_days) ?></li>
+    </ul>
+    <?php endif ?>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+
+
+            <div class="scoreboard">
+                <div data-control="toolbar">
+
+                    <div class="scoreboard-item title-value">
+                        <h4>Pipe</h4>
+                        <?php if (isset($formModel->pipe->quoteitems->description)): ?>
+                        <p class="oc-icon-star"> <?= e($formModel->pipe->quoteitems->description) ?></p>
+                        <?php else: ?>
+                        <p class="oc-icon-star">ITEM HAS BEEN DELETED FROM QUOTE</p>
+                        <?php endif ?>
+                        <p class="description"></p>
+                    </div>
+                     <div class="scoreboard-item title-value">
+                        <h4>Target</h4>
+                        <p><?= e($formModel->target_kg_processed) ?> kg</p>
+                        <p class="description">Processed: <?= e($formModel->total_kg_processed) ?> kg</p>
+                    </div>
+                    <div class="scoreboard-item title-value">
+                        <h4>Quote</h4>
+                        <?php if(isset($formModel->pipe->quoteitems->units)): ?>
+                            <p>Qty Ordered: <?= e($formModel->pipe->quoteitems->units) ?> Pipes</p>
+                            <p class="description">Weight per pipe: <?= e($formModel->pipe->quoteitems->weight) ?> kg</p>
+                        <?php else: ?>
+                            <p><?=$formModel->pipe->qpush->quote->id?></p>
+
+                        <?php endif ?>
+
+                    </div>
+                </div>
+            </div>
+
+
+             <div class="control-tabs content-tabs" data-control="tab">
+                    <ul class="nav nav-tabs">
+
+                          <li class="nav-item active">
+                            <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Schedule Days</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Material Used</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="active" id="request-tab" data-toggle="tab" href="#costing" role="tab" aria-controls="request" aria-selected="false">Costing</a>
+                          </li>
+
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent" style="background: #fff">
+
+                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div style="padding: 0px 20px"><h3>Schedule Days</h3>
+
+
+
+                                 <?= $this->formRender() ?></div>
+                        </div>
+
+                        <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div style="padding: 0px 20px"><h3>Material Used</h3><?= $this->relationRender('usedmaterials') ?></div>
+                        </div>
+
+                        <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div style="padding: 0px 20px"><h3>Costing</h3>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-primary" data-request-confirm="Are you sure you want to add to BT ACCOUNT" style="display: block; text-align: center; padding: 20px; width: 100%; float: left;" data-request="onPublishExtraPipes" data-stripe-load-indicator data-request-data="propid: <?= e($formModel->id) ?>">Publish Extra Pipes to BT Account</button>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-danger" style="display: block; text-align: center; padding: 20px; width: 100%; float: left;" data-request="onUpdatePrice" data-stripe-load-indicator>Update Price</button>
+
+                                    </div>
+
+                                </div>
+
+                                <p><br>Click on the button abouve to update costing. Note: Only SCHEDULES that ar now checkout can the price me updated.<br></p>
+                                <table class="table">
+                                    <tr>
+                                        <td width="300px"><b>Price Per Pipe</b></td><td>R <?= e($formModel->priceperpipe) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Material Value</b></td><td>R <?= e($formModel->materialvalue) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Production Cost Per kg</b></td><td>R <?= e($formModel->production_costperkg) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Total Cost Schedule</b></td><td>R <?= e($formModel->total_cost_schedule) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Unit Price</b></td><td>R <?= e($formModel->unitprice) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Total Scrap Cost</b></td><td>R <?= e($formModel->total_scrap_cost) ?></td>
+                                    </tr>
+                                </table>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Schedule..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <!-- <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Schedule..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Schedule..."
+                    data-request-confirm="Delete this schedule?">
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/production/schedule') ?>">Cancel</a>
+                </span> -->
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/production/schedule') ?>" class="btn btn-default">Return to schedule list</a></p>
+
+<?php endif ?>

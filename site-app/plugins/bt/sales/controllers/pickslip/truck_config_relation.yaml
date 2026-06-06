@@ -1,0 +1,34 @@
+items:
+    label: Pipe
+    manage:
+        form: $/bt/sales/models/pickslipitem/fields.yaml
+        list: $/bt/sales/models/pickslipitem/columns.yaml
+    view:
+        list: $/bt/sales/models/pickslipitem/columns.yaml
+        toolbarButtons: create|delete
+itemscat:
+    label: Product Catalogue
+    manage:
+        form: $/bt/sales/models/pickslipcatalogue/fields.yaml
+        list: $/bt/sales/models/pickslipcatalogue/columns.yaml
+    view:
+        list: $/bt/sales/models/pickslipcatalogue/columns.yaml
+        toolbarButtons: create|delete
+stickeritems:
+    label: Sticker Pipe Items
+    manage:
+        form: $/bt/production/models/pipestickeritem/fields.yaml
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+    view:
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+        toolbarButtons: link|unlink
+#srnapprove:
+#    label: Approve SRN By QC
+#    view:
+#        form: $/bt/sales/models/srnapprove/fields.yaml
+#        toolbarButtons: update
+#    manage:
+#        form: $/bt/sales/models/srnapprove/fields.yaml
+#        list: $/bt/sales/models/srnapprove/columns.yaml
+
+

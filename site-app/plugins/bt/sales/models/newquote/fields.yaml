@@ -1,0 +1,214 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: Quote Number
+        disabled: true
+        span: auto
+
+#    quote_ref:
+#        label: Quote Reference
+#        span: auto
+tabs:
+    fields:
+        company_name:
+            label: Company Name
+            tab: Start Up
+            span: auto
+
+        client:
+            label: Client Name
+            select: concat(id, ' - ', company_name)
+            type: relation
+            span: auto
+            # comment: Select client related to the invoice. Add client on the LEFT Client tab
+            placeholder: -- select a client --
+            tab: Start Up
+        ponumber:
+            label: PO Number
+            span: auto
+            tab: Start Up
+        status:
+            label: Quote Status
+            disabled: true
+            type: relation
+            select: name
+            span: auto
+            tab: Start Up
+        user:
+            label: Sales Person
+
+            type: relation
+            select: name
+            span: auto
+            tab: Start Up
+        created_at:
+            label: Date Created
+            disabled: true
+            span: auto
+            tab: Start Up
+        updated_at:
+            label: Date Created
+            disabled: true
+            span: auto
+            tab: Start Up
+        vat:
+            label: VAT Used
+            disabled: true
+            span: auto
+            tab: Start Up
+        total:
+            label: Total Price
+            disabled: true
+            span: auto
+            tab: Start Up
+        totalincvat:
+            label: Total Inc Vat
+            disabled: true
+            span: auto
+            tab: Start Up
+        agency:
+            label: Agency Name
+            span: auto
+            tab: Start Up
+#        show_cash_payment:
+#            label: Show Cash Payment
+#            disabled: false
+#            span: auto
+#            type: switch
+#            on: Yes
+#            off: No
+#            tab: Start Up
+
+
+        item@update:
+            path: $/bt/sales/controllers/newquote/_item.htm
+            tab: Item Wish
+            type: partial
+            comment: Please do not delete if the ITEM has been sent to production
+
+        itemscat@update:
+            path: $/bt/sales/controllers/newquote/_catalogue.htm
+            tab: Item  Wish Catalogue
+            type: partial
+        deliveryrequest:
+            label: Delivery Requested
+            type: dropdown
+            tab: Delivery Details
+            span: auto
+            options:
+                0: No
+                1: Yes
+        deliverytype:
+            label: Delivery Type
+            type: relation
+            tab: Delivery Details
+            placeholder: -- Choose Delivery Type --
+            span: auto
+        #    deliveryamount:
+        #        label: Delivery Amount
+        #        type: number
+        #        tab: Delivery Costs
+        #        disabled: true
+        #        span: auto
+        #        comment: Amount you charged client shown on the quote
+        #    deliveryamounthidden:
+        #        label: Delivery Amount/Hidden
+        #        type: number
+        #        tab: Delivery Costs
+        #        span: auto
+        #        comment: Amount you charged client for delivery that is not displayed, added as cataloque
+        deliveryamountmargins:
+            label: Delivery Margin
+            type: number
+            tab: Delivery Details
+            span: auto
+            comment: Amount BT is making from delivery
+        buyoutmargins:
+            label: Buy Out Margin
+            type: number
+            tab: Buy Out
+            span: auto
+            comment: Amount we are making from buyouts
+
+        billing_name:
+            label: Billing/Contact Name
+            tab: Billing Details
+            span: auto
+        email:
+            label: Contact Email
+            tab: Billing Details
+            span: auto
+        phone:
+            label: Contact Phone
+            tab: Billing Details
+            span: auto
+        reg_number:
+            label: REG Number
+            tab: Billing Details
+            span: auto
+        vat_number:
+            label: VAT Number
+            tab: Billing Details
+            span: auto
+        physical_address:
+            label: Physical Address
+            tab: Billing Address
+            span: auto
+        physical_code:
+            label: Physical Code
+            tab: Billing Address
+            span: auto
+        postal_address:
+            label: Postal Address
+            tab: Billing Address
+            span: auto
+        Postal_code:
+            label: Postal Code
+            tab: Billing Address
+            span: auto
+        notes:
+            label: Notes
+            tab: Quotes Note
+            type: textarea
+            size: large
+        accept_date@update:
+            label: Concession Date Accepted
+            type: datepicker
+            minDate: now
+            disabled: true
+            tab: Concession
+            comment: This will change when the client has accepted the concession form. You don't need to input here
+            span: auto
+
+
+        isactive:
+            label: Active/Hide
+            tab: Other
+            type: relation
+            select: name
+            span: auto
+            comment: Hide record from the dashboard list
+
+        reason:
+            label: Reason For Quote
+            tab: Other
+            type: relation
+            select: name
+            span: auto
+
+        nonreceived:
+            label: Receiving Order
+            tab: Other
+            type: relation
+            select: name
+            span: auto
+
+        closing_date:
+            label: Closing Date
+            tab: Other
+            type: datepicker
+            span: auto
+

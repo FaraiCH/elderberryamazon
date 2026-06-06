@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    department:
+        label: Your Department
+        select: name
+        type: relation
+    job_summary:
+        label: Job Summary
+        type: textarea
+        span: auto
+    job_description:
+        label: Job Description
+        type: textarea
+        span: auto
+    status:
+        label: Schedule Status
+        select: name
+        type: relation
+        span: left
+        tab: Complete/Close Job

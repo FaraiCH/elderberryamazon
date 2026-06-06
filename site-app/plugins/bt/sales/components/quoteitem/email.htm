@@ -1,0 +1,82 @@
+<div style="padding: 10px;">
+  		<h2>Emails</h2>
+  		<div id="maillist">{% partial __SELF__ ~ '::maillist' emails=quote.emails   %}</div>
+		
+		<hr>
+		    {% if user %}
+        {% flash success %}
+            <p>{{message}}</p>           
+        {% endflash %}
+         
+
+             <form data-request="onSendEmail" data-request-update="'{{__SELF__ ~ '::maillist'}}': '#maillist'"   data-request-flash data-request-validate>
+              <div class="iform-req text-right text-info "><i>Required fields</i></div> 
+              	
+            	<div class="row">
+            		<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								Send Email To Client
+							</div>
+							<div class="card-body">
+								<div class="row">
+									
+									<div class="col-sm-12">
+				                        <span class="text-danger" data-validate-for="email_to"></span>
+				                        <div class="input-group mb-3">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text iform-req label-small" id="basic-at" >email_to</span>
+				                          </div>
+				                          <input id="email_to" name="email_to" value="{{quote.email}}" required="required" type="text" class="form-control mt-0" placeholder="">
+				                        </div>
+				                    </div>
+
+				                    {#
+									<div class="col-sm-12">
+				                        <span class="text-danger" data-validate-for="email_cc"></span>
+				                        <div class="input-group mb-3">
+				                          <div class="input-group-prepend">
+				                            <span class="input-group-text label-small" id="basic-at" >email_cc</span>
+				                          </div>
+				                          <input id="email_cc" name="email_cc" type="text" class="form-control mt-0" placeholder="First Names">
+				                        </div>
+				                    </div>#}
+				                	
+				                    <div class="col-sm-12">
+				                        <span class="text-danger" data-validate-for="notes"></span>
+				                         <div class="input-group mb-">
+				                            <div class="input-group-prepend">
+				                              <span class="input-group-text label-small" id="basic-at">Notes</span>
+				                            </div>
+				                         
+				                             <textarea
+				                                name="notes"
+				                                type="text"
+				                                class="form-control mt-0 counttext"
+				                                id="preview_text" ></textarea>
+				                        </div>
+				                        <div id="cnt_preview_text" class="countlabel alert text-right"></div>
+				                  </div>
+				                    
+
+				                 </div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+			
+				
+				
+
+				
+              <button type="submit" class="btn btn-primary btn-block mt-4 " data-attach-loading>Send Email</button>
+
+            </form>
+        
+    {%else%}
+        <p>User not loged in</p>
+    {%endif%}
+
+	</div>

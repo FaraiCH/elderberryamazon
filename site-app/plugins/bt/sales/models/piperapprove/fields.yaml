@@ -1,0 +1,32 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    createdby:
+        label: Created By
+        span: auto
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        placeholder: -- Auto Fill Name --
+        disabled: true
+    updatedby:
+        label: Updated By
+        span: auto
+        type: relation
+        select: concat(first_name, ' ', last_name)
+        placeholder: -- Auto Fill Name --
+        disabled: true
+    approve:
+        label: Approve Request
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+    note:
+        label: Comments
+        type: textarea
+

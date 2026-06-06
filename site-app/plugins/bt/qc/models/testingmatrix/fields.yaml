@@ -1,0 +1,246 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+
+
+    test_date:
+        label: Test Date
+        type: datepicker
+        mode: date
+        span: auto
+        ignoreTimezone: true
+
+    pipedesc:
+        label: Pipe Description
+        type: relation
+        select: description
+        span: auto
+        placeholder: --select--
+
+    testtype:
+        label: Test
+        type: relation
+        span: auto
+        select: name
+        placeholder: --select--
+        default: null
+    sabs:
+        label: Is SABS?
+        type: switch
+        span: auto
+        options:
+            0: No
+            1: Yes
+
+tabs:
+    fields:
+        mfibatch_no_id:
+            label: Batch No.
+            type: text
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[1]'
+            tab: MFI
+
+        materialcat:
+            label: Meterial
+            type: relation
+            select: name
+            span: auto
+            tab: MFI
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[1]'
+        mfi_num_bags:
+            label: Num of Bags
+            type: number
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[1]'
+            tab: MFI
+        mfi_results:
+            label: MFI Results
+            type: text
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[1]'
+            tab: MFI
+            comment: Daily
+
+        therm_pipebatch_no:
+            label: Pipe Batch
+            type: text
+            tab: Thermal Revision
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[2]'
+        therm_material_batch:
+            label: Meterial Batch
+            type: text
+            tab: Thermal Revision
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[2]'
+            comment: Daily
+
+        tensile_pipebatch_no:
+            label: Pipe Batch No.
+            type: text
+            tab: Elongation
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[3]'
+        tensile_material_batch:
+            label: Meterial Batch No.
+            type: text
+            tab: Elongation
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[3]'
+            comment: Weekly
+        hydrotype:
+            label: Hydro Test Type
+            tab: Hydrostatic
+            type: dropdown
+            options: getHydroTestOptions
+            placeholder: -- Select --
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[5]'
+        hydro100_pipebatch_no:
+            label: Pipe Batch
+            type: text
+            tab: Hydrostatic
+            comment: Weekly
+            trigger:
+                action: show
+                field: hydrotype
+                condition: 'value[0]'
+        hydro165_pipebatch_no:
+            label: Pipe Batch
+            type: text
+            tab: Hydrostatic
+            trigger:
+                action: show
+                field: hydrotype
+                condition: 'value[1]'
+            comment: Weekly
+
+        hydro1k_pipebatch_no:
+            label: Pipe Batch
+            type: text
+            tab: Hydrostatic
+            trigger:
+                action: show
+                field: hydrotype
+                condition: 'value[2]'
+            comment: Every 6 Months
+
+        oit_result:
+            label: OIT Result
+            type: text
+            tab: OIT
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[4]'
+        oit_material_batch:
+            label: Material Batch
+            type: text
+            tab: OIT
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[4]'
+            comment: Every 3 months, over 20 minutes
+
+        carbon_type:
+            label: Carbon Type
+            type: dropdown
+            options: getCarbonBlackOptions
+            placeholder: --select--
+            tab: Carbon Black
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[6]'
+        content_material_batch:
+            label: Material Batch
+            type: text
+            tab: Carbon Black
+            span: auto
+            trigger:
+                action: show
+                field: carbon_type
+                condition: 'value[0]'
+        content_result:
+            label: Results
+            type: number
+            tab: Carbon Black
+            span: auto
+            trigger:
+                action: show
+                field: carbon_type
+                condition: 'value[0]'
+            comment: Result Should be between 2-2,5
+        dispersion_material_batch:
+            label: Material Batch
+            type: text
+            tab: Carbon Black
+            span: auto
+            trigger:
+                action: show
+                field: carbon_type
+                condition: 'value[1]'
+        dispersion_result:
+            label: Results
+            type: number
+            tab: Carbon Black
+            span: auto
+            trigger:
+                action: show
+                field: carbon_type
+                condition: 'value[1]'
+            comment: Once a year, Result should be =<3
+
+        density_material_batch:
+            label: Material Batch
+            type: text
+            tab: Density
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[7]'
+        density_result:
+            label: Results
+            type: number
+            tab: Density
+            span: auto
+            trigger:
+                action: show
+                field: testtype
+                condition: 'value[7]'
+            comment: Once a year, Result should be =<930

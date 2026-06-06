@@ -1,0 +1,47 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+
+    employee:
+        label: Employee
+        type: relation
+        # relation: employee
+        select: CONCAT(employeenumber,' - ', firstname,' ', lastname)
+        placeholder: --select--
+
+    asset:
+        label: Asset
+        type: relation
+        # relation: asset
+        select: CONCAT(assettype,' - ', brand)
+        placeholder: --select--
+
+    serialnum:
+        label: Serial Number
+        type: text
+
+    post-damage:
+        label: Post-Damage
+        type: switch
+        on: Yes
+        off: No
+    pre-damage:
+        label: Pre-Damage
+        type: switch
+        on: Yes
+        off: No
+
+    dateissue:
+        label: Date Issued
+        type: datepicker
+        mode: date
+        sortable: true
+    date-return:
+        label: Date Returned
+        type: datepicker
+        mode: date

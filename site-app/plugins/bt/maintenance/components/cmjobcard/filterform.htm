@@ -1,0 +1,38 @@
+   {% set btype = CmJobCard.loadStatus() %}
+   <div class="card card-default mb-4 mt-3">
+   		<div class="card-header py-2">
+   			<b>Filter</b>
+   		</div>
+            <div class="card-body  py-2">
+            	<form name="frmfilter" id="frmfilter" class="form-inline" method="POST" >
+            		
+				  <div class="form-group">
+				    <label for="exampleInputName2">Start Date: </label>
+				    <input id="startdate" value="{{CmJobCard.startdate|date("Y-m-d")}}" name="startdate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md mx-1" style="max-width: 150px;" required="">
+				   </div>
+				  <div class="form-group px-2">
+				    <label for="exampleInputEmail2">End Date: </label>
+				    <input id="enddate" value="{{CmJobCard.enddate|date("Y-m-d")}}" name="enddate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md mx-1" required="" style="max-width: 150px;">
+				  </div>
+
+				   <div class="form-group px-2">
+				    <label for="exampleInputName2">Status: </label>
+				     	<select id="showstatus" style="max-width: 200px;" name="showstatus" class="form-control input-sm" >
+                <option  value="0">All</option>
+					  	 {% for obType in btype %}
+                              {% set selected = '' %}
+                                {% if obType.id == CmJobCard.formstatus %}
+                                    {% set selected = 'selected="selected"' %}
+                                  
+                                {% endif %}
+                                <option {{selected}} value="{{obType.id}}">{{obType.name}}</option>
+                                {% set selected = '' %}
+                            {% endfor %}
+						 </select>
+				  	</div>
+
+
+				  <button type="submit" class="btn btn-primary">Filter</button>
+				</form>
+            </div>
+     </div>

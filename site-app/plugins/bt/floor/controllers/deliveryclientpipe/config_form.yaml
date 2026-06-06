@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Delivery Client Pipe
+
+# Model Form Field configuration
+form: $/bt/floor/models/deliveryclientpipe/fields.yaml
+
+# Model Class name
+modelClass: Bt\Floor\Models\DeliveryClientPipe
+
+# Default redirect location
+defaultRedirect: bt/floor/deliveryclientpipe
+
+# Create page
+create:
+    title: Create Delivery Client Pipe
+    redirect: bt/floor/deliveryclientpipe/update/:id
+    redirectClose: bt/floor/deliveryclientpipe
+
+# Update page
+update:
+    title: Edit Delivery Client Pipe
+    redirect: bt/floor/deliveryclientpipe
+    redirectClose: bt/floor/deliveryclientpipe
+
+# Preview page
+preview:
+    title: Preview Delivery Client Pipe

@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    auditdate:
+        label: Audit Date
+        type: datepicker
+        span: auto
+        ignoreTimezone: true
+    status:
+        label: Status
+        type: dropdown
+        span: auto
+        placeholder: -- Select Status --
+        options:
+            0: Pending
+            1: Completed
+    company:
+        label: Company
+        span: auto
+    files:
+        label: Document uploads
+        type: fileupload
+        span: auto
+        mode: file
+        fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx
+    notes:
+        label: Note/Comment
+        type: textarea

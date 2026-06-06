@@ -1,0 +1,10 @@
+readings:
+    label: Readings
+    manage:
+        form: $/bt/maintenance/models/elecmeterreading/fields.yaml
+        list: $/bt/maintenance/models/elecmeterreading/columns.yaml
+    view:
+        list: $/bt/maintenance/models/elecmeterreading/columns.yaml
+        toolbarButtons: create
+
+        

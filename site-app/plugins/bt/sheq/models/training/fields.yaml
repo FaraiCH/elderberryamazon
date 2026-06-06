@@ -1,0 +1,58 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+#        invisible: true
+    date:
+        label: Date of Training
+        type: datepicker
+        mode: date
+        span: storm
+        cssClass: col-md-6 col-sm-6
+    subject:
+        label: Subject
+        span: storm
+        cssClass: col-md-6 col-sm-6
+    description:
+        label: Description
+        span: storm
+        type: textarea
+        cssClass: col-md-12 col-sm-12
+tabs:
+    fields:
+        attend:
+            type: repeater
+            prompt: Add Attendance
+            tab: Attendance
+            form:
+                fields:
+                    name:
+                        label: Name
+                        span: storm
+                        cssClass: col-md-6 col-sm-6
+                    surname:
+                        label: Surname
+                        span: storm
+                        cssClass: col-md-6 col-sm-6
+        training_files:
+            label: Training Documents
+            type: fileupload
+            comment: Add training documents that will be used for this session.
+            mode: file
+            tab: Documents
+            span: storm
+            cssClass: col-md-6 col-sm-6
+            fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx
+        other:
+            label: Other Documents
+            type: fileupload
+            comment: Add any additional documents that will be used in this session
+            mode: file
+            tab: Documents
+            span: storm
+            cssClass: col-md-6 col-sm-6
+            fileTypes: xls, xlsx, docx, doc, pdf, vsd, vsdx, ppt, pptx

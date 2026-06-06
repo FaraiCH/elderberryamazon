@@ -1,0 +1,43 @@
+{% set listentry = InCageMaterial.loadList() %}
+{% if listentry is not empty  %}
+	{% set total = 0 %}
+
+
+
+		<table class="table table-striped table-bordered" id="tabledownload">
+				<thead>
+					<tr>
+						
+						<th>#</th>
+						<th>Product Name</th>
+						<th>KG</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in listentry %}					
+			        	<tr>
+			        		
+			        		<td>{{itemobject.id}}</td>
+			        		<td>{{itemobject.productname.name}}</td>
+			        		<td>{{itemobject.kg}}</td>
+			              	<td>{{itemobject.datecaptured|date("m/d/Y H:i")}}</td>
+			              	
+			             </tr>
+			            
+			        {% endfor %} 
+		        </tbody>
+		      
+	        
+    </table>
+	
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

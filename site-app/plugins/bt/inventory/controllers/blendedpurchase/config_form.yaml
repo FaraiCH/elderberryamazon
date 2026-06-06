@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Blended Purchase
+
+# Model Form Field configuration
+form: $/bt/inventory/models/blendedpurchase/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\BlendedPurchase
+
+# Default redirect location
+defaultRedirect: bt/inventory/blendedpurchase
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/inventory/blendedpurchase/update/:id
+    redirectClose: bt/inventory/blendedpurchase
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/inventory/blendedpurchase
+    redirectClose: bt/inventory/blendedpurchase
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

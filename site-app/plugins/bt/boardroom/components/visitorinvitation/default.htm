@@ -1,0 +1,52 @@
+{% set visitors = CmVisitorInvitation.myvisitor %}
+{% set invaliduser = CmVisitorInvitation.invalidmessage %}
+
+{% if invaliduser is empty %}
+    {% if visitors.id is not empty %}
+
+<div class="container" style="width: 900px; margin: 0px auto; min-height: 300px; ">
+    <h5 class="card-title"> Hi <em>{{ visitors.visitorname }}</em></h5>
+    <p class="card-text mb-2" style="color: #0a3576"><b> You are invited to BT Industrial Group on the <em>{{ visitors.date|date(' D d-m-Y h:i a') }}</em></b></p>
+    <p class="card-text mb-2"><b>Please read induction form and click accept button below to honour our invitation.</b></p>
+    <div class="card">
+        <h3>O.H.S INDUCTION FOR VISITORS</h3>
+        <ul class="ind_ul">
+            <li>Before coming to BT Industrial site, you need to know more about our work activities, hazards, dangers, and EHS rules on the site.</li>
+            <li>Ensure that you sign the register for visitors at the security gate accordingly.</li>
+            <li>You are responsible for your own safety and those around you.</li>
+            <li>Ensure that you wear the correct PPE when entering the workshop area. (Safety shoes, hardhat and reflector)</li>
+            <li>You are only allowed to move around with BT employees or representatives.</li>
+            <li>Follow instructions from this person and be alert of the high-risk activities around you.</li>
+            <li>There are numerous safety signs. Take note of these signs and obey the signs.</li>
+            <li>This site has areas where material and or equipment could fall onto you. Be aware of what is above you. Do not walk under any suspended loads.</li>
+            <li>Be careful when walking on site as you can fall over equipment, material or into a hole - follow the designated walkways and you should be free of any tripping hazards.</li>
+            <li>Machinery has the right of way and the operator’s vision is limited. Take care and stay out of their way.</li>
+            <li>Do not enter any area where white and red tape or physical barricading has been erected around an activity.</li>
+            <li>Do not climb onto any high structures including scaffolds.</li>
+            <li>Do not enter the site when under the influence of alcohol or any other narcotics.</li>
+            <li>Do not get involved in any physical assault while on site.</li>
+            <li>Report any injury or incident to the Site Management before you leave site.</li>
+            <li>You are required to be safety conscious, e.g standing still when you answer your Cell phone.</li>
+            <li>Make use of all your senses &amp; do anything possible to prevent accidents.</li>
+            <li>Do not interfere with any work activities.</li>
+            <li>You are not allowed to operate or be inside any Machinery / Plant unless it’s in your scope of authority and you have your operating certificates with you. The site management will then authorise the work.</li>
+            <li>Report back to the security gate before departure.</li>
+        </ul>
+    </div>
+    <br>
+    {% if visitors.accept_date is empty %}
+        <button id="accept-btn" class="btn btn-primary" data-request="onSave">Accept Invitation</button>
+    {% else %}
+        <h5 class="text text-success">You have already accepted this invitation</h5>
+    {% endif %}
+</div>
+
+
+    {% endif %}
+{% else %}
+    <div class="container" style="text-align: center ">
+        <img width="20%" src="https://bailaerp.bt-industrial.co.za/storage/app/media/Icons/Sad-Face-Emoji.png" alt="">
+        <h5 class="card-title">OOPS! Seems like you're on the wrong page! Please go back or use the link send to you in your email to find your place!</h5>
+    </div>
+{% endif %}
+

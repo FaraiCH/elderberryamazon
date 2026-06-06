@@ -1,0 +1,4 @@
+<?php if($record->employee_id > 0 && !empty($record->employee)  && !empty($record->employee->department) ): ?>
+    <?= $record->employee->department->name ?>
+<?php endif; ?>
+

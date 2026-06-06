@@ -1,0 +1,76 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    viewstricker:
+        label: Print
+        type: partial
+        path: $/bt/production/models/controlsheet/_viewsticker.htm
+        searchable: false
+        sortable: false
+        clickable: false
+    printstricker:
+        label: Print
+        type: partial
+        path: $/bt/production/models/controlsheet/_printsticker.htm
+        searchable: false
+        sortable: false
+        clickable: false
+
+    id:
+        label: ID
+        searchable: true
+    controlsheet:
+        label: Controlsheet
+        relation: controlsheets
+        select: id
+    batch:
+        label: Batch No
+        relation: batch
+        select: concat(jobcard_id,'-',id)
+    production_date:
+        label: Production Date
+    prod_updated_by:
+        label: Production Scanned By
+        relation: prod_updated_by
+        select: concat(name, ' ', surname)
+    sticker_id:
+        label: Sticker ID
+    counter:
+        label: Counter
+        type: number
+    binarea:
+        label: Bin Area
+        relation: binarea
+        select: area
+    bin_date:
+        label: Bin Date
+    weight:
+        label: Weight
+    qcstatus:
+        label: QC Status
+        relation: qcstatus
+        select: name
+    reason:
+        label: QC Reason
+        relation: reason
+        select: reason
+    qcdate:
+        label: QC Date
+    qc_updated_by:
+        label: QC Scanned By
+        relation: qc_updated_by
+        select: concat(name, ' ', surname)
+    pickslip:
+        label: Pick Slip
+        relation: pickslip
+        select: id
+    dispatch_date:
+        label: Dispatch Date
+    release_date:
+        label: Release Date
+
+
+
+

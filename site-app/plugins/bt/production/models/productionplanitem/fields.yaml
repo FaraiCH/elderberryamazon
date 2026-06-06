@@ -1,0 +1,41 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    
+    quote:
+        label: Quite Id
+        select: concat(id, ' - ', company_name)
+        type: relation
+  
+        # comment: Select client related to the invoice. Add client on the LEFT Client tab
+        placeholder: -- select a quote --
+
+    item:
+        label: Item
+        type: dropdown
+        dependsOn: quote
+        
+
+    qty:
+
+        label: Qty
+        type: number
+        span: auto
+
+    prodorder:
+
+        label: Priority/Order
+        type: dropdown
+        options:
+            5: 1st Priority
+            4: 2nd Priority
+            3: 3rd Priority
+            2: 4th Priority
+            1: Last Priority
+        span: auto
+
+    # )->nullable()->default(0);
+    #         $table->decimal('weight_pm', 15, 2)->nullable()->default(3);
+    #         $table->integer('prodorder')->nullable()->default(0);

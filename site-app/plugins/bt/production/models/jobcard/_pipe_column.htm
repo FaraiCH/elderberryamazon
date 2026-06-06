@@ -1,0 +1,13 @@
+
+<?php if(isset($record->pipe)): ?>
+	<?php
+	if(isset($record->pipe->quoteitems->description)){
+		echo $record->pipe->qpush->quote->company_name." - Quote-".$record->pipe->qpush->quote->id." - ".$record->pipe->quoteitems->description;
+	}else{
+		echo $record->pipe->qpush->quote->company_name." - Quote-".$record->pipe->qpush->quote->id."- <span style='color: red'>**Item might have been removed</span>";
+	}
+	
+	
+?>
+
+<?php endif; ?>

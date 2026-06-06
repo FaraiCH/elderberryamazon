@@ -1,0 +1,35 @@
+{% set starter = CmVisitors.loadAssets() %}
+
+
+<div class="container" >
+    <div class="card-header">
+        <h1 style="text-align: center"><b>OUR GUESTS</b></h1>
+    </div>
+    {% if CmVisitors.visits is not empty %}
+    <div >
+        {% for item in CmVisitors.visits  %}
+        <div style="float: left; width: 120px; margin: 5px">
+            <div class="card" style="padding-top: 5px;border: 1px solid #ccc; background: #fff; border-radius: 2px">
+
+                <div style="height: 120px; overflow: hidden;"><img src="https://bailaerp.bt-industrial.co.za/storage/app/media/istockphoto-1016744004-612x612.jpg" style="margin: 0px auto; display: block; max-width: 100%" alt=""/></div>
+
+                <div style="padding: 5px 0px 0px 0px; text-align: center; ">
+                    <h3 style="font-size: 12px" >{{ item.visitorname }}</h3>
+                    <p style="font-size: 8px" class="text-muted">{{ item.company }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="left: 0;
+                    line-height: 200px;
+                    margin-top: -100px;
+                    position: absolute;
+                    text-align: center;
+                    top: 50%;
+                    color: #0a3576;
+                    width: 100%;"><h1 style="font-size: 30px"><span class="icon icon-user"></span>There Are No Guests Today</h1></div>
+    {% endif %}
+</div>
+

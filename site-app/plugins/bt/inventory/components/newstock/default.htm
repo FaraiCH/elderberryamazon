@@ -1,0 +1,150 @@
+{% set PartNames = BTNewStock.loadPartNames() %}
+{% set RecievedType = BTNewStock.loadRecievedType() %}
+{% set loadStockRoomBlock = BTNewStock.loadStockRoomBlock() %}
+
+
+{% set InventoryType = BTNewStock.loadInventoryType() %}
+{% set EntryType = BTNewStock.loadEntryType() %}
+
+
+{% set EntryType = BTNewStock.loadEntryType() %}
+
+
+	{% flash %}
+	    <div class="alert alert-{{ type }}">
+	        {{ message }}
+	    </div>
+	{% endflash %}
+			
+		<form data-request="onSave"  data-request-flash data-request-validate>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+				Complete the form below when new stock arrives.
+		</div>
+            	
+				<div class="row">									
+                    <div class="col-sm-12"><h2>Delivery Type</h2></div>
+			
+
+					<div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="truck_number_plate"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small" id="basic-at" >Number Plate Of Truck</span>
+                          </div>
+                          <input id="truck_number_plate" name="truck_number_plate" value="NA" type="text" class="form-control mt-0">
+                        </div>
+                    </div>
+                	<div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="container_number"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small" id="basic-at" >Container Number</span>
+                          </div>
+                          <input id="container_number" name="container_number" value="NA" type="text" class="form-control mt-0" placeholder="">
+                        </div>
+                    </div>
+                   
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="date_of_receipt"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small" id="basic-at" >Date Received</span>
+                          </div>
+                          <input id="date_of_receipt" name="date_of_receipt" value='{{ "now"|date("Y-m-d") }}' type="text" class="form-control mt-0 datepicker" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-sm-12"><h2>Stock Type</h2></div>
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="part_name_id"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small" id="basic-at" >Product Brand Name</span>
+                          </div>
+                          <select id="part_name_id" required="required" name="part_name_id" class="form-control mt-0">
+                          	 <option value=""></option>
+                             {% for obType in PartNames %}
+                                <option value="{{obType.id}}">{{obType.name}}</option>
+                            {% endfor %} 
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="supplier_batch"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small iform-req" id="basic-at" >Supplier Batch No.</span>
+                          </div>
+                          <input id="supplier_batch" name="supplier_batch" required="required" type="text" class="form-control mt-0" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="date_of_receipt"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small" id="basic-at" >Weight in KG</span>
+                          </div>
+                          <input id="no_pallets" name="weight_pallets" value='0' type="text" class="form-control mt-0" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="received_in"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small iform-req" id="basic-at" >Received In</span>
+                          </div>
+                          <select id="received_in" name="received_in" required="required" class="form-control mt-0" placeholder="">
+                          	<option value=""></option>
+                          	{% for obType in RecievedType %}
+                                <option value="{{obType.id}}">{{obType.name}} : {{obType.bags}} Bags</option>
+                            {% endfor %}  
+                          
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="bagsother"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small " id="basic-at" >If Other:Bags In Pallets</span>
+                          </div>
+                          <input id="bagsother" name="bagsother" type="text" class="form-control mt-0" placeholder="">
+                        </div>
+                    </div>
+
+                    
+                	
+                    <div class="col-sm-6">
+                        <span class="text-danger" data-validate-for="date_of_receipt"></span>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text label-small" id="basic-at" >Number Of Pallets</span>
+                          </div>
+                          <input id="no_pallets" name="no_pallets" value='1' type="text" class="form-control mt-0" placeholder="">
+                        </div>
+                    </div>
+                    
+                     <div class="col-sm-12">
+                        <span class="text-danger" data-validate-for="notes"></span>
+                         <div class="input-group mb-">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text label-small" id="basic-at">Notes</span>
+                            </div>
+                         
+                             <textarea
+                                name="notes"
+                                type="text"
+                                class="form-control mt-0 counttext"
+                                id="preview_text" ></textarea>
+                        </div>
+                     
+                  </div>
+
+               
+
+                 </div>
+		
+			
+              <button type="submit" class="btn btn-primary btn-block mt-4 " data-attach-loading>Submit Items</button>
+
+            </form>

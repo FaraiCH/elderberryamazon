@@ -1,0 +1,80 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+
+    id:
+        label: SRN ID.
+        searchable: true
+    stops:
+        label: Trip Stop No
+        type: number
+    schedule_date:
+        label: Schedule Date
+        searchable: true
+        format: Y-m-d
+        type: date
+    srnapprove:
+        label: Approved
+        select: status_id
+        relation: srnapprove
+        type: switch
+    quote_id:
+        label: Quote
+        searchable: true
+        type: number
+    ponumber:
+        label: PO Number
+        select: ponumber
+        relation: quote
+        searchable: true
+        sortable: false
+        invisible: true
+    deliveryprice:
+        label: Delivery Price
+        type: Number
+        format: R %.2f
+        invisible: false
+    client:
+        label: Client Name
+        select: company_name
+        relation: client
+        searchable: true
+    Items:
+        label: Items
+        useRelationCount: true
+        relation: items
+    stock_value:
+        label: Stock Value
+        type: partial
+        path: $/bt/sales/models/srn/stock_value.htm
+    stock_value_cat:
+        label: Stock Value Catalogue
+        type: partial
+        path: $/bt/sales/models/srn/stock_value_cat.htm
+
+
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+

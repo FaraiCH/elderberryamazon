@@ -1,0 +1,170 @@
+
+{% set propetieslist = ClientListProperty.nprop %}
+
+
+	{% if propetieslist.properties is not empty  %}
+		<div class="card-box">
+			<div class="box-header"><h3 class="box-title">Personal Property Portfolio</h3></div>
+		    <div class="control-list">
+				<table id="example2" class="table table-bordered table-hover">
+					<thead>
+						<tr><th><span></span></th>
+
+							<th><span>TYPE</span></th>
+							<th><span>DESCRIPTION</span></th>
+							<th><span>MUNICIPALITY</span></th>
+							<th><span style="text-transform: uppercase;">Owner</span></th>
+							<th><span>USE OF PROPERTY</span></th>
+							<th><span>QUESTIONAIRE</span></th>
+							<th><span>DOWNLOAD </span></th>
+					</thead>
+					<tbody>
+
+					   {% for property in propetieslist.properties %}
+					    {#{dump(property)}#}
+							<tr>
+								<td><a class="btn btn-primary btn-sm" href="{{ 'account/property/item'|page({'client': propetieslist.id,'item': property.prop_id}) }}">View Property</a></td>
+								<td>{{property.type.name}}</td>
+								<td>{{property.searchtext}}</td>
+								<td>{{property.municname}}</td>
+								
+								<td>{{property.search.buyer_name}}</td>
+
+
+								<td>
+									{% set pc = property.getClientQuestionnaire(propetieslist.id) %}
+									{% if pc is not empty %}
+										{{property.getCatRaw(pc.categories)|raw}}
+
+									{% else %}
+										<b style="color: red">Not set</b>
+									{% endif %}
+
+								</td>
+								<td>
+									
+									{% if pc is not empty %}
+										
+										<a class="btn btn-info btn-sm" href="{{ 'account/property/updateq'|page({'item': property.prop_id, 'client': propetieslist.id, 'id': pc.id }) }}">Update</a>
+									{% else %}
+										<a class="btn btn-danger btn-sm" href="{{ 'account/property/createq'|page({'item': property.prop_id, 'client': propetieslist.id }) }}">SET</a>
+									{% endif %}
+
+								</td>
+								<td>
+									
+									{% if pc is not empty %}
+										<a  target="_blank" class="btn btn-default btn-sm" href="/preview/qa/{{propetieslist.id}}/{{property.prop_id}}/{{pc.id}}.pdf"><i class="fa fa-download" aria-hidden="true"></i> PDF</a>
+									{% else %}
+										Not available
+									{% endif %}
+
+								</td>
+
+								
+
+							</tr>
+						{% endfor %}
+					</tbody>
+
+				</table>
+		    </div>
+		 </div>
+	{% else %}
+		<p  style="clear: both; margin-top: 20px;"></p>
+		<div class="box-header"><h3 class="box-title">Personal Property Portfolio</h3></div>
+		<div class="alert alert-error" style="clear: both; margin-top: 20px;">
+			<p>There are currently no properties in your portfolio.</p>
+		</div>
+	{% endif %}
+
+
+{% set compprop = ClientListProperty.compprop %}
+
+
+	{% if compprop is not empty  %}
+		<div class="card-box">
+			<div class="box-header"><h3 class="box-title">Business Property Portfolio</h3></div>
+		    <div class="control-list">
+				<table id="example1" class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><span></span></th>
+							<th><span>COMPANY</span></th>
+							<th><span>COMPANY REF</span></th>
+							<th><span>PROVINCE</span></th>
+							<th><span>MUNICIPALITY</span></th>
+							<th><span>TOWNSHIP</span></th>
+							<th><span>SUBURB</span></th>
+							<th><span>ERF</span></th>
+							<th><span>PORTION</span></th>
+
+							<th><span style="text-transform: uppercase;">Unit Owner/Seller</span></th>
+							<th><span>USE OF PROPERTY</span></th>
+							<th><span>QUESTIONAIRE</span></th>
+							<th><span>DOWNLOAD</span></th>
+					</thead>
+					<tbody>
+						 {% for comp in compprop %}
+						 	
+							   {% for property in comp.client.properties %}
+							    {#{dump(property)}#}
+									<tr>
+										<td><a class="btn btn-primary btn-sm" href="{{ 'account/property/item'|page({'client': comp.clientid,'item': property.prop_id}) }}">View Property</a></td>
+										<td>{{comp.company.companyname}}</td>
+										<td>{{comp.company.bankref}} | {{comp.clientid}}</td>
+										<td>{{property.province}}</td>
+										<td>{{property.municname}}</td>
+										<td>{{property.township}}</td>
+										<td>{{property.suburb}}</td>
+
+										<td>{{property.erf}}</td>
+										<td>{{property.portion}}</td>
+										<td>{{property.search.buyer_name}}</td>
+
+
+										<td>
+											{% set pc = property.getClientQuestionnaire(comp.clientid) %}
+											{% if pc is not empty %}
+												{{property.getCatRaw(pc.categories)|raw}}
+
+											{% else %}
+												<b>*** Not set</b>
+											{% endif %}
+
+										</td>
+										<td>
+											
+											{% if pc is not empty %}												
+												<a class="btn btn-info btn-sm" href="{{ 'account/property/updateq'|page({'item': property.prop_id, 'client': comp.clientid, 'id': pc.id }) }}">Update</a>
+											{% else %}
+												<a class="btn btn-danger btn-sm" href="{{ 'account/property/createq'|page({'item': property.prop_id, 'client': comp.clientid}) }}">Create</a>
+											{% endif %}
+
+										</td>
+										<td>
+											
+											{% if pc is not empty %}												
+												<a target="_blank" class="btn btn-info btn-sm" href="/preview/qa/{{comp.clientid}}/{{property.prop_id}}/{{pc.id}}.pdf"><i class="fa fa-download" aria-hidden="true"></i> PDF</a>
+											{% else %}
+												Not available
+											{% endif %}
+
+										</td>
+
+										
+
+									</tr>
+								{% endfor %}
+							{% endfor %}
+					</tbody>
+
+				</table>
+		    </div>
+		 </div>
+	{% else %}
+		<p  style="clear: both; margin-top: 20px;"></p>
+		<!-- <div class="alert alert-error" style="clear: both; margin-top: 20px;">
+			<p>There are currently no properties in your portfolio.</p>
+		</div> -->
+	{% endif %}

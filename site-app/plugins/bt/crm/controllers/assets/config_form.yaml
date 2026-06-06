@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Asset
+
+# Model Form Field configuration
+form: $/bt/crm/models/asset/fields.yaml
+
+# Model Class name
+modelClass: Bt\CRM\Models\Asset
+
+# Default redirect location
+defaultRedirect: bt/crm/assets
+
+# Create page
+create:
+    title: Create Asset
+    redirect: bt/crm/assets/update/:id
+    redirectClose: bt/crm/assets
+
+# Update page
+update:
+    title: Edit Asset
+    redirect: bt/crm/assets
+    redirectClose: bt/crm/assets
+
+# Preview page
+preview:
+    title: Preview Asset

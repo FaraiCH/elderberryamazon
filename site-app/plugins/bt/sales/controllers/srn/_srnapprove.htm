@@ -1,0 +1,31 @@
+
+
+
+
+<?php if ($this->user->hasAccess('bt.qc.approval') && count($formModel->requestunapprove) > 0): ?>
+	<?php
+		$is_used = 1;
+		foreach ($formModel->requestunapprove as $key => $value) {
+		   	if($value->is_used == 0 && !empty($value->form)){
+					$is_used = 0;
+			}
+		}
+	?>
+	<?php if ($is_used == 0 || (!empty($formModel->srnapprove) && $formModel->srnapprove->status_id == 0)): ?>
+			<?= $this->relationRender('srnapprove') ?>
+	<?php else: ?>
+		<?= $this->relationRender('srnapprove', ['readOnly' => true]) ?>
+	<?php endif ?>
+
+<?php elseif ($this->user->hasAccess('bt.qc.approval')): ?>
+
+	<?php if (!empty($formModel->srnapprove) && $formModel->srnapprove->status_id == 1): ?>
+			<p>To unapprove please use the unapproval process</p>
+		<?= $this->relationRender('srnapprove', ['readOnly' => true]) ?>
+	<?php else: ?>
+		<?= $this->relationRender('srnapprove') ?>
+	<?php endif ?>
+
+<?php else: ?>
+		<?= $this->relationRender('srnapprove', ['readOnly' => true]) ?>
+<?php endif ?>

@@ -1,0 +1,35 @@
+@media only screen and (min-width: 992px) {
+
+/*  div.sidenav-tree {
+        width: 400px;
+    }*/
+}
+
+.sidenav-tree ul.top-level>li>ul li a span.header{
+	    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top:  -2px	;
+}
+
+.sidenav-tree ul.top-level>li>ul li a span.description{
+	 font-size: 11px;
+
+}
+
+.sidenav-tree ul.top-level>li>ul li{
+	padding: 5px 5px 0px 5px;
+}
+.sidenav-tree ul.top-level > li > ul li a{
+        padding: 5px 5px 5px 34px;
+        margin-bottom: 3px;
+}
+
+.sidenav-tree ul.top-level > li > ul li a i{
+        top: 7px;
+}
+
+.a ,table.table.data tbody td a.a{
+    display: inline-block;
+    color: #3498db;
+    text-decoration: underline;
+}

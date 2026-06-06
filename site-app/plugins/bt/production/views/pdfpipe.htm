@@ -1,0 +1,555 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 12px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+h3{
+font-size: 14px;
+margin-top: 10px;
+padding-top: 0px;
+border-bottom: 1px solid #ccc;
+margin-bottom: 10px
+
+}
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="50%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="50%" style="text-align: center;">
+							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501  <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+							<h2>Pipe Production</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<th>Invoice</th>
+						<th>Client</th>
+						<th>Status</th>
+						<th>Pipe Description</th>
+						<th>Dated Requested</th>
+
+					</tr>
+					<tr>
+						<td>
+							{% if quote.qpush.quote.invoice %}
+	                                {{quote.qpush.quote.invoice.name }}
+	                             {% endif %}
+						</td>
+						<td>{{quote.qpush.quote.company_name}}</td>
+						<td>{{quote.qpush.status.name}}</td>
+						<td>{{quote.quoteitems.description}}</td>
+						<td>{{quote.qpush.created_at}}</td>
+
+					</tr>
+
+
+				</table>
+				<h3>Properties</h3>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="44%" valign="top">
+
+							{% set pipe = quote %}
+							{% autoescape false %}{% set isnotset = '<span class="text-danger">Not Set</span>' %}{% endautoescape %}
+							<table width="100%" border="0" cellpadding="1px" cellspacing="0">
+
+								<tr>
+									<th>Start Date</th>
+									<td>{% autoescape false %}{{(pipe.start_date)?pipe.start_date|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+								</tr>
+
+								<tr>
+									<th>Due Date</th>
+									<td>{% autoescape false %}{{(pipe.due_date)?pipe.due_date|date("Y-m-d"):isnotset|raw}}{% endautoescape %}</td>
+								</tr>
+								<tr>
+									<th>Total Mass </th>
+									{% set totalmass = pipe.quoteitems.units * pipe.pipe_target_weight %}
+
+									{% set effective_production_rate =  ((pipe.production_rate*(pipe.target_availability/100)*(1-(pipe.target_scrap_rate/100)))) %}
+
+
+									{% set dailproduction = effective_production_rate * 24 %}
+									<td>{{ totalmass }}</td>
+								</tr>
+								<tr>
+									<th>Daily Production Target</th>
+									<td>{{ dailproduction }} kg</td>
+								</tr>
+								<tr>
+									<th>Production days</th>
+									{% set productiondays = (totalmass/(effective_production_rate * 24)) %}
+									<td>{{productiondays|number_format(2, '.', ',')}}</td>
+								</tr>
+								<tr>
+									<th>Projected Date Of Completion</th>
+									<td>{{pipe.start_date|date_modify("+" ~ productiondays|number_format(0, '.', ',') ~ " day")|date("Y-m-d") }}</td>
+								</tr>
+							</table>
+						</td>
+
+
+						<td></td>
+						<td width="44%" valign="top" >
+							<table width="100%" border="0" cellpadding="1px" cellspacing="0">
+								<tr>
+
+					  				<th>Pipe target Weight (Kg)</th>
+					  				<td>{{pipe.pipe_target_weight}}</td>
+					  			</tr>
+					  			<tr>
+					  				<th>Assigned Production line</th>
+					  				<td>{{pipe.btline.name}}</td>
+					  			</tr>
+					  			<tr>
+					  				<th>Production Rate Kg/h:</th>
+					  				<td>{{pipe.production_rate}}</td>
+					  			</tr>
+					  			<tr>
+					  				<th>Target Scrap Rate</th>
+					  				<td>{{pipe.target_scrap_rate}}%</td>
+					  			</tr>
+					  			<tr>
+					  				<th>Target Availability</th>
+					  				<td>{{pipe.target_availability}}%</td>
+					  			</tr>
+					  			<tr>
+					  				<th>Changeover Days</th>
+					  				<td>{{pipe.changeover_days}}</td>
+					  			</tr>
+
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<h3>Schedule</h3>
+				{%  set response=quote.schedules   %}
+				{% if response is not empty  %}
+
+				{% set totalprojectkg = 0 %}
+				{% set totalprojectvalue = 0 %}
+
+					{% set countschedule = 0 %}
+					{% set total = 0 %}
+					{% set datagraph_kg = [] %}
+					{% set datagraph_units = [] %}
+					{% set seriesgraph_kg = [] %}
+
+					{% set t_target_units_produced = [] %}
+					{% set t_total_units_produced = [] %}
+					{% set t_total_units_passed_qc = [] %}
+					{% set t_total_units_fail_qc = [] %}
+					{% set t_Running_total_of_failed_pipes = [] %}
+					{% set t_Running_total_of_pipes_produced = [] %}
+					{% set t_Running_total_of_passed_Units = [] %}
+
+					{% set t_target_kg_processed = [] %}
+					{% set t_total_kg_processed = [] %}
+					{% set t_weight_scrap_kg = [] %}
+					{% set t_Running_total_of_weight_processed_kg = [] %}
+					{% set t_over_weight_kg = [] %}
+					{% set t_Wasted_material_kg = [] %}
+
+
+		<table class="table table-striped table-bordered table-sm table-hover" id="tabledownload">
+			<thead>
+				<tr>
+					<th colspan="2"></th>
+
+					<th class="text-center" colspan="2">TARGETS</th>
+					<th class="text-center" colspan="14">ACTUAL</th>
+					<th class="text-center" colspan="11">DEVIATIONS</th>
+				</tr>
+				<tr>
+
+					<th>Day</th>
+					<th>Date</th>
+					<th>Weight</th>
+					<th>Units</th>
+					<th>Weight</th>
+					<th>Units</th>
+					<th>Units Passed QC</th>
+					<th>Units Failed QC</th>
+					<th>Running total of weight processed (Kg) {% set Running_total_of_weight_processed_kg =0  %}</th>
+					<th>Running total of pipes produced {% set Running_total_of_pipes_produced =0  %}</th>
+					<th>Running total of passed units{% set Running_total_of_passed_Units =0  %}</th>
+					<th>Running total of failed pipes{% set Running_total_of_failed_pipes =0  %}</th>
+					<th>Weight of scrap (Kg)</th>
+					<th>Scrap %</th>
+					<th>Over weight (Kg)</th>
+					<th>Over weight %</th>
+					<th>Wasted material (Kg)</th>
+					<th>Waste %</th>
+					<th>Deviation on KG Processed</th>
+					<th>Deviation on units produced</th>
+					<th>Reason for Deviation on KG processed</th>
+					<th>Reason for QC Fail</th>
+
+					<th>Recovery plan or general notes</th>
+					<th>Running hours</th>
+					<th>Utilisation</th>
+					<th>Avilability</th>
+					<th>Maintenance/technical issues to report</th>
+				</tr>
+			</thead>
+			<tbody>
+
+		        {% for item in response %}
+
+		        {% set countschedule = countschedule + 1 %}
+		        {% if countschedule == 5  %}
+		        {% set countschedule = 1 %}
+		    </tbody>
+		</table>
+
+		<div class="page-break"></div>
+		 <table class="table table-striped table-bordered table-sm table-hover" id="tabledownload">
+					<thead>
+						<tr>
+							<th colspan="2"></th>
+
+							<th class="text-center" colspan="2">TARGETS</th>
+							<th class="text-center" colspan="14">ACTUAL</th>
+							<th class="text-center" colspan="11">DEVIATIONS</th>
+						</tr>
+						<tr>
+
+							<th>Day</th>
+							<th>Date</th>
+							<th>Weight</th>
+							<th>Units</th>
+							<th>Weight</th>
+							<th>Units</th>
+							<th>Units Passed QC</th>
+							<th>Units Failed QC</th>
+							<th>Running total of weight processed (Kg)</th>
+							<th>Running total of pipes produced </th>
+							<th>Running total of passed units</th>
+							<th>Running total of failed pipes</th>
+							<th>Weight of scrap (Kg)</th>
+							<th>Scrap %</th>
+							<th>Over weight (Kg)</th>
+							<th>Over weight %</th>
+							<th>Wasted material (Kg)</th>
+							<th>Waste %</th>
+							<th>Deviation on KG Processed</th>
+							<th>Deviation on units produced</th>
+							<th>Reason for Deviation on KG processed</th>
+							<th>Reason for QC Fail</th>
+
+							<th>Recovery plan or general notes</th>
+							<th>Running hours</th>
+							<th>Utilisation</th>
+							<th>Avilability</th>
+							<th>Maintenance/technical issues to report</th>
+						</tr>
+					</thead>
+					<tbody>
+
+		        {% endif %}
+
+
+
+					<tr class="{{(item.total_kg_processed > 0)?'':'text-warning'}}">
+
+					<td rowspan="2">{{item.production_days}}</td>
+					<td rowspan="2" nowrap="nowrap" >{{item.production_date}}</td>
+					<td>{{item.target_kg_processed}}</td>
+					<td>{{item.target_units_produced}}</td>
+					<td>{{item.total_kg_processed}}</td>
+					<td>{{item.total_units_produced}}</td>
+					<td>{{item.total_units_passed_qc}}</td>
+					<td>{{item.total_units_produced - item.total_units_passed_qc}}</td>
+					<td>{% set Running_total_of_weight_processed_kg = Running_total_of_weight_processed_kg + item.total_kg_processed %}
+					{{Running_total_of_weight_processed_kg}}</td>
+					<td>
+						{% set Running_total_of_pipes_produced = Running_total_of_pipes_produced + item.total_units_produced %}
+					{{Running_total_of_pipes_produced}}
+
+					</td>
+					<td>{% set Running_total_of_passed_Units = Running_total_of_passed_Units + item.total_units_passed_qc %}
+					{{Running_total_of_passed_Units}}</td>
+					<td>
+					{% set Running_total_of_failed_pipes = Running_total_of_failed_pipes + (item.total_units_produced - item.total_units_passed_qc) %}
+					{{Running_total_of_failed_pipes}}
+					</td>
+					<td>{{item.weight_scrap_kg}}</td>
+					<td>{{(item.total_kg_processed > 0)?((item.weight_scrap_kg*100)/item.total_kg_processed)|number_format(1, '.', ','):0}}%</td>
+					<td>{{item.over_weight_kg}}</td>
+					<td>{{(item.total_kg_processed > 0)?((item.over_weight_kg*100)/item.total_kg_processed)|number_format(1, '.', ','):0}}%</td>
+					<td>{{item.weight_scrap_kg + item.over_weight_kg}}</td>
+					<td>{{(item.total_kg_processed > 0)?(((item.weight_scrap_kg + item.over_weight_kg)*100)/item.total_kg_processed)|number_format(1, '.', ','):0}}%</td>
+					<td>{{item.target_kg_processed - item.total_kg_processed}}</td>
+					<td>{{item.target_units_produced-item.total_units_produced}}</td>
+					<td>{{item.reason_deviation_processed}}</td>
+					<td>{{item.reason_qc_Fail}}</td>
+					<td>{{item.recovery_plan}}</td>
+
+					<td>{{item.running_hours}}</td>
+					<td>{{(item.target_units_produced > 0)?((item.total_units_produced*100)/item.target_units_produced)|number_format(0, '.', ','):0}}%</td>
+					<td>{{(item.running_hours > 0)?((item.running_hours*100)/24)|number_format(1, '.', ','):0}}%</td>
+					<td>{{item.maintenance}}</td>
+					</tr>
+
+					<tr>
+						<td colspan="27">
+							<b>Material Used: </b>
+							{% set totaldayvalue = 0 %}
+							{% set totaldaykg = 0 %}
+							{% if item.usedmaterials is not empty  %}
+								<table style="width: 100%">
+									<tr>
+										<th>Product Name</th>
+										<th>Batch</th>
+										<th>KG</th>
+										<th>Costs</th>
+										<th>Comment</th>
+									</tr>
+									{% for use in item.usedmaterials %}
+									<tr>
+										<td>{{use.receiving.productname.name}}</td>
+										<td>{{use.receiving.supplier_batch}}</td>
+										<td>{{use.kg}}
+										{% set totaldaykg = totaldaykg + use.kg %}</td>
+										{% set totalprojectkg = totalprojectkg + use.kg %}</td>
+										<td>R {{(use.kg * use.receiving.pricekg)|number_format(2, '.', ',')}}</td>
+										<td>{{use.note}}</td>
+										{% set totaldayvalue = totaldayvalue + (use.kg * use.receiving.pricekg) %}
+										{% set totalprojectvalue = totalprojectvalue + (use.kg * use.receiving.pricekg) %}
+									</tr>
+									{% endfor %}
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<th>{{totaldaykg}}</th>
+											<th>R {{totaldayvalue|number_format(2, '.', ',')}}</th>
+											<th></th>
+										</tr>
+									</tfoot>
+								</table>
+							{% else %}
+								No Items
+							{% endif %}
+						</td>
+					</tr>
+
+					{% set dataline_k = {
+					year:item.production_date,
+					park1:item.target_kg_processed,
+					park2:item.total_kg_processed,
+					park3:Running_total_of_weight_processed_kg,
+					park4:item.weight_scrap_kg
+
+					} %}
+
+					{% set dataline_u = {
+					year:item.production_date,
+					park1:item.target_units_produced,
+					park2:item.total_units_produced,
+					park3:(item.total_units_produced - item.total_units_passed_qc)
+
+					} %}
+
+					{% if item.total_kg_processed > 0 %}
+					{% set usedate = item.production_date|date("m/d/Y 00:00:00", false) %}
+					{% set usedate = (usedate| date('U')) *1000 + 2*3600*1000 %}
+
+					{% set t_target_units_produced = t_target_units_produced|merge([[usedate, item.target_units_produced]]) %}
+					{% set t_total_units_produced = t_total_units_produced|merge([[usedate, item.total_units_produced]]) %}
+					{% set t_total_units_passed_qc = t_total_units_passed_qc|merge([[usedate, item.total_units_passed_qc]]) %}
+					{% set t_total_units_fail_qc = t_total_units_fail_qc|merge([[usedate, (item.total_units_produced - item.total_units_passed_qc)]]) %}
+
+					{% set t_Running_total_of_failed_pipes = t_Running_total_of_failed_pipes|merge([[usedate, Running_total_of_failed_pipes]]) %}
+
+					{% set t_Running_total_of_pipes_produced = t_Running_total_of_pipes_produced|merge([[usedate, Running_total_of_pipes_produced]]) %}
+
+					{% set t_Running_total_of_passed_Units = t_Running_total_of_passed_Units|merge([[usedate, Running_total_of_passed_Units]]) %}
+
+					{% set t_target_kg_processed = t_target_kg_processed|merge([[usedate, item.target_kg_processed]]) %}
+					{% set t_total_kg_processed = t_total_kg_processed|merge([[usedate, item.total_kg_processed]]) %}
+					{% set t_weight_scrap_kg = t_weight_scrap_kg|merge([[usedate, item.weight_scrap_kg]]) %}
+
+					{% set t_over_weight_kg = t_over_weight_kg|merge([[usedate, item.over_weight_kg]]) %}
+
+					{% set t_Wasted_material_kg = t_Wasted_material_kg|merge([[usedate, (item.weight_scrap_kg + item.over_weight_kg)]]) %}
+
+
+
+
+
+					{% set t_Running_total_of_weight_processed_kg = t_Running_total_of_weight_processed_kg|merge([[usedate, Running_total_of_weight_processed_kg]]) %}
+
+
+
+
+					{% endif%}
+
+
+
+
+
+					{% set datagraph_units = datagraph_units| merge([dataline_u]) %}
+
+					{% endfor %}
+					</tbody>
+
+					</table>
+
+			{% endif %}
+
+			</td>
+		</tr>
+
+
+
+	</table>
+	<br><br>
+	<table class="table table-striped table-bordered  table-hover" style="font-size: 16px" id="tabledownload">
+		<thead><tr>
+			<th style="font-size: 16px" >Total Of Weight Processed</th>
+			<th style="font-size: 16px" >Total Of Pipes Produced</th>
+			<th style="font-size: 16px" >Total Of Passed Units</th>
+			<th style="font-size: 16px" >Total Used Material</th>
+			<th style="font-size: 16px" >Total Material Cost</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td style="font-size: 16px" >{{Running_total_of_weight_processed_kg}} kg</td>
+			<td style="font-size: 16px" >{{Running_total_of_pipes_produced}}</td>
+			<td style="font-size: 16px" >{{Running_total_of_passed_Units}}</td>
+			<td style="font-size: 16px" >{{totalprojectkg}} KG</td>
+			<td style="font-size: 16px" >R{{totalprojectvalue|number_format(2, '.', ',')}} </td>
+		</tr>
+		</tbody>
+	</table>
+
+
+
+
+
+
+
+	</body>
+	</html>

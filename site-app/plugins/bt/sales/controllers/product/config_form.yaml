@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Product
+
+# Model Form Field configuration
+form: $/bt/sales/models/product/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Product
+
+# Default redirect location
+defaultRedirect: bt/sales/product
+
+# Create page
+create:
+    title: Create Product
+    redirect: bt/sales/product/update/:id
+    redirectClose: bt/sales/product
+
+# Update page
+update:
+    title: Edit Product
+    redirect: bt/sales/product
+    redirectClose: bt/sales/product
+
+# Preview page
+preview:
+    title: Preview Product

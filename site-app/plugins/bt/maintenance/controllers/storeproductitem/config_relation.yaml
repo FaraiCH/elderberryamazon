@@ -1,0 +1,10 @@
+
+
+storeinout:
+    label: Store In out
+    manage:
+        form: $/bt/maintenance/models/storeiteminout/fields.yaml
+        list: $/bt/maintenance/models/storeiteminout/columns.yaml
+    view:
+        list: $/bt/maintenance/models/storeiteminout/columns.yaml
+        toolbarButtons: create|delete

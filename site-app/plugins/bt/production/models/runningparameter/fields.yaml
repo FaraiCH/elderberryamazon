@@ -1,0 +1,48 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+    btline:
+        label: Baila Machine
+        type: relation
+        select: name
+        span: auto
+        placeholder: -- Select Baila Machine --
+    diameter:
+        label: Diameter
+        type: relation
+        select: name
+        span: auto
+        placeholder: -- Diameter --
+    pnrating:
+        label: PN Rating
+        type: relation
+        select: name
+        span: auto
+        placeholder: -- PN Rating --
+    screw_speed:
+        label: Screw Speed
+        type: number
+        span: auto
+    haul_speed:
+        label: Haul Off Speed
+        type: number
+        span: auto
+    torque:
+        label: Torque
+        type: number
+        span: auto
+    vacuum1:
+        label: Vacuum V1
+        type: number
+        span: auto
+    vacuum2:
+        label: Vacuum V2
+        type: number
+        span: auto
+

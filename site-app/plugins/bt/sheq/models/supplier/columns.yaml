@@ -1,0 +1,39 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    company_name:
+        label: Company
+        searchable: true
+    company_description:
+        label: Company Description
+        searchable: true
+    items:
+        label: Item Purchased
+        searchable: true
+    nationality:
+        label: Nationality
+        searchable: true
+    person:
+        label: Contact Person
+        searchable: true
+    email:
+        label: Email
+        searchable: true
+    number:
+        label: Contact Number
+        searchable: true
+    tax:
+        label: Tax Clearance Certificate
+        searchable: true
+    bbbee:
+        label: BBBEE Certificate
+        searchable: true
+    account:
+        label: Credit Account
+        searchable: true
+

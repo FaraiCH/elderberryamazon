@@ -1,0 +1,20 @@
+<?php 
+// PHP program to illustrate 
+// date_diff() function 
+
+// creates DateTime objects 
+$datetime1 = now(); 
+$datetime2 = date_create($record->scheduledate); 
+
+// calculates the difference between DateTime objects 
+$interval = date_diff($datetime1, $datetime2); 
+
+// printing result in days format 
+$i = $interval->format('%R%a');
+if($i < 0){
+	echo '<span class="oc-icon-circle text-muted" data-color="#cc3300">'.$interval->format('%R%a days').'</span>'; 
+}else{
+	echo '<span class="oc-icon-clock-o text-success" data-color="#cc3300">'.$interval->format('%R%a days').'</span>'; 
+} 
+
+?> 

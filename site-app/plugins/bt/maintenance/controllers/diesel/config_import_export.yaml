@@ -1,0 +1,5 @@
+import:
+    title: Import Diesel Usages
+    modelClass: Bt\Maintenance\Models\DieselImport
+    list: $/bt/maintenance/models/diesel/columns.yaml
+    redirect: bt/maintenance/diesel

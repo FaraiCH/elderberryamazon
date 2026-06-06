@@ -1,0 +1,13 @@
+scopes:
+    type:
+        label: Type
+        type: group
+        default: 0
+        modelClass: Bt\Production\Models\ProductionPlan
+        nameFrom: type
+        conditions: type in (:filtered)
+        options:
+            1: Order
+            0: Production
+
+

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Overview
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/overview/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Overview
+
+# Default redirect location
+defaultRedirect: bt/maintenance/overview
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/maintenance/overview/update/:id
+    redirectClose: bt/maintenance/overview
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/maintenance/overview
+    redirectClose: bt/maintenance/overview
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

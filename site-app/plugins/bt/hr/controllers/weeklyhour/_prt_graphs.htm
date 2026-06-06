@@ -1,0 +1,247 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+
+        Highcharts.dateFormats = {
+            W: function (timestamp) {
+                var date = new Date(timestamp),
+                    day = date.getUTCDay() == 0 ? 7 : date.getUTCDay(),
+                    dayNumber;
+                date.setDate(date.getUTCDate() + 4 - day);
+                dayNumber = Math.floor((date.getTime() - new Date(date.getUTCFullYear(), 0, 1, -6)) / 86400000);
+                return 1 + Math.floor(dayNumber / 7);
+            }
+        }
+Highcharts.chart('chart_kg', {
+             chart: {
+                 type: 'column',
+                 zoomType: 'x'
+             },
+             title: {
+                 text: 'Labour Weekly Hours'
+             },
+             subtitle: {
+                 text: 'Weekly Hours'
+             },
+             xAxis: {
+                 tickInterval: 7 * 24 * 36e5, // one week
+                 type: 'datetime',
+                 startOfWeek: 0,
+                 labels: {
+                 format: '{value:Week %W/ Ends %b-%e}'
+               },
+             },
+             yAxis: {
+                 title: {
+
+                     text: 'Hours per Week'
+                 },
+             },
+             series: <?= json_encode($stats) ?> ,
+             plotOptions: {
+             series: {
+                dataLabels: {
+                        enabled: true,
+                    },
+                 marker: {
+                     enabled: false
+                 }
+             }
+         },
+         responsive: {
+             rules: [{
+                 condition: {
+                     maxWidth: 500
+                 },
+                 chartOptions: {
+                     legend: {
+                         layout: 'horizontal',
+                         align: 'center',
+                         verticalAlign: 'bottom'
+                     }
+                 }
+             }]
+         },
+         exporting: {
+           showTable: false,
+           csv: {
+            dateFormat: '%Y-%m-%d'
+          },
+          buttons: {
+           contextButton: {
+                enabled: false
+            },
+           exportButton: {
+                text: 'Download',
+                // Use only the download related menu items from the default
+                // context button
+                menuItems: [
+                    'downloadPNG',
+                    'downloadCSV',
+                    'downloadPDF',
+                    'downloadSVG'
+                ]
+            }
+         }
+        }
+
+     });
+
+
+// Define the chart options
+
+Highcharts.chart('chart_line', {
+    chart: {
+            type: 'line'
+        },
+
+  title: {
+    text: 'Labour Weekly Hours',
+  },
+  subtitle: {
+    text: 'Weekly Hours',
+  },
+  yAxis: {
+    title: {
+      text: 'Hours per Week'
+    }
+  },
+
+  xAxis: {
+    type: 'datetime',
+    tickInterval: 7 * 24 * 36e5, // one week
+    startOfWeek: 0,
+    labels: {
+      format: '{value:Week %W/ Ends %b-%e}',
+    },
+  },
+
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+  },
+
+  plotOptions: {
+     series: {
+        dataLabels: {
+                enabled: true,
+            },
+         marker: {
+            enabled: false
+        }
+    }
+ },
+
+  series: <?= json_encode($stats) ?>,
+
+  responsive: {
+    rules: [{
+      condition: {
+        maxWidth: 500
+      },
+      chartOptions: {
+        legend: {
+          layout: 'horizontal',
+          align: 'center',
+          verticalAlign: 'bottom'
+        }
+      }
+    }]
+  },
+  exporting: {
+    showTable: false,
+    csv: {
+      dateFormat: '%Y-%m-%d',
+    },
+    buttons: {
+      contextButton: {
+        enabled: false,
+      },
+      exportButton: {
+        text: 'Download',
+        // Use only the download related menu items from the default
+        // context button
+        menuItems: [
+          'downloadPNG',
+          'downloadCSV',
+          'downloadPDF',
+          'downloadSVG',
+        ],
+      },
+    },
+  },
+
+});
+
+
+
+Highcharts.chart('chart_p', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Total Weekly Hours Percentage'
+        },
+        subtitle: {
+            text: '<?= $lineDep ?>'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series:[ {
+            colorByPoint: true,
+            name: 'Weekly Hours',
+            data: <?= json_encode($pie) ?>
+        }],
+        exporting: {
+          buttons: {
+           contextButton: {
+                enabled: false
+            },
+           exportButton: {
+                text: 'Download',
+                // Use only the download related menu items from the default
+                // context button
+                menuItems: [
+                    'downloadPNG',
+                    'downloadCSV',
+                    'downloadPDF',
+                    'downloadSVG'
+                ]
+            }
+         }
+        }
+    });
+});
+</script>
+<script>
+    var select = document.getElementById('select');
+
+        select.addEventListener('change', (e) => {
+
+   console.log(Highcharts.redraw());
+});
+</script>

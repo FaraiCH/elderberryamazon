@@ -1,0 +1,30 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    description:
+        label: Description
+    units:
+        label: Quantity
+    sell_price:
+        label: Unit Sell Price
+        format: R%.2f
+    buy_price:
+        label: Unit Buy Price
+        format: R%.2f
+    profit:
+        label: Unit Profit
+        type: partial
+        path: $/bt/sales/models/purchaseitem/profit.htm
+    margin:
+        label: Unit Margin
+        type: partial
+        path: $/bt/sales/models/purchaseitem/margin.htm
+    total:
+        label: Total Buying Price
+        type: partial
+        path: $/bt/sales/models/purchaseitem/total.htm

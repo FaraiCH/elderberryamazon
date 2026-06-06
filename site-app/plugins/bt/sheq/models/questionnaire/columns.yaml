@@ -1,0 +1,30 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    name:
+        label: Name
+        searchable: true
+
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sheq/models/questionnaire/_active.htm
+    sort_order:
+        label: Order
+        sortable: true
+    created_at:
+        label: Date Created
+        format: Y-m-d
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: Y-m-d
+        type: date
+        invisible: true

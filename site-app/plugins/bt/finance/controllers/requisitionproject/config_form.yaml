@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Requisition Project
+
+# Model Form Field configuration
+form: $/bt/finance/models/requisitionproject/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\RequisitionProject
+
+# Default redirect location
+defaultRedirect: bt/finance/requisitionproject
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/finance/requisitionproject/update/:id
+    redirectClose: bt/finance/requisitionproject
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/finance/requisitionproject
+    redirectClose: bt/finance/requisitionproject
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

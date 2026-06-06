@@ -1,0 +1,168 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/logistics/vehiclefuelusage') ?>">Vehicle Fuel Usage</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+
+<?= $this->makePartial('filterform',['startdate' => $startdate,'enddate' => $enddate]) ?>
+
+<div class="callout fade in callout-info ">
+
+    <div class="content">
+
+        <div class="card" style="margin-top: 20px">
+            <div id="chart_kg" style="height: 450px;"></div>
+
+            <div style="padding: 10px">
+
+                <table class="table" style="width: 100%;border-collapse:collapse; font-size: 13px; border: 1px solid #ccc; border-color: #ccc" cellspacing="0px" cellpadding="2px"  border="1">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Date</th>
+                            <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Fuel Type</th>
+                            <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Litres</th>
+                            <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Price Per Litre</th>
+                            <th rowspan="2" nowrap="nowrap" style=" background: #e9ecef; ">Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <?php
+                            foreach ($fuel as $key => $i) {
+                                $amount = $i->fuel_intake * $i->price_per_litre;
+                                echo '<tr>';
+
+                                $date = date_create($i->date);
+                                echo '<td nowrap="nowrap">'.date_format($date,'Y-m-d').'</td>';
+                                echo '<td nowrap="nowrap">'.$i->fueltype->name.'</td>';
+                                echo '<td nowrap="nowrap">'.number_format($i->fuel_intake, 2, ',', ' ').' L</td>';
+                                echo '<td nowrap="nowrap">R '.number_format($i->price_per_litre, 2, ',', ' ').'</td>';
+                                echo '<td nowrap="nowrap">R '.number_format($amount, 2, ',', ' ').'</td>';
+                                echo '<tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+body{
+    color: #212529;font-size: 12px;
+    font-family: sans-serif;
+    word-wrap: break-word;
+    background:  url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) center center;
+    padding: 0px;
+    margin:0px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+@page { margin:0px; padding: 0px;font-family: 'Roboto'}
+html { margin:0px; padding: 0px }
+
+.chart-outer {
+    max-width: 800px;
+    margin: 2em auto;
+}
+#container {
+    height: 300px;
+    margin-top: 2em;
+    min-width: 380px;
+}
+.highcharts-data-table table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: white;
+    min-width: 100%;
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    border: 1px solid silver;
+    padding: 0.5em;
+}
+.highcharts-data-table tr:nth-child(even),
+.highcharts-data-table thead tr {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #eff;
+}
+.highcharts-data-table caption {
+    border-bottom: none;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+</style>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+
+
+
+
+        Highcharts.chart('chart_kg', {
+            chart: {
+                type: 'column',
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Vehicle Fuel Graph'
+            },
+
+            subtitle: {
+
+                text: 'Normal and Accumulative'
+            },
+
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: {
+
+                    text: 'Fuel Litres'
+
+                },
+                plotLines: [
+
+                ]
+            },
+
+            series: <?= json_encode($stats) ?> ,
+
+            plotOptions: {
+            series: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+    });
+</script>

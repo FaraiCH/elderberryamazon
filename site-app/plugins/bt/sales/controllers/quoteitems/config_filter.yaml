@@ -1,0 +1,55 @@
+scopes:
+    
+    flag:
+        label: Flag
+        type: group
+        options:
+            0: Flag Fair
+            1: Flag Success
+            2: Flag Danger
+            3: Flag Warning
+
+        # scope: filterFlagscope
+        # conditions:  id and (select id from bt_sales_quoteitems where flagit in (:filtered))
+    PNRating:
+        label: PN Rating
+        modelClass: Bt\Sales\Models\PNRating
+        
+        nameFrom: name
+
+        # Filter scope
+        scope: filterByPnrating
+
+    # createdby:
+    #     label: Sales Person
+    #     modelClass: RainLab\User\Models\User
+    #     conditions: user_id in (:filtered)
+    #     nameFrom: name
+
+    # isactive:
+    #     label: Active
+    #     modelClass: Bt\Maintenance\Models\YesNo
+    #     conditions: active in (:filtered)
+    #     nameFrom: name
+
+    # reason:
+    #     label: Reason For Quote
+    #     modelClass: Bt\Sales\Models\ReasonForQuote
+    #     conditions: reason_for_quote_id in (:filtered)
+    #     nameFrom: name
+
+    # nonreceived:
+    #     label: Receiving Order
+    #     modelClass: Bt\Sales\Models\ReceivedNonReceived
+    #     conditions: received_non_received_order_id in (:filtered)
+    #     nameFrom: name
+
+    # closing_date:
+    #     label: Closing Date       
+    #     type: daterange
+    #     conditions: closing_date >= ':after' AND closing_date <= ':before'
+
+    created_at:
+        label: Date Created       
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'

@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    stickercount@create:
+        label: Numer of stickers
+        # comment: First blank stickers on the A4 printer page (0 or > 1)
+        type: number
+        default: 100
+        span: left 
+    stickercount@update:
+        label: Numer of stickers
+        # comment: First blank stickers on the A4 printer page (0 or > 1)
+        type: number
+        default: 100
+        span: left
+        disabled: true
+  
+    pipestickeritem@update:
+        path: $/bt/production/controllers/printsticker/_printitems.htm
+        label: Printed Items
+        type: partial
+        

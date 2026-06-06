@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Store Product Item
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/storeproductitem/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\StoreProductItem
+
+# Default redirect location
+defaultRedirect: bt/maintenance/storeproductitem
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/maintenance/storeproductitem/update/:id
+    redirectClose: bt/maintenance/storeproductitem
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/maintenance/storeproductitem
+    redirectClose: bt/maintenance/storeproductitem
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,39 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    status_id:
+      label: Approve Job Card
+      type: dropdown
+      span: auto
+      options:        
+        0: Not Approved 
+        1: Approved
+        2: Rejected
+    createdby:
+      span: auto
+      label: Created By
+      disabled: true
+      type: relation
+      select: concat(first_name, ' ', last_name)
+      span: left
+      placeholder: -- select a status --
+      comment: Please ignore, this field will be automated
+    updatedby:
+      span: auto
+      label: Updated By
+      disabled: true
+      type: relation
+      select: concat(first_name, ' ', last_name)
+      
+      placeholder: -- select a status --
+      comment: Please ignore, this field will be automated
+    note: 
+      label: Notes and Comments
+      size: small
+      type: textarea
+      span: auto

@@ -1,0 +1,274 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    employee_id:
+        label: Employee Name
+        span: auto
+        type: dropdown
+
+        placeholder: -- Select Employee --
+    name:
+        label: Name
+        span: auto
+        disabled: true
+    surname:
+        label: Surname
+        span: auto
+        disabled: true
+    crew:
+        label: Crew
+        searchable: true
+        span: auto
+        disabled: true
+
+#    ppetype:
+#        label: Uniform or PPE
+#        type: relation
+#        select: name
+#        placeholder: -- Select Type --
+#        span: auto
+tabs:
+    fields:
+        section1:
+            label: Safety Shoes Section
+            type: section
+            tab: Items
+        safety_shoes:
+            label: Safety Shoes
+            type: dropdown
+            span: storm
+            tab: Items
+            default: No
+            placeholder: -- Select --
+            cssClass: col-md-4 col-sm-4
+            options:
+                Yes: Yes
+                No: No
+        safety_shoes_qty:
+            label: Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        safety_shoes_date:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+
+        section2:
+            label: Overall Section
+            type: section
+            tab: Items
+
+        overall:
+            label: Overall
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            tab: Items
+            default: No
+            placeholder: -- Select --
+            options:
+                Yes: Yes
+                No: No
+        overallqty:
+            label: Overall Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        overalldate:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+
+        section3:
+            label: Hand Gloves Section
+            type: section
+            tab: Items
+
+        gloves:
+            label: Hand Gloves
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            placeholder: -- Select --
+            tab: Items
+            default: No
+            options:
+                Yes: Yes
+                No: No
+        glovesqty:
+            label: Hand Gloves Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        glovesdate:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+
+        section4:
+            label: Ear Plugs Section
+            type: section
+            tab: Items
+
+        ear_plugs:
+            label: Ear Plugs
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            tab: Items
+            placeholder: -- Select --
+            default: No
+            options:
+                Yes: Yes
+                No: No
+
+        ear_plugs_qty:
+            label: Ear Plugs Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        ear_plugs_date:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+
+        section5:
+            label: Reflector Vest Section
+            type: section
+            tab: Items
+
+        protective_vest:
+            label: Reflector Vest
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            placeholder: -- Select --
+            tab: Items
+            default: No
+            options:
+                Yes: Yes
+                No: No
+        protective_vest_qty:
+            label: Reflector Vest Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        protective_vest_date:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+
+        section6:
+            label: Hard Hat Section
+            type: section
+            tab: Items
+
+        hard_hat:
+            label: Hard Hat
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            placeholder: -- Select --
+            tab: Items
+            default: No
+            options:
+                Yes: Yes
+                No: No
+        hard_hat_qty:
+            label: Hard Hat Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        hard_hat_date:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        section7:
+            label: Safety Glasses Section
+            type: section
+            tab: Items
+
+        safety_glasses:
+            label: Safety Glasses
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            placeholder: -- Select --
+            tab: Items
+            default: No
+            options:
+                Yes: Yes
+                No: No
+        safety_glasses_qty:
+            label: Safety Glasses Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        safety_glasses_date:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        section8:
+            label: T-Shirt Section
+            type: section
+            tab: Items
+
+        tshirt:
+            label: T-Shirt
+            type: dropdown
+            span: storm
+            cssClass: col-md-4 col-sm-4
+            placeholder: -- Select --
+            tab: Items
+            default: No
+            options:
+                Yes: Yes
+                No: No
+        tshirt_qty:
+            label: T-Shirt Quantity
+            type: number
+            tab: Items
+            cssClass: col-md-4 col-sm-4
+            span: storm
+        tshirt_date:
+            label: Last Purchase Date
+            type: datepicker
+            tab: Items
+            mode: date
+            cssClass: col-md-4 col-sm-4
+            span: storm
+

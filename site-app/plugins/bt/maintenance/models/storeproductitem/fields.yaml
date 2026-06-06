@@ -1,0 +1,32 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    name:
+        label: Name
+        disabled: false
+        type: text
+        span: auto
+    description:
+        label: Description
+        disabled: false
+        type: text
+        span: auto
+    images:
+        label: Images
+        type: fileupload
+        span: left
+
+tabs:
+    
+    fields:
+        
+        storeinout@update:
+          path: $/bt/maintenance/controllers/storeproductitem/_storeinoutpr.htm 
+          tab: Store In Out
+          type: partial
+

@@ -1,0 +1,8 @@
+
+<?php
+     if(isset($record->currencytype->name)){
+        echo $record->currencytype->currency_symbol. ' '. number_format($record->amount,2, '.', ',');
+              } else{
+        echo  "R" . number_format($value,2, '.', ',');
+     }
+?>

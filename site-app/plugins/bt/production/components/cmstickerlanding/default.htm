@@ -1,0 +1,144 @@
+{% set obj = CmStickerLanding %}
+{% set printpipe = obj.item %}
+{% set userDetails = obj.userDetails %}
+{% set qcstatus = obj.qcstatus %}
+{% set binarea = obj.binarea %}
+{% set counter = 0 %}
+
+<div class="container">
+
+    <div class="mycard card" >
+
+        <div class="text-center">
+            <img src="{{ 'assets/images/BT-logos-02.png' | theme }}" alt="bti logo" height="100" width="100" />
+        </div>
+        {% if printpipe.is_active == 0  %}<div style="display:flex;align-items:center;justify-content:space-between;">
+        <strong>Scanned Date:</strong>
+            {{printpipe.sticker_scanned_date}}
+        </div>
+        {% else %}
+            {% if printpipe.controlsheets is not empty  %}
+            <div class="pt-4 rounded-sm">
+                <form data-request-flash>
+                    <div class="row">
+                        <div class="col-12" style="display:flex;align-items:center;justify-content:space-between; gap: 5px;">
+                            <div>
+                                <b>Is pipe on the floor?</b>
+                            </div>
+                            <div style="display:flex;align-items:baseline; gap: 3px;">
+                                <label for="yes">Yes</label>
+                                <input type="radio" id="yes" name="scannedStatus" value="1" data-request="onUpdateUpdatedAtTimestamp" data-track-input="true">
+                                <label for="no">No</label>
+                                <input type="radio" id="no" name="scannedStatus" value="0" data-request="onUpdateUpdatedAtTimestamp" data-request-confirm="Are you sure you want to continue?" data-track-input="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <strong>Scanned Date:</strong>
+                        {{printpipe.sticker_scanned_date}}
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        {% endif %}
+
+         <h4 class="h4">STICKER : #{{printpipe.sticker_id}}-{{printpipe.counter}}</h4>
+
+        {% if printpipe is not empty %}
+           {% if printpipe.is_active == 1 %}
+                {% partial __SELF__ ~ '::savecontrollsheet' printpipe=printpipe %}
+
+
+                {% if printpipe.controlsheets is not empty %}
+                    {% partial __SELF__ ~ '::printmycard' printpipe=printpipe %}
+
+                    {% for group in userDetails.groups %}
+                        {% if group.id == 20 and printpipe.is_scrap != 1 %}
+                            {% if printpipe.qcstatus.id != 2 and printpipe.pickslip_id < 1 %}
+                                {% set counter = counter + 1 %}
+                                <div class="myform">
+                                    <form enctype="multipart/form-data" data-request-files data-request="onQC" data-request-flash id="savesticker_frm">
+                                        <div>
+                                            <p><b>QC:</b> Set Pipe Status</p>
+                                            <select data-track-input data-request="onLoader" name="qcstatus" id="qcstatus" class="select_search form-control form-size">
+                                                <option value="0">Select</option>
+                                                {% for qc in qcstatus %}
+                                                    {% if printpipe.qcstatus.id == qc.id %}
+                                                        <option selected value="{{qc.id}}">{{qc.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{qc.id}}">{{qc.name}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            <div id="reason">
+                                                {% partial __SELF__ ~ '::start_partial' %}
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-width btn-block"><i class="fa fa-save"></i> Save</button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                            {% if printpipe.pickslip_id is not empty and printpipe.srn_id is not empty %}
+                                {% partial __SELF__ ~ '::release_partial' printpipe=printpipe %}
+                            {% endif %}
+                        {% endif %}
+                        <!-- ##24 logist -->
+                        {% if group.id == 24 %}
+                            {% if printpipe.bin_date is empty %}
+                                {% if printpipe.qcstatus_id is not empty %}
+                                    {% if printpipe.qcstatus_id == 1 or printpipe.is_scrap == 1 %}
+                                        {% set counter = counter + 1 %}
+                                        <div class="myform">
+                                            <form>
+                                                <div>
+                                                    <p>Logistics: Set Bin Area:</p>
+                                                    <select name="binarea" id="binarea"  class="input-sm select_search form-control form-size">
+                                                        <option value="0">Select</option>
+                                                        {% for bin in binarea %}
+                                                            {% if printpipe.binarea.id == bin.id %}
+                                                                <option selected value="{{bin.id}}">{{bin.area}}</option>
+                                                            {% else %}
+                                                                <option value="{{bin.id}}">{{bin.area}}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-primary btn-width btn-block" data-request="onBin"><i class="fa fa-save"></i> Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    {% else %}
+                                        {% if printpipe.qcstatus.id != 1 and printpipe.qcstatus.id != 2 and printpipe.is_scrap != 1  %}
+                                            <h4 style="color: #ff1425; text-align: center"><b>Pipe Has Not Been Passed By QC</b></h4>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <h4 style="color: #ff1425; text-align: center"><b>Pipe Has Not Been Passed By QC</b></h4>
+                                {% endif %}
+                            {% else %}
+                                {% partial __SELF__ ~ '::pickslip_partial' printpipe=printpipe obj=obj %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+                {% else %}
+                    <div class="label-danger text-center" style="color: #fff; border-radius: 4px; padding: 10px; font-size: 20px;">
+                        <p>Sticker no longer active. </p>
+                    </div>
+                {% partial __SELF__ ~ '::printcarddisable' printpipe=printpipe %}
+           {% endif %}
+        {% else %}
+            <div class="label-danger text-center" style="color: #fff; border-radius: 4px; padding: 20px; font-size: 20px;">
+                <p>Sticker not found. </p>
+            </div>
+        {% endif %}
+        {% partial __SELF__ ~ '::pipedetails' printpipe=printpipe %}
+        {% partial __SELF__ ~ '::whoami' usergroups = userDetails.groups %}
+    </div>
+
+</div>
+
+

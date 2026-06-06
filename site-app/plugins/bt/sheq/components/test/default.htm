@@ -1,0 +1,111 @@
+
+
+
+
+<div class="blob">
+  <h2 style="margin-bottom: 10px;"><b>Date Started:</b> {{obj.start_date}}</h2>
+  <p></p>
+</div>
+
+
+
+<div>
+    <div >
+
+
+    
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                {% set countertop = 0 %}
+                {% for key, t in test %}
+                {% if countertop == 0 %}
+                <li id="li_qtab_{{countertop}}" class="active" ><a class="nav-link" href="#activity_{{countertop}}" data-toggle="tab">{{key}}</a></li>
+                {% else %}
+                <li id="li_qtab_{{countertop}}"><a class="nav-link" href="#activity_{{countertop}}" data-toggle="tab">{{key}}</a></li>
+                {% endif %}
+                {% set countertop = countertop + 1 %}
+                {% endfor %}
+            </ul>
+            <div class="tab-content" id="body_qtab">
+                {% set counter = 0 %}
+                {% for t in test %}
+              
+                    {% if counter == 0 %}
+                      
+                        <div class="active tab-pane" id="activity_{{counter}}">
+                            <form data-request="onSaveQuestions" enctype="multipart/form-data" data-request-data="isredirect: 0" data-request-success="callTap({{counter}});" class="myForm" data-request-files data-request-flash data-request-validate>
+                            {{t|raw}}
+                            <div class="box-footer clearfix no-border" style="">
+
+                                <button type="submit" class="btn btn-primary nextbtn" data-request-data="isredirect: 0" data-request-success="callTap({{counter}});" data-request-files > Save & Next <i class="fa fa-chevron-right"></i></button>
+
+                                <button type="submit" class=" btn btn-lg btn-info lastsubmitbtn"  data-request="onSaveQuestions"data-request-data="isredirect: 1" style="display: none;" id="sendEmail">Submit
+                                    <i class="fa fa-arrow-circle-right"></i></button>
+
+                            </div>
+                            </form>
+                        </div>
+                    
+                    {% else %}
+                     
+                        <div class="tab-pane" id="activity_{{counter}}">
+                             <form data-request="onSaveQuestions" enctype="multipart/form-data" data-request-data="isredirect: 0" data-request-success="callTap({{counter}});" class="myForm" data-request-files data-request-flash data-request-validate>
+                            {{t|raw}}
+
+                            <div class="box-footer clearfix no-border" style="border-top: 1px solid #f7f7f7 !important; background-color: #fbfbfb; margin: 0px -10px -10px -10px; text-align: center;">
+
+                                <button type="submit" class="btn btn-primary nextbtn" data-request-data="isredirect: 0" data-request-success="callTap({{counter}});" data-request-files > Save & Next <i class="fa fa-chevron-right"></i></button>
+
+                                <button type="submit" class=" btn btn-lg btn-info lastsubmitbtn" data-request="onSaveQuestions" data-request-data="isredirect: 1" style="display: none;" id="sendEmail">Submit
+                                    <i class="fa fa-arrow-circle-right"></i></button>
+                            </div>
+                            </form>
+                        </div>
+                         
+                    {% endif %}
+                    {% set counter = counter + 1 %}
+               
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+        <div class="box-footer clearfix">
+
+        </div>
+ 
+    </div>
+</div>
+
+
+
+{% put scripts %}
+<script>
+
+
+
+
+    jQuery(document).ready(function ($) {
+        let selectedTab = window.location.hash;
+
+        $('.nav-link[href="' + selectedTab + '"]' ).trigger('click');
+    });
+
+
+
+
+</script>
+<script>
+    function callTap(v){
+        $( "#li_qtab_"+v ).next().find("a").trigger('click');
+    }
+
+    jQuery(document).ready(function ($) {
+        $( "#ul_qtab li" ).first().find("a").trigger('click');
+        $( "#body_qtab .tab-pane" ).last().find(".lastsubmitbtn").show();
+        $( "#body_qtab .tab-pane" ).last().find(".nextbtn").hide();
+    })
+</script>
+{% endput %}
+

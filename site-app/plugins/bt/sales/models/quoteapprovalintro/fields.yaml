@@ -1,0 +1,22 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    setcion@create:
+        type: section
+        label: Click create to save the email templates
+
+    subject@update:
+        label: subject
+    
+    body@update:
+        label: Body
+        type: richeditor
+        toolbarButtons: bold|italic
+        size: huge
+        

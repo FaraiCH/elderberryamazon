@@ -1,0 +1,84 @@
+
+ <div class="callout fade in callout-success">
+    <a
+        href="<?= Backend::url('bt/qc/testingmatrix/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+         New Matrix
+    </a>
+
+  <div class="header" style="margin-top: 20px;">
+    <h3>Test Matrix</h3>
+  </div>
+  <div class="content">
+  <div id='calendar'></div>
+  </div>
+  
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Test Matrix</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="titleshow"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/core/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/interaction/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/daygrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/timegrid/main.js"></script>
+<script src="/themes/hambern-hambern-blank-bootstrap-4/assets/packages/list/main.js"></script>
+
+    <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+     
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      events: <?= json_encode($events) ?> //,
+
+      // eventClick: function(info) {
+      //   var eventObj = info.event;        
+      //   $("#titleshow").empty().html("<p><i>"+eventObj.start+"</i></p><p>"+eventObj.title+"</p>");
+      //   $("#exampleModal").modal();
+          
+        
+      // }
+
+
+    });
+
+    calendar.render();
+
+
+
+
+  });
+$(document).ready(function () {
+
+});
+
+</script>

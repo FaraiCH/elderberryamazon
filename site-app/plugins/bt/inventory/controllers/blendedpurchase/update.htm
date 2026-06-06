@@ -1,0 +1,143 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/inventory/blendedpurchase') ?>">Blended Purchase</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+<div class="control-tabs content-tabs" data-control="tab">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#contentTabOne">Update</a></li>
+        <li><a href="#contentTabTwo">Blended Price Data</a></li>
+        
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane pane-bordered active" style="padding: 20px">
+           <?= Form::open(['class' => 'layout']) ?>
+
+                <div class="layout-row">
+                    <?= $this->formRender() ?>
+                </div>
+
+                <div class="form-buttons">
+                    <div class="loading-indicator-container">
+                        <button
+                            type="submit"
+                            data-request="onSave"
+                            data-request-data="redirect:0"
+                            data-hotkey="ctrl+s, cmd+s"
+                            data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                            class="btn btn-primary">
+                            <?= e(trans('backend::lang.form.save')) ?>
+                        </button>
+                        <button
+                            type="button"
+                            data-request="onSave"
+                            data-request-data="close:1"
+                            data-hotkey="ctrl+enter, cmd+enter"
+                            data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                            class="btn btn-default">
+                            <?= e(trans('backend::lang.form.save_and_close')) ?>
+                        </button>
+                      <!--   <button
+                            type="button"
+                            class="oc-icon-trash-o btn-icon danger pull-right"
+                            data-request="onDelete"
+                            data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"
+                            data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+                        </button -->>
+                        <span class="btn-text">
+                            <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('bt/inventory/blendedpurchase') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                        </span>
+                    </div>
+                </div>
+
+            <?= Form::close() ?>
+
+        </div>
+        <div class="tab-pane pane-bordered" style="padding: 20px">
+             <?php $count = 0; $ac_price = 0.00; $ac_weight = 0.0;$ac_weight_v2 = 0.0; ?>
+            <?php $data = $this->getData($formModel) ?>
+            <div style="width: 100%; overflow: auto;">
+            <table class="table table-striped table-bordered tabledownload" id="tabledownload">
+                <thead>
+                    <tr>
+                        <th><span></span></th>
+                        <th><span>Date Received</span></th>
+                        <th><span>Date Of Purchase</span></th>
+                        <th><span>Supplier Name</span></th>
+                        <th><span>Product Name</span></th>
+                        <th><span>Supplier Batch</span></th>
+                        <th><span>Weight</span></th>
+                        <th><span>Price Per KG</span></th>
+                        <th><span>Total Price</span></th>
+                        <th><span>Running Price</span></th>
+                        <th><span>Running Weight</span></th>
+                        <th style="text-align:right; background: #ccc; font-weight: bold; font-size: 14px"><span>Running Blended Price</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                <?php
+
+                    foreach($data as $dkey=>$dvalue){
+                        $count++;
+                        if($dvalue->pricekg > 10){
+                            $ac_price += $dvalue->weight * $dvalue->pricekg; 
+                            $ac_weight += $dvalue->weight;    
+                        }
+                        $ac_weight_v2 += $dvalue->weight; 
+                        
+                        
+                        echo '<tr >';
+                        echo    '<td>'.$count.'</td>';
+                        echo    '<td>'.$dvalue->date_of_receipt.'</td>';
+                        echo    '<td>'.$dvalue->purchase->date_of_puchase.'</td>';
+                        echo    '<td>'.$dvalue->purchase->supplier->name.'</td>';                        
+                        echo    '<td>'.$dvalue->productname->name.'</td>';
+                        echo    '<td>'.$dvalue->supplier_batch.'</td>';
+                        echo    '<td style="text-align:right;">'.number_format($dvalue->weight,1, '.', ',').' KG</td>';
+                        if($dvalue->pricekg > 10){
+                            echo    '<td style="text-align:right;">R '.number_format($dvalue->pricekg,2, '.', ',').'</td>';
+                        }else{
+                            echo    '<td style="background: yellow;text-align:right;">R '.number_format($dvalue->pricekg,2, '.', ',').'</td>';
+                        }
+                        echo    '<td style="text-align:right;">R '.number_format($dvalue->weight*$dvalue->pricekg,2, '.', ',').'</td>';
+                        echo    '<td style="text-align:right;">R '.number_format($ac_price,2, '.', ',').'</td>';
+                        echo    '<td style="text-align:right;">'.number_format($ac_weight_v2,1, '.', ',').' KG</td>';
+                        if($ac_weight > 0)
+                        if($dvalue->pricekg > 10){
+                         echo    '<td  style="text-align:right; background: #ccc; font-weight: bold; font-size: 14px">R '.number_format($ac_price/$ac_weight,2, '.', ',').'</td>';
+                        
+                        }else{
+                                echo    '<td  style="text-align:right; background: #fcfcfc; font-weight: bold; font-size: 14px">R '.number_format($ac_price/$ac_weight,2, '.', ',').'</td>';
+                            }
+
+                       
+                        
+                        echo '</tr>';
+
+                    }
+
+
+                ?>
+                </tbody>
+                     
+
+        </table>
+    </div>
+
+        <h4> <?php $this->getSave($formModel,$ac_price  ,$ac_weight) ?></h4>
+        </div>
+        
+    </div>
+</div>
+
+    
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/inventory/blendedpurchase') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+<?php endif ?>

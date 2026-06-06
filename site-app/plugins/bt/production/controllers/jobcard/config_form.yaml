@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Jobcard
+
+# Model Form Field configuration
+form: $/bt/production/models/jobcard/fields.yaml
+
+# Model Class name
+modelClass: Bt\Production\Models\Jobcard
+
+# Default redirect location
+defaultRedirect: bt/production/jobcard
+
+# Create page
+create:
+    title: Create Jobcard
+    redirect: bt/production/jobcard/update/:id
+    redirectClose: bt/production/jobcard
+
+# Update page
+update:
+    title: Edit Jobcard
+    redirect: bt/production/jobcard
+    redirectClose: bt/production/jobcard
+
+# Preview page
+preview:
+    title: Preview Jobcard

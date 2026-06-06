@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    # equipment_name:
+    #     label: Device / Equipment 
+    #     type: selectable
+    equipment:
+      label: Device / Equipment 
+      relation: equipment
+      select: name
+      
+    files_count:
+      label: Attached Files 
+      relation: file
+      select: file_name
+    created_at:
+      label: Date Created
+      type: date

@@ -1,0 +1,73 @@
+#container{
+
+    text-align: center;
+}
+
+/* The alert message box */
+
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+
+.btn-primary{
+    background-color: #102c5c; /* Red */
+    font-size: 18px;
+}
+
+#stickerlist{
+    margin: 10px 0px;
+}
+
+#table-title{
+    text-align: center;
+}
+
+thead tr td{
+    background: #102c5c;
+    color: white;
+
+}
+
+#createsticker{
+    margin: 0 auto;
+}
+
+#sticker_no{
+    padding-top: 5px;;
+}
+
+.row{
+    margin: 0 auto;
+    padding: 0;
+}
+
+#return-button{
+    padding: 0;
+    margin: 0;
+}
+#title{
+    padding: 0;
+    margin: 0;
+}
+
+.page-link:hover {
+    color: black !important;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+td.highlight {
+    background-color: grey !important;
+}
+
+table.dataTable thead  tr th{
+    background: #1E347B !important;
+    color: #fff;
+    border-color: #1E347B;
+
+}

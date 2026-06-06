@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Quote Status
+
+# Model Form Field configuration
+form: $/bt/sales/models/quotestatus/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\QuoteStatus
+
+# Default redirect location
+defaultRedirect: bt/sales/quotestatus
+
+# Create page
+create:
+    title: Create Quote Status
+    redirect: bt/sales/quotestatus/update/:id
+    redirectClose: bt/sales/quotestatus
+
+# Update page
+update:
+    title: Edit Quote Status
+    redirect: bt/sales/quotestatus
+    redirectClose: bt/sales/quotestatus
+
+# Preview page
+preview:
+    title: Preview Quote Status

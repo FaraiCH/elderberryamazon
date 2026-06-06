@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 14px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px 20px 100px 20px; }
+html { margin:20px 20px 100px 20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 1%;
+    font-size: 1em;
+    color: #545554;
+    line-height: 1.3em;
+}
+
+.pagenumber::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.footer .left div{
+	float: left;
+	width: 50%
+}
+
+</style>
+</head>
+<body>
+
+	   <div class="footer">
+            <p class="left">
+            	<table style="font-size: 11px">
+            		<tr>
+            			<td valign="top" width="30%">Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za</td>
+                <td valign="top" width="20%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005</td>
+                <td width="40%" align="center">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+						</td>
+                
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+                
+           
+            </p>
+            
+        </div>
+	
+	
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" style="color: #6c757d; font-size: 11px">
+					<tr>
+						<td width="15%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/demo/logo.png" style="width: 80px" alt="BT Industrial" >
+
+						</td>
+						<td width="5%">
+							&nbsp;
+
+						</td>
+						<td width="20%">
+							<h3 style=" margin: 0px; padding: 0px">Fourways</h4>
+							<p>First Floor, Block 3<br>White Hills Junction 1<br>White Hills Close</p>
+							<p><b>P:</b> +27 11 966 8058</p>
+						</td>
+						<td width="20%">
+							<h3 style=" margin: 0px; padding: 0px">Witbank</h4>
+							<p>Office 9, 1 Lana Street,<br>Model Park<br>Witbank</p>
+							<p><b>P:</b> +27 13 110 0785</p>
+						</td>
+						<td width="20%">
+							<h3 style=" margin: 0px; padding: 0px">New Vaal</h4>
+							<p>Lexoria Buiding Unit<br>1/2/3/4, Cnr Merriman &<br>Jouber Street, Vereeneging</p>
+							<p><b>P:</b> +27 16 100 4645</p>
+						</td>
+						<td width="20%">
+							<h3 style=" margin: 0px; padding: 0px">Germiston</h4>
+							<p>7 Bevard Road<br>Roodekop,<br>Germiston</p>
+							<p><b>P:</b> +27 10 109 1728</p>
+						</td>
+					</tr>
+				</table>
+				<br><br>				
+				<table><tr><td width="70%">CUSTOMS No: {{quote.customsno}}</td><td style="text-align: right">{{quote.form_date}}</td></tr></table>				
+				<br>	
+			<p><b>To:</b> {{quote.toname}}</p>
+			<p>{{quote.towhom}}</p>
+			<div>{{quote.declaration|raw}}</div>
+
+			<table width="100%" border="1" cellpadding="5px" cellspacing="" style="font-size: 15px; text-align: center;">
+					<tr><td colspan="3" style="text-align: center; font-weight: bold">List Of Goods</td></tr>
+					<tr>
+						<td>Commecial Description of Goods</td><td>Quantity</td><td>CRITERION</td>
+					</tr>
+					<tr>
+						<td></td><td></td><td>100% Produced IN RSA</td>
+
+					</tr>
+
+					{% for item in quote.listgoods %}
+						<tr>
+							<td>{{item.product }}</td>
+							<td>{{item.quantity }}</td>
+							<td></td> 
+					{% endfor %}
+
+			</table>
+		
+		<p>Your Sincerely</p>
+		<p>{{quote.signature.firstname}} {{quote.signature.lastname}}<br>{{quote.signature.designation.name}}<br>010 109 1728 (office)</p>
+					<img src="{{quote.signature.signature.path}}">
+        	
+	
+	
+
+
+	</body>
+	</html>

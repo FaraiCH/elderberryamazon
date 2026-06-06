@@ -1,0 +1,72 @@
+
+
+
+{# flash %}
+          <div class="alert alert-{{ type }}">
+              {{ message }}
+          </div>
+      {% endflash #}
+
+
+	<div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active" ><a class="nav-link" href="#activity" data-toggle="tab">UPDATE MUNICIPAL DETAILS</a></li>
+        <li ><a class="nav-link" href="#questionare" data-toggle="tab">UPDATE PROPERTY QUESTIONNAIRE</a></li>   
+        
+                   
+        
+        
+      </ul>
+      <div class="tab-content">
+       
+        <div class="active tab-pane" id="activity">
+          {% partial __SELF__ ~ '::form' qobj=QuestionnaireUpdate.qobj %}
+        </div>
+
+         <div class=" tab-pane" id="questionare" >
+          <p>Please complete/update the questionnaire. The information will be saved when you click on Next to move to the next section of the questionnaire</p><br>
+           {% partial __SELF__ ~ '::questionnaire' categories=QuestionnaireUpdate.qobj.categories %}
+        </div>
+      </div>
+    </div>
+
+{% put scripts %}
+<script>
+  
+
+
+
+    jQuery(document).ready(function ($) {
+        let selectedTab = window.location.hash;
+        
+        $('.nav-link[href="' + selectedTab + '"]' ).trigger('click');
+    });
+
+      $(document).ready(function(){
+          inputcurrency();
+        $('body').on('change',"input[placeholder='R 0.00']",function(){
+            inputcurrencyvalue($(this));
+        });
+    });
+
+      function inputcurrency(){
+            
+    $("input[placeholder='R 0.00']").each(function(){
+       
+        inputcurrencyvalue($(this));
+     });
+}
+
+
+ function inputcurrencyvalue(obj){
+        obj.val(obj.val().replace(/\s|R|,/g, ''));
+        if(obj.val() && obj.val() > 0 ){
+                obj.val("R "+parseFloat( obj.val(), 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString());
+        }else{
+            obj.val("");
+        }
+}
+     
+</script>
+{% endput %}
+

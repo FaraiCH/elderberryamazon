@@ -1,0 +1,11 @@
+<?php if(($record->price - $record->supplierproducts->sum('price') - 0.00) > 0): ?>
+	<?php
+		echo '<span class="text-success" style="text-align: right; display: block;">R '.(number_format(($record->price - $record->supplierproducts->sum('price') - 0.00),2,".","")).'</span>';
+
+	?>
+<?php else: ?>
+	<?php
+		echo '<span class="text-danger" style="text-align: right; display: block;">R '.(number_format(($record->price - $record->supplierproducts->sum('price') - 0.00),2,".","")).'</span>';
+
+	?>
+<?php endif; ?>

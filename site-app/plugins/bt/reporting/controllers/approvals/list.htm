@@ -1,0 +1,98 @@
+<div class="control-list">
+    <h2 style="padding: 0px; margin: 0px 0px 20px 0px;">Approvals</h2>
+    <table class="table data">
+        <thead>
+        <tr>
+            <th><span>REF#</span></th>
+            <th><span>Project</span></th>
+            <th><span>Cost Affected</span></th>
+            <th><span>Date Created</span></th>
+            <th><span>Date Updates</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Updates By</span></th>
+            <th><span>Approved</span></th>
+            <th><span>Note</span></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="9" style="background: #2d3134;"><h3 style="color: #ffffff ;font-size: 20px;padding: 0px; margin: 0px">Production Approval / Last 10</h3></td></tr>
+        <?php foreach($batches as $b => $value): ?>
+        <tr>
+            <td><?= $value['id'] ?></td>
+            <td><?= $value['quote']['company_name'] ?></td>
+            <td style="text-align: right;">R <?php echo number_format($value['quote']['totalincvat'],2, '.', ','); ?></td>
+            <td><?= date("D j M Y",strtotime($value['approved']['created_at'])) ?></td>
+            <td><?= date("D j M Y",strtotime($value['approved']['updated_at'])) ?></td>
+            
+            <?php if (isset($value['approved']['createdby']['first_name']) ): ?>
+                <td><?= $value['approved']['createdby']['first_name'] ?>  <?= $value['approved']['createdby']['last_name'] ?></td>
+            <?php else: ?>
+                <td></td>
+            <?php endif ?>
+
+
+            <?php if (isset($value['approved']['updatedby']['first_name']) ): ?>
+                <td><?= $value['approved']['updatedby']['first_name'] ?> <?= $value['approved']['updatedby']['last_name'] ?></td>
+            <?php else: ?>
+                <td></td>
+            <?php endif ?>
+
+            <?php if ($value['approved']['status_id'] ): ?>
+                <td>Yes</td>
+            <?php else: ?>
+                <td>No</td>
+            <?php endif ?>
+            <td><?= $value['approved']['note'] ?></td>
+
+        </tr>
+        <?php endforeach; ?>
+
+        <tr><td colspan="9" style="background: #2d3134;"><h3 style="color: #ffffff ;font-size: 20px;padding: 0px; margin: 0px">SRN Approval / Last 10</h3></td></tr>
+        <?php foreach($srnapprov as $b => $value): ?>
+
+        <?php
+            $pricevalue = 0;
+            foreach($value->items as $itemobject){
+                $pricevalue += $itemobject->pipe->quoteitems->price;
+            }
+             
+            foreach($value->itemscat as $itemobject){
+                $pricevalue += $itemobject->qoutecat->catalogue->price;
+            }       
+                    
+        ?>
+
+
+        <tr>
+            <td><?= $value['id'] ?></td>
+            <td><?= $value['quote']['company_name'] ?></td>
+            <td style="text-align: right;">R <?php echo number_format($pricevalue,2, '.', ','); ?></td>
+            <td><?= date("D j M Y",strtotime($value['srnapprove']['created_at'])) ?></td>
+            <td><?= date("D j M Y",strtotime($value['srnapprove']['updated_at'])) ?></td>
+            
+            <?php if (isset($value['srnapprove']['createdby']['first_name']) ): ?>
+                <td><?= $value['srnapprove']['createdby']['first_name'] ?> <?= $value['srnapprove']['createdby']['last_name'] ?></td>
+            <?php else: ?>
+                <td></td>
+            <?php endif ?>
+
+
+            <?php if (isset($value['srnapprove']['updatedby']['first_name']) ): ?>
+                <td><?= $value['srnapprove']['updatedby']['first_name'] ?> <?= $value['srnapprove']['updatedby']['last_name'] ?></td>
+            <?php else: ?>
+                <td></td>
+            <?php endif ?>
+
+            <?php if ($value['srnapprove']['status_id'] ): ?>
+                <td>Yes</td>
+            <?php else: ?>
+                <td>No</td>
+            <?php endif ?>
+            <td><?= $value['srnapprove']['note'] ?></td>
+
+        </tr>
+        <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,8 @@
+material:
+    label: Material By Supplier
+    manage:
+        form: $/bt/inventory/models/partnames/fields.yaml
+        list: $/bt/inventory/models/partnames/columns.yaml
+    view:
+        list: $/bt/inventory/models/partnames/columns.yaml
+        toolbarButtons: create

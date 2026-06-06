@@ -1,0 +1,56 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    report_date:
+        label: Repoty Date
+        searchable: true
+    quote_id:
+        label: Quote
+        searchable: true
+        type: number
+    client:
+        label: Client Name
+        select: company_name
+        relation: client
+    keypass:
+        label: keypass
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+    download:
+      label: Online Report
+      type: partial
+      path: $/bt/crm/models/productionreport/_online_column.htm
+      sortable: false
+      clickable: false
+
+    downloadpdf:
+      label: Download
+      type: partial
+      path: $/bt/crm/models/productionreport/_download_column.htm
+      sortable: false
+      clickable: false

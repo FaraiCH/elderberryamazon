@@ -1,0 +1,50 @@
+<div class="callout fade in callout-success no-subheader">
+    <div class="header">
+        <h3 style="text-align: center">List of Scanned Items</h3>
+    </div>
+</div>
+
+<table style="width: 100%" class="table tabledownload_desc dt-responsive table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Quote
+            </th>
+            <th>
+                Batch No
+            </th>
+            <th>
+                Diameter
+            </th>
+            <th>
+                PN
+            </th>
+            <th>
+                Length
+            </th>
+            <th>
+                Ordered Pipes
+            </th>
+            <th>
+                Approved Scanned Pipes
+            </th>
+            <th>
+                Delivered Scanned Pipes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($stickerObj as $stickers): ?>
+            <tr>
+                <td><?= $stickers['quotes'] ?></td>
+                <td><?= $stickers['batch'] ?></td>
+                <td><?= $stickers['diameter'] ?></td>
+                <td><?= $stickers['pn'] ?></td>
+                <td><?= $stickers['length'] ?></td>
+                <td><?= $stickers['ordered'] ?></td>
+                <td><?= $stickers['approved'] ?></td>
+                <td><?= $stickers['delivered'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

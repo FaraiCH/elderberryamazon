@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: NCR
+
+# Model Form Field configuration
+form: $/bt/qc/models/ncr/fields.yaml
+
+# Model Class name
+modelClass: Bt\QC\Models\NCR
+
+# Default redirect location
+defaultRedirect: bt/qc/ncr
+
+# Create page
+create:
+    title: Create NCR
+    redirect: bt/qc/ncr/update/:id
+    redirectClose: bt/qc/ncr
+
+# Update page
+update:
+    title: Edit NCR
+    redirect: bt/qc/ncr
+    redirectClose: bt/qc/ncr
+
+# Preview page
+preview:
+    title: Preview NCR

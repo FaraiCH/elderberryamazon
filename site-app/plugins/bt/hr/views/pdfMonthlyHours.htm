@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 90%;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            background: #0c0c80;
+
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 11px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        tr.status_3 td{
+            background: rgb(162, 251, 165)
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>7 Bevan Rd, Roodekop, Germiston <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h3>Weekly Hours: {{ start }} - {{ end }} </h3>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+{% set count = 0 %}
+{% set page = 0 %}
+
+
+
+<table><tr><td>{{month}}</td></tr></table>
+<table width="100%" class="table-bordered">
+    <thead>
+    <tr style="background-color: #0c0c80; color: whitesmoke">
+        <th>Department</th>
+        {% for actual, month in monthHeader %}
+        {% for mykey, header in weeksHeader %}
+            {% if mykey == actual %}
+
+            <th style="text-align: center; border: 1px solid white">Week {{header}}
+                {% set count = count + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% endfor %}
+        <th>{{count}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for department in departments %}
+    {% for key, weks in weekly %}
+    {% if department.name == key %}
+    <tr>
+        <td style="text-align: center;background: #d2d2d2; border: 1px solid black">{{key}}</td>
+        {% for mykey, wek in weks %}
+        {% if wek is not empty %}
+        <td  style="background-color: #d2d2d2; border: 1px solid black" class="text-center">{{wek}}</td>
+        {% else %}
+        <td style="background-color: #d2d2d2; border: 1px solid black" class="text-center">0</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+
+</body>
+</html>

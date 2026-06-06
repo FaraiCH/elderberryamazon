@@ -1,0 +1,42 @@
+columns:
+    id:
+        label: ID
+        searchable: true
+    client: 'Client'
+
+#    is_cod: 'Is COD?'
+
+    quote_no: 'Quote No'
+    progress: 'Progress'
+    delivery: 'Delivery'
+    invoiced: 'Invoiced'
+    payment: 'Payment'
+    status: 'Production Status'
+#    quote:
+#        label: Price/Kg
+#        type: partial
+#        path: $/bt/production/models/push/_perkg_column.htm
+#        sortable: false
+    created_at:
+        label: Date Requested
+        type: date
+        invisible: true
+
+    date_of_accepted:
+        label: Date Started
+        type: date
+        invisible: true
+
+    date_of_completed:
+        label: Date Completed
+        type: date
+        invisible: true
+    created_by: 'Created By'
+
+    updated_by: 'Updated By'
+
+
+    updated_at:
+        label: Date Updated
+        type: date
+        invisible: true

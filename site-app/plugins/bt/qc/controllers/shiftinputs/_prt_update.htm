@@ -1,0 +1,290 @@
+<h3 style="text-align: center; margin-top: -10px;">INSPECTION SHEET REFERENCE TO CS # <?= $formModel->id ?></h3>
+
+<table class="table" width="100%" border="0" cellpadding="2px" cellspacing="2px">
+
+    <tr>
+    	<th  >DATE:</th>
+        <td   class="border" nowrap="nowrap"><?= $formModel->opendate ?></td>
+        <th >CLIENT:</th><td class="border"><?= $formModel->jobcard->pipe->qpush->quote->company_name ?></td>
+
+        <th >PRODUCT:</th><td class="border"><?= $formModel->jobcard->pipe->quoteitems->description ?></td>
+
+        <th   >OPERATOR:</th><td   class="border" nowrap="nowrap">
+            <?= $formModel->assignedto?$formModel->assignedto->name:"" ?></td>
+
+        <th >PRODUCTION LINE:</th><td class="border"><?= $formModel->btline->name ?></td>
+        <th >SHIFT:</th><td class="border"><?= $formModel->shift ?></td>
+    </tr>
+
+</table>
+
+<?php $maxactual = 12; ?>
+<?php $quote = $formModel; ?>
+<?php $totalweight = 0; ?>
+
+<?php if( count($quote->cqcitem) > 0 ): ?>
+	<?php $maxactual = 12 - count($quote->cqcitem) ?>
+<?php endif; ?>
+
+<table style="width: 100%"  border="1px" cellpadding="1px" cellspacing="1px">
+
+	<tr>
+		<td style="background: #ccc"><b>TIME OF READING</b></td>
+		<td style="background: #ececec; text-align: center;width:30px"><b></b></td>
+		<?php $time = 6; ?>
+		<?php if( $quote->shift == "NIGHT"): ?>
+			<?php $time = 18; ?>
+		<?php endif; ?>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+		    <th nowrap="nowrap" style="background: #ececec; text-align: center;min-width:50px">
+
+		   		<?= sprintf("%02d",$time) ?>h-<?= ($time == 23)?'00':(sprintf("%02d",($time+1)))?>h
+
+
+		    </th>
+		    <?php if( $time == 23): ?>
+		   		<?php $time = 0; ?>
+			<?php else: ?>
+				<?php $time = $time + 1; ?>
+		    <?php endif; ?>
+		<?php endfor; ?>
+	</tr>
+	<tr>
+		<td style="background: #fff"><b>WALL THICKNESS</b></td>
+		<td style="background: #fff"><b>Value</b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+		    <th >Actual<?= $quote->getButtonQc($i-1) ?></th>
+		<?php endfor; ?>
+	</tr>
+	<tr>
+		<td style="background: #fff"><b></b></td>
+		<td style="background: #fff"><b>N</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'wall_thikness_n') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+	<tr>
+		<td style="background: #fff"><b>MAX WALL / <?= $quote->maxwall ?></b></td>
+		<td style="background: #fff"><b>NE</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'max_wall_ne') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+	<tr>
+		<td style="background: #fff"><b></b></td>
+		<td style="background: #fff"><b>E</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'max_wall_e') ?></td>
+		<?php endfor; ?>
+
+	</tr>
+
+
+
+	<tr>
+		<td style="background: #fff"><b></b></td>
+		<td style="background: #fff"><b>SE</b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'max_wall_se') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+	<tr>
+		<td style="background: #fff"><b></b></td>
+		<td style="background: #fff"><b>S</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'max_wall_s') ?></td>
+		<?php endfor; ?>
+
+	</tr>
+
+	<tr>
+		<td style="background: #fff"><b></b></td>
+		<td style="background: #fff"><b>SW</b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'max_wall_sw') ?></td>
+		<?php endfor; ?>
+
+	</tr>
+	<tr>
+		<td style="background: #fff"><b>MIN WALL / <?= $quote->minwall ?></b></td>
+		<td style="background: #fff"><b>W</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'min_wall_w') ?></td>
+		<?php endfor; ?>
+	</tr>
+	<tr>
+		<td style="background: #fff"><b></b></td>
+		<td style="background: #fff"><b>NW</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'min_wall_nw') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+	<tr>
+		<td style="background: #ccc"><b>AVR WALL</b></td>
+	    <td style="background: #fcfcfc"><b><?= $quote->avrwall ?></b></td>
+	    <?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'avr_wall', 'text') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+	<tr>
+		<td style="background: #ccc"><b>PIPE OD</b></td>
+		<td style="background: #fcfcfc"><b><?= $quote->pipeod ?></b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'pipe_od') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+
+	<tr>
+		<td style="background: #ccc"><b>OVALITY</b></td>
+		<td style="background: #fcfcfc"><b><?= $quote->ovality ?></b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'ovality') ?></td>
+		<?php endfor; ?>
+
+
+	</tr>
+
+	<tr>
+		<td style="background: #ccc" colspan="2" colspan="2"><b>ACTUAL WEIGHT</b></td>
+
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'actual_weight') ?></td>
+		<?php endfor; ?>
+	</tr>
+
+
+	<tr>
+		<td style="background: #ccc" colspan="2" colspan="2"><b>ACTUAL LENGTH</b></td>
+
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'actual_lenght') ?></td>
+		<?php endfor; ?>
+	</tr>
+    <tr>
+        <td style="background: #ccc" colspan="2" colspan="2"><b>COLOUR</b></td>
+
+
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'colour','number',8) ?></td>
+        <?php endfor; ?>
+    </tr>
+	<tr>
+		<td style="background: #ccc" colspan="2"><b>OUTSIDE WORKMANSHIP</b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'outside_workmanship','number',1) ?></td>
+		<?php endfor; ?>
+
+
+	</tr>
+
+	<tr>
+		<td style="background: #ccc" colspan="2"><b>INSIDE WORKMANSHIP</b></td>
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'inside_workmanship','number',1) ?></td>
+		<?php endfor; ?>
+
+
+	</tr>
+
+
+	<tr>
+		<td style="background: #ccc" colspan="2"><b>PRINTER CLEAR</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'printer_clear','number',1) ?></td>
+		<?php endfor; ?>
+
+
+	</tr>
+
+	<tr>
+		<td style="background: #ccc" colspan="2"><b>PRINTER CORRECT</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'printer_correct','number',1) ?></td>
+		<?php endfor; ?>
+
+	</tr>
+
+	<tr>
+		<td style="background: #ccc" colspan="2"><b>END SQUIRE</b></td>
+
+		<?php for($i = 1; $i <= 12; $i++): ?>
+	    	<td><?= $quote->getItemValueInputQc($i-1,'end_squire','number',1) ?></td>
+		<?php endfor; ?>
+
+	</tr>
+    <tr>
+        <td style="background: #ccc" colspan="2"><b>HOURLY PRODUCTION</b></td>
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'hourly_production') ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2" colspan="2"><b>SAMPLE WEIGHT</b></td>
+
+
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'sample_weight') ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2" colspan="2"><b>SAMPLE LENGTH</b></td>
+
+
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'sample_length') ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2" colspan="2"><b>SCRAP WEIGHT</b></td>
+
+
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'scrap_weight') ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2" colspan="2"><b>NUMBER OF PIPES QC REJECTED</b></td>
+
+
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'number_pipe_failed_qc') ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2" colspan="2"><b>NUMBER OF PIPES QC PASSED</b></td>
+
+
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'number_pipe_passed_qc') ?></td>
+        <?php endfor; ?>
+    </tr>
+	<tr>
+        <td style="background: #ccc" colspan="2"><b>QC PASSED</b></td>
+        <?php for($i = 1; $i <= 12; $i++): ?>
+        <td><?= $quote->getItemValueInputQc($i-1,'qc_pass_id','number',2) ?></td>
+        <?php endfor; ?>
+    </tr>
+    <tr>
+        <td style="background: #ccc" colspan="2"><b>TOTAL NUMBER OF PIPES PASSED QC </b></td>
+        <td colspan="3" class="text-center"><?= $quote->cqcitem->sum('number_pipe_passed_qc') ?></td>
+        <td style="background: #ccc" colspan="5"><b>TOTAL NUMBER OF PIPES QC REJECTED</b></td>
+        <td colspan="4" class="text-center"> <?= $quote->cqcitem->sum('number_pipe_failed_qc') ?> </td>
+    </tr>
+</table>

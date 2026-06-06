@@ -1,0 +1,66 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id@update:
+    #     label: ID
+    #     disabled: true
+    #     span: auto
+    catalogue:
+        label: Product
+        type: relation
+        select: concat(id," > ", product_code," > ", name," R ", price )
+        span: auto
+    description:
+        label: Description
+        dependsOn: catalogue
+        span: auto
+        attributes:
+            maxlength: '500'
+    units:
+        label: Qty
+        type: number
+    # price@update:
+    #     label: Price
+    #     type: number
+        span: auto
+    unitprice@update:
+        label: Unit Price
+        type: number
+        span: auto
+    price@update:
+        label: Unit Price
+        type: number
+        span: auto
+        disabled: true
+
+    section:
+        label: Link catalogue to BT Pipe items
+        type: section
+
+    product:
+        label: BT HDPE Pipe
+        type: relation
+        select: concat(id," > ", name )
+        span: auto
+        placeholder: -- Select ---
+
+    unitlength:
+        label: Unit Length
+        span: auto
+        type: number
+ 
+    
+    priceperkg:
+        label: Price Per KG
+        span: auto
+        type: number
+    weight:
+        label: Weight
+        span: auto
+        disabled: true
+    totalweight:
+        label: Total Weight
+        span: auto
+        disabled: true

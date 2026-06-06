@@ -1,0 +1,54 @@
+{% partial __SELF__ ~ '::filterform'%}
+
+{% set response = ToolsList.listquote %}
+	{% set total = 0 %}
+		<table class="table table-striped table-bordered" id="tabledownload" >
+				<thead>
+					<tr>
+							<th>#</th>
+							<th>Thumb</th>
+							<th>Type</th>							
+							<th>Part Code</th>
+							<th>Equipment Description</th>
+			        		<th>Qty</th>
+			        		<th>Serial Number</th>
+			        		<th>Puchased Date</th>
+			        		<th>Caliberation Expiery Date</th>
+			        		<th>Active</th>
+			        		<th >Download</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for item in response %}
+						<tr>
+			        		
+			        		<td>{{item.id}}</td>
+			        		<td>
+			        			{% for image in item.images %}
+			        				
+				        			{% if image is not empty %}
+				                    <img class="brand_list_item_img img-fluid align-self-center" src="{{ image.getThumb(70, 70) }}"
+				                         alt=""
+				                         title="">
+				                     {% endif %}
+
+				                {% endfor %}
+
+                     		</td>
+
+			        		<td>{{item.equipment_type.name}}</td>
+			        		<td>{{item.partcode}}</td>
+			        		<td>{{item.name}}</td>
+			        		<td>{{item.quantity}} {{item.quantitytype.name}}</td>
+			        		<td>{{item.serialnumber}}</td>
+			        		<td>{{item.puchased_date}}</td>
+			        		<td>{{item.caliberation_expiery_date}}</td>
+			        		<td>{{item.fileawayyes.name}}</td>
+			        		<td><a class="btn btn-primary btn-sm" href="/tools/item/download/{{item.id}}.pdf"><i class="fa fa-download"></i></a></td>
+			        		
+			             </tr>
+			        {% endfor %} 
+		        </tbody>
+		       
+    </table>

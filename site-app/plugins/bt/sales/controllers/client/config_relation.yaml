@@ -1,0 +1,31 @@
+accounts:
+    label: Account(Spend & Pay)
+    manage:
+        form: $/bt/sales/models/clientaccount/fields.yaml
+        list: $/bt/sales/models/clientaccount/columns.yaml
+
+    view:
+        list: $/bt/sales/models/clientaccount/columns.yaml
+        #recordUrl: /bt/production/controlsheet/update/:id
+        toolbarButtons: create
+
+quotes:
+    label: Quotes
+    manage:
+        form: $/bt/sales/models/newquote/fields.yaml
+        list: $/bt/sales/models/newquote/columns.yaml
+
+    view:
+        list: $/bt/sales/models/newquote/columns.yaml
+        recordUrl: /bt/sales/newquote/update/:id
+        toolbarButtons: create
+
+client_finance:
+    label: Finance Notes
+    manage:
+        form: $/bt/sales/models/clientfinance/fields.yaml
+        list: $/bt/sales/models/clientfinance/columns.yaml
+    view:
+        list:  $/bt/sales/models/clientfinance/columns.yaml
+        recordUrl: /bt/sales/clientfinance/update/:id
+        toolbarButtons: create|delete

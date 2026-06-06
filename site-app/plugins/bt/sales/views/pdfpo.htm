@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+body{
+color: #212529;font-size: 11px;
+font-family: sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+}
+
+@page { margin:20px; }
+html { margin:20px; }
+
+h1{
+font-size: 22px;
+}
+h2{
+font-size: 18px;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+
+
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 8px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.table th {
+background: #dbe8ee;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: 2em;
+    color: #545554;
+    line-height: 2em;
+}
+
+.pagenumber::after {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: "Page " counter(my-sec-counter) " ";
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+.footer .left div{
+	float: left;
+	width: 50%
+}
+
+</style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+	   <div class="footer">
+            <p class="left">
+            	<table><tr>
+            		<td valign="top" width="45%">Tel. +27 10 109 1728<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za</td>
+                <td valign="top" width="45%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005</td>
+                <td width="10%"><span class="pagenumber"></span></td></tr></table>
+
+
+            </p>
+
+        </div>
+
+	<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+		<tr>
+			<td style="background: #ececec" >
+
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="50%">
+							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+
+						</td>
+						<td width="50%" style="text-align: center;">
+							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+                            <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
+							<h2>PO #BT{{quote.id}}</h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td >
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="40%" valign="top">
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td style="background: #ccc"  colspan="2" ><b>Supplier</b></td></tr>
+								<tr><td width="50%"><b>To:</b></td><td width="50%">{{quote.supplier.name}}</td></tr>
+								<tr><td width="50%"><b>Company/Personal Name:</b></td><td width="50%">{{quote.supplier.contact_name}}</td></tr>
+								<tr><td width="50%"><b>Email:</b></td><td width="50%">{{quote.supplier.contact_email}}</td></tr>
+								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.supplier.contact_number}}</td></tr>
+								{% if quote.supplier.postal_address %}
+								<tr><td width="50%" valign="top" ><b>Postal Address:</b></td><td width="50%">{{quote.supplier.postal_address}} {{quote.supplier.postal_code}}</td></tr>
+								{% endif %}
+								{% if quote.supplier.physical_address %}
+								<tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.supplier.physical_address}} {{quote.supplier.physical_code}}</td></tr>
+								{% endif %}
+
+
+								{% if quote.supplier.vatno is not empty %}
+									<tr><td width="50%"><b>VAT Number:</b></td><td width="50%">{{quote.supplier.vatno}}</td></tr>
+								{% endif %}
+							</table>
+						</td>
+						<td></td>
+						<td width="40%" valign="top" >
+							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
+								<tr><td width="50%"><b>Supplier PO Number:</b></td><td width="50%">{{quote.po_number}}</td></tr>
+								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
+								<!-- <tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
+								<tr><td width="50%"></td><td width="50%">{{quote.user.email}}</td></tr> -->
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr><td><br></td></tr>
+		<tr>
+			<td>
+				<table width="100%" border="1" cellpadding="2px" cellspacing="">
+					<thead>
+						<tr>
+							<th width="10px" style="background: #ececec" >#</th>
+							<th  style="background: #ececec" class="text-center" >Description</th>
+							<th width="50px" nowrap="nowrap" style="background: #ececec" class="text-center" >Units</th>
+							<th width="100px" nowrap="nowrap" style="background: #ececec" class="text-center" >Unit Price</th>
+							<th width="100px" nowrap="nowrap" style="background: #ececec" class="text-center" >Total Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set counter = 0 %}
+				        {% for itemobject in quote.poitems %}
+				        	{% set counter = counter + 1 %}
+				        	<tr>
+				        		<td>{{counter}}</td>
+				        		<td>{{itemobject.description}}</td>
+				        		<td  class="text-center">{{itemobject.units}}</td>
+				              	<td class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
+
+				              	<td class="text-right"><div class="totalr"><span>R </span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
+				             </tr>
+				        {% endfor %}
+
+
+
+				        {% set deliveryamount = 0 %}
+
+			        </tbody>
+		        	<tfoot>
+			        	<tr>
+			        		<td colspan="3">&nbsp;</td>
+			        		<td class="text-right"><b>TOTAL</b></td>
+			              	<td class="text-right"><div class="totalr"><span>R</span><span>{{(quote.price-quote.vat)|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+				         <tr>
+				         	<td colspan="3">&nbsp;</td>
+			        		<td class="text-right"><b>VAT</b></td>
+			              	<td class="text-right"><div class="totalr"><span>R</span><span>
+
+			              	{{quote.vat|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+
+				          <tr>
+				          	<td colspan="3">&nbsp;</td>
+			        		<td nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>
+			              	<td class="text-right"><div class="totalr"><span>R</span><span>
+			              	{{quote.price|number_format(2, '.', ',')}}</span></div></td>
+				         </tr>
+			        </tfoot>
+
+
+
+    </table>
+
+			</td>
+		</tr>
+
+		<tr><td><br></td></tr>
+		<tr>
+			<td  >
+				<h4 style="font-size: 4px; margin: 0px; padding: 0px">PO ACCEPTED BY BT:</h4>
+
+				<table width="100%" border="0"  cellpadding="2px" cellspacing="0">
+					<tr><td><br></td></tr>
+					<tr>
+						<td>NAME:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>DATE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+						<td>SIGNATURE:</td>
+						<td style="border-bottom: 1px solid #ccc" width="23%" >&nbsp;</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+	</table>
+
+	</body>
+	</html>

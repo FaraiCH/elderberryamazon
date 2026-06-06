@@ -1,0 +1,79 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date:
+        label: Date Recieved
+        disabled: false
+        mode: date
+        type: datepicker
+        span: auto
+        required: true
+    client:
+        label: Client Name
+        select: company_name
+        type: relation
+        span: auto
+        placeholder: -- select a client --
+        required: true
+    quote:
+        label: Quote No
+        type: relation
+        select: id
+        placeholder: --Select Quote--
+        required: true
+        span: auto
+    reasonforreturn:
+        label: Reasons For Returns
+        type: relation
+        select: name
+        placeholder: --Select Reason(s)---
+        span: auto
+        required: true
+    contact:
+        label: Comments
+        type: textarea
+
+#    tel_no:
+#        label: Telephone Number
+#        span: auto
+
+
+    items:
+        type: repeater
+        titleFrom: Goods Returned
+        prompt: Add Returned Item
+        commentHtml: true
+        comment: <p style="color:blue">Please Add and Item</p>
+        form:
+            fields:
+                ponumber:
+                    label: PO Number
+                    span: auto
+                quantity_return:
+                    label: Quantity Returned
+                    type: number
+                    span: auto
+                size:
+                    label: Size
+                    span: auto
+                pipe_desc:
+                    label: Pipe Description
+                    span: auto
+                batch_no:
+                    label: Batch No
+                    span: auto
+                invoice_no:
+                    label: Invoice No
+                    span: auto
+
+    files:
+        label: Upload Documents
+        type: fileupload
+        mode: file
+        span: auto
+

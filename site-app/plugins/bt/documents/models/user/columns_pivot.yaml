@@ -1,0 +1,41 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+    first_name:
+        label: backend::lang.user.first_name
+        searchable: true
+        sortable: true
+
+    last_name:
+        label: backend::lang.user.last_name
+        searchable: true
+        sortable: true
+
+
+    email:
+        label: backend::lang.user.email
+        searchable: true
+    pivot[user_rights]:
+        type: partial
+        label: Permission
+        path: $/bt/documents/models/user/user_rights.htm
+
+#    last_login:
+#        label: backend::lang.user.last_login
+#        searchable: true
+#        type: datetime
+#
+#    created_at:
+#        label: backend::lang.user.created_at
+#        searchable: true
+#        invisible: true
+#        type: datetime
+#
+#    updated_at:
+#        label: backend::lang.user.updated_at
+#        searchable: true
+#        invisible: true
+#        type: datetime

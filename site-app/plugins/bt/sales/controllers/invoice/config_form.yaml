@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Invoice
+
+# Model Form Field configuration
+form: $/bt/sales/models/invoice/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Invoice
+
+# Default redirect location
+defaultRedirect: bt/sales/invoice
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/invoice/update/:id
+    redirectClose: bt/sales/invoice
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/invoice
+    redirectClose: bt/sales/invoice
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

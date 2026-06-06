@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+#    id:
+#        label: ID
+#        disabled: true
+    rdate:
+        label: Date
+        type: datepicker
+        mode: date
+        span: auto
+    rtime:
+        label: Time
+        type: datepicker
+        mode: time
+        span: auto
+    meter:
+        label: Meter No
+        type: relation
+        select: name
+        span: auto
+    kwh:
+        label: KWH
+        span: auto
+
+    kVArh:
+        label: KVARH
+        span: auto
+    kva:
+        label: KVA
+        span: auto
+    pf:
+        label: PF
+        span: auto
+    status:
+        label: Status
+        span: auto
+    blended_rkwh:
+        label: Blended R/KWH
+        type: number
+        span: auto

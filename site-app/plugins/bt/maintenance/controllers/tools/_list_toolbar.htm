@@ -1,0 +1,27 @@
+<div data-control="toolbar">
+    <a
+        href="<?= Backend::url('bt/maintenance/tools/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        New Equipment
+    </a>
+    <?php if($this->user->is_superuser): ?>
+        <button
+            class="btn btn-danger oc-icon-trash-o"
+            disabled="disabled"
+            onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+            data-request="onDelete"
+            data-request-confirm="Are you sure you want to delete the selected Tools?"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="$(this).prop('disabled', 'disabled')"
+            data-stripe-load-indicator>
+            Delete selected
+        </button>
+    <?php endif; ?>
+    <a  class="btn btn-primary oc-icon-check-square-o" href="<?= Backend::url('bt/maintenance/checklist') ?>">Setup Checklists</a>
+    <a  class="btn btn-primary oc-icon-clock-o" href="<?= Backend::url('bt/maintenance/toolschecklist') ?>">Upcoming Maintenance</a>
+    <button class="btn btn-primary" data-request="onSendDailyNotification" data-stripe-load-indicator>Send Daily Notifications</button>
+
+ 
+</div>

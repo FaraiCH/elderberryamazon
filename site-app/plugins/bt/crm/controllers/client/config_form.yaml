@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Client
+
+# Model Form Field configuration
+form: $/bt/sales/models/client/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\Client
+
+# Default redirect location
+defaultRedirect: bt/crm/client
+
+# Create page
+create:
+    title: Create Client
+    redirect: bt/crm/client/update/:id
+    redirectClose: bt/crm/client
+
+# Update page
+update:
+    title: Edit Client
+    redirect: bt/crm/client
+    redirectClose: bt/crm/client
+
+# Preview page
+preview:
+    title: Preview Client

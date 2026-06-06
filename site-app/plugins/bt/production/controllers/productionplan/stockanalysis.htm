@@ -1,0 +1,86 @@
+<h3 class="e-card-header" style="margin-top:10px">Stock Analysis</h3>
+
+<div class="control-list" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-sm w-auto table-hover d data"  data-control="rowlink">
+        <thead>
+        <tr>
+            <th style="text-align: right; text-transform: uppercase;"><span>Month</span></th>
+            <th style="text-align: right; text-transform: uppercase;"><span>Blended <br>Price</span></th>
+            <th style="text-align: right; text-transform: uppercase;"><span>Material <br>Received</span></th>
+            <th style="text-align: right; text-transform: uppercase;"><span>Material <br>Purchased</span></th>
+            <th style="text-align: right;text-transform: uppercase;"><span>Pipe <br>Delivered</span></th>
+            <th style="text-align: right;text-transform: uppercase;"><span>Balance KG</span></th>
+            <th style="text-align: right;text-transform: uppercase;"><span>Material Value <br>Procured</span></th>
+            <th style="text-align: right;text-transform: uppercase;"><span>SRN Value <br>Delivered</span></th>
+            <th style="text-align: right;text-transform: uppercase;"><span>Material Value <br>Delivered</span></th>
+            <th style="text-align: right;text-transform: uppercase;"><span>Balance <br>Value</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+                $totalpurchase = 0;
+                $totalreceice =0;
+                $totaldelivery = 0;
+                $totalbalance = 0;
+                $totalvalue = 0;
+                $totaldelvalue = 0;
+                $totalbalvalue = 0;
+                $totalsrnvalue = 0;
+            ?>
+        <?php foreach($list as $key => $mylist): ?>
+        <tr>
+            <td><?= $key ?></td>
+            <td style="text-align: right">R <?= number_format($list[$key]['blended'],2, '.', ',')?></td>
+            <td style="text-align: right"><?= number_format($list[$key]['received'],1, '.', ',')?> KG</td>
+            <td style="text-align: right"><?= number_format($list[$key]['purchase'],1, '.', ',')?> KG</td>
+            <td style="text-align: right"><?= number_format($list[$key]['srn'],1, '.', ',')?> KG</td>
+            <td style="text-align: right"><?= number_format($list[$key]['purchase'] - $list[$key]['srn'],1, '.', ',')?> KG</td>
+            <td style="text-align: right">R <?= number_format($list[$key]['value_procured'],2, '.', ',')   ?></td>
+            <td style="text-align: right">R <?= number_format($list[$key]['srnvalue'],2, '.', ',')   ?></td>
+            <td style="text-align: right">R <?= number_format($list[$key]['purchasevalue'],2, '.', ',')   ?></td>
+            <td style="text-align: right">R <?= number_format( $list[$key]['value_procured'] - $list[$key]['purchasevalue'],2, '.', ',')  ?></td>
+        </tr>
+
+        <?php
+                $totalreceice += $list[$key]['received'];
+                $totalpurchase += $list[$key]['purchase'];
+                $totaldelivery += $list[$key]['srn'];
+                $totalbalance += $list[$key]['purchase'] - $list[$key]['srn'];
+                $totalvalue += $list[$key]['value_procured'];
+                $totaldelvalue += $list[$key]['purchasevalue'];
+                $totalsrnvalue += $list[$key]['srnvalue'];
+                $totalbalvalue += $list[$key]['value_procured'] - $list[$key]['purchasevalue'];
+            ?>
+        <?php endforeach ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>Totals</td>
+            <td></td>
+            <td style="text-align: right"><?= number_format($totalreceice,1, '.', ',') ?> KG</td>
+            <td style="text-align: right"><?= number_format($totalpurchase,1, '.', ',') ?> KG</td>
+            <td style="text-align: right"><?= number_format($totaldelivery,1, '.', ',') ?> KG</td>
+            <td style="text-align: right"><?= number_format($totalbalance,1, '.', ',') ?> KG</td>
+            <td style="text-align: right">R <?= number_format($totalvalue,2, '.', ',') ?></td>
+            <td style="text-align: right">R <?= number_format($totalsrnvalue,2, '.', ',') ?></td>
+            <td style="text-align: right">R <?= number_format($totaldelvalue,2, '.', ',') ?></td>
+            <td style="text-align: right">R <?= number_format($totalbalvalue,2, '.', ',') ?></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+<h4 class="e-card-header"><b>Word Glossary</b></h4>
+
+
+<ul style="font-size:medium;">
+  <li><b>Blended Price -</b> is the average cost of price for material combined.</li>
+  <li><b>Material Recieved -</b> is the total material received for the month <b>(sum of weight)</b>.</li>
+  <li><b>Material Purchased -</b> is the total material purchased for the month <b>(sum of weight)</b>.</li>
+  <li><b>Pipe Delivered -</b> is the total material delivered for the month <b>(sum of stockweight)</b>.</li>
+  <li><b>KG Balanced -</b> is the difference of kg purchased and kg delivered <b>(Material Purchased - Pipe Delivered)</b>.</li>
+  <li><b>Material Value Procured -</b> is the total obtained for this month, using blended and kg purchased <b>(Material Purchased * blended Price)</b>.</li>
+  <li><b>Material Value Delivered -</b> is the total of stock released delivered for this month <b>(sum of price)</b>.</li>
+  <li><b>Balance Value -</b> is the difference of value procured and value delivered <b>(Material Value Procured - Material Value Delivered )</b>.</li>
+</ul>

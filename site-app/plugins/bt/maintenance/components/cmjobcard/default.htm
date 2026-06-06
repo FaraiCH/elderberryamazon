@@ -1,0 +1,54 @@
+{% partial __SELF__ ~ '::filterform'%}
+
+{% set response = CmJobCard.listquote %}
+	{% set total = 0 %}
+		<table class="table table-sm table-striped table-bordered" id="tabledownload" >
+				<thead>
+					<tr>
+							<th >#</th>
+							<th >Department</th>	
+							<th >Date</th>	
+							<th >Job Type</th>		
+							<th >Summary</th>
+							<!-- <th >Machine Status</th> -->
+							
+							<th >Assigned To</th>		
+							<th >Status</th>
+							<!-- <th >Completed By</th> -->
+							<!-- <th >Completed Date</th> -->
+							<th >Job Description</th>
+							<th >Spares Used</th>
+							<th >Budget</th>
+							<th >Budget Note</th>
+							<th >Priority</th>
+							<th >Download</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for item in response %}
+						<tr>
+			        		
+				        		<td>{{item.id}}</td>
+								<td width="150px">{{item.department.name}}</td>
+								<td nowrap="nowrap">{{item.opendate?item.opendate|date("Y-m-d") :""}}</td>
+								<td>{{item.jobtype.name}}</td>
+								<td>{{item.job_summary}}</td>
+								<!-- <td>{{item.machinestatus.name}}</td> -->
+								
+								<td>{{item.assignedto.name}}</td>
+								<td>{{item.status.name}}</td>
+								<!-- <td>{{item.completedby.name}}</td> -->
+								<!-- <td>{{item.completeddate?item.completeddate|date("Y-m-d") :""}}</td> -->
+								<td>{{item.job_description}}</td>
+								<td>{{item.spares_used}}</td>
+								<td>R{{item.budget}}</td>
+								<td>{{item.budget_note}}</td>
+								<td>{{item.priority}}</td>
+								<td><a class="btn btn-primary btn-sm" href="/jobcard/item/download/{{item.id}}.pdf"><i class="fa fa-download"></i></a></td>
+				        		
+			             </tr>
+			        {% endfor %} 
+		        </tbody>
+		       
+    </table>

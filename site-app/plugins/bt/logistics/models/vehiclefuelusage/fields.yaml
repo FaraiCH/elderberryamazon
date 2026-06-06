@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date:
+        label: Date Captured
+        type: datepicker
+        mode: date
+        span: auto
+    fueltype:
+        label: Fuel Type 
+        select: name
+        type: relation
+        span: auto
+        placeholder: --select fuel type---
+    fuel_intake:
+        label: Litres Poured
+        type: number
+        span: auto
+    price_per_litre:
+        label: Prices Per Litre
+        type: number
+        span: auto
+

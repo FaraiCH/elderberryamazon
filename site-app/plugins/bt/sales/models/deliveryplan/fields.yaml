@@ -1,0 +1,149 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+
+
+
+fields:
+
+    section:
+        label: Client & Quote Details
+        type: section
+
+    client:
+        label: Client Name
+        select: company_name
+        type: relation
+        span: auto
+        placeholder: -- select a client --
+
+
+    quote_id:
+        label: Quote Number
+        dependsOn: client
+        type: dropdown
+        span: auto
+        placeholder: -- select a quote --
+        commentHtml: true
+        comment: <b>The choice of quote number is contingent upon the client name.</b>
+
+    section2:
+        label: Schedule & Loading Details
+        type: section
+
+    type:
+        label: Delivery Type
+        select: name
+        type: relation
+        dependsOn: quote_id
+        span: auto
+        placeholder: -- Select --
+        commentHtml: true
+        comment: <b>The choice of delivery type is contingent upon the quote number.</b>
+    schedule_date:
+        label: Schedule Delivery Date
+        type: datepicker
+        span: auto
+        commentHtml: true
+        comment: <b>Kindly utilize this field to specify the exact delivery date.</b>
+    load_date:
+        label: Loading Items Date
+        type: datepicker
+        span: auto
+        commentHtml: true
+        comment: <b>Kindly utilize this field to specify the exact loading items date</b>
+
+    notes:
+        label: Notes
+        span: auto
+        type: textarea
+        size: small
+    section4:
+        label: Delivery Details
+        type: section
+        commentHtml: true
+        dependsOn: type
+
+
+    unit_complexname_number:
+        label: Unit / complex name & number
+        span: auto
+        comment: For collections, use BT Address
+
+    street_number:
+        label: Street number
+        span: auto
+        dependsOn: unit_complexname_number
+        comment: For collections, use BT Street Number
+    street_name:
+        label: Street Name
+        span: auto
+        dependsOn: street_number
+        comment: For collections, use BT Street Name
+    city:
+        label: City
+        span: auto
+        dependsOn: street_name
+        comment: For collections, use BT City Address
+    suburb:
+        label: Suburb
+        span: auto
+        dependsOn: city
+        comment: For collections, use BT City Address
+    postal_code:
+        label: Postal Code
+        span: auto
+        dependsOn: suburb
+        type: number
+        comment: For collections, use BT Postal Code
+    address:
+        label: Delivery Address
+        span: auto
+        size: small
+        disabled: true
+        dependsOn: postal_code
+        comment: for collections, use BT Address
+    # notes:
+    #     label: Notes
+    #     span: auto
+    #     type: textarea
+    #     size: small
+
+    section5:
+        label: Logistic Details
+        type: section
+    transporter_name:
+        label: Transporter Name/Logistics Company
+        span: auto
+        comment: If unknown, put PVT
+    truck_number_plate:
+        label: Truck Number Plate
+        span: auto
+
+
+tabs:
+    fields:
+        section2_2@update:
+            label: List of items that are produced by BT and are exptected to be delivered/collected
+            type: section
+            tab: Production Items
+        items@update:
+            tab: Production Items
+            type: partial
+            path: $/bt/sales/models/deliveryplan/_items_field.htm
+
+        section3_3@update:
+            tab: Catalogue Items
+            label: List of catalogue items that are exptected to be delivered/collected
+            type: section
+        itemscat@update:
+            tab: Catalogue Items
+            type: partial
+            path: $/bt/sales/models/deliveryplan/_catalogues_field.htm
+        files@update:
+            label: Additional Files
+            type: fileupload
+            span: auto
+            mode: file
+            tab: Additional Files

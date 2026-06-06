@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    name:
+        label: Element Name
+        searchable: true
+
+    label:
+        label: Label to display
+        searchable: true
+    
+    questions:
+        label: Questions Linked
+        type: partial
+        path: $/bt/plcommon/partials/_repeatercount_column.htm
+     

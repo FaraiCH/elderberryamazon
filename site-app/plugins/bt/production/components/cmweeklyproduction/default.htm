@@ -1,0 +1,83 @@
+{% set obj = CmWeeklyProduction.monster %}
+
+{% partial __SELF__ ~ '::filterform'%}
+{% component 'RunningScheduleGraphs' %}
+	<div class="card-body">
+		<table class="table table-striped table-bordered table-sm tabledownload" id="tabledownload" >
+			<thead>
+				<tr>
+
+					<th>name</th>
+		        		<th>Target kg Processed</th>
+						<th>Total kg processed</th>
+						<th>Total kg processed avg</th>
+						<th>Weight scrap kg</th>
+						<th>Overweight Weight</th>
+						<th>Used Material</th>
+						<th>Target Units produced</th>
+						<th>Total Units produced</th>
+						<th>Total Units produced avg</th>
+						<th>Fail Pipes</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% set target_kg_processed = 0 %}
+				{% set total_kg_processed = 0 %}
+				{% set total_kg_processed_avg = 0 %}
+				{% set weight_scrap_kg = 0 %}
+				{% set over_weight_kg = 0 %}
+				{% set used_kg = 0 %}
+				{% set target_units_produced = 0 %}
+				{% set total_units_produced = 0 %}
+				{% set total_units_produced_avg = 0 %}
+				{% set fail_pipe = 0 %}
+
+		        {% for item in obj %}
+					<tr>
+		        		<td nowrap="nowrap">{{item.name}}</td>
+		        		<td align="right">{{item.target_kg_processed}} kg</td>
+						<td align="right">{{item.total_kg_processed}} kg</td>
+						<td align="right">{{(item.total_kg_processed_avg/7)|number_format(1, '.', ',')}} kg</td>
+						<td align="right">{{item.weight_scrap_kg}} kg</td>
+						<td align="right">{{item.over_weight_kg}} kg</td>
+						<td align="right">{{item.used_kg}} kg</td>
+						<td align="right">{{item.target_units_produced}}</td>
+						<td align="right">{{item.total_units_produced}}</td>
+						<td align="right">{{(item.total_units_produced_avg/7)|number_format(1, '.', ',')}}</td>
+						<td align="right">{{item.fail_pipe}}</td>
+
+						{% set target_kg_processed = target_kg_processed + item.target_kg_processed %}
+						{% set total_kg_processed = total_kg_processed + item.total_kg_processed %}
+						{% set total_kg_processed_avg = total_kg_processed_avg + (item.total_kg_processed_avg/7) %}
+						{% set weight_scrap_kg = weight_scrap_kg + item.weight_scrap_kg %}
+						{% set over_weight_kg = over_weight_kg + item.over_weight_kg %}
+						{% set used_kg = used_kg + item.used_kg %}
+						{% set target_units_produced = target_units_produced + item.target_units_produced %}
+						{% set total_units_produced = total_units_produced + item.total_units_produced %}
+						{% set total_units_produced_avg = total_units_produced_avg + (item.total_units_produced_avg/7) %}
+						{% set fail_pipe = fail_pipe + item.fail_pipe %}
+
+		             </tr>
+		        {% endfor %}
+		        <tfoot>
+		        	<tr style="font-weight: bold;">
+		        		<td nowrap="nowrap"></td>
+		        		<td align="right">{{ target_kg_processed}} kg</td>
+						<td align="right">{{ total_kg_processed}} kg</td>
+						<td align="right">{{ total_kg_processed_avg|number_format(1, '.', ',')}} kg</td>
+						<td align="right">{{ weight_scrap_kg}} kg</td>
+						<td align="right">{{ over_weight_kg}} kg</td>
+						<td align="right">{{ used_kg}} kg</td>
+						<td align="right">{{ target_units_produced}}</td>
+						<td align="right">{{ total_units_produced}}</td>
+						<td align="right">{{ total_units_produced_avg|number_format(1, '.', ',')}}</td>
+						<td align="right">{{ fail_pipe}}</td>
+					</tr>
+
+		        </tfoot>
+	        </tbody>
+
+
+		</table>
+	</div>

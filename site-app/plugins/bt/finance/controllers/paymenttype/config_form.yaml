@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Payment Type
+
+# Model Form Field configuration
+form: $/bt/finance/models/paymenttype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Finance\Models\PaymentType
+
+# Default redirect location
+defaultRedirect: bt/finance/paymenttype
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/finance/paymenttype/update/:id
+    redirectClose: bt/finance/paymenttype
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/finance/paymenttype
+    redirectClose: bt/finance/paymenttype
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

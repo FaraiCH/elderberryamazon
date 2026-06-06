@@ -1,0 +1,47 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+
+    quote:
+        label: Company Name
+        searchable: true
+        relation: quote
+        select: concat(id, '--', company_name)
+    supplier:
+        label: Supplier Name
+        relation: supplier
+        select: name
+        searchable: true
+
+    #Get Values From This Model
+    invoice_no:
+        label: Invoice No
+        searchable: true
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true
+
+    date_received:
+        label: Date Received
+        searchable: true
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+
+

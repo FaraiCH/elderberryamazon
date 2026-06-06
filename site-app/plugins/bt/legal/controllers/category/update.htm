@@ -1,0 +1,85 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/legal/category') ?>">Category</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+<div class="layout-row">
+
+
+    <div class="control-tabs content-tabs" data-control="tab">
+        <ul class="nav nav-tabs">
+
+            <li class="nav-item active">
+                <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">PARENT FOLDER</a>
+            </li>
+            <li class="nav-item">
+                <a class="" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">SUB Folders</a>
+            </li>
+
+
+        </ul>
+        <div class="tab-content" id="myTabContent" style="background: #fff">
+
+            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div style="padding: 0px 20px"> <?= $this->formRender() ?></div>
+            </div>
+            <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                <div style="padding: 0px 20px"><?= $this->relationRender('subcategory') ?></div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-browser-validate
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving category..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-browser-validate
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving category..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+<!--                <button-->
+<!--                    type="button"-->
+<!--                    class="oc-icon-trash-o btn-icon danger pull-right"-->
+<!--                    data-request="onDelete"-->
+<!--                    data-load-indicator="Deleting category..."-->
+<!--                    data-request-confirm="Delete this category?">-->
+<!--                </button>-->
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/legal/category') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/legal/category') ?>" class="btn btn-default">Return to category list</a></p>
+
+<?php endif ?>

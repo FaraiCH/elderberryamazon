@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Material Cat
+
+# Model Form Field configuration
+form: $/bt/inventory/models/materialcat/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\MaterialCat
+
+# Default redirect location
+defaultRedirect: bt/inventory/materialcat
+
+# Create page
+create:
+    title: Create Material Cat
+    redirect: bt/inventory/materialcat/update/:id
+    redirectClose: bt/inventory/materialcat
+
+# Update page
+update:
+    title: Edit Material Cat
+    redirect: bt/inventory/materialcat
+    redirectClose: bt/inventory/materialcat
+
+# Preview page
+preview:
+    title: Preview Material Cat

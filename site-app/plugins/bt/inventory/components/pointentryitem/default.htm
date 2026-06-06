@@ -1,0 +1,17 @@
+{% flash %}
+			    <div class="alert alert-{{ type }}">
+			        {{ message }}
+			    </div>
+			{% endflash %}
+
+<div id="responselist"> {% partial __SELF__ ~ '::entryitem' itemobject=BTPointEntryItem.mpe   %}</div>
+<div id="responselist"> {% partial __SELF__ ~ '::itemlist' mpe=BTPointEntryItem.mpe   %}</div>
+
+{% if BTPointEntryItem.mpe.processed == 0 %}
+		{% partial __SELF__ ~ '::form'  %}
+		{% partial __SELF__ ~ '::process'  %}
+{% else %}
+<div class="alert alert-success" role="alert">
+   Inventory processed...
+</div>
+{% endif %}

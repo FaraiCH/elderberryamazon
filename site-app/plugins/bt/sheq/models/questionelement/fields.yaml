@@ -1,0 +1,52 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id@update:
+    #     label: ID
+    #     disabled: true
+
+    name:
+        label: Element Name
+       
+        type: text
+        required: true
+        span: storm
+        cssClass: noezanclass col-sm-6 
+
+    label:
+        label: Label to display
+       
+        type: text
+        required: true
+        span: storm
+        cssClass: noezanclass col-sm-6 
+
+    
+
+    questions:
+        prompt: 'janvince.smallcontactform::lang.settings.form_fields.add_values_prompt'
+        span: full
+        type: repeater
+        style: collapsed
+        cssClass: field-indent
+      
+        form:
+            fields:
+                question:
+                    span: storm
+                    cssClass: noezanclass col-sm-4
+                    label: Question
+                    type: dropdown
+                newlabel:
+                    span: storm
+                    cssClass: noezanclass col-sm-4
+                    label: New label
+
+                cssgrid:
+                    span: storm
+                    cssClass: noezanclass col-sm-4
+                    label: CSS Grid
+                    placeholder: col-sm-6
+                    

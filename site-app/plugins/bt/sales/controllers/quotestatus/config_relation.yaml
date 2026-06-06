@@ -1,0 +1,17 @@
+
+actionrel:
+    label: Action
+    manage:
+        form: $/bt/sales/models/actiontogroup/fields.yaml
+        list: $/bt/sales/models/actiontogroup/columns.yaml
+    view:
+        list: $/bt/sales/models/actiontogroup/columns.yaml
+        toolbarButtons: create
+    # view:
+    #     list: $/bt/sales/models/quotestatus/columns.yaml
+    # manage:
+    #     list: $/bt/sales/models/quotestatus/columns.yaml
+    # pivot:
+    #     form: $/bt/sales/models/quotestatus/fields.yaml
+
+        

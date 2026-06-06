@@ -1,0 +1,77 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    project:
+        label: Project
+        relation: project
+        select: name
+    archived:
+        label: Archived
+        type: switch
+
+    cancelled:
+        label: Cancelled
+        type: switch
+    suppliername:
+        label: Supplier Name
+        searchable: true
+    req_date:
+        label: Date
+        
+        searchable: true
+    amount:
+        label: Amount
+        type: number
+        format: R %.2f
+        searchable: true
+  
+    lineapprove:
+        label: Line Manager Approved
+        relation: lineapprove
+        select: status_id
+    managerapprove:
+        label: Manager Approved
+        relation: managerapprove
+        select: status_id
+    financeapprove:
+        label: Finance Approved
+        relation: financeapprove
+        select: status_id
+    description:
+        label: Description
+        invisible: true
+        searchable: true
+        sortable: false
+    requestby:
+        label: Requested By
+        relation: requestby
+        select: concat(first_name, ' ', last_name)
+    linemanager:
+        label: Line Manager
+        relation: linemanager
+        select: concat(name, ' ', surname)
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

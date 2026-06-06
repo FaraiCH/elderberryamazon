@@ -1,0 +1,9 @@
+transportfee:
+    label: Transport Fee
+    manage:
+        form: $/bt/sales/models/transportfee/fields.yaml
+        list: $/bt/sales/models/transportfee/columns.yaml
+    view:
+        list: $/bt/sales/models/transportfee/columns.yaml
+        toolbarButtons: create
+        showCheckboxes: false

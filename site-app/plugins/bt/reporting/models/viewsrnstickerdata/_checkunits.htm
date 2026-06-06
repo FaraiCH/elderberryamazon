@@ -1,0 +1,25 @@
+<?php 
+  $checkunits = 99999;
+  if(  $record->srn_sum_unit > 0  && $record->count_sicker > 0){
+  		$checkunits = $record->srn_sum_unit  - $record->count_sicker;
+    }
+
+ ?>
+
+<?php if($checkunits != 99999 ): ?>
+    <?php if($checkunits == 0 ): ?>
+
+            <div style="background: green; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+            <span class="oc-icon-check"> </span>
+            </div>
+    <?php else: ?>
+            <div style="background: #ec3838; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+            <span class="oc-icon-exclamation-triangle"> -<?= e($checkunits ) ?> Units  </span>  
+            </div>
+    <?php endif; ?>
+
+<?php else: ?>
+<div style="background: #dba819; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+            <span class="oc-icon-info"> No Count  </span>  
+            </div>
+<?php endif; ?>

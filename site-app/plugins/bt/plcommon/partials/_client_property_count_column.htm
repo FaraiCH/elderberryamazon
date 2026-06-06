@@ -1,0 +1,11 @@
+
+
+<?php 
+	$count = (isset($record->client) && isset($record->client->properties) )?count($record->client->properties):0;
+	if(isset($record->children)){
+		foreach ($record->children as $key => $company) {
+            $count += isset($company->client)?count($company->client->properties):0;
+        }
+	}	
+	echo $count; 
+?>

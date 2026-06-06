@@ -1,0 +1,31 @@
+scopes:
+#    firstname:
+#        label: Name
+#        type: text
+#        conditions: firstname = :value
+#    lastname:
+#        label: Surname
+#        type: text
+#        conditions: lastname = :value
+    injurydate:
+        label: Injury Date
+        type: date
+        conditions: issue >= ':filtered'
+    status:
+        label: Status
+        type: group
+        conditions: status in (:filtered)
+        options:
+            1: Pending
+            2: On - Going
+            3: Closed
+    scale_of_injury:
+        label: Scale of Injury
+        type: group
+        conditions: scale_of_injury in (:filtered)
+        options:
+            1: minor
+            2: moderate
+            3: serious
+
+

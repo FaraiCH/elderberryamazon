@@ -1,0 +1,42 @@
+<div class="alert alert-primary">
+    <div class="header">
+        <h3 style="text-align: center ">Maintenance Dashboard</h3>
+    </div>
+</div>
+<div class="callout fade in callout-warning no-subheader">
+    <div class="header">
+        <h3 style="text-align: center">Pending Job Cards</h3>
+    </div>
+    <table class="table tabledownload_desc dt-responsive table-striped table-hover" id="tabledownload" data-control="rowlink" width="100%">
+        <thead>
+        <tr><th colspan="6" style="text-align: center">This list will show all your pending jobcards</th></tr>
+        <tr>
+            <th>ID</th>
+            <th>Job Card Summary</th>
+            <th>Technician</th>
+            <th>Department</th>
+            <th>Created By</th>
+            <th>Date Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($jobcardObj as $jobcard): ?>
+        <?php if((isset($jobcard->status->id) && $jobcard->status->id != 5) || (!isset($jobcard->status->id) && !isset($jobcard->assignedto->id))): ?>
+        <tr>
+            <td>  <a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>" ><?= $jobcard->id ?></a></td>
+            <td><?= $jobcard->job_summary ?></td>
+            <?php if(isset($jobcard->assignedto->name)): ?>
+            <td><?= $jobcard->assignedto->name ?></td>
+            <?php else: ?>
+            <td>None</td>
+            <?php endif; ?>
+            <td><?= $jobcard->department->name ?></td>
+            <td><?= $jobcard->createdby->first_name ?> <?= $jobcard->createdby->last_name ?></td>
+            <td><?= date_format($jobcard->created_at, 'Y-m-d') ?></td>
+        </tr>
+        <?php endif; ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+

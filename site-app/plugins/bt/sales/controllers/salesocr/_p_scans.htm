@@ -1,0 +1,96 @@
+<div class="callout fade in callout-info">
+
+    <div class="header">
+        <i class="icon-edit"></i>
+        <h3>Document Scans</h3>
+    </div>
+    <?php
+        $pages = 0;
+    ?>
+
+    <script type="text/javascript">
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                    checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
+
+    <form>
+        <div class="content">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Is Match?</th>
+                    <th>Page</th>
+                    <th>Thumbnail</th>
+                    <th>
+
+                        <div class="checkbox custom-checkbox">
+                        <input id="togg" name="togg" type="checkbox" onclick="toggle(this);"/>
+                            <label for="togg"></label>
+                            Pick All?
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($result as $dname): ?>
+
+                <tr>
+                    <?php
+                        $pages++;
+                        $n = $dname['match_id'];
+                        $digits = mb_strlen((string) $n) ?>
+
+                    <?php if($digits == 4): ?>
+                    <td>
+                        <input type="text" name="scan_num[]" id="num<?= $dname['pages']; ?>" value="<?= $dname['match_id']; ?>">
+                    </td>
+                    <?php elseif ($digits == 3): ?>
+                    <td>
+                        <input type="text" name="scan_num[]" id="num<?= $dname['pages']; ?>" value="0<?= $dname['match_id']; ?>">
+                    </td>
+                    <?php else: ?>
+                    <td>
+                        <input type="text" name="scan_num[]" id="num<?= $dname['pages']; ?>" value="No ID">
+                    </td>
+                    <?php endif ?>
+                    <td>
+                        <input type="text" name="scan_name[]" id="text<?= substr($dname['match_key'], -3); ?>" value="<?= substr($dname['match_key'], -3); ?>">
+                    </td>
+                    <td>
+                        <div class="text text-success">
+                            <?= ($dname['match']?"Yes":"No") ?>
+                        </div>
+
+                    </td>
+                    <td>
+                        <?= $dname['pages'] ?>
+                    </td>
+                    <td>
+                        <a href="<?= $dname['thumb'] ?>" data-lightbox="imagemeh" data-title="Document Scans"><img class="mythumb" src="<?= $dname['thumb'] ?>"/></a>
+                    </td>
+                    <td>
+                        <div class="checkbox custom-checkbox">
+                            <input type="checkbox" name="scan_check[]" id="checkbox<?= $pages; ?>" value="<?= $pages; ?>">
+                            <label for="checkbox<?= $pages; ?>"></label>
+                        </div>
+                    </td>
+
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-request="onSaveThe"
+            data-stripe-load-indicator data-attach-loading>Save Results</button>
+    </form>
+</div>

@@ -1,0 +1,50 @@
+ <div class="callout fade in callout-info no-subheader">
+        <div class="header">
+            <i class="icon-info"></i>
+            <h3>You can only release material that has been delivered. In Cage = Received - Out in kg</h3>
+        </div>
+    </div>
+    <div class="control-list">
+       <table class="table data" data-control="rowlink">
+	    	<thead>
+	    		<tr><th style="padding: 10PX">Date</th>
+	    			<th style="padding: 10PX">Product</th>
+	    			<th style="padding: 10PX">Batch</th>
+	    			<th style="padding: 10PX">MFI</th>
+	    			<th style="padding: 10PX">Rec. Count</th>
+	    			<th style="padding: 10PX">Weight</th>
+	    			<th style="padding: 10PX">Used Weight</th>
+	    			<th style="padding: 10PX">In Cage</th>
+	    			<th style="padding: 10PX"></th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+				<?php foreach($products as $key => $field) : ?>
+					<?php $countweight = 0; ?>
+					<?php foreach($field->release as $key_b => $field_b) : ?>
+						<?php $countweight += $field_b->kg; ?>
+					<?php endforeach ?>
+					<?php if( ($field->weight - $countweight) > 0){ ?>
+						<tr>
+
+							<td class="p-r-md" style="vertical-align: top;"><?php echo($field->date_of_receipt); ?></td>
+							<td class="p-r-md" style="vertical-align: top;"><?php echo($field->productname->name); ?></td>
+							<td class="p-r-md" style="vertical-align: top;"><?php echo($field->supplier_batch); ?></td>
+							<td class="p-r-md" style="vertical-align: top;"><?php echo($field->mfi); ?></td>
+							<td class="p-r-md" style="vertical-align: top;"><?php echo(count($field->release)); ?></td>
+							<td class="p-r-md" style="vertical-align: top;"><?php echo($field->weight); ?> kg</td>
+							<td class="p-r-md" style="vertical-align: top;">
+
+
+								<?php echo($countweight); ?> kg</td>
+							<td class="p-r-md" style="vertical-align: top;"><?php echo($field->weight - $countweight); ?> kg</td>
+							<td class="p-r-md"><a class="btn btn-primary btn-sm" href="<?= Backend::url('bt/inventory/rawmaterialreceiving/update/'.$field->id) ?>">Take Out / Request Material</a></td>
+
+						</tr>
+					<?php } ?>
+				<?php endforeach ?>
+			</tbody>
+
+
+		</table>
+	</div>

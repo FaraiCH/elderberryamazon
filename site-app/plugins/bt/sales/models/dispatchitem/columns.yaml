@@ -1,0 +1,66 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    vehicle_type:
+        label: Delivery Options
+        type: selectable
+        options:
+            bt: BT Delivery
+            custom: Custom Delivery
+
+    destination:
+        label: Destination
+        relation: destination
+        select: name
+    vehicle:
+        label: Vehicle
+        relation: vehicle
+        select: name
+    vihicle_load_weight:
+        label: Intended Load Weight
+    #
+    #    vehicle_load_max_length:
+    #        label: Vehicle Max Length
+    qty:
+        label: Trip Quantity
+    rate_per_transport:
+        label: Rate/Transport
+        format: R %.2f
+    total:
+        label: Total Cost
+        format: R %.2f
+    discount:
+        label: Discount Percentage
+        type: partial
+        path: $/bt/sales/models/dispatchitem/_discount_perc.htm
+    hide:
+        label: Hide On Quote?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+    comment:
+        label: Comment
+    danages_required:
+        label: Danages Required?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+

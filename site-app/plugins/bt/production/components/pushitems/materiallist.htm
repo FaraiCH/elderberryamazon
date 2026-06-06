@@ -1,0 +1,29 @@
+<table class="table table-sm">
+	<thead>
+		<tr><th colspan="2">MATERIALS</th></tr>
+		<tr>
+		
+			<th>Assigned Materials</th>
+			<th>Mix Ratio</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		{% if response is not empty  %}
+	        {% for item in response %}
+				<tr>
+	        		
+	        		<td>{{item.productname.name}}</td>
+	        		<td>{{item.mixratio}}</td>
+	        		
+	             </tr>
+	        {% endfor %} 
+	    {% else %}
+			<tr>
+				<td colspan="2">No Items</td>
+	        </tr>
+		{% endif %}
+    </tbody>
+   
+</table>
+  

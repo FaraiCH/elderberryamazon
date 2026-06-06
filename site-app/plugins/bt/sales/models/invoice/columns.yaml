@@ -1,0 +1,54 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    srn_id:
+        label: SRN
+        searchable: true
+    srn_date:
+        label: SR Date
+        relation: srn
+        select: schedule_date
+        searchable: true
+    name:
+        label: Invoice Number
+        searchable: true
+    amount:
+        label: Amount
+        type: number
+        format: R %.2f
+
+    invoice_date:
+        label: Invoice Date
+    client:
+        label: Client
+        type: partial
+        path: $/bt/sales/models/invoice/_client.htm
+    sales_person:
+        label: Sales Person
+        type: partial
+        path: $/bt/sales/models/invoice/_person.htm
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+
+

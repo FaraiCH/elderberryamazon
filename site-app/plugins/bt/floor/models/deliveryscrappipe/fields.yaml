@@ -1,0 +1,82 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    schedule_date:
+        label: Schedule Date
+        disabled: false
+        type: datepicker
+        span: left
+        comment: Date of scrap leaving the factory
+    company:
+        label: Company/Supplier To Scrap
+        disabled: false
+        span: right
+        comment: Company to do the scrap
+    address:
+        label: Company Address
+        disabled: false
+        span: left
+    truck_number_plate:
+        label: Truck Number Plate
+        disabled: false
+        span: right
+    weight_kg:
+        label: Weight In KG
+        disabled: false
+        type: number
+        span: left
+        comment: Weight of scrap on the floor
+    notes:
+        label: Notes
+        disabled: false
+        type: textarea
+        size: small
+        span: right
+
+tabs:
+    fields:
+        supplier_qty:
+            label: Weight In KG/Qty
+            disabled: false
+            tab: Supplier Response
+            type: number
+            span: left
+        supplier_price_kg:
+            label: Proce Per KG
+            disabled: false
+            tab: Supplier Response
+            type: number
+            span: right
+        supplier_total:
+            label: Total Price
+            disabled: false
+            tab: Supplier Response
+            type: number
+            span: left
+        supplier_vat:
+            label: VAT Price
+            disabled: false
+            tab: Supplier Response
+            type: number
+            span: right
+        supplier_totalincvat:
+            label: Total Price including Vat
+            disabled: false
+            tab: Supplier Response
+            type: number
+            span: left
+        file:
+            label: Attach Invoice From Supplier
+            type: fileupload
+            tab: Upload Files
+            mode: file
+        weightbridge:
+            label: Attach Weight Bridge From Supplier
+            type: fileupload
+            tab: Upload Files
+            mode: file

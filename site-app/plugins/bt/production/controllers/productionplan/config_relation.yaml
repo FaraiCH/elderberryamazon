@@ -1,0 +1,19 @@
+planitems:
+    label: Plan Items
+    manage:
+        form: $/bt/production/models/productionplanitem/fields.yaml
+        list: $/bt/production/models/productionplanitem/columns.yaml
+    view:
+        list: $/bt/production/models/productionplanitem/columns.yaml
+       # recordUrl: /bt/production/productionplanitem/update/:id
+        toolbarButtons: create|delete
+
+planitemscat:
+    label: Plan Items Catalogue
+    manage:
+        form: $/bt/production/models/productionplanitemcat/fields.yaml
+        list: $/bt/production/models/productionplanitemcat/columns.yaml
+    view:
+        list: $/bt/production/models/productionplanitemcat/columns.yaml
+        # recordUrl: /bt/production/productionplanitem/update/:id
+        toolbarButtons: create|delete

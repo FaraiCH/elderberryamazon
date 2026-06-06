@@ -1,0 +1,15 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: id
+        
+    quotecat_id:
+        label: Description
+        type: partial
+        path: $/bt/sales/models/srncatalogue/_description_column.htm  
+    units:
+        label: Units
+    

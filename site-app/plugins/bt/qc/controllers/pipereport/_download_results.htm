@@ -1,0 +1,10 @@
+
+
+
+<?php if(isset($record) && isset($record->scheduleday) && isset($record->scheduleday->controlsheet)): ?>
+	<?php if(isset($record->scheduleday->controlsheet->file)): ?>
+		
+			<a title="<?= $record->scheduleday->controlsheet->file->file_name ?>" href="<?= $record->scheduleday->controlsheet->file->path?>" target="_blank" class="btn btn-secondary btn-sm">Download </a>
+		
+	<?php endif; ?>
+<?php endif; ?>

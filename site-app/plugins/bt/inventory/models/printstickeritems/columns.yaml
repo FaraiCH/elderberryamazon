@@ -1,0 +1,37 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    material_id:
+        label: Product Name
+        type: partial
+        path: $/bt/inventory/models/printstickeritems/_material_column.htm
+    material_sup:
+        label: Supplier
+        type: partial
+        path: $/bt/inventory/models/printstickeritems/_suplier_column.htm
+    material_date:
+        label: Date Recieved
+        relation: material
+        select: date_of_receipt
+
+    supplier_batch:
+        label: Date Recieved
+        relation: material
+        select: supplier_batch
+    weight:
+        label: weight
+    
+    mfi:
+        label: mfi
+        relation: material
+        select: mfi
+    units:
+        label: Stickers
+        type: number
+    notes:
+        label: Notes

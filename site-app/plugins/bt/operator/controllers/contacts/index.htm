@@ -1,0 +1,20 @@
+ <div class="row ">
+    <?php foreach($employees as $user): ?>
+    <div class="col-sm-4 col-md-3">
+        <div class="scoreboard" style="padding-top: 10px;border: 1px solid #ccc; background: #fff; border-radius: 2px">
+            <?php if(!empty($user->profilepic)): ?>
+                <div style="height: 90px; overflow: hidden;"><img src="<?= $user->profilepic->getThumb(90, 'auto') ?>" style="margin: 0px auto; display: block; max-width: 100%" alt=""/></div>
+            <?php endif; ?>
+            <div style="padding: 0px 10px; text-align: center; min-height: 130px">
+                <h3 ><?= $user->firstname ?> <?= $user->lastname ?></h3>
+                <p><?= $user->designation->name ?></p>
+                <p class="oc-icon-envelope-o"><a href="mailto: <?= $user->email ?>" target="_blank"><?= $user->email ?></a></p>
+                <?php if($user->phone): ?>
+                <p class="oc-icon-phone"><a href="tel: <?= $user->phone ?>" target="_blank"><?= $user->phone ?></a></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <br>
+    </div>
+  <?php endforeach ?>
+</div>

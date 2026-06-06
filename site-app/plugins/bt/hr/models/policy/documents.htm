@@ -1,0 +1,11 @@
+<?php if(isset($record->attach_file)): ?>
+    <?php if($record->attach_file->count() > 0): ?>
+        <div style="background: green; color: #fff; display: block; padding: 1px 2px;white-space: nowrap; border-radius: 4px; text-align: center;">
+            <span class="oc-icon-check"><?= $record->attach_file->count() ?> FILE(S)</span>
+        </div>
+    <?php else: ?>
+        <div style="background: #ec3838; color: #fff; display: block; padding: 1px 2px;white-space: nowrap; border-radius: 4px; text-align: center;">
+            <span class="oc-icon-exclamation-triangle">0 FILES</span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

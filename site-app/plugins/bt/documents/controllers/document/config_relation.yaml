@@ -1,0 +1,26 @@
+
+back_users:
+    label: Associate To Document
+
+    view:
+        list: $/bt/documents/models/user/columns_pivot.yaml
+
+        toolbarButtons: link|unlink
+
+    manage:
+        list: $/bt/documents/models/user/columns.yaml
+        recordsPerPage: 20
+
+        # Display page numbers with pagination, disable to improve performance
+        showPageNumbers: true
+        showSearch: true
+        showCheckboxes: true
+        showSorting: true
+
+    pivot:
+        form: $/bt/documents/models/user/fields.yaml
+    customMessages:
+        confirmUnlink: This action will remove link
+        buttonUnlink: Undo Incorrect Attendee
+        buttonLink: Link Attendee
+

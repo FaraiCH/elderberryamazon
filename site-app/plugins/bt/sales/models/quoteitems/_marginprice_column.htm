@@ -1,0 +1,6 @@
+ <?php 
+ 
+ 	$p =   $record->priceperkg - $record->product->PNRating->premiumprice; 
+ 	$v =  ($p/$record->product->PNRating->premiumprice)*100; 
+ 	echo  number_format($v,1, '.', ',')." %";
+ ?>

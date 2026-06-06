@@ -1,0 +1,17 @@
+<?php $countItem = $record->vehiclechecklist->count(); ?>
+<?php $count = 0; ?>
+
+<?php foreach($record->vehiclechecklist  as $recorditem): ?>
+	<?php if($count == 0): ?>
+		<?php if($recorditem->is_lights_ok > 0): ?>
+			<div style="background: green; color: black; padding: 2px; border-radius: 2px; text-align: center;">
+		         GO
+	      </div>	
+		<?php else: ?>
+			<div style="background: yellow; color: black; padding: 2px; border-radius: 2px; text-align: center;">
+		         Warning
+	        </div>
+		<?php endif; ?>
+	<?php endif; ?>
+	<?php $count++ ?>
+<?php endforeach; ?>

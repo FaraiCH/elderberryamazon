@@ -1,0 +1,10 @@
+requisition:
+    label: Approve By Line Manager
+    view:
+        list: $/bt/finance/models/requisition/columns.yaml
+        recordsPerPage: 10
+    manage:
+        form: $/bt/finance/models/requisition/fields.yaml
+        list: $/bt/finance/models/requisition/columns.yaml
+
+

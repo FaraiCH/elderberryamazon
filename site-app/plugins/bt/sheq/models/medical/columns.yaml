@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+#    id:
+#        label: ID
+#        searchable: true
+    name:
+        label: Name
+        searchable: true
+        sortable: true
+    surname:
+        label: Surname
+        searchable: true
+    idnumber:
+        label: ID Number
+        sortanle: true
+    is_medical:
+        label: General Medical Checks Done?
+        type: partial
+        path: $/bt/sheq/models/medical/_status.htm
+        sortable: true
+    flue:
+        label: Flue Vaccine?
+        type: partial
+        path: $/bt/sheq/models/medical/_status.htm
+        sortable: true

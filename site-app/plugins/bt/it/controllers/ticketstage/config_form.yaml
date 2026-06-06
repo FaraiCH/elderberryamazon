@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Ticket Stage
+
+# Model Form Field configuration
+form: $/bt/it/models/ticketstage/fields.yaml
+
+# Model Class name
+modelClass: Bt\It\Models\TicketStage
+
+# Default redirect location
+defaultRedirect: bt/it/ticketstage
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/it/ticketstage/update/:id
+    redirectClose: bt/it/ticketstage
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/it/ticketstage
+    redirectClose: bt/it/ticketstage
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

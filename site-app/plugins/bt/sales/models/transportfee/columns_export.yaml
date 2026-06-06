@@ -1,0 +1,41 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    date:
+        label: Effective Date 
+        mode: date
+    destination_name: 'Destination'
+    ton:
+        label: 1-Ton Price
+        type: number
+        format: R %.2f
+    ton_trailer:
+        label: 1-Ton and Trailer Price
+        type: number
+        format: R %.2f
+    ton_trailer_min_6m:
+        label: 3Ton and Trailer Min 6m Bed Price
+        type: number
+        format: R %.2f  
+    ton_min_6m_bed:
+        label: 8Ton Min 6m Bed Price
+        type: number
+        format: R %.2f
+    trailer_12m:
+        label: 12m Trailer Price
+        type: number
+        format: R %.2f
+    trailer_18m:
+        label: 18m Trailer Price
+        type: number
+        format: R %.2f
+    curtain_side_link:
+        label: Curtain Side Link Price
+        type: number
+        format: R %.2f
+

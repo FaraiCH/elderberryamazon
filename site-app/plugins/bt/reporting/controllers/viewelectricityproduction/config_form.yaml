@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: View Electricity Production
+
+# Model Form Field configuration
+form: $/bt/reporting/models/viewelectricityproduction/fields.yaml
+
+# Model Class name
+modelClass: Bt\Reporting\Models\ViewElectricityProduction
+
+# Default redirect location
+defaultRedirect: bt/reporting/viewelectricityproduction
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/reporting/viewelectricityproduction/update/:id
+    redirectClose: bt/reporting/viewelectricityproduction
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/reporting/viewelectricityproduction
+    redirectClose: bt/reporting/viewelectricityproduction
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

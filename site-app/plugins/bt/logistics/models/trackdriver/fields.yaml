@@ -1,0 +1,51 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    date:
+        label: Date
+        type: datepicker
+        mode: date
+        span: auto
+    department:
+        label: Department
+        disabled: false
+        select: name
+        type: relation
+        span: auto
+        placeholder: -- select department --
+    vehicle:
+        label: Vehicle
+        disabled: false
+        select: CONCAT(name,' - ', num_plate)
+        type: relation
+        span: auto
+        placeholder: -- select vehicle --
+    usagetype:
+        label: Usage Type
+        disabled: false
+        select: name
+        type: relation
+        placeholder: -- select usage type --
+    driver:
+        label: Driver
+        disabled: false
+        select: concat(first_name, ' ', last_name)
+        type: relation
+        span: auto
+        placeholder: -- select driver --
+    kilometre_start:
+            label: Starting Kilometre
+            type: number
+            span: auto
+    kilometre_end:
+            label: Ending Kilometre
+            type: number
+            span: auto
+    address:
+        label: Address To
+        span: auto

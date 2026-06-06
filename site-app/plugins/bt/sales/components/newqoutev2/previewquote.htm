@@ -1,0 +1,191 @@
+{% if response is not empty  %}
+{% set deliveryCost = 0 %}
+	{% set orderweight = 0 %}
+        <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Description</th>
+                <th>Units</th>
+                <th>Total Length</th>
+                <th>Weight</th>
+                <th>Total Weight</th>
+                <th>Price/KG</th>
+                <th>Premuim Price</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set itemcount = 0 %}
+            {% for itemobject in response %}
+                <tr>
+                    {% set itemcount = itemcount + 1 %}
+                    <td>{{itemcount}}</td>
+                    <td>{{itemobject.description}}</td>
+                    <td>{{itemobject.units}}</td>
+
+                    {% if itemobject.producttype == 1 %}
+
+                        <td>{{itemobject.units * itemobject.unitlength}} M</td>
+                        <td>{{itemobject.weight}} KG</td>
+                        <td>{{itemobject.totalweight}} KG</td>
+
+                        {% set orderweight = orderweight+ itemobject.totalweight %}
+
+                        <td style="color:  #fff;background: {{(itemobject.view_price < itemobject.premiumprice)?'red':'green'}}; font-weight: bold;  font-size: 20px"><div class="totalr"><span>R</span><span>{{itemobject.view_price|number_format(2, '.', ',')}}</span></div></td>
+
+                        <td style="color:  #fff;background: #2895a6; font-weight: bold;  font-size: 20px"><div class="totalr"><span>R</span><span>{{itemobject.premiumprice|number_format(2, '.', ',')}}</span></div></td>
+
+                    {% else %}
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    {% endif%}
+                    <td><div class="totalr"><span>R</span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
+                    <td><div class="totalr"><span>R</span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
+                 </tr>
+            {% endfor %}
+
+            {% set deliveryamount = 0 %}
+            {% if totals.deliveryamount > 0 %}
+                {% set counter = counter + 1 %}
+
+                <tr>
+                    <td></td>
+                    <td>Delivery</td>
+                    <td class="text-center">1</td>
+                    <td></td>
+                    <td></td>
+
+                    <td class="text-right"><div class="totalr"><span>R </span><span>{{totals.deliveryamount|number_format(2, '.', ',')}}</span></div></td>
+
+                    <td class="text-right"><div class="totalr"><span>R </span><span>{{totals.deliveryamount|number_format(2, '.', ',')}}</span></div></td>
+                 </tr>
+            {% endif %}
+            {% if deliveryitem is not empty %}
+                {% for delivery in deliveryitem %}
+                    {% if delivery.hide == 0 %}
+                        {% set deliveryCost = (delivery.cost * delivery.qty) %}
+                        <tr>
+                            <td></td>
+                            <td>Destination: {{delivery.destination}}</td>
+                            <td>{{delivery.qty}}</td>
+                            <td>{{delivery.vehicle_type}}</td>
+                            <td></td>
+                            <td></td>
+                            {% if orderweight > 0 %}
+                                <td style="color:  #fff;background: rgb(4,44,108); font-weight: bold;  font-size: 20px"><div class="totalr"><span>R</span><span>{{(deliveryCost/orderweight)|number_format(2, '.', ',')}}</span></div></td>
+                            {% else %}
+                            <td style="color:  #fff;background: rgb(4,44,108); font-weight: bold;  font-size: 20px"><div class="totalr"><span>R</span><span>0.00</span></div></td>
+                            {% endif %}
+                            <td></td>
+                            <td class="text-right"><div class="totalr"><span>R </span><span>{{delivery.cost|number_format(2, '.', ',')}}</span></div></td>
+                            <td class="text-right"><div class="totalr"><span>R </span><span>{{(delivery.cost * delivery.qty)|number_format(2, '.', ',')}}</span></div></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="8">&nbsp;</td>
+                <td class="text-right"><b>TOTAL</b></td>
+                <td><div class="totalr"><span>R</span><span>{{totals.total|number_format(2, '.', ',')}}</span></div></td>
+             </tr>
+             <tr>
+                <td colspan="8">&nbsp;</td>
+                <td class="text-right"><b>VAT</b></td>
+                <td><div class="totalr"><span>R</span><span>{{totals.totalvat|number_format(2, '.', ',')}}</span></div></td>
+             </tr>
+
+              <tr>
+                <td colspan="8">&nbsp;</td>
+                <td nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>
+                <td><div class="totalr"><span>R</span><span>{{totals.totalincvat|number_format(2, '.', ',')}}</span></div></td>
+             </tr>
+        </tfoot>
+
+        </table>
+         <div style="font-size: 36px; background: yellow; padding: 20px; text-align: center;">ORDER WEIGHT: <b>{{orderweight}} KG</b> </div>
+        <div class="card">
+            <table class="table">
+                <thead><tr><th>Estimimated Production Days</th><th class="text-center">Days</th></tr></thead>
+
+                {% for itemobject in response if itemobject.producttype == 1 %}
+
+                    <tr><td>{{itemobject.description}}</td><td class="text-center">{{(itemobject.totalweight/((700*0.98*(1-0.03))*24))|number_format(0, '.', ',')}}</td></tr>
+
+                {% endfor %}
+            </table>
+        </div>
+
+
+
+{% else %}
+<div class="card-body">
+    {% if deliveryitem is not empty %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Description</th>
+                <th>Units</th>
+                <th>Total Length</th>
+                <th>Weight</th>
+                <th>Total Weight</th>
+                <th>Price/KG</th>
+                <th>Premuim Price</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for delivery in deliveryitem %}
+                {% if delivery.hide == 0 %}
+                    {% set deliveryCost = (delivery.cost * delivery.qty) %}
+                    <tr>
+                        <td></td>
+                        <td>Destination: {{delivery.destination}}</td>
+                        <td>{{delivery.qty}}</td>
+                        <td>{{delivery.vehicle_type}}</td>
+                        <td></td>
+                        <td></td>
+                        {% if orderweight > 0 %}
+                            <td style="color:  #fff;background: rgb(4,44,108); font-weight: bold;  font-size: 20px"><div class="totalr"><span>R</span><span>{{(deliveryCost/orderweight)|number_format(2, '.', ',')}}</span></div></td>
+                        {% else %}
+                            <td style="color:  #fff;background: rgb(4,44,108); font-weight: bold;  font-size: 20px"><div class="totalr"><span>R</span><span>0.00</span></div></td>
+                        {% endif %}
+                        <td></td>
+                        <td class="text-right"><div class="totalr"><span>R </span><span>{{delivery.cost|number_format(2, '.', ',')}}</span></div></td>
+                        <td class="text-right"><div class="totalr"><span>R </span><span>{{(delivery.cost * delivery.qty)|number_format(2, '.', ',')}}</span></div></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                    <td class="text-right"><b>TOTAL</b></td>
+                    <td><div class="totalr"><span>R</span><span>{{totals.total|number_format(2, '.', ',')}}</span></div></td>
+                </tr>
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                    <td class="text-right"><b>VAT</b></td>
+                    <td><div class="totalr"><span>R</span><span>{{totals.totalvat|number_format(2, '.', ',')}}</span></div></td>
+                </tr>
+
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                    <td nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>
+                    <td><div class="totalr"><span>R</span><span>{{totals.totalincvat|number_format(2, '.', ',')}}</span></div></td>
+                </tr>
+            </tfoot>
+    {% else %}
+        <p>No Items</p>
+    {% endif %}
+</div>
+{% endif %}

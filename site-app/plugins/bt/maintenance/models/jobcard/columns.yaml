@@ -1,0 +1,67 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    jobcardapprove:
+      label: Approved
+      type: partial
+      path: $/bt/maintenance/models/jobcard/_approved_column.htm
+      sortable: false
+    supervisor:
+        label: Supervisor
+        relation: supervisor
+        select: name
+    opendate:
+        label: Open Date
+        type: date
+        format: Y-m-d
+        searchable: true
+    enddate:
+        label: End Date
+        type: date
+        searchable: true
+
+    department:
+        label: Department
+        searchable: true
+        relation: department
+        select: name
+    job_summary:
+        label: Project Description
+        searchable: true
+    budget:
+        label: Budget
+        searchable: true
+        format: R %.2f
+    status:
+        label: Status
+        searchable: true
+        relation: status
+        select: name
+    jobtype:
+        label: Job Type
+        searchable: true
+        relation: jobtype
+        select: name
+    priority:
+        label: Priority Rate
+        type: partial
+        path: $/bt/maintenance/models/jobcard/_priority_column.htm
+        searchable: false
+        sortable: false
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+        invisible: true

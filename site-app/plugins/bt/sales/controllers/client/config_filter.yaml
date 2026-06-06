@@ -1,0 +1,11 @@
+scopes:
+    account_manager:
+     label: Account Manager
+     modelClass: RainLab\User\Models\User
+     conditions: user_id in (:filtered)
+     nameFrom: name
+    client_category:
+         label: Client Category
+         modelClass: Bt\Sales\Models\ClientCategory
+         conditions: client_category_id in (:filtered)
+         nameFrom: name

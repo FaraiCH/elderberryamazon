@@ -1,0 +1,233 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/finance/requisition') ?>">Requisition</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+    <?php if($formModel->cancelled == 1): ?>
+
+        <div class="callout fade in callout-danger no-icon">
+            <div class="header">
+                <h3 style="text-align: center; font-size: 40px; color: #fff">
+                    Cancelled By <?= e($formModel->createdby->first_name) ?> <?= e($formModel->createdby->last_name) ?>
+
+
+                </h3>
+
+            </div>
+        </div>
+
+    <?php endif ?>
+    <?php if($formModel->project_id > 0 ): ?>
+
+        <div class="callout fade in callout-warning no-icon" style="margin: 0px 20px 20px 18px;">
+            <div class="header row">
+                <div class="col-sm-6">
+                    <h3 style="text-align: center; font-size: 24px; color: #000">
+                        <?php
+                            if(isset($formModel->req_project->name)){
+                                $prject_name =  " - " . $formModel->req_project->name;
+                            }else{
+                                $prject_name = '';
+                            }
+                        ?>
+                       Project/Company: <?= e($formModel->project->name) . $prject_name ?>
+
+
+                    </h3>
+                </div>
+                <div class="col-sm-6">
+                     <h3 style="font-weight: normal; text-align: center; font-size: 24px; color: #000">
+                        <b>Requisition Amount:</b><?php if (isset($formModel->currencytype) && is_object($formModel->currencytype)) {
+                                echo e($formModel->currencytype->currency_symbol. ' '. number_format($formModel->amount, 2, '.', ','));
+                            }?><?php
+                                if ($formModel->currencytype && $formModel->currencytype->id !== 1) {
+                                    $convertedAmount = $formModel->amount * $formModel->currentexchange_rate;
+                                    $randAmount = number_format($convertedAmount, 2, '.', ',');
+                                    echo ' in R ' . $randAmount;
+                                }
+                            ?>
+
+
+                     </h3>
+                </div>
+
+            </div>
+        </div>
+
+    <?php endif ?>
+
+    <div class="row">
+        <?php if ($formModel->linemanager): ?>
+            <div class="col-sm-4">
+                <div class="callout fade in callout-info no-icon">
+                    <div class="header">
+                        <h3 style="text-align: center; font-size: 24px; color: #fff">
+                           Line Manager<br>
+                           <u><?= e($formModel->linemanager->name) ?> <?= e($formModel->linemanager->surname) ?></u>
+
+                        </h3>
+
+                            <?php if ($formModel->lineapprove): ?>
+                                <?php if ($formModel->lineapprove->status_id == 1): ?>
+                                     <h3  style="text-align: center; color: green ">Approved</h3>
+                                <?php else: ?>
+                                   <h3 style="text-align: center; color: red ">  Rejected</h3>
+                                <?php endif ?>
+                            <?php else: ?>
+                               <div style="text-align: center;"><button class="btn btn-primary " data-request="onSendRemindLineManager" data-stripe-load-indicator data-request-flash>Remind/Send By Email</button></div>
+                            <?php endif ?>
+
+                    </div>
+                </div>
+            </div>
+        <?php endif ?>
+
+        <div class="col-sm-4">
+            <div class="callout fade in callout-info no-icon">
+                <div class="header">
+                    <h3 style="text-align: center; font-size: 24px; color: #fff">
+                       Head Office Manager<br>
+                           <u>Kgomotso L</u>
+
+                    </h3>
+                        <?php if ($formModel->managerapprove): ?>
+                            <?php if ($formModel->managerapprove->status_id == 1): ?>
+                                <h3  style="text-align: center; color: green ">Approved</h3>
+                            <?php else: ?>
+                                <h3 style="text-align: center; color: red ">  Rejected</h3>
+                            <?php endif ?>
+                        <?php else: ?>
+                           <div style="text-align: center;"><button class="btn btn-primary " data-request="onSendRemindHOManager" data-stripe-load-indicator data-request-flash>Remind/Send By Email</button></div>
+                        <?php endif ?>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="callout fade in callout-info no-icon">
+                <div class="header">
+                    <h3 style="text-align: center; font-size: 24px; color: #fff">
+                       Finance Office Manager
+
+                    </h3>
+                        <?php if ($formModel->financeapprove): ?>
+                            <?php if(is_int($formModel->financeapprove->status_id) && $formModel->financeapprove->status_id == 1): ?>
+                                <h3  style="text-align: center; color: green ">Approved</h3>
+                            <?php endif; ?>
+
+                            <?php if(is_int($formModel->financeapprove->status_id) && $formModel->financeapprove->status_id == 0): ?>
+                                <h3 style="text-align: center; color: red ">  Rejected</h3>
+                            <?php endif; ?>
+
+                            <?php if(!is_int($formModel->financeapprove->status_id) && $formModel->financeapprove->status_id == null): ?>
+                                <div style="text-align: center;"><button class="btn btn-primary " data-request="onSendFinManager" data-stripe-load-indicator data-request-flash>Remind/Send By Email</button></div>
+                            <?php endif; ?>
+                        <?php else: ?>
+                           <div style="text-align: center;"><button class="btn btn-primary " data-request="onSendFinManager" data-stripe-load-indicator data-request-flash>Remind/Send By Email</button></div>
+                        <?php endif ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <h3 style="margin-top: 0px; padding-top: 0px">Supporting Files</h3>
+            <div class="control-list">
+                <table class="table data">
+                    <thead>
+                        <tr>
+                            <th class="sort-desc"><a href="/">Title</a></th>
+                            <th class="sort-desc"><a href="/">File</a></th>
+                            <th class="active sort-asc"><a href="/">Created</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                <?php $countfile = 0; ?>
+
+                    <?php if($formModel->invoice): ?>
+
+                        <tr>
+                            <td>Invoice</td>
+                            <td><a target="_blank" href="<?= e($formModel->invoice->path) ?>"><?= e($formModel->invoice->file_name) ?></a></td>
+                            <td><?= e($formModel->invoice->created_at) ?></td>
+                        </tr>
+                    <?php endif ?>
+
+                    <?php if($formModel->financeapprove): ?>
+                     <?php if($formModel->financeapprove->pop): ?>
+
+                        <tr>
+                            <td>POP</td>
+                            <td><a target="_blank" href="<?= e($formModel->financeapprove->pop->path) ?>"><?= e($formModel->financeapprove->pop->file_name) ?></a></td>
+                            <td><?= e($formModel->financeapprove->created_at) ?></td>
+                        </tr>
+                    <?php endif ?>
+                    <?php endif ?>
+
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+            <h3>Requisition Setup</h3>
+
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Requisition..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Requisition..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <!-- <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Requisition..."
+                    data-request-confirm="Delete this requisition?">
+                </button> -->
+                 <a target="_blank" class="btn btn-primary pull-right " href="/finance/requisition/item/download/<?=   $formModel->id ?>.pdf">Download Requisition In PDF</a>
+
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/finance/requisition') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/finance/requisition') ?>" class="btn btn-default">Return to requisition list</a></p>
+
+<?php endif ?>

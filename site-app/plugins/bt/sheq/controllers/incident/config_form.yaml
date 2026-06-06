@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Incident
+
+# Model Form Field configuration
+form: $/bt/sheq/models/incident/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Incident
+
+# Default redirect location
+defaultRedirect: bt/sheq/incident
+
+# Create page
+create:
+    title: Create Incident
+    redirect: bt/sheq/incident/update/:id
+    redirectClose: bt/sheq/incident
+
+# Update page
+update:
+    title: Edit Incident
+    redirect: bt/sheq/incident
+    redirectClose: bt/sheq/incident
+
+# Preview page
+preview:
+    title: Preview Incident

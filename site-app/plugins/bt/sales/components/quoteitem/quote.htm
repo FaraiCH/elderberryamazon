@@ -1,0 +1,50 @@
+<div>
+  		<h2>Quote Details (BT-{{itemobject.id}})</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Linked Clients</th>
+					<th>Blocked</th>
+					<th>Billing Name</th>
+					<th>Company</th>
+					<th>Email</th>
+					<th>Status</th>
+					<th>Date Created</th>
+					<th>Total Price</th>
+					<th>Quote</th>
+					<th>Agency</th>
+
+				</tr>
+			</thead>
+			<tbody>
+	        	<tr>
+	        		<td>{{itemobject.id}}</td>
+	        		<td nowrap="nowrap">
+	        			{% if itemobject.client is not empty %}
+	        				{{itemobject.client.company_name}}
+	        			{% endif %}
+	        		</td>
+	        		<td nowrap="nowrap">
+	        			{% if itemobject.client is not empty %}
+	        				{{itemobject.client.is_blocked == 1?"<span style='color: red'>Yes</span>":"<span style='color: green'>No</span>"}}
+	        			{% endif %}
+	        		</td>
+	        		<td>{{itemobject.billing_name}}</td>
+	              	<td>{{itemobject.company_name}}</td>
+	              	<td>{{itemobject.email}}</td>
+	              	<td>{{itemobject.status.name}}</td>
+	              	<td>{{itemobject.created_at}}</td>
+	              	<td><div class="totalr"><span>R</span><span>{{itemobject.totalincvat|number_format(2, '.', ',')}}</span></div></td>
+	              	<td><a href="/quote/item/download/{{itemobject.id}}.pdf">#BT{{itemobject.id}}v{{itemobject.responses|length }}</a></td>
+
+	              	<td>{{itemobject.agency}}</td>
+	             </tr>
+	        </tbody>
+	    </table>
+	</div>
+
+
+<div class="alert alert-info">
+    <h4><i class="fa fa-info"> Use the following link to go to the backend for this quote: <a target="_blank" href="/backend/bt/sales/newquote/update/{{itemobject.id}}" class="btn btn-primary text-white">Click Here</a></i></h4>
+</div>

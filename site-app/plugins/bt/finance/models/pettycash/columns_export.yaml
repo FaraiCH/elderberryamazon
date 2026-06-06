@@ -1,0 +1,49 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    subject:
+        label: Item(s) To Purchase
+    approved: 'Approved'
+    completed: 'Completed?'
+    date:
+        label: Date To Purchase
+    amount:
+        label: Amount Requesting
+        type: number
+        format: R %.2f
+    payment_type: 'Payment type'
+
+    uploader: 'Slip Uploads'
+
+    reqer: 'Signed Requisitions'
+
+    request_to_j: 'Requested Petty Cash To?'
+
+    message:
+        label: Message
+        invisible: true
+        searchable: true
+        sortable: false
+
+    createby: 'Created by'
+
+
+
+    updateby: 'Updated by'
+
+
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+        invisible: true
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+        invisible: true

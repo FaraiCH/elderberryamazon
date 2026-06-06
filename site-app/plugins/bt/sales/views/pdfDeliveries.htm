@@ -1,0 +1,731 @@
+<style type="text/css">
+    body{
+        color: #212529;font-size: 12px;
+        font-family: sans-serif;
+        word-wrap: break-word;
+        background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+    }
+
+    @page { margin:20px; }
+    html { margin:20px; }
+
+    h1{
+        font-size: 22px;
+    }
+    h2{
+        font-size: 18px;
+        margin-top: 0px;
+        padding-top: 0px;
+
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+
+
+    }
+    .table td, .table th {
+        padding: 2px;
+        vertical-align: top;
+        border: 1px solid #e9ecef;
+        font-size: 11px;
+        word-wrap: break-word;
+        height: 10px;
+
+    }
+    .table th {
+        background: #dbe8ee;
+        font-weight: normal;
+        color: #000;
+    }
+
+
+    .gt{
+        text-align: center; font-weight: bold;background: #dbe8ee;
+    }
+
+    .tl{text-align: left;}
+    .text-right,.tr{text-align: right;}
+    .text-center,.tc{text-align: center;}
+    .tdate{text-align: center;width: 60px !important;}
+    .img-thumb{
+        width: 100px;
+    }
+
+    tr.rowsstart td{
+        background: #fcfcfc
+    }
+    tr.status_3 td{
+        background: rgb(162, 251, 165)
+    }
+
+    .page-break {
+        page-break-after: always;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0%;
+        height: 5%;
+        font-size: .7em;
+        color: #545554;
+        line-height: 1em;
+    }
+
+    .footer::after {
+        /* Increment "my-sec-counter" by 1 */
+        counter-increment: my-sec-counter;
+        content: "Page " counter(my-sec-counter) " ";
+    }
+
+    .footer .left {
+        display: inline-block;
+        width: 90%;
+    }
+
+
+</style>
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h2>Deliveries and Collections </h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+<table class="table tablesimple dt-responsive table-striped table-hover">
+    <thead>
+    <tr>
+        <th colspan="10"><h2>Upcoming Deliveries and Collections</h2></th>
+    </tr>
+    </thead>
+</table>
+<table class="table tablesimple dt-responsive table-striped table-hover">
+    <thead>
+
+
+    </thead>
+    <tbody>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th width="300px">
+            Clients
+        </th>
+        <th>
+            Delivery
+        </th>
+        <th>
+            Collection
+        </th>
+        <th>
+           Est Weight (Kg)
+        </th>
+        <th>
+            Catalogue Value (R)
+        </th>
+    </tr>
+    {% set sum = 0 %}
+    {% set sumv = 0 %}
+    {% for key, collect in deliveryObj %}
+    <tr>
+        <td width="50px">
+            {{key}}/{{key|date('D')}}
+        </td>
+        <td>
+            {% if deliveryObj[key]['Clients'] is not empty %}
+                {{deliveryObj[key]['Clients']|join(', ')}}
+            {% endif %}
+        </td>
+        <td width="30px" style="text-align: center">
+            {% if deliveryObj[key]['Delivery'] is not empty %}
+            {{deliveryObj[key]['Delivery']}}
+            {% else %}
+            0
+            {% endif %}
+        </td>
+        <td width="30px" style="text-align: center">
+            {% if deliveryObj[key]['Collection'] is not empty %}
+            {{deliveryObj[key]['Collection']}}
+            {% else %}
+            0
+            {% endif %}
+        </td>
+        <td width="50px" style="text-align: right">
+            {{deliveryObj[key]['Weight']|number_format(1, '.', ',')}}
+            {% set sum = sum + deliveryObj[key]['Weight'] %}
+        </td>
+        <td width="50px" style="text-align: right">
+            {{deliveryObj[key]['svalue']|number_format(2, '.', ',')}}
+            {% set sumv = sumv + deliveryObj[key]['svalue'] %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">Total </td>
+        <td style="text-align: right" >{{sum|number_format(1, '.', ',')}} KG</td>
+        <td style="text-align: right" >R {{sumv|number_format(2, '.', ',')}}</td>
+    </tr>
+    </tfoot>
+</table>
+<br>
+<br>
+
+<table class="table tablesimple dt-responsive table-striped table-hover">
+    <thead>
+    <tr>
+      <th colspan="7">
+        <h2>Deliveries and Collections To Client (From 01 January 2023)</h2>
+      </th>
+    </tr>
+
+    <tr>
+        <th>
+            Date
+        </th>
+        <th width="300px">
+            Clients
+        </th>
+        <th>
+            Delivery
+        </th>
+        <th>
+            Collection
+        </th>
+        <th>
+            Est Weight (KG)
+        </th>
+        <th>
+            Catalogue Weight (KG)
+        </th>
+        <th>
+            Catalogue Value (R)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set count = 0 %}
+    {% set sumobj = 0 %}
+    {% set sumval = 0 %}
+    {% set sumwe = 0 %}
+    {% for key, collect in doneObj %}
+    {% if count == 0 %}
+    {% set total_pro = 0 %}
+    {% set total_r= 0 %}
+    {% set total_w= 0 %}
+    {% endif %}
+    {% set count = count + 1 %}
+    <tr>
+        <td width="70px" >
+            Wk-{{doneObj[key]['week']}}/{{key}}/{{key|date('D')}}
+        </td>
+        <td>
+            {% if doneObj[key]['Clients'] is not empty %}
+            {{doneObj[key]['Clients']|join(', ')}}
+            {% endif %}
+        </td>
+        <td width="30px" style="text-align: center">
+            {% if doneObj[key]['Delivery'] is not empty %}
+            {{doneObj[key]['Delivery']}}
+            {% else %}
+            0
+            {% endif %}
+        </td>
+        <td width="30px" style="text-align: center">
+            {% if doneObj[key]['Collection'] is not empty %}
+            {{doneObj[key]['Collection']}}
+            {% else %}
+            0
+            {% endif %}
+        </td>
+        <td width="50px" style="text-align: right">
+            {{doneObj[key]['Weight']|number_format(0, '.', ',')}}
+            {% set sumobj = sumobj + doneObj[key]['Weight'] %} KG
+            {% set total_pro = total_pro + doneObj[key]['Weight'] %}
+        </td>
+        <td width="50px" style="text-align: right">
+            {{doneObj[key]['sweight']|number_format(0, '.', ',')}}
+            {% set sumwe = sumwe + doneObj[key]['sweight'] %} KG
+            {% set total_w = total_w + doneObj[key]['sweight'] %}
+        </td>
+        <td width="50px" style="text-align: right">
+            R {{doneObj[key]['svalue']|number_format(2, '.', ',')}}
+            {% set sumval = sumval + doneObj[key]['svalue'] %}
+            {% set total_r = total_r + doneObj[key]['svalue'] %}
+        </td>
+    </tr>
+    {% if count == weeks[doneObj[key]['year'] ~ doneObj[key]['week']] %}
+    <tr>
+        <td colspan="4" style="text-align: center"><b>Totals</b></td>
+        <td style="text-align: right"><b>{{total_pro|number_format(0, '.', ',')}} KG</b></td>
+        <td style="text-align: right"><b>{{total_w|number_format(0, '.', ',')}} KG</b></td>
+        <td style="text-align: right"><b>R {{total_r|number_format(2, '.', ',')}}</b></td>
+    </tr>
+    {% set count = 0 %}
+    {% endif %}
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">Total</td>
+        <td style="text-align: right" >{{sumobj|number_format(0, '.', ',')}} KG</td>
+        <td style="text-align: right" >{{sumowe|number_format(0, '.', ',')}} KG</td>
+        <td style="text-align: right" >R {{sumval|number_format(2, '.', ',')}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<div class="page-break"></div>
+
+<br>
+<br>
+
+<table class="table tablesimple dt-responsive table-striped table-hover">
+    <thead>
+    <tr>
+        <th colspan="6"><h2>Deliveries and Collections (Fabrications) (Past 14 Days)</h2></th>
+    </tr>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th width="300px">
+            Clients
+        </th>
+        <th>
+            Delivery
+        </th>
+        <th>
+            Collection
+        </th>
+        <th>
+          Est Weight (KG)
+       </th>
+        <th>
+         Catalogue Value (R)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set count = 0 %}
+    {% set sumobj = 0 %}
+    {% set sumval = 0 %}
+    {% for key, collect in fabObj %}
+    {% if count == 0 %}
+    {% set total_pro = 0 %}
+    {% set total_r= 0 %}
+    {% endif %}
+    {% set count = count + 1 %}
+    <tr>
+        <td width="70px" >
+            Wk-{{fabObj[key]['week']}}/{{key}}/{{key|date('D')}}
+        </td>
+        <td>
+            {% if fabObj[key]['Clients'] is not empty %}
+            {{fabObj[key]['Clients']|join(', ')}}
+            {% endif %}
+        </td>
+        <td width="30px" style="text-align: center">
+            {% if fabObj[key]['Delivery'] is not empty %}
+            {{fabObj[key]['Delivery']}}
+            {% else %}
+            0
+            {% endif %}
+        </td>
+        <td width="30px" style="text-align: center">
+            {% if fabObj[key]['Collection'] is not empty %}
+            {{fabObj[key]['Collection']}}
+            {% else %}
+            0
+            {% endif %}
+        </td>
+        <td width="50px" style="text-align: right">
+            {{fabObj[key]['Weight']|number_format(0, '.', ',')}}
+            {% set sumobj = sumobj + fabObj[key]['Weight'] %} KG
+            {% set total_pro = total_pro + fabObj[key]['Weight'] %}
+        </td>
+        <td width="50px" style="text-align: right">
+            R {{fabObj[key]['svalue']|number_format(2, '.', ',')}}
+            {% set sumobj = sumobj + fabObj[key]['svalue'] %}
+            {% set total_r = total_r + fabObj[key]['svalue'] %}
+        </td>
+    </tr>
+    {% if count == weeks[fabObj[key]['year'] ~ fabObj[key]['week']] %}
+    <tr>
+        <td colspan="4" style="text-align: center"><b>Totals</b></td>
+        <td style="text-align: right"><b>{{total_pro|number_format(0, '.', ',')}} KG</b></td>
+        <td style="text-align: right"><b>R {{total_r|number_format(2, '.', ',')}} </b></td>
+    </tr>
+    {% set count = 0 %}
+    {% endif %}
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">Total</td>
+        <td style="text-align: right" >{{sumobj|number_format(0, '.', ',')}} KG</td>
+        <td style="text-align: right" >R {{sumval|number_format(2, '.', ',')}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<div class="page-break"></div>
+
+
+<table class="table tablesimple dt-responsive table-striped table-hover">
+    <thead>
+    <tr>
+        <th colspan="6"><h2>Weekly Tonnage Deliveries Non-Fabrication (Week start from Monday To Sunday)</h2></th>
+    </tr>
+    <tr>
+        <th>
+            Week
+        </th>
+        <th>
+            Month
+        </th>
+        <th>
+            Year
+        </th>
+        <th>
+            Est Weight (Kg)
+       </th>
+       <th>
+            Catalogue Weight (KG)
+        </th>
+        <th>
+            Catalogue Value (R)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set count = 0 %}
+    {% set total_pro = 0 %}
+    {% set total_scr = 0 %}
+    {% set total_over = 0 %}
+    {% for key, collect in weeklyObj %}
+    {% if count == 0 %}
+    {% set total_pro = 0 %}
+    {% set total_scr = 0 %}
+    {% set total_over = 0 %}
+    {% set total_r= 0 %}
+    {% set total_w= 0 %}
+    {% endif %}
+    {% set count = count + 1 %}
+    <tr>
+        <td width="50px">
+            {{weeklyObj[key]['week']}}
+        </td>
+        <td width="50px">
+            {{weeklyObj[key]['month']}}
+        </td>
+        <td width="50px">
+            {{weeklyObj[key]['year']}}
+        </td>
+        <td style="text-align: right">
+            {{weeklyObj[key]['Weight']|number_format(0, '.', ',')}}
+            {% set total_pro = total_pro + weeklyObj[key]['Weight'] %} KG
+        </td>
+        <td style="text-align: right">
+            {{weeklyObj[key]['sweight']|number_format(0, '.', ',')}}
+            {% set total_w = total_w + weeklyObj[key]['sweight'] %} KG
+        </td>
+        <td style="text-align: right">
+            R {{weeklyObj[key]['svalue']|number_format(2, '.', ',')}}
+            {% set total_r = total_r + weeklyObj[key]['svalue'] %}
+        </td>
+    </tr>
+    {% if count == month[weeklyObj[key]['year'] ~ weeklyObj[key]['month']] %}
+    <tr>
+        <td colspan="3" style="text-align: center"><b>Totals</b></td>
+        <td style="text-align: right"><b>{{total_pro|number_format(0, '.', ',')}} KG</b></td>
+        <td style="text-align: right"><b>{{total_w|number_format(0, '.', ',')}} KG</b></td>
+        <td style="text-align: right"><b>R {{total_r|number_format(2, '.', ',')}}</b></td>
+    </tr>
+    {% set count = 0 %}
+    {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<br>
+{% set countweight = 0 %}
+
+    <table class="table tablesimple dt-responsive table-striped table-hover " style="width:100%">
+        <thead>
+        <tr>
+           <th colspan="14"><h2>SRN Statistics</h2></th>
+        </tr>
+        <tr>
+            <th><span>SRN Date</span></th>
+            <th><span>SRN REF</span></th>
+            <th><span>Fabrication</span></th>
+            <th><span>Quote #</span></th>
+            <th><span>PO #</span></th>
+
+            <th><span>Sales Rep</span></th>
+            <th><span>Client</span></th>
+            <th><span>Weight (Pipe)</span></th>
+            <th><span>Accumulative Weight</span></th>
+            <th><span>Value (Pipe)</span></th>
+            <th><span>Catalogue Weight</span></th>
+            <th><span>Value (CAT)</span></th>
+            <th><span>Value To Invoice</span></th>
+            <th><span>Invoice #</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set total_tonnage = 0 %}
+        {% set amount = 0 %}
+
+        {% set counter = 0 %}
+        {% set oldweek = 0 %}
+        {% for key, item in srns %}
+            {% if item.fabrication == 1 %}
+                {% if item.srninvoice is not empty %}
+                {% set month = item.schedule_date|date('M') %}
+                {% set week = item.schedule_date|date('W') %}
+                {% if week == 0 %}
+                    <tr>
+                        <td colspan="100" style="text-align: center"><b>{{month}} Week - {{week}}</b></td>
+                    </tr>
+                    {% set countweight = 0 %}
+                {% else %}
+                    {% if oldweek != week %}
+                        <tr>
+                            <td colspan="100" style="text-align: center"><b>{{month}} Week - {{week}}</b></td>
+                        </tr>
+                        {% set countweight = 0 %}
+                    {% endif %}
+                {% endif %}
+                {% if item.srninvoice|length > 1 %}
+                    <tr>
+                        <td colspan="100">&nbsp;</td>
+                    </tr>
+                {% endif %}
+                {% for key_,item_i in item.srninvoice %}
+
+                <tr style="background: yellow">
+                    <td nowrap="nowrap">
+                        {{item.schedule_date|date("Y-m-d")}}
+                    </td>
+                    <td><a target="_blank" href="/srn/item/download/{{item.id}}.pdf">{{item.id}}</a></td>
+                    <td>Yes</td>
+                    <td><a target="_blank" href="/quote/item/download/{{item.quote_id}}.pdf">{{item.quote_id}}</a></td>
+                    <td>{{item.quote.ponumber}} </td>
+                    <!--            <td>{{item.files_collection|length}}</td>-->
+                    <!--            <td>{{item.files_delivery|length}}</td>-->
+                    <td>
+                        {% if item.quote.user is not empty %}
+                        <span class="icon-user-circle"> {{item.quote.user.name}} {{item.quote.user.surname}}</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.quote.client.company_name %}
+                        <span>{{item.quote.client.company_name}}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{item.items.sum('stockweight')|number_format(2)}} kg</td>
+
+                    <td>0 kg</td>
+                    <td style="text-align: right" nowrap="nowrap">R {{item.items.sum('stockvalue')|number_format(2)}}</td>
+                    <td style="text-align: right" nowrap="nowrap">{{item.itemscat.sum('stockweight')|number_format(2)}} kg</td>
+                    <td style="text-align: right" nowrap="nowrap">R {{item.itemscat.sum('stockvalue')|number_format(2)}}</td>
+
+                    {% set vatamount = (item.items.sum('stockvalue') + item.itemscat.sum('stockvalue'))+( (item.items.sum('stockvalue') + item.itemscat.sum('stockvalue') ) * 0.15) %}
+
+                    <td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R {{vatamount|number_format(2)}}</td>
+
+                    <td><a target="_blank" href="/backend/bt/sales/invoice/preview/{{item.id}}">{{item_i.name}} </a></td>
+
+
+                </tr>
+                {% set count = count + 1 %}
+                {% endfor %}
+                {% if item.srninvoice|length > 1 %}
+                <tr>
+                    <td colspan="100">&nbsp;</td>
+                </tr>
+                {% endif %}
+                {% else %}
+                <tr style="background: yellow">
+                    <td>
+                        {{item.schedule_date|date("Y-m-d")}}
+                    </td>
+                    <td><a target="_blank" href="/srn/item/download/{{item.id}}.pdf">{{item.id}}</a></td>
+                    <td>Yes</td>
+                    <td><a target="_blank" href="/quote/item/download/{{item.quote_id}}.pdf">{{item.quote_id}}</a></td>
+                    <td>{{item.quote.ponumber}} </td>
+                    <!--            <td>{{item.files_collection|length}}</td>-->
+                    <!--            <td>{{item.files_delivery|length}}</td>-->
+                    <td>
+                        {% if item.quote.user is not empty %}
+                        <span class="icon-user-circle"> {{item.quote.user.name}} {{item.quote.user.surname}}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.quote.client.company_name is not empty %}
+                        {{item.quote.client.company_name}}
+                        {% endif %}
+                    </td>
+                    <td>{{item.items.sum('stockweight')|number_format(2)}} kg</td>
+                    <td>0kg</td>
+                    <td style="text-align: right" nowrap="nowrap">R {{item.items.sum('stockvalue')|number_format(2)}}</td>
+                    <td style="text-align: right" nowrap="nowrap"> {{item.itemscat.sum('stockweight')|number_format(2)}} kg</td>
+                    <td style="text-align: right" nowrap="nowrap">R {{item.itemscat.sum('stockvalue')|number_format(2)}}</td>
+
+                    {% set vatamount = (item.items.sum('stockvalue') + item.itemscat.sum('stockvalue')) + ((item.items.sum('stockvalue') + item.itemscat.sum('stockvalue')) * 0.15) %}
+
+                    <td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R {{vatamount|number_format(2)}}</td>>
+
+                    <td colspan="1">Not Invoiced</td>
+                </tr>
+                {% endif %}
+                {% set oldweek = week %}
+
+            {% else %}
+
+                {% if item.srninvoice is not empty %}
+                    {% set month = item.schedule_date|date('M') %}
+                    {% set week = item.schedule_date|date('W') %}
+                {% if oldweek == 0 %}
+                    <tr>
+                        <td colspan="100" style="text-align: center"><b>{{month}} Week - {{week}}</b></td>
+                    </tr>
+                        {% set countweight = 0 %}
+                {% else %}
+                    {% if oldweek != week %}
+                        <tr>
+                            <td colspan="100" style="text-align: center"><b>{{month}} Week - {{week}}</b></td>
+                        </tr>
+                        {% set countweight = 0 %}
+                    {% endif %}
+                {% endif %}
+                {% if item.srninvoice|length > 1 %}
+                    <tr>
+                        <td colspan="100">&nbsp;</td>
+                    </tr>
+                {% endif %}
+                {% for key_,item_i in item.srninvoice %}
+
+
+                <tr>
+                    <td nowrap="nowrap">
+                        {{item.schedule_date|date("Y-m-d")}}
+                    </td>
+                    <td><a target="_blank" href="/srn/item/download/{{item.id}}.pdf">{{item.id}}</a></td>
+                    <td>No</td>
+                    <td><a target="_blank" href="/quote/item/download/{{item.quote_id}}.pdf">{{item.quote_id}}</a></td>
+                    <td>{{item.quote.ponumber}} </td>
+        <!--            <td>{{item.files_collection|length}}</td>-->
+        <!--            <td>{{item.files_delivery|length}}</td>-->
+                    <td>
+                        {% if item.quote.user is not empty %}
+                        <span class="icon-user-circle"> {{item.quote.user.name}} {{item.quote.user.surname}}</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.quote.client.company_name %}
+                            <span>{{item.quote.client.company_name}}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{item.items.sum('stockweight')|number_format(2)}} kg</td>
+                    {% set total_tonnage = total_tonnage + item.items.sum('stockweight') %}
+
+                    {% if countweight != 0 %}
+                    <td>{{countweight|number_format(2)}} kg</td>
+                    {% set countweight = countweight + item.items.sum('stockweight') %}
+                    {% else %}
+                    <td>0 kg</td>
+                    {% set countweight = countweight + item.items.sum('stockweight') %}
+                    {% endif %}
+
+                    <td style="text-align: right" nowrap="nowrap">R {{item.items.sum('stockvalue')|number_format(2)}}</td>
+                    <td style="text-align: right" nowrap="nowrap">{{item.itemscat.sum('stockweight')|number_format(2)}} kg</td>
+                    <td style="text-align: right" nowrap="nowrap">R {{item.itemscat.sum('stockvalue')|number_format(2)}}</td>
+
+                   {% set vatamount = (item.items.sum('stockvalue') + item.itemscat.sum('stockvalue'))+( (item.items.sum('stockvalue') + item.itemscat.sum('stockvalue') ) * 0.15) %}
+
+                    <td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R {{vatamount|number_format(2)}}</td>
+
+                    <td><a target="_blank" href="/backend/bt/sales/invoice/preview/{{item.id}}">{{item_i.name}} </a></td>
+
+                </tr>
+                {% set count = count + 1 %}
+                {% endfor %}
+                    {% if item.srninvoice|length > 1 %}
+                    <tr>
+                        <td colspan="100">&nbsp;</td>
+                    </tr>
+                    {% endif %}
+                {% else %}
+                <tr>
+                    <td>
+                        {{item.schedule_date|date("Y-m-d")}}
+                    </td>
+                    <td><a target="_blank" href="/srn/item/download/{{item.id}}.pdf">{{item.id}}</a></td>
+                    <td>No</td>
+                    <td><a target="_blank" href="/quote/item/download/{{item.quote_id}}.pdf">{{item.quote_id}}</a></td>
+                    <td>{{item.quote.ponumber}} </td>
+        <!--            <td>{{item.files_collection|length}}</td>-->
+        <!--            <td>{{item.files_delivery|length}}</td>-->
+                    <td>
+                        {% if item.quote.user is not empty %}
+                        <span class="icon-user-circle"> {{item.quote.user.name}} {{item.quote.user.surname}}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.quote.client.company_name is not empty %}
+                            {{item.quote.client.company_name}}
+                        {% endif %}
+                    </td>
+                    <td>{{item.items.sum('stockweight')|number_format(2)}} kg</td>
+                    {% set total_tonnage = total_tonnage + item.items.sum('stockweight') %}
+
+                    {% if countweight != 0 %}
+                    <td>{{countweight|number_format(2)}} kg</td>
+                    {% set countweight = countweight + item.items.sum('stockweight') %}
+                    {% else %}
+                    <td>0 kg</td>
+                    {% set countweight = countweight + item.items.sum('stockweight') %}
+                    {% endif %}
+                    <td style="text-align: right" nowrap="nowrap">R {{item.items.sum('stockvalue')|number_format(2)}}</td>
+                    <td style="text-align: right" nowrap="nowrap">{{item.itemscat.sum('stockweight')|number_format(2)}} kg</td>
+                    <td style="text-align: right" nowrap="nowrap">R {{item.itemscat.sum('stockvalue')|number_format(2)}}</td>
+
+                        {% set vatamount = (item.items.sum('stockvalue') + item.itemscat.sum('stockvalue')) + ((item.items.sum('stockvalue') + item.itemscat.sum('stockvalue')) * 0.15) %}
+
+                    <td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R {{vatamount|number_format(2)}}</td>>
+
+                    <td colspan="1">Not Invoiced</td>
+                </tr>
+                {% endif %}
+                    {% set oldweek = week %}
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+

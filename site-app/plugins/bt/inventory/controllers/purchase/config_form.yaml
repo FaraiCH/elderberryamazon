@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Purchase
+
+# Model Form Field configuration
+form: $/bt/inventory/models/purchase/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\Purchase
+
+# Default redirect location
+defaultRedirect: bt/inventory/purchase
+
+# Create page
+create:
+    title: Create Purchase
+    redirect: bt/inventory/purchase/update/:id
+    redirectClose: bt/inventory/purchase
+
+# Update page
+update:
+    title: Edit Purchase
+    redirect: bt/inventory/purchase
+    redirectClose: bt/inventory/purchase
+
+# Preview page
+preview:
+    title: Preview Purchase

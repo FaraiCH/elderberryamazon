@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Share Datum
+
+# Model Form Field configuration
+form: $/bt/jsedata/models/sharedatum/fields.yaml
+
+# Model Class name
+modelClass: Bt\JSEData\Models\ShareDatum
+
+# Default redirect location
+defaultRedirect: bt/jsedata/sharedata
+
+# Create page
+create:
+    title: Create Share Datum
+    redirect: bt/jsedata/sharedata/update/:id
+    redirectClose: bt/jsedata/sharedata
+
+# Update page
+update:
+    title: Edit Share Datum
+    redirect: bt/jsedata/sharedata
+    redirectClose: bt/jsedata/sharedata
+
+# Preview page
+preview:
+    title: Preview Share Datum

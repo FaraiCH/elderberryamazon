@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    # id:
+    #     label: ID
+    #     searchable: true
+    date:
+        label: Date Captured
+    fueltype:
+        label: Fuel Type 
+        select: name
+        relation: fueltype
+    fuel_intake:
+        label: Litres Poured
+        type: number
+        format: %.2f L
+    price_per_litre:
+        label: Prices Per Litre
+        type: number
+        format: R %.2f
+    amount:
+        label: Amount
+        type: partial
+        path: $/bt/logistics/models/vehiclefuelusage/_amount_column.htm
+        searchable: false
+        sortable: false

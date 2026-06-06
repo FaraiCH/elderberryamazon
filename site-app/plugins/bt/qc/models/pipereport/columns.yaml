@@ -1,0 +1,51 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+         label: ID
+         searchable: true
+         sortable: true
+    date:
+        label: Date
+        searchable: true
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sales/models/newquote/_active.htm
+    quote:
+        label: Quote
+        select: concat(id, " > ",company_name)
+        relation: quote
+    item:
+        label: Pipe Descriptio
+        relation: item
+        searchable: true
+        select: concat('#',id, ' > ', description)
+    weight:
+        label: Weight
+        searchable: true
+
+    damagedbags:
+        label: Damaged Bags
+        searchable: true
+    mfi:
+        label: Mfi
+        searchable: true
+    weight:
+        label: Weight in KG
+    hydrostatic_test:
+          label: Testing Option 1
+    hydrostatic_comply:
+          label: Comply
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

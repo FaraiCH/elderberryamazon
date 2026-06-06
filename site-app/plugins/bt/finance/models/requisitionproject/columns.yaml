@@ -1,0 +1,18 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+        searchable: true
+    description:
+        label: Description
+        searchable: true
+    sum_approved_amount:
+        label: Total Approved Amount
+        type: partial
+        path: $/bt/finance/models/requisitionproject/_approved_total.htm

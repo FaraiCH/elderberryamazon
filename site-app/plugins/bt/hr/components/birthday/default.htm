@@ -1,0 +1,45 @@
+{% set starter = CmBirthday.loadAssets() %}
+
+<div class="container" >
+	<div class="card-header">
+	    <h1 style="text-align: center"><b>TODAY'S BIRTHDAYS!</b></h1>
+	</div>
+
+	{% if CmBirthday.birthdays is not empty %}
+	    <div class="row">
+	        {% for birthday in CmBirthday.birthdays %}
+	            <div class="col-md-{{12/CmBirthday.birthdays|length}}" style="padding: 10px 10px">
+	                <div class=" border-0 rounded-0" >
+	                    <div class="row no-gutters">
+	                        <div class="col-md-4">
+	                            {% if birthday.profilepic is empty %}
+	                            <img style="max-width:100%"  class="card-img-top" src="https://bailaerp.bt-industrial.co.za/storage/app/media/istockphoto-1016744004-612x612.jpg" alt="Profile Image">
+	                            {% else %}
+	                            <img style="max-width:100%" class="card-img-top" src="{{birthday.profilepic.path}}" alt="Profile Image">
+	                            {% endif %}
+	                        </div>
+	                        <div class="col-md-8">
+	                            <div class="card-body" style="text-align: center;" >
+	                                <h5 class="card-title font-weight-bold mb-0">{{birthday.firstname}} {{birthday.lastname}}</h5>
+	                                <hr>
+	                                <p class="card-text mb-2">Please wish <b>{{birthday.firstname}} {{birthday.lastname}}</b> a happy birthday!</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        {% endfor %}
+	    </div>
+	{% else %}
+	    <div style="left: 0;
+	                    line-height: 200px;
+	                    margin-top: -100px;
+	                    position: absolute;
+	                    text-align: center;
+	                    top: 50%;
+	                    color: #0a3576;
+	                    width: 100%;"><h1 style="font-size: 30px"><span class="icon icon-user"></span>There Are No Birthdays Today</h1></div>
+	{% endif %}
+
+</div>
+

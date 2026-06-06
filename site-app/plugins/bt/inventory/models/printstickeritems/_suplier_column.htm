@@ -1,0 +1,11 @@
+
+<?php if(isset($record->material)): ?>
+	<?php
+	 	
+	 	if($record->material->productname)
+        	if($record->material->productname->supplier)
+        echo $record->material->productname->supplier->name;
+
+?>
+
+<?php endif; ?>

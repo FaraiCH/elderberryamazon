@@ -1,0 +1,15 @@
+<div style="padding: 20px 20px 0px 20px">
+    <h3 class="cntrl_header">
+        1. Stock Release Note Unapproval Form - Request Unapproval from QC
+    </h3>
+
+
+    
+     <?php if (!empty($formModel->srnapprove) && $formModel->srnapprove->status_id == 1): ?>
+        <ol><li>Create unaproval request</li><li>Add reasons</li><li>Download and sign the form</li><li>Upload the signed document and QC will unapprove</li></ol>
+         <?= $this->relationRender('requestunapprove') ?>
+     <?php else: ?>
+            <p>NOTE: For you to start the process to request the SRN Unapproval, QC must be Unapprove first</p>
+         <?= $this->relationRender('requestunapprove', ['readOnly' => true]) ?>
+     <?php endif ?>
+</div>

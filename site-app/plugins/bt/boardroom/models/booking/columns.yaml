@@ -1,0 +1,52 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+columns:
+    id:
+        label: ID
+        searchable: true
+    boardroom_name:
+        label: Boardroom Names
+        type: selectable
+    subject:
+        label: Subject
+        searchable: true
+    date:
+        label: Date
+    start_time:
+        label: Start Time
+    end_time:
+        label: End Time
+    bookingapproval:
+      label: Approved
+      type: partial
+      path: $/bt/boardroom/models/booking/_approved_column.htm
+      sortable: false
+    bookedby:
+        label: Booked By
+        relation: bookedby
+        select: concat(name, ' ', surname)
+        span: auto
+    department:
+        label: Departments
+        type: partial
+        path: $/bt/boardroom/models/booking/departments.htm
+    no_of_attendees:
+        label: Number of Attendees
+        type: Number
+        span: auto
+    booking_type:
+        label: Booking Type(Internal/External)
+        type: selectable
+    status:
+        label: Booking Status
+        type: selectable
+    notes:
+        label: Notes
+
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+        invisible: true

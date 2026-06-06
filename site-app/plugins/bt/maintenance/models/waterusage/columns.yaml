@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    readingdate:
+        label: Reading Date
+
+    pro_meter:
+        label: Production Meter
+        type: number
+        format:  %.2f L
+    cooling_meter:
+        label: Cooling Meter
+        type: number
+        format:  %.2f L
+    admin_meter:
+        label: Admin Meter
+        type: number
+        format:  %.2f L
+    createdby:
+        label: Create By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)

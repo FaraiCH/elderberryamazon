@@ -1,0 +1,22 @@
+pipe:
+    label: Pipe
+    view:
+        list: $/bt/production/models/pipe/columns.yaml
+        form: $/bt/production/models/pipe/fields.yaml
+        toolbarButtons: update
+
+
+    manage:
+        form: $/bt/production/models/pipe/fields.yaml
+        list: $/bt/production/models/pipe/columns.yaml
+schedule:
+    label: Schedule
+    view:
+        list: $/bt/production/models/schedule/columns.yaml
+        form: $/bt/production/models/schedule/fields.yaml
+        toolbarButtons: update
+
+
+    manage:
+        form: $/bt/production/models/schedule/fields.yaml
+        list: $/bt/production/models/schedule/columns.yaml

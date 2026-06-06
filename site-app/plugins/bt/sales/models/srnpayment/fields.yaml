@@ -1,0 +1,59 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    srn:
+        label: SRN No
+        select: id
+        type: relation
+        placeholder: -- Select --
+        span: auto
+    invoice_date:
+        label: Invoice Date
+        type: datepicker
+        mode: date
+        span: auto
+    bt_customer_name:
+        label: Customer Name
+        dependsOn: srn
+        span: auto
+    logistic_company_name:
+        label: Logistics Company Name
+        dependsOn: srn
+        span: auto
+    area:
+        label: Area
+        dependsOn: bt_customer_name
+        span: auto
+    supplier_amount:
+        label: Supplier Amount
+        type: Number
+        span: auto
+    logistic_invoice_number:
+        label: Logistics Invoiced Number
+        type: Number
+        span: auto
+    reason:
+        label: Reason
+        span: auto
+    bt_delivery_charged:
+        label: Delivery Charged
+        type: Number
+        dependsOn: srn
+        span: auto
+    r_per_kg:
+        label: Rand Per KG
+        type: Number
+        span: auto
+    delivery_weight:
+        label: Delivery Weight
+        type: Number
+        span: auto
+    invoiced_value_inc_vat:
+        label: Invoice Value Inc Vat
+        span: auto
+        type: Number

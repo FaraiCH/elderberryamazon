@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 12px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 90%;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            background: #0c0c80;
+
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 11px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        tr.status_3 td{
+            background: rgb(162, 251, 165)
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+
+
+    </style>
+</head>
+<body>
+{% if env == 'dev' %}
+<div style=" font-weight: bold; font-size: 30px; text-transform: uppercase;color:  #fff; padding: 5px 0px; top: 0; width:100%; height: 50px; text-align:  center;background: {{env == 'live'?'green':'red'}};">DEVELOPMENT: DO NOT USE</div>
+{% endif %}
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%">
+                        <img src="https://bt-industrial.co.za/wp-content/uploads/2021/01/Small-x2-197x74-1.png">
+
+                    </td>
+                    <td width="60%" style="text-align: center;">
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h3>Production Balance </h3>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<table style="width:100%" cellpadding="2">
+    <thead>
+    <tr style="background: #0c0c80; color: whitesmoke;">
+        <th style="text-transform: uppercase; text-align: left; width:  15px;"><span>Quote Date</span></th>
+        <th style="text-transform: uppercase; text-align: left; width:  15px;"><span>Quote Overview</span></th>
+        <th style="text-transform: uppercase; text-align: left; width:  15px;"><span>PO Number</span></th>
+        <th style="text-transform: uppercase; text-align: left; width:  15px;"><span>PO Date</span></th>
+
+        <th style="text-transform: uppercase; text-align: left; width:  15px;"><span>Client</span></th>
+
+        <th style="text-transform: uppercase; text-align: left; width:  15px;"><span>Sales Rep</span></th>
+        <th style="text-transform: uppercase; text-align: right; width:  15px;"><span>Total Ordered Weight </span></th>
+        <th style="text-transform: uppercase; text-align: right; width:  15px;"><span>Total kg Processed</span></th>
+        <th style="text-transform: uppercase; text-align: right;width: 15px"><span>Total kg Delivered In Date</span></th>
+        <th style="text-transform: uppercase; text-align: right; width: 15px;"><span>Total Ordered Pipes </span></th>
+        <th style="text-transform: uppercase; text-align: right;width:  15px"><span>Total Units Delivered In Date</span></th>
+        <th style="text-transform: uppercase; text-align: right;width: 15px"><span>Pipes Price</span></th>
+
+        <th style="text-transform: uppercase; text-align: right;width: 15px"><span>Buy Outs</span></th>
+        <th style="text-transform: uppercase; text-align: right; width:  15px;"><span>Total Inc Vat</span></th>
+        <th style="text-transform: uppercase; text-align: right;width: 15px"><span>R/Kg</span></th>
+
+    </tr>
+
+    </thead>
+    <tbody>
+    {% set totalincvat = 0 %}
+    {% set totalweight = 0 %}
+    {% set i_price = 0 %}
+    {% set p_price = 0 %}
+    {% set average = 0 %}
+    {% set total_kg_ordered = 0 %}
+    {% set total_kg_processed = 0 %}
+    {% set deliveyweight = 0 %}
+
+    {% for key, mdata in quote %}
+    {% set total_kg_ordered = total_kg_ordered + mdata.items.sum('totalweight') %}
+    {% if balance[mdata.id]["total_kg_processed"] is not empty %}
+        {% set total_kg_processed = total_kg_processed + balance[mdata.id]["total_kg_processed"] %}
+    {% else %}
+        {% set total_kg_processed = total_kg_processed + 0 %}
+    {% endif %}
+    {% if balance[mdata.id]["deliveyweight"] is not empty %}
+            {% set deliveyweight = deliveyweight + balance[mdata.id]["deliveyweight"] %}
+    {% else %}
+        {% set deliveyweight = deliveyweight + 0 %}
+    {% endif %}
+
+    <tr>
+        {% set date = mdata.created_at %}
+        {% set totalincvat = totalincvat + mdata.totalincvat %}
+        {% set totalweight = totalweight + mdata.items.sum("totalweight") %}
+        {% set i_price = i_price + mdata.items.sum("price") %}
+        {% set p_price = p_price + mdata.itemscat.sum("price") %}
+        {% set average = 0 %}
+        {% if totalweight > 0 %}
+            {% set average = i_price / totalweight  %}
+        {% endif %}
+
+        <td>{{date|date('M Y')}}</td>
+        <td><a href="/sales/report/download/{{mdata.id}}/{{mdata.user.id}} " target="_blank">{{mdata.id}} </a></td>
+        <td>{{mdata.ponumber}}</td>
+        <td>
+            {% if mdata.responses is not empty %}
+            {% for r, rdata in mdata.responses %}
+            {% if rdata.quote_status_id == 10 %}
+
+             {% set date_r = rdata.created_at %}
+
+
+            {{date_r|date('M Y')}}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+
+        </td>
+
+        <td>{{mdata.company_name}}</td>
+        <td>{{mdata.user.name}} {{mdata.user.surname}}</td>
+        <td style="text-align: right" nowrap="nowrap">{{mdata.items.sum('totalweight')|number_format(1, '.', ',')}} KG</td>
+        {% if balance[mdata.id]["total_kg_processed"] is not empty %}
+            <td style="text-align: right" nowrap="nowrap">{{balance[mdata.id]["total_kg_processed"]|number_format(1, '.', ',')}} KG</td>
+        {% else %}
+            <td style="text-align: right" nowrap="nowrap">0.0 KG</td>
+        {% endif %}
+        {% if balance[mdata.id]["deliveyweight"] is not empty %}
+        <td style="text-align: right" nowrap="nowrap">{{balance[mdata.id]["deliveyweight"]|number_format(1, '.', ',')}} KG</td>
+        {% else %}
+            <td style="text-align: right" nowrap="nowrap">0.0 KG</td>
+        {% endif %}
+        <td style="text-align: right" nowrap="nowrap">{{mdata.items.sum('units')|number_format(0, '.', ',')}}</td>
+        {% if balance[mdata.id]["total_units_unit_in_date"] %}
+            <td style="text-align: right" nowrap="nowrap">{{balance[mdata.id]["total_units_unit_in_date"]|number_format(0, '.', ',')}}</td>
+        {% else %}
+            <td style="text-align: right" nowrap="nowrap">0</td>
+        {% endif %}
+
+        <td style="text-align: right" nowrap="nowrap">R {{mdata.items.sum("price")|number_format(2, '.', ',')}}</td>
+
+        <td style="text-align: right" nowrap="nowrap">R {{mdata.itemscat.sum("price")|number_format(2, '.', ',')}}</td>
+        <td style="text-align: right" nowrap="nowrap">R {{mdata.totalincvat|number_format(2, '.', ',')}}</td>
+        {% if mdata["items"] is not empty and mdata.items.sum("totalweight") > 0 %}
+            <td style="text-align: right" nowrap="nowrap">R {{(mdata.items.sum("price")/mdata.items.sum("totalweight"))|number_format(2, '.', ',')}}</td>
+        {% else %}
+            <td style="text-align: right" nowrap="nowrap">R 0.00</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="1">TOTALS</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: right" nowrap="nowrap">{{total_kg_ordered|number_format(1, '.', ',')}} KG</td>
+        <td style="text-align: right" nowrap="nowrap">{{total_kg_processed|number_format(1, '.', ',')}} KG</td>
+        <td style="text-align: right" nowrap="nowrap">{{deliveyweight|number_format(1, '.', ',')}} KG</td>
+        <td></td>
+        <td></td>
+        <td style="text-align: right" nowrap="nowrap">R {{i_price|number_format(2, '.', ',')}}</td>
+
+        <td style="text-align: right" nowrap="nowrap">R {{p_price|number_format(2, '.', ',')}}</td>
+        <td style="text-align: right" nowrap="nowrap">R {{totalincvat|number_format(2, '.', ',')}}</td>
+        <td style="text-align: right" nowrap="nowrap">R {{average|number_format(2, '.', ',')}} </td>
+    </tr>
+    </tfoot>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID.
+        searchable: true
+
+
+    quoteitem_id:
+        label: Description
+        type: partial
+        path: $/bt/sales/models/stockoderitem/_description_column.htm
+    # batch:
+    #     label: Batch
+    #     type: partial
+    #     path: $/bt/sales/models/srnitem/_batch_column.htm
+    units:
+        label: Units
+
+
+
+

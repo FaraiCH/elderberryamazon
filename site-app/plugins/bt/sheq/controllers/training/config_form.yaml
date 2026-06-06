@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Training
+
+# Model Form Field configuration
+form: $/bt/sheq/models/training/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sheq\Models\Training
+
+# Default redirect location
+defaultRedirect: bt/sheq/training
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sheq/training/update/:id
+    redirectClose: bt/sheq/training
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sheq/training
+    redirectClose: bt/sheq/training
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

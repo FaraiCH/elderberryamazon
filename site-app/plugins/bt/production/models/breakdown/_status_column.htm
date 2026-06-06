@@ -1,0 +1,37 @@
+<?php if(isset($record->mainjobcard->status->id) && !empty($record->mainjobcard->status->id)): ?>
+    <?php switch($record->mainjobcard->status->id):
+        case 1:
+            $bgColor = "#6f6ad8"; 
+            break;
+        case 2:
+            $bgColor = "#FFA500"; 
+            break;
+        case 3:
+            $bgColor = "#efef4b"; 
+            break;
+        case 4:
+            $bgColor = "#6ad8d2"; 
+            break;
+        case 5:
+            $bgColor = "#228B22"; 
+            break;
+        case 6:
+            $bgColor = "#800080"; 
+            break;
+        case 7:
+            $bgColor = "#808080"; 
+            break;
+        default:
+            $bgColor = "#FFFFFF"; 
+            break;
+    endswitch; ?>
+
+    <div style="background-color: <?= $bgColor ?>; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+        <?= $record->mainjobcard->status->name; ?>
+    </div>
+
+<?php else: ?>
+    <div style="background: #ec3838; color: #fff; display: block; padding: 2px 5px;white-space: nowrap; border-radius: 4px; text-align: center;">
+        Not set
+    </div>
+<?php endif; ?>

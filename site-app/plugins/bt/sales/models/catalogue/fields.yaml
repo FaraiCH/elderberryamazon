@@ -1,0 +1,147 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    #     span: auto
+    category:
+        label: Category Type
+        disabled: false
+        type: relation
+        select: category_name
+        span: auto
+        emptyOption: -- no category --
+    btproduct:
+        label: BT Pipe
+        type: relation
+        select: concat(id," > ", name )
+        span: auto
+        placeholder: -- Select ---
+        dependsOn: category
+    suffix:
+        label: Suffix
+        span: auto
+        dependsOn: btproduct
+    name:
+        label: Product Name
+        disabled: true
+        span: auto
+        attributes:
+            maxlength: '500'
+        dependsOn: suffix
+    price:
+        label: Price
+        disabled: false
+        span: auto
+        type: number
+    bt_unitlength:
+        label: Pipe Length (M)
+        type: number
+        span: auto
+    priceperkg:
+        label: Price/Kg
+        type: number
+        span: auto
+    active:
+        label: Is Product Active
+        disabled: false
+        span: auto
+        type: switch
+        on: Yes
+        off: No
+    production_required:
+        label: Is Production Required?
+        disabled: false
+        span: auto
+        type: switch
+        on: Yes
+        off: No
+tabs:
+    fields:
+        product_code:
+            label: Product Code
+            span: auto
+            tab: Product Details
+
+
+        gp:
+            label: Gross Profit
+            type: dropdown
+            span: auto
+            tab: Product Details
+
+        size:
+            label: Size
+            span: auto
+            tab: Product Details
+        qty:
+            label: Qty
+            span: auto
+            tab: Product Details
+
+
+        next_price_date:
+            label: Next Price Update Date
+            span: auto
+            tab: Product Details
+            type: datepicker
+            mode: date
+        imageurl:
+            label: Image URL
+            span: auto
+            tab: Product Details
+
+        # description:
+        #     label: Product Description
+        #     disabled: false
+        #     span: auto
+        #     type: textarea
+        #     size: small
+        #     tab: Product Details
+
+
+        supplier:
+            label: Supplier
+            select: name
+            type: relation
+            placeholder: -- select Supplier --
+            span: auto
+            tab: Supplier Details
+
+        supplierprice:
+            label: Supplier Price
+            disabled: false
+            span: auto
+            tab: Supplier Details
+            type: number
+
+
+
+
+
+        supplier:
+            label: Supplier
+            disabled: false
+            type: relation
+            select: name
+            span: auto
+            emptyOption: -- select --
+
+        stock:
+            path: $/bt/sales/controllers/catalogue/_stock.htm
+            tab: Account
+            type: partial
+
+
+
+    #        $category = Category::all();
+    #        $name = array();
+    #        foreach($category as $key => $value)
+    #      {
+    #        #name[value->id] = $value->company_name. " : " .$value->createdby. " : " .$value->updatedby;
+    #      }
+    #
+    #        return $name;

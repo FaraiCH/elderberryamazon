@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Cage Material
+
+# Model Form Field configuration
+form: $/bt/inventory/models/cagematerial/fields.yaml
+
+# Model Class name
+modelClass: Bt\Inventory\Models\CageMaterial
+
+# Default redirect location
+defaultRedirect: bt/inventory/cagematerial
+
+# Create page
+create:
+    title: Create Cage Material
+    redirect: bt/inventory/cagematerial/update/:id
+    redirectClose: bt/inventory/cagematerial
+
+# Update page
+update:
+    title: Edit Cage Material
+    redirect: bt/inventory/cagematerial
+    redirectClose: bt/inventory/cagematerial
+
+# Preview page
+preview:
+    title: Preview Cage Material

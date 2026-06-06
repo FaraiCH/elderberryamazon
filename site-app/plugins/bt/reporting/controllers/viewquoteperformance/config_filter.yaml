@@ -1,0 +1,6 @@
+scopes:
+    quote:
+        label: Quote Number
+        modelClass: Bt\Reporting\Models\ViewQuotePerformance
+        conditions: quote_id in (:filtered)
+        options: getQuotes

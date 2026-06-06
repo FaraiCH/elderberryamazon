@@ -1,0 +1,164 @@
+{% set quotes = BTQuoteList.listquote %}
+
+<p class="alert alert-info">To delete the old quotes you will need to set quote to "In-Active" in admin mode.</p>
+
+{% partial __SELF__ ~ '::filterform'%}
+
+
+
+{% if quotes is not empty  %}
+	{% set total = 0 %}
+	<!-- <div style="width: 100%; overflow: auto;"> -->
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover table-sm tabledownload_desc" id="tabledownload_desc" style="font-size: 11px" >
+				<thead>
+					<tr>
+						<th>#</th>
+						<th></th>
+						<th></th>
+						<th>Quote</th>
+						<th>PO Number</th>
+						<th>Created Date</th>
+						<th>Quote Age</th>
+						<th>Closing Date</th>
+						<th>Sales Person</th>
+						<th>Account</th>
+						<th>Blocked</th>
+						<th>Billing Name</th>
+						<th>Company</th>
+						<th>Email</th>
+						<th>Status</th>
+						<th>Production Feedback</th>
+						<th>Reason For Quote</th>
+						<th>Receiving Order</th>
+
+						<th>Total Discount</th>
+						<th>Total Price</th>
+						<th>Amount Paid</th>
+					</tr>
+				</thead>
+				<tbody>
+
+			        {% for itemobject in quotes %}
+
+			        	{% set difference = date(now).diff(date(itemobject.created_at)) %}
+			        	<tr>
+			        		<td>{{itemobject.id}}</td>
+			        		<td><a href="{{ 'quote/item'|page({'item': itemobject.id}) }}">View</a></td>
+			              	<td><a href="/quote/item/download/{{itemobject.id}}.pdf">Download</a></td>
+			              	<td><a href="/quote/item/downloaddollar/{{itemobject.id}}.pdf">Download Dollar</a></td>
+
+			              	<td>{{itemobject.ponumber}}</td>
+			        		<td nowrap="nowrap">{{itemobject.created_at|date("Y-m-d")}}</td>
+			        		<td>
+
+								{% if difference.days == 0 %}
+								  Today
+								{% elseif difference.days == 1%}
+								  -{{ difference.days }} day
+								{% else %}
+								  -{{ difference.days }} days
+								{% endif %}
+			        		</td>
+			        		<td nowrap="nowrap">
+			        			{% if itemobject.closing_date is not empty %}
+			        				{{itemobject.closing_date|date("Y-m-d")}}
+			        			{% endif %}
+			        		</td>
+			        		<td nowrap="nowrap">{{itemobject.user.name}} {{itemobject.user.surname}}</td>
+			        		<td nowrap="nowrap">
+			        			{% if itemobject.client is not empty %}
+			        				{{itemobject.client.company_name}}
+			        			{% endif %}
+			        		</td>
+
+			        		<td nowrap="nowrap">
+			        			{% if itemobject.client is not empty %}
+			        				{{itemobject.client.is_blocked == 1?"<span style='color: red'>Yes</span>":"<span style='color: green'>No</span>"}}
+			        			{% endif %}
+			        		</td>
+			        		<td nowrap="nowrap">{{itemobject.billing_name}}</td>
+			              	<td nowrap="nowrap">{{itemobject.company_name}}</td>
+			              	<td nowrap="nowrap">{{itemobject.email}}</td>
+			              	<td nowrap="nowrap">#{{itemobject.status.id}} - {{itemobject.status.name}}</td>
+			              	<td nowrap="nowrap">
+                                {% if itemobject.items is not empty %}
+                                    {% for itm in itemobject.items %}
+
+                                        {% if itm.pipe.id is not empty %}
+                                            {% if itm.product.name is not empty %}
+                                                {{itm.product.name}}: {{itm.pipe.schedules.sum('total_units_passed_qc')}}/{{itm.units}} (Produced) <br>
+                                            {% else %}
+                                                Product Name Empty: No Production <br>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if itm.product.name is not empty %}
+                                                {{itm.product.name}}: No Production <br>
+                                            {% else %}
+                                                Product Name Empty: No Production <br>
+                                            {% endif %}
+                                        {% endif %}
+
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if itemobject.itemscat is not empty and itemobject.items is empty %}
+                                    Has only catalogue item(s). No need for production
+                                {% endif %}
+                            </td>
+
+			              	<td nowrap="nowrap">{{itemobject.reason.name}}</td>
+			              	<td nowrap="nowrap">{{itemobject.nonreceived.name}}</td>
+
+
+
+			              	<td>
+			              		{% set discount = 0 %}
+			              		{% for item in itemobject.responses %}
+									{% set discount = discount + item.amountdiscount %}
+			        			{% endfor %}
+			        			<div class="totalr"><span>R</span><span>{{discount|number_format(2, '.', ',')}}</span></div>
+			              	</td>
+
+			              	<td><div class="totalr"><span>R</span><span>{{(itemobject.totalincvat-discount)|number_format(2, '.', ',')}}</span></div></td>
+			              		<td><div class="totalr"><span>R</span><span>{{itemobject.amountpaid|number_format(2, '.', ',')}}</span></div></td>
+
+			             </tr>
+			             {% set total = total + (itemobject.totalincvat-discount) %}
+			        {% endfor %}
+		        </tbody>
+		       <tfoot>
+		       	<tr>
+			        		<th></th>
+			        		<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th></th>
+			              	<th><div class="totalr"><span>R</span><span>{{total|number_format(2, '.', ',')}}</span></div></th>
+			              	<th></th>
+
+			             </tr>
+		       </tfoot>
+
+    </table>
+</div>
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

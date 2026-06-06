@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Srn Payment
+
+# Model Form Field configuration
+form: $/bt/sales/models/srnpayment/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\SrnPayment
+
+# Default redirect location
+defaultRedirect: bt/sales/srnpayment
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/srnpayment/update/:id
+    redirectClose: bt/sales/srnpayment
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/srnpayment
+    redirectClose: bt/sales/srnpayment
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

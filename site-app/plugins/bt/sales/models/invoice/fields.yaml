@@ -1,0 +1,36 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    srn:
+        label: Srn
+        type: relation
+        select: id
+        # select: concat(schedule_date,' > ', id)
+        # type: relation
+        # span: auto
+        # # comment: Select client related to the invoice. Add client on the LEFT Client tab
+        placeholder: -- select a srn --
+    name:
+        label: Invoice Number
+        span: auto
+    amount:
+        label: Amount
+        type: inputcurrency
+        span: auto
+
+    invoice_date:
+        label: Invoice Date
+        type: datepicker
+        mode: date
+        span: auto
+
+    file:
+        label: Invoice File
+        type: fileupload
+        mode: file
+        span: auto

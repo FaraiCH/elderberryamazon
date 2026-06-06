@@ -1,0 +1,29 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    area:
+        label: Area/Bin Name
+        span: auto
+    max_pipe:
+        label: Max Pipe
+        span: auto
+        type: number
+    sub_location:
+        label: Sub Location
+        span: auto
+    area_length:
+        label: Area Length in Metres
+        span: auto
+    is_active:
+        label: Is Active
+        span: auto
+        type: switch
+    notes:
+        label: Notes
+        type: textarea
+        size: small

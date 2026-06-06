@@ -1,0 +1,6 @@
+export:
+    title: Export ControlSheet Mass Data
+    modelClass: Bt\Reporting\Models\CSMassDataExport
+    list: $/bt/reporting/models/controlsheetmassdata/columns_export.yaml
+    redirect: bt/reporting/controlsheetmassdata
+    fileName: ControlSheet_Mass_Data.csv

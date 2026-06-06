@@ -1,0 +1,11 @@
+<?php
+
+$invoice = 0;
+foreach($record->quotes as $key=>$value){
+	$invoice += $value->invoice->sum('amount');
+
+} 
+
+
+?>
+R <?php echo number_format($invoice,2) ?>

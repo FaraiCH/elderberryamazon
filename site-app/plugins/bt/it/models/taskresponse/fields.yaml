@@ -1,0 +1,41 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+    subject:
+        label: Subject      
+        type: text
+        
+    
+    description:
+        label: Job Description      
+        # type: textarea
+        size: small
+        tab: Setup
+
+        type: richeditor
+        toolbarButtons: fullscreen|bold|italic|underline|colo|align|formatOL|formatUL|insertLink|insertImage|insertFile|insertTable|undo|redo|clearFormatting|html
+        size: small
+    isolved:
+        label: Is Solved?
+        type: switch
+        on: Yes
+        off: No
+       
+    files:
+        label: Files
+        type: fileupload
+        tab: Files
+        mode: file
+        span: auto
+        maxFilesize: 4096M
+    images:
+        label: Upload Images
+        type: fileupload
+        tab: Files
+        span: auto
+        maxFilesize: 4096M

@@ -1,0 +1,102 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+
+    PNRating@create:
+        label: PNRating
+        type: relation
+        span: storm
+        cssClass: col-md-6 col-sm-6
+        select: name
+
+    active:
+        label: Active
+        type: switch
+
+    Diameter@create:
+        label: Diameter
+        relation: Diameter
+        select: name
+        type: relation
+        span: storm
+        cssClass: col-md-6 col-sm-6
+
+    PNRating@update:
+        label: PNRating
+        type: relation
+        span: storm
+        cssClass: col-md-4 col-sm-4
+        select: name
+        disabled: true
+
+    Diameter@update:
+        label: Diameter
+        relation: Diameter
+        select: name
+        type: relation
+        span: storm
+        cssClass: col-md-4 col-sm-4
+        disabled: true
+
+    value:
+        label: Value per Kg
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    production_value:
+        label: Production value per Kg
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+
+    new_mass:
+        label: New Mass
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+
+    od_min:
+        label: od_min
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    od_max:
+        label: od_max
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    ovality_max:
+        label: ovality_max
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    coil:
+        label: coil
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    wt_min:
+        label: wt_min
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    wt_max:
+        label: wt_max
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    wt_ave:
+        label: wt_ave
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4
+    pipe_id:
+        label: pipe_id
+        type: number
+        span: storm
+        cssClass: col-md-4 col-sm-4

@@ -1,0 +1,320 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date:
+        label: Date
+        disabled: false
+        type: datepicker
+        span: left
+    quote:
+        label: Quote Number
+        select: concat(id, " > ",company_name)
+        type: relation
+        span: auto
+        placeholder: -- select a quote --
+    item_id:
+        label: Pipe Description
+        type: dropdown
+        dependsOn: quote
+        span: auto
+        placeholder: -- select a Item --
+    supplier_batch:
+        label: Batch To Link
+        type: dropdown
+        dependsOn: item_id
+        span: auto
+        placeholder: -- Select Batch --
+
+tabs:
+    fields:
+        datapack@update:
+          path: $/bt/qc/controllers/pipereport/_datapack.htm
+          tab: DATAPACK RECORDS
+          type: partial
+#        bags@update:
+#            label: Bags
+#            disabled: false
+#            type: number
+#            tab: BAGS & WEIGHT
+#            span: left
+#        weight@update:
+#            label: Weight in KG
+#            disabled: false
+#            tab: BAGS & WEIGHT
+#            span: right
+#        damagedbags@update:
+#            label: Damaged Bags in KG
+#            disabled: false
+#            type: number
+#            tab: BAGS & WEIGHT
+#            span: left
+       #--------------------------
+        hydrostatic_test@update:
+          label: Testing Option 1
+          disabled: false
+          tab: HYDROSTATIC TEST
+          span: auto
+          type: dropdown
+          placeholder: --- Select Testing Option ---
+          options:
+            100h@20C: 100h@20C
+            165@80C: 165@80C
+            1000@80C: 1000@80C
+
+        hydrostatic_comply@update:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: HYDROSTATIC TEST
+          span: auto
+
+        hydro_image@update:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: HYDROSTATIC TEST
+
+        hydro_file@update:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: HYDROSTATIC TEST
+          mode: file
+
+        testing@update:
+            label: Testing
+            placeholder: -- Select State --
+            span: auto
+            type: dropdown
+            tab: HYDROSTATIC TEST
+            options:
+                Scheduled for Testing: Scheduled for Testing
+                Testing in Progress: Testing in Progress
+
+        #--------------------------
+        thermal_revision_test@update:
+          label: less then 3%
+          disabled: false
+          tab: THERMAL REVISION TEST
+          span: auto
+          type: number
+          comment: In %
+
+        thermal_comply@update:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: THERMAL REVISION TEST
+          span: auto
+
+        thermal_image@update:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: THERMAL REVISION TEST
+
+        thermal_file@update:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: THERMAL REVISION TEST
+          mode: file
+
+         #--------------------------
+
+        elongation_at_break_test@update:
+          label: over 350 %
+          disabled: false
+          tab: TENSILE TEST
+          span: auto
+
+        elongation_comply@update:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: TENSILE TEST
+          span: auto
+
+        elongation_image@update:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: TENSILE TEST
+
+        elongation_file@update:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: TENSILE TEST
+          mode: file
+
+        #--------------------------
+        iot@update:
+          label: RAW
+          disabled: false
+          tab: OIT TEST
+          span: left
+
+        iot_post@update:
+          label: PIPE
+          disabled: false
+          tab: OIT TEST
+          span: right
+
+        iot_comply@update:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: OIT TEST
+          span: left
+
+        iot_comply_post@update:
+          label: POST  - Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: OIT TEST
+          span: right
+
+        iot_image@update:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: left
+          tab: OIT TEST
+
+        iot_image_post@update:
+          label: POST  - IMAGE
+          type: fileupload
+          mode: image
+          span: right
+          tab: OIT TEST
+
+        iot_file@update:
+          label: FILE
+          type: fileupload
+          span: left
+          tab: OIT TEST
+          mode: file
+
+        iotfiles_post@update:
+          label: POST  - FILE
+          type: fileupload
+          tab: OIT TEST
+          mode: file
+          span: right
+
+        testing_oit:
+            label: Testing
+            placeholder: -- Select State --
+            span: right
+            type: dropdown
+            tab: OIT TEST
+            options:
+                Scheduled for Testing: Scheduled for Testing
+                Testing in Progress: Testing in Progress
+                No failure during test period: No failure during test period
+
+        #--------------------------
+        mfi@update:
+          label: PRE TEST - 0,2 - 1.4g
+          disabled: false
+          tab: MFI TEST
+          span: left
+
+        mfi_post@update:
+          label: POST TEST - 0,2 - 1.4g
+          disabled: false
+          tab: MFI TEST
+          span: right
+
+        #--------------------------
+
+        mfi_comply@update:
+          label: PRE TEST - Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: MFI TEST
+          span: left
+
+        mfi_comply_post@update:
+          label: POST TEST - Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: MFI TEST
+          span: right
+        #--------------------------
+        mfi_image@update:
+          label: PRE TEST - IMAGE
+          type: fileupload
+          mode: image
+          span: left
+          tab: MFI TEST
+
+        mfi_image_post@update:
+          label: POST TEST - IMAGE
+          type: fileupload
+          mode: image
+          span: right
+          tab: MFI TEST
+
+
+        #--------------------------
+
+        mfifiles@update:
+          label: PRE TEST - FILE
+          type: fileupload
+          tab: MFI TEST
+          mode: file
+          span: left
+
+        mfifiles_post@update:
+          label: POST TEST - FILE
+          type: fileupload
+          tab: MFI TEST
+          mode: file
+          span: right
+
+        #--------------------------
+
+        coc_pipebatch@update:
+          label: Pipe Batch
+          tab: COC
+          span: auto
+        coc_specifications@update:
+          label: Specifications
+          tab: COC
+          span: auto
+        coc_file@update:
+          label: COC File
+          type: fileupload
+          tab: COC
+          mode: file
+        bacapproved@update@update:
+          path: $/bt/qc/controllers/pipereport/_approve.htm
+          tab: COC APPROVE BY MANAGEMENT
+          type: partial
+        coa_file@update:
+            label: CERTIFICATE OF ANYLYSES (COA)
+            type: fileupload
+            tab: COA
+            mode: file
+#        used@update:
+#            tab: USED
+#            label: Used Material
+#            type: partial
+#            path: $/bt/qc/models/pipereport/_used.htm

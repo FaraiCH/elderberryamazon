@@ -1,0 +1,8 @@
+purchaseitem:
+    label: Purchase Item
+    manage:
+        form: $/bt/sales/models/purchaseitem/fields.yaml
+        list: $/bt/sales/models/purchaseitem/columns.yaml
+    view:
+        list: $/bt/sales/models/purchaseitem/columns.yaml
+        toolbarButtons: create|delete

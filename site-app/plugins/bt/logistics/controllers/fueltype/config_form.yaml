@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Fuel Type
+
+# Model Form Field configuration
+form: $/bt/logistics/models/fueltype/fields.yaml
+
+# Model Class name
+modelClass: Bt\Logistics\Models\FuelType
+
+# Default redirect location
+defaultRedirect: bt/logistics/fueltype
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/logistics/fueltype/update/:id
+    redirectClose: bt/logistics/fueltype
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/logistics/fueltype
+    redirectClose: bt/logistics/fueltype
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

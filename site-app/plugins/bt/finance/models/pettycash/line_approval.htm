@@ -1,0 +1,25 @@
+<?php if($record->linemanager): ?>
+    <?php if($record->lineapprove): ?>
+
+        <?php if($record->lineapprove->status_id == 1): ?>
+        <div style="background: green; color: #fff; padding: 2px; border-radius: 2px; text-align: center;">
+
+            Approved
+
+        </div>
+
+        <?php else: ?>
+        <div style="background: red; color: #fff; padding: 2px; border-radius: 2px; text-align: center;">
+
+            Rejected
+
+        </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <span class="oc-icon-circle text-mute">
+                    Pending
+                </span>
+    <?php endif; ?>
+<?php else: ?>
+    Not required
+<?php endif; ?>

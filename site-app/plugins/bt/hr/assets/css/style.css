@@ -1,0 +1,18 @@
+.e-card-header{
+    background-color: darkblue;
+
+}
+.e-ddl.e-input-group.e-control-wrapper .e-input {
+    font-size: 14px;
+}
+
+.form-group, .form-group.layout-item {
+    padding-bottom: 0px;
+    margin-bottom: 0;
+}
+
+.e-grid .e-headercell {
+    color: white;
+    background: darkblue;
+}
+

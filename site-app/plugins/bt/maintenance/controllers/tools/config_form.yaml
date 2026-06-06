@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Tools
+
+# Model Form Field configuration
+form: $/bt/maintenance/models/tools/fields.yaml
+
+# Model Class name
+modelClass: Bt\Maintenance\Models\Tools
+
+# Default redirect location
+defaultRedirect: bt/maintenance/tools
+
+# Create page
+create:
+    title: Create Tool
+    redirect: bt/maintenance/tools/update/:id
+    redirectClose: bt/maintenance/tools
+
+# Update page
+update:
+    title: Edit Tool
+    redirect: bt/maintenance/tools
+    redirectClose: bt/maintenance/tools
+
+# Preview page
+preview:
+    title: Preview Tool

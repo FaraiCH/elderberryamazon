@@ -1,0 +1,23 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        hidden: true
+
+    receiving:
+        label: Raw Material Name
+        type: dropdown
+        span: auto
+        comment: Choose the material you want to assign to this machine
+        placeholder: --- Select a material ---
+
+    weight_kg:
+        label: Weight Assigned Kg
+        span: auto
+        comment: Assign weight to this material
+        type: number
+

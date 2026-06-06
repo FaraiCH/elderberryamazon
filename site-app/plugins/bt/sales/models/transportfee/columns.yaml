@@ -1,0 +1,46 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    date:
+        label: Effective Date
+        mode: date
+    transportratesdestination_id:
+        label: Destination
+        disabled: false
+        select: concat(name, '-', kilometers,'km')
+        searchable: true
+        relation: transportratesdestination
+    active:
+        label: Active
+        type: selectable
+    ton:
+        label: 1-Ton Price
+    ton_trailer:
+        label: 1-Ton and Trailer Price
+    ton_trailer_min_6m:
+        label: 6-Ton and Trailer Min 6m Bed Price
+    ten_ton_12m_trailer:
+        label: 10 Ton and 12m Trailer
+    trailer_12m:
+        label: 12m Trailer Price
+    trailer_18m:
+        label: 18m Trailer Price
+    bt_ton:
+        label: BT 1-Ton Price
+    bt_ton_trailer:
+        label: BT 1-Ton and Trailer Price
+    bt_ton_trailer_min_6m:
+        label: BT 6-Ton and Trailer Min 6m Bed Price
+    bt_ten_ton_12m_trailer:
+        label: BT 10-Ton and 12m Trailer
+    bt_trailer_12m:
+        label: BT 12m Trailer Price
+        type: number
+    bt_trailer_18m:
+        label: BT 18m Trailer Price
+        type: number

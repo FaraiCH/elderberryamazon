@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Trip Sheet
+
+# Model Form Field configuration
+form: $/bt/sales/models/tripsheet/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\TripSheet
+
+# Default redirect location
+defaultRedirect: bt/sales/tripsheet
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/tripsheet/update/:id
+    redirectClose: bt/sales/tripsheet
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/tripsheet
+    redirectClose: bt/sales/tripsheet
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Industry
+
+# Model Form Field configuration
+form: $/bt/jsedata/models/industry/fields.yaml
+
+# Model Class name
+modelClass: Bt\JSEData\Models\Industry
+
+# Default redirect location
+defaultRedirect: bt/jsedata/industry
+
+# Create page
+create:
+    title: Create Industry
+    redirect: bt/jsedata/industry/update/:id
+    redirectClose: bt/jsedata/industry
+
+# Update page
+update:
+    title: Edit Industry
+    redirect: bt/jsedata/industry
+    redirectClose: bt/jsedata/industry
+
+# Preview page
+preview:
+    title: Preview Industry

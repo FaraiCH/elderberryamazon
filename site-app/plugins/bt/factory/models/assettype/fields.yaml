@@ -1,0 +1,43 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  id:
+    label: ID
+    disabled: true
+  brand:
+    label: brand
+    type: text
+  assettype:
+    label: assert type
+    type: text
+  specification:
+    label: specification
+    type: text
+  quantity:
+    label: quantity
+    type: number
+    span: left
+    
+  description:
+    label: description
+    type: text
+
+  haswarranty:
+    label: Has-Warranty.?
+    type: switch
+    on: yes
+    off: no
+
+  # createdby:
+  #   label: Create By
+  #   searchable: true
+  #   relation: createdby
+  #   select: concat(first_name, ' ', last_name)
+  # updatedby:
+  #   label: Updated By
+  #   searchable: true
+  #   relation: updatedby
+  #   select: concat(first_name, ' ', last_name)
+  #   invisible: true

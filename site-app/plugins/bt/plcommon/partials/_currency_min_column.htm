@@ -1,0 +1,5 @@
+<?php if(is_numeric($value)): ?>
+	<div style="text-align: right; white-space: nowrap;">R <?php echo number_format($value,0, '.', ','); ?></div>
+<?php else: ?>
+	<div style="text-align: right; white-space: nowrap;"><?php echo $value; ?></div>
+<?php endif; ?>

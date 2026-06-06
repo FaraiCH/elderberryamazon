@@ -1,0 +1,19 @@
+<?php
+//This is the partial on update
+   $total = 0;
+    $min_wall = 0;
+    $max_wall = 0;
+
+    if($control->citem->sum('min_wall_w') > 0){
+foreach($control->citem as $item){
+$min_wall += ($item->wall_thikness_n + $item->max_wall_ne + $item->max_wall_e + $item->max_wall_se + $item->max_wall_s + $item->max_wall_sw + $item->min_wall_nw + $item->min_wall_w)/8;
+}
+$total = $min_wall;
+}else{
+$min_wall = $control->minwall;
+$max_wall = $control->maxwall;
+$total = ($max_wall + $min_wall)/2;
+}
+
+echo "<b>". $total .  "</b>";
+?>

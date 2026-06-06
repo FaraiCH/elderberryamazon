@@ -1,0 +1,32 @@
+
+
+
+<?php
+	$count = 0;
+
+	if($record->poamount == 99){
+		echo '<span style="color: red">Invalid PO Doc</span>';
+	}else if($record->poamount == 0){
+		echo '-';
+
+	}else if(($record->poamount == $record->quote->totalincvat) || ( abs($record->poamount - $record->quote->totalincvat) < 100)){
+			echo '<span style="color: green">Match</span>';
+	}else  { 
+
+		if($record->quote->totalincvat == 0){
+				echo '<span style="color: red">Please check Quote</span>';
+		}else{
+
+
+			$per = intval((abs($record->poamount - $record->quote->totalincvat)/$record->quote->totalincvat) * 100);
+			if($per == 0){
+					echo '<span style="color: green">Match</span>';
+			}else{
+					echo '<span style="color: red; white-space: nowrap; "> '."R".number_format(abs($record->poamount - $record->quote->totalincvat),2, '.', ',');
+					echo " ".$per."%</span>";
+			
+			}
+		}
+	} 
+
+?>

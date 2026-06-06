@@ -1,0 +1,20 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    start:
+        label: Blank stickers
+        comment: First blank stickers on the A4 printer page (0 or > 1)
+        type: number
+        default: 0
+        span: left
+  
+    printitems:
+        path: $/bt/production/controllers/printsticker/_printitems.htm
+        label: Print Items
+        type: partial
+        

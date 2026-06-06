@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <tr>
+    <td nowrap=""><b>Control Sheet:</b></td><td>#{{printpipe.controlsheet_id}}</td>
+  </tr>
+
+  <tr>
+    <td><b>Pipe:</b></td><td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.description}}</td>
+  </tr>
+
+  <tr>
+    <td><b>Client:</b></td><td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.quote.company_name}}</td>
+  </tr>
+
+  <tr>
+    <td><b>Quote:</b></td><td>{{printpipe.controlsheets.jobcard.pipe.quoteitems.quote.id}}</td>
+  </tr>
+
+  <tr>
+    <td><b>Batch:</b></td><td>{{printpipe.controlsheets.jobcard_id}} - {{printpipe.controlsheets.batch_id}}</td>
+  </tr>
+
+  <tr>
+    <td><b>Bin:</b></td><td>{{printpipe.binarea.area}}</td>
+  </tr>
+  <tr>
+    <td><b>Weight:</b></td><td>{{printpipe.weight}} kg</td>
+  </tr><tr>
+    <td><b> QC Status:</b></td><td>{{printpipe.qcstatus.name}}</td>
+  </tr>
+
+</table>

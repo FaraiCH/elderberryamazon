@@ -1,0 +1,124 @@
+{% set obj = CmSummary.listquote %}
+
+{% partial __SELF__ ~ '::filterform'%}
+	
+	<div class="card-body">
+
+		<div style="width: 100%; overflow: auto; ">
+		<table class="table table-striped table-bordered table-sm tabledownload" id="tabledownload" >
+			<thead>
+				<tr>
+					<th>Sales Person</th>	
+					<th>Client</th>
+					<th>Quote</th>
+					<th>PO</th>
+					<th>Quote Date</th>
+					<th>Status</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					
+					<th>Total QT Units</th>
+					<th>Total QC Units</th>
+	        		<th>Delivered</th>
+
+	        		<th>Scrap</th>
+	        		<th>Material Used</th>
+	        		<th>Total exl Vat</th>
+					<th>Total inc Vat</th>
+	        		<th>Material Value</th>
+	        		<th>Catalogue Value</th>
+	        		<th>Invoiced</th>
+	        		<th>Estimate Margin</th>
+	        		<th>%</th>
+
+				</tr>
+			</thead>
+			<tbody>
+			
+				{% set totalscrap = 0 %}
+				{% set totalmaterial = 0 %}
+				{% set totalunits = 0 %}
+				{% set totaldelivered = 0 %}
+				{% set totalfloor = 0 %}
+				{% set totalfloorprice = 0 %}					
+		        {% for item in obj %}
+					<tr>
+		        		
+		        		<td>{{item.quote.user.name}} {{item.quote.user.surname}}</td>
+		        		<td>{{item.quote.company_name}}</td>
+		        		<td>{{item.quote.id}}</td>
+		        		<td>{{item.quote.ponumber}}</td>
+		        		
+		        		<td nowrap="nowrap">{{item.quote.created_at|date("Y-m-d")}}</td>
+		        		<td>{{item.status.name}}</td>
+		        		<td nowrap="nowrap">{{item.date_of_accepted|date("Y-m-d")}}</td>
+		        		<td nowrap="nowrap">{{item.date_of_completed|date("Y-m-d")}}</td>
+		        		
+
+		        		<td align="right">{{item.quote.items.sum('units')}}</td>
+		        		
+		        		{% set total_units_passed_qc = 0 %}
+		        		{% set deliveredunits = 0 %}
+		        		{% set scrap = 0 %}
+
+		        		{% for pipe in item.pipes %}
+		        			{% set total_units_passed_qc = total_units_passed_qc + pipe.schedules.sum('total_units_passed_qc') %}
+		        			{% set deliveredunits = deliveredunits +  pipe.delivered().sum('units') %}
+
+		        			{% set scrap = scrap + pipe.schedules.sum('weight_scrap_kg') %}
+
+		        		{% endfor %}
+		        		<td align="right">{{total_units_passed_qc}}</td>
+		        		<td align="right">{{deliveredunits}}</td>
+		        		<td align="right">{{scrap}}</td>
+		        		<td align="right">
+		        		{% set total_auto_used = 0 %}
+		        		{% set total_material_value = 0 %}
+		        			{% for pipe in item.pipes %}
+								{% for sc in pipe.schedules %}
+									{% for rl in sc.usedmaterials %}
+										{% set total_auto_used = total_auto_used + rl.kg %}
+										{% set total_material_value = total_material_value + rl.kg * rl.receiving.pricekg %}
+									{% endfor %} 
+								{% endfor %} 
+							{% endfor %} 
+							{{total_auto_used}} kg
+						</td>
+						<td nowrap="nowrap" align="right">R {{item.quote.total|number_format(2, '.', ',')}}</td>		        		
+		        		<td nowrap="nowrap" align="right">R {{item.quote.totalincvat|number_format(2, '.', ',')}}</td>
+						<td nowrap="nowrap" align="right">R {{total_material_value|number_format(2, '.', ',')}}</td>
+
+						<td nowrap="nowrap" align="right">R {{item.quote.itemscat.sum("price")|number_format(2, '.', ',')}}</td>
+
+						<td nowrap="nowrap" align="right">R {{item.quote.invoice().sum('amount')|number_format(2, '.', ',') }}</td>
+
+						<td nowrap="nowrap" align="right"><b>R {{(item.quote.totalincvat - total_material_value - item.quote.itemscat.sum("price"))|number_format(2, '.', ',')}}</b></td>
+
+					
+
+						<td nowrap="nowrap" align="right">
+							{% if (total_material_value+item.quote.itemscat.sum("price")) > 0 %}
+								<b>{{(100-(((total_material_value+item.quote.itemscat.sum("price"))*100)/item.quote.totalincvat))|number_format(2, '.', ',')}}%</b>
+							{% else %}
+							 -
+							{% endif %}
+						</td>
+
+		        		{% set totalscrap = totalscrap + item.schedules().sum('weight_scrap_kg') %}
+						{% set totalunits = totalunits + item.schedules().sum('total_units_passed_qc') %}
+						{% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+						{% set totalfloor = totalfloor + (item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) %}
+
+						{% set totalfloorprice = totalfloorprice + ((item.schedules().sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice) %}
+
+						{% set totalmaterial = totalmaterial + total_auto_used %}
+
+		        		
+		             </tr>
+		        {% endfor %} 
+	        </tbody>
+			
+		       
+		</table>
+	</div>
+</div>

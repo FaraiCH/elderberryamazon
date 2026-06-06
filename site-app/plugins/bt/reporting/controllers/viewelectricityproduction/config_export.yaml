@@ -1,0 +1,6 @@
+export:
+    title: Export Electricity Production 
+    modelClass: Bt\Reporting\Models\ExportDailyElectricityProduction
+    list: $/bt/reporting/models/viewelectricityproduction/columns_export.yaml
+    redirect: bt/reporting/viewelectricityproduction
+    fileName: Export_Electricity_Production.csv

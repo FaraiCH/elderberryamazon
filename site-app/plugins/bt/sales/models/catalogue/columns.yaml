@@ -1,0 +1,96 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+
+    # imageurl:
+    #     label: Thumb
+    #     type: partial
+    #     path: $/bt/sales/models/catalogue/_thumb_column.htm
+    production_required:
+        label: Is Production Required?
+        type: partial
+        path: $/bt/sales/models/catalogue/_required_column.htm
+
+    category:
+        label: Category
+        searchable: true
+        relation: category
+        select: category_name
+
+    name:
+        label: Product Name
+        searchable: true
+    # description:
+    #     label: Description
+    #     searchable: true
+   
+    price:
+        label: Selling Price
+        searchable: false
+        type: number
+        format: R %.2f
+
+    supplierprice:
+        label: Supplier Price
+        searchable: false
+        type: number
+        format: R %.2f
+
+    gp: 
+        label: Gross Profit  
+    product_code:
+        label: Product Code
+
+    size:
+        label: Size
+        
+    qty: 
+        label: Qty
+        
+
+    next_price_date:
+        label: Next Price Update Date
+
+
+    margin:
+        label: Margin
+        type: partial
+        path: $/bt/sales/models/catalogue/_margin_column.htm
+        type: number
+        format: R %.2f
+    marginper:
+        label: Perc
+        type: partial
+        path: $/bt/sales/models/catalogue/_margin_perc_column.htm
+        type: number
+        format: R %.2f
+    
+    active:
+        label: Active
+        type: partial
+        path: $/bt/sales/models/catalogue/_active_column.htm
+    createdby:
+        label: Created By
+        searchable: true
+        relation: createdby
+        select: concat(first_name, ' ', last_name)
+    updatedby:
+        label: Updated By
+        searchable: true
+        relation: updatedby
+        select: concat(first_name, ' ', last_name)
+    created_at:
+        label: Date Created
+        format: d-m-Y
+        type: date
+      
+    updated_at:
+        label: Date Updated
+        format: d-m-Y
+        type: date
+

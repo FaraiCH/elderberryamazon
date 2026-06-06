@@ -1,0 +1,116 @@
+<div class="control-list">
+    <h2 style="padding: 0px; margin: 0px 0px 20px 0px;">Pipe Age</h2>
+    <table class="table table-striped table-bordered tabledownload" id="tabledownload">
+        <thead>
+        <tr>
+            <th><span>Batch</span></th>
+            <th><span>Client</span></th>
+            <th><span>Quote</span></th>
+            <th><span>Pipe</span></th>
+            <th  style="text-align: center;"><span>Ordered</span></th>
+            <th  style="text-align: right;"><span>Produced</span></th>
+            <th  style="text-align: center;"><span>Delivered</span></th>
+            <th  style="text-align: center;"><span>Floor Pipes</span></th>
+            <th style="text-align: right;"><span>last Production Date</span></th>
+            <th><span>Age</span></th>
+        </tr>
+        </thead>
+        <tbody>
+                 <?php
+                  $t_ordered = 0;
+                  $t_delived = 0;
+                  $t_produced = 0;
+                  $t_backorder = 0;
+                  $count = 0;
+                 ?>
+                <?php $totalBack = 0; ?>
+
+        <?php  foreach($list as $client): ?>
+
+           <?php if (isset($client->gotbackorder)): ?>
+                <?php foreach($client->quotes as $quote): ?>
+
+                    <?php foreach($quote->items as $itemobject): ?>
+
+                        <?php
+
+                        $datetime1 = new DateTime();
+
+                        $datetime2 = new DateTime($quote->created_at);
+
+
+                        $difference = $datetime1->diff($datetime2);
+                        ?>
+
+                        <?php if ( $difference->days < 100 && isset($itemobject->gotbackorder) && $itemobject->gotbackorder == 1 ): ?>
+
+                            <tr>
+                                <td><?= $newSchedules[$itemobject->id] ?></td>
+                                <td><?= $client->company_name ?></td>
+                                <td><?= $itemobject->quote_id ?></td>
+                                <td><?= $itemobject->description ?></td>
+
+                                 <?php $t_ordered += $itemobject->units ?>
+                                <td  style="text-align: center;"><?= $itemobject->units ?></td>
+
+                                <?php if (isset($itemobject->pipe->schedules)): ?>
+                                    <td  style="text-align: center;"><?= $itemobject->pipe->schedules->sum('total_units_passed_qc') ?></td>
+                                <?php else: ?>
+                                    <td  style="text-align: center;">0</td>
+                                <?php endif ?>
+                                <?php if (isset($itemobject->pipe->delivered)): ?>
+
+                                     <?php $t_delived += $itemobject->pipe->delivered->sum("units")  ?>
+                                        <?php if (isset($btaccount[$itemobject->product->diameter_id . " ". $itemobject->product->pn_ratings_id ." ".$itemobject->quote_id])): ?>
+                                            <td  style="text-align: center;"><?= $itemobject->product->diameter_id . " ". $itemobject->product->pn_ratings_id ." ".$itemobject->quote_id . " " . ($itemobject->pipe->delivered->sum("units") + $btaccount[$itemobject->product->diameter_id . " ". $itemobject->product->pn_ratings_id ." ".$itemobject->quote_id]) ?></td>
+                                        <?php else: ?>
+                                            <td  style="text-align: center;"><?= $itemobject->product->diameter_id . " ". $itemobject->product->pn_ratings_id ." ".$itemobject->quote_id . " " . $itemobject->pipe->delivered->sum("units") ?></td>
+                                        <?php endif; ?>
+                                <?php else: ?>
+
+                                    <?php if (isset($btaccount[$itemobject->product->diameter_id . " ". $itemobject->product->pn_ratings_id ." ".$itemobject->quote_id])): ?>
+                                        <td  style="text-align: center;"><?=  $btaccount[$itemobject->product->diameter_id . " ". $itemobject->product->pn_ratings_id ." ".$itemobject->quote_id] ?></td>
+                                    <?php else: ?>
+                                        <td  style="text-align: center;">0</td>
+                                    <?php endif; ?>
+
+
+                                <?php $t_backorder += $itemobject->units ?>
+                                <?php endif ?>
+
+                                <?php if (isset($itemobject->pipe->schedules)): ?>
+                                     <?php $t_backorder += $itemobject->units - $itemobject->pipe->delivered->sum("units")  ?>
+                                     <td  style="text-align: center;" >
+                                        <?= ($itemobject->pipe->schedules->sum('total_units_passed_qc') - $itemobject->pipe->delivered->sum("units")) ?>
+                                    </td>
+                                <?php else: ?>
+                                    <td  style="text-align: center;">0</td>
+                                <?php endif ?>
+
+                                 <td>
+                                    <?= $itemobject->updated_at ?>
+                                </td>
+                                <td>
+                                    <?= $difference->days?> days
+                                </td>
+                            </tr>
+                            <?php $count++; ?>
+                        <?php endif ?>
+
+                    <?php endforeach ?>
+                <?php endforeach ?>
+            <?php endif ?>
+         <?php endforeach ?>
+
+     </tbody>
+      <tfoot>
+        <tr>
+            <td colspan="4" style="text-align: right;"></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center; font-weight: bold;"><?= $t_delived ?></td>
+            <td style="text-align: center; font-weight: bold;"><?= $t_backorder ?></td>
+        </tr>
+    </tfoot>
+    </table>
+</div>

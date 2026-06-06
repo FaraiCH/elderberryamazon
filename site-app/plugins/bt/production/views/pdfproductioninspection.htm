@@ -1,0 +1,476 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        body{
+            color: #212529;font-size: 10px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px; }
+        html { margin:20px; }
+
+        h1{
+            font-size: 20px;
+        }
+        h2{
+            font-size: 16px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 10px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+        .table tr td:first-child {
+            width: 150px;
+        }
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: -58px;
+            left: 0%;
+            height: 5%;
+            font-size: .7em;
+            color: #545554;
+            line-height: 1em;
+        }
+
+        .footer::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 50s%;
+        }
+
+        .border{
+            border: 1px solid #000;
+            height: 15px;
+        }
+        .text-success{
+            color: green
+        }
+        .text-danger{
+            color: red
+        }
+
+        .bg_red, span.bg_yellow{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="25%">
+            <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" style="height: 100px" >
+
+        </td>
+        <td width="70%" style="text-align: center;">
+            <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+            <p>11 Barnsley St, Benoni,Johannesburg, 1501 <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+            <h2>INSPECTION SHEET REFERENCE TO CS-{{'%04d'|format(quote.id)}} &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp;
+                {% if quote.batch_id > 0 %}
+                PRODUCTION BATCH #BT-{{quote.jobcard_id}}-{{'%04d'|format(quote.batch_id)}}</h2>
+
+            {% endif %}
+            <h2>
+
+        </td>
+    </tr>
+</table>
+<table width="97%" border="0" cellpadding="2px" cellspacing="1px">
+
+    <tr>
+        <th >JOB CARD:</th><td class="border">
+        {% if quote.jobcard_id > 0 %}
+        #BT-JC-{{'%04d'|format(quote.jobcard_id)}}
+        {% endif %}
+    </td>
+        <th >CLIENT:</th><td class="border">{{quote.jobcard.pipe.qpush.quote.company_name}}</td>
+        <th  width="20%" >OPERATOR:</th><td   width="20%"class="border" nowrap="nowrap">{{quote.assignedto?quote.assignedto.name:""}}</td>
+        <!-- <th  width="20%" >MATERIAL: VIRGIN</th><td style="text-align: right"  width="20%"class="border" nowrap="nowrap">%</td> -->
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th width="20%" >DATE:</th>
+        <td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("Y-m-d") :""}}</td>
+        <th  width="20%" >TIME:</th>
+        <td  width="20%" class="border" nowrap="nowrap">{{quote.opendate?quote.opendate|date("H:i") :""}}</td>
+        <!-- <th  width="20%" >MATERIAL: RECYCLE</th><td style="text-align: right"  width="20%"class="border" nowrap="nowrap">%</td> -->
+        <th >PIPE SIZE:</th><td class="border">{{quote.pipesize}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th >PRODUCT:</th><td class="border">{{quote.jobcard.pipe.quoteitems.description}}</td>
+        <th >STANDARD WEIGHT:</th><td class="border">{{quote.standardweight}}</td>
+        <th >SHIFT:</th><td class="border">{{quote.shift}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th >PIPE LENGTH:</th><td class="border">{{quote.pipelenght}}</td>
+        <th >RAW MATERIAL:</th><td class="border">{{quote.rawmaterialpe}}</td>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th >PRODUCTION LINE:</th><td class="border">{{quote.btline.name}}</td>
+
+        <th >QUOTE #:</th><td class="border">{{quote.jobcard.pipe.quoteitems.quote_id}}
+        {# if quote.jobcard.pipe.qpush.invoice is not empty %}
+        {{quote.jobcard.pipe.qpush.invoice.name}}
+        {% endif #}
+    </td>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+       {% set maxactual = 12 %}
+       {% set totalweight = 0 %}
+       {% if quote.cqcitem|length > 0  %}
+       {% set maxactual = 12 - quote.cqcitem|length %}
+       {% endif %}
+
+        <table width="100%" border="1px" cellpadding="2px" cellspacing="0px">
+
+           <tr>
+               <td width="150px" style="background: #ccc"><b>TIME OF READING</b></td>
+               <td style="background: #ececec; text-align: center;width:65px"><b></b></td>
+               {% set time = 6 %}
+               {% if quote.shift == "NIGHT" %}
+               {% set time = 18 %}
+               {% endif %}
+
+               {% for i in 1..12 %}
+               <td style="background: #ececec; text-align: center;">
+                   {{"%02d"|format(time)}} h-{% if time == 23 %} '00'{% else %}{{"%02d"|format(time+1)}}h{% endif %}
+               </td>
+               {% if time == 23 %}
+                    {% set time = 0 %}
+               {% else %}
+                    {% set time = time + 1 %}
+               {% endif %}
+               {% endfor %}
+
+           </tr>
+
+           <tr>
+               <td style="background: #fff"><b>WALL THICKNESS</b></td>
+               <td style="background: #fff"><b>N</b></td>
+
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'wall_thikness_n', 'text')}}</td>
+               {% endfor %}
+
+
+           </tr>
+
+           <tr>
+               <td style="background: #fff"><b>MAX WALL / {{ quote.maxwall}}</b></td>
+               <td style="background: #fff"><b>NE</b></td>
+
+               {% for i in 1..12  %}
+               <td>{{quote.getItemValueInputQc(i-1,'max_wall_ne', 'text')|striptags }}</td>
+               {% endfor %}
+           </tr>
+
+           <tr>
+               <td style="background: #fff"><b></b></td>
+               <td style="background: #fff"><b>E</b></td>
+
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'max_wall_e', 'text')|striptags }}</td>
+               {% endfor %}
+
+           </tr>
+
+
+
+           <tr>
+               <td style="background: #fff"><b></b></td>
+               <td style="background: #fff"><b>SE</b></td>
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'max_wall_se', 'text')|striptags}}</td>
+               {% endfor %}
+           </tr>
+
+           <tr>
+               <td style="background: #fff"><b></b></td>
+               <td style="background: #fff"><b>S</b></td>
+
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'max_wall_s', 'text')|striptags}} </td>
+               {% endfor %}
+
+           </tr>
+
+           <tr>
+               <td style="background: #fff"><b></b></td>
+               <td style="background: #fff"><b>SW</b></td>
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'max_wall_sw', 'text')|striptags}}</td>
+               {% endfor %}
+
+           </tr>
+           <tr>
+               <td style="background: #fff"><b>MIN WALL / {{quote.minwall}}</b></td>
+               <td style="background: #fff"><b>W</b></td>
+
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'min_wall_w', 'text')|striptags}} </td>
+               {% endfor %}
+           </tr>
+           <tr>
+               <td style="background: #fff"><b></b></td>
+               <td style="background: #fff"><b>NW</b></td>
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'min_wall_nw', 'text')|striptags}} </td>
+               {% endfor %}
+           </tr>
+
+           <tr>
+               <td style="background: #ccc"><b>AVR WALL</b></td>
+               <td style="background: #fcfcfc"><b>{{quote.avrwall}}</b></td>
+               {% for i in 1..12  %}
+               <td>{{quote.getItemValueInputQc(i-1,'avr_wall', 'text')|striptags}} </td>
+               {% endfor %}
+           </tr>
+
+           <tr>
+               <td style="background: #ccc"><b>PIPE OD</b></td>
+               <td style="background: #fcfcfc"><b>{{quote.pipeod}}</b></td>
+
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'pipe_od', 'text')}}</td>
+               {% endfor %}
+           </tr>
+
+
+           <tr>
+               <td style="background: #ccc"><b>OVALITY</b></td>
+               <td style="background: #fcfcfc"><b>{{quote.ovality}}</b></td>
+               {% for i in 1..12 %}
+
+               <td>{{quote.getItemValueInputQc(i-1,'ovality', 'text')}} </td>
+               {% endfor %}
+
+
+           </tr>
+
+           <tr>
+               <td style="background: #ccc" colspan="2"><b>ACTUAL WEIGHT</b></td>
+
+               {% for i in 1..12  %}
+               <td>{{quote.getItemValueInputQc(i-1,'actual_weight', 'text')}}</td>
+               {% endfor %}
+           </tr>
+
+
+           <tr>
+               <td style="background: #ccc" colspan="2"><b>ACTUAL LENGTH</b></td>
+
+               {% for i in 1..12 %}
+               <td>{{quote.getItemValueInputQc(i-1,'actual_lenght', 'text')}} </td>
+               {% endfor %}
+           </tr>
+
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>Colour</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'colour', 'text',8)}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>OUTSIDE WORKMANSHIP</b></td>
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'outside_workmanship','text',1 )}}</td>
+                {% endfor %}
+
+
+            </tr>
+
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>INSIDE WORKMANSHIP</b></td>
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'inside_workmanship','text',1 )}}</td>
+                {% endfor %}
+
+
+            </tr>
+
+
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>PRINTER CLEAR</b></td>
+
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'printer_clear','text',1 )}}</td>
+                {% endfor %}
+
+
+            </tr>
+
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>PRINTER CORRECT</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'printer_correct','text',1 )}} </td>
+                {% endfor %}
+
+            </tr>
+
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>END SQUIRE</b></td>
+
+                {% for i in 1..12  %}
+
+                <td>{{quote.getItemValueInputQc(i-1,'end_squire', 'text',1)}} </td>
+                {% endfor %}
+
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>HOURLY PRODUCTION</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'hourly_production', 'text')}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>SAMPLE WEIGHT</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'sample_weight', 'text')}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>SAMPLE LENGTH</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'sample_length', 'text')}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>SCRAP WEIGHT</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'scrap_weight', 'text')}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>NUMBER OF PIPES QC REJECTED</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'number_pipe_failed_qc', 'text')}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>NUMBER OF PIPES PASSED QC</b></td>
+
+                {% for i in 1..12 %}
+                <td>{{quote.getItemValueInputQc(i-1,'number_pipe_passed_qc', 'text')}} </td>
+                {% endfor %}
+            </tr>
+           <tr>
+                <td style="background: #ccc" colspan="2"><b>QC PASSED</b></td>
+                 {% for i in 1..12  %}
+                <td>{{quote.getItemValueInputQc(i-1,'qc_pass_id','text',6)}} </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td style="background: #ccc" colspan="2"><b>TOTAL NUMBER OF PIPES PASSED QC </b></td>
+                <td colspan="3" class="text-center">{{quote.cqcitem.sum('number_pipe_passed_qc') }}</td>
+                <td style="background: #ccc" colspan="5"><b>TOTAL NUMBER OF PIPES QC REJECTED</b></td>
+                <td colspan="4" class="text-center"> {{quote.cqcitem.sum('number_pipe_failed_qc') }} </td>
+            </tr>
+       </table>
+</body>
+</html>

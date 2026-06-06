@@ -1,0 +1,578 @@
+<!doctype html>
+<html>
+	<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style type="text/css">
+
+
+
+body{
+color: #212529;font-size: 14px;
+font-family: 'Roboto', sans-serif;
+word-wrap: break-word;
+background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+padding: 0px;
+margin:0px;
+line-height: 20px;
+}
+
+
+
+@page { margin:0px; padding: 0px }
+html { margin:0px; padding: 0px }
+
+h1{
+font-size: 40px;
+font-weight: 400;
+}
+h2{
+font-size: 30px;
+font-weight: 400;
+margin-top: 0px;
+padding-top: 0px;
+
+}
+
+a{
+text-decoration: none;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+.table td, .table th {
+padding: 2px;
+vertical-align: top;
+border: 1px solid #e9ecef;
+font-size: 10px;
+word-wrap: break-word;
+height: 10px;
+
+}
+.tablesummary th,.table th {
+background: #bababa;
+font-weight: normal;
+color: #000;
+}
+.table tr td:first-child {
+width: 150px;
+}
+
+
+.tablesummary td, .tablesummary th {
+	border: 1px solid #ccc;
+}
+
+.gt{
+text-align: center; font-weight: bold;background: #dbe8ee;
+}
+
+.tl{text-align: left;}
+.text-right,.tr{text-align: right;}
+.text-center,.tc{text-align: center;}
+.tdate{text-align: center;width: 60px !important;}
+.img-thumb{
+width: 100px;
+}
+
+tr.rowsstart td{
+    background: #fcfcfc
+}
+.page-break {
+    page-break-after: always;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    height: 5%;
+    font-size: .7em;
+    color: #545554;
+    line-height: 1em;
+}
+
+.footer::after {
+  /* Increment "my-sec-counter" by 1 */
+  /*disp-increment: my-sec-counter;*/
+ /* content: "Page " counter(my-sec-counter) " ";*/
+}
+
+.footer .left {
+    display: inline-block;
+    width: 90%;
+}
+
+.border{
+	border: 1px solid #000;
+	height: 15px;
+}
+.text-success{
+	color: green
+}
+.text-danger{
+	color: red
+}
+
+
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 360px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+#container{
+	height: 400px;
+	width: 100%;
+	border: 1px solid red;
+}
+body{
+	background: #ccc;
+	padding-top: 20px
+}
+.body{
+	max-width: 900px;
+	margin: 0px auto;
+	display: block;
+	background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif)  center center #fff;
+}
+.text-left{
+	text-align: left
+}
+
+.progress {
+    overflow: hidden;
+    height: 9px;
+    margin-bottom: 0px;
+    background-color: #d9dee0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.progress-bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    line-height: 9px;
+    color: #fff;
+    text-align: center;
+    background-color: #2f99da;
+    -webkit-transition: width 0.6s ease;
+    transition: width 0.6s ease;
+}
+
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+			<script src="https://code.highcharts.com/modules/series-label.js"></script>
+			<script src="https://code.highcharts.com/modules/exporting.js"></script>
+			<script src="https://code.highcharts.com/modules/export-data.js"></script>
+			<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+</head>
+<body>
+
+	   <div class="footer">
+            <!-- <p class="left">
+                Tel. +27 11 966 8058<br>
+                Fax:  +27 86 459 5761<br>
+                E-mail: enquiries@bt-industrial.co.za
+
+            </p>
+             -->
+        </div>
+        <div class="body">
+		<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Production-report-cover-1.jpg" alt="BT Industrial" style="max-width: 100%; border-bottom: 40px solid #ccc" >
+
+		<div style="padding: 0px 50px">
+			<div style="color: red; text-align: center; font-weight: bold; font-size: 30px; padding: 20p; line-height: 30px;">THIS DOCUMENT IS FOR BT STAFF ONLY, PLEASE DO NOT SHARE LINK</div>
+		<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+			<tr>
+				<td style="text-align: center; padding: 0px  ">
+					<h1 style="margin: 0px; padding: 20px  0px;">QUOTE OVERVIEW</h1>
+				</td>
+			</tr>
+			<tr>
+			<td  >
+				<p style="float: left; width: 50%;">
+						<b>{{quote.client.company_name}}</b><br>
+						{{quote.client.contact_name}}<br>
+						{{quote.client.postal_address}}<br>{{client.postal_code}}
+					</p>
+				
+			</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Quotation:</b> #BT{{quote.id}}
+				</td>
+			</tr>
+			<tr>
+
+				<td>
+					<h3>SUMMARY</h3>
+						{% set counter = 0 %}
+						<table width="100%" border="1" cellpadding="5px" cellspacing="" class="tablesummary">
+							<thead>
+								<tr>
+									<th width="20px" class="text-left">#</th>
+									<th class="text-left" >Description</th>
+									<th width="50px" nowrap="nowrap" class="text-center" >Units</th>
+
+								</tr>
+							</thead>
+
+						{% set productionunits = 0 %}
+				        {% for itemobject in quote.items %}
+				        	{% set counter = counter + 1 %}
+
+						        	<tr>
+						        		<td>{{counter}}</td>
+						        		<td>{{itemobject.description}}</td>
+						        		<td width="50px" class="text-center">{{itemobject.units}}</td>
+
+						             </tr>
+						         	{% set productionunits = productionunits + itemobject.units %}
+				        {% endfor %}
+
+
+				         {% for itemobject in quote.itemscat %}
+				        	{% set counter = counter + 1 %}
+				        		<tr>
+					        		<td>{{counter}}</td>
+					        		<td>{{itemobject.description}}</td>
+					        		<td width="50px" class="text-center">{{itemobject.units}}</td>
+								</tr>
+				        {% endfor %}
+				        </table>
+				    </td>
+				</tr>
+				<tr>
+					<td>
+						<h3>DELIVERY SUMMARY</h3>
+						<table width="100%" border="1" cellpadding="5px" cellspacing="" class="tablesummary">
+							<thead>
+								<tr>
+									<th width="150px" class="text-left">Date</th>
+									<th class="text-left">Type</th>
+									<th class="text-left">SRN #</th>
+									<th width="50px" nowrap="nowrap" class="text-center">Units</th>
+								</tr>
+							</thead>
+				        <!-- Set Delevery -->
+					    	{% set productionudelivered = 0 %}
+				        	{% for itemobject in quote.srn %}
+						        	<tr>
+						        		<td>{{itemobject.schedule_date|date("Y-m-d")}}</td>
+						        		<td>{{itemobject.type.name}}</td>
+
+						        		<td>
+                                            {{itemobject.id}}
+                                        </td>
+						        		<td class="text-center">{{itemobject.items().sum('units')}}</td>
+						             </tr>
+						         	{% set productionudelivered = productionudelivered + itemobject.items().sum('units') %}
+				        	{% endfor %}
+				        	<tfoot>
+				        		<tr>
+				        			<td colspan="3"><b>Total</b></td>
+
+				        			<td class="text-center"><b>{{productionudelivered}}</b></td>
+				        		</tr>
+				        	</tfoot>
+				        </table>
+				    </td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<table>
+							<tr>
+								<td width="200px"><b>Delivery Progress:</b></td>
+								<td>
+						{% set per = 0 %}
+						{% if productionudelivered > 0%}
+							{% set per = (productionudelivered/productionunits) * 100 %}
+							{% if per > 100 %}
+								{% set per =  100 %}
+							{% endif %}
+								<div class="progress" style="border-radius: 3px;display: block; height: 40px !important; overflow: hidden !important; background: #ccc !important">
+								    <div class="progress-bar" role="progressbar" aria-valuenow="{{per}}" aria-valuemin="0" aria-valuemax="100" style="background: {{(per == 100)?'green':''}};width: {{per|number_format}}%;">
+								        <span style="display: block;padding-top: 15px; font-size: 14px; min-width: 100px !important;" >{{per|number_format}}%</span>
+								    </div>
+								</div>
+						{% endif %}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+		<tr><td><br><h3>PRODUCTION</h3></td></tr>
+		{% set chartid = 0 %}
+		{% for pipes in quote.qpush.pipes %}
+			{% set chartid = chartid + 1 %}
+			<tr>
+				<td>
+					<h3 style="background: #ccc; padding: 5px 10px; border-bottom: #000">{{chartid}}: {{pipes.quoteitems.description}} </h3>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="tablesummary" cellpadding="4px">
+						<tr>
+							<td width="15%"><b>Item:</b></td><td  width="35%">{{pipes.quoteitems.description}}</td>
+							<td width="15%"><b>Unit To Produce:</b></td><td>{{pipes.quoteitems.units}}</td>
+						</tr>
+						<tr>
+							<td><b>Start Date:</b></td><td>{{pipes.start_date|date("Y-m-d")}}</td>
+							<td><b>Due Date:</b></td><td>{{pipes.due_date|date("Y-m-d")}}</td>
+						</tr>
+						<tr>
+							<td ><b>Unit Produced:</b></td><td>{{pipes.schedules().sum('total_units_passed_qc')}}</td>
+								<td ><b>Production Progress:</b></td>
+								<td >
+						{% set per = 0 %}
+						{% set produnits = pipes.schedules().sum('total_units_passed_qc') %}
+						{% if produnits > 0%}
+							{% set per = (produnits/pipes.quoteitems.units) * 100 %}
+							{% if per > 100 %}
+								{% set per =  100 %}
+							{% endif %}
+								<div class="progress" style="border-radius: 3px;display: block; height: 40px !important; overflow: hidden !important; background: #ccc !important">
+								    <div class="progress-bar" role="progressbar" aria-valuenow="{{per}}" aria-valuemin="0" aria-valuemax="100" style="background: {{(per == 100)?'green':''}};width: {{per|number_format}}%;">
+								        <span style="display: block;padding-top: 15px; font-size: 14px; min-width: 100px !important;" >{{per|number_format}}%</span>
+								    </div>
+								</div>
+						{% endif %}
+								</td>
+							</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+			<td>
+
+
+				<figure class="highcharts-figure">
+				    <div style="float: left; width: 49%">
+				    	<div id="container_{{chartid}}_1" style="border: 1px solid #ccc"></div>
+				    </div>
+				    <div style="float: right; width: 49%">
+				    	<div id="container_{{chartid}}_2" style="border: 1px solid #ccc"></div>
+				    </div>
+				    <div style="clear: both;"></div>
+				</figure>
+
+				{% set total = 0 %}
+				{% set datagraph_kg = [] %}
+				{% set datagraph_units = [] %}
+				{% set seriesgraph_kg = [] %}
+
+				{% set t_target_units_produced = [] %}
+				{% set t_total_units_produced = [] %}
+				{% set t_total_units_passed_qc = [] %}
+				{% set t_total_units_fail_qc = [] %}
+				{% set t_Running_total_of_failed_pipes = [] %}
+				{% set t_Running_total_of_pipes_produced = [] %}
+				{% set t_Running_total_of_passed_Units = [] %}
+
+				{% set t_target_kg_processed = [] %}
+				{% set t_total_kg_processed = [] %}
+				{% set t_weight_scrap_kg = [] %}
+				{% set t_Running_total_of_weight_processed_kg = [] %}
+				{% set t_over_weight_kg = [] %}
+				{% set t_Wasted_material_kg = [] %}
+
+				<table class="table table-striped table-bordered table-sm table-hover" id="tabledownload" >
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Units Produced</th>
+							<th>Runnning Total</th>
+						</tr>
+					</thead>
+					<tbody>
+
+							{% for item in pipes.schedules if item.total_units_passed_qc > 0 %}
+
+				        		{% set usedate = item.production_date|date("m/d/Y 00:00:00", false) %}
+					        	{% set usedate = (usedate| date('U')) *1000 + 2*3600*1000 %}
+
+								<tr class="{{(item.total_kg_processed > 0)?'':'text-warning'}}">
+					        		<td nowrap="nowrap" >{{item.production_date}}</td>
+									<td>{{item.total_units_passed_qc}}</td>
+
+									<td>{% set Running_total_of_passed_Units = Running_total_of_passed_Units + item.total_units_passed_qc %}
+									{{Running_total_of_passed_Units}}</td>
+
+					             </tr>
+
+				             {% set t_total_units_passed_qc = t_total_units_passed_qc|merge([[usedate, item.total_units_passed_qc]]) %}
+
+					        	{% set t_Running_total_of_passed_Units = t_Running_total_of_passed_Units|merge([[usedate, Running_total_of_passed_Units]]) %}
+
+				        {% endfor %}
+
+
+				    </tbody>
+				</table>
+
+
+    			<script type="text/javascript">
+
+					Highcharts.chart('container_{{chartid}}_1', {
+						chart: {
+					        type: 'column'
+					    },
+					    title: {
+					        text: '{{pipes.quoteitems.description}}'
+					    },
+
+					    subtitle: {
+					        text: 'Units Produced'
+					    },
+
+						xAxis: {
+					        type: 'datetime'
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'Units'
+					        }
+					    },
+
+					    series: [
+					    {
+					        name: 'Produced Pipes',
+					        data: {% autoescape false %}{{t_total_units_passed_qc|json_encode()}}{% endautoescape %}
+					    }
+
+					    ],
+
+					    plotOptions: {
+					        series: {
+					            marker: {
+					                enabled: false
+					            }
+					        }
+					    },
+					    responsive: {
+					        rules: [{
+					            condition: {
+					                maxWidth: 500
+					            },
+					            chartOptions: {
+					                legend: {
+					                    layout: 'horizontal',
+					                    align: 'center',
+					                    verticalAlign: 'bottom'
+					                }
+					            }
+					        }]
+					    }
+
+					});
+
+					Highcharts.chart('container_{{chartid}}_2', {
+						chart: {
+					        type: 'column'
+					    },
+					    title: {
+					        text: '{{pipes.quoteitems.description}}'
+					    },
+
+					    subtitle: {
+					        text: 'Acumulative Units Produced'
+					    },
+
+						xAxis: {
+					        type: 'datetime'
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'Units'
+					        }
+					    },
+
+					    series: [
+
+					    {
+					        name: 'Running Total',
+					        data: {% autoescape false %}{{t_Running_total_of_passed_Units|json_encode()}}{% endautoescape %}
+					    }
+
+					    ],
+
+					    plotOptions: {
+					        series: {
+					            marker: {
+					                enabled: false
+					            }
+					        }
+					    },
+					    responsive: {
+					        rules: [{
+					            condition: {
+					                maxWidth: 500
+					            },
+					            chartOptions: {
+					                legend: {
+					                    layout: 'horizontal',
+					                    align: 'center',
+					                    verticalAlign: 'bottom'
+					                }
+					            }
+					        }]
+					    }
+
+					});
+    			</script>
+			</td>
+		</tr>
+		{% endfor %}
+
+
+		
+
+
+	</tbody>
+
+	</table>
+</div>
+	<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Production-report-cover-2.jpg" alt="BT Industrial" style="max-width: 100%; border-top: 40px solid #ccc" >
+</div>
+	</body>
+	</html>

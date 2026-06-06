@@ -1,0 +1,129 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        company:
+            label: Company
+            type: taglist
+            mode: array
+            options: buildlistCompany
+            quickselect: true
+            placeholder: -- select --
+            useKey: true
+            tab: Query
+           
+        allcomp:
+            label: All Companies
+            type: Switch
+            span: auto
+            default: false
+            on: Yes
+            off: No
+            tab: Query
+        
+        spacialcomp:
+            label: Special Companies
+            type: Switch
+            span: auto
+            default: false
+            on: Yes
+            off: No
+            tab: Query
+
+        datea:
+            label: Start Date
+            type: datepicker
+            mode: date
+            span: auto
+            ignoreTimezone: true
+            required: true
+            default: 01/01/1994
+            tab: Query
+        dateb:
+            label: End Date Date
+            type: datepicker
+            mode: date
+            span: auto
+            ignoreTimezone: true
+            required: true
+            default: 12/31/2020
+            tab: Query
+        
+        user_details_section:
+            label: Note
+            type: section
+            comment: Fiscal report (average & closing) on property dropdown. Select "List by Month then Fiscal"
+            tab: Report Type
+        quirytype:
+            label: Query Type
+            disabled: false
+            type: radio
+            span: auto
+            required: true
+            tab: Report Type
+        property:
+            label: Property
+            disabled: false
+            type: dropdown
+            span: auto
+            placeholder: -- select --
+            #comment: Fiscal report (average & closing) on property
+            
+            tab: Report Type
+        
+        includeinflation:
+            label: Include Inflation
+            type: radio
+            span: auto
+            default: 0
+            options:
+                1: Yes
+                0: No
+            tab: Inflation
+
+        inflationyear:
+            label: Base Inflation Year
+            type: dropdown
+            mode: array
+            options: buildlistInflation
+            placeholder: -- select --
+            tab: Inflation
+            span: auto
+            trigger:
+                action: show
+                field: includeinflation
+                condition: 'value[1]'
+
+        
+        includeemptycompany:
+            label: Include Empty Company Data In Results
+            type: Switch
+            span: auto
+            default: false
+            on: Yes
+            off: No
+            tab: Settings
+        fixmonth:
+            label: Fix Change report month
+            type: Switch
+            span: auto
+            default: false
+            on: Yes
+            off: No
+            tab: Settings
+        displaycur:
+            label: Display Currency
+            type: Switch
+            span: auto
+            default: false
+            on: Yes
+            off: No
+            tab: Settings
+        removedecimals:
+            label: Decimals Off
+            type: Switch
+            span: auto
+            default: false
+            tab: Settings

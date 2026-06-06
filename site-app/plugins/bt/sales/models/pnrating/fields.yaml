@@ -1,0 +1,22 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    name:
+        label: Name
+        span: auto
+    sdr:
+        label: SDR Name
+        span: auto
+    premiumprice:
+        label: Premium Price
+        type: number
+        span: auto
+    alert:
+        label: Alert on quote if premium price is not charged
+        type: switch
+        span: auto

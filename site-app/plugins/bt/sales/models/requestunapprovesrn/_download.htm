@@ -1,0 +1,6 @@
+<?php if($record->is_used == 0): ?>
+
+    <a href="/request_unapproval/item/download/<?= $record->srn_id ?>/<?= $record->id ?>.pdf" class="btn btn-primary btn-sm" target="_blank">Download Stock Release Note Unapproval Form</a>
+<?php else: ?>
+   No available, already used
+<?php endif; ?>

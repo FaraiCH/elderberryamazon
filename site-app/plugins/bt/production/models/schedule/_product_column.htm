@@ -1,0 +1,8 @@
+<?php
+if(isset($record->pipe->quoteitems->description)){
+	$str =  str_replace("HDPE PE 100","",$record->pipe->quoteitems->description);
+	echo '<span style="white-space: nowrap;">'.str_replace("length","",$str).'</span>';
+}
+
+
+?>

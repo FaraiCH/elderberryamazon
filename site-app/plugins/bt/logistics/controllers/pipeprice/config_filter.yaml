@@ -1,0 +1,5 @@
+scopes:
+    date:
+        label: Start Date
+        type: daterange
+        conditions: date >= ':after' AND date <= ':before'

@@ -1,0 +1,196 @@
+
+<style type="text/css">
+        body{
+            color: #212529;font-size: 11px;
+            font-family: sans-serif;
+            word-wrap: break-word;
+            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        }
+
+        @page { margin:20px 20px 100px 20px; }
+        html { margin:20px 20px 100px 20px; }
+
+        h1{
+            font-size: 22px;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 0px;
+            padding-top: 0px;
+
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+
+        }
+        .table td, .table th {
+            padding: 2px;
+            vertical-align: top;
+            border: 1px solid #e9ecef;
+            font-size: 10px;
+            word-wrap: break-word;
+            height: 10px;
+
+        }
+        .table th {
+            background: #dbe8ee;
+            font-weight: normal;
+            color: #000;
+        }
+
+
+        .gt{
+            text-align: center; font-weight: bold;background: #dbe8ee;
+        }
+
+        .tl{text-align: left;}
+        .text-right,.tr{text-align: right;}
+        .text-center,.tc{text-align: center;}
+        .tdate{text-align: center;width: 60px !important;}
+        .img-thumb{
+            width: 100px;
+        }
+
+        tr.rowsstart td{
+            background: #fcfcfc
+        }
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0%;
+            height: 1%;
+            font-size: 1em;
+            color: #545554;
+            line-height: 1.3em;
+        }
+
+        .pagenumber::after {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: "Page " counter(my-sec-counter) " ";
+        }
+
+        .footer .left {
+            display: inline-block;
+            width: 90%;
+        }
+        .footer .left div{
+            float: left;
+            width: 50%
+        }
+
+    </style>
+<table width="100%" border="0" cellpadding="0px" cellspacing="0">
+    <tr>
+        <td style="background: #ececec" >
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="50%">
+                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+                    </td>
+                    <td width="50%" style="text-align: center;">
+                        <h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+                        <p>12 Barnsley Street, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
+                        <h2>Pick Slip Items #BT{{picklsip.id}}</h2>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td><br></td></tr>
+</table>
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th><span>#</span></th>
+        <th><span>Item Name</span></th>
+        <th><span>Units</span></th>
+        <th><span>In Quote</span></th>
+        <th><span>Ordered</span></th>
+        <th><span>Delivered</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set monster = picklsip.getMonster() %}
+    {% if monster is not empty %}
+        {% set counter = 0 %}
+        {% for item in monster %}
+            {% set counter = counter + 1 %}
+                <tr>
+                    <td>{{counter}}</td>
+                    <td>{{item["diamenter"] }}mm - {{ item["length"] }} m {{ item["pn"] }}</td>
+                    <td>{{item["stickers"]|length}}</td>
+                    <td>
+                        {% if item["inquote"] == 1 %}
+                            <span class="oc-icon-check text-success">
+                                Yes
+                            </span>
+                            {% if inquote != 2 %}
+                                {% set inquote = 1 %}
+                            {% endif %}
+                        {% else %}
+                            {% set inquote = 2 %}
+                            <span class="oc-icon-circle text-danger">
+                                No
+                            </span>
+                        {% endif %}
+
+                    </td>
+                    <td>{{item["orderedunits"] }}</td>
+                    <td>{{item["delivered"] }}</td>
+
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="200">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Sticker #</th>
+                                <th>CS #</th>
+                                <th>QC Status</th>
+                                <th>From Quote  #</th>
+                                <th>From Quote  #</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% set sticker_counter = 0 %}
+                            {% for sticker in item["stickers"] %}
+                                {% set sticker_counter = sticker_count + 1 %}
+                                <tr>
+                                    <td>{{counter ~ sticker_counter}}</td>
+                                    <td><a href="/printlanding/{{ sticker.sticker_id }}/{{ sticker.counter }}" target="_blank">{{sticker.sticker_id }}-{{ sticker.counter}}</a></td>
+                                    <td>{{ sticker.controlsheet_id }}</td>
+                                    <td>{{sticker.qcstatus_id > 0?sticker.qcstatus.name:"" }}</td>
+
+                                    <td>{{sticker.controlsheets.jobcard.pipe.quoteitems.quote_id }}</td>
+                                    <td>{{sticker.srn_id }}</td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+
+                    </td>
+
+                </tr>
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+</table>

@@ -1,0 +1,176 @@
+<div class="control-list" style="overflow: auto;">
+    <table class="table tablesimple dt-responsive table-striped table-hover " style="width:100%">
+        <thead>
+            <tr>
+                        
+                <th style="text-transform: uppercase;"><span>WEEK</span></th>
+                <th rowspan="2" style="text-transform: uppercase;"><span>Month</span></th>
+                
+           
+                 		<th style="text-transform: uppercase; text-align: right;"><span>Total kg <br>Processed</span></th>
+                 		<th style="text-transform: uppercase; text-align: right; "><span>Total kg <br>Delivered</span></th>
+                        <th style="text-transform: uppercase; text-align: right; "><span>Total kg <br>Delivered Amount</span></th>
+                 		<th style="text-transform: uppercase; text-align: right;"><span>Total <br>Buyouts</span></th>
+                        <th style="text-transform: uppercase; text-align: right;"><span>Total <br>Buyouts Less VAT</span></th>
+                        <th style="text-transform: uppercase; text-align: right;"><span>Total <br>Invoiced</span></th>
+                        <th style="text-transform: uppercase; text-align: right;"><span>Total <br>Invoiced Less VAT</span></th>
+               
+
+
+                        <th style="text-transform: uppercase;"><span>Average <br>Price<br>(TOTAL KG DELIVERED AMOUNT - TOTAL
+BUYOUTS LESS VAT)/TOTAL KG
+DELIVERED)</span></th>
+                        
+                 
+            </tr>
+
+        </thead>
+        <tbody>
+            <?php foreach($mypeople as $pkey => $pitem): ?>
+              <tr>
+                    <th colspan="10"   style="text-transform: uppercase; text-align: center; background-color: #1e347b; color: #FFF; "><span><?= $pitem ?></span></th>
+                </tr>
+        	<?php foreach($monster as $m => $mdata): ?>
+
+        		<?php foreach($mdata["arr_week"] as $w => $week_data): ?>
+                 	<tr>
+                 		<td nowrap="">WK <?= $w ?>/<?= $week_data["dateofweek"] ?></td>
+                 		<td><?= $mdata["month"] ?></td>
+
+                 		
+                 			 <?php if(isset($week_data["salesdata"][$pkey]) ): ?>
+
+                 				<td style="text-align: right" nowrap="nowrap"><?= (isset($week_data["salesdata"][$pkey]["total_kg_processed"]) )?$week_data["salesdata"][$pkey]["total_kg_processed"]:"0" ?></td>
+                 				<td style="text-align: right" nowrap="nowrap"><?= (isset($week_data["salesdata"][$pkey]["deliveyweight"]) )?$week_data["salesdata"][$pkey]["deliveyweight"]:"0" ?></td>
+								
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($week_data["salesdata"][$pkey]["deliveystockvalue"]) )?$week_data["salesdata"][$pkey]["deliveystockvalue"]:0 ),2, '.', ',') ?></td>
+
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($week_data["salesdata"][$pkey]["stockvalue"]) )?$week_data["salesdata"][$pkey]["stockvalue"]:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($week_data["salesdata"][$pkey]["stockvalue"]) )?$week_data["salesdata"][$pkey]["stockvalue"]*0.85:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($week_data["salesdata"][$pkey]["invoicedamount"]) )?$week_data["salesdata"][$pkey]["invoicedamount"]:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($week_data["salesdata"][$pkey]["invoicedamount"]) )?$week_data["salesdata"][$pkey]["invoicedamount"]*0.85:0 ),2, '.', ',') ?></td>
+							
+                                <td>-</td>
+                 			<?php else: ?>
+
+                 				<td style="text-align: right">0</td>
+                 				<td style="text-align: right">0</td>
+                 				<td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                
+                 			<?php endif ?>
+                 		
+
+
+
+                 	</tr>
+
+                 <?php endforeach ?>
+
+
+                    <tr class="active">
+                        <td nowrap="">TOTALS</td>
+                        <td><?= $mdata["month"] ?></td>
+
+                        
+                             <?php if(isset($mdata["totals"][$pkey]) ): ?>
+
+                                <td style="text-align: right"><?= (isset($mdata["totals"][$pkey]["total_kg_processed"]) )?$mdata["totals"][$pkey]["total_kg_processed"]:"0" ?></td>
+                                <td style="text-align: right"><?= (isset($mdata["totals"][$pkey]["deliveyweight"]) )?$mdata["totals"][$pkey]["deliveyweight"]:"0" ?></td>
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["deliveystockvalue"]) )?$mdata["totals"][$pkey]["deliveystockvalue"]:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["stockvalue"]) )?$mdata["totals"][$pkey]["stockvalue"]:0 ),2, '.', ',') ?></td>
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["stockvalue"]) )?$mdata["totals"][$pkey]["stockvalue"]*0.85:0 ),2, '.', ',') ?></td>
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["invoicedamount"]) )?$mdata["totals"][$pkey]["invoicedamount"]:0 ),2, '.', ',') ?></td>
+                                
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( ( ( isset($mdata["totals"][$pkey]["invoicedamount"]) )?$mdata["totals"][$pkey]["invoicedamount"]*0.85:0 ),2, '.', ',') ?></td>
+
+                               
+                                    
+                                    <?php
+                                      //$inv = ( isset($mdata["totals"][$pkey]["invoicedamount"]) )?$mdata["totals"][$pkey]["invoicedamount"]*0.85:0;;
+                                      $inv = ( isset($mdata["totals"][$pkey]["deliveystockvalue"]) )?$mdata["totals"][$pkey]["deliveystockvalue"]:0;;
+                                      $buyouts = ( isset($mdata["totals"][$pkey]["stockvalue"]) )?$mdata["totals"][$pkey]["stockvalue"]*0.85:0;
+                                      $deliverd = ( isset($mdata["totals"][$pkey]["deliveyweight"]) )?$mdata["totals"][$pkey]["deliveyweight"]:0;
+
+                                      $aver_price = 0;
+                                      if($deliverd > 0){
+                                        $aver_price = ($inv - $buyouts)/$deliverd;
+                                      }
+                                     ?>
+
+
+                                <td style="text-align: right" nowrap="nowrap">R <?= number_format( $aver_price,2, '.', ',') ?><br>
+                                    <?= "($inv - $buyouts)/$deliverd" ?>
+                                </td>
+                            <?php else: ?>
+
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                
+                            <?php endif ?>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b>MONTHLY TARGET (135 000 KG)</b></td>
+
+
+                        
+                             <?php if(isset($mdata["totals"][$pkey]) ): ?>
+
+                                <td colspan="7" >
+                                    
+                                    <?php
+                                        $per = 0;
+                                        if(isset($mdata["totals"][$pkey]["deliveyweight"]) ){
+                                            $per = ($mdata["totals"][$pkey]["deliveyweight"]/135000) * 100;
+                                            
+                                        }
+                                    
+
+                                    ?>
+                                    <div class="progress" style="border-radius: 3px;display: block; height: 15px !important; overflow: hidden !important; background: #ccc !important">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo number_format($per, 1); ?>" aria-valuemin="0" aria-valuemax="100" style="background: <?php echo ($per == 100?'green':''); ?>;width: <?php echo number_format($per, 0); ?>%;">
+                                        <span style="display: block;padding-top: 4px; font-size: 10px; min-width: 100px !important;" > <?php echo number_format($per, 0); ?>%</span>
+                                         </div>
+                                    </div>
+
+                                </td>
+                                <td  style="text-align: right; font-weight: bold;" nowrap="nowrap" ><?php echo number_format($per, 0); ?>%</td>
+                                
+                                
+
+                                
+                            <?php else: ?>
+
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                <td style="text-align: right">0</td>
+                                
+                            <?php endif ?>
+                       
+                    </tr>
+                     <?php endforeach ?>
+        	<?php endforeach ?>
+        </tbody>
+    </table>
+</div>

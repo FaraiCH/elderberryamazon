@@ -1,0 +1,33 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    srn:
+        label: SRN No
+        type: partial
+        path: $/bt/sales/models/pickslip/_srns.htm
+    quote_id:
+        label: Quote No
+        relation: quote
+        select: id
+        searchable: true
+    quote:
+        label: Client Name
+        relation: quote
+        select: company_name
+        searchable: true
+    download:
+        label: Download Pick Slip
+        type: partial
+        path: $/bt/sales/models/pickslip/_getpick.htm
+        clickable: false
+    status:
+        label: Status
+        type: partial
+        path: $/bt/sales/models/pickslip/_status.htm
+    created_at:
+        label: Date Created

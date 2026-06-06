@@ -1,0 +1,140 @@
+{% set listentry = BTStockList.loadStockList() %}
+{% if listentry is not empty  %}
+	{% set total = 0 %}
+
+
+
+		<table class="table table-striped table-bordered" id="tabledownload">
+				<thead>
+					<tr>
+						<th class="text-center">Out</th>
+						<th>#</th>
+						<th>Product Name</th>
+						<th>Truck Number Plate</th>
+						<th>Container Number</th>
+						<th>Supplier Batch</th>
+						<th>Pallet/Bags</th>
+						<th>Weight</th>
+						<th>Date Received</th>
+						<th>Notes</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+			        {% for itemobject in listentry %}					
+			        	<tr class='{{(itemobject.instock == 0)?"text-danger":"No"}}'>
+			        		<th class="text-center">
+			        			{% if itemobject.instock == 1 %}
+			        			<input type="checkbox" onclick="updateclickcheck('updateclick{{itemobject.id}}')" id="updateclick{{itemobject.id}}" data-id="{{itemobject.id}}" class="editcaldetail"
+												name="">
+								{% endif  %}
+
+			        		</th>
+			        		<td>{{itemobject.id}}</td>
+			        		<td>{{itemobject.productname.name}}</td>
+			        		<td>{{itemobject.truck_number_plate}}</td>
+			        		<td>{{itemobject.container_number}}</td>
+			        		<td>{{itemobject.supplier_batch}}</td>
+			              	<td>
+			              		{% if itemobject.received_in > 0  %}
+			              			{{itemobject.receivedtypes.name}}
+			              		{% endif %}
+
+			              		{% if itemobject.bagsother > 0  %}
+			              			{{itemobject.bagsother}} bags
+			              		{% endif %}
+			              	</td>
+			              	<td>{{itemobject.weight_pallets}} KG</td>
+			              	<td>{{itemobject.date_of_receipt|date("Y-m-d")}}</td>
+			              	<td>{{itemobject.notes}}</td>
+			              	<td><a href="{{ 'inventory/stockitem'|page({'item': itemobject.id}) }}">View</a></td>
+			           
+			             </tr>
+			            
+			        {% endfor %} 
+		        </tbody>
+		      
+	        
+    </table>
+	<hr class="mt-5">
+	<form data-request="onStockOut" data-request-files  data-request-flash data-request-validate>
+		<div class="card card-primary mt-">
+			<div class="card-header">
+				<h2>Take Stock Out</h2>
+			</div>
+			<div class="alert-info card-body">Select items above and submit the form below to take stock out</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6">
+						 	<div class="input-group mb-3">
+				            <div class="input-group-prepend">
+				              <span class="input-group-text label-small" id="basic-at">Stock Id</span>
+				            </div>
+				         	<input type="text" class="form-control" id="updatehole" required="required" name="updatehole">
+				        </div>
+				    </div>
+
+			        <div class="col-sm-6">
+	                    <span class="text-danger" data-validate-for="stockout_date"></span>
+	                    <div class="input-group mb-3">
+	                      <div class="input-group-prepend">
+	                        <span class="input-group-text label-small" id="basic-at" >Stock Date</span>
+	                      </div>
+	                      <input id="stockout_date" name="stockout_date" value='{{ "now"|date("Y-m-d") }}' type="text" class="form-control mt-0 datepicker" placeholder="">
+	                    </div>
+	                </div>
+
+	                <div class="col-sm-6"  id="supporting_file_holder">
+						<span class="text-danger" data-validate-for="notes"></span>
+						<div class="input-group mb-">
+						<div class="input-group-prepend">
+						<span class="input-group-text label-small" id="basic-at">Upload Supporting File:</span>
+						</div>
+
+						<input
+						
+						type="file" name="file_input"
+						class="form-control mt-0 counttext"
+						id="supporting_file" />
+						</div>
+						
+					</div>
+					<div class="col-sm-6">
+						<div class="input-group mb-0">
+				            <div class="input-group-prepend">
+				              <span class="input-group-text label-small" id="basic-at">Notes</span>
+				            </div>
+				         
+				             <textarea
+				                name="notes"
+				                type="text"
+				                class="form-control mt-0 counttext"
+				                id="preview_text" ></textarea>
+
+				        </div>
+					</div>
+
+	            </div>
+				
+		        
+
+		       
+		        
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Take Stock Out</button>
+			</div>
+		</div>
+
+	</form>
+
+
+
+
+
+{% else %}
+<div class="card-body">
+	<p>No Items</p>
+</div>
+{% endif %}

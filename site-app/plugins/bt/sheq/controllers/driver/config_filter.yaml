@@ -1,0 +1,18 @@
+scopes:
+    name:
+        label: Name
+        type: text
+        conditions: name = :value
+    surname:
+        label: Surname
+        type: text
+        conditions: surname = :value
+    issue:
+        label: Issue Date
+        type: date
+        conditions: issue >= ':filtered'
+    expiry:
+        label: Expired Date
+        type: date
+        conditions: expiry >= ':filtered'
+

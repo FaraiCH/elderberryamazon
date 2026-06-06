@@ -1,0 +1,84 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('bt/hr/weeklyhour') ?>">Weekly Hours</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+<?php Block::endPut() ?>
+<?= $this->makePartial('filterform',['startdate' => $startdate,'enddate' => $enddate]) ?>
+
+<div class="callout fade in callout-info ">
+
+    <div class="control-tabs primary-tabs" data-control="tab">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#primaryTabOne">Weekly Hour Bar Graph</a></li>
+            <li><a href="#primaryTabTwo">Weekly Hours Pie-Chart</a></li>
+            <li><a href="#primaryTabThree">Weekly Hours Line Graph</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active">
+                <div id="chart_kg" ></div>
+            </div>
+            <div class="tab-pane">
+                <div id="chart_p"></div>
+            </div>
+            <div class="tab-pane">
+                <div id="chart_line"></div>
+            </div>
+        </div>
+    </div>
+    <?= $this->makePartial('prt_table') ?>
+    </div>
+</div>
+<style type="text/css">
+body{
+    color: #212529;font-size: 12px;
+    font-family: sans-serif;
+    word-wrap: break-word;
+    background:  url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) center center;
+    padding: 0px;
+    margin:0px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+@page { margin:0px; padding: 0px;font-family: 'Roboto'}
+html { margin:0px; padding: 0px }
+
+.chart-outer {
+    max-width: 800px;
+    margin: 2em auto;
+}
+#container {
+    height: 300px;
+    margin-top: 2em;
+    min-width: 380px;
+}
+.highcharts-data-table table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: white;
+    min-width: 100%;
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    border: 1px solid silver;
+    padding: 0.5em;
+}
+.highcharts-data-table tr:nth-child(even),
+.highcharts-data-table thead tr {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #eff;
+}
+.highcharts-data-table caption {
+    border-bottom: none;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+</style>
+
+<?= $this->makePartial('prt_graphs') ?>

@@ -1,0 +1,157 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/qc/datapack') ?>">Datapack</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+  <?= Form::open(['class' => 'layout']) ?>
+<?php if(empty($formModel->pipereport)): ?>
+    <div class="scoreboard">
+        <div data-control="toolbar">
+            <div class="scoreboard-item title-value">
+                <h4>Client Name</h4>
+                <p class="oc-icon-address-card-o"> <?= e($formModel->quote->company_name) ?></p>
+            </div>
+
+            <div class="scoreboard-item title-value">
+                <h4>Quote</h4>
+                <p class="oc-icon-bullhorn">
+                        <?= e($formModel->quote->id) ?>
+
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <table class="table data">
+        <thead>
+            <tr>
+                <th class="sort-desc"><a href="/">Title</a></th>
+                <th class="sort-desc"><a href="/">File</a></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+
+        <?php
+            //echo '<tr><td>Datapack</td><td><a class="btn btn-primary" target="_blank" href="/lab/letterhead/download/me/'.$formModel->id.'.pdf">Download</a></td></tr>';
+            echo '<tr><td>New Datapack</td><td><a class="btn btn-primary" target="_blank" href="/lab/letterhead/download/newme/'.$formModel->id.'.pdf">Download</a></td></tr>';
+            echo '<tr><td>Letter Head - Run First</td><td><a class="btn btn-primary" target="_blank" href="/lab/letterhead/download/'.$formModel->id.'.pdf">Download</a></td></tr>';
+            if($formModel->qualityplan && !empty($formModel->qualityplan)){
+                echo '<tr><td>Quality Plan</td><td><a class="btn btn-primary" target="_blank" href="'.$formModel->qualityplan->path.'">'.$formModel->qualityplan->file_name.'</a></td></tr>';
+            }else{
+                echo '<tr class="negative"><td>Quality Plan</td><td >Missing, please upload</td></tr>';
+            }
+
+
+            $csarray = array();
+            $batcharray = array();
+
+            $matids = array();
+            $coa = array();
+            $found = 0;
+            #foreach($formModel->quote->items as $kk=>$qitem){
+                 #if($formModel->item_id == $qitem->id ){
+                    $found++;
+                    $qitem = $formModel->item;
+                    foreach($qitem->pipe->schedules as $k=>$schedules){
+                        #echo "<h2>Day ".$schedules->production_days.": Shift ".$schedules->shiftno."</h2>";
+
+                        #if(isset($schedules->controlsheet) && isset($schedules->controlsheet->file)){
+                        if(isset($schedules->controlsheet)){
+                            if(isset($schedules->controlsheet) && isset($schedules->controlsheet->file)){
+                                $csarray[$schedules->controlsheet->file->file_name] = $schedules->controlsheet->file->path;
+                            }
+                            foreach($schedules->usedmaterials as $key=>$value){
+                                if(isset($value->receiving) && isset($value->receiving->productname) && $value->receiving->productname->cat_id != 2){
+
+                                     $batcharray[$value->receiving->productname->name." - Batch #".$value->receiving->supplier_batch] = '/lab/coc/download/'.$value->receiving->id.'/'.$schedules->pipe_id.'/'.$schedules->controlsheet->id.'.pdf';
+
+
+                                    $matids[$value->receiving->productname->name." - Batch #".$value->receiving->supplier_batch] = '/lab/photos/download/'.$value->receiving->id.'.pdf';
+
+                                    if(isset($value->labresults->coa_file) && isset($value->labresults->coa_file->path)){
+                                        $coa[$value->labresults->productname->name." - Batch #".$value->labresults->supplier_batch] = $value->labresults->coa_file->path;
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+               # }
+            #}
+
+
+
+
+            foreach($csarray as $key=>$value){
+                echo '<tr><td>Controlsheets</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></</td></tr>';
+            }
+
+            foreach($batcharray as $key=>$value){
+                echo '<tr><td>COC - Run First</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></td></tr>';
+            }
+
+            foreach($matids as $key=>$value){
+                echo '<tr><td>PHOTOS - Run First</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></td></tr>';
+            }
+
+             foreach($coa as $key=>$value){
+                echo '<tr><td>COA</td><td><a class="btn btn-primary" target="_blank" href="'.$value.'">'.$key.'</a></td></tr>';
+            }
+
+        ?>
+        </tbody>
+        </table>
+
+  <?php endif; ?>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving Datapack..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving Datapack..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting Datapack..."
+                    data-request-confirm="Delete this datapack?">
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('bt/qc/datapack') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/qc/datapack') ?>" class="btn btn-default">Return to datapack list</a></p>
+
+<?php endif ?>

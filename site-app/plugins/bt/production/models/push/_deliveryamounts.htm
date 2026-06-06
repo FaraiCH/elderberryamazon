@@ -1,0 +1,16 @@
+<?php
+    $total = 0;
+    if($record->quote->dispatch->sum('total')){
+        $total = $record->quote->dispatch->sum('total');
+    }else{
+
+        if($record->quote->deliveryamount > 0){
+            $total = $record->quote->deliveryamount;
+        }
+
+        if($record->quote->deliveryamounthidden > 0){
+            $total += $record->quote->deliveryamounthidden;
+        }
+    }
+    echo 'R '. number_format($total, 2, '.', ',');
+?>

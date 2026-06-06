@@ -1,0 +1,87 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/logistics/home/truck') ?>">Truckload</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <?php if($formModel->srn_id > 0): ?>
+                <div class="cardContainer"  >
+
+                    <div class="cards" style="line-height: 1.0;">
+                        <h5 class="description" style="font-weight: bold;color: blue;">
+                            <a  href="/backend/bt/sales/srn/update/<?= e($formModel->srn_id) ?>" target="_blank"> #BT-SRN- <?= e($formModel->srn_id) ?></a>
+                        </h5>
+                        <p>
+                            <span class="oc-icon-star" style="color:gold; font-size:16px"></span>
+                            <?= e($formModel->quote->company_name) ?>
+                        </p>
+                    </div>
+                </div>
+            <?php endif ?>
+            <div class="control-tabs content-tabs" data-control="tab">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#contentTabOne">Pick Slip</a></li>
+                    <li><a href="#contentTabTwo">Prepare SRN</a></li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane pane-bordered active">
+                        <div style="padding: 20px">
+                            <?= $this->formRender() ?>
+                        </div>
+                    </div>
+                    <div class="tab-pane pane-bordered">
+                        <div style="padding: 20px"><?= $this->makePartial('prt_combineitems') ?></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-primary">
+                    <?= e(trans('backend::lang.form.save')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving_name', ['name'=>$formRecordName])) ?>"
+                    class="btn btn-default">
+                    <?= e(trans('backend::lang.form.save_and_close')) ?>
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"
+                    data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+                </button>
+                <span class="btn-text">
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('bt/logistics/home/truck') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/logistics/home/truck') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+
+<?php endif ?>

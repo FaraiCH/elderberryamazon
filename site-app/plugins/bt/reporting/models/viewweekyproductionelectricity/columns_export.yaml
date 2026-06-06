@@ -1,0 +1,56 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+    Week:
+        label: Week
+    start_date:
+        label: Start Date
+    end_date:
+        label: End Date
+    baila_name:
+        label: Baila Name
+    total_kg_processed:
+        label: Total KG Processed
+    weight_scrap_kg:
+        label: Weight Scrap KG
+    over_weight_kg:
+        label: Over Weight KG
+    off_peak_kwh:
+        label: Off Peak KWH
+    off_peak_amount:
+        label: Off Peak Amount
+        type: number
+        format: R %.2f
+    standard_kwh:
+        label: Standard KWH
+    standard_amount:
+        label: Standard Amount
+        type: number
+        format: R %.2f
+    on_peak_kwh:
+        label: On Peak KWH
+    on_peak_amount:
+        label: On Peak Amount
+        type: number
+        format: R %.2f
+    max_demand_amount:
+        label: Max Demand Amount
+        type: number
+        format: R %.2f
+    fixed_charge_amount:
+        label: Fixed Charge Amount
+        type: number
+        format: R %.2f
+    network_access_amount:
+        label: Network Access Amount
+        type: number
+        format: R %.2f
+    total_amount:
+        label: Total Amount
+        type: number
+        format: R %.2f
+        

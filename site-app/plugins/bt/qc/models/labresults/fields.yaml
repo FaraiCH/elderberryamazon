@@ -1,0 +1,429 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # id:
+    #     label: ID
+    #     disabled: true
+    date_of_receipt:
+        label: Date
+        disabled: false
+        type: datepicker
+        span: left
+
+    supplier_batch:
+        label: Supplier Batch
+        disabled: false
+        span: right
+    productname:
+        label: Product
+        disabled: false
+        select: name
+        type: relation
+        span: left
+    product_code:
+          label: Product Code
+          disabled: false
+          tab: Product
+          span: right
+    pricekg:
+        label: Price Per kg
+        type: number
+        span: left
+        comment: Used to calculate material value
+    active:
+        label: Active/Hide
+        type: switch
+        span: right
+    datapack:
+        label: Data Pack
+        type: relation
+        select: name
+        span: auto
+        placeholder: -- select a datapack --
+    # virgin:
+    #     label: Is Virgin
+    #     disabled: false
+    #     type: dropdown
+    #     options:
+    #         1: Yes
+    #         0: No
+    #     span: left
+    # regrind:
+    #     label: Is Regrind
+    #     disabled: false
+    #     type: dropdown
+    #     options:
+    #         1: Yes
+    #         0: No
+    #     span: right
+
+tabs:
+    fields:
+        bags:
+            label: Bags
+            disabled: false
+            type: number
+            tab: Bags & Weight
+            span: left
+        weight:
+            label: Weight in KG
+            disabled: false
+            tab: Bags & Weight
+            span: right
+        damagedbags:
+            label: Damaged Bags in KG
+            disabled: false
+            type: number
+            tab: Bags & Weight
+            span: left
+       #--------------------------
+        hydrostatic_test:
+          label: Testing Option 1
+          disabled: false
+          tab: HYDROSTATIC PRESSURE
+          span: auto
+          type: dropdown
+          placeholder: --- Select Testing Option ---
+          options:
+            100h@20C: 100h@20C
+            165@80C: 165@80C
+            1000@80C: 1000@80C
+            20 deg C, 100h: 20 deg C, 100h
+            80 deg C, 165h: 80 deg C, 165h
+            80 deg C, 1000h: 80 deg C, 1000h
+        hydrostatic_comply:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: HYDROSTATIC PRESSURE
+          span: auto
+
+        hydro_image:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: HYDROSTATIC PRESSURE
+
+        hydro_file:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: HYDROSTATIC PRESSURE
+          mode: file
+
+        #--------------------------
+         #--------------------------
+        hydrostatic_test_2:
+          label: Testing Option 2
+          disabled: false
+          tab: HYDROSTATIC PRESSURE
+          span: auto
+          type: dropdown
+          placeholder: --- Select Testing Option ---
+          options:
+            100h@20C: 100h@20C
+            165@80C: 165@80C
+            1000@80C: 1000@80C
+            20 deg C, 100h: 20 deg C, 100h
+            80 deg C, 165h: 80 deg C, 165h
+            80 deg C, 1000h: 80 deg C, 1000h
+
+        hydrostatic_comply_2:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: HYDROSTATIC PRESSURE
+          span: auto
+
+        hydro_image_2:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: HYDROSTATIC PRESSURE
+
+        hydro_file_2:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: HYDROSTATIC PRESSURE
+          mode: file
+
+        #--------------------------
+
+         #--------------------------
+        hydrostatic_test_3:
+          label: Testing Option 3
+          disabled: false
+          tab: HYDROSTATIC PRESSURE
+          span: auto
+          type: dropdown
+          placeholder: --- Select Testing Option ---
+          options:
+            100h@20C: 100h@20C
+            165@80C: 165@80C
+            1000@80C: 1000@80C
+            20 deg C, 100h: 20 deg C, 100h
+            80 deg C, 165h: 80 deg C, 165h
+            80 deg C, 1000h: 80 deg C, 1000h
+
+        hydrostatic_comply_3:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: HYDROSTATIC PRESSURE
+          span: auto
+
+        hydro_image_3:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: HYDROSTATIC PRESSURE
+
+        hydro_file_3:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: HYDROSTATIC PRESSURE
+          mode: file
+        testing:
+            label: Testing
+            placeholder: -- Select State --
+            span: auto
+            type: dropdown
+            tab: HYDROSTATIC PRESSURE
+            options:
+                Scheduled for Testing: Scheduled for Testing
+                Testing in Progress: Testing in Progress
+                No failure during test period: No failure during test period
+
+        #--------------------------
+        thermal_revision_test:
+          label: less then 3%
+          disabled: false
+          tab: THERMAL REVISION TEST
+          span: auto
+          type: number
+          comment: In %
+
+        thermal_comply:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: THERMAL REVISION TEST
+          span: auto
+
+        thermal_image:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: THERMAL REVISION TEST
+
+        thermal_file:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: THERMAL REVISION TEST
+          mode: file
+
+         #--------------------------
+
+        elongation_at_break_test:
+          label: over 350 %
+          disabled: false
+          tab: TENSILE TEST
+          span: auto
+
+        elongation_comply:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: TENSILE TEST
+          span: auto
+
+        elongation_image:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: TENSILE TEST
+
+        elongation_file:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: TENSILE TEST
+          mode: file
+
+        #--------------------------
+        iot:
+          label: over 20 min
+          disabled: false
+          tab: OIT TEST
+          span: auto
+
+        iot_comply:
+          label: Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: OIT TEST
+          span: auto
+
+        iot_image:
+          label: IMAGE
+          type: fileupload
+          mode: image
+          span: auto
+          tab: OIT TEST
+
+        iot_file:
+          label: FILE
+          type: fileupload
+          span: auto
+          tab: OIT TEST
+          mode: file
+
+
+        #--------------------------
+        mfi:
+          label: PRE TEST - 0,2 - 1.4g
+          disabled: false
+          tab: MFI TEST
+          span: left
+
+        mfi_post:
+          label: POST TEST - 0,2 - 1.4g
+          disabled: false
+          tab: MFI TEST
+          span: right
+
+        #--------------------------
+
+        mfi_comply:
+          label: PRE TEST - Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: MFI TEST
+          span: left
+
+        mfi_comply_post:
+          label: POST TEST - Comply
+          type: switch
+          on: Yes
+          off: No
+          tab: MFI TEST
+          span: right
+        #--------------------------
+        mfi_image:
+          label: PRE TEST - IMAGE
+          type: fileupload
+          mode: image
+          span: left
+          tab: MFI TEST
+
+        mfi_image_post:
+          label: POST TEST - IMAGE
+          type: fileupload
+          mode: image
+          span: right
+          tab: MFI TEST
+
+
+        #--------------------------
+
+        mfifiles:
+          label: PRE TEST - FILE
+          type: fileupload
+          tab: MFI TEST
+          mode: file
+          span: left
+
+        mfifiles_post:
+          label: POST TEST - FILE
+          type: fileupload
+          tab: MFI TEST
+          mode: file
+          span: right
+
+        #--------------------------
+
+        coc_pipebatch:
+          label: Pipe Batch
+          tab: COC
+          span: auto
+        coc_specifications:
+          label: Specifications
+          tab: COC
+          span: auto
+        coc_file:
+          label: COC File
+          type: fileupload
+          tab: COC
+          mode: file
+
+        coc_pipebatch:
+          label: Pipe Batch
+          tab: COC
+        bacapproved@update:
+          path: $/bt/qc/controllers/labresults/_approve.htm
+          tab: COC Approve By Management
+          type: partial
+
+        # pallet_number:
+        #     label: Number Of Palletts
+        #     disabled: false
+        #     type: number
+        #     tab: Delivery Details
+        #     span: left
+        # number_of_trucks:
+        #     label: Number Of Trucks
+        #     disabled: false
+        #     type: number
+        #     tab: Delivery Details
+        #     span: right
+        # container_number:
+        #     label: Container Number
+        #     disabled: false
+        #     tab: Delivery Details
+        #     span: left
+        # truck_number_plate:
+        #     label: Truck Number Plate
+        #     disabled: false
+        #     tab: Delivery Details
+        #     span: right
+        # notes:
+        #     label: Notes
+        #     disabled: false
+        #     tab: Comments
+        # files:
+        #     label: Document Files
+        #     type: fileupload
+        #     tab: Upload Files
+        #     mode: file
+        coa_file:
+            label: CERTIFICATE OF ANYLYSES (COA)
+            type: fileupload
+            tab: COA
+            mode: file
+        used:
+            tab: Used
+            label: Used Material
+            type: partial
+            path: $/bt/qc/models/labresults/_used.htm
+        incage:
+            tab: Incage
+            label: Incage Material
+            type: partial
+            path: $/bt/qc/models/labresults/_incage.htm

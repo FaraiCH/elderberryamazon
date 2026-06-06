@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Qcreason
+
+# Model Form Field configuration
+form: $/bt/qc/models/qcreason/fields.yaml
+
+# Model Class name
+modelClass: Bt\Qc\Models\Qcreason
+
+# Default redirect location
+defaultRedirect: bt/qc/qcreason
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/qc/qcreason/update/:id
+    redirectClose: bt/qc/qcreason
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/qc/qcreason
+    redirectClose: bt/qc/qcreason
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

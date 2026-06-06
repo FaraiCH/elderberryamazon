@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Transport Fee
+
+# Model Form Field configuration
+form: $/bt/sales/models/transportfee/fields.yaml
+
+# Model Class name
+modelClass: Bt\Sales\Models\TransportFee
+
+# Default redirect location
+defaultRedirect: bt/sales/transportfee
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: bt/sales/transportfee/update/:id
+    redirectClose: bt/sales/transportfee
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: bt/sales/transportfee
+    redirectClose: bt/sales/transportfee
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

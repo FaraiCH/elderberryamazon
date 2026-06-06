@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id@update:
+        label: ID
+        disabled: true
+        span: auto
+    category_name:
+        label: Category Name
+        disabled: false
+        span: auto
+
+    ismanaged:
+        label: Is Managed?
+        type: switch
+        on: Yes
+        off: No
+        span: auto
+

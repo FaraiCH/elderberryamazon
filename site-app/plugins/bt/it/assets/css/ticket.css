@@ -1,0 +1,322 @@
+.bt-trello-board-clone {
+    --color-white: #ffffff;
+    --color-slate: #64748b;
+    --color-gray: #6b7280;
+    --color-zinc: #71717a;
+    --color-neutral: #737373;
+    --color-stone: #78716c;
+    --color-red: #ef4444;
+    --color-orange: #f97316;
+    --color-amber: #f59e0b;
+    --color-yellow: #ca8a04;
+    --color-lime: #84cc16;
+    --color-green: #22c55e;
+    --color-emerald: #10b981;
+    --color-teal: #14b8a6;
+    --color-cyan: #06b6d4;
+    --color-sky: #0ea5e9;
+    --color-blue: #3b82f6;
+    --color-indigo: #6366f1;
+    --color-violet: #8b5cf6;
+    --color-purple: #a855f7;
+    --color-fuchsia: #d946ef;
+    --color-pink: #ec4899;
+    --color-rose: #f43f5e;
+}
+
+/*********************************************************************************************************************/
+/*********************************************************************************************************************/
+/*********************************************************************************************************************/
+
+.bg-white {
+    background-color: var(--color-white);
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.bg-slate {
+    background-color: var(--color-slate);
+}
+
+.text-slate {
+    color: var(--color-slate);
+}
+
+.bg-gray {
+    background-color: var(--color-gray);
+}
+
+.text-gray {
+    color: var(--color-gray);
+}
+
+.bg-zinc {
+    background-color: var(--color-zinc);
+}
+
+.text-zinc {
+    color: var(--color-zinc);
+}
+
+.bg-neutral {
+    background-color: var(--color-neutral);
+}
+
+.text-neutral {
+    color: var(--color-neutral);
+}
+
+.bg-stone {
+    background-color: var(--color-stone);
+}
+
+.text-stone {
+    color: var(--color-stone);
+}
+
+.bg-red {
+    background-color: var(--color-red);
+}
+
+.text-red {
+    color: var(--color-red);
+}
+
+.bg-orange {
+    background-color: var(--color-orange);
+}
+
+.text-orange {
+    color: var(--color-orange);
+}
+
+.bg-amber {
+    background-color: var(--color-amber);
+}
+
+.text-amber {
+    color: var(--color-amber);
+}
+
+.bg-yellow {
+    background-color: var(--color-yellow);
+}
+
+.text-yellow {
+    color: var(--color-yellow);
+}
+
+.bg-lime {
+    background-color: var(--color-lime);
+}
+
+.text-lime {
+    color: var(--color-lime);
+}
+
+.bg-green {
+    background-color: var(--color-green);
+}
+
+.text-green {
+    color: var(--color-green);
+}
+
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+
+.text-emerald {
+    color: var(--color-emerald);
+}
+
+.bg-teal {
+    background-color: var(--color-teal);
+}
+
+.text-teal {
+    color: var(--color-teal);
+}
+
+.bg-cyan {
+    background-color: var(--color-cyan);
+}
+
+.text-cyan {
+    color: var(--color-cyan);
+}
+
+.bg-sky {
+    background-color: var(--color-sky);
+}
+
+.text-sky {
+    color: var(--color-sky);
+}
+
+.bg-blue {
+    background-color: var(--color-blue);
+}
+
+.text-blue {
+    color: var(--color-blue);
+}
+
+.bg-indigo {
+    background-color: var(--color-indigo);
+}
+
+.text-indigo {
+    color: var(--color-indigo);
+}
+
+.bg-violet {
+    background-color: var(--color-violet);
+}
+
+.text-violet {
+    color: var(--color-violet);
+}
+
+.bg-purple {
+    background-color: var(--color-purple);
+}
+
+.text-purple {
+    color: var(--color-purple);
+}
+
+.bg-fuchsia {
+    background-color: var(--color-fuchsia);
+}
+
+.text-fuchsia {
+    color: var(--color-fuchsia);
+}
+
+.bg-pink {
+    background-color: var(--color-pink);
+}
+
+.text-pink {
+    color: var(--color-pink);
+}
+
+.bg-rose {
+    background-color: var(--color-rose);
+}
+
+.text-rose {
+    color: var(--color-rose);
+}
+
+/*********************************************************************************************************************/
+/*********************************************************************************************************************/
+/*********************************************************************************************************************/
+
+.bt-trello-board-clone {
+    font-size: 1rem;
+    display: flex;
+    align-items: start;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 20px;
+    height: 100%;
+}
+
+.editable {
+    user-select: none;
+    outline: none;
+}
+
+.editing {
+    background: white;
+    color: #172b4d;
+    box-shadow:inset 0px 0px 0px 2px #0279bf;
+}
+
+.editing:hover {
+    background: white;
+}
+
+.list {
+    position: relative;
+    background: #dfe1e6;
+}
+
+.list-title {
+    font-weight: 600;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.add-list {
+    position: relative;
+    background: rgba(0,0,0,.12);
+    color: hsla(0,0%,100%,.8);
+}
+
+.list,
+.add-list {
+    min-width: 280px;
+    border-radius: 5px;
+}
+
+.card {
+    background: white;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 5px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.card-title {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card-description {
+    margin-bottom: 5px;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.ghost {
+    opacity: .1;
+    color: #000;
+    background-color: #000;
+}
+
+.add-card {
+    width: calc(100% - 35px);
+    display: inline-block;
+    padding: 10px;
+    margin-top: 0px;
+    color: gray;
+    text-decoration: none;
+    margin: 7px;
+    padding: 10px;
+}
+
+.add-card:hover {
+    background-color: rgba(9,30,66,.13);
+}
+
+.del {
+    font-weight: 600;
+    color: gray;
+}
+
+.content {
+    border-bottom: 1px solid #cecece;
+    padding: 10px;
+}

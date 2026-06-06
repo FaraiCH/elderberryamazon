@@ -1,0 +1,16 @@
+<?php if ($this->previewMode): ?>
+
+    <div class="form-control">
+        <?= $value ?>
+    </div>
+
+<?php else: ?>
+
+   <button
+    type="submit"
+    data-request="onTestImperonate"
+
+    class="btn btn-primary"  data-stripe-load-indicator>
+   Impersonate
+</button>
+<?php endif ?>

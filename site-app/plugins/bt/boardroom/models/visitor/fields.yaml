@@ -1,0 +1,58 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    visitorname:
+        label: Name and Surname of Visitor
+        span: auto
+    email:
+        label: Visitor Email
+        span: auto
+    company:
+        label: Company
+        span: auto
+    hostname:
+        label: Name and Surname of Host
+        span: auto
+    date:
+        label: Date and Time Of Arrival
+        type: datepicker
+        minDate: now
+        span: auto
+    end_time:
+        label: End Time
+        type: datepicker
+        mode: time
+        minDate: now
+        span: auto
+    accept_date@update:
+        label: Date Accepted By Visitor
+        type: datepicker
+        minDate: now
+        disabled: true
+        comment: This will change when the visitor has accepted your invitation. You don't need to input here
+        span: auto
+    location:
+        label: Location (Boardroom or Host office)
+        span: auto
+        placeholder: -- Choose Location --
+        type: dropdown
+    no_of_attendees:
+        label: Number of Attendees
+        type: Number
+        span: auto
+        comment: Please put one if you know the visitor who is coming. If the visitor is coming with many other people you do not have the information for, you can put more attendees
+    notes:
+        label: Notes
+        type: textarea
+        size: small
+        span: auto
+tabs:
+    fields:
+        files:
+            label: OHS Induction Files
+            type: fileupload
+            span: auto
+            tab: Induction Form
+            mode: file

@@ -1,0 +1,26 @@
+   
+ <div class="callout fade in callout-info ">
+  
+  <div class="content">
+	   <div class="card card-default mb-4 mt-3">
+	   		
+	            <div class="card-body  py-2">
+	            		
+	            	<?= Form::open(['class'=>'form-inline']) ?>
+	            		
+					  <div class="form-group" style="padding-bottom: 0px">
+					    <label for="exampleInputName2">Start Date: </label>
+					    <input id="startdate" value="<?= e($startdate) ?>" name="startdate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md mx-1" style="width: 200px;" required="">
+					   </div>
+					  <div class="form-group " style="padding-bottom: 0px">
+					    <label for="exampleInputEmail2">End Date: </label>
+					    <input id="enddate" value="<?= e($enddate) ?>" name="enddate" type="text" placeholder="YYYY-MM-DD:" class="datepicker form-control input-md mx-1" required="" style="width: 200px;">
+					  </div>
+					  <div class="form-group " style="padding-bottom: 0px">
+					  <button type="submit" class="btn btn-primary">Filter</button>
+					</div>
+					<?= Form::close() ?>
+	            </div>
+	     </div>
+	</div>
+</div>

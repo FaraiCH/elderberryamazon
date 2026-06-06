@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    name:
+        label: Name
+        searchable: true
+    sdr:
+        label: SDR Name
+        searchable: true
+    premiumprice:
+        label: Premium Price
+        searchable: true
+        type: number
+        format: R %.2f
+
+    alert:
+        label: Alert on quote
+        type: switch

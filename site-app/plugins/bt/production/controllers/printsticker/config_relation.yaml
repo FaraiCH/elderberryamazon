@@ -1,0 +1,15 @@
+pipestickeritem:
+    label: Printed Items
+    manage:
+        form: $/bt/production/models/pipestickeritem/fields.yaml
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+    view:
+        list: $/bt/production/models/pipestickeritem/columns.yaml
+        #recordUrl: /bt/production/printstickeritems/update/:id
+        toolbarButtons: create
+        showCheckboxes: false
+        showSetup: true
+
+
+
+        

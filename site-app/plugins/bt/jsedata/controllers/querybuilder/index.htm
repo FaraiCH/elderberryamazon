@@ -1,0 +1,36 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('bt/jsedata/querybuilder') ?>">Query Builder</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+	<div class="layout-row">
+		 <div class="">
+		 	 <div class="content">
+		 	 	<?= Form::open(['class' => 'layout']) ?>
+				    <?= $this->formRender() ?>
+				    <div style="">
+				     <button data-stripe-load-indicator data-attach-loading
+				        type="submit"
+				        data-request="onSearchSchedule"
+				   
+				        class="btn btn-primary btn-block text-center" style="text-align: center;">
+				        Search
+				    </button>
+				</div>
+				 <?= Form::close() ?>
+			</div>
+		</div>
+		<br><br>
+		<span id="previewquote" ></span>
+	</div>
+
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('bt/jsedata/querybuilder') ?>" class="btn btn-default">Return to query builder list</a></p>
+
+<?php endif ?>

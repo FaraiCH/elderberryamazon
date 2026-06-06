@@ -1,0 +1,16 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+# import:
+#     title: Import subscribers
+#     modelClass: bt\factory\Models\Assetuse
+#     list: $/bt/factory/models/assetuse/columns.yaml
+#     redirect: bt/factory/assetuse
+
+export:
+    title: Export DB
+    modelClass: bt\factory\Models\AssetuseExport
+    list: $/bt/factory/models/assetuse/columnsExport.yaml
+    redirect: bt/factory/assetuse
+    fileName: Asset_use.csv

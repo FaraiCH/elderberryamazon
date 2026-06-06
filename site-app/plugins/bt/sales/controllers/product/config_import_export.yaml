@@ -1,0 +1,6 @@
+export:
+    title: Export Clients
+    modelClass: Bt\Sales\Models\ProductExport
+    list: $/bt/sales/models/product/columns_export.yaml
+    redirect: bt/sales/product
+    fileName: Product-Export.csv

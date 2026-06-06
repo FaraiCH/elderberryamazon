@@ -1,0 +1,44 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+      label: ID
+      disabled: true
+      span: auto
+
+    report_date:
+      label: Report Date
+      span: auto
+      type: datepicker
+    
+    client:
+        label: Client 
+        select: concat(contact_name, ' @ ', company_name)
+        type: relation
+        span: auto
+        placeholder: -- select a client --
+
+    quote:
+        label: Quote Number  
+        select: concat(id, ' -  ',billing_name, ' @ ', company_name)
+        type: relation
+        span: auto
+        placeholder: -- select a quote --
+
+    keypass:
+        label: Keypass/Unique Name
+        span: auto
+    signature:
+      label: Signature on Report
+      disabled: false
+      select: concat(firstname, ' ', lastname)
+      placeholder: -- select a person signature --
+      type: relation
+      span: auto
+    notes:
+        label: Note/Comment
+        type: textarea
+        size: small
+        span: auto
