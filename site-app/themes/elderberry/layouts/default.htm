@@ -1,0 +1,23 @@
+##
+description = "Default layout"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        {% partial 'site/head/head-meta' %}
+        <title>{{ this.page.title }} - Elderberry Amazon</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        {% partial 'site/head/head-links' %}
+    </head>
+    <body>
+        {% partial 'site/header' %}
+
+        <main id="layout-content">
+            {% page %}
+        </main>
+
+        {% partial 'site/footer' %}
+
+        {% partial 'site/head/head-scripts' %}
+    </body>
+</html>
