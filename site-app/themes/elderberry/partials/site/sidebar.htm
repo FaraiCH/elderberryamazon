@@ -38,7 +38,7 @@
             </div>
             <div class="collapse show" id="collapse_Concessions">
                 <a href="{{ 'concessions/thankyou'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'concessions-thankyou' ? 'active' }}">
-                    Dashboard
+                    Concession Confirmation
                 </a>
             </div>
             <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
@@ -48,7 +48,7 @@
             </div>
             <div class="collapse show" id="collapse_Dashboard">
                 <a href="{{ 'dashboard/bt-logo'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'dashboard-bt-logo' ? 'active' }}">
-                    Dashboard
+                    Enterprise Logo
                 </a>
             </div>
             <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
@@ -57,60 +57,20 @@
                 <i class="bi bi-chevron-down small"></i>
             </div>
             <div class="collapse show" id="collapse_Floor">
+                <a href="{{ 'floor/deliveryclient'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-deliveryclient' ? 'active' }}">
+                    Delivery Client Scrap
+                </a>
                 <a href="{{ 'floor/pipelist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-pipelist' ? 'active' }}">
                     Pipe List
                 </a>
-                <a href="{{ 'floor/deliveryclient'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-deliveryclient' ? 'active' }}">
-                    Scrap List
+                <a href="{{ 'floor/deliveryscrap'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-deliveryscrap' ? 'active' }}">
+                    Scrap Delivery
                 </a>
                 <a href="{{ 'floor/scraplist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-scraplist' ? 'active' }}">
-                    Scrap List
-                </a>
-                <a href="{{ 'floor/deliveryscrap'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-deliveryscrap' ? 'active' }}">
-                    Scrap List
+                    Scrap Stock List
                 </a>
                 <a href="{{ 'floor/stockpipes'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-stockpipes' ? 'active' }}">
                     Stock Pipes
-                </a>
-            </div>
-            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
-                 data-bs-toggle="collapse" data-bs-target="#collapse_General" style="cursor: pointer;">
-                General
-                <i class="bi bi-chevron-down small"></i>
-            </div>
-            <div class="collapse show" id="collapse_General">
-                <a href="{{ 't'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 't' ? 'active' }}">
-                    Dashboard
-                </a>
-                <a href="{{ 'logistictv'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'logistictv' ? 'active' }}">
-                    Dashboard
-                </a>
-                <a href="{{ 'index'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'index' ? 'active' }}">
-                    Enterprise Software Solutions
-                </a>
-                <a href="{{ 'features'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'features' ? 'active' }}">
-                    Home
-                </a>
-                <a href="{{ 'logout'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'logout' ? 'active' }}">
-                    Logout | Account
-                </a>
-                <a href="{{ 'account'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'account' ? 'active' }}">
-                    My Account
-                </a>
-                <a href="{{ 'production'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production' ? 'active' }}">
-                    Production
-                </a>
-                <a href="{{ 'srnimages'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'srnimages' ? 'active' }}">
-                    SRN IMAGES
-                </a>
-                <a href="{{ 'author'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'author' ? 'active' }}">
-                    Survey
-                </a>
-                <a href="{{ 'testhigh'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'testhigh' ? 'active' }}">
-                    Test
-                </a>
-                <a href="{{ 'questionnaire'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'questionnaire' ? 'active' }}">
-                    Training
                 </a>
             </div>
             <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
@@ -159,25 +119,16 @@
                 <a href="{{ 'inventory/stocklist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-stocklist' ? 'active' }}">
                     In-Stock List
                 </a>
+                <a href="{{ 'inventory/entrylist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-entrylist' ? 'active' }}">
+                    Inventory Entry List
+                </a>
                 <a href="{{ 'inventory/entryitem'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-entryitem' ? 'active' }}">
                     Inventory Item
                 </a>
-                <a href="{{ 'inventory/entrylist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-entrylist' ? 'active' }}">
-                    New Quote
-                </a>
                 <a href="{{ 'inventory/outstocklist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-outstocklist' ? 'active' }}">
-                    New Quote
-                </a>
-                <a href="{{ 'inventory/rawrecon'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-rawrecon' ? 'active' }}">
-                    Raw Material Function Recon
-                </a>
-                <a href="{{ 'inventory/receiving'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-receiving' ? 'active' }}">
-                    Raw Material Receiving
+                    Inventory Out-Stock List
                 </a>
                 <a href="{{ 'inventory/rawreceiving'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-rawreceiving' ? 'active' }}">
-                    Raw Material Receiving
-                </a>
-                <a href="{{ 'inventory/receiving_details'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-receiving_details' ? 'active' }}">
                     Raw Material Receiving
                 </a>
                 <a href="{{ 'inventory/bagdetailsform'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-bagdetailsform' ? 'active' }}">
@@ -239,25 +190,25 @@
                     Day To Day Scrap
                 </a>
                 <a href="{{ 'production/floor'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-floor' ? 'active' }}">
-                    Home
+                    Production Floor Dashboard
                 </a>
                 <a href="{{ 'production/floorclean'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-floorclean' ? 'active' }}">
-                    Home
+                    Production Floor Report
                 </a>
                 <a href="{{ 'production/item'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-item' ? 'active' }}">
                     Production Item
                 </a>
                 <a href="{{ 'production/pipe'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-pipe' ? 'active' }}">
-                    Production List
+                    Production Item List
                 </a>
                 <a href="{{ 'production/productionlist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-productionlist' ? 'active' }}">
                     Production List
                 </a>
+                <a href="{{ 'production/summary'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-summary' ? 'active' }}">
+                    Production Schedule Summary
+                </a>
                 <a href="{{ 'production/running'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-running' ? 'active' }}">
                     Running
-                </a>
-                <a href="{{ 'production/summary'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-summary' ? 'active' }}">
-                    Summary
                 </a>
             </div>
             <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
@@ -297,11 +248,11 @@
                 <a href="{{ 'quote/new_v2'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-new_v2' ? 'active' }}">
                     New Quote | V2
                 </a>
-                <a href="{{ 'quote/quoteapproval'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-quoteapproval' ? 'active' }}">
-                    Quote Approval
-                </a>
                 <a href="{{ 'quote/approval'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-approval' ? 'active' }}">
-                    Quote Approval
+                    Quote Approval Details
+                </a>
+                <a href="{{ 'quote/quoteapproval'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-quoteapproval' ? 'active' }}">
+                    Quote Approval Portal
                 </a>
                 <a href="{{ 'quote/item'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-item' ? 'active' }}">
                     Quote Item
@@ -317,32 +268,7 @@
             </div>
             <div class="collapse show" id="collapse_Reports">
                 <a href="{{ 'reports/weeklyproduction'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'reports-weeklyproduction' ? 'active' }}">
-                    Summary
-                </a>
-            </div>
-            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
-                 data-bs-toggle="collapse" data-bs-target="#collapse_Stickers" style="cursor: pointer;">
-                Stickers
-                <i class="bi bi-chevron-down small"></i>
-            </div>
-            <div class="collapse show" id="collapse_Stickers">
-                <a href="{{ 'stickers/main/details'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-main-details' ? 'active' }}">
-                    Details
-                </a>
-                <a href="{{ 'stickers/invalid'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-invalid' ? 'active' }}">
-                    Invalid
-                </a>
-                <a href="{{ 'stickers/main/home'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-main-home' ? 'active' }}">
-                    Menu
-                </a>
-                <a href="{{ 'stickers/printsticker'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-printsticker' ? 'active' }}">
-                    pipe_stickers
-                </a>
-                <a href="{{ 'stickers/stickerlanding'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-stickerlanding' ? 'active' }}">
-                    sticker_information
-                </a>
-                <a href="{{ 'stickers/stickerhome'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-stickerhome' ? 'active' }}">
-                    sticker_information
+                    Weekly Production Summary
                 </a>
             </div>
             <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
@@ -365,10 +291,10 @@
             </div>
             <div class="collapse show" id="collapse_Visitors">
                 <a href="{{ 'visitors/thankyou'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'visitors-thankyou' ? 'active' }}">
-                    Dashboard
+                    Visitor Induction Feedback
                 </a>
                 <a href="{{ 'visitors/visitinvitation'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'visitors-visitinvitation' ? 'active' }}">
-                    Dashboard
+                    Visitor Invitation Details
                 </a>
             </div>
             <div class="mt-4 p-4 border-top">
