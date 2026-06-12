@@ -221,7 +221,7 @@ class Srn extends Controller
                 //     $message->to($data['to_email'], $data['to_name']);
 
                 //     $message->attach(Config::get('app.url') . "/returnnote/item/download/" . $data['id'] . ".pdf", ['as' => 'return_note.pdf']);
-        });
+                // });
             }
 
 

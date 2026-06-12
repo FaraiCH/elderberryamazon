@@ -52,7 +52,7 @@ columns:
         label: Scrap
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     total_scrap_cost:
         label: Scrap Cost
         invisible: false
@@ -65,7 +65,7 @@ columns:
         label: KG Processed
         searchable: false
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     total_units_produced:
         label: Qty Produced
         searchable: false
@@ -84,7 +84,7 @@ columns:
         label: Over Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
 #    material_used:
 #        label: Material Used
 #        searchable: true

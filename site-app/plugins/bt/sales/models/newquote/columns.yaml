@@ -68,7 +68,7 @@ columns:
         label: Total Inc Vat
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     rate_per_transport:
         label: Rate/Transport
         type: partial
@@ -82,7 +82,7 @@ columns:
     #        label: Delivery Amount/Hidden
     #        searchable: false
     #        type: number
-    #        format: R %.2f
+    #        format: "%.1f kg"
     #        invisible: false
 
     show_invoiced:
@@ -93,20 +93,20 @@ columns:
 #        label: Delivery Amount/Hidden
 #        searchable: false
 #        type: number
-#        format: R %.2f
+#        format: "%.1f kg"
 #        invisible: false
     deliveryamountmargins:
         label: Delivery Margin
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
         invisible: false
 
     buyoutmargins:
         label: Buyout Margin
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
         invisible: false
 
     paymenttracker:

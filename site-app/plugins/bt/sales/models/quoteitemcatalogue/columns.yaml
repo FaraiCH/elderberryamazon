@@ -38,10 +38,10 @@ columns:
 
     weight:
         label: Weight
-        format:  "$%.2f kg"
+        format: "%.1f kg"
     totalweight:
         label: Total Weight
-        format:  "$%.2f kg"
+        format: "%.1f kg"
 
     priceweightunit:
         label: Price Weight Unit

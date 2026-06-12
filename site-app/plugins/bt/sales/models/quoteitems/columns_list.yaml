@@ -28,7 +28,7 @@ columns:
     unitlength:
         label: Length
         type: number
-        format: %.0f
+        format: "%.1f kg"
         
     client:
         label: Client
@@ -50,7 +50,7 @@ columns:
     priceperkg:
         label: Q Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
         
 
     primuimperkg_v:

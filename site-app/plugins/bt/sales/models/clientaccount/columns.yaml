@@ -10,7 +10,7 @@ columns:
         label: Amount
         searchable: true
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     quote:
         label: Quote
         relation: quote

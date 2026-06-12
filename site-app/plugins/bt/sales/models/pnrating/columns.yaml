@@ -16,7 +16,7 @@ columns:
         label: Premium Price
         searchable: true
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     alert:
         label: Alert on quote

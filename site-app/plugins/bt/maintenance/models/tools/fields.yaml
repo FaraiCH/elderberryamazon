@@ -110,4 +110,3 @@ tabs:
         type: fileupload
         tab: Upload Files
         mode: file
-        tab: Files

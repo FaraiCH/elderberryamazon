@@ -450,8 +450,10 @@ class User extends UserBase
     public function getSalesOptions(){
         $salesObj = array();
         $sales_group = UserGroup::where('id', 3)->first();
-        foreach ($sales_group->users as $sales){
-            $salesObj[$sales->id] = $sales->name.'  '.$sales->surname;
+        if ($sales_group && $sales_group->users) {
+            foreach ($sales_group->users as $sales){
+                $salesObj[$sales->id] = $sales->name.'  '.$sales->surname;
+            }
         }
         return $salesObj;
     }
@@ -459,8 +461,10 @@ class User extends UserBase
     public function getITOptions(){
         $ITObj = array();
         $IT_group = UserGroup::where('id', 25)->first();
-        foreach ($IT_group->users as $IT){
-            $ITObj[$IT->id] = $IT->name.'  '.$IT->surname;
+        if ($IT_group && $IT_group->users) {
+            foreach ($IT_group->users as $IT){
+                $ITObj[$IT->id] = $IT->name.'  '.$IT->surname;
+            }
         }
         return $ITObj;
     }

@@ -50,7 +50,7 @@ class DailyEmail extends Controller
         //dd($this->getFloorPipes()->toarray());
     }
 
-    
+
     public function onSendSRNDailyNotification($id = null)
     {
         $data = [
@@ -58,20 +58,22 @@ class DailyEmail extends Controller
         ];
 
         $x = 0;
-        
+
         $groupusers = UserGroup::where('id', 23)->first();
-        foreach ($groupusers->users as $key => $value) {
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
                 $x++;
                 #REQUEST DISCOUNT
                  $data['name'] = $value->name;
                  $data['to_email'] = $value->email;
 
                 Mail::send('bt.notify.srn', $data, function($message) use ($data) {
-                    #$message->to('noezansithole@gmail.com', "Noezan");                        
+                    #$message->to('noezansithole@gmail.com', "Noezan");
                     $message->to($data['to_email'], $data['name']);
                 });
             }
-        
+        }
+
         \Flash::success('Email Sent! Number of users = '.$x);
         //return \Backend::redirect('jadmin/email/bulk/sendforpopularity/'.$id);
     }
@@ -85,21 +87,21 @@ class DailyEmail extends Controller
         $enddate = Carbon::now();
         $current = Carbon::now();
         $startdate = $current->addDays(-30);
-        
+
 
         // $data = array('startdate' => $startdate, 'enddate' => $enddate);
 
-        
+
 
         #$obj = Srn::whereBetween('schedule_date', array($startdate, $enddate." 23:59:00"))->where('active',1)->orderBy("schedule_date","DESC")->get();
         $obj = Srn::whereBetween('schedule_date', array($startdate, $enddate." 23:59:00"))->orderBy("schedule_date","DESC")->get();
 
         if(!empty($obj)){
-            return $obj; 
+            return $obj;
         }else{
             return null;
         }
-        
+
     }
 
 
@@ -109,38 +111,39 @@ class DailyEmail extends Controller
     {
 
         $data = [
-                  
+
 
         'tblfloorpipes' => $this->getFloorPipes(),
         'tblincage' => $this->getMaterials(),
         'tblproduction' => $this->getProduction(),
         'tblmaintainace' => $this->getMaintainace(),
-        
+
 
 
         ];
 
         $x = 0;
 
-          
+
 
           $groupusers = UserGroup::where('id', 8)->first();
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
+                    $x++;
+                    #REQUEST DISCOUNT
+                     $data['name'] = $value->name;
+                     $data['to_email'] = $value->email;
 
-        foreach ($groupusers->users as $key => $value) {
-                $x++;
-                #REQUEST DISCOUNT
-                 $data['name'] = $value->name;
-                 $data['to_email'] = $value->email;
+                    Mail::send('bt.notify.daily', $data, function($message) use ($data) {
+                        #$message->to('noezansithole@gmail.com', "Noezan");
+                        $message->to($data['to_email'], $data['name']);
+                    });
+                }
+        }
 
-                Mail::send('bt.notify.daily', $data, function($message) use ($data) {
-                    #$message->to('noezansithole@gmail.com', "Noezan");                        
-                    $message->to($data['to_email'], $data['name']);
-                });
-            }
 
-            
-        
-        
+
+
         \Flash::success('Email Sent! Number of users = '.$x);
         //return \Backend::redirect('jadmin/email/bulk/sendforpopularity/'.$id);
     }
@@ -149,37 +152,37 @@ class DailyEmail extends Controller
     private function getMaterials(){
         $obj =  RawMaterialReceiving::active()->orderBy("supplier_batch")->get();
         if(!empty($obj)){
-            return $obj; 
+            return $obj;
         }else{
             return null;
         }
-        
+
     }
 
     private function getProduction(){
         #$obj = CageMaterialModel::where('datecaptured', '>=', Carbon::now()->subDay())->orderBy("datecaptured","DESC")->take(20)->get();
         $obj = ScheduleModel::where('total_kg_processed','>',0)->orderBy("production_date","DESC")->take(7)->get();
         if(!empty($obj)){
-            return $obj; 
+            return $obj;
         }else{
             return null;
         }
-        
+
     }
      private function getMaintainace(){
         #$obj = CageMaterialModel::where('datecaptured', '>=', Carbon::now()->subDay())->orderBy("datecaptured","DESC")->take(20)->get();
         $obj =  ModelScheduleMaintenance::active()->orderBy('scheduledate')->get();
         if(!empty($obj)){
-            return $obj; 
+            return $obj;
         }else{
             return null;
         }
-        
+
     }
      private function getFloorPipes(){
         $obj = PipeModel::active()->orderBy('start_date','desc')->get();
         if(!empty($obj)){
-            return $obj; 
+            return $obj;
         }else{
             return null;
         }
@@ -192,20 +195,22 @@ class DailyEmail extends Controller
         ];
 
         $x = 0;
-        
+
         $groupusers = UserGroup::where('id', 26)->first();
-        foreach ($groupusers->users as $key => $value) {
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
                 $x++;
                 #REQUEST DISCOUNT
                  $data['name'] = $value->name;
                  $data['to_email'] = $value->email;
 
                 Mail::send('bt.notify.pnratingquotes', $data, function($message) use ($data) {
-                    #$message->to('noezansithole@gmail.com', "Noezan");                        
+                    #$message->to('noezansithole@gmail.com', "Noezan");
                     $message->to($data['to_email'], $data['name']);
                 });
             }
-        
+        }
+
         \Flash::success('Email Sent! Number of users = '.$x);
         //return \Backend::redirect('jadmin/email/bulk/sendforpopularity/'.$id);
     }
@@ -216,11 +221,11 @@ class DailyEmail extends Controller
         $enddate = Carbon::now();
         $current = Carbon::now();
         $startdate = $current->addDays(-7);
-        
+
 
         // $data = array('startdate' => $startdate, 'enddate' => $enddate);
 
-        
+
 
         $obj = Quoteitems::
         whereHas('product', function($q)  {
@@ -231,11 +236,11 @@ class DailyEmail extends Controller
         whereBetween('created_at', array($startdate, $enddate." 23:59:00"))
         ->orderBy("created_at","DESC")->get();
         if(!empty($obj)){
-            return $obj; 
+            return $obj;
         }else{
             return null;
         }
-        
+
     }
 
     public function onSendApprovalNotification($id = null)
@@ -256,23 +261,25 @@ class DailyEmail extends Controller
             'srnapprov' => $srnapprov
         ];
 
-        
+
 
         $x = 0;
-        
+
         $groupusers = UserGroup::where('id', 8)->first();
-        foreach ($groupusers->users as $key => $value) {
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
                 $x++;
                 #REQUEST DISCOUNT
                  $data['name'] = $value->name;
                  $data['to_email'] = $value->email;
 
                 Mail::send('bt.notify.approvals', $data, function($message) use ($data) {
-                    #$message->to('noezansithole@gmail.com', "Noezan");                        
+                    #$message->to('noezansithole@gmail.com', "Noezan");
                     $message->to($data['to_email'], $data['name']);
                 });
             }
-        
+        }
+
         \Flash::success('Email Sent! Number of users = '.$x);
         //return \Backend::redirect('jadmin/email/bulk/sendforpopularity/'.$id);
     }
@@ -285,18 +292,20 @@ class DailyEmail extends Controller
         ];
 
         $x = 0;
-        
+
         $groupusers = UserGroup::where('id', 25)->first();
-        foreach ($groupusers->users as $key => $value) {
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
                 $x++;
                  $data['name'] = $value->name;
                  $data['to_email'] = $value->email;
 
-                Mail::send('bt.notify.logistics', $data, function($message) use ($data) {                   
+                Mail::send('bt.notify.logistics', $data, function($message) use ($data) {
                     $message->to($data['to_email'], $data['name']);
                 });
             }
-        
+        }
+
         \Flash::success('Email Sent! Number of users = '.$x);
         //return \Backend::redirect('jadmin/email/bulk/sendforpopularity/'.$id);
     }
@@ -306,10 +315,10 @@ class DailyEmail extends Controller
         $delivery = DeliverPlanModel::where('schedule_date', '>=', $now)->get();
 
         if(!empty($delivery)){
-            return $delivery; 
+            return $delivery;
         }else{
             return null;
         }
-        
+
     }
 }

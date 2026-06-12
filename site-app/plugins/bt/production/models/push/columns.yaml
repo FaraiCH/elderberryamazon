@@ -69,7 +69,7 @@ columns:
         select: totalincvat
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/production/models/push/_clientlimit_column.htm
         sortable: false
@@ -79,7 +79,7 @@ columns:
         select: totalincvat
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/production/models/push/_currency_column.htm
         sortable: false

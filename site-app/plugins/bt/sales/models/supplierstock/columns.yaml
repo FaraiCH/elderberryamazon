@@ -16,7 +16,7 @@ columns:
     price:
         label: Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     note: 
         label: Notes
         

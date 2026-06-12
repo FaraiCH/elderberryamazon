@@ -40,37 +40,37 @@ columns:
     ordered_totalcost:
         label: Ordered Total Cost
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     assigned_cost_zar:
         label: Assigned Cost ZAR
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     purge_cost:
         label: Purge Cost
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     5_p_scrap_ls_spillage_weight: 
         label: Scrap Spillage Weight
     5_scrap_ls_spillage_cost:
         label: Scrap Spillage Cost
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     sales_purchase_order_value_zar:
         label: Sales Purchase Ordered Value ZAR
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     ordered_priceperkg:
         label: Ordered Price Per KG
     raw_mix_cost:
         label: Raw Mix Cost
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     total_units_produced:
         label: Total Units Produced
     planned_pre_pargins_zar:
         label: Planned Pre Pargins ZAR
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     planned_pre_margins:
         label: Planned Pre Margins
     kgm_production:
@@ -82,19 +82,19 @@ columns:
     assigned_cost:
         label: Assigned Cost
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     actual_production_cost:
         label: Actual Production Cost
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     actual_margins_zar:
         label: Actual Margins ZAR
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     purge_cost_zar:
         label: Purge Cost ZAR
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     weight_scrap_kg:
         label: Weight Scrap KG
     lab_sample_weight_kg:
@@ -104,7 +104,7 @@ columns:
     scrap_cost_zar:
         label: Scrap Cost ZAR
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     csname:
         label: Controlsheet Name
     batch_no:

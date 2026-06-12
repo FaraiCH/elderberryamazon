@@ -122,14 +122,6 @@ tabs:
 
 
 
-        supplier:
-            label: Supplier
-            disabled: false
-            type: relation
-            select: name
-            span: auto
-            emptyOption: -- select --
-
         stock:
             path: $/bt/sales/controllers/catalogue/_stock.htm
             tab: Account

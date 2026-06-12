@@ -30,10 +30,10 @@ columns:
         label: Trip Quantity
     rate_per_transport:
         label: Rate/Transport
-        format: R %.2f
+        format: "%.1f kg"
     total:
         label: Total Cost
-        format: R %.2f
+        format: "%.1f kg"
     discount:
         label: Discount Percentage
         type: partial

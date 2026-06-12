@@ -33,7 +33,7 @@ fields:
         type: datepicker
         mode: date
         span: auto
-   
+
 tabs:
   fields:
     images:
@@ -46,5 +46,4 @@ tabs:
         type: fileupload
         tab: Upload Files
         mode: file
-        tab: Files
         span: auto

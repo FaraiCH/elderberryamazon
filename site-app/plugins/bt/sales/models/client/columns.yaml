@@ -29,12 +29,12 @@ columns:
         invisible: true
     utilization:
         label: Utilization
-        format: R %.2f
+        format: "%.1f kg"
         type: number
         invisible: false
     limit:
         label: Limit Set
-        format: R %.2f
+        format: "%.1f kg"
         type: number
         invisible: false
 

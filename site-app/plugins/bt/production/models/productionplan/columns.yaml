@@ -23,7 +23,7 @@ columns:
         label: Size
         searchable: true
         type: number
-        format: %.0f mm
+        format: "%.1f kg"
     startdate:
         label: Start Date and Time
 

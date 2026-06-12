@@ -12,10 +12,10 @@ columns:
         label: Quantity
     sell_price:
         label: Unit Sell Price
-        format: R%.2f
+        format: "%.1f kg"
     buy_price:
         label: Unit Buy Price
-        format: R%.2f
+        format: "%.1f kg"
     profit:
         label: Unit Profit
         type: partial

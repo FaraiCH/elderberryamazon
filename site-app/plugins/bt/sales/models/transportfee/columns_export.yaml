@@ -13,29 +13,29 @@ columns:
     ton:
         label: 1-Ton Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     ton_trailer:
         label: 1-Ton and Trailer Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     ton_trailer_min_6m:
         label: 3Ton and Trailer Min 6m Bed Price
         type: number
-        format: R %.2f  
+        format: "%.1f kg"
     ton_min_6m_bed:
         label: 8Ton Min 6m Bed Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     trailer_12m:
         label: 12m Trailer Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     trailer_18m:
         label: 18m Trailer Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     curtain_side_link:
         label: Curtain Side Link Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 

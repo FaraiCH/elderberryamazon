@@ -34,7 +34,7 @@ columns:
         label: Total Inc Vat
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     show_invoiced:
         label: Total Invoiced
     transport_cost:
@@ -53,14 +53,14 @@ columns:
         label: Delivery Margin
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
         invisible: false
 
     buyoutmargins:
         label: Buyout Margin
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
         invisible: false
 
     paymenttracker_name:

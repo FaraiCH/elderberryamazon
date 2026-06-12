@@ -8,7 +8,7 @@ fields:
     type: switch
 
   job_summary:
-    label: Job Summary 
+    label: Job Summary
     span: left
   priority:
     span: right
@@ -16,23 +16,23 @@ fields:
     type: dropdown
     options:
         1: 1 - Urgent
-        2: 2 - Not Urgent 
+        2: 2 - Not Urgent
   btline:
-    label: Plant Item    
+    label: Plant Item
     select: name
     type: relation
     span: left
   actiontype:
-    label: Schedule Type    
+    label: Schedule Type
     select: name
     type: relation
     span: right
-  
+
   scheduledate:
-    label: Schedule Date And Time    
+    label: Schedule Date And Time
     type: datepicker
     required: yes
-    
+
   budget:
     label: Budget
     span: left
@@ -43,13 +43,13 @@ fields:
 tabs:
   fields:
     assignedto:
-      label: Assigned To    
+      label: Assigned To
       select: name
       type: relation
       span: left
       tab: Setup
     machinestatus:
-      label: Request Machine To Be    
+      label: Request Machine To Be
       select: name
       type: relation
       span: right
@@ -60,38 +60,38 @@ tabs:
       type: number
       span: left
     instruction_notes:
-      label: Instruction Notes Or Action To be Taken      
+      label: Instruction Notes Or Action To be Taken
       type: textarea
       size: small
       tab: Setup
       span: right
-      
+
     status:
-      label: Schedule Status    
+      label: Schedule Status
       select: name
       type: relation
       span: right
       tab: Complete/Close Schedule
     completedby:
-      label: Completed By    
+      label: Completed By
       select: name
       type: relation
       span: left
       tab: Complete/Close Schedule
-    
-    
-    completedby:
+
+
+    completed_by_text:
       label: Completed By
       type: text
       tab: Complete/Close Schedule
     completion_notes:
-      label: Completion Notes      
+      label: Completion Notes
       type: textarea
       size: small
       tab: Complete/Close Schedule
       span: left
     spares_used:
-      label: Spares Used      
+      label: Spares Used
       type: textarea
       size: small
       tab: Complete/Close Schedule

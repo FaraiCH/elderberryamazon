@@ -20,19 +20,19 @@ columns:
         label: Capacity p/h
         span: auto
         type: number
-        format: %.0f kg
+        format: "%.1f kg"
 
     max_weight:
         label: Max Weight
         span: auto
         type: number
-        format: %.0f kg
+        format: "%.1f kg"
 
     min_weight:
         label: Min Weight
         span: auto
         type: number
-        format: %.0f kg
+        format: "%.1f kg"
 
     online:
         label: On Line

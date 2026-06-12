@@ -25,9 +25,6 @@ columns:
     haswarranty:
         label: has-warranty
         type: switch
-    quantity:
-        label: quantity
-        type: number
     description:
         label: description
         type: number

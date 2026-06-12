@@ -41,14 +41,14 @@ class QuoteReponse extends Controller
             $this->vars['endresp'] = $_SESSION['endresp'];
         }
 
-     
+
         // $this->addCss("/plugins/bt/production/assets/css/additional.css", "1.0.0");
         // $this->addJs("/plugins/bt/production/assets/js/popthis.js", "1.0.0");
         // $this->addJs("/plugins/bt/production/assets/js/scheduleinput.js", "1.0.0");
 
     }
 
-    
+
 
       public function listExtendQuery($query, $definition = null)
     {
@@ -65,7 +65,7 @@ class QuoteReponse extends Controller
         $supported_pdf = array('pdf');
         $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); // Using strtolower to overcome case sensitive
         if (in_array($ext, $supported_image)) {
-            return ' <img src="'.$src_file_name.'" style="width: 100%;   > ';
+            return ' <img src="'.$src_file_name.'" style="width: 100%;" > ';
         }elseif (in_array($ext, $supported_pdf)) {
             return ' <embed src="'.$src_file_name.'" width="100%"  height="100%" /> ';
         }

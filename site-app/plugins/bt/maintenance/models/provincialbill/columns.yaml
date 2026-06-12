@@ -29,7 +29,7 @@ columns:
 
     standard_amount:
         label: Standard Amount
-        format: R %.2f
+        format: "%.1f kg"
 
 
     on_peak_kwh:
@@ -38,20 +38,20 @@ columns:
     on_peak_amount:
         label: On Peak Amount
 
-        format: R %.2f
+        format: "%.1f kg"
 
 
     max_demand_amount:
         label: Max Demand Amount
 
-        format: R %.2f
+        format: "%.1f kg"
 
     fixed_charge_amount:
         label: Fixed Charge
 
-        format: R %.2f
+        format: "%.1f kg"
 
     network_access_amount:
         label: Network Access
-        format: R %.2f
+        format: "%.1f kg"
 

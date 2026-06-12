@@ -130,7 +130,7 @@ h2.pagetitle{
 	padding: 5px;
 	text-transform: uppercase;
 	color: #fff;
-	
+
 	line-height: 25px;
 	-webkit-box-shadow: 2px 3px 9px -3px rgba(36,36,36,1);
 	-moz-box-shadow: 2px 3px 9px -3px rgba(36,36,36,1);
@@ -141,7 +141,7 @@ h3.posttitle{
 	font-weight: 400;
 	font-size: 20px;
 	padding-left: 5px;
-	padding-bottom: px;
+	padding-bottom: 0px;
 
 
 }
@@ -187,7 +187,7 @@ ol ol > li:before {
 </head>
 <body>
 	<div class="footer">
-            <p class="left">
+            <div class="left">
             	<table>
             		<tr>
             			<td valign="top" width="30%">Tel. +27 11 966 8058<br>
@@ -198,14 +198,14 @@ ol ol > li:before {
 							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
 
 						</td>
-                
+
                 <td width="10%"><span class="pagenumber"></span></td></tr></table>
-                
-           
-            </p>
-            
+
+
+            </div>
+
         </div>
-   	
+
 		<div style="position: absolute; top: 0px; left: 0px; width: 100%; background: #fff; padding-bottom: 40px"><img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Production-report-cover-1.jpg" alt="BT Industrial" style="width: 100%" ></div>
 		<div class="page-break"></div>
 			<div style="padding-top: 200px; padding-left: 100px; width: 70%; text-align: center;">
@@ -218,7 +218,8 @@ ol ol > li:before {
 			<div class="page-break"></div>
 			<h1 style="margin: 20px; font-weight: 700; color: #242947">TABLE OF CONTENTS</h1>
 			<ol class="list_intro">
-			{% for cat in categories if cat.post_count > 0 %}
+			{% for cat in categories %}
+				{% if cat.post_count > 0 %}
 				{% set postCount = cat.post_count %}
 			    <li style="font-weight: bold; margin-top: 20px;"><a style="display: block;margin-bottom: 10px; " href="#tab_{{loop.index}}">{{ cat.name }}</a>
 			    	<ol>
@@ -227,26 +228,28 @@ ol ol > li:before {
 					    {% endfor %}
 			    	</ol>
 			    </li>
+				{% endif %}
 			{% endfor %}
 			</ol>
 
-			{% for cat in categories if cat.post_count > 0 %}
-				<div class="page-break"></div>
-				{% set i = loop.index %}
-			    <h2  class="pagetitle" id="tab_{{loop.index}}">{{ loop.index }}. {{ cat.name }}</h2>
+			{% for cat in categories %}
+				{% if cat.post_count > 0 %}
+					<div class="page-break"></div>
+					{% set i = loop.index %}
+					<h2  class="pagetitle" id="tab_{{loop.index}}">{{ loop.index }}. {{ cat.name }}</h2>
 
-			    {% for post in cat.posts %}
-			    	<h3 id="subtab_{{loop.index}}" class="posttitle">{{i}}.{{loop.index}} {{ post.title }}</h3>
-			    	<div class="content">{{ post.content_html|raw }}</div>
-			    {% endfor %}
-
+					{% for post in cat.posts %}
+						<h3 id="subtab_{{loop.index}}" class="posttitle">{{i}}.{{loop.index}} {{ post.title }}</h3>
+						<div class="content">{{ post.content_html|raw }}</div>
+					{% endfor %}
+				{% endif %}
 			{% endfor %}
 
-			
 
 
-		
+
+
 		<div style="width: 100%; background: #fff; padding-bottom: 40px"><img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Production-report-cover-2.jpg" alt="BT Industrial" style="max-width: 99%; " ></div>
-	
+
 </body>
 </html>

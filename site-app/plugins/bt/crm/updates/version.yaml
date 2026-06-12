@@ -1,5 +1,5 @@
-1.0.1: 
+1.0.1:
   - First version of CRM
-  - create_production_reports_table -php
-  - create_assets_table -php
+  - create_production_reports_table.php
+  - create_assets_table.php
   - create_export_forms_table.php

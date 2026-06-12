@@ -74,9 +74,9 @@ class Job extends Model
     }
     public function beforeUpdate()
     {
-        // $user = BackendAuth::getUser();
+        $user = BackendAuth::getUser();
         if (!$user) return;
-        // $this->updated_by = $user->id;
+        $this->updated_by = $user->id;
         // $data['job_task_status'] = $this->status->name;
 
         // $data['job_task_responder_email'] = $this->responder->email;
@@ -92,15 +92,16 @@ class Job extends Model
         //         $data['job_task_responder_email'] => $data['job_task_responder_name'],
         //         $data['job_assigned_to_email'] => $data['job_assigned_to_name']
         //     ]);
-        });
-
+        // });
     }
 
     public function getITOptions(){
         $ITObj = array();
         $IT_group = UserGroup::where('id', 25)->first();
-        foreach ($IT_group->users as $IT){
-            $ITObj[$IT->id] = $IT->name.'  '.$IT->surname;
+        if ($IT_group && $IT_group->users) {
+            foreach ($IT_group->users as $IT){
+                $ITObj[$IT->id] = $IT->name.'  '.$IT->surname;
+            }
         }
         return $ITObj;
     }

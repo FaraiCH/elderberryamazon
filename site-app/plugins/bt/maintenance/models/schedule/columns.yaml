@@ -29,7 +29,7 @@ columns:
     budget:
         label: budget
         searchable: true
-        format: R %.2f
+        format: "%.1f kg"
     scheduledate:
         label: Schedule Date
         searchable: true

@@ -31,11 +31,11 @@ columns:
     amount:
         label: Amount Requesting
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     amount_left:
         label: Amount Left After Purchase
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     paymenttype:
         label: Payment Type
         select: name

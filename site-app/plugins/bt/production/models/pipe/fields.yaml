@@ -34,13 +34,6 @@ fields:
         span: storm
         mode: date
 
-    pipe_target_weight:
-        label: Pipe Target Weight
-        disabled: false
-        cssClass: noezanclass col-sm-4
-        span: storm
-
-
     btline:
         label: Line
         select: name

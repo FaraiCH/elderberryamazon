@@ -51,4 +51,6 @@
 - Create bag batches
 - create_bag_batches_table.php
 - create_batch_prefixes_table.php
+2.0.7:
+- Fix duplicate keys in YAML files
 

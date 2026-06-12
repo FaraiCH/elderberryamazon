@@ -22,7 +22,7 @@ columns:
         relation: Diameter
         select: name
         type: number
-        format: %.2f mm
+        format: "%.1f kg"
 
     value:
         label: Mass (kg/m)

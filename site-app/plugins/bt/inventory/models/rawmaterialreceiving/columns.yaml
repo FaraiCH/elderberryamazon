@@ -53,7 +53,7 @@ columns:
         label: Price Per kg
         searchable: true
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     damagedbags:
         label: Damaged Bags

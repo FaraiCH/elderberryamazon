@@ -246,9 +246,8 @@ tabs:
         fabrication:
             label: Is Fabrication?
             cssClass: noezanclass col-sm-6
-            span: storm
             type: dropdown
-            span: auto
+            span: storm
             disabled: true
             tab: Complete Delivery
         reporting:

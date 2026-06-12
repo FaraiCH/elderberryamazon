@@ -22,7 +22,7 @@ fields:
         span: auto
         ignoreTimezone: true
     quote:
-        label: Quote Number  
+        label: Quote Number
         select: concat(id, ' > ', company_name)
         type: relation
         span: auto
@@ -85,7 +85,7 @@ tabs:
             type: number
             tab: Usage
             span: auto
-       
+
         trafficoffense_notes@update:
             label: Notes and Comments
             type: textarea
@@ -100,7 +100,6 @@ tabs:
             type: fileupload
             tab: Traffic Offences
             mode: file
-            tab: Files
         damages_notes@update:
             label: Notes and Comments
             type: textarea
@@ -115,7 +114,6 @@ tabs:
             type: fileupload
             tab: Damages
             mode: file
-            tab: Files
 
         logisticapprove@update:
             path: $/bt/logistics/controllers/schedule/_approve.htm

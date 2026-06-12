@@ -300,6 +300,6 @@ class QuoteReponse extends Model
      private function sendmail($data){
         // Mail::send($data['email'], $data, function($message) use ($data) {
         //     $message->to($data['to_email'], $data['to_name']);
-        });
+        // });
     }
 }

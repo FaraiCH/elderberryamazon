@@ -27,14 +27,14 @@ fields:
         cssClass: noezanclass col-sm-6
         span: storm
         type: number
-        format: %.0f kg
+        format: "%.1f kg"
 
     min_weight:
         label: Min Weight
         cssClass: noezanclass col-sm-6
         span: storm
         type: number
-        format: %.0f kg
+        format: "%.1f kg"
 
     online:
         label: On Line

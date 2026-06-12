@@ -18,7 +18,7 @@ columns:
         label: Weight In Kg
         searchable: true
         type: number
-        format:  %.1f kg 
+        format: "%.1f kg"
     createdby:
         label: Create By
         searchable: true

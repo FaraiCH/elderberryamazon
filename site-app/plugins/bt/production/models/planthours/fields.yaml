@@ -9,7 +9,7 @@ fields:
         hidden: true
 
     ########On update show the ID
-    id:
+    id@update:
         label: ID
         disabled: true
         invisible: true
@@ -23,14 +23,14 @@ fields:
 
     workDate:
         label: Work Day
-        type: datepicker 
+        type: datepicker
         mode: date
         span: right
-        invisible: true 
+        invisible: true
 
     hours:
         label: Hours
         type: number
         span: left
-    
+
 

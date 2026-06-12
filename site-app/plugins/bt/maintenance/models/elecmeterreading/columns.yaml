@@ -11,26 +11,26 @@ columns:
     reading:
         label: Readings
         type: number
-        format:  %.2f kwH
+        format: "%.1f kg"
 
     pfl1:
         label: pfl1
         type: number
-        format:  %.2f kwH
+        format: "%.1f kg"
 
     pfl2:
         label: pfl2
         type: number
-        format:  %.2f kwH
+        format: "%.1f kg"
 
     pfl3:
         label: pfl3
         type: number
-        format:  %.2f kwH
+        format: "%.1f kg"
     meltblown:
         label: meltblown
         type: number
-        format:  %.2f kwH
+        format: "%.1f kg"
     notes:
         label: Notes
     createdby:

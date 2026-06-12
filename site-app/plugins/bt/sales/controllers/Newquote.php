@@ -15,7 +15,6 @@ use EJ\Grid\Column;
 use Flash;
 use App;
 use Carbon\Carbon;
-use http\QueryString;
 use Illuminate\Validation\Rules\In;
 use RainLab\User\Models\User;
 use Redirect;
@@ -149,34 +148,36 @@ class Newquote extends Controller
 
         $groupusers = UserGroup::where('id', 5)->first();
 
-        foreach ($groupusers->users as $key => $value) {
-            $x++;
-            $data = [];
-            $data['to_name'] = $value->name;
-            $data['to_email'] = $value->email;
-            $data['sales_name'] = $quote->user->name;
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
+                $x++;
+                $data = [];
+                $data['to_name'] = $value->name;
+                $data['to_email'] = $value->email;
+                $data['sales_name'] = $quote->user->name;
 
-            $data['billing_name'] = $quote->billing_name;
-            $data['company_name'] = $quote->company_name;
-            $data['quote_total'] = $quote->quote_total;
-            $data['quote'] = $quote;
-            $data['notes'] = '';
+                $data['billing_name'] = $quote->billing_name;
+                $data['company_name'] = $quote->company_name;
+                $data['quote_total'] = $quote->quote_total;
+                $data['quote'] = $quote;
+                $data['notes'] = '';
 
-            $data['ref'] = "#BT-" . $quote->id;
-            $data['response_details'] =  $link;
+                $data['ref'] = "#BT-" . $quote->id;
+                $data['response_details'] =  $link;
 
-            Mail::send('BT.sales.response.notifyinvoice', $data, function ($message) use ($data) {
-                //$message->subject("BT Industrial Production Approval: ".$data['ref']);
+                Mail::send('BT.sales.response.notifyinvoice', $data, function ($message) use ($data) {
+                    //$message->subject("BT Industrial Production Approval: ".$data['ref']);
 
-                $message->to($data['to_email'], $data['to_name']);
+                    $message->to($data['to_email'], $data['to_name']);
 
-                $message->attach(Config::get('app.url') . "/quote/item/download/" . $data['quote']['id'] . ".pdf", ['as' => 'Original Quote.pdf']);
-                $message->attach(Config::get('app.url') . "/quote/invoice/download/" . $data['quote']['id'], ['as' => 'Invoice.pdf']); //#INVOICE
-                $message->attach(Config::get('app.url') . "/quote/response/download/" . $data['quote']['id'] . "/10", ['as' => 'PO.pdf']); #po
-                $message->attach(Config::get('app.url') . "/quote/response/download/" . $data['quote']['id'] . "/9", ['as' => 'Singed Quote.pdf']);
-                #SIGNED QOUTE
+                    $message->attach(Config::get('app.url') . "/quote/item/download/" . $data['quote']['id'] . ".pdf", ['as' => 'Original Quote.pdf']);
+                    $message->attach(Config::get('app.url') . "/quote/invoice/download/" . $data['quote']['id'], ['as' => 'Invoice.pdf']); //#INVOICE
+                    $message->attach(Config::get('app.url') . "/quote/response/download/" . $data['quote']['id'] . "/10", ['as' => 'PO.pdf']); #po
+                    $message->attach(Config::get('app.url') . "/quote/response/download/" . $data['quote']['id'] . "/9", ['as' => 'Singed Quote.pdf']);
+                    #SIGNED QOUTE
 
-            });
+                });
+            }
         }
 
 

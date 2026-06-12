@@ -49,14 +49,14 @@ columns:
         type: partial
         path: $/bt/production/models/schedule/_currency_column.htm
         searchable: false
-            
+
     priceperpipe:
         label: Cost Produced
         invisible: false
         type: partial
         path: $/bt/production/models/schedule/_costproduced_column.htm
     materialvalue:
-        label: Material Cost 
+        label: Material Cost
         invisible: false
         type: partial
         path: $/bt/production/models/schedule/_currency_column.htm
@@ -78,7 +78,7 @@ columns:
         label: Scrap
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     total_scrap_cost:
         label: Scrap Cost
         invisible: false
@@ -87,7 +87,7 @@ columns:
         searchable: false
 
 
-    
+
     # scheduled:
     #     label: scheduled
     #     type: partial
@@ -101,26 +101,26 @@ columns:
         searchable: true
 
     # assignedto:
-    #     label: Operator Name    
+    #     label: Operator Name
     #     relation: assignedto
     #     select: name
-    
+
     # target_kg_processed:
     #     label: Target KG #Processed
     #     searchable: true
     #     type: number
-    #     format: %.1f kg
+    #     format: "%.1f kg"
     # target_units_produced:
     #     label: Target Qty # Produced
     #     searchable: true
     #     type: number
-    #     format:  %.0f Pipes
-    
+    #     format: "%.1f kg"
+
     total_kg_processed:
         label: KG Processed
         searchable: false
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     total_units_produced:
         label: Qty Produced
         searchable: false
@@ -131,15 +131,15 @@ columns:
         label: Extra Pipes
         searchable: false
     # scrapcode:
-    #     label: Scrap Code   
+    #     label: Scrap Code
     #     select: concat(code, ' > ', reason)
     #     relation: scrapcode
-        
+
     over_weight_kg:
         label: Over Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     material_used:
         label: Material Used
         searchable: true

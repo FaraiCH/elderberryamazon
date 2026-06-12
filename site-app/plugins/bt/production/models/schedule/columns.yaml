@@ -21,7 +21,7 @@ columns:
         label: Price Per Pipe
         invisible: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
 
     pipe_id:
@@ -32,7 +32,7 @@ columns:
         label: Day
         searchable: true
 
-        format:  Day %.0f
+        format: "%.1f kg"
     production_date:
         label: Prod. Date
         searchable: true
@@ -64,17 +64,17 @@ columns:
         label: Target KG #Processed
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     target_units_produced:
         label: Target Qty # Produced
         searchable: true
         type: number
-        format:  %.0f Pipes
+        format: "%.1f kg"
     total_kg_processed:
         label: KG Processed
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     total_units_produced:
         label: Qty Produced
         searchable: true
@@ -87,7 +87,7 @@ columns:
         label: Scrap
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     # scrapcode:
     #     label: Scrap Code
     #     select: concat(code, ' > ', reason)
@@ -97,7 +97,7 @@ columns:
         label: Over Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     reason_deviation_processed:
         label: Reason Deviation Processed
         searchable: true

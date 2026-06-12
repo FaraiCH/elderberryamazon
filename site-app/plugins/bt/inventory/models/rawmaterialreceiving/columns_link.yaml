@@ -56,12 +56,12 @@ columns:
         label: Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     pricekg:
         label: Price Per kg
         searchable: true
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     releasedcount:
         label: Released
         type: partial

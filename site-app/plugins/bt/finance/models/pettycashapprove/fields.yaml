@@ -10,12 +10,11 @@ fields:
       label: Approve Petty Cash
       type: dropdown
       span: auto
-      options:        
-        0: Not Approved 
+      options:
+        0: Not Approved
         1: Approved
         2: Rejected
     createdby:
-      span: auto
       label: Created By
       disabled: true
       type: relation
@@ -31,4 +30,3 @@ fields:
       select: concat(first_name, ' ', last_name)
       placeholder: -- select a status --
       comment: Please ignore, this field will be automated
-    

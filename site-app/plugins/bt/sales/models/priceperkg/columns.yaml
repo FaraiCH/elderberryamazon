@@ -10,7 +10,7 @@ columns:
     amount:
         label: Price Per Kg
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     created_at:
         label: Date Created
         searchable: true

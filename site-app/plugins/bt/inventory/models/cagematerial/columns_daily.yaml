@@ -17,7 +17,7 @@ columns:
         label: Weight In Kg
         searchable: true
         type: number
-        format:  %.1f kg
+        format: "%.1f kg"
     comments:
         label: Comments
     createdby:

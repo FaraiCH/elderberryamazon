@@ -39,7 +39,7 @@ columns:
         label: Pipe Target Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     btline:
         label: BT Line
         searchable: true
@@ -50,7 +50,7 @@ columns:
         label: Production Rate
         searchable: true
         type: number
-        format: %.1f km/h
+        format: "%.1f kg"
     target_scrap_rate:
         label: Target Scrap Rate %
         searchable: true

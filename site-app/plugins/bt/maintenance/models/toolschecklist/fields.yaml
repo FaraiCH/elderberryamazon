@@ -4,13 +4,13 @@
 
 fields:
     checklist:
-        label: Checklist Setup   
+        label: Checklist Setup
         select: name
         type: relation
         span: left
 
     status:
-        label: Schedule Status    
+        label: Schedule Status
         select: name
         type: relation
         span: right
@@ -18,20 +18,20 @@ fields:
     instructions:
         label: Instructions
         span: left
-    
+
     assignedto:
-        label: Assigned To    
+        label: Assigned To
         select: name
         type: relation
         span: right
 
     scheduledate:
-        label: Schedule Date    
+        label: Schedule Date
         type: datepicker
         required: yes
         ignoreTimezone: true
 tabs:
-  fields:   
+  fields:
     condition@update:
         label: Results Condition
         select: name
@@ -46,8 +46,7 @@ tabs:
     files@update:
         label: Results Files
         type: fileupload
-        tab: Upload Files
+        tab: Results
         mode: file
-        tab: Files
 
-        
+

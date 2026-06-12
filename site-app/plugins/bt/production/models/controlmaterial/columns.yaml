@@ -25,4 +25,4 @@ columns:
     kg_per_measurement:
         label: KG Per Measurement
         type: number
-        format:  '%.2f kg'
+        format: "%.1f kg"

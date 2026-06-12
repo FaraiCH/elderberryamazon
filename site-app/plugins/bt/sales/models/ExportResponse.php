@@ -105,7 +105,7 @@ class ExportResponse extends ExportModel
     // public function getAltfilesAttribute(){
     //     $myresponse = \Cache::remember('quote_response_' . $this->id, 3600, function () {
     //         return QuoteReponse::with('file')->find($this->id);
-        });
+    //     });
 
     //     if ($myresponse && $myresponse->file) {
 

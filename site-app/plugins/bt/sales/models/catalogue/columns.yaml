@@ -28,30 +28,30 @@ columns:
     # description:
     #     label: Description
     #     searchable: true
-   
+
     price:
         label: Selling Price
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     supplierprice:
         label: Supplier Price
         searchable: false
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
-    gp: 
-        label: Gross Profit  
+    gp:
+        label: Gross Profit
     product_code:
         label: Product Code
 
     size:
         label: Size
-        
-    qty: 
+
+    qty:
         label: Qty
-        
+
 
     next_price_date:
         label: Next Price Update Date
@@ -61,15 +61,11 @@ columns:
         label: Margin
         type: partial
         path: $/bt/sales/models/catalogue/_margin_column.htm
-        type: number
-        format: R %.2f
     marginper:
         label: Perc
         type: partial
         path: $/bt/sales/models/catalogue/_margin_perc_column.htm
-        type: number
-        format: R %.2f
-    
+
     active:
         label: Active
         type: partial
@@ -88,7 +84,7 @@ columns:
         label: Date Created
         format: d-m-Y
         type: date
-      
+
     updated_at:
         label: Date Updated
         format: d-m-Y

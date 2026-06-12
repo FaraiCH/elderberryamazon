@@ -22,7 +22,7 @@ fields:
     vatno:
         label: VAT No
         span: auto
-    
+
     coreg:
         label: CO Reg
         span: auto
@@ -41,7 +41,7 @@ fields:
         label: Website
         tab: Contact Details
         span: auto
-    
+
 tabs:
     fields:
         contact_name:
@@ -56,7 +56,7 @@ tabs:
             label: Contact Number
             tab: Contact Details
             span: auto
-        
+
 
         extra_contacts:
             type: repeater
@@ -76,7 +76,7 @@ tabs:
                         label: Contact Number
                         tab: Contact Details
                         span: auto
-        
+
 
         physical_address:
             label: Physical Address
@@ -174,9 +174,3 @@ tabs:
             tab: Vendor Criteria
             span: auto
 
-        blacklisted_notes:
-            label: Notes
-            type: textarea
-            tab: Blacklisted
-            size: small
-            span: auto

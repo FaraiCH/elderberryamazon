@@ -32,11 +32,11 @@ columns:
     amount:
         label: Amount
         #type: number
-        #format: R %.2f
+        #format: "%.1f kg"
         #searchable: true
 
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/finance/models/requisition/_currency_column.htm
         sortable: true
@@ -50,19 +50,19 @@ columns:
     #     relation: lineapprove
     #     select: price
     #     type: number
-    #     format: R %.2f
+    #     format: "%.1f kg"
     # managerapprove:
     #     label: HO Amount
     #     relation: managerapprove
     #     select: price
     #     type: number
-    #     format: R %.2f
+    #     format: "%.1f kg"
     # financeapprove:
     #     label: Paid Amount
     #     relation: financeapprove
     #     select: price
     #     type: number
-    #     format: R %.2f
+    #     format: "%.1f kg"
     lineapprove_a:
         label: Line Manager Approved
         type: partial

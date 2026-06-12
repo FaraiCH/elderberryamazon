@@ -22,9 +22,9 @@
 1.0.4:
 - COC
 - create_reqcertificates_table.php
-#1.0.5:
-#- Create Pickslip
-#- create_pickslips_table.php
+1.0.5:
+- Create Pickslip
+- create_pickslips_table.php
 1.0.6:
 - Create QcEquipment
 - create_qc_equipments_table.php
@@ -38,3 +38,5 @@
 1.0.12:
 - Create QC Reasons
 - create_qcreasons_table.php
+1.0.13:
+- Fix duplicate keys in YAML files

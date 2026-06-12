@@ -19,12 +19,12 @@ columns:
     straight:
         label: Straight
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     coil:
         label: Coil
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     target:
         label: Target

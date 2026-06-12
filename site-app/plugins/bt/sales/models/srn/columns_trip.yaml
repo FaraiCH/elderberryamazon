@@ -34,7 +34,7 @@ columns:
     deliveryprice:
         label: Delivery Price
         type: Number
-        format: R %.2f
+        format: "%.1f kg"
         invisible: false
     client:
         label: Client Name

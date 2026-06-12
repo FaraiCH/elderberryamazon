@@ -33,7 +33,7 @@ columns:
         select: totalincvat
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/production/models/push/_currency_column.htm
     Invoiced:
@@ -47,7 +47,7 @@ columns:
         label: Amount on PO
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/plcommon/partials/_currency_column.htm
 

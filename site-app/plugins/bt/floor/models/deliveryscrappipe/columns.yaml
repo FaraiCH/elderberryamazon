@@ -22,21 +22,21 @@ columns:
         label: Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     floor_kg:
         label: Scrap To Date
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     supplier_qty:
         label: Supplier Weight
         searchable: true
         type: number
-        format: %.1f kg
+        format: "%.1f kg"
     supplier_totalincvat:
         label: Supplier Price
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     notes:
         label: Notes
         searchable: true

@@ -18,6 +18,6 @@ columns:
         path: $/bt/production/models/rawproductionplan/partials/total_assigned_weight.htm
     raw_material_cost:
         label: Raw Material Cost
-        format: R %.2f
+        format: "%.1f kg"
 
 

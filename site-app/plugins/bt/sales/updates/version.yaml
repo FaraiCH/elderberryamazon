@@ -206,4 +206,25 @@
 
 3.1.21:
 - Update Catalogue
+3.1.22:
+    - Fix duplicate keys in YAML files
+    - update_fabrications_table_add_ponumber.php
+3.1.23:
+    - Add missing columns to bt_sales_invoices table
+    - update_invoices_table_add_amount_and_srn_id.php
+3.1.24:
+    - Add missing ponumber column to bt_sales_newquote table
+    - update_newquote_table_add_ponumber.php
+3.1.25:
+    - Add missing client_id column to bt_sales_newquote table
+    - update_newquote_table_add_client_id.php
+3.1.26:
+    - Add missing category_name column to bt_sales_categories table
+    - update_categories_table_add_category_name.php
+3.1.27:
+    - Add missing quote_id column to bt_sales_srns table
+    - update_srns_table_add_quote_id.php
+3.1.28:
+    - Add missing ismanaged column to bt_sales_categories table
+    - update_categories_table_add_ismanaged.php
 

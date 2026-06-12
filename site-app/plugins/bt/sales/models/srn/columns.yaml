@@ -54,7 +54,7 @@ columns:
         searchable: true
         sortable: false
         invisible: true
-    active:
+    completed:
         label: Completed
         type: partial
         path: $/bt/sales/models/srn/_active.htm
@@ -62,7 +62,6 @@ columns:
         sortable: false
     emailedtofinance:
         label: Emailed To FIN
-        invisible: false
         type: partial
         path: $/bt/sales/models/srn/_email.htm
         searchable: false
@@ -97,7 +96,7 @@ columns:
     deliveryprice:
         label: Delivery Price
         type: Number
-        format: R %.2f
+        format: "%.1f kg"
         invisible: false
 
     # linkaltinvoice:

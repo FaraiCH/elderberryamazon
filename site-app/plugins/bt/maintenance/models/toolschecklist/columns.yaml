@@ -23,7 +23,7 @@ columns:
         path: $/bt/maintenance/models/toolschecklist/_daysleft_column.htm
         searchable: false
         sortable: false
-       
+
     status:
         label: Status
         searchable: true
@@ -35,14 +35,6 @@ columns:
         relation: checklist
         select: name
 
-    tool:
-        label: Equipment Type
-        searchable: true
-        relation: tool
-        select: name
-    scheduledate:
-        label: Schedule Date
-        searchable: true
     createdby:
         label: Create By
         searchable: true

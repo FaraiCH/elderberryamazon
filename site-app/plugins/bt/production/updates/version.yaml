@@ -129,3 +129,11 @@
 4.0.2:
 - Create Assistant
 - create_assistants_table.php
+4.0.3:
+- Fix syntax error in columns_run.yaml
+4.0.4:
+    - Add controlsheet_id to schedules table
+    - update_schedules_table_add_controlsheet_id.php
+4.0.5:
+    - Add missing kg column to bt_production_material_useds table
+    - update_material_useds_table_add_kg.php

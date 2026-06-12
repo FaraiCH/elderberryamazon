@@ -15,5 +15,4 @@ fields:
     dailyincate@update:
         label: Daily Incage Material
         path: $/bt/inventory/models/dailymaterial/_incage.htm
-
         type: partial

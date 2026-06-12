@@ -24,11 +24,11 @@ class SeederToolsTE extends Seeder
         $dobj = Diameter::all();
         $convertdiameter = array();
         foreach ($dobj as $key => $value) {
-        $convertdiameter{$value->name} = $value->id;
+        $convertdiameter[$value->name] = $value->id;
         }
 
         // print dd($convertdiameter);
-       
+
         $filename = plugins_path($this->sFilePath);
         $file = fopen($filename, "r");
         //Skip first line
@@ -36,8 +36,8 @@ class SeederToolsTE extends Seeder
         while ( ($data = fgetcsv($file, 200, ",")) !==FALSE ) {
         // print $data[0]." - ".$data[1]."\n";
         if($data[0] > 0 && $data[1] > 0){
-        $obj = Product::where('diameter_id',"=",$convertdiameter{$data[1]})->where('pn_ratings_id',"=",$data[0])->first();
-              
+        $obj = Product::where('diameter_id',"=",$convertdiameter[$data[1]])->where('pn_ratings_id',"=",$data[0])->first();
+
         if(!empty($obj)){
         print "found:".$data[10]." > ".$obj->value." - ".$obj->production_value."\n";
         // $obj->od_min = $data[2];
@@ -53,10 +53,10 @@ class SeederToolsTE extends Seeder
         $obj->save();
         }
         }
-            
+
         }
 
-       
+
     }
 }
 

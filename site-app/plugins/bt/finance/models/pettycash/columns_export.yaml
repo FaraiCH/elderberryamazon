@@ -15,7 +15,7 @@ columns:
     amount:
         label: Amount Requesting
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     payment_type: 'Payment type'
 
     uploader: 'Slip Uploads'

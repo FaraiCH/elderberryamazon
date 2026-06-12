@@ -37,7 +37,7 @@ columns:
     weight:
         label: Weight
         type: number
-        format: %.0f KG
+        format: "%.1f kg"
 
     deliveredweight:
         label: Delivered Weight
@@ -57,7 +57,7 @@ columns:
     price:
         label: Price in Rands
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     createdby:
         label: Create By
         searchable: true

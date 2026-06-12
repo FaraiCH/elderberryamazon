@@ -24,33 +24,33 @@ columns:
     off_peak_amount:
         label: Off Peak Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     standard_kwh:
         label: Standard KWH
     standard_amount:
         label: Standard Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     on_peak_kwh:
         label: On Peak KWH
     on_peak_amount:
         label: On Peak Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     max_demand_amount:
         label: Max Demand Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     fixed_charge_amount:
         label: Fixed Charge Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     network_access_amount:
         label: Network Access Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     total_amount:
         label: Total Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
         

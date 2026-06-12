@@ -71,7 +71,7 @@ columns:
         clickable: false
     scrap_perc:
         label: Scrap Percentage %
-        format:  %.2f 
+        format: "%.1f kg"
         searchable: true
         clickable: false
     list_of_codes:

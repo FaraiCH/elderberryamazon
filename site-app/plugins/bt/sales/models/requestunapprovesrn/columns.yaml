@@ -24,7 +24,7 @@ columns:
     reason:
         label: Reason for unapproval
 
-        
+
 
     is_used:
         label: Is Used
@@ -35,18 +35,14 @@ columns:
         type: partial
         path: $/bt/sales/models/requestunapprovesrn/_downloadfile.htm
         clickable: false
-    
+
     # updated_by:
     #     label: Updated By
     #     searchable: true
     #     relation: updatedby
     #     select: concat(first_name, ' ', last_name)
-    created_at:
-        label: Date Created
+    updated_at:
+        label: Date Updated
         format: d-m-Y
         type: date
-    # updated_at:
-    #     label: Date Updated
-    #     format: d-m-Y
-    #     type: date
-    
+

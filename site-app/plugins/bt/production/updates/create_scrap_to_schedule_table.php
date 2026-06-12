@@ -18,6 +18,6 @@ class CreateScrapToSheduleTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('bt_production_scrap_shedule_codes');
+        Schema::dropIfExists('bt_prod_scrap_shedule');
     }
 }

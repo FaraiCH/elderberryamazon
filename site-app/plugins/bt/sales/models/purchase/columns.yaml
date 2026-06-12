@@ -27,7 +27,7 @@ columns:
         select: totalincvat
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/production/models/push/_currency_column.htm
 
@@ -35,7 +35,7 @@ columns:
         label: Catalogue Quoted Amount
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         # path: $/bt/plcommon/partials/_cataloque_column.htm
         path: $/bt/sales/models/purchase/_catamout.htm
@@ -43,7 +43,7 @@ columns:
         label: PO Amount
         # type: number
         searchable: false
-        # format: R %.2f
+        # format: "%.1f kg"
         type: partial
         path: $/bt/plcommon/partials/_currency_column.htm
 

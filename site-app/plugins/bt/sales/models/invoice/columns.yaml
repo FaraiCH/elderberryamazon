@@ -20,7 +20,7 @@ columns:
     amount:
         label: Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     invoice_date:
         label: Invoice Date

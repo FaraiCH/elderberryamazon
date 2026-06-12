@@ -12,15 +12,15 @@ columns:
     pro_meter:
         label: Production Meter
         type: number
-        format:  %.2f L
+        format: "%.1f kg"
     cooling_meter:
         label: Cooling Meter
         type: number
-        format:  %.2f L
+        format: "%.1f kg"
     admin_meter:
         label: Admin Meter
         type: number
-        format:  %.2f L
+        format: "%.1f kg"
     createdby:
         label: Create By
         searchable: true

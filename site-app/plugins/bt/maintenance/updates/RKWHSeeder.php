@@ -14,12 +14,12 @@ class RKWHSeeder extends Seeder
     public function run()
     {
 
-        Find Monthly Tarrif
+        // Find Monthly Tarrif
         $tariffs = Tarrif::all();
 
-        Validate
+        // Validate
         if(!empty($tariffs)){
-            Update Blended R/KWH on Electricity Readings
+            // Update Blended R/KWH on Electricity Readings
             foreach ($tariffs as $tarrif){
                 $electricity_imports = Electricity::whereBetween('rdate', [$tarrif->start_date, $tarrif->end_date])->get();
                 if(!empty($electricity_imports)){

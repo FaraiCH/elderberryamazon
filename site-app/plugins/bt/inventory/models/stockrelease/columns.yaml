@@ -25,7 +25,7 @@ columns:
     kg:
         label: Weight Released In kg
         type: number
-        format:  %.1f kg 
+        format: "%.1f kg"
         searchable: true
 
     createdby:

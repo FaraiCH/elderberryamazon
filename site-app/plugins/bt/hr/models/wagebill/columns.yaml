@@ -26,7 +26,7 @@ columns:
         label: Shift Hours
     rate:
         label: Rate Per Hour
-        format: R %.2f
+        format: "%.1f kg"
     start_time:
         label: Start Time
     end_time:

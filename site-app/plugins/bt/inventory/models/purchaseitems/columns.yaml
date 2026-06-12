@@ -11,19 +11,19 @@ columns:
         label: Weight
         span: right
         type: number
-        format: %.2f kg
+        format: "%.1f kg"
 
     unitprice:
         label: Unit Price
         span: left
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     price:
         label: Price
         span: right
         type: number
-        format: R %.2f
+        format: "%.1f kg"
 
     units:
         label: Units

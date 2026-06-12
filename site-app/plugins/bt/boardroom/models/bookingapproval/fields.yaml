@@ -10,12 +10,11 @@ fields:
       label: Approval Booking
       type: dropdown
       span: auto
-      options:        
-        0: Not Approved 
+      options:
+        0: Not Approved
         1: Approved
         2: Rejected
     createdby:
-      span: auto
       label: Created By
       disabled: true
       type: relation

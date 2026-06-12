@@ -9,7 +9,7 @@ columns:
     amount:
         label: Amout Paid
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     payment_date:
         label: Payment Date
     comment:

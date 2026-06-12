@@ -14,7 +14,7 @@ columns:
     amount:
         label: Amount
         type: number
-        format: R %.2f
+        format: "%.1f kg"
     mainitem:
         label: Main Item
 

@@ -278,7 +278,7 @@ class Srn extends Model
     public function getStockOrderOptions() {
         // return StockOrderModel::all()->map(function($item) {
         //     return $item->quote->company_name . '; ' . 'Deadline date: ' . $item->deadline_date;
-        });
+        // });
 
         $arrObj = [];
 

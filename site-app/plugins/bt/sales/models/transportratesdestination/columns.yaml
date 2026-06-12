@@ -13,4 +13,4 @@ columns:
     kilometers:
         label: Kilometers Captured
         type: Number
-        format: %.1f km
+        format: "%.1f kg"

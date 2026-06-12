@@ -15,9 +15,9 @@ class SeederTest extends Seeder
         $endPettyCashId = 1906;
 
         for ($pettyCashId = $startPettyCashId; $pettyCashId <= $endPettyCashId; $pettyCashId++) {
-            Check if the pettycash_id is null
+            // Check if the pettycash_id is null
             if (is_null($pettyCashId)) {
-                continue; Skip this iteration if pettycash_id is not null
+                continue; // Skip this iteration if pettycash_id is not null
             }
 
             DB::table('bt_finance_petty_cash_approves')->insert([

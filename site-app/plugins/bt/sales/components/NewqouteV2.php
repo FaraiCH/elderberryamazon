@@ -603,7 +603,7 @@ class NewqouteV2 extends ComponentBase
 //                    #$pdf = PDF::loadView('bt.sales::pdfitem',array('quote'=>$quote))->stream();
 //                    #$message->attach( $pdf->download($quote->id.'.pdf'), ['as' => 'newquote.jpg']);
 //                    $message->attach(Config::get('app.url') . "/quote/item/download/" . $q->id . ".pdf", ['as' => 'newquote.pdf']);
-        });
+//        });
 
                 $objgroup = QuoteStatus::where("id", 1)->first();
                 $groupid = $objgroup->email_groups_id;
@@ -620,7 +620,7 @@ class NewqouteV2 extends ComponentBase
 //                            #$pdf = PDF::loadView('bt.sales::pdfitem',array('quote'=>$quote))->stream();
 //                            #$message->attach( $pdf->download($quote->id.'.pdf'), ['as' => 'newquote.jpg']);
 //                            $message->attach(Config::get('app.url') . "/quote/item/download/" . $q->id . ".pdf", ['as' => 'newquote.pdf']);
-        });
+//        });
                     }
                 }
                 #}

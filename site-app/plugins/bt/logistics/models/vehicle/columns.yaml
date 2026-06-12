@@ -22,7 +22,7 @@ columns:
     next_service_km:
         label: Next Service Kilometre
         type: Number
-        format: %.1f km
+        format: "%.1f kg"
     servicetime:
         label: Service Time
         type: partial
