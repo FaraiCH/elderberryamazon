@@ -122,7 +122,7 @@ class Newquote extends Model
         //     $this->key_pass = $removedoller;
         // }
         // $user = BackendAuth::getUser();
-        if (!$user) return;
+        // if (!$user) return;
         // if (isset($user->id)) {
         //     $this->user_id = $user->id;
         // }

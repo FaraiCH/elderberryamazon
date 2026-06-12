@@ -227,4 +227,19 @@
 3.1.28:
     - Add missing ismanaged column to bt_sales_categories table
     - update_categories_table_add_ismanaged.php
+3.1.29:
+    - Create client finances table
+    - create_client_finances_table.php
+3.1.30:
+    - Add missing priceperkg column to bt_sales_newquote table
+    - update_newquote_table_add_priceperkg.php
+3.1.31:
+    - Add missing delivery and buyout margin columns to bt_sales_newquote table
+    - update_newquote_table_add_delivery_missing_columns.php
+3.1.32:
+    - Add missing priceperkg column to bt_sales_quoteitems table
+    - update_quoteitems_table_add_priceperkg.php
+3.1.33:
+    - Seed quote statuses and group permissions
+    - seed_quote_statuses.php
 

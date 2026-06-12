@@ -64,8 +64,11 @@ class Client extends Model
     {
         $groupusers = UserGroup::where('id', 3)->first();
         $userarray = array();
-        foreach ($groupusers->users as $key => $value) {
-            $userarray[$value->id] = $value->name. ' '. $value->surname;
+
+        if ($groupusers && $groupusers->users) {
+            foreach ($groupusers->users as $key => $value) {
+                $userarray[$value->id] = $value->name. ' '. $value->surname;
+            }
         }
 
         return $userarray;

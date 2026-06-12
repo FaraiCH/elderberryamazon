@@ -15,7 +15,7 @@
 							<h2 style="font-size: 22px">Quotation #BT{{quote.id}}v{{quote.responses|length }}</h2>
 						</td>
 					</tr>
-				</table>					
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -31,11 +31,13 @@
 								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
 								<tr><td width="50%"><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
 								<tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
-								{% for item in quote.responses if item.quote_status_id == 3 %}
-									<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+								{% for item in quote.responses %}
+									{% if item.quote_status_id == 3 %}
+										<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+									{% endif %}
 				    			{% endfor %}
 
-								
+
 								{% if quote.reg_number is not empty %}
 									<tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
 								{% endif %}
@@ -46,7 +48,7 @@
 						</td>
 						<td></td>
 						<td width="40%" valign="top" >
-							<table width="100%" border="0" cellpadding="5px" cellspacing="0">								
+							<table width="100%" border="0" cellpadding="5px" cellspacing="0">
 								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">BT-IND-{{quote.id}}</td></tr>
 								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
 								<tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
@@ -63,8 +65,8 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th class="text-center" >Description</th>	
-							<th class="text-center" >Units</th>					
+							<th class="text-center" >Description</th>
+							<th class="text-center" >Units</th>
 							<th width="150px" nowrap="nowrap" class="text-center" >Unit Price</th>
 							<th width="150px" nowrap="nowrap" class="text-center" >Total Price</th>
 						</tr>
@@ -75,35 +77,35 @@
 				        	{% set counter = counter + 1 %}
 				        	<tr>
 				        		<td>{{counter}}</td>
-				        		<td>{{itemobject.description}}</td>	
-				        		<td class="text-center">{{itemobject.units}}</td>		              	
+				        		<td>{{itemobject.description}}</td>
+				        		<td class="text-center">{{itemobject.units}}</td>
 				              	<td><div class="totalr"><span>R</span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
-				              	
+
 				              	<td><div class="totalr"><span>R</span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
 				             </tr>
-				        {% endfor %} 
+				        {% endfor %}
 
 				        {% for itemobject in quote.itemscat %}
 				        	{% set counter = counter + 1 %}
 				        	<tr>
 				        		<td>{{counter}}</td>
-				        		<td>{{itemobject.description}}</td>	
-				        		<td class="text-center">{{itemobject.units}}</td>		              	
+				        		<td>{{itemobject.description}}</td>
+				        		<td class="text-center">{{itemobject.units}}</td>
 				              	<td><div class="totalr"><span>R</span><span>{{itemobject.unitprice|number_format(2, '.', ',')}}</span></div></td>
-				              	
+
 				              	<td><div class="totalr"><span>R</span><span>{{itemobject.price|number_format(2, '.', ',')}}</span></div></td>
 				             </tr>
-				        {% endfor %} 
+				        {% endfor %}
 			        </tbody>
 			        <tfoot>
 			        	<tr>
 			        		<td colspan="3">&nbsp;</td>
-			        		<td class="text-right"><b>TOTAL</b></td>		        		
+			        		<td class="text-right"><b>TOTAL</b></td>
 			              	<td><div class="totalr"><span>R</span><span>{{quote.total|number_format(2, '.', ',')}}</span></div></td>
-				         </tr>	
+				         </tr>
 				         <tr>
 				         	<td colspan="3">&nbsp;</td>
-			        		<td class="text-right"><b>VAT</b></td>		        		
+			        		<td class="text-right"><b>VAT</b></td>
 			              	<td><div class="totalr"><span>R</span><span>{{quote.totalvat|number_format(2, '.', ',')}}</span></div></td>
 				         </tr>
 				            {% set discount = 0 %}
@@ -113,33 +115,33 @@
 								{% set deliveryamount = deliveryamount + item.additionalamount %}
 								{% set discount = discount + item.amountdiscount %}
 			    			{% endfor %}
-			    			
-			    			{% if deliveryamount > 0 %}			
+
+			    			{% if deliveryamount > 0 %}
 							     <tr>
 							     	<td colspan="3">&nbsp;</td>
-									<td  class="text-right"><b>DELIVERY</b></td>		        		
+									<td  class="text-right"><b>DELIVERY</b></td>
 							      	<td class="text-right"><div class="totalr"><span>R</span><span>{{deliveryamount|number_format(2, '.', ',')}}</span></div></td>
 							     </tr>
 						     {% endif %}
 
 
-						      {% if discount > 0 %}			
+						      {% if discount > 0 %}
 							     <tr>
 							     	<td colspan="3">&nbsp;</td>
-									<td  class="text-right"><b>DISCOUNT</b></td>		        		
+									<td  class="text-right"><b>DISCOUNT</b></td>
 							      	<td><div class="totalr"><span>R</span><span>-{{discount|number_format(2, '.', ',')}}</span></div></td>
 							     </tr>
 
 						     {% endif %}
 				          <tr>
 				          	<td colspan="3">&nbsp;</td>
-			        		<td nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>		        		
+			        		<td nowrap="nowrap" class="text-right"><b>TOTAL Inc VAT</b></td>
 			              	<td><div class="totalr"><span>R</span><span>{{((quote.totalincvat +deliveryamount) - discount)|number_format(2, '.', ',')}}</span></div></td>
 				         </tr>
 			        </tfoot>
-	        
+
     			</table>
-  
+
 			</td>
 		</tr>
 		{% if quote.notes is not empty %}
@@ -150,7 +152,7 @@
 						<tr>
 							<td width="100%">{{quote.notes}}</td>
 						</tr>
-					</table>					
+					</table>
 				</td>
 			</tr>
 		{% endif %}
@@ -220,8 +222,8 @@ the laws of the Republic of South Africa. The Buyer consents in terms of section
 jurisdiction Magistrates Court for the purpose of any proceedings in terms of incidental to this order, provided that the Seller, at
 its option, shall have the right to institute proceedings at any division of the High Court having jurisdiction and the costs thereof
 shall be determined on the scale applicable to the High Court.</p>
-	
-  
+
+
 {% else %}
 	<div class="card-body">
 		<p>No Items</p>

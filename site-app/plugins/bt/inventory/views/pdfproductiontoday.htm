@@ -153,8 +153,8 @@ Description:print/ download production report
         <th>Scrap</th>
         <th>Scrap %</th>
         <th>CODE</th>
-        <th>Over weight <br>(Kg)</br></th>
-        <th>Over weight <br>%</br></th>
+        <th>Over weight <br>(Kg)</th>
+        <th>Over weight <br>%</th>
         <th>Wasted <br>Material</th>
         <th>Wasted %</th>
         <th>Material <br>Used</th>
@@ -207,7 +207,8 @@ Description:print/ download production report
     {% set setoverruns = 0 %}
     {% set setoverruns_group = 0 %}
     {% set setoverruns_per = 0 %}
-    {% for item in floorpipes if item.id > 3 %}
+    {% for item in floorpipes %}
+        {% if item.id > 3 %}
     {% set total_auto_used = 0 %}
 
     {% set bt_units = 0 %}
@@ -402,6 +403,7 @@ Description:print/ download production report
         {% set totalmaterial_real_group = totalmaterial_real_group + item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed') %}
     </tr>
 
+    {% endif %}
     {% endfor %}
     </tbody>
     <tfoot>
@@ -522,12 +524,11 @@ Material Used Auto: Material Captured Linked to the Material Release on the syst
         {% if mdata[p] is not empty %}
         <td colspan="2" style="text-align: center; font-weight: bold; ">
             {% if mdata[p].total_kg_processed == 0 %}
-
-        <td>0</td>
-        {% else %}
-        {{(
-        (mdata[p].weight_scrap_kg?mdata[p].weight_scrap_kg:0)/(mdata[p].total_kg_processed?mdata[p].total_kg_processed:0)*100)|number_format(2, '.',' ')}}%</td>
-        {% endif %}
+                0
+            {% else %}
+                {{ ((mdata[p].weight_scrap_kg ?: 0) / (mdata[p].total_kg_processed ?: 1) * 100)|number_format(2, '.', ' ') }}%
+            {% endif %}
+        </td>
         {% else %}
         <td style="text-align: right; font-weight: bold;">0</td>
         {% endif %}

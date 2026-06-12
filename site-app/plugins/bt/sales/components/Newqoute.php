@@ -394,6 +394,10 @@ class Newqoute extends ComponentBase
 
     public function onSave(){
         $user = Auth::getUser();
+        if (!$user) {
+            Flash::error("You must be logged in to save a quote.");
+            return;
+        }
         $validator = null;
 
         $validator = Validator::make(
@@ -459,9 +463,9 @@ class Newqoute extends ComponentBase
 
 
 
-            $q->deliveryamounthidden = Input::get('deliveryamounthidden');
-            $q->deliveryamountmargins = Input::get('deliveryamountmargins');
-            $q->buyoutmargins = Input::get('buyoutmargins');
+            $q->deliveryamounthidden = (Input::get('deliveryamounthidden') != "") ? Input::get('deliveryamounthidden') : 0;
+            $q->deliveryamountmargins = (Input::get('deliveryamountmargins') != "") ? Input::get('deliveryamountmargins') : 0;
+            $q->buyoutmargins = (Input::get('buyoutmargins') != "") ? Input::get('buyoutmargins') : 0;
 
 
             $q->email = Input::get('email');
@@ -637,21 +641,25 @@ class Newqoute extends ComponentBase
 //        });
 
                 $objgroup = QuoteStatus::where("id", 1)->first();
-                $groupid = $objgroup->email_groups_id;
+                if ($objgroup) {
+                    $groupid = $objgroup->email_groups_id;
 
-                $groupusers = UserGroup::where('id', $groupid)->first();
+                    $groupusers = UserGroup::where('id', $groupid)->first();
 
-                foreach ($groupusers->users as $key => $value) {
-                    if ($data['email_to'] != $value->email) {
+                    if ($groupusers && $groupusers->users) {
+                        foreach ($groupusers->users as $key => $value) {
+                            if ($data['email_to'] != $value->email) {
 
-//
-//                        Mail::send('BT.sales.newquote', $data, function ($message) use ($data, $q, $value) {
-//                            $message->to($value->email, $value->name);
-//                            $message->subject("BT Industrial Quote - New Quote Notify: " . $data['ref']);
-//                            #$pdf = PDF::loadView('bt.sales::pdfitem',array('quote'=>$quote))->stream();
-//                            #$message->attach( $pdf->download($quote->id.'.pdf'), ['as' => 'newquote.jpg']);
-//                            $message->attach(Config::get('app.url') . "/quote/item/download/" . $q->id . ".pdf", ['as' => 'newquote.pdf']);
-//        });
+        //
+        //                        Mail::send('BT.sales.newquote', $data, function ($message) use ($data, $q, $value) {
+        //                            $message->to($value->email, $value->name);
+        //                            $message->subject("BT Industrial Quote - New Quote Notify: " . $data['ref']);
+        //                            #$pdf = PDF::loadView('bt.sales::pdfitem',array('quote'=>$quote))->stream();
+        //                            #$message->attach( $pdf->download($quote->id.'.pdf'), ['as' => 'newquote.jpg']);
+        //                            $message->attach(Config::get('app.url') . "/quote/item/download/" . $q->id . ".pdf", ['as' => 'newquote.pdf']);
+        //        });
+                            }
+                        }
                     }
                 }
                 #}
