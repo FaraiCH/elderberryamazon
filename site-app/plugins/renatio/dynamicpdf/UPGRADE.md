@@ -1,3 +1,5 @@
+# Upgrade guide
+
 ## Upgrading To 1.1.0
 
 Plugin requires October build 300+.
@@ -37,6 +39,21 @@ After this change run `composer update` command.
 
 ## Upgrading To 4.0.8
 
-Using `setOptions` method to change dompdf options is no longer recommended. This will cause to override all laravel dompdf configuration and use only specified by method argument and dompdf defaults for rest options not set by a developer.
+This is the latest version with support for October 1.x.
 
-Instead of using this method, please use dynamic method call for option you would like to change. Please read more in [documentation](https://github.com/mplodowski/dynamicpdf-plugin/blob/master/README.md#configuration-configuration).
+Using `setOptions` method to change dompdf options is no longer recommended. This will cause to override all laravel
+dompdf configuration and use only specified by method argument and dompdf defaults for rest options not set by a
+developer.
+
+Instead of using this method, please use dynamic method call for option you would like to change. Please read more
+in [documentation](https://github.com/mplodowski/dynamicpdf-plugin/blob/master/README.md#configuration-configuration).
+
+## Upgrading To 5.0.1
+
+Plugin requires OctoberCMS v2.1.x with Laravel 6 and PHP >=7.2.
+
+## Upgrading To 6.0.0
+
+Plugin requires October CMS version 3.0 or higher, Laravel 9.0 or higher and PHP >=8.0.
+
+Drop support for October CMS version 2.x.

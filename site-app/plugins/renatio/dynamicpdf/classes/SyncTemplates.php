@@ -3,32 +3,44 @@
 namespace Renatio\DynamicPDF\Classes;
 
 use Exception;
+use October\Rain\Support\Facades\Event;
+use RainLab\Translate\Classes\ThemeScanner;
 use Renatio\DynamicPDF\Models\Layout;
 use Renatio\DynamicPDF\Models\Template;
 
 class SyncTemplates
 {
-
     public function handle()
     {
         try {
+            $this->checkFontsDir();
+
             $this->createLayouts();
 
             $registeredTemplates = PDFManager::instance()->listRegisteredTemplates();
 
-            if (!$registeredTemplates) {
+            if (! $registeredTemplates) {
                 return;
             }
 
-            $dbTemplates = Template::lists('is_custom', 'code');
+            $dbTemplates = Template::query()->pluck('is_custom', 'code')->all();
 
             $this->clearNonCustomizedTemplates($dbTemplates, $registeredTemplates);
 
             $newTemplates = array_diff_key($registeredTemplates, $dbTemplates);
 
             $this->createTemplates($newTemplates);
+
+            $this->scanTranslatedMessages();
         } catch (Exception $e) {
             //
+        }
+    }
+
+    protected function checkFontsDir()
+    {
+        if (! file_exists(config('dompdf.options.font_dir'))) {
+            mkdir(config('dompdf.options.font_dir'), 0755, true);
         }
     }
 
@@ -36,11 +48,11 @@ class SyncTemplates
     {
         $registeredLayouts = PDFManager::instance()->listRegisteredLayouts();
 
-        if (!$registeredLayouts) {
+        if (! $registeredLayouts) {
             return;
         }
 
-        $dbLayouts = Layout::lists('code', 'code');
+        $dbLayouts = Layout::query()->pluck('code', 'code')->all();
 
         foreach ($registeredLayouts as $code) {
             if (array_key_exists($code, $dbLayouts)) {
@@ -62,7 +74,7 @@ class SyncTemplates
                 continue;
             }
 
-            if (!array_key_exists($code, $registeredTemplates)) {
+            if (! array_key_exists($code, $registeredTemplates)) {
                 Template::whereCode($code)->delete();
             }
         }
@@ -75,5 +87,22 @@ class SyncTemplates
             $template->fillFromView($code);
             $template->forceSave();
         }
+    }
+
+    protected function scanTranslatedMessages()
+    {
+        Event::listen('rainlab.translate.themeScanner.afterScan', function (ThemeScanner $scanner) {
+            $messages = [];
+
+            foreach (Layout::all() as $layout) {
+                $messages = array_merge($messages, $scanner->parseContent($layout->content_html));
+            }
+
+            foreach (Template::all() as $template) {
+                $messages = array_merge($messages, $scanner->parseContent($template->content_html));
+            }
+
+            $scanner->importMessages($messages);
+        });
     }
 }

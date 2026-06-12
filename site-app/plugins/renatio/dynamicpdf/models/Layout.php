@@ -13,15 +13,14 @@ use System\Models\File;
 
 class Layout extends Model
 {
-
     use Validation;
 
     public $table = 'renatio_dynamicpdf_pdf_layouts';
 
     public $rules = [
-        'name' => 'required',
-        'code' => 'required|unique:renatio_dynamicpdf_pdf_layouts',
-        'content_html' => 'required',
+        'name' => ['required'],
+        'code' => ['required', 'unique:renatio_dynamicpdf_pdf_layouts'],
+        'content_html' => ['required'],
     ];
 
     public $attachOne = [
@@ -45,16 +44,10 @@ class Layout extends Model
         return $parser->parse($this->content_css)->getCss();
     }
 
-    public function fillFromCode($code = null)
+    public function fillFromCode()
     {
-        $registeredLayouts = PDFManager::instance()->listRegisteredLayouts();
-
-        if ($code === null) {
-            $code = $this->code;
-        }
-
-        if (!$path = array_get($registeredLayouts, $code)) {
-            throw new ApplicationException('Unable to find a registered layout with code: '.$code);
+        if (! ($path = $this->getView())) {
+            throw new ApplicationException(e(trans('renatio.dynamicpdf::lang.layout.not_found')).': '.$this->code);
         }
 
         $this->fillFromView($path);
@@ -67,5 +60,10 @@ class Layout extends Model
         $this->name = array_get($sections, 'settings.name', '???');
         $this->content_css = array_get($sections, 'css');
         $this->content_html = array_get($sections, 'html');
+    }
+
+    public function getView()
+    {
+        return array_get(PDFManager::instance()->listRegisteredLayouts(), $this->code);
     }
 }

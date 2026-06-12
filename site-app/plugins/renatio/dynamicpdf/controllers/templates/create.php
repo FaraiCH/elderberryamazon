@@ -9,19 +9,20 @@
     </ul>
 <?php Block::endPut() ?>
 
-<?php if ( ! $this->fatalError) : ?>
+<?php if (! $this->fatalError) : ?>
     <?= Form::open(['class' => 'layout']) ?>
 
     <div class="layout-row">
         <?= $this->formRender() ?>
     </div>
 
-    <div class="form-buttons p-t">
+    <div class="form-buttons pt-4">
         <div class="loading-indicator-container">
             <button type="submit"
                     data-request="onSave"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="<?= e(trans('backend::lang.form.creating_name', ['name' => $formRecordName])) ?>"
+                    data-load-indicator="<?= e(trans('backend::lang.form.creating_name',
+                        ['name' => $formRecordName])) ?>"
                     class="btn btn-primary">
                 <?= e(trans('backend::lang.form.create')) ?>
             </button>
@@ -30,7 +31,8 @@
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="<?= e(trans('backend::lang.form.creating_name', ['name' => $formRecordName])) ?>"
+                    data-load-indicator="<?= e(trans('backend::lang.form.creating_name',
+                        ['name' => $formRecordName])) ?>"
                     class="btn btn-default">
                 <?= e(trans('backend::lang.form.create_and_close')) ?>
             </button>
@@ -45,7 +47,6 @@
     </div>
 
     <?= Form::close() ?>
-
 <?php else: ?>
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
     <p>

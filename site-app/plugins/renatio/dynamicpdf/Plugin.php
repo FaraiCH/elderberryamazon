@@ -6,19 +6,20 @@ use Backend\Facades\Backend;
 use Barryvdh\DomPDF\ServiceProvider;
 use Renatio\DynamicPDF\Classes\PDFWrapper;
 use Renatio\DynamicPDF\Classes\SyncTemplates;
+use Renatio\DynamicPDF\Console\Demo;
 use System\Classes\PluginBase;
 use System\Classes\PluginManager;
+use System\Models\Parameter;
 
 class Plugin extends PluginBase
 {
-
     public function pluginDetails()
     {
         return [
             'name' => 'renatio.dynamicpdf::lang.plugin.name',
             'description' => 'renatio.dynamicpdf::lang.plugin.description',
             'author' => 'Renatio',
-            'icon' => 'icon-file-pdf-o',
+            'icon' => 'octo-icon-file-pdf-o',
             'homepage' => 'https://octobercms.com/plugin/renatio-dynamicpdf',
         ];
     }
@@ -31,7 +32,16 @@ class Plugin extends PluginBase
             return new PDFWrapper($app['dompdf'], $app['config'], $app['files'], $app['view']);
         });
 
+        if (config('dompdf.public_path') === null) {
+            config(['dompdf.public_path' => public_path()]);
+        }
+
         (new SyncTemplates)->handle();
+    }
+
+    public function register()
+    {
+        $this->registerConsoleCommand('dynamicpdf:demo', Demo::class);
     }
 
     public function registerPermissions()
@@ -68,11 +78,35 @@ class Plugin extends PluginBase
             'templates' => [
                 'label' => 'renatio.dynamicpdf::lang.menu.label',
                 'category' => 'renatio.dynamicpdf::lang.menu.category',
-                'icon' => 'icon-file-pdf-o',
+                'icon' => 'octo-icon-file-pdf-o',
                 'url' => Backend::url('renatio/dynamicpdf/templates'),
                 'description' => 'renatio.dynamicpdf::lang.menu.description',
                 'permissions' => ['renatio.dynamicpdf.manage_templates'],
             ],
+        ];
+    }
+
+    public function registerPDFTemplates()
+    {
+        if (! Parameter::get('renatio::dynamicpdf.demo')) {
+            return [];
+        }
+
+        return [
+            'renatio.dynamicpdf::pdf.invoice',
+            'renatio.dynamicpdf::pdf.header_and_footer',
+        ];
+    }
+
+    public function registerPDFLayouts()
+    {
+        if (! Parameter::get('renatio::dynamicpdf.demo')) {
+            return [];
+        }
+
+        return [
+            'renatio.dynamicpdf::pdf.layouts.default',
+            'renatio.dynamicpdf::pdf.layouts.header_and_footer',
         ];
     }
 }

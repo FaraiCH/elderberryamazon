@@ -34,6 +34,7 @@ return [
         'menu_label' => 'Template',
         'create_template' => 'Create Template',
         'edit_template' => 'Edit Template',
+        'not_found' => 'Unable to find a registered template with code',
     ],
     'layouts' => [
         'label' => 'Layouts',
@@ -43,6 +44,7 @@ return [
         'menu_label' => 'Layout',
         'create_layout' => 'Create Layout',
         'edit_layout' => 'Edit Layout',
+        'not_found' => 'Unable to find a registered layout with code',
     ],
     'settings' => [
         'description' => 'Manage templates and layouts.',
@@ -66,5 +68,9 @@ return [
     ],
     'tab' => [
         'options' => 'Options',
+    ],
+    'demo' => [
+        'enabled' => 'Demo is enabled. Please refresh PDF templates list.',
+        'disabled' => 'Demo is disabled. Please refresh PDF templates list.',
     ],
 ];

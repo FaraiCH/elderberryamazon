@@ -6,21 +6,27 @@ use Barryvdh\DomPDF\PDF;
 use Cms\Classes\Controller;
 use Exception;
 use October\Rain\Support\Facades\Twig;
-use RainLab\Translate\Classes\Translator;
-use RainLab\Translate\Models\Message;
 use Renatio\DynamicPDF\Models\Layout;
 use Renatio\DynamicPDF\Models\Template;
-use System\Classes\PluginManager;
 
 class PDFWrapper extends PDF
 {
-
-    public function __call($method, $args)
+    public function __call($method, $parameters)
     {
-        $options = $this->getDomPDF()->getOptions();
+        if (method_exists($this, $method)) {
+            return $this->$method(...$parameters);
+        }
+
+        if (method_exists($this->dompdf, $method)) {
+            $return = $this->dompdf->$method(...$parameters);
+
+            return $return == $this->dompdf ? $this : $return;
+        }
+
+        $options = $this->dompdf->getOptions();
 
         if (method_exists($options, $method)) {
-            call_user_func_array([$options, $method], $args);
+            call_user_func_array([$options, $method], $parameters);
         }
 
         return $this;
@@ -39,6 +45,8 @@ class PDFWrapper extends PDF
             $this->setPaper($template->size, $template->orientation ?? 'portrait');
         }
 
+        $this->allowSelfSignedCertificates();
+
         return $this;
     }
 
@@ -49,16 +57,16 @@ class PDFWrapper extends PDF
             $encoding
         );
 
+        $this->allowSelfSignedCertificates();
+
         return $this;
     }
 
     public function parseTemplate($template, $data = [])
     {
-        $this->setLocale();
-
         $html = $this->parseMarkup($template->content_html, $data);
 
-        if (!$template->layout) {
+        if (! $template->layout) {
             return $html;
         }
 
@@ -70,21 +78,10 @@ class PDFWrapper extends PDF
 
     public function parseLayout($layout, $data = [])
     {
-        $this->setLocale();
-
         return $this->parseMarkup(
             $layout->content_html,
             $this->layoutData($layout, $data)
         );
-    }
-
-    protected function setLocale()
-    {
-        if (!PluginManager::instance()->exists('RainLab.Translate')) {
-            return;
-        }
-
-        Message::$locale = Translator::instance()->getLocale();
     }
 
     protected function layoutData($layout, $data)
@@ -105,5 +102,22 @@ class PDFWrapper extends PDF
         } catch (Exception $e) {
             return Twig::parse($markup, $data);
         }
+    }
+
+    protected function allowSelfSignedCertificates()
+    {
+        if (app()->environment('production')) {
+            return;
+        }
+
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true,
+            ],
+        ]);
+
+        $this->dompdf->setHttpContext($context);
     }
 }

@@ -12,7 +12,6 @@ use System\Classes\SettingsManager;
 
 class Layouts extends Controller
 {
-
     public $requiredPermissions = ['renatio.dynamicpdf.manage_layouts'];
 
     public $implement = [
@@ -31,7 +30,7 @@ class Layouts extends Controller
 
     public function previewPdf($id)
     {
-        $this->pageTitle = trans('renatio.dynamicpdf::lang.templates.preview_pdf');
+        $this->pageTitle = e(trans('renatio.dynamicpdf::lang.templates.preview_pdf'));
 
         try {
             $model = $this->formFindModelObject($id);
@@ -42,6 +41,8 @@ class Layouts extends Controller
         return PDF::loadLayout($model->code)
             ->setLogOutputFile(storage_path('temp/log.htm'))
             ->setIsRemoteEnabled(true)
+            ->setDpi(300)
+            ->setIsPhpEnabled(! config('cms.safe_mode'))
             ->stream();
     }
 

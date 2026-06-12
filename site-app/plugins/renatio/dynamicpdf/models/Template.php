@@ -12,7 +12,6 @@ use Renatio\DynamicPDF\Classes\PDFParser;
 
 class Template extends Model
 {
-
     use Validation;
 
     public $table = 'renatio_dynamicpdf_pdf_templates';
@@ -22,28 +21,22 @@ class Template extends Model
     ];
 
     public $rules = [
-        'title' => 'required',
-        'code' => 'required|unique:renatio_dynamicpdf_pdf_templates',
-        'content_html' => 'required',
+        'title' => ['required'],
+        'code' => ['required', 'unique:renatio_dynamicpdf_pdf_templates'],
+        'content_html' => ['required'],
     ];
 
     public function afterFetch()
     {
-        if (!$this->is_custom) {
+        if (! $this->is_custom) {
             $this->fillFromView($this->code);
         }
     }
 
-    public function fillFromCode($code = null)
+    public function fillFromCode()
     {
-        $registeredTemplates = PDFManager::instance()->listRegisteredTemplates();
-
-        if ($code === null) {
-            $code = $this->code;
-        }
-
-        if (!$path = array_get($registeredTemplates, $code)) {
-            throw new ApplicationException('Unable to find a registered layout with code: '.$code);
+        if (! ($path = $this->getView())) {
+            throw new ApplicationException(e(trans('renatio.dynamicpdf::lang.template.not_found')).': '.$this->code);
         }
 
         $this->fillFromView($path);
@@ -85,5 +78,10 @@ class Template extends Model
             'portrait' => 'renatio.dynamicpdf::lang.orientation.portrait',
             'landscape' => 'renatio.dynamicpdf::lang.orientation.landscape',
         ];
+    }
+
+    public function getView()
+    {
+        return array_get(PDFManager::instance()->listRegisteredTemplates(), $this->code);
     }
 }
