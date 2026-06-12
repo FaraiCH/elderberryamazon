@@ -44,7 +44,7 @@ tabs:
             type: datepicker
             required: true
             tab: Supplier Details
-            comment: Date Item Was Recieved Into BT
+            comment: Date Item Was Recieved Into Elderberry Amazon
             span: auto
         comments:
             label: Comments

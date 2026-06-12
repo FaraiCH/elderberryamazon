@@ -7,7 +7,7 @@ columns:
         label: ID
         searchable: true
     btlinename:
-        label: Baila Machine
+        label: Elderberry Amazon Machine
         relation: btline
         select: name
 

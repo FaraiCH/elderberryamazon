@@ -41,7 +41,7 @@ columns:
     pn_rating:
         label: PN Rating
     Baila:
-        label: Baila Machine
+        label: Elderberry Amazon Machine
         clickable: false
     stick_pipe_lenght:
         label: Sticker Pipe Length

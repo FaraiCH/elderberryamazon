@@ -1,0 +1,42 @@
+title = "Logout | Account"
+url = "/account/logout"
+layout = "default"
+meta_title = "Logout | Account"
+is_hidden = 0
+child_of = "home"
+hide_crumb = 0
+crumb_title = "Logout | Account"
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[session]
+security = "all"
+==
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="card shadow-sm p-5 rounded-4">
+                <div class="mb-4">
+                    <i class="bi bi-box-arrow-right text-primary display-1"></i>
+                </div>
+                <h2 class="fw-bold mb-3">Signing Out</h2>
+                <p class="text-muted mb-4">Please wait while we securely sign you out of your enterprise portal...</p>
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put scripts %}
+<script>
+    $(document).ready(function() {
+        $.request('onLogout', {
+            success: function() {
+                window.location.href = "{{ 'index'|page }}";
+            }
+        });
+    });
+</script>
+{% endput %}

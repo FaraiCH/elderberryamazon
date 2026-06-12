@@ -15,7 +15,7 @@ fields:
         span: auto
         emptyOption: -- no category --
     btproduct:
-        label: BT Pipe
+        label: Elderberry Amazon Pipe
         type: relation
         select: concat(id," > ", name )
         span: auto

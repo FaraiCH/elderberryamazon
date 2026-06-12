@@ -24,7 +24,7 @@ columns:
         type: partial
         path: $/bt/sales/models/quoteitems/_currency_column.htm
     product:
-        label: BT HDPE Pipe
+        label: Elderberry Amazon HDPE Pipe
         select: name
         relation: product
 

@@ -125,7 +125,7 @@ tabs:
             type: number
             tab: Delivery Details
             span: auto
-            comment: Amount BT is making from delivery
+            comment: Amount Elderberry Amazon is making from delivery
         buyoutmargins:
             label: Buy Out Margin
             type: number

@@ -36,11 +36,11 @@ fields:
         disabled: true
 
     section:
-        label: Link catalogue to BT Pipe items
+        label: Link catalogue to Elderberry Amazon Pipe items
         type: section
 
     product:
-        label: BT HDPE Pipe
+        label: Elderberry Amazon HDPE Pipe
         type: relation
         select: concat(id," > ", name )
         span: auto

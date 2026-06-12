@@ -4,7 +4,7 @@
 
 fields:
     pipe_id:
-        label: Produced/Associated/BT Account Item
+        label: Produced/Associated/Elderberry Amazon Account Item
         type: dropdown
         options: listQuoteitems
         comment: Pipes list above shows matching pipe class and length with the Item In Quote

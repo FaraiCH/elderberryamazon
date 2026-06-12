@@ -26,11 +26,11 @@
 			        		<td>BT{{itemobject.quote.id}}</td>
 			        		<td>{{itemobject.quote.company_name}}</td>
 			              	<td>{{itemobject.created_at|date("Y-m-d")}}</td>
-			              	{% autoescape false %}{% set isnotset = '<span class="text-danger">Not Set</span>' %}{% endautoescape %}
+			              	{% set isnotset = '<span class="text-danger">Not Set</span>' %}
 						
-							<td>{% autoescape false %}{{(itemobject.date_of_accepted)?itemobject.date_of_accepted|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+							<td>{{(itemobject.date_of_accepted)?itemobject.date_of_accepted|date("Y-m-d"):isnotset|raw}}</td>
 
-			              	<td>{% autoescape false %}{{(itemobject.date_of_completed)?itemobject.date_of_completed|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
+			              	<td>{{(itemobject.date_of_completed)?itemobject.date_of_completed|date("Y-m-d"):isnotset|raw}}</td>
 
 			              	<td>{{itemobject.status.name}}</td>
 			              	<td><a href="{{ 'production/item'|page({'item': itemobject.id}) }}">View >></a></td>

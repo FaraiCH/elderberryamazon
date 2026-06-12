@@ -11,7 +11,7 @@ columns:
         type: partial
         path: $/bt/production/models/productionplan/_quote_column.htm
     btline:
-        label: BT Line
+        label: Elderberry Amazon Line
         searchable: true
         relation: btline
         select: name

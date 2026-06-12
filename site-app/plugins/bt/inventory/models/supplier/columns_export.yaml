@@ -12,7 +12,7 @@ columns:
     country_name: 'Country'
 
     is_blacklisted:
-        label: Blacklisted by BT
+        label: Blacklisted by Elderberry Amazon
         type: switch
     name:
         label: Company Name

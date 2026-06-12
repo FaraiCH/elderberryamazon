@@ -50,7 +50,7 @@ class Stickers extends Controller
             $this->vars['stickers'] = Pipestickeritem::where('controlsheet_id', $controlsheetId)->orderBy('sticker_id', 'desc')->orderBy('counter', 'desc')->get();
         }
         $this->addCss('/plugins/bt/operator/assets/css/style.css', "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap4.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap5.min.css", "1.0.0");
 
         $this->addJs("/plugins/bt/operator/assets/js/main.js", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/datatables.min.js", "1.0.0");

@@ -137,3 +137,6 @@
 4.0.5:
     - Add missing kg column to bt_production_material_useds table
     - update_material_useds_table_add_kg.php
+4.0.6:
+    - Add missing scheduled column to bt_production_schedules table
+    - update_schedules_table_add_scheduled.php

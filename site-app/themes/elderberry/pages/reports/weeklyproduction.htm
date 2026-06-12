@@ -1,0 +1,19 @@
+title = "Summary"
+url = "/reports/weeklyproduction"
+layout = "default"
+is_hidden = 0
+meta_title = "Production Summary"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[CmWeeklyProduction]
+[RunningScheduleGraphs]
+==
+
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3 m-b-3"><i class="fa fa-wrench"></i> Weekly Report</h1>
+<br>
+
+{% component 'CmWeeklyProduction' %}

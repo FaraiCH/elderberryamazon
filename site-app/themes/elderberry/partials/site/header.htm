@@ -10,11 +10,34 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link px-3" href="#solutions">Solutions</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="#about">About Us</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="btn btn-primary ms-lg-3 px-4" href="#contact">Get Started</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="{{ 'index'|page }}#solutions">Solutions</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="{{ 'index'|page }}#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="{{ 'index'|page }}#contact">Contact</a></li>
+                {% if user %}
+                    <li class="nav-item d-lg-none">
+                        <button class="btn btn-outline-primary ms-lg-2 px-3 header-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                            <i class="bi bi-list me-2"></i>Menu
+                        </button>
+                    </li>
+                    <li class="nav-item"><a class="btn btn-outline-primary ms-lg-2 px-4 header-btn" href="{{ 'index'|page }}">Home</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-danger ms-lg-2 px-4 header-btn" href="{{ 'account/logout'|page }}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="btn btn-outline-primary ms-lg-2 px-4 header-btn" href="{{ 'account/signin'|page }}">Login</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="btn btn-primary ms-lg-2 px-4 header-btn" href="{{ 'index'|page }}#contact">Get Started</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
+{% put styles %}
+<style>
+    .header-btn {
+        min-width: 140px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+    }
+</style>
+{% endput %}

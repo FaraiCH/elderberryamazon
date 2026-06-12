@@ -29,7 +29,7 @@
                         },
                     
                     xAxis: {
-                        categories:  {% autoescape false %}{{graph.name|json_encode()}}{% endautoescape %},
+                        categories:  {{graph.name|json_encode()|raw}},
                         crosshair: true
                     },
                     yAxis: {
@@ -52,7 +52,7 @@
                             borderWidth: 0
                         }
                     },
-                    series:  {% autoescape false %}{{graph.data|json_encode()}}{% endautoescape %},
+                    series:  {{graph.data|json_encode()|raw}},
                 });
     	});
         {% set graph = RunningScheduleGraphs.getWeeklyProductionGraph() %}
@@ -69,7 +69,7 @@
                         },
                     
                     xAxis: {
-                        categories:  {% autoescape false %}{{graph.name|json_encode()}}{% endautoescape %},
+                        categories:  {{graph.name|json_encode()|raw}},
                         crosshair: true
                     },
                     yAxis: {
@@ -92,7 +92,7 @@
                             borderWidth: 0
                         }
                     },
-                    series:  {% autoescape false %}{{graph.data|json_encode()}}{% endautoescape %},
+                    series:  {{graph.data|json_encode()|raw}},
                 });
         });
     </script>

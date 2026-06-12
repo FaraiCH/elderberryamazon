@@ -12,7 +12,7 @@ columns:
     end_date:
         label: End Date
     baila_name:
-        label: Baila Name
+        label: Elderberry Amazon Name
     total_kg_processed:
         label: Total KG Processed
     weight_scrap_kg:

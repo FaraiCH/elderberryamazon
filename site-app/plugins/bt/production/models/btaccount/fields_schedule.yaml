@@ -5,9 +5,9 @@
 fields:
 
     _section1:
-        label: Link BT Pipes To Production
+        label: Link Elderberry Amazon Pipes To Production
         type: section
-        comment: All BT Account pipes must be linked to a production schedule. A pipe has to be produced in a quote to exist on the floor.
+        comment: All Elderberry Amazon Account pipes must be linked to a production schedule. A pipe has to be produced in a quote to exist on the floor.
 
     quote:
         label: From Quote
@@ -34,7 +34,7 @@ fields:
         cssClass: col-md-4 col-sm-4 col-lg-4
 
     _section2:
-        label: Setup BT Account/Pipe Properties
+        label: Setup Elderberry Amazon Account/Pipe Properties
         type: section
         comment: Schedule dates, Pipes / Cuts
 
@@ -101,7 +101,7 @@ fields:
         label: Comments
         type: textarea
         size: small
-        comment: Why are you adding this to BT Account
+        comment: Why are you adding this to Elderberry Amazon Account
         span: auto
     createjb@create:
         label: Create Job Card

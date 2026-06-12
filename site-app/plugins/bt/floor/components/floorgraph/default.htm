@@ -72,7 +72,8 @@
 
 
 
-			        {% for item in floorpipes if item.id > 3 %}
+			        {% for item in floorpipes %}
+                        {% if item.id > 3 %}
 			        	{% set row_count  = row_count + 1 %}
                     {% set total_auto_used = 0 %}
                     {% for sc in item.schedules %}
@@ -189,6 +190,7 @@
 
 				             </tr>
                         {% endif %}
+                    {% endif %}
 			        {% endfor %}
 		        </tbody>
 				<tfoot>
@@ -250,7 +252,7 @@
 			        }
 			    },
 
-			    series: {% autoescape false %}{{FloorGraph.ScrapGraph()}}{% endautoescape %}
+			    series: {{FloorGraph.ScrapGraph()|raw}}
 
 
 			    ,
@@ -305,7 +307,7 @@
 			        }
 			    },
 
-			    series: {% autoescape false %}{{FloorGraph.OparatorGraph()}}{% endautoescape %}
+			    series: {{FloorGraph.OparatorGraph()|raw}}
 
 
 			    ,

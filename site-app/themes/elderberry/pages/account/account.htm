@@ -1,0 +1,57 @@
+title = "My Account"
+url = "/account"
+layout = "default"
+meta_title = "My Account"
+is_hidden = 0
+child_of = "home"
+hide_crumb = 0
+crumb_title = "My Account"
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[session]
+security = "all"
+redirect = "account/signin"
+
+[account]
+paramCode = "code"
+forceSecure = 0
+
+[notifications]
+recordsPerPage = 7
+includeAssets = 1
+==
+{% put styles %}
+    <style>
+        #page-header{
+          padding: 40px 0px !important;
+        }
+    </style>
+{% endput %}
+
+<section>
+    <div class="row">
+        <div class="col-sm-6 d-none">
+            <div class="card">
+                <div class="card-header">
+                     <h5 class="card-title m-0" >Info</h5>
+                </div>
+                <div class="card-body">
+                    {% component 'notifications' %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                     <h5 class="card-title m-0" >Profile</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        {% component 'account' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/#pricing-->

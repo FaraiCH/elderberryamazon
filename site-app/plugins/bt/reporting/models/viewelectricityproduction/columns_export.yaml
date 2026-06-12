@@ -21,7 +21,7 @@ columns:
     line_id:
         label: Line ID
     baila:
-        label: Baila
+        label: Elderberry Amazon
     product_id:
         label: Production ID
     controlsheet_id:

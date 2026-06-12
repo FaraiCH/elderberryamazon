@@ -51,7 +51,7 @@ class PettyCash extends Controller
         $this->vars['enddate'] = Carbon::now()->format('Y-m-d');
         $this->vars['startdate'] = Carbon::now()->addDays(-7)->format('Y-m-d');
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         BackendMenu::setContext('Bt.Finance', 'finance', 'pettycash');
     }
     public function onSend($id, $messageNo)

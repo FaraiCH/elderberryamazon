@@ -41,7 +41,7 @@ columns:
         type: number
         format: "%.1f kg"
     btline:
-        label: BT Line
+        label: Elderberry Amazon Line
         searchable: true
         relation: btline
         select: name

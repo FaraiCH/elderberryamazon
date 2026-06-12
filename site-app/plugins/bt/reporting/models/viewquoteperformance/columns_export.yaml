@@ -14,7 +14,7 @@ columns:
     shift:
         label: Shift
     baila:
-        label: Baila
+        label: Elderberry Amazon
     quote_id:
         label: Quote No
         searchable: true

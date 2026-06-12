@@ -36,7 +36,7 @@ class Quoteitems extends Controller
 
         BackendMenu::setContext('Bt.Sales', 'sales', 'quoteitems');
 
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
         $this->vars['quotelist'] = Newquote::with('items')->where('ponumber', "!=", null)->orderBy('id', 'desc')->get();
     }

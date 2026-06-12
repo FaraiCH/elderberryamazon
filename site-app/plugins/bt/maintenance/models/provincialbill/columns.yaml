@@ -11,7 +11,7 @@ columns:
     end_date:
         label: Start Date
     line:
-        label: Baila Machine
+        label: Elderberry Amazon Machine
         relation: line
         select: name
 

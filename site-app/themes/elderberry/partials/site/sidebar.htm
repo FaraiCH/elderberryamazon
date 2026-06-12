@@ -1,0 +1,459 @@
+##
+==
+<div class="offcanvas-lg offcanvas-start sidebar-docked" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+    <div class="offcanvas-header border-bottom d-lg-none">
+        <h5 class="offcanvas-title fw-bold text-primary" id="sidebarMenuLabel">
+            <i class="bi bi-grid-fill me-2"></i>Enterprise Portal
+        </h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0 custom-scrollbar" style="overflow-y: auto !important;">
+        <div class="list-group list-group-flush sidebar-nav w-100">
+            <div class="sidebar-brand p-4 d-none d-lg-block border-bottom mb-2">
+                <img src="{{ 'assets/images/logo.jpg'|theme }}" alt="Elderberry Amazon" class="img-fluid" style="max-height: 50px;">
+                <h6 class="mt-3 mb-0 fw-bold text-primary">Enterprise Portal</h6>
+            </div>
+
+            <a href="{{ 'index'|page }}" class="list-group-item list-group-item-action py-3 {{ this.page.id == 'index' ? 'active' }}">
+                <i class="bi bi-house-door me-3"></i>Main Portal
+            </a>
+
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Account" style="cursor: pointer;">
+                Account
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Account">
+                <a href="{{ 'account/dashboard'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'account-dashboard' ? 'active' }}">
+                    Dashboard | Account
+                </a>
+                <a href="{{ 'account/account'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'account-account' ? 'active' }}">
+                    My Account
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Concessions" style="cursor: pointer;">
+                Concessions
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Concessions">
+                <a href="{{ 'concessions/thankyou'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'concessions-thankyou' ? 'active' }}">
+                    Dashboard
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Dashboard" style="cursor: pointer;">
+                Dashboard
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Dashboard">
+                <a href="{{ 'dashboard/bt-logo'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'dashboard-bt-logo' ? 'active' }}">
+                    Dashboard
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Floor" style="cursor: pointer;">
+                Floor
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Floor">
+                <a href="{{ 'floor/pipelist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-pipelist' ? 'active' }}">
+                    Pipe List
+                </a>
+                <a href="{{ 'floor/deliveryclient'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-deliveryclient' ? 'active' }}">
+                    Scrap List
+                </a>
+                <a href="{{ 'floor/scraplist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-scraplist' ? 'active' }}">
+                    Scrap List
+                </a>
+                <a href="{{ 'floor/deliveryscrap'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-deliveryscrap' ? 'active' }}">
+                    Scrap List
+                </a>
+                <a href="{{ 'floor/stockpipes'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'floor-stockpipes' ? 'active' }}">
+                    Stock Pipes
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_General" style="cursor: pointer;">
+                General
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_General">
+                <a href="{{ 't'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 't' ? 'active' }}">
+                    Dashboard
+                </a>
+                <a href="{{ 'logistictv'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'logistictv' ? 'active' }}">
+                    Dashboard
+                </a>
+                <a href="{{ 'index'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'index' ? 'active' }}">
+                    Enterprise Software Solutions
+                </a>
+                <a href="{{ 'features'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'features' ? 'active' }}">
+                    Home
+                </a>
+                <a href="{{ 'logout'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'logout' ? 'active' }}">
+                    Logout | Account
+                </a>
+                <a href="{{ 'account'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'account' ? 'active' }}">
+                    My Account
+                </a>
+                <a href="{{ 'production'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production' ? 'active' }}">
+                    Production
+                </a>
+                <a href="{{ 'srnimages'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'srnimages' ? 'active' }}">
+                    SRN IMAGES
+                </a>
+                <a href="{{ 'author'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'author' ? 'active' }}">
+                    Survey
+                </a>
+                <a href="{{ 'testhigh'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'testhigh' ? 'active' }}">
+                    Test
+                </a>
+                <a href="{{ 'questionnaire'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'questionnaire' ? 'active' }}">
+                    Training
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Help" style="cursor: pointer;">
+                Help
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Help">
+                <a href="{{ 'help/finance'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'help-finance' ? 'active' }}">
+                    Finance
+                </a>
+                <a href="{{ 'help/general'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'help-general' ? 'active' }}">
+                    General
+                </a>
+                <a href="{{ 'help/inventory'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'help-inventory' ? 'active' }}">
+                    Inventory
+                </a>
+                <a href="{{ 'help/production'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'help-production' ? 'active' }}">
+                    Production
+                </a>
+                <a href="{{ 'help/sales'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'help-sales' ? 'active' }}">
+                    Sales
+                </a>
+                <a href="{{ 'help/vid'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'help-vid' ? 'active' }}">
+                    videos
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Inventory" style="cursor: pointer;">
+                Inventory
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Inventory">
+                <a href="{{ 'inventory/daytodayincage'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-daytodayincage' ? 'active' }}">
+                    All InCage
+                </a>
+                <a href="{{ 'inventory/entry'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-entry' ? 'active' }}">
+                    Enter New Stock
+                </a>
+                <a href="{{ 'inventory/enterstock'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-enterstock' ? 'active' }}">
+                    Enter New Stock
+                </a>
+                <a href="{{ 'inventory/incage'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-incage' ? 'active' }}">
+                    In Cage Material
+                </a>
+                <a href="{{ 'inventory/stocklist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-stocklist' ? 'active' }}">
+                    In-Stock List
+                </a>
+                <a href="{{ 'inventory/entryitem'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-entryitem' ? 'active' }}">
+                    Inventory Item
+                </a>
+                <a href="{{ 'inventory/entrylist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-entrylist' ? 'active' }}">
+                    New Quote
+                </a>
+                <a href="{{ 'inventory/outstocklist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-outstocklist' ? 'active' }}">
+                    New Quote
+                </a>
+                <a href="{{ 'inventory/rawrecon'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-rawrecon' ? 'active' }}">
+                    Raw Material Function Recon
+                </a>
+                <a href="{{ 'inventory/receiving'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-receiving' ? 'active' }}">
+                    Raw Material Receiving
+                </a>
+                <a href="{{ 'inventory/rawreceiving'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-rawreceiving' ? 'active' }}">
+                    Raw Material Receiving
+                </a>
+                <a href="{{ 'inventory/receiving_details'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-receiving_details' ? 'active' }}">
+                    Raw Material Receiving
+                </a>
+                <a href="{{ 'inventory/bagdetailsform'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-bagdetailsform' ? 'active' }}">
+                    Raw Material Receiving
+                </a>
+                <a href="{{ 'inventory/value'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-value' ? 'active' }}">
+                    Raw Material Value
+                </a>
+                <a href="{{ 'inventory/daytoday'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-daytoday' ? 'active' }}">
+                    Release and Returns
+                </a>
+                <a href="{{ 'inventory/stockitem'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'inventory-stockitem' ? 'active' }}">
+                    Stock Item
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Investigation" style="cursor: pointer;">
+                Investigation
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Investigation">
+                <a href="{{ 'investigation/whistleblower'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'investigation-whistleblower' ? 'active' }}">
+                    Elderberry Amazon 911
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Maintenance" style="cursor: pointer;">
+                Maintenance
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Maintenance">
+                <a href="{{ 'maintenance/jobcard'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'maintenance-jobcard' ? 'active' }}">
+                    Jobcard List
+                </a>
+                <a href="{{ 'maintenance/schedule'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'maintenance-schedule' ? 'active' }}">
+                    Schedule List
+                </a>
+                <a href="{{ 'maintenance/toolslist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'maintenance-toolslist' ? 'active' }}">
+                    Tools List
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Notify" style="cursor: pointer;">
+                Notify
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Notify">
+                <a href="{{ 'notify/calendar'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'notify-calendar' ? 'active' }}">
+                    Calendar
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Production" style="cursor: pointer;">
+                Production
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Production">
+                <a href="{{ 'production/daytodayscrap'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-daytodayscrap' ? 'active' }}">
+                    Day To Day Scrap
+                </a>
+                <a href="{{ 'production/floor'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-floor' ? 'active' }}">
+                    Home
+                </a>
+                <a href="{{ 'production/floorclean'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-floorclean' ? 'active' }}">
+                    Home
+                </a>
+                <a href="{{ 'production/item'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-item' ? 'active' }}">
+                    Production Item
+                </a>
+                <a href="{{ 'production/pipe'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-pipe' ? 'active' }}">
+                    Production List
+                </a>
+                <a href="{{ 'production/productionlist'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-productionlist' ? 'active' }}">
+                    Production List
+                </a>
+                <a href="{{ 'production/running'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-running' ? 'active' }}">
+                    Running
+                </a>
+                <a href="{{ 'production/summary'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'production-summary' ? 'active' }}">
+                    Summary
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Questions" style="cursor: pointer;">
+                Questions
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Questions">
+                <a href="{{ 'questions/finish'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'questions-finish' ? 'active' }}">
+                    Results
+                </a>
+                <a href="{{ 'questions/training'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'questions-training' ? 'active' }}">
+                    Setup
+                </a>
+                <a href="{{ 'questions/test'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'questions-test' ? 'active' }}">
+                    Test
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Quote" style="cursor: pointer;">
+                Quote
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Quote">
+                <a href="{{ 'quote/catalogue'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-catalogue' ? 'active' }}">
+                    Catalogue
+                </a>
+                <a href="{{ 'quote/btaccount'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-btaccount' ? 'active' }}">
+                    Elderberry Amazon Account
+                </a>
+                <a href="{{ 'quote/list'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-list' ? 'active' }}">
+                    New List
+                </a>
+                <a href="{{ 'quote/new'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-new' ? 'active' }}">
+                    New Quote
+                </a>
+                <a href="{{ 'quote/new_v2'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-new_v2' ? 'active' }}">
+                    New Quote | V2
+                </a>
+                <a href="{{ 'quote/quoteapproval'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-quoteapproval' ? 'active' }}">
+                    Quote Approval
+                </a>
+                <a href="{{ 'quote/approval'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-approval' ? 'active' }}">
+                    Quote Approval
+                </a>
+                <a href="{{ 'quote/item'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-item' ? 'active' }}">
+                    Quote Item
+                </a>
+                <a href="{{ 'quote/srn'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'quote-srn' ? 'active' }}">
+                    SRN
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Reports" style="cursor: pointer;">
+                Reports
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Reports">
+                <a href="{{ 'reports/weeklyproduction'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'reports-weeklyproduction' ? 'active' }}">
+                    Summary
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Stickers" style="cursor: pointer;">
+                Stickers
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Stickers">
+                <a href="{{ 'stickers/main/details'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-main-details' ? 'active' }}">
+                    Details
+                </a>
+                <a href="{{ 'stickers/invalid'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-invalid' ? 'active' }}">
+                    Invalid
+                </a>
+                <a href="{{ 'stickers/main/home'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-main-home' ? 'active' }}">
+                    Menu
+                </a>
+                <a href="{{ 'stickers/printsticker'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-printsticker' ? 'active' }}">
+                    pipe_stickers
+                </a>
+                <a href="{{ 'stickers/stickerlanding'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-stickerlanding' ? 'active' }}">
+                    sticker_information
+                </a>
+                <a href="{{ 'stickers/stickerhome'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'stickers-stickerhome' ? 'active' }}">
+                    sticker_information
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Store" style="cursor: pointer;">
+                Store
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Store">
+                <a href="{{ 'store/printitem'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'store-printitem' ? 'active' }}">
+                    Print Store Item
+                </a>
+                <a href="{{ 'store/details'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'store-details' ? 'active' }}">
+                    Print Store Item Details
+                </a>
+            </div>
+            <div class="sidebar-heading px-4 pt-4 pb-2 text-uppercase small fw-bold text-muted d-flex justify-content-between align-items-center"
+                 data-bs-toggle="collapse" data-bs-target="#collapse_Visitors" style="cursor: pointer;">
+                Visitors
+                <i class="bi bi-chevron-down small"></i>
+            </div>
+            <div class="collapse show" id="collapse_Visitors">
+                <a href="{{ 'visitors/thankyou'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'visitors-thankyou' ? 'active' }}">
+                    Dashboard
+                </a>
+                <a href="{{ 'visitors/visitinvitation'|page }}" class="list-group-item list-group-item-action py-2 ps-5 small {{ this.page.id == 'visitors-visitinvitation' ? 'active' }}">
+                    Dashboard
+                </a>
+            </div>
+            <div class="mt-4 p-4 border-top">
+                <a href="{{ 'account/logout'|page }}" class="btn btn-outline-danger w-100 rounded-pill">
+                    <i class="bi bi-box-arrow-right me-2"></i>Sign Out
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put styles %}
+<style>
+    :root {
+        --sidebar-width: 280px;
+    }
+
+    /* Fixed Sidebar on Large Screens */
+    @media (min-width: 992px) {
+        .sidebar-docked {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            bottom: 0 !important;
+            width: var(--sidebar-width) !important;
+            z-index: 1040 !important;
+            visibility: visible !important;
+            transform: none !important;
+            border-right: 1px solid #dee2e6 !important;
+            background: #fff !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important; /* Keep outer hidden */
+        }
+
+        .sidebar-docked .offcanvas-body {
+            flex: 1 1 auto;
+            overflow-y: auto !important; /* Force scroll on the body */
+            height: 100vh !important;
+            display: block !important;
+            padding-bottom: 120px !important; /* Generous bottom padding */
+        }
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #999;
+    }
+
+    .sidebar-nav .list-group-item {
+        border: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        border-radius: 0;
+    }
+
+    .sidebar-nav .list-group-item:hover {
+        background-color: #f8f9fa;
+        color: var(--bs-primary);
+    }
+
+    .sidebar-nav .list-group-item.active {
+        background-color: var(--bs-primary-bg-subtle);
+        color: var(--bs-primary);
+        border-right: 4px solid var(--bs-primary);
+    }
+
+    .sidebar-heading i {
+        transition: transform 0.3s;
+    }
+
+    .sidebar-heading.collapsed i {
+        transform: rotate(-90deg);
+    }
+</style>
+{% endput %}

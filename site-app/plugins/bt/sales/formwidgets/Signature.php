@@ -53,7 +53,7 @@ class Signature extends FormWidgetBase
         $this->addCss('css/signature.css', 'bt.sales');
         $this->addCss('/plugins/bt/plcommon/assets/ej/ej2-base/styles/material.css', "bt.plcommon");
         $this->addCss('/plugins/bt/plcommon/assets/ej/ej2-inputs/styles/material.css', "bt.plcommon");
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
 
         $this->addJs('js/signature.js', 'bt.sales');

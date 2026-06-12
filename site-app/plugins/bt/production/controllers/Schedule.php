@@ -29,7 +29,7 @@ class Schedule extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
 
         BackendMenu::setContext('Bt.Production', 'production', 'schedule');

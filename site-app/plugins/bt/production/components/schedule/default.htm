@@ -11,9 +11,10 @@
 
 			<div class="row">
 
-	        {% for item in response if item.citem is not empty %}
+         {% for item in response %}
+             {% if item.citem is not empty %}
 	        	<div class="col-md-4">
-				<div class="card text-center  {{(date(item.opendate) < date('-0days') )? 'bg-light' : 'bg-info text-white' }} mb-1" style="">
+				<div class="card text-center  {{ date(item.opendate) < date('-0days')  ? 'bg-light' : 'bg-info text-white' }} mb-1" style="">
 					<div class="card-header" style="font-size: 12px">CS: {{item.id}}: {{item.jobcard.pipe.quoteitems.description}} / {{item.jobcard.pipe.qpush.quote.company_name}}</div>
 					<table class=" table-sm table-secondary" style="margin: 0px;">
 						<thead>
@@ -68,5 +69,6 @@
 				</div>
 				</div>
 
-	        {% endfor %}
+             {% endif %}
+         {% endfor %}
 	    </div>

@@ -1,0 +1,135 @@
+title = "Raw Material Receiving"
+url = "/inventory/bagdetailsform"
+layout = "default"
+is_hidden = 0
+meta_title = "Raw Material Receiving"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+
+==
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-list"></i> </h1>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bag Details</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f6f4 url(https://bailaerp.bt-industrial.co.za/storage/app/media/backgrounds/web_back.png) center center/ cover no-repeat fixed
+    }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+    .form-group input[readonly] {
+        background-color: #f0f0f0;
+    }
+    .form-group button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+</style>
+    <div class="container">
+        <h2>Bag Details</h2>
+        <form id="bag_details">
+        	<div class="form-group">
+            <label for="bags">Bag Number:</label>
+            <input type="text" id="bags" name="bags" readonly>
+        </div>
+        <div class="form-group">
+            <label for="batchNumber">Batch Number:</label>
+            <input type="text" id="batchNumber" name="batchNumber" readonly>
+        </div>
+        <div class="form-group">
+            <label for="batchPrefix">Batch Prefix:</label>
+            <input type="text" id="batchPrefix" name="batchPrefix" readonly>
+        </div>
+        <div class="form-group">
+            <label for="actual_weight">Actual Weight:</label>
+            <input type="text" id="actual_weight" name="actual_weight">
+        </div>
+        <!-- Add more fields for other bag details as needed -->
+        <button >Save and Close</button>
+        </form>
+        
+    </div>
+
+    <script>
+    	var saveActualWeightUrl = "{{ 'save-actual-weight'}}";
+        // Function to populate form fields with bag details
+        function populateForm() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var bagNumber = urlParams.get('bags');
+            var batchNumber = urlParams.get('batchNumber');
+            var batchPrefix = urlParams.get('batchPrefix');
+
+            document.getElementById('bags').value = bagNumber;
+            document.getElementById('batchNumber').value = batchNumber;
+            document.getElementById('batchPrefix').value = batchPrefix;
+        }
+
+        // Function to save actual weight and close the window
+        function saveAndClose() {
+            var actualWeight = document.getElementById('actual_weight').value;
+            var batchNumber = document.getElementById('batchNumber').value;
+            var bagNumber = document.getElementById('bags').value;
+
+           
+
+            
+        }
+
+        document.querySelector('#bag_details').addEventListener('submit', function(e){
+        	e.preventDefault()
+
+        	const formData = new FormData(e.target)
+        	const batchNumber = formData.get('batchNumber')
+        	fetch(`https://bailaerp.bt-industrial.co.za/save-actual-weight/${batchNumber}`,
+            	{method:'post', body: formData}
+            )
+             .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to save actual weight');
+            }
+            // Display success message
+            alert('Actual Weight is saved successfully');
+            // Refresh the page
+            location.reload();
+            })
+            .catch(error => {
+                console.error('Failed to save actual weight:', error);
+                alert('Failed to save actual weight. Please try again.');
+            });
+        })
+
+        // Populate the form fields when the page loads
+        window.onload = populateForm;
+    </script>

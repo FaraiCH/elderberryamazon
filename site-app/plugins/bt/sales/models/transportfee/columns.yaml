@@ -31,16 +31,16 @@ columns:
     trailer_18m:
         label: 18m Trailer Price
     bt_ton:
-        label: BT 1-Ton Price
+        label: Elderberry Amazon 1-Ton Price
     bt_ton_trailer:
-        label: BT 1-Ton and Trailer Price
+        label: Elderberry Amazon 1-Ton and Trailer Price
     bt_ton_trailer_min_6m:
-        label: BT 6-Ton and Trailer Min 6m Bed Price
+        label: Elderberry Amazon 6-Ton and Trailer Min 6m Bed Price
     bt_ten_ton_12m_trailer:
-        label: BT 10-Ton and 12m Trailer
+        label: Elderberry Amazon 10-Ton and 12m Trailer
     bt_trailer_12m:
-        label: BT 12m Trailer Price
+        label: Elderberry Amazon 12m Trailer Price
         type: number
     bt_trailer_18m:
-        label: BT 18m Trailer Price
+        label: Elderberry Amazon 18m Trailer Price
         type: number

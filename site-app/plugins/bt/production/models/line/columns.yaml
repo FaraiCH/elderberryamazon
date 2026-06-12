@@ -10,7 +10,7 @@ columns:
         label: Name
         searchable: true
     btmeter:
-        label: Meter Baila
+        label: Meter Elderberry Amazon
         searchable: true
         relation: btmeter
         select: name

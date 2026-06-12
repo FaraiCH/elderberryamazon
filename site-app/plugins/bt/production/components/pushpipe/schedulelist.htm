@@ -295,25 +295,25 @@
 
 					    series: [{
 					        name: 'Target Units',
-					        data: {% autoescape false %}{{t_target_units_produced|json_encode()}}{% endautoescape %}
+					        data: {{t_target_units_produced|json_encode()|raw}}
 					    }, {
 					        name: 'Total Produced',
-					        data: {% autoescape false %}{{t_total_units_produced|json_encode()}}{% endautoescape %}
+					        data: {{t_total_units_produced|json_encode()|raw}}
 					    }, {
 					        name: 'Total Passed QC',
-					        data: {% autoescape false %}{{t_total_units_passed_qc|json_encode()}}{% endautoescape %}
+					        data: {{t_total_units_passed_qc|json_encode()|raw}}
 					    }, {
 					        name: 'Total Failed QC',
-					        data: {% autoescape false %}{{t_total_units_fail_qc|json_encode()}}{% endautoescape %}
+					        data: {{t_total_units_fail_qc|json_encode()|raw}}
 					    }, {
 					        name: 'Running Total Of Failed Pipes',
-					        data: {% autoescape false %}{{t_Running_total_of_failed_pipes|json_encode()}}{% endautoescape %}
+					        data: {{t_Running_total_of_failed_pipes|json_encode()|raw}}
 					    }, {
 					        name: 'Running Total Of Passed Units',
-					        data: {% autoescape false %}{{t_Running_total_of_passed_Units|json_encode()}}{% endautoescape %}
+					        data: {{t_Running_total_of_passed_Units|json_encode()|raw}}
 					   	}, {
 					        name: 'Running Total Of Pipes Produced',
-					        data: {% autoescape false %}{{t_Running_total_of_pipes_produced|json_encode()}}{% endautoescape %}
+					        data: {{t_Running_total_of_pipes_produced|json_encode()|raw}}
 					    }
 
 
@@ -365,14 +365,14 @@
 
 					    series: [{
 					        name: 'Target Processed',
-					        data: {% autoescape false %}{{t_target_kg_processed|json_encode()}}{% endautoescape %}
+					        data: {{t_target_kg_processed|json_encode()|raw}}
 					    }, {
 					        name: 'Total Processed',
-					        data: {% autoescape false %}{{t_total_kg_processed|json_encode()}}{% endautoescape %}
+					        data: {{t_total_kg_processed|json_encode()|raw}}
 					    
 					    }, {
 					        name: 'Wasted Material',
-					        data: {% autoescape false %}{{t_Wasted_material_kg|json_encode()}}{% endautoescape %}
+					        data: {{t_Wasted_material_kg|json_encode()|raw}}
 					    }
 
 					    ],

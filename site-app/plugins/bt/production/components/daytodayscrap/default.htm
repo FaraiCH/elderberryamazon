@@ -126,7 +126,7 @@
 			        }
 			    },
 
-			    series: {% autoescape false %}{{CmDayToDayScrap.ScrapGraph()}}{% endautoescape %}
+			    series: {{CmDayToDayScrap.ScrapGraph()|raw}}
 
 
 			    ,
@@ -181,7 +181,7 @@
 			        }
 			    },
 
-			    series: {% autoescape false %}{{CmDayToDayScrap.OparatorGraph()}}{% endautoescape %}
+			    series: {{CmDayToDayScrap.OparatorGraph()|raw}}
 
 
 			    ,

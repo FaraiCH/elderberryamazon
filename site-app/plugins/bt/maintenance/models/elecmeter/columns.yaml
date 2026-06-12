@@ -13,7 +13,7 @@ columns:
         type: partial
         path: $/bt/maintenance/models/elecmeter/lastupdate.htm
     btline:
-        label: BT Lines
+        label: Elderberry Amazon Lines
         relation: btline
         select: name
 

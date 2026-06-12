@@ -42,7 +42,7 @@ class Srn extends Controller
         parent::__construct();
 
         BackendMenu::setContext('Bt.Sales', 'sales', 'srn');
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
         // SRNS
         if(!isset($_SESSION['startsrn'])){

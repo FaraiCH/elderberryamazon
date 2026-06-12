@@ -22,7 +22,7 @@ columns:
 
 
     location:
-        label: Location Inside BT
+        label: Location Inside Elderberry Amazon
         type: selectable
 
     no_of_attendees:

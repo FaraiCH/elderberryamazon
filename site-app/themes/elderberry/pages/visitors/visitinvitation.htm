@@ -1,0 +1,39 @@
+title = "Dashboard"
+url = "/visitors/induction/:id/:key_pass"
+layout = "default"
+meta_title = "Visitor Invitation"
+is_hidden = 0
+
+[CmVisitorInvitation]
+id = "{{ :id }}"
+key_pass = "{{ :key_pass }}"
+==
+{% put styles %}
+  <style type="text/css">
+
+      .container{
+          max-width: 100%
+      }
+
+      h3{
+        text-align: center;
+        line-height: 30px;
+      }
+      section.page-title {
+
+        padding: 0px !important;
+    }
+    section.content {
+    padding-top: 2px;
+   }
+   
+
+
+</style>
+
+
+{% endput %}
+
+{% component 'CmVisitorInvitation' %}
+
+

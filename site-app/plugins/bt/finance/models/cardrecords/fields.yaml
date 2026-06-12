@@ -8,7 +8,7 @@ fields:
         disabled: true
         span: auto
     project:
-        label: BT Division
+        label: Elderberry Amazon Division
         type: relation
         select: name
         span: auto

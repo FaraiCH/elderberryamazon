@@ -65,7 +65,7 @@ class Newquote extends Controller
         parent::__construct();
 
         BackendMenu::setContext('Bt.Sales', 'sales', 'newquote');
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
         $this->addJs('/plugins/bt/sales/assets/js/newquote.js', "1.0.0");
 
@@ -96,13 +96,13 @@ class Newquote extends Controller
     {
         $this->addCss("/plugins/bt/production/assets/css/additional.css", "1.0.0");
         $this->addCss("/plugins/bt/sales/assets/css/backlaout.css", "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap4.min.css", "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/responsive.bootstrap4.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap5.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/responsive.bootstrap5.min.css", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/backlaout.js", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/datatables.min.js", "1.0.0");
-        $this->addJs("/plugins/bt/sales/assets/js/dataTables.bootstrap4.min.js", "1.0.0");
+        $this->addJs("/plugins/bt/sales/assets/js/dataTables.bootstrap5.min.js", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/dataTables.responsive.min.js", "1.0.0");
-        $this->addJs("/plugins/bt/sales/assets/js/responsive.bootstrap4.min.js", "1.0.0");
+        $this->addJs("/plugins/bt/sales/assets/js/responsive.bootstrap5.min.js", "1.0.0");
     }
 
     public function onSendQuoteToMe($id = null)
@@ -194,7 +194,7 @@ class Newquote extends Controller
 
         $this->addJs("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js", "1.0.0");
 
-        $this->addCss("/plugins/bt/sales/assets/css/bootstrap.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/bootstrap.min.css", "1.0.0");
         $this->pageTitle = "Back Order";
         BackendMenu::setContext('Bt.Sales', 'sales', 'backorders');
         $objClient = Client::where('id', "!=", 3)->whereHas('quotes', function ($query) {
@@ -490,7 +490,7 @@ class Newquote extends Controller
     {
         $this->InjectDataTable();
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addCss("/plugins/bt/production/assets/css/additional.css", "1.0.0");
         BackendMenu::setContext('Bt.Sales', 'sales', 'backorderclient');
         $this->pageTitle = "Back Order by Client";

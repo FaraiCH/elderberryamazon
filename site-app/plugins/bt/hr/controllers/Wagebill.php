@@ -42,7 +42,7 @@ class Wagebill extends Controller
         parent::__construct();
 
         #Add CSS
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addCss('/plugins/bt/hr/assets/css/style.css', "1.0.0");
         $this->addCss("/plugins/bt/sales/assets/css/backlaout.css", "1.0.0");
         #Add JS

@@ -55,12 +55,12 @@ class Agepipe extends Controller
         BackendMenu::setContext('Bt.Reporting', 'reporting', 'agepipe');
         $this->pageTitle = "Age Pipe";
 
-        $this->addCss("/plugins/bt/reporting/assets/css/bootstrap.css", "1.0.0");
+        $this->addCss("/plugins/bt/reporting/assets/css/bootstrap.min.css", "1.0.0");
         $this->addCss("/plugins/bt/reporting/assets/css/backlaout.css", "1.0.0");
-        $this->addCss("/plugins/bt/reporting/assets/css/dataTables.bootstrap4.min.css", "1.0.0");
-        $this->addCss("/plugins/bt/reporting/assets/css/responsive.bootstrap4.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/reporting/assets/css/dataTables.bootstrap5.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/reporting/assets/css/responsive.bootstrap5.min.css", "1.0.0");
         $this->addJs("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js", "1.0.0");
-        $this->addJs("https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js", "1.0.0");
+        $this->addJs("https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap5.min.js", "1.0.0");
         $this->addJs("/plugins/bt/reporting/assets/js/backlaout.js", "1.0.0");
 
         $this->addJs("https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js", "1.0.0");

@@ -33,7 +33,7 @@ columns:
     #   label: Product Description
 
     btline:
-      label: BT Line
+      label: Elderberry Amazon Line
       searchable: true
       relation: btline
       select: name

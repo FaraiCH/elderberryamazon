@@ -9,7 +9,7 @@ columns:
     date:
         label: Date
     btline:
-        label: Baila Line
+        label: Elderberry Amazon Line
         relation: btline
         select: name
     total_weight:

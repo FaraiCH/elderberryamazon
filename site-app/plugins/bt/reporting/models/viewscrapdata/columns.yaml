@@ -25,7 +25,7 @@ columns:
         searchable: true
         clickable: false
     baila:
-        label: Baila
+        label: Elderberry Amazon
         searchable: true
         clickable: false
     quote_id:

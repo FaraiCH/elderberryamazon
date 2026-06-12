@@ -17,10 +17,10 @@
 					
 					<tr>
 						
-							{% autoescape false %}{% set isnotset = '<span class="text-danger">Not Set</span>' %}{% endautoescape %}
+							{% set isnotset = '<span class="text-danger">Not Set</span>' %}
 						
-						<td>{% autoescape false %}{{(pipe.start_date)?pipe.start_date|date("Y-m-d"):isnotset}}{% endautoescape %}</td>
-						<td>{% autoescape false %}{{(pipe.due_date)?pipe.due_date|date("Y-m-d"):isnotset|raw}}{% endautoescape %}</td>
+						<td>{{(pipe.start_date)?pipe.start_date|date("Y-m-d"):isnotset|raw}}</td>
+						<td>{{(pipe.due_date)?pipe.due_date|date("Y-m-d"):isnotset|raw|raw}}</td>
 						
 						{% set totalmass = pipe.quoteitems.units * pipe.pipe_target_weight %}
 

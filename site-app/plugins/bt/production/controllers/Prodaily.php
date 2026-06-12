@@ -38,7 +38,7 @@ class Prodaily extends Controller
         BackendMenu::setContext('Bt.Production', 'production', 'sheet');
         $this->pageTitle = 'Daily Production Report';
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
 
         $this->vars['startdate'] = Carbon::now()->format('Y-m-d');
         $startdate = \Input::get('startdate');

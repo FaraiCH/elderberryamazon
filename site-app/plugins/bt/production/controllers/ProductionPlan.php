@@ -62,7 +62,7 @@ class ProductionPlan extends Controller
         BackendMenu::setContext('Bt.Production', 'production', 'productionplan');
         BackendMenu::setContext('Bt.Production', 'production', 'createplan');
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         if (\Input::has('enddate')) {
             $enddate = \Input::get('enddate');
         } else {
@@ -678,7 +678,7 @@ class ProductionPlan extends Controller
     {
 
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addCss("/plugins/bt/production/assets/css/additional.css", "1.0.0");
 
         $this->pageTitle = "Monthly Production Margin Analysis";

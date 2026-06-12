@@ -48,10 +48,10 @@ class QueryBuilder extends Controller
         $this->pageTitle ="Search";
         $this->initForm($this);
 
-         $this->addCss("/plugins/bt/sales/assets/css/bootstrap.css", "1.0.0");
+         $this->addCss("/plugins/bt/sales/assets/css/bootstrap.min.css", "1.0.0");
         $this->addCss("/plugins/bt/sales/assets/css/backlaout.css", "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap4.min.css", "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/responsive.bootstrap4.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap5.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/responsive.bootstrap5.min.css", "1.0.0");
 
 
         $this->addJs('https://code.jquery.com/ui/1.12.1/jquery-ui.js', 'Bt.Sales');
@@ -65,7 +65,7 @@ class QueryBuilder extends Controller
 
 
         $this->addJs("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js", "1.0.0");
-        $this->addJs("https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js", "1.0.0");
+        $this->addJs("https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap5.min.js", "1.0.0");
 
         $this->addJs("https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js", "1.0.0");
         $this->addJs("//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js", "1.0.0");

@@ -1,0 +1,25 @@
+title = "Raw Material Receiving"
+url = "/inventory/details"
+layout = "default"
+is_hidden = 0
+meta_title = "Raw Material Receiving"
+[session]
+security = "user"
+allowedUserGroups[] = "registered"
+redirect = "account/signin"
+[CmRawMaterialReceiving]
+==
+
+
+<h1 class="display-4 wow animated zoomInDown m-t-3"><i class="fa fa-list"></i> </h1>
+
+{% component 'CmRawMaterialReceiving' %}
+<div id="scanned-codes">
+    <h1>Scanned QR Codes</h1>
+    <ul>
+        {% for qrCode in scannedQRCodes %}
+            <li>{{ qrCode.batch_number }}</li>
+            <!-- Add more fields as needed -->
+        {% endfor %}
+    </ul>
+</div>

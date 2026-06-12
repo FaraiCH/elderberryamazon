@@ -1,0 +1,135 @@
+title = "Sign In | Account"
+url = "/account/signin"
+layout = "default"
+meta_title = "Sign In"
+is_hidden = 0
+child_of = "home"
+hide_crumb = 0
+crumb_title = "Sign In"
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[account]
+redirect = "/account"
+paramCode = "code"
+forceSecure = 0
+==
+{% put styles %}
+    <style>
+        .signin-wrapper {
+            min-height: calc(100vh - 200px);
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
+            background-color: #f8f9fa;
+        }
+        .signin-card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1) !important;
+            overflow: hidden;
+        }
+        .signin-card .card-header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+        }
+        .signin-card .card-body {
+            padding: 2rem;
+        }
+        .signin-card .card-footer {
+            background: #fff;
+            border-top: 1px solid #eee;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+        .form-control {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem !important;
+        }
+        .btn-signin {
+            padding: 0.75rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+        }
+        .label-small {
+            font-weight: 600;
+            color: #6c757d;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+    </style>
+{% endput %}
+
+<div class="signin-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-8">
+                {% if user %}
+                    {% if not user.is_activated %}
+                        <div class="alert alert-warning shadow-sm mb-4 rounded-3">
+                            <h5 class="fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i>Account Not Verified</h5>
+                            <p class="mb-0 small">Please check your email to verify your account. <a href="javascript:;" data-request="onSendActivationEmail" class="fw-bold">Resend email</a></p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {% flash %}
+                    <div class="alert alert-info shadow-sm mb-4 rounded-3">
+                        <i class="bi bi-info-circle-fill me-2"></i>{{ message }}
+                    </div>
+                {% endflash %}
+
+                <div class="card signin-card">
+                    <div class="card-header">
+                        <img src="{{ 'assets/images/logo.jpg'|theme }}" alt="Elderberry Amazon" style="height: 50px;" class="mb-3">
+                        <h4 class="fw-bold mb-0 text-primary">Enterprise Portal</h4>
+                        <p class="text-muted small mt-2">Sign in to manage your ecosystem</p>
+                    </div>
+                    <div class="card-body">
+                        {{ form_ajax('onSignin') }}
+                            <div class="mb-4">
+                                <label class="label-small mb-2 d-block">{{ loginAttributeLabel }}</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-person text-muted"></i></span>
+                                    <input id="userSigninLogin" name="login" required="required" type="text" class="form-control border-start-0 ps-0" placeholder="Enter your {{ loginAttributeLabel|lower }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="label-small mb-2 d-block">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
+                                    <input id="userSigninPassword" name="password" required="required" type="password" class="form-control border-start-0 ps-0" placeholder="Enter your password">
+                                </div>
+                            </div>
+
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
+                                <label class="form-check-label text-muted small" for="rememberMe">
+                                    Keep me logged in
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 btn-signin shadow-sm">Sign In</button>
+                        {{ form_close() }}
+                    </div>
+                    <div class="card-footer">
+                        <p class="mb-0 small text-muted">
+                            <i class="bi bi-key me-1"></i>
+                            Forgot password? <a href="/user/password-reset" class="fw-bold">Reset it here</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{{ 'index'|page }}" class="text-decoration-none text-muted small fw-bold">
+                        <i class="bi bi-arrow-left me-1"></i> Back to Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

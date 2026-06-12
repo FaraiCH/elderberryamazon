@@ -46,8 +46,8 @@ class Mydashboard extends Controller
         $this->addCss("/plugins/bt/sales/assets/css/productionbal.css", "1.0.0");
         $this->addCss("/plugins/bt/sales/assets/css/pagination.css", "1.0.0");
         $this->addCss("/plugins/bt/sales/assets/css/backlaout.css", "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap4.min.css", "1.0.0");
-        $this->addCss("/plugins/bt/sales/assets/css/responsive.bootstrap4.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/dataTables.bootstrap5.min.css", "1.0.0");
+        $this->addCss("/plugins/bt/sales/assets/css/responsive.bootstrap5.min.css", "1.0.0");
         $this->addCss("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", "1.0.1");
 
         #Add JS
@@ -55,9 +55,9 @@ class Mydashboard extends Controller
         $this->addJs("/plugins/bt/sheq/assets/js/backend_formfilter.js", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/backlaout.js", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/datatables.min.js", "1.0.0");
-        $this->addJs("/plugins/bt/sales/assets/js/dataTables.bootstrap4.min.js", "1.0.0");
+        $this->addJs("/plugins/bt/sales/assets/js/dataTables.bootstrap5.min.js", "1.0.0");
         $this->addJs("/plugins/bt/sales/assets/js/dataTables.responsive.min.js", "1.0.0");
-        $this->addJs("/plugins/bt/sales/assets/js/responsive.bootstrap4.min.js", "1.0.0");
+        $this->addJs("/plugins/bt/sales/assets/js/responsive.bootstrap5.min.js", "1.0.0");
         $this->pageTitle = "My Dashboard";
         $myMonths = array();
         if(Session::has('startdate') && Session::get('startdate') != null){

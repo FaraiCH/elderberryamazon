@@ -69,41 +69,41 @@ fields:
     unit_complexname_number:
         label: Unit / complex name & number
         span: auto
-        comment: For collections, use BT Address
+        comment: For collections, use Elderberry Amazon Address
 
     street_number:
         label: Street number
         span: auto
         dependsOn: unit_complexname_number
-        comment: For collections, use BT Street Number
+        comment: For collections, use Elderberry Amazon Street Number
     street_name:
         label: Street Name
         span: auto
         dependsOn: street_number
-        comment: For collections, use BT Street Name
+        comment: For collections, use Elderberry Amazon Street Name
     city:
         label: City
         span: auto
         dependsOn: street_name
-        comment: For collections, use BT City Address
+        comment: For collections, use Elderberry Amazon City Address
     suburb:
         label: Suburb
         span: auto
         dependsOn: city
-        comment: For collections, use BT City Address
+        comment: For collections, use Elderberry Amazon City Address
     postal_code:
         label: Postal Code
         span: auto
         dependsOn: suburb
         type: number
-        comment: For collections, use BT Postal Code
+        comment: For collections, use Elderberry Amazon Postal Code
     address:
         label: Delivery Address
         span: auto
         size: small
         disabled: true
         dependsOn: postal_code
-        comment: for collections, use BT Address
+        comment: for collections, use Elderberry Amazon Address
     # notes:
     #     label: Notes
     #     span: auto
@@ -125,7 +125,7 @@ fields:
 tabs:
     fields:
         section2_2@update:
-            label: List of items that are produced by BT and are exptected to be delivered/collected
+            label: List of items that are produced by Elderberry Amazon and are exptected to be delivered/collected
             type: section
             tab: Production Items
         items@update:

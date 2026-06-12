@@ -23,7 +23,7 @@ columns:
         relation: country
         select: name
     is_blacklisted:
-        label: Blacklisted by BT
+        label: Blacklisted by Elderberry Amazon
         searchable: true
     name:
         label: Company Nam

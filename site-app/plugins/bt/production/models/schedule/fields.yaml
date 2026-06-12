@@ -317,11 +317,11 @@ tabs:
                 data-tags: true
         btaccount@update:
             path: $/bt/production/models/schedule/_btaccount.htm
-            tab: BT Account
+            tab: Elderberry Amazon Account
             type: partial
 
         # extrapipe:
-        #     tab: BT Account
+        #     tab: Elderberry Amazon Account
         #     type: datatable
         #     adding: true
         #     deleting: true
@@ -345,7 +345,7 @@ tabs:
         # extra:
         #     label: Total Units Extra
         #     disabled: false
-        #     tab: BT Account
+        #     tab: Elderberry Amazon Account
         #     cssClass: noezanclass col-sm-6
         #     span: storm
         #     type: number
@@ -354,7 +354,7 @@ tabs:
         # reason_extra:
         #     label: Reason For Extra
         #     disabled: false
-        #     tab: BT Account
+        #     tab: Elderberry Amazon Account
         #     cssClass: noezanclass col-sm-6
         #     span: storm
         #     type: dropdown

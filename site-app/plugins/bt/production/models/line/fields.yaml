@@ -10,7 +10,7 @@ fields:
         cssClass: noezanclass col-sm-6
         span: storm
     btmeter:
-        label: Meter Baila
+        label: Meter Elderberry Amazon
         select: name
         type: relation
         cssClass: noezanclass col-sm-6

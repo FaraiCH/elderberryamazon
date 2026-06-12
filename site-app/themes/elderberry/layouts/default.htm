@@ -1,23 +1,54 @@
-##
-description = "Default layout"
+[session]
+security = "all"
 ==
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         {% partial 'site/head/head-meta' %}
         <title>{{ this.page.title }} - Elderberry Amazon</title>
         <meta name="description" content="{{ this.page.meta_description }}">
         {% partial 'site/head/head-links' %}
+
+        {% if user %}
+        <style>
+            @media (min-width: 992px) {
+                body {
+                    padding-left: 280px;
+                }
+                .sidebar-docked {
+                    width: 280px !important;
+                    visibility: visible !important;
+                    transform: none !important;
+                    position: fixed !important;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    display: flex !important;
+                    flex-direction: column;
+                }
+                .navbar.sticky-top {
+                    left: 280px !important;
+                    width: calc(100% - 280px) !important;
+                }
+            }
+        </style>
+        {% endif %}
+        {% partial 'site/head/head-scripts' %}
+        {% partial 'site/head/analytics-code' %}
     </head>
     <body>
-        {% partial 'site/header' %}
+        {% if user %}
+            {% partial 'site/sidebar' %}
+        {% endif %}
 
-        <main id="layout-content">
-            {% page %}
-        </main>
+        <div class="main-wrapper">
+            {% partial 'site/header' %}
 
-        {% partial 'site/footer' %}
+            <main id="layout-content">
+                {% page %}
+            </main>
 
-        {% partial 'site/head/head-scripts' %}
+            {% partial 'site/footer' %}
+        </div>
     </body>
 </html>

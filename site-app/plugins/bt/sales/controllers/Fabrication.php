@@ -67,7 +67,7 @@ class Fabrication extends Controller
     }
 
     public function exportitem(){
-        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap4.css', "1.0.0");
+        $this->addCss('/plugins/bt/plcommon/assets/ej/ej2/bootstrap5.css', "1.0.0");
         $this->addJs('/plugins/bt/plcommon/assets/ej/ej2/dist/ej2.min.js', "1.0.0");
         $this->pageTitle = "Export Fabrication Items";
         BackendMenu::setContext('Bt.Sales', 'sales', 'fabrication');

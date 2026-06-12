@@ -78,7 +78,7 @@ fields:
     section:
         type: section
         label: Associate Quote
-        comment: To deliver this production to any quote, please link it to this production, this will help with reducing BT Account
+        comment: To deliver this production to any quote, please link it to this production, this will help with reducing Elderberry Amazon Account
     quotes@update:
         path: $/bt/production/controllers/pipe/_rel_quotes.htm
         tab: Properties
