@@ -1,0 +1,70 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: btindustrial-prod-instance-1-cluster.cluster-cvui6jj4ovao.eu-west-1.rds.amazonaws.com    Database: btindustrial_dev
+-- ------------------------------------------------------
+-- Server version	8.0.34
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
+
+--
+-- GTID state at the beginning of the backup 
+--
+
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '';
+
+--
+-- Table structure for table `bt_inventory_part_names`
+--
+
+DROP TABLE IF EXISTS `bt_inventory_part_names`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bt_inventory_part_names` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `supplier_id` int unsigned DEFAULT NULL,
+  `created_by` int unsigned DEFAULT NULL,
+  `updated_by` int unsigned DEFAULT NULL,
+  `cat_id` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bt_inventory_part_names_supplier_id_index` (`supplier_id`),
+  KEY `bt_inventory_part_names_created_by_index` (`created_by`),
+  KEY `bt_inventory_part_names_updated_by_index` (`updated_by`),
+  KEY `bt_inventory_part_names_cat_id_index` (`cat_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bt_inventory_part_names`
+--
+
+LOCK TABLES `bt_inventory_part_names` WRITE;
+/*!40000 ALTER TABLE `bt_inventory_part_names` DISABLE KEYS */;
+INSERT INTO `bt_inventory_part_names` VALUES (1,'SCG','2019-05-07 10:52:49','2019-07-05 23:04:06',1,NULL,1,1),(2,'PEBO','2019-05-07 10:52:49','2019-07-05 23:04:55',2,NULL,1,1),(3,'PEBO 70','2019-05-07 10:52:49','2019-07-05 23:04:43',2,NULL,1,1),(4,'PEBO 100','2019-05-07 10:52:49','2019-07-05 23:04:37',2,NULL,1,1),(5,'BT - Regrind PE100','2019-05-07 10:52:49','2021-09-16 08:59:41',3,NULL,9,2),(6,'SAFRIPOL','2019-05-07 10:52:49','2019-07-11 11:09:50',6,NULL,1,1),(7,'Drying Agent','2019-05-07 10:52:49','2019-05-07 10:52:49',NULL,NULL,NULL,1),(8,'Other','2019-05-07 10:52:49','2019-05-07 10:52:49',NULL,NULL,NULL,2),(9,'HDPE PE100 Black Recycled (Samchem)','2019-05-20 23:25:45','2019-08-28 14:25:11',4,NULL,4,1),(10,'Taisox 8001BL','2019-05-20 23:33:24','2019-08-28 14:28:11',5,NULL,4,1),(11,'Desiccant','2019-05-23 11:50:49','2024-08-01 12:08:02',8,NULL,37,9),(12,'Blue Masterbatch','2019-05-23 11:51:08','2019-05-23 11:51:08',NULL,NULL,NULL,1),(13,'Black Masterbatch','2019-05-23 11:51:26','2019-05-23 11:51:26',NULL,NULL,NULL,1),(14,'Mixed Blue Strip Material','2019-05-23 11:51:52','2019-05-23 11:51:52',NULL,NULL,NULL,1),(15,'Sabic','2019-05-23 11:57:05','2019-08-28 14:29:55',5,NULL,4,1),(16,'Samchem Regrind','2019-05-24 00:44:32','2019-07-11 11:10:27',4,NULL,1,1),(17,'HDPE Drum Grade',NULL,'2019-08-28 14:21:58',4,NULL,4,1),(18,'Impact',NULL,'2019-08-28 14:29:28',6,NULL,4,1),(19,'Samchem HDPE P','2019-07-29 11:23:37','2019-07-29 11:23:37',4,1,NULL,1),(20,'Robus Regrind','2019-11-07 13:42:38','2019-11-07 13:42:38',13,4,NULL,2),(21,'Robus-Palletised','2019-11-18 17:06:17','2019-11-18 17:06:17',13,4,NULL,1),(22,'D','2020-08-25 08:28:42','2020-08-25 08:28:42',24,13,NULL,1),(23,'BOROUGE','2020-12-22 08:16:28','2020-12-22 08:16:28',26,9,NULL,1),(24,'BT Regrind','2021-03-30 11:27:59','2021-03-30 11:27:59',27,9,NULL,2),(25,'PP BOROUGE','2021-05-12 09:15:55','2021-05-12 09:17:16',26,9,9,1),(26,'POLIMAXX','2022-05-19 12:36:56','2022-05-19 12:36:56',4,15,NULL,1),(27,'BOROUGE','2022-06-27 11:54:11','2022-06-29 10:14:03',4,1,46,1),(28,'HANWHA','2022-12-12 06:18:28','2022-12-12 06:18:28',4,9,NULL,1),(29,'BAPOLENE','2023-01-13 11:37:27','2023-01-13 11:37:27',26,15,NULL,1),(30,'SAFRENE','2023-01-27 06:42:46','2023-01-27 06:42:46',6,15,NULL,1),(31,'PLASTMATE','2023-04-24 08:01:10','2023-04-24 08:01:10',4,15,NULL,1),(32,'WHITE MASTERBATCH','2023-06-28 07:02:05','2023-06-28 07:02:05',52,48,NULL,5),(33,'EXTRU CLEAN','2023-08-10 11:45:48','2023-08-10 11:45:48',8,15,NULL,5),(34,'Bt-regrind reworks','2023-09-07 09:27:23','2023-09-07 09:27:23',3,15,NULL,2),(35,'YUHWA','2023-10-04 06:57:09','2023-10-17 12:03:27',57,15,15,1),(36,'ANTIOXIDENT','2023-10-20 09:37:38','2023-10-20 09:37:38',50,15,NULL,5),(37,'BORSAFE','2023-11-06 10:33:16','2023-11-06 10:33:16',58,15,NULL,1),(38,'MELT BEHAVIOUR','2023-11-27 12:17:52','2023-11-27 12:17:52',8,15,NULL,5),(39,'PURG','2023-12-06 09:52:52','2023-12-06 09:52:52',50,15,NULL,5),(40,'PLASTICO','2024-05-16 10:39:40','2024-05-16 10:39:40',59,85,NULL,8),(41,'PE100','2024-05-22 07:50:01','2024-05-22 07:50:01',13,46,NULL,8),(42,'(Lyondellbasell)HOSTALEN CRP100','2024-10-10 14:29:01','2024-10-16 13:48:36',61,9,9,1),(43,'TASNEE','2024-10-25 12:55:30','2024-10-25 12:55:30',4,9,NULL,1),(44,'P6006AD','2024-10-30 08:34:01','2024-10-30 08:34:01',62,26,NULL,1);
+/*!40000 ALTER TABLE `bt_inventory_part_names` ENABLE KEYS */;
+UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-12-05 17:49:10

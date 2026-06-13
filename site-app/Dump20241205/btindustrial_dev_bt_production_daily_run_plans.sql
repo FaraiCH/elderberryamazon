@@ -1,0 +1,65 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: btindustrial-prod-instance-1-cluster.cluster-cvui6jj4ovao.eu-west-1.rds.amazonaws.com    Database: btindustrial_dev
+-- ------------------------------------------------------
+-- Server version	8.0.34
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
+
+--
+-- GTID state at the beginning of the backup 
+--
+
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '';
+
+--
+-- Table structure for table `bt_production_daily_run_plans`
+--
+
+DROP TABLE IF EXISTS `bt_production_daily_run_plans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bt_production_daily_run_plans` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `controlsheet_id` int unsigned DEFAULT NULL,
+  `units` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bt_production_daily_run_plans_controlsheet_id_index` (`controlsheet_id`),
+  CONSTRAINT `bt_production_daily_run_plans_controlsheet_id_foreign` FOREIGN KEY (`controlsheet_id`) REFERENCES `bt_production_control_sheets` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bt_production_daily_run_plans`
+--
+
+LOCK TABLES `bt_production_daily_run_plans` WRITE;
+/*!40000 ALTER TABLE `bt_production_daily_run_plans` DISABLE KEYS */;
+INSERT INTO `bt_production_daily_run_plans` VALUES (1,14193,23,'2024-08-22 13:34:42','2024-08-22 13:34:42'),(2,14175,20,'2024-08-22 13:45:41','2024-08-22 13:45:41'),(3,14212,48,'2024-08-22 14:13:49','2024-08-22 14:13:49'),(4,14211,30,'2024-08-22 14:15:00','2024-08-22 14:15:00'),(5,14175,20,'2024-08-22 14:23:35','2024-08-22 14:23:35'),(6,14183,4,'2024-08-22 14:24:01','2024-08-22 14:24:01'),(7,11484,21,'2024-08-22 14:24:26','2024-08-22 14:24:26'),(8,14187,60,'2024-08-22 14:24:53','2024-08-22 14:24:53'),(9,14196,132,'2024-08-22 14:25:16','2024-08-22 14:25:16'),(10,14186,4,'2024-08-22 14:26:32','2024-08-22 14:26:32'),(11,14211,36,'2024-08-23 06:55:07','2024-08-23 06:55:07'),(12,14216,121,'2024-08-23 06:55:35','2024-08-23 10:18:39'),(13,14214,336,'2024-08-23 06:56:01','2024-08-23 06:56:01'),(14,14217,10,'2024-08-23 12:57:06','2024-08-23 12:57:06'),(15,14177,24,'2024-08-23 12:59:20','2024-08-23 12:59:20'),(16,14178,16,'2024-08-23 13:00:04','2024-08-23 13:00:04'),(17,14218,5,'2024-08-23 13:04:32','2024-08-23 13:04:32'),(18,14218,68,'2024-08-23 13:05:05','2024-08-23 13:05:05'),(19,14219,20,'2024-08-23 13:15:01','2024-08-23 13:15:01'),(20,14220,11,'2024-08-23 13:42:49','2024-08-23 13:42:49'),(21,14221,5,'2024-08-23 13:43:18','2024-08-23 13:43:18'),(22,14222,6,'2024-08-23 13:52:41','2024-08-23 13:52:41'),(23,14223,22,'2024-08-23 14:33:17','2024-08-23 14:33:17'),(24,14224,8,'2024-08-23 14:34:42','2024-08-23 14:35:24'),(25,14230,9,'2024-08-26 06:58:38','2024-08-26 06:58:38'),(26,14232,16,'2024-08-26 07:12:07','2024-08-26 07:12:07'),(27,14233,24,'2024-08-26 07:12:47','2024-08-26 07:12:47');
+/*!40000 ALTER TABLE `bt_production_daily_run_plans` ENABLE KEYS */;
+UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-12-05 17:52:00
