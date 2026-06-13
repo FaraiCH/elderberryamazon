@@ -13,6 +13,7 @@ use Flash;
 use Input;
 Use Validator;
 use Redirect;
+use Session;
 use ValidationException;
 use GuzzleHttp\Client;
 use Http;
@@ -53,7 +54,7 @@ class FloorGraph extends ComponentBase
             $this->startdate = Input::get('startdate');
         }else{
             $current = Carbon::now();
-            $this->startdate = $current->addDays(-30);
+            $this->startdate = $current->subDays(30)->toDateString();
         }
 
         $this->loadAssets();
@@ -99,20 +100,19 @@ class FloorGraph extends ComponentBase
             $this->startdate = Input::get('startdate');
         }else{
             $current = Carbon::now();
-            $this->startdate = $current->addDays(-7);
+            $this->startdate = $current->subDays(7)->toDateString();
         }
-        $_SESSION['prostart'] = $this->startdate;
-        $_SESSION['enddate'] = $this->enddate;
+        Session::put('prostart', $this->startdate);
+        Session::put('enddate', $this->enddate);
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
 
-        $pipes = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->where('is_stock', 0)->get();
-        $parra= array();
-        foreach ($pipes as $v) {
-            if ($v->pipe_id) {
-                $parra[$v->pipe_id] = $v->pipe_id;
-            }
-        }
+        $parra = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+            ->where('is_stock', 0)
+            ->whereNotNull('pipe_id')
+            ->distinct()
+            ->pluck('pipe_id')
+            ->toArray();
 
         if (empty($parra)) {
             return collect();
@@ -187,7 +187,7 @@ class FloorGraph extends ComponentBase
             $this->startdate = Input::get('startdate');
         }else{
             $current = Carbon::now();
-            $this->startdate = $current->addDays(-7);
+            $this->startdate = $current->subDays(7)->toDateString();
         }
 
 
@@ -195,13 +195,11 @@ class FloorGraph extends ComponentBase
 //$quote = PipeModel::active()->whereBetween('start_date', array($this->startdate, $this->enddate." 23:59:00"))
 
 
-        $pipes = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->get();
-        $parra= array();
-        foreach ($pipes as $v) {
-            if ($v->pipe_id) {
-                $parra[$v->pipe_id] = $v->pipe_id;
-            }
-        }
+        $parra = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+            ->whereNotNull('pipe_id')
+            ->distinct()
+            ->pluck('pipe_id')
+            ->toArray();
 
         if (empty($parra)) {
             return json_encode([]);
@@ -265,7 +263,7 @@ class FloorGraph extends ComponentBase
             $this->startdate = Input::get('startdate');
         }else{
             $current = Carbon::now();
-            $this->startdate = $current->addDays(-7);
+            $this->startdate = $current->subDays(7)->toDateString();
         }
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
@@ -277,7 +275,7 @@ class FloorGraph extends ComponentBase
             ->with(['schedules' => function ($query) use ($data) {
                 $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
                       ->with('assignedto');
-            }])
+            }, 'quoteitems'])
             ->orderBy('start_date','desc')
             ->limit(50)
             ->get();

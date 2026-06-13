@@ -21,7 +21,6 @@
 
 {% set floorpipes = FloorGraph.producedPipes() %}
 
-
 <div class="tvhide" style="width: 99%; overflow: auto; padding: 10px;">
 			<table class="table table-striped table-bordered table-sm tabledownload" id="tablesimple" >
 				<thead>
@@ -99,13 +98,6 @@
 
 				        		<td nowrap="" align="right">
 				        			{{item.schedules.sum('total_units_passed_qc')}}
-				        			{% set row_count_pc  = 0 %}
-				        				{#{% for itemdd in item.schedules %}
-				        						{{itemdd.production_date}}
-
-				        						{% set row_count_pc  = row_count_pc + itemdd.total_units_passed_qc%}
-				        				{% endfor%}
-				        				({{row_count_pc}})#}
 				        		</td>
 				        		{#<td nowrap="" align="right">
 				        			{% if item.schedules.sum('total_units_passed_qc') > 0 %}
