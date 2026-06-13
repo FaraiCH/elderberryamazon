@@ -67,7 +67,7 @@ class VisitorInvitation extends ComponentBase
         }
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/boardroom/visitor/preview/'.$id;
+        $url = Config::get('app.url').'/admin/bt/boardroom/visitor/preview/'.$id;
 
         $link = "
         * View Visitor: $url";

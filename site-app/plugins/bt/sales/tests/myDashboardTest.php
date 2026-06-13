@@ -10,7 +10,7 @@ class myDashboardTest extends PluginTestCase
 //        $this->assertTrue($srnitem->srn()->exists());
 //    }
 //    public function testPageLoad(){
-//        $response = $this->get('/backend/bt/sales/mydashboard');
+//        $response = $this->get('/admin/bt/sales/mydashboard');
 //        $response->assertStatus(302);
 //    }
 //
@@ -27,7 +27,7 @@ class myDashboardTest extends PluginTestCase
 //
 //        $this->actingAs($user);
 //
-//        $response = $this->post('/backend/bt/sales/mydashboard', ['startdate' => '2023-01-01', 'enddate' => '2023-01-01']);
+//        $response = $this->post('/admin/bt/sales/mydashboard', ['startdate' => '2023-01-01', 'enddate' => '2023-01-01']);
 //
 //        $html = $response->getContent();
 //
@@ -55,7 +55,7 @@ class myDashboardTest extends PluginTestCase
 //    public function testSrnTestPage(){
 //        $user = User::find(1);
 //        $this->actingAs($user);
-//        $response = $this->get('/backend/bt/sales/srn/update/899999');
+//        $response = $this->get('/admin/bt/sales/srn/update/899999');
 //        $response->assertStatus(200);
 //    }
 }

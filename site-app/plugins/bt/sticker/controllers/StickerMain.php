@@ -61,7 +61,7 @@ class StickerMain extends Controller
         // Go to the Sticker Page with the Control Sheet Number if Validated
         if(Input::get('controlsheet') > 1)
         {
-            return Redirect::to('/backend/bt/sticker/stickermain/production/'. Input::get('controlsheet'));
+            return Redirect::to('/admin/bt/sticker/stickermain/production/'. Input::get('controlsheet'));
         }
         else
         {

@@ -2,7 +2,7 @@
 <?php if(isset($record)): ?>
 
 	<?php if(isset($record) && isset($record->scheduleday)): ?>
-		<a href="/backend/bt/production/schedule/update/<?= $record->scheduleday->id ?>" target="_blank">
+		<a href="/admin/bt/production/schedule/update/<?= $record->scheduleday->id ?>" target="_blank">
 			<span class="list-badge badge-info">
                         <i class="icon-info"></i>
                     <?php if(isset($record->scheduleday->pipe->quoteitems)): ?>

@@ -58,7 +58,7 @@ class Stickers extends Controller
 
     public function onSelectControl(){
         if(\Input::has('controlsheet') && \Input::get('controlsheet') > 0){
-           return \Redirect::to('/backend/bt/operator/stickers/setup/'.\Input::get('controlsheet'));
+           return \Redirect::to('/admin/bt/operator/stickers/setup/'.\Input::get('controlsheet'));
         }
 
     }

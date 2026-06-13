@@ -10,7 +10,7 @@ Description:print/ download production report
             color: #212529;font-size: 12px;
             font-family: sans-serif;
             word-wrap: break-word;
-            background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+            background: url(http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
         }
 
         @page { margin:20px; }
@@ -106,7 +106,7 @@ Description:print/ download production report
     <p class="left">
         Tel. +27 11 966 8058<br>
         Fax:  +27 86 459 5761<br>
-        E-mail: enquiries@bt-industrial.co.za
+        E-mail: enquiries@elderberryamazon.com
     </p>
 </div>
 <table width="100%" border="0" cellpadding="0px" cellspacing="0">
@@ -115,13 +115,13 @@ Description:print/ download production report
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="40%">
-                        <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+                        <img src="http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/logo.png" alt="Elderberry Amazon" >
                     </td>
                     <td width="60%" style="text-align: center;">
-                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">BT INDUSTRIAL GROUP</h1>
+                        <h1 style="color: #1d2240; padding: 0px; margin: 0px">ELDERBERRY AMAZON</h1>
                         <p>12 Barnsley Street, Benoni <b>VAT NO:</b> 4090279110 <b>P:</b> +27 11 966 8058 <b>F:</b> +27 86 459 5761</p>
                         <h2>PRODUCTION: {{ data.startdate|date("m/d/Y") }} - {{ data.enddate|date("m/d/Y") }} </h2>
-                        <a class="btn btn-primary" href='http://bailaerp.bt-industrial.co.za/production/floorclean?startdate={{ data.startdate|date("Y-m-d") }}&enddate={{ data.enddate|date("Y-m-d") }}'>View Online</a>
+                        <a class="btn btn-primary" href='http://elderberryamazon.com/production/floorclean?startdate={{ data.startdate|date("Y-m-d") }}&enddate={{ data.enddate|date("Y-m-d") }}'>View Online</a>
                     </td>
                 </tr>
             </table>
@@ -155,8 +155,10 @@ Description:print/ download production report
     </thead>
     <tbody>
     {% set weighted_scrap_weight  = 0 %}
-    {% for item in floorpipes if item.id > 3 %}
-        {% set weighted_scrap_weight = weighted_scrap_weight + item.schedules.sum('total_kg_processed') %}
+    {% for item in floorpipes %}
+        {% if item.id > 3 %}
+            {% set weighted_scrap_weight = weighted_scrap_weight + item.schedules.sum('total_kg_processed') %}
+        {% endif %}
     {% endfor %}
     {% set keeper = 'no name' %}
     {% set totalactualweight  = 0 %}
@@ -181,7 +183,8 @@ Description:print/ download production report
     {% set totalweighted = 0 %}
     {% set overruns = 0 %}
     {% set setoverruns = 0 %}
-    {% for item in floorpipes if item.id > 3 %}
+    {% for item in floorpipes %}
+    {% if item.id > 3 %}
     {% set total_auto_used = 0 %}
     {% set bt_units = 0 %}
     {% set bt_weight = 0 %}
@@ -309,6 +312,7 @@ Description:print/ download production report
 
         {% set totalmaterial_real = totalmaterial_real + item.schedules.sum('weight_scrap_kg') +item.schedules.sum('total_kg_processed') %}
     </tr>
+    {% endif %}
     {% endfor %}
     </tbody>
     <tfoot>
@@ -437,12 +441,11 @@ Material Used Auto: Material Captured Linked to the Material Release on the syst
         {% if mdata[p] is not empty %}
         <td colspan="2" style="text-align: center; font-weight: bold; ">
             {% if mdata[p].total_kg_processed == 0 %}
-
-        <td>0</td>
-        {% else %}
-        {{(
-        (mdata[p].weight_scrap_kg?mdata[p].weight_scrap_kg:0)/(mdata[p].total_kg_processed?mdata[p].total_kg_processed:0)*100)|number_format(1, '.', ',')}}%</td>
-        {% endif %}
+                0%
+            {% else %}
+                {{ ((mdata[p].weight_scrap_kg ? mdata[p].weight_scrap_kg : 0) / (mdata[p].total_kg_processed ? mdata[p].total_kg_processed : 0) * 100)|number_format(1, '.', ',') }}%
+            {% endif %}
+        </td>
         {% else %}
         <td style="text-align: right; font-weight: bold;">0</td>
         {% endif %}

@@ -6,7 +6,7 @@ use October\Rain\Support\Facades\Http;
 use Renatio\DynamicPDF\Classes\PDF;
 use Bt\Sales\Models\Pickslip;
 
-Route::any('/backend/bt/logistics/pipe/export',function () {
+Route::any('/admin/bt/logistics/pipe/export',function () {
     return Excel::download(new \Bt\Logistics\Models\PipeExport(), 'Pipe-Export.xlsx');
 });
 Route::any('/vehicle/item/download/{id}.pdf', function ($id) {

@@ -51,21 +51,21 @@
             <div class="control-tabs content-tabs" data-control="tab">
                     <ul class="nav nav-tabs">
 
-                          <li class="nav-item active ">
-                            <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pipe Details</a>
+                          <li class="nav-item">
+                            <a class="active" id="profile-tab-link" data-toggle="tab" href="#profile-pane" role="tab" aria-controls="profile-pane" aria-selected="true">Pipe Details</a>
                           </li>
                           <li class="nav-item">
-                            <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Schedule Days</a>
+                            <a class="" id="request-tab-link" data-toggle="tab" href="#request-pane" role="tab" aria-controls="request-pane" aria-selected="false">Schedule Days</a>
                           </li>
 
 
                     </ul>
                     <div class="tab-content" id="myTabContent" style="background: #fff">
 
-                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane active" id="profile-pane" role="tabpanel" aria-labelledby="profile-tab-link">
                             <div style="padding: 0px 20px"><h3>Pipe Details</h3> <?= $this->formRender() ?></div>
                         </div>
-                        <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                        <div class="tab-pane" id="request-pane" role="tabpanel" aria-labelledby="request-tab-link">
                             <div style="padding: 0px 20px"><h3>Schedule Days</h3>
 
                                 <?php if (count($formModel->schedules) > 0): ?>

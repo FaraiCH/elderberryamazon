@@ -66,7 +66,7 @@ class Piperequest extends Controller
     public function onRequestPipe($id){
         ##SEND EMAIL
         $quote = \Bt\Sales\Models\Piperequest::find($id);
-        $url = \Config::get('app.url').'/backend/bt/sales/piperequest/update/'.$quote->id;
+        $url = \Config::get('app.url').'/admin/bt/sales/piperequest/update/'.$quote->id;
 
         $link = "
         * View Pipe Request: $url";

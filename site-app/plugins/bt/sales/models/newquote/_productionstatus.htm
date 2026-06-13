@@ -1,7 +1,7 @@
 <?php if(isset($record->qpush) && $record->qpush): ?>
 
 	<?php if(isset($record->qpush->status) &&  $record->qpush->status): ?>
-		<a class="btn btn-primary" style="width: 100%" href="/backend/bt/production/push/update/<?php echo $record->qpush->id; ?>">
+		<a class="btn btn-primary" style="width: 100%" href="/admin/bt/production/push/update/<?php echo $record->qpush->id; ?>">
 		<?php if($record->qpush->status->id == 1): ?>
 			<span class="oc-icon-exclamation-circle ">
 			    <?php echo $record->qpush->status->name; ?>

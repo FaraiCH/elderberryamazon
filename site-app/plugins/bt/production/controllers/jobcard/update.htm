@@ -10,13 +10,13 @@
     <?= Form::open(['class' => 'layout']) ?>
 
         <div class="layout-row">
-            
+
             <div class="scoreboard-item title-value">
-                   
-                    <p class="oc-icon-bullhorn"> 
-                        <?= e($formModel->pipe->qpush->quote->company_name) ?>                         
+
+                    <p class="oc-icon-bullhorn">
+                        <?= e($formModel->pipe->qpush->quote->company_name) ?>
                     </p>
-                   
+
                 </div>
             <div class="scoreboard-item title-value">
                <table class="table data">
@@ -41,14 +41,14 @@
                     </thead>
                     <tbody>
                     <tr>
-                    
+
                         <td><?= e($formModel->id) ?></td>
                         <td>
                             <?php if (isset($formModel->pipe->quoteitems->description)): ?>
                                 <?= e($formModel->pipe->quoteitems->description) ?>
                              <?php else: ?>
                                Invalid name
-                            <?php endif; ?>        
+                            <?php endif; ?>
 
                             </td>
                         <td>
@@ -62,12 +62,12 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            
+
                             <?php if (isset($formModel->pipe->quoteitems->totalweight)): ?>
                                 <?= e($formModel->pipe->quoteitems->totalweight) ?>
                              <?php else: ?>
                                Invalid weight
-                            <?php endif; ?> 
+                            <?php endif; ?>
 
                         </td>
                         <td>
@@ -76,12 +76,12 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            
+
                             <?php if (isset($formModel->pipe->quoteitems->unitlength)): ?>
                                 <?= e($formModel->pipe->quoteitems->unitlength) ?>
                              <?php else: ?>
                                Invalid weight
-                            <?php endif; ?> 
+                            <?php endif; ?>
 
 
                         </td>
@@ -110,7 +110,7 @@
                                 <?= e($formModel->pipe->quoteitems->product->ovality_max) ?>
                             <?php endif; ?>
                         </td>
-                        
+
 
                     </tr>
                 </tbody>
@@ -119,45 +119,45 @@
             <div class="control-tabs content-tabs" data-control="tab">
                     <ul class="nav nav-tabs">
                           <li class="nav-item">
-                            <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Production Item</a>
+                            <a class="active" id="profile-tab-link" data-toggle="tab" href="#profile-pane" role="tab" aria-controls="profile-pane" aria-selected="true">Production Item</a>
                           </li>
-                           
-                              
+
+
                                <li class="nav-item">
-                                <a class="active" id="batch_tab-tab" data-toggle="tab" href="#batch_tab" role="tab" aria-controls="batch_tab" aria-selected="false">Batch</a>
+                                <a class="" id="batch-tab-link" data-toggle="tab" href="#batch-pane" role="tab" aria-controls="batch-pane" aria-selected="false">Batch</a>
                               </li>
                               <li class="nav-item">
-                                <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Control Sheets</a>
+                                <a class="" id="request-tab-link" data-toggle="tab" href="#request-pane" role="tab" aria-controls="request-pane" aria-selected="false">Control Sheets</a>
                               </li>
-                              
-          
+
+
                     </ul>
                     <div class="tab-content" id="myTabContent" style="background: #fff">
-                        
-                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                        <div class="tab-pane active" id="profile-pane" role="tabpanel" aria-labelledby="profile-tab-link">
                             <div style="padding: 0px 20px">
-                                <h3>Production Item</h3> 
+                                <h3>Production Item</h3>
                                 <?= $this->formRender() ?></div>
                         </div>
-                        
-                        
-                             
-                             <div class="tab-pane" id="batch_tab" role="tabpanel" aria-labelledby="batch_tab-tab">
+
+
+
+                             <div class="tab-pane" id="batch-pane" role="tabpanel" aria-labelledby="batch-tab-link">
                                 <div style="padding: 0px 20px">
                                     <?= $this->relationRender('batch') ?>
                                 </div>
                             </div>
 
 
-                            <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div class="tab-pane" id="request-pane" role="tabpanel" aria-labelledby="request-tab-link">
                                 <div style="padding: 0px 20px">
                                     <?= $this->relationRender('controlsheets') ?>
                                 </div>
                             </div>
-                        
-                        
 
-                       
+
+
+
 
                     </div>
                 </div>
@@ -192,10 +192,10 @@
                 </button> -->
  <a target="_blank" class="btn btn-primary pull-right " href="/productionjobcarddaily/item/download/<?=   $formModel->id ?>.pdf">Download Daily Production Run  [BT-JC-<?= e($formModel->id) ?>]</a>
                 <a target="_blank" class="btn btn-primary pull-right " href="/productionjobcard/item/download/<?=   $formModel->id ?>.pdf">Download Jobcard [BT-JC-<?= e($formModel->id) ?>]</a>
-               
 
-                
-               
+
+
+
 
                 <span class="btn-text">
                     or <a href="<?= Backend::url('bt/production/jobcard') ?>">Cancel</a>

@@ -1,5 +1,5 @@
 <div style="text-align: right">
-    <a href="/backend/sales/deliveries/export" class="btn btn-primary">
+    <a href="/admin/sales/deliveries/export" class="btn btn-primary">
         Export Delivery
     </a>
 </div>
@@ -79,7 +79,7 @@
 							?>
 							<td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R <?= number_format( $vatamount,2, '.', ',') ?></td>
 
-							<td><a target="_blank" href="/backend/bt/sales/invoice/preview/<?= $item->id?>"><?= $item_i->name ?></a></td>
+							<td><a target="_blank" href="/admin/bt/sales/invoice/preview/<?= $item->id?>"><?= $item_i->name ?></a></td>
 
 							<td style="text-align: right" nowrap="nowrap">R <?= number_format( $item_i->amount,2, '.', ',') ?></td>
 
@@ -135,7 +135,7 @@
 							?>
 							<td style="text-align: right; background-color: #ccc;" nowrap="nowrap">R <?= number_format( $vatamount,2, '.', ',') ?></td>>
 
-							<td><a target="_blank" href="/backend/bt/sales/invoice/preview/<?= $item->id?>"><?= $item_i->name ?></a></td>
+							<td><a target="_blank" href="/admin/bt/sales/invoice/preview/<?= $item->id?>"><?= $item_i->name ?></a></td>
 
 						<td colspan="4">Not Invoiced</td>
 					</tr>

@@ -9,7 +9,7 @@ color: #212529;
 font-size: 11px;
 font-family: sans-serif;
 word-wrap: break-word;
-background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+background: url(http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
 }
 
 @page { margin:20px 20px 100px 20px; }
@@ -146,9 +146,9 @@ ol.terms-and-conditions li:before {
                 Prepared By: K Maphai<br>
                 Approved By: K Lekola
                 </td>
-                <td valign="top" width="30%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005<br><br>E-mail: enquiries@bt-industrial.co.za</td>
+                <td valign="top" width="30%">Banking Details<br>Elderberry Amazon (Pty) Ltd<br>4092290196<br>ABSA 632005<br><br>E-mail: enquiries@elderberryamazon.com</td>
                 <td width="30%" align="center">
-							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+							<img src="http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="Elderberry Amazon" width="200px" >
 
 						</td>
 
@@ -175,11 +175,11 @@ ol.terms-and-conditions li:before {
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="50%">
-							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+							<img src="http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/logo.png" alt="Elderberry Amazon" >
 
 						</td>
 						<td width="50%" style="text-align: center;">
-							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+							<h1 style="color: #1d2240">ELDERBERRY AMAZON</h1>
                             <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
 							<h2>Quotation #BT{{quote.id}}</h2>
 						</td>
@@ -205,8 +205,10 @@ ol.terms-and-conditions li:before {
 								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
 								<tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
 								<tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
-								{% for item in quote.responses if item.quote_status_id == 3 %}
-									<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+								{% for item in quote.responses %}
+									{% if item.quote_status_id == 3 %}
+										<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+									{% endif %}
 				    			{% endfor %}
 								{% if quote.reg_number is not empty %}
 									<tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
@@ -219,7 +221,7 @@ ol.terms-and-conditions li:before {
 						<td></td>
 						<td width="40%" valign="top" >
 							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
-								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">BT-IND-{{quote.id}}</td></tr>
+								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">EA-IND-{{quote.id}}</td></tr>
 								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
 								<tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
 								<tr><td width="50%"></td><td width="50%">{{quote.user.email}}</td></tr>
@@ -308,21 +310,23 @@ ol.terms-and-conditions li:before {
 
 
 				        {% set deliveryamount = 0 %}
-				        {% for item in quote.responses if item.quote_status_id == 4 %}
-							{% set counter = counter + 1 %}
-							{% set deliveryamount = deliveryamount + item.additionalamount %}
-							<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
-				        	<tr>
-				        		<td width="20px">{{counter}}</td>
-				        		<td>Delivery</td>
-				        		<td width="50px" class="text-center">1</td>
-				        		<td width="50px">&nbsp;</td>
-				              	<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+				        {% for item in quote.responses %}
+							{% if item.quote_status_id == 4 %}
+								{% set counter = counter + 1 %}
+								{% set deliveryamount = deliveryamount + item.additionalamount %}
+								<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+								<tr>
+									<td width="20px">{{counter}}</td>
+									<td>Delivery</td>
+									<td width="50px" class="text-center">1</td>
+									<td width="50px">&nbsp;</td>
+									<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
 
-				              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
-				             </tr>
-				         </table>
-				     </div>
+									<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+								 </tr>
+							 </table>
+						 </div>
+							{% endif %}
 			    		{% endfor %}
 
                        {% for delivery in quote.dispatch %}
@@ -429,7 +433,7 @@ ol.terms-and-conditions li:before {
 
 	<div class="page-break"></div>
 
-	<h2>BT INDUSTRIAL (PROPRIETARY) LIMITED (REGISTRATION NUMBER: 2017/05746/07) (“COMPANY”) TERMS AND CONDITIONS OF CREDIT SALE AGREEMENT</h2>
+	<h2>ELDERBERRY AMAZON (PROPRIETARY) LIMITED (REGISTRATION NUMBER: 2017/05746/07) (“COMPANY”) TERMS AND CONDITIONS OF CREDIT SALE AGREEMENT</h2>
 
     <div>
 

@@ -99,7 +99,7 @@ class Testingmatrix extends Controller
               if ($value->testtype->name == 'Density')
                   $desc = 	$value->density_material_batch;
           
-            $events[] =  array('title' => ("#".$value->id." ".$value->testtype->name." / ".$desc." (".date_format($date,"Y/m/d ").")"), 'start'=> $value->test_date,'color'=>$color,"url"=> "/backend/bt/qc/testingmatrix/update/".$value->id );
+            $events[] =  array('title' => ("#".$value->id." ".$value->testtype->name." / ".$desc." (".date_format($date,"Y/m/d ").")"), 'start'=> $value->test_date,'color'=>$color,"url"=> "/admin/bt/qc/testingmatrix/update/".$value->id );
         }
 
         $this->vars['events'] = $events;

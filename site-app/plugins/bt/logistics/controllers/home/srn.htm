@@ -12,7 +12,7 @@
             </tr>
             <?php foreach($todaysrn as $item ): ?>
             <tr>
-                <td><a href="/backend/bt/logistics/stockrelease/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-pencil">Update</a></td>
+                <td><a href="/admin/bt/logistics/stockrelease/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-pencil">Update</a></td>
                 <td><?= $item->id ?></td>
                 <td><?= $item->quote_id ?> - <?= $item->quote->company_name ?></td>
 

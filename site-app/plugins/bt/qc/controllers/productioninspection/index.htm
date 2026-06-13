@@ -36,14 +36,14 @@
               <?=  implode(', ', $conObj); ?>
           </td>
           <?php if(empty($item->opendate) || $item->opendate == "0000-00-00" || $item->opendate == '0000-00-00 00:00:00'): ?>
-                <td><a href="/backend/bt/qc/shiftinputs/update/<?= $item->id ?>" title="Created at: <?= $item->created_at ?>" class="btn btn-warning btn-sm oc-icon-warning">Not Set</a></td>
+                <td><a href="/admin/bt/qc/shiftinputs/update/<?= $item->id ?>" title="Created at: <?= $item->created_at ?>" class="btn btn-warning btn-sm oc-icon-warning">Not Set</a></td>
           <?php else: ?>
                 <td><?= date_format($open, 'Y-m-d') ?></td>
           <?php endif; ?>
           <?php if(!empty($item->shift)): ?>
                 <td><?= $item->shift ?></td>
           <?php else: ?>
-                <td><a href="/backend/bt/qc/shiftinputs/update/<?= $item->id ?>" class="btn btn-warning btn-sm oc-icon-warning">Not Set</a></td>
+                <td><a href="/admin/bt/qc/shiftinputs/update/<?= $item->id ?>" class="btn btn-warning btn-sm oc-icon-warning">Not Set</a></td>
           <?php endif; ?>
           <td><?= $item->btline->name?$item->btline->name:"" ?></td>
           <td><?= $item->assignedto?$item->assignedto->name:"" ?></td>
@@ -52,7 +52,7 @@
            <?php endif; ?>
           <td><?= $item->citem?$item->citem->sum('hourly_production'):0 ?></td>
           <td><?= $item->citem?$item->citem->sum('hourly_scrap'):0 ?> kg</td>
-          <td><a href="/backend/bt/qc/shiftinputs/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-plus"> Actuals</a></td>
+          <td><a href="/admin/bt/qc/shiftinputs/update/<?= $item->id ?>" class="btn btn-primary btn-sm oc-icon-plus"> Actuals</a></td>
 
       </tr>
       <?php endforeach ?>

@@ -79,7 +79,7 @@ class Srn extends Controller
 
 
         ##SEND EMAIL
-        $url = Config::get('app.url') . '/backend/bt/sales/newquote/update/' . $quote->quote->id;
+        $url = Config::get('app.url') . '/admin/bt/sales/newquote/update/' . $quote->quote->id;
 
         $link = "
         * View Quote: $url";
@@ -132,7 +132,7 @@ class Srn extends Controller
         $name .= ' ' . $user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url') . '/backend/bt/sales/srn/update/' . $id;
+        $url = Config::get('app.url') . '/admin/bt/sales/srn/update/' . $id;
 
         $link = "
         * View SRN: $url";
@@ -182,7 +182,7 @@ class Srn extends Controller
         ### ID = SRN ID
 
         $obj = ModelSrn::find($id);
-        $url = Config::get('app.url') . '/backend/bt/sales/srn/preview/' . $id;
+        $url = Config::get('app.url') . '/admin/bt/sales/srn/preview/' . $id;
 
         $link = "
         * View SRN: $url";

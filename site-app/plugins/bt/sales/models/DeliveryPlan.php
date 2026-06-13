@@ -144,7 +144,7 @@ class DeliveryPlan extends Model
         // Check if the current quote ID exists in the options array
         if (isset($quoteOptions[$this->quote_id])) {
             $quote = $this->quote_id;
-            $link = '<a href="/backend/bt/sales/newquote/update/' . $quote . '" target="_blank">' . $quote . '</a>';
+            $link = '<a href="/admin/bt/sales/newquote/update/' . $quote . '" target="_blank">' . $quote . '</a>';
 
             // If the option has "Yes" in its value, set the comment as "Delivery Requested: Yes"
             if (strpos($quoteOptions[$this->quote_id], 'Yes') !== false) {

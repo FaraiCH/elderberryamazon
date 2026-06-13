@@ -1,6 +1,6 @@
 
 <div style="text-align: right">
-    <a href="/backend/sales/invoices/export" class="btn btn-primary">
+    <a href="/admin/sales/invoices/export" class="btn btn-primary">
         Export Invoices
     </a>
 </div>
@@ -36,7 +36,7 @@
 					<td><a target="_blank" href="/srn/item/download/<?= $item->srn_id?>.pdf"><?= $item->srn_id ?></a></td>
 					<td><a target="_blank" href="/quote/item/download/<?= $item->quote_id?>.pdf"><?= $item->quote_id ?></a></td>
 							<td><?= $item->quote->ponumber ?></td>
-					<td><a target="_blank" href="/backend/bt/sales/invoice/preview/<?= $item->id?>"><?= $item->name ?></a></td>
+					<td><a target="_blank" href="/admin/bt/sales/invoice/preview/<?= $item->id?>"><?= $item->name ?></a></td>
 
 					<td><?= $item->invoice_date ?></td>
 					<td>

@@ -139,7 +139,7 @@ class Newquote extends Controller
 
 
         ##SEND EMAIL
-        $url = Config::get('app.url') . '/backend/bt/sales/newquote/update/' . $id;
+        $url = Config::get('app.url') . '/admin/bt/sales/newquote/update/' . $id;
 
         $link = "
         * View Quote: $url";
@@ -632,7 +632,7 @@ class Newquote extends Controller
                 $calender[] = array('title' => 'Item ' . $item->description . ' created.', 'start' => $item->created_at, 'end' => $item->created_at, 'url' => 'update/' . $newquote->id . '#primarytab-item-wish', 'color' => 'darkblue');
                 if ($item->pipe) {
                     $itemSchedule = $item->pipe;
-                    $calender[] = array('title' => 'Pushed to Production: ' . $item->description, 'start' => $itemSchedule->created_at, 'end' => $itemSchedule->created_at, 'color' => 'darkblue', 'url' => '/backend/bt/production/push/update/' . $itemSchedule->push_id);
+                    $calender[] = array('title' => 'Pushed to Production: ' . $item->description, 'start' => $itemSchedule->created_at, 'end' => $itemSchedule->created_at, 'color' => 'darkblue', 'url' => '/admin/bt/production/push/update/' . $itemSchedule->push_id);
                     foreach ($itemSchedule->schedules as $schedule) {
                         if (isset($schedule->controlsheet_id))
                             $calender[] = array('title' => 'Production Day ' . $schedule->production_days . ' Shift: ' . $schedule->controlsheet->shift, 'start' => $item->created_at, 'end' => $item->created_at, 'color' => 'darkblue');
@@ -776,7 +776,7 @@ class Newquote extends Controller
             Flash::error("There is no load for this quote. Please add one and then push to production");
         } else {
             $groupusers = UserGroup::where('id', 6)->first();
-            $url = Config::get('app.url') . '/backend/bt/sales/newquote/update/' . $quote->id;
+            $url = Config::get('app.url') . '/admin/bt/sales/newquote/update/' . $quote->id;
             foreach ($groupusers->users as $key => $value) {
                 #REQUEST DISCOUNT
                 $data = [

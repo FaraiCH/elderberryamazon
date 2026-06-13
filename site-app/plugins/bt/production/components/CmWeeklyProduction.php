@@ -62,10 +62,11 @@ class CmWeeklyProduction extends ComponentBase
 
     }
 
-      public function loadAssets()
+    public function loadAssets()
     {
 
         $this->addJs('https://code.jquery.com/ui/1.12.1/jquery-ui.js', 'Bt.Sales');
+        $this->addJs('https://code.highcharts.com/highcharts.js');
         $this->addJs('assets/js/formfilter.js', 'Bt.Sales');
 
     }

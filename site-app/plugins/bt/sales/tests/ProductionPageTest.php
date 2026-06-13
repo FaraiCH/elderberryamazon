@@ -8,7 +8,7 @@ class ProductionPageTest extends PluginTestCase
 //    {
 //        $user = User::find(1);
 //        $this->actingAs($user);
-//        $response = $this->get('/backend/bt/production/push/update/4442');
+//        $response = $this->get('/admin/bt/production/push/update/4442');
 //        $response->assertStatus(200);
 //    }
 //
@@ -16,7 +16,7 @@ class ProductionPageTest extends PluginTestCase
 //    {
 //        $user = User::find(1);
 //        $this->actingAs($user);
-//        $response = $this->get('/backend/bt/production/push/update');
+//        $response = $this->get('/admin/bt/production/push/update');
 //        $response->assertStatus(200);
 //    }
 }

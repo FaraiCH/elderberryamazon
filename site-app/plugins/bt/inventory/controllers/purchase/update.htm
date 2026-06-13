@@ -12,7 +12,7 @@
         <div class="layout-row">
             <div class="scoreboard-item title-value">
                 <h4>Approved By Management</h4>
-                <p> 
+                <p>
                    <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
                         <span class="oc-icon-check text-success">
                             Yes
@@ -24,28 +24,28 @@
                         </span>
                     <?php endif; ?>
                 </p>
-              
+
             </div>
 
 
             <div class="control-tabs content-tabs" data-control="tab">
                 <ul class="nav nav-tabs">
-                  <li class="active">
-                    <a class="active" id="starttab-tab" data-toggle="tab" href="#starttab" role="tab" aria-controls="starttab" aria-selected="true">Purchase Raw Material Details</a>
+                  <li class="nav-item">
+                    <a class="active" id="starttab-tab-link" data-toggle="tab" href="#starttab-pane" role="tab" aria-controls="starttab-pane" aria-selected="true">Purchase Raw Material Details</a>
                   </li>
                     <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
                       <li class="nav-item">
-                        <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Receiving Raw Material</a>
+                        <a class="" id="profile-tab-link" data-toggle="tab" href="#profile-pane" role="tab" aria-controls="profile-pane" aria-selected="false">Receiving Raw Material</a>
                       </li>
                     <?php endif; ?>
-      
+
                 </ul>
                 <div class="tab-content" id="myTabContent" style="background: #fff">
-                    <div class="tab-pane active" id="starttab" role="tabpanel" aria-labelledby="starttab-tab">
+                    <div class="tab-pane active" id="starttab-pane" role="tabpanel" aria-labelledby="starttab-tab-link">
                         <div style="padding: 10px 20px"><?= $this->formRender() ?></div>
                     </div>
                     <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade" id="profile-pane" role="tabpanel" aria-labelledby="profile-tab-link">
                             <div style="padding: 0px 20px"><h3>Receiving Raw Material </h3><?= $this->relationRender('receiving') ?></div>
                         </div>
                     <?php endif; ?>
@@ -76,7 +76,7 @@
 
                 <a target="_blank" class="btn btn-primary pull-right " href="/po/item/download/<?=   $formModel->id ?>.pdf">Download PO</a>
                 <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
-                               
+
                     <?php else: ?>
                        <?php if (($this->user->hasAccess('bt.production.approve')) != 1 ): ?>
 

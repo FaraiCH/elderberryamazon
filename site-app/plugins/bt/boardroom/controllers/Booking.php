@@ -60,7 +60,7 @@ class Booking extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/boardroom/booking/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/boardroom/booking/update/'.$id;
 
         $link = "
         * View Boardroom booking: $url";
@@ -95,7 +95,7 @@ class Booking extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/boardroom/booking/preview/'.$id;
+        $url = Config::get('app.url').'/admin/bt/boardroom/booking/preview/'.$id;
 
         $link = "
         * View pettycash: $url";
@@ -164,14 +164,14 @@ class Booking extends Controller
             } else {
                 $desc = $val->subject;
             }
-            $events[] =  array('title' => $desc, 'start'=> $val->date . ' ' . $val->start_time,'end'=> $val->date .' '. $val->end_time,'color'=> 'green',"url"=> "/backend/bt/boardroom/booking/update/".$val->id );
+            $events[] =  array('title' => $desc, 'start'=> $val->date . ' ' . $val->start_time,'end'=> $val->date .' '. $val->end_time,'color'=> 'green',"url"=> "/admin/bt/boardroom/booking/update/".$val->id );
         }
 
 
         //Visitors
         foreach ($visitors as $val) {
             $date_only = new \DateTime($val->date);
-            $events[] =  array('title' => 'Visitors' . ' - ' . $val->visitorname, 'start'=> $val->date,'end'=> $date_only->format('Y-m-d') .' '. $val->end_time,'color'=> 'blue',"url"=> "/backend/bt/boardroom/visitor/update/".$val->id );
+            $events[] =  array('title' => 'Visitors' . ' - ' . $val->visitorname, 'start'=> $val->date,'end'=> $date_only->format('Y-m-d') .' '. $val->end_time,'color'=> 'blue',"url"=> "/admin/bt/boardroom/visitor/update/".$val->id );
         }
         $this->vars['visitors'] = $upvisitors;
         $this->vars['events'] = $events;

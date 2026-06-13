@@ -13,7 +13,7 @@
     <div class="cardContainer"  >
         <div class="cards" style="line-height: 1.0;">
           <?php if(isset($formModel->srn->id)): ?>
-            <h5 class="description" style="font-weight: bold;color: blue;"><a  href="/backend/bt/sales/srn/update/<?= e($formModel->srn->id) ?>" target="_blank"> #BT-SRN- <?= e($formModel->srn->id) ?></a> </h5></li>
+            <h5 class="description" style="font-weight: bold;color: blue;"><a  href="/admin/bt/sales/srn/update/<?= e($formModel->srn->id) ?>" target="_blank"> #BT-SRN- <?= e($formModel->srn->id) ?></a> </h5></li>
             <p><span class="oc-icon-star" style="color:gold; font-size:16px"></span><?= e($formModel->quote->company_name) ?></p>
             <?php else: ?>
                 <h5 class="description" style="font-weight: bold;color: black;">SRN Not Linked</h5>

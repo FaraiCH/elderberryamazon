@@ -23,7 +23,7 @@ echo '<h3 style=" text-align: center; margin:  0px;padding: 4px; color: #3498db;
 
 <div class="cardContainer"  >
     <div class="cards" style="line-height: 1.0;">
-        <h5 class="description" style="font-weight: bold;color: blue;"><a  href="/backend/bt/sales/newquote/update/<?= e($formModel->quote->id) ?>" target="_blank"> #BT-QT- <?= e($formModel->quote->id) ?></a> </h5></li>
+        <h5 class="description" style="font-weight: bold;color: blue;"><a  href="/admin/bt/sales/newquote/update/<?= e($formModel->quote->id) ?>" target="_blank"> #BT-QT- <?= e($formModel->quote->id) ?></a> </h5>
 
         <p><span class="oc-icon-star" style="color:gold; font-size:16px"></span><?= e($formModel->quote->company_name) ?></p>
         <p class="oc-icon-user">CreatedBy: <?= $formModel->createdby->first_name. '  '.$formModel->createdby->last_name  ?></p>
@@ -100,41 +100,41 @@ echo '<h3 style=" text-align: center; margin:  0px;padding: 4px; color: #3498db;
     <!-- ***** START TAB *** -->
     <div class="control-tabs content-tabs" data-control="tab">
         <ul class="nav nav-tabs">
-            <li class="nav-item active">
-                <a class="active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="false">Overview</a>
+            <li class="nav-item">
+                <a class="active" id="overview-tab-link" data-toggle="tab" href="#overview-pane" role="tab" aria-controls="overview-pane" aria-selected="true">Overview</a>
             </li>
             <li class="nav-item">
-                <a  id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Setup</a>
+                <a  id="setup-tab-link" data-toggle="tab" href="#setup-pane" role="tab" aria-controls="setup-pane" aria-selected="false">Setup</a>
             </li>
             <li class="nav-item">
-                <a id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Return Notes</a>
+                <a id="return-tab-link" data-toggle="tab" href="#return-pane" role="tab" aria-controls="return-pane" aria-selected="false">Return Notes</a>
             </li>
             <li class="nav-item">
-                <a id="tabfiles-tab" data-toggle="tab" href="#tabfiles" role="tab" aria-controls="tabfiles" aria-selected="false">Quote Supporting Files</a>
+                <a id="tabfiles-tab-link" data-toggle="tab" href="#tabfiles-pane" role="tab" aria-controls="tabfiles-pane" aria-selected="false">Quote Supporting Files</a>
             </li>
             <li class="nav-item">
-                <a id="tabfiles-tab" data-toggle="tab" href="#tabreques" role="tab" aria-controls="tabreques" aria-selected="false">Request to unapprove SRN</a>
+                <a id="tabreques-tab-link" data-toggle="tab" href="#tabreques-pane" role="tab" aria-controls="tabreques-pane" aria-selected="false">Request to unapprove SRN</a>
             </li>
             <li class="nav-item">
-                <a id="tabsignature" data-toggle="tab" href="#tabsignature" role="tab" aria-controls="tabsignature" aria-selected="false">Logistics Signature</a>
+                <a id="tabsignature-tab-link" data-toggle="tab" href="#tabsignature-pane" role="tab" aria-controls="tabsignature-pane" aria-selected="false">Logistics Signature</a>
             </li>
             <li class="nav-item">
-                <a id="pickitem-tab" data-toggle="tab" href="#pickitem" role="tab" aria-controls="pickitem" aria-selected="false">Pick Slip/Sticker Items</a>
+                <a id="pickitem-tab-link" data-toggle="tab" href="#pickitem-pane" role="tab" aria-controls="pickitem-pane" aria-selected="false">Pick Slip/Sticker Items</a>
             </li>
             <li class="nav-item">
-                <a id="srnpayment-tab" data-toggle="tab" href="#srnpayment" role="tab" aria-controls="srnpayment" aria-selected="false">SRN Payment</a>
+                <a id="srnpayment-tab-link" data-toggle="tab" href="#srnpayment-pane" role="tab" aria-controls="srnpayment-pane" aria-selected="false">SRN Payment</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent" style="background: #fff">
-            <div class="tab-pane active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+            <div class="tab-pane active" id="overview-pane" role="tabpanel" aria-labelledby="overview-tab-link">
                 <?= $this->makePartial('prt_srnoverview') ?>
             </div>
-            <div class="tab-pane " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane " id="setup-pane" role="tabpanel" aria-labelledby="setup-tab-link">
                 <div style="padding: 20px 20px">
                     <?= $this->formRender() ?>
                 </div>
             </div>
-            <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+            <div class="tab-pane" id="return-pane" role="tabpanel" aria-labelledby="return-tab-link">
                 <!-- <div style="padding: 0px 20px"><h3 class="cntrl_header">Return Notes</h3></div> -->
 
                 <?php if (isset($formModel->returnnote) && count($formModel->returnnote) > 0): ?>
@@ -147,19 +147,19 @@ echo '<h3 style=" text-align: center; margin:  0px;padding: 4px; color: #3498db;
                 <?= $this->relationRender('returnnote') ?>
             </div>
 
-            <div class="tab-pane " id="tabfiles" role="tabpanel" aria-labelledby="tabfiles-tab">
+            <div class="tab-pane " id="tabfiles-pane" role="tabpanel" aria-labelledby="tabfiles-tab-link">
                 <?= $this->makePartial('prt_supportingfiles') ?>
             </div>
-            <div style=" padding-bottom: 10px;" class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+            <div style=" padding-bottom: 10px;" class="tab-pane" id="tabreques-pane" role="tabpanel" aria-labelledby="tabreques-tab-link">
                 <?= $this->makePartial('prt_srnunaproval') ?>
             </div>
 
-            <div class="tab-pane " id="tabsignature" role="tabpanel" aria-labelledby="tabsignature-tab">
+            <div class="tab-pane " id="tabsignature-pane" role="tabpanel" aria-labelledby="tabsignature-tab-link">
                 <div style="padding: 20px">
                     <div class="row">
                         <div class="col-sm-6">
                             <h3 class="cntrl_header">Easy Sign Client/Driver</h3>
-                            <a href="/backend/bt/sales/srn/easysign/<?=$formModel->id ?>" target=”_blank” class="btn btn-primary oc-icon-signing" >Got To Easy Sign</a>
+                            <a href="/admin/bt/sales/srn/easysign/<?=$formModel->id ?>" target=”_blank” class="btn btn-primary oc-icon-signing" >Got To Easy Sign</a>
                         </div>
                         <div class="col-sm-6">
                             <h3 class="cntrl_header">Download</h3>
@@ -189,10 +189,10 @@ echo '<h3 style=" text-align: center; margin:  0px;padding: 4px; color: #3498db;
                 </div>
 
             </div>
-            <div style=" padding-bottom: 10px;" class="tab-pane" id="pickitem" role="tabpanel" aria-labelledby="pickitem-tab">
+            <div style=" padding-bottom: 10px;" class="tab-pane" id="pickitem-pane" role="tabpanel" aria-labelledby="pickitem-tab-link">
                 <?= $this->makePartial('pickslip_items') ?>
             </div>
-            <div style=" padding-bottom: 10px;" class="tab-pane" id="pickitem" role="tabpanel" aria-labelledby="srnpayment-tab">
+            <div style=" padding-bottom: 10px;" class="tab-pane" id="srnpayment-pane" role="tabpanel" aria-labelledby="srnpayment-tab-link">
                 <?= $this->makePartial('srn_payment') ?>
             </div>
 

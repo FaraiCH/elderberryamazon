@@ -63,7 +63,7 @@ class Overview extends Controller
                 $date=date_create($value->opendate);
               $desc = "#".$value->id.", #JobCard-".$value->jobcard_id."(".date_format($date,"Y/m/d ").")";
             }
-            $events[] =  array('title' => $desc, 'start'=> $value->opendate,'color'=>$color,"url"=> "/backend/bt/maintenance/jobcard/update/".$value->id );
+            $events[] =  array('title' => $desc, 'start'=> $value->opendate,'color'=>$color,"url"=> "/admin/bt/maintenance/jobcard/update/".$value->id );
         }
 
         $this->vars['events'] = $events; 

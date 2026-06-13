@@ -12,8 +12,8 @@
     <tbody>
         <tr class="text-white text-center" style="color: black; background: lightskyblue">
             <td style="width:10%"><b>Stop #:</b> <span class="badge badge-primary"><?= $srn->stops ?></span></td>
-            <td style="width:10%"><b>Quote #:</b> <a href="/backend/bt/sales/newquote/update/<?= $srn->quote_id ?>" target="_blank"><?= $srn->quote_id ?></a></td>
-            <td style="width:10%"><b>SRN:</b> <a href="/backend/bt/sales/srn/update/<?= $srn->id ?>" target="_blank"><?= $srn->id ?></a></td>
+            <td style="width:10%"><b>Quote #:</b> <a href="/admin/bt/sales/newquote/update/<?= $srn->quote_id ?>" target="_blank"><?= $srn->quote_id ?></a></td>
+            <td style="width:10%"><b>SRN:</b> <a href="/admin/bt/sales/srn/update/<?= $srn->id ?>" target="_blank"><?= $srn->id ?></a></td>
             <td style="width:20%"><b>Client #:</b> <?= $srn->quote->company_name ?></td>
             <td style="width:30%"><b>Delivery Address:</b> <?= $srn->delivery_address ?></td>
             <td style="width:15%"><b>Load Value :</b> R <?= number_format($formModel->deliveryprice, 2, '.', ',') ?></td>

@@ -829,7 +829,7 @@ class ProductionPlan extends Controller
         $_SESSION['openstart'] = Input::get('openstart');
         $_SESSION['openend'] = Input::get('openend');
         $type = Input::get('type');
-        return Redirect::to('/backend/plan/pdf/'. $type);
+        return Redirect::to('/admin/plan/pdf/'. $type);
     }
 
     public function onPlanExport()
@@ -837,6 +837,6 @@ class ProductionPlan extends Controller
         $_SESSION['openstart'] = Input::get('openstart');
         $_SESSION['openend'] = Input::get('openend');
         $type = Input::get('type');
-        return Redirect::to('/backend/plan/export');
+        return Redirect::to('/admin/plan/export');
     }
 }

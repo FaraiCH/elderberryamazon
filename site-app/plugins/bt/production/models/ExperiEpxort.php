@@ -22,7 +22,7 @@ class ExperiEpxort implements FromArray, ShouldAutoSize, WithEvents
     {
         #Name: Farai Chakarisa
         #Description: Experimental Export for Production
-        #link: i.btindustrial.co.za/backend/push/export
+        #link: i.btindustrial.co.za/admin/push/export
         #Change: Added Delivered and Produced Fields
         $holdit = array();
         $pushObj = \Bt\Production\Models\Push::where('created_at', '>', '2023-10-01')->orderBy('created_at', 'desc')->get();

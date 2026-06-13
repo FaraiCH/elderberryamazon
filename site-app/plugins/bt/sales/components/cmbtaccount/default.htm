@@ -49,7 +49,7 @@
 				        		<td align="right">{{item.schedules().sum('total_units_passed_qc') - item.schedules().sum('onhold') - item.delivered().sum('units')}}</td>
 				        		{% for s_item in item.schedules %}
 				        		  	{% if loop.last %}
-				        		  		<td ><a target="_blank" href="/backend/bt/production/schedule/update/{{s_item.id}}">Edit</a>/<a target="_blank" href="/backend/bt/production/pipe/update/{{item.id}}">Edit</a></td>
+				        		  		<td ><a target="_blank" href="/admin/bt/production/schedule/update/{{s_item.id}}">Edit</a>/<a target="_blank" href="/admin/bt/production/pipe/update/{{item.id}}">Edit</a></td>
 				        		  	{% endif %}
 				        		  {% endfor %} 
 

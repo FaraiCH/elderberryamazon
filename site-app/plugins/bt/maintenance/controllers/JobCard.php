@@ -84,7 +84,7 @@ class JobCard extends Controller
 
 
             ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/maintenance/jobcard/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/maintenance/jobcard/update/'.$id;
 
         $link = "
         * View Job Card: $url";

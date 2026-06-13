@@ -78,7 +78,7 @@ class Requisition extends Controller
         $name = $user->first_name;#.' '.$user->last_name;
         $name .= ' '.$user->last_name;
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/finance/requisition/update/'.$quote->id;
+        $url = Config::get('app.url').'/admin/bt/finance/requisition/update/'.$quote->id;
 
         $link = "
         * View Requisition: $url";
@@ -118,7 +118,7 @@ class Requisition extends Controller
         $name = $user->first_name;#.' '.$user->last_name;
         $name .= ' '.$user->last_name;
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/finance/requisition/update/'.$quote->id;
+        $url = Config::get('app.url').'/admin/bt/finance/requisition/update/'.$quote->id;
 
         $link = "
         * View Requisition: $url";

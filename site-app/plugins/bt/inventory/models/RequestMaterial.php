@@ -73,7 +73,7 @@ class RequestMaterial extends Model
 
         $groupusers = UserGroup::where('id', $groupid)->first();
 
-        $url = env('APP_URL') .'/backend/bt/inventory/rawmaterialreceiving/update/'.$this->receiving->id;
+        $url = env('APP_URL') .'/admin/bt/inventory/rawmaterialreceiving/update/'.$this->receiving->id;
         $link = " 
                 * View Quote: $url";
 

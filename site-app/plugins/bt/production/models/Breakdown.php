@@ -133,7 +133,7 @@ class Breakdown extends Model
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/maintenance/jobcard/update/'.$jobcard->id;
+        $url = Config::get('app.url').'/admin/bt/maintenance/jobcard/update/'.$jobcard->id;
         $link = "
         * View Jobcard: $url";
 

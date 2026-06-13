@@ -99,7 +99,7 @@
                     </div>
                     <div class="scoreboard-item title-value">
                         <h4>Quote</h4>
-                        <p><a  href="/backend/bt/sales/newquote/update/<?= $formModel->quote->id ?>" target="_blank"><?= $formModel->quote->id ?></a></p>
+                        <p><a  href="/admin/bt/sales/newquote/update/<?= $formModel->quote->id ?>" target="_blank"><?= $formModel->quote->id ?></a></p>
                     </div>
 
                     <div class="scoreboard-item title-value">
@@ -139,15 +139,15 @@
             <div class="control-tabs content-tabs" data-control="tab">
                     <ul class="nav nav-tabs">
                         <?php if($formModel->quote_id !== 284): ?>
-                        <li class="nav-item active">
-                            <a class="active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false">Order Details</a>
+                        <li class="nav-item">
+                            <a class="active" id="details-tab-link" data-toggle="tab" href="#details-pane" role="tab" aria-controls="details-pane" aria-selected="true">Order Details</a>
                           </li>
                           <li class="nav-item">
-                                <a id="support-tab" data-toggle="tab" href="#support" role="tab" aria-controls="support" aria-selected="false">Documents</a>
+                                <a id="support-tab-link" data-toggle="tab" href="#support-pane" role="tab" aria-controls="support-pane" aria-selected="false">Documents</a>
                             </li>
                         <?php else: ?>
                             <li class="nav-item">
-                                <a class="" id="support-tab" data-toggle="tab" href="#support" role="tab" aria-controls="support" aria-selected="false">Documents</a>
+                                <a class="" id="support-tab-link" data-toggle="tab" href="#support-pane" role="tab" aria-controls="support-pane" aria-selected="false">Documents</a>
                             </li>
                         <?php endif; ?>
                            <!--  <li class="nav-item">
@@ -158,18 +158,18 @@
                               </li> -->
 
                         <li class="nav-item">
-                            <a class="" id="response-tab" data-toggle="tab" href="#response" role="tab" aria-controls="response" aria-selected="false">Communication</a>
+                            <a class="" id="response-tab-link" data-toggle="tab" href="#response-pane" role="tab" aria-controls="response-pane" aria-selected="false">Communication</a>
                         </li>
 
                           <li class="nav-item">
-                            <a class="" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Production Setup</a>
+                            <a class="" id="setup-tab-link" data-toggle="tab" href="#setup-pane" role="tab" aria-controls="setup-pane" aria-selected="false">Production Setup</a>
                           </li>
                           <li class="nav-item">
-                            <a class="" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Approve BY Management</a>
+                            <a class="" id="approve-tab-link" data-toggle="tab" href="#approve-pane" role="tab" aria-controls="approve-pane" aria-selected="false">Approve BY Management</a>
                           </li>
                            <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
                               <li class="nav-item">
-                                <a class="active" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Pipes To Produce</a>
+                                <a class="" id="request-tab-link" data-toggle="tab" href="#request-pane" role="tab" aria-controls="request-pane" aria-selected="false">Pipes To Produce</a>
                               </li>
                               <?php endif; ?>
 
@@ -185,14 +185,14 @@
                                         $count = 0;
                         ?>
                         <?php if($formModel->quote_id != 284): ?>
-                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane active" id="details-pane" role="tabpanel" aria-labelledby="details-tab-link">
                             <div style="padding: 20px">
 
                             <?php if(isset($formModel->quote) && !empty($formModel->quote->items) && count($formModel->quote->items) > 0): ?>
 
                             <h4>HDPE Pipe On Quote To Schedule</h4>
 
-                            <div style="padding: 20px,width: 100%; overflow: auto;">
+                            <div style="padding: 20px; width: 100%; overflow: auto;">
                            <table class="table data">
                                         <thead>
                                             <tr>
@@ -254,10 +254,7 @@
 
                                     ?>
                                     </tbody>
-
                                     <tfoot>
-
-
                                     <?php
                                             echo '<tr >';
                                             echo '<td></td>';
@@ -576,7 +573,7 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                                                         <span
                                                             data-chart="dataset"
                                                             data-set-color="#008dc9"
-                                                            data-set-data="'.join(",",$values).'"
+                                                            data-set-data=\''.join(",",$values).'\'
                                                             data-set-name="Visits">
                                                         </span>
                                                     </div>';
@@ -624,7 +621,7 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                                                         <?= e($formModel->id)?>
                                                     </td>
                                                     <td><?= e($formModel->quote->company_name) ?></td>
-                                                    <td><a  href="/backend/bt/sales/newquote/update/<?= e($formModel->quote->id) ?>" target="_blank"><?= e($formModel->quote->id) ?></a></td>
+                                                    <td><a  href="/admin/bt/sales/newquote/update/<?= e($formModel->quote->id) ?>" target="_blank"><?= e($formModel->quote->id) ?></a></td>
                                                     <?php if(isset($formModel->ponumber)): ?>
                                                         <td><?= e($formModel->ponumber)?></td>
                                                     <?php else: ?>
@@ -681,9 +678,9 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                         </div>
                         <?php endif; ?>
                         <?php if($formModel->quote_id == 284): ?>
-                            <div class="tab-pane active" id="support" role="tabpanel" aria-labelledby="support-tab">
+                            <div class="tab-pane active" id="support-pane" role="tabpanel" aria-labelledby="support-tab-link">
                         <?php else: ?>
-                            <div class="tab-pane" id="support" role="tabpanel" aria-labelledby="support-tab">
+                            <div class="tab-pane" id="support-pane" role="tabpanel" aria-labelledby="support-tab-link">
                         <?php endif; ?>
                             <div style="padding: 20px 20px">
                                 <?php $countfile = 0; ?>
@@ -881,7 +878,7 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                             </div>
                         </div>
 
-                        <div class="tab-pane" id="response" role="tabpanel" aria-labelledby="response-tab">
+                        <div class="tab-pane" id="response-pane" role="tabpanel" aria-labelledby="response-tab-link">
                             <div style="padding: 20px 20px">
                                 <h4>Production Communication</h4>
                                  <div style="border: 1px solid #ccc; padding: 20px; background: #fff"><?= e($formModel->comments) ?></div>
@@ -919,13 +916,13 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                             </div>
                         </div>
 
-                        <div class="tab-pane" id="details" role="tabpanel" aria-labelledby="details-tab">
+                        <div class="tab-pane" id="setup-pane" role="tabpanel" aria-labelledby="setup-tab-link">
                             <div style="padding: 20px 20px">
                                 <h4>Production Setup</h4>
                                 <?= $this->formRender() ?></div>
                         </div>
 
-                        <div class="tab-pane" id="details" role="tabpanel" aria-labelledby="details-tab">
+                        <div class="tab-pane" id="approve-pane" role="tabpanel" aria-labelledby="approve-tab-link">
                             <div style="padding: 20px 20px">
                                 <h4>Delivery Data</h4>
                                  <?php
@@ -992,7 +989,7 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                                                         ?>
                                                         </tbody>
                                                         <tfoot>
-                                                            <tr><td colspan="4" style="text-align: right; font-weight: bold; font-size;  16px">R<?php echo number_format($delpricetotal,2, '.', ',');?></td></tr>
+                                                            <tr><td colspan="4" style="text-align: right; font-weight: bold; font-size: 16px">R<?php echo number_format($delpricetotal,2, '.', ',');?></td></tr>
                                                         </tfoot>
                                                     </table>
                                                 </td>
@@ -1009,7 +1006,7 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
 
                         <?php if(isset($formModel->approved) && $formModel->approved->status_id == 1): ?>
 
-                            <div class="tab-pane" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div class="tab-pane" id="request-pane" role="tabpanel" aria-labelledby="request-tab-link">
                                 <div style="padding: 20px 20px"><h4>Production Pipes</h4>
                                     <p>Click of the production pipe to update.</p>
                                      <?php if (count($formModel->pipes)>0): ?>
@@ -1050,7 +1047,6 @@ strtotime($svalue->production_date)*1000 + 2*3600*1000, $svalue->total_units_pas
                     </div>
                 </div>
         </div>
-
         <div class="form-buttons">
             <div class="loading-indicator-container">
                 <button

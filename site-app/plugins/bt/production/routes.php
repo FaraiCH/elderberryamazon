@@ -121,7 +121,7 @@ Route::any('/print/production/scrapcodes.pdf', function () {
 });
 
 
-Route::any('/backend/plan/pdf/{type}', function ($type) {
+Route::any('/admin/plan/pdf/{type}', function ($type) {
 
     if(isset($_SESSION['openstart'])){
         $now = $_SESSION['openend'];
@@ -181,7 +181,7 @@ Route::any('/backend/plan/pdf/{type}', function ($type) {
 
 });
 
-Route::any('/backend/push/export',function (){
+Route::any('/admin/push/export',function (){
     return Excel::download(new \Bt\Production\Models\ExperiEpxort(), 'Production.xlsx');
 });
 
@@ -252,7 +252,7 @@ Route::any('/update-baila/{val}',function ($val){
     return $stats;
 });
 
-Route::any('/backend/plan/export',function (){
+Route::any('/admin/plan/export',function (){
     return Excel::download(new \Bt\Production\Models\MultiSheetPlanExport(), 'Plan Export.xlsx');
 });
 

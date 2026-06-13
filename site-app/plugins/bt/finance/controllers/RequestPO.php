@@ -54,7 +54,7 @@ class RequestPO extends Controller
         $name = $user->first_name . ' ' . $user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/finance/requestpo/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/finance/requestpo/update/'.$id;
         $link = "
         * View Request PO: $url";
 

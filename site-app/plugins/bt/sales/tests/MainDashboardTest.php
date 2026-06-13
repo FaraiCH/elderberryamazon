@@ -15,7 +15,7 @@ class MainDashboardTest extends PluginTestCase
     {
         $user = User::find(1);
         $this->actingAs($user);
-        $response = $this->get('/backend');
+        $response = $this->get('/admin');
         $response->assertStatus(200);
     }
 }

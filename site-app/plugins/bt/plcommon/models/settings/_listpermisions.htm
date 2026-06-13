@@ -20,7 +20,7 @@
 					
 					foreach ($obj["users"] as $key => $value){
 						echo "<tr>";
-	            		echo "<td><a href='/backend/backend/users/update/".$value->id."'>".$value->first_name." ".$value->last_name."</span></td>";
+	            		echo "<td><a href='/admin/users/update/".$value->id."'>".$value->first_name." ".$value->last_name."</span></td>";
 	            		echo "<td><span>".$value->login."</span></td>";
 
 	            		foreach ($obj["permissions"] as $p => $pv){

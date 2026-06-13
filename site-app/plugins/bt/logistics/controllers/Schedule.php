@@ -53,7 +53,7 @@ class Schedule extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/logistics/schedule/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/logistics/schedule/update/'.$id;
 
         $link = " 
         * View schedule:" .$url;
@@ -96,7 +96,7 @@ class Schedule extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/logistics/schedule/preview/'.$id;
+        $url = Config::get('app.url').'/admin/bt/logistics/schedule/preview/'.$id;
 
         $link = "
         * View pettycash: $url";

@@ -15,15 +15,15 @@
         color: #212529;font-size: 12px;
         font-family: sans-serif;
         word-wrap: break-word;
-        background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+        background: url(http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
     }
 </style>
 
 <body>
 
 <div style="height: 200px" class="text-center">
-    <img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="image" class="float-left">
-    <h2 class="text-center" style="color: darkblue;">BT Batch Search <span style="font-size: 16px">(Batch: {{batch}})</span></h2>
+    <img src="http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/logo.png" alt="image" class="float-left">
+    <h2 class="text-center" style="color: darkblue;">Elderberry Amazon Batch Search <span style="font-size: 16px">(Batch: {{batch}})</span></h2>
     <div class="card-header" style="background: #293565; color: whitesmoke">
         <p><b>Customer: {{cont.jobcard.pipe.qpush.quote.client.company_name}} </b></p>
         <p><b>Quote: {{cont.jobcard.pipe.qpush.quote.id}} </b></p>
@@ -47,7 +47,7 @@
                 <th class="col">Pipe ID</th>
                 <th class="col">Pipe Name</th>
                 <th class="col">Weight</th>
-                <th class="col">BT Line</th>
+                <th class="col">Elderberry Line</th>
                 <th class="col">Production Rate</th>
                 <th class="col">Date Created</th>
             </tr>
@@ -268,7 +268,7 @@
                 <td>{{bt.description}}</td>
                 <td>{{srnitem.units}}</td>
                 <td class="text-white" style="background: darkblue"><b>R -- </b></td>
-                <td>BT Account</td>
+                <td>Elderberry Account</td>
                 <td>{{srnitem.created_at|date("m/d/Y")}}</td>
             </tr>
             {% endfor %}

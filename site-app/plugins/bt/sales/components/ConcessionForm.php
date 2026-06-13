@@ -66,7 +66,7 @@ class ConcessionForm extends ComponentBase
         }
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/sales/newquote/preview/'.$id;
+        $url = Config::get('app.url').'/admin/bt/sales/newquote/preview/'.$id;
 
         $link = "
         * View List: $url";

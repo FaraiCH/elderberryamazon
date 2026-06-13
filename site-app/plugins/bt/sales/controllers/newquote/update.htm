@@ -55,14 +55,14 @@
                             <a  id="tracker-tab" data-toggle="tab" href="#tracker" role="tab" aria-controls="tracker" aria-selected="false">Payment Tracker</a>
                           </li>
                         <li class="nav-item">
-                            <a  id="qc-tab" data-toggle="tab" href="#qc-tab" role="tab" aria-controls="qc-tab" aria-selected="false">Request COC/COA</a>
+                            <a  id="qc-tab-link" data-toggle="tab" href="#qc-pane" role="tab" aria-controls="qc-pane" aria-selected="false">Request COC/COA</a>
                         </li>
 
                         <li class="nav-item">
-                            <a  id="plan-tab" data-toggle="tab" href="#plan-tab" role="tab" aria-controls="plan-tab" aria-selected="false">Production Plan</a>
+                            <a  id="plan-tab-link" data-toggle="tab" href="#plan-pane" role="tab" aria-controls="plan-pane" aria-selected="false">Production Plan</a>
                         </li>
                         <li class="nav-item">
-                            <a  id="accept-tab" data-toggle="tab" href="#accept-tab" role="tab" aria-controls="accept-tab" aria-selected="false">Quote Approval</a>
+                            <a  id="accept-tab-link" data-toggle="tab" href="#accept-pane" role="tab" aria-controls="accept-pane" aria-selected="false">Quote Approval</a>
                         </li>
 
                     </ul>
@@ -324,10 +324,9 @@
                                         ?>
 
                                         <?php
-
                                          echo '<tr><td colspan="3"><b>SRNs:</b></td></tr>';
                                         foreach($formModel->srn as $dkey=>$dvalue){
-                                             echo '<tr><td>SRN Number</td><td>'.'<a class="btn btn-primary" href="/backend/bt/sales/srn/update/'.$dvalue->id.'" target="_blank">'.$dvalue->id.'</a></td><td>'.$dvalue->schedule_date.'</td></tr>';
+                                             echo '<tr><td>SRN Number</td><td>'.'<a class="btn btn-primary" href="/admin/bt/sales/srn/update/'.$dvalue->id.'" target="_blank">'.$dvalue->id.'</a></td><td>'.$dvalue->schedule_date.'</td></tr>';
 
                                             foreach($dvalue->files_srn as $key=>$value){
                                                 if($value){
@@ -393,7 +392,7 @@
                                             <i class="icon-warning"></i>
                                             <i class="icon-warning"></i>
                                             <?php if ($formModel->dispatch->sum('discount') > 0): ?>
-                                                <h3>To get approval from EXCO so that this quote can be pushed to production, please click the following button after adding a load:  <a class="btn btn-primary" data-stripe-load-indicator data-request="onRequestExco">Request Approval</a>
+                                                <h3>To get approval from EXCO so that this quote can be pushed to production, please click the following button after adding a load:  <a class="btn btn-primary" data-stripe-load-indicator data-request="onRequestExco">Request Approval</a></h3>
                                             <?php else: ?>
                                                 <h3>You are free to push to production without EXCO approval when ready. Use this link <a class="btn btn-primary" href="/quote/item/<?$formModel->id?>">Click Here</a> </h3>
                                             <?php endif ?>
@@ -407,7 +406,7 @@
                                         <div class="header">
                                             <i class="icon-warning"></i>
                                             <?php if ($formModel->dispatch->sum('discount') > 0): ?>
-                                                <h3>To get approval from EXCO so that this quote can be pushed to production, please click the following button after adding a load:  <a class="btn btn-primary" data-stripe-load-indicator data-request="onRequestExco">Request Approval</a>
+                                                <h3>To get approval from EXCO so that this quote can be pushed to production, please click the following button after adding a load:  <a class="btn btn-primary" data-stripe-load-indicator data-request="onRequestExco">Request Approval</a></h3>
                                             <?php else: ?>
                                                 <h3>You are free to push to production without EXCO approval when ready. Use this link <a class="btn btn-primary" target="_blank" href="/quote/item/<?=$formModel->id?>">Click Here</a> </h3>
                                             <?php endif ?>
@@ -459,7 +458,7 @@
                             <div style="padding: 0px 20px"><h3>Payment</h3><?= $this->relationRender('paymenttracker') ?></div>
                         </div>
 
-                        <div class="tab-pane" id="qc-tab" role="tabpanel" aria-labelledby="qc-tab">
+                        <div class="tab-pane" id="qc-pane" role="tabpanel" aria-labelledby="qc-tab-link">
                             <div style="padding: 0px 20px"><h3>Request</h3>
                                 <div class="container-fluid">
                                     <?= $this->relationRender('requestqc') ?>
@@ -467,7 +466,7 @@
                             </div>
                         </div>
 
-                         <div class="tab-pane" id="plan-tab" role="tabpanel" aria-labelledby="plan-tab">
+                         <div class="tab-pane" id="plan-pane" role="tabpanel" aria-labelledby="plan-tab-link">
                             <div style="padding: 0px 20px"><h3>Production Plan</h3>
                                 <div class="container-fluid">
                                     <?= $this->relationRender('productionplan') ?>
@@ -475,7 +474,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane p-3" id="accept-tab" role="tabpanel" aria-labelledby="plan-tab">
+                        <div class="tab-pane p-3" id="accept-pane" role="tabpanel" aria-labelledby="accept-tab-link">
                             <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 5px;">
                                 <h3 >Quote Approval</h3>
                                 <a href="/quoteapproval/<?= $formModel->key_pass ?>/<?= $formModel->id ?>" target="_blank" class="btn btn-primary">Client Approval Link</a>
@@ -497,6 +496,7 @@
 
                                 <?= $this->relationRender('quote_approval_activity_log') ?>
                             </div>
+                        </div>
                     </div>
                 </div>
         </div>

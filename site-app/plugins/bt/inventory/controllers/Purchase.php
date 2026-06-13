@@ -47,7 +47,7 @@ class Purchase extends Controller
 
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/inventory/purchase/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/inventory/purchase/update/'.$id;
 
         $link = " 
         * View PO: $url";

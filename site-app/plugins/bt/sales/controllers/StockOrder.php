@@ -48,7 +48,7 @@ class StockOrder extends Controller
         $name .= ' ' . $user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url') . '/backend/bt/sales/newquote/update/' . $stockorder->quote->id;
+        $url = Config::get('app.url') . '/admin/bt/sales/newquote/update/' . $stockorder->quote->id;
 
         $link = "* View Quote: $url";
 

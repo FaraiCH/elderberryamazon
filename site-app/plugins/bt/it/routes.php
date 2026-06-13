@@ -122,7 +122,7 @@ Route::any('/api/v1/get/baila/breakdown', function () {
 // Route::middleware('jwt.auth')->post('/push/answers', 'ApiCampaignController@pushAnswers');
 // Route::middleware('jwt.auth')->post('/push/image', 'ApiCampaignController@pushAnswerImage');
 
-Route::any('/backend/bt/it/job/task/download/{id}', function ($id) {
+Route::any('/admin/bt/it/job/task/download/{id}', function ($id) {
     $user = User::find($id);
     $stages = TicketStage::all();
     $pdf = PDF::loadView('bt.it::pdfTasks',array('user'=>$user, 'stages' => $stages));

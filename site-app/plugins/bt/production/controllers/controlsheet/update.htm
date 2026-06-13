@@ -14,33 +14,33 @@
         <div class="layout-row">
              <div class="control-tabs content-tabs" data-control="tab">
                     <ul class="nav nav-tabs">
-                         <li class="nav-item active">
-                            <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Update</a>
+                         <li class="nav-item">
+                            <a class="active" id="profile-tab-link" data-toggle="tab" href="#profile-pane" role="tab" aria-controls="profile-pane" aria-selected="true">Update</a>
                           </li>
 
                           <li class="nav-item">
-                            <a class="" id="control-tab" data-toggle="tab" href="#control" role="tab" aria-controls="control" aria-selected="false">Control Sheet Setup</a>
+                            <a class="" id="control-tab-link" data-toggle="tab" href="#control-pane" role="tab" aria-controls="control-pane" aria-selected="false">Control Sheet Setup</a>
                           </li>
                           <li class="nav-item">
-                            <a class="" id="batch_tab-tab" data-toggle="tab" href="#batch_tab" role="tab" aria-controls="batch_tab" aria-selected="false">Material To Use</a>
+                            <a class="" id="material-tab-link" data-toggle="tab" href="#material-pane" role="tab" aria-controls="material-pane" aria-selected="false">Material To Use</a>
                           </li>
                            <li class="nav-item">
-                            <a class="" id="batch_tab-tab" data-toggle="tab" href="#pipeproduce_tab" role="tab" aria-controls="pipeproduce_tab" aria-selected="false">Pipe To Produce</a>
+                            <a class="" id="pipeproduce-tab-link" data-toggle="tab" href="#pipeproduce-pane" role="tab" aria-controls="pipeproduce-pane" aria-selected="false">Pipe To Produce</a>
                           </li>
 
 
                            <li class="nav-item">
-                            <a class="" id="batch_tab-tab" data-toggle="tab" href="#batch_tab" role="tab" aria-controls="batch_tab" aria-selected="false">Shift Input</a>
+                            <a class="" id="shift-tab-link" data-toggle="tab" href="#shift-pane" role="tab" aria-controls="shift-pane" aria-selected="false">Shift Input</a>
                           </li>
                           <li class="nav-item">
-                            <a class="" id="preview_tab-tab" data-toggle="tab" href="#preview_tab" role="tab" aria-controls="preview_tab" aria-selected="false">Preview Actuals</a>
+                            <a class="" id="preview-tab-link" data-toggle="tab" href="#preview-pane" role="tab" aria-controls="preview-pane" aria-selected="false">Preview Actuals</a>
                           </li>
                         <li class="nav-item">
-                            <a class="" id="assist_tab-tab" data-toggle="tab" href="#assist_tab" role="tab" aria-controls="assist_tab" aria-selected="false">Assistance</a>
+                            <a class="" id="assist-tab-link" data-toggle="tab" href="#assist-pane" role="tab" aria-controls="assist-pane" aria-selected="false">Assistance</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent" style="background: #fff">
-                        <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane active" id="profile-pane" role="tabpanel" aria-labelledby="profile-tab-link">
                             <div  class="popthis"  style="overflow: auto;">
                                 <div style="padding:20px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
                                     <div id="previewquote">
@@ -53,17 +53,17 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="tab-pane " id="control" role="tabpanel" aria-labelledby="control-tab">
+                         <div class="tab-pane " id="control-pane" role="tabpanel" aria-labelledby="control-tab-link">
                             <div style="padding: 0px 20px">
                                 <h3>Control Sheet Setup</h3>
                                 <?= $this->formRender() ?></div>
                         </div>
-                        <div class="tab-pane" id="batch_tab" role="tabpanel" aria-labelledby="batch_tab-tab">
+                        <div class="tab-pane" id="material-pane" role="tabpanel" aria-labelledby="material-tab-link">
                             <div style="padding: 20px 20px">
                                 <?= $this->relationRender('controlmaterial') ?>
                             </div>
                         </div>
-                        <div class="tab-pane" id="pipeproduce_tab" role="tabpanel" aria-labelledby="batch_tab-tab">
+                        <div class="tab-pane" id="pipeproduce-pane" role="tabpanel" aria-labelledby="pipeproduce-tab-link">
                             <div style="padding: 20px 20px">
                                 <a target="_blank" href="/printstickers/<?= $formModel->id ?>" class="btn btn-primary">Print Stickers</a>
 
@@ -71,12 +71,12 @@
                             </div>
                         </div>
 
-                         <div class="tab-pane" id="batch_tab" role="tabpanel" aria-labelledby="batch_tab-tab">
+                         <div class="tab-pane" id="shift-pane" role="tabpanel" aria-labelledby="shift-tab-link">
                             <div style="padding: 20px 20px">
                                 <?= $this->relationRender('citem') ?>
                             </div>
                         </div>
-                        <div class="tab-pane" id="preview_tab" role="tabpanel" aria-labelledby="preview_tab-tab">
+                        <div class="tab-pane" id="preview-pane" role="tabpanel" aria-labelledby="preview-tab-link">
                             <div style="padding: 0px 20px">
                                 <div class="form-preview" style="display: flex; justify-content: center;">
                                     <iframe src="/controlsheet/item/download/<?= $formModel->id ?>"
@@ -85,7 +85,7 @@
 
                             </div>
                         </div>
-                        <div class="tab-pane" id="assist_tab" role="tabpanel" aria-labelledby="assist_tab-tab">
+                        <div class="tab-pane" id="assist-pane" role="tabpanel" aria-labelledby="assist-tab-link">
                             <div style="padding: 20px 20px">
                                 <?= $this->relationRender('assistant') ?>
                             </div>

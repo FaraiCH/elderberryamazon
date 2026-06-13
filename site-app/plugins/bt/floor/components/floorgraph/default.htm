@@ -84,15 +84,15 @@
                     {% if total_auto_used != 0 %}
 						<tr>
 
-				        		<td>{{item.qpush.quote.id}}
-				        		<td>{{item.qpush.quote.company_name}}</td>
+				        		<td>{{ item.qpush.quote.id }}</td>
+				        		<td>{{ item.qpush.quote.company_name }}</td>
 				        		<!-- <td>
 				        			{% if item.qpush.quote.invoice is not empty %}
 				        			{{item.qpush.quote.invoice.name}}
 				        			{% endif %}
 				        		</td> -->
-				        		<td nowrap="" ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{item.quoteitems.description}}</a></td>
-				        		<td nowrap="">{{item.qpush.status.name}}</td>
+				        		<td nowrap="" ><a target="_blank" href="/pipe/item/download/{{item.id}}">{{ item.quoteitems.description }}</a></td>
+				        		<td nowrap="">{{ item.qpush.status.name }}</td>
 				        		<td nowrap="">{{item.start_date|date("Y-m-d")}}</td>
 				        		{#<td nowrap="" nowrap="nowrap" align="right">R {{item.quoteitems.unitprice|number_format(2, '.', ',')}}</td>#}
 				        		<!-- <td nowrap="" align="right">{{item.quoteitems.units}}</td> -->
@@ -115,17 +115,17 @@
 				        			{% endif %}
 				        		</td>
 
-				        		<td nowrap="" align="right">{{item.delivered().sum('units')}}</td>
+				        		<td nowrap="" align="right">{{item.delivered.sum('units')}}</td>
 
 				        		<td nowrap="" align="right">
 				        			{% if item.schedules.sum('total_units_passed_qc') > 0 %}
-				        				{{item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')}}
+				        				{{item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')}}
 				        			{% else %}
 				        				0
 				        			{% endif %}
 				        		</td>
 
-				        		<td nowrap="" align="right" nowrap="nowrap" >R {{((item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice)|number_format(2, '.', ',')}}</td>
+				        		<td nowrap="" align="right" nowrap="nowrap" >R {{((item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')) * item.quoteitems.unitprice)|number_format(2, '.', ',')}}</td>
 				        		#}
 
 				        		<td nowrap="" align="right" nowrap="nowrap" >{{item.schedules.sum('total_kg_processed')}} kg</td>
@@ -145,8 +145,7 @@
 				        		{% set totaloverweight  = totaloverweight + item.schedules.sum('over_weight_kg') %}
 
 				        		<td nowrap="" align="right" nowrap="nowrap" >
-
-				        			{% set p_weight = (item.schedules.sum('total_kg_processed')  > 0)?((item.schedules.sum('weight_scrap_kg'))/item.schedules.sum('total_kg_processed') ):0 %}
+				        			{% set p_weight = (item.schedules.sum('total_kg_processed')  > 0)?((item.schedules.sum('over_weight_kg')*100)/item.schedules.sum('total_kg_processed') ):0 %}
 				        			{{p_weight|number_format(1, '.', ',')}}%</td>
 				        			{% set perc_weight  = perc_weight + p_weight %}
 
@@ -174,14 +173,14 @@
 
 				        		{% set totalscrap = totalscrap + item.schedules.sum('weight_scrap_kg') %}
 								{% set totalunits = totalunits + item.schedules.sum('total_units_passed_qc') %}
-								{% set totaldelivered = totaldelivered + item.delivered().sum('units') %}
+								{% set totaldelivered = totaldelivered + item.delivered.sum('units') %}
 
 								{% if item.schedules.sum('total_units_passed_qc') > 0 %}
 								{% set totalextras  = totalextras + (item.schedules.sum('total_units_passed_qc')-item.quoteitems.units) %}
 				        		{% endif %}
-								{% set totalfloor = totalfloor + (item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) %}
+								{% set totalfloor = totalfloor + (item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')) %}
 
-								{% set totalfloorprice = totalfloorprice + ((item.schedules.sum('total_units_passed_qc') - item.delivered().sum('units')) * item.quoteitems.unitprice) %}
+								{% set totalfloorprice = totalfloorprice + ((item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')) * item.quoteitems.unitprice) %}
 
 								{% set totalmaterial = totalmaterial + total_auto_used %}
 
@@ -204,14 +203,14 @@
 						#}
 						<td nowrap="" align="right"><b>{{totalactualweight|number_format(1, '.', ',')}} kg</b></td>
 						<td nowrap="" align="right"><b>{{totalscrap|number_format(1, '.', ',')}} kg</b></td>
-						<td> {{totalscrap>0?((totalscrap/totalactualweight)*100)|number_format(1, '.', ','):0}} %</td>
+						<td> {{totalactualweight > 0 ? ((totalscrap / totalactualweight) * 100)|number_format(1, '.', ',') : 0}} %</td>
 						<td nowrap="" align="right"><b>{{totaloverweight|number_format(1, '.', ',')}} kg</b></td>
-						<td> {{perc_weight>0?(perc_weight/row_count)|number_format(1, '.', ','):0}} %</td>
+						<td> {{row_count > 0 ? (perc_weight / row_count)|number_format(1, '.', ',') : 0}} %</td>
 
 
 						<td nowrap="" align="right"><b>{{total_waste|number_format(1, '.', ',')}} kg</b></td>
 
-						<td> {{total_waste_m_p>0?(total_waste_m_p/row_count)|number_format(1, '.', ','):0}} %</td>
+						<td> {{row_count > 0 ? (total_waste_m_p / row_count)|number_format(1, '.', ',') : 0}} %</td>
 
 
 
@@ -252,41 +251,12 @@
 			        }
 			    },
 
-			    series: {{FloorGraph.ScrapGraph()|raw}}
-
-
-			    ,
-
-			    plotOptions: {
-			        series: {
-			            marker: {
-			                enabled: false
-			            }
-			        }
-			    },
-
-
-			    responsive: {
-			        rules: [{
-			            condition: {
-			                maxWidth: 500
-			            },
-			            chartOptions: {
-			                legend: {
-			                    layout: 'horizontal',
-			                    align: 'center',
-			                    verticalAlign: 'bottom'
-			                }
-			            }
-			        }]
-			    }
-
+			    series: {{ FloorGraph.ScrapGraph()|raw }}
 			});
     	});
     </script>
 {% endput %}
-	 {% put scripts %}
-
+{% put scripts %}
     <script type="text/javascript">
     	$(window).on('load',function(){
 				Highcharts.chart('chart_oparator', {
@@ -307,35 +277,7 @@
 			        }
 			    },
 
-			    series: {{FloorGraph.OparatorGraph()|raw}}
-
-
-			    ,
-
-			    plotOptions: {
-			        series: {
-			            marker: {
-			                enabled: false
-			            }
-			        }
-			    },
-
-
-			    responsive: {
-			        rules: [{
-			            condition: {
-			                maxWidth: 500
-			            },
-			            chartOptions: {
-			                legend: {
-			                    layout: 'horizontal',
-			                    align: 'center',
-			                    verticalAlign: 'bottom'
-			                }
-			            }
-			        }]
-			    }
-
+			    series: {{ FloorGraph.OparatorGraph()|raw }}
 			});
     	});
     </script>

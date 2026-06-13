@@ -65,7 +65,7 @@ class Home extends Controller
     //             $desc = "#".$value->id." ".$value->vehicle->name." / ".$value->department->name." (".date_format($date,"Y/m/d ").")";
 
 
-    //             $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'end'=> $value->return_date,'color'=>$color,"url"=> "/backend/bt/Logistics/schedule/update/".$value->id );
+    //             $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'end'=> $value->return_date,'color'=>$color,"url"=> "/admin/bt/Logistics/schedule/update/".$value->id );
     //         }
     //         $i++;
     //     }
@@ -95,12 +95,12 @@ class Home extends Controller
                 $desc = "#".$value->id." ".$value->vehicle->name." / ".$value->department->name." (".date_format($date, "Y/m/d ").")";
 
 
-                $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'color'=>$color,"url"=> "/backend/bt/Logistics/schedule/update/".$value->id );
+                $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'color'=>$color,"url"=> "/admin/bt/Logistics/schedule/update/".$value->id );
             }
         }
 
         foreach ($srnObj as $key => $value) {
-            $events[] =  array('title' => "SRN No". $value->id, 'start'=> $value->schedule_date,'color'=>'orange',"url"=> "/backend/bt/logistics/stockrelease/update/".$value->id );
+            $events[] =  array('title' => "SRN No". $value->id, 'start'=> $value->schedule_date,'color'=>'orange',"url"=> "/admin/bt/logistics/stockrelease/update/".$value->id );
         }
 
         foreach ($delievryschedule as $key => $value) {
@@ -132,12 +132,12 @@ class Home extends Controller
                 $desc = "#".$value->id." ".$value->vehicle->name." / ".$value->department->name." (".date_format($date, "Y/m/d ").")";
 
 
-                $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'color'=>$color,"url"=> "/backend/bt/Logistics/schedule/update/".$value->id );
+                $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'color'=>$color,"url"=> "/admin/bt/Logistics/schedule/update/".$value->id );
             }
         }
 
         foreach ($srnObj as $key => $value) {
-            $events[] =  array('title' => "SRN No". $value->id, 'start'=> $value->schedule_date,'color'=>'orange',"url"=> "/backend/bt/logistics/stockrelease/update/".$value->id );
+            $events[] =  array('title' => "SRN No". $value->id, 'start'=> $value->schedule_date,'color'=>'orange',"url"=> "/admin/bt/logistics/stockrelease/update/".$value->id );
         }
 
         foreach ($delievryschedule as $key => $value) {

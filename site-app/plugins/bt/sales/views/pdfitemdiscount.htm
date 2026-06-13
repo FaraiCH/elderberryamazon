@@ -8,7 +8,7 @@ body{
 color: #212529;font-size: 11px;
 font-family: sans-serif;
 word-wrap: break-word;
-background: url(http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
+background: url(http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/Background.gif) no-repeat center center;
 }
 
 @page { margin:20px 20px 100px 20px; }
@@ -109,9 +109,9 @@ tr.rowsstart td{
                 Prepared By: K Maphai<br>
                 Approved By: K Lekola
                 </td>
-                <td valign="top" width="30%">Banking Details<br>BT Industrial (Pty) Ltd<br>4092290196<br>ABSA 632005<br><br>E-mail: enquiries@bt-industrial.co.za</td>
+                <td valign="top" width="30%">Banking Details<br>Elderberry Amazon (Pty) Ltd<br>4092290196<br>ABSA 632005<br><br>E-mail: enquiries@elderberryamazon.com</td>
                 <td width="30%" align="center">
-							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="BT Industrial" width="200px" >
+							<img src="http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/SABS-Approved.gif" alt="Elderberry Amazon" width="200px" >
 
 						</td>
 
@@ -129,11 +129,11 @@ tr.rowsstart td{
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="50%">
-							<img src="http://bailaerp.bt-industrial.co.za/themes/hambern-hambern-blank-bootstrap-4/assets/images/BT-logos-02.png" alt="BT Industrial" >
+							<img src="http://elderberryamazon.com/themes/hambern-hambern-blank-bootstrap-4/assets/images/logo.png" alt="Elderberry Amazon" >
 
 						</td>
 						<td width="50%" style="text-align: center;">
-							<h1 style="color: #1d2240">BT INDUSTRIAL GROUP</h1>
+							<h1 style="color: #1d2240">ELDERBERRY AMAZON</h1>
                             <p>11 Barnsley St, Benoni,Johannesburg, 1501<b>VAT NO:</b> 4090279110 <b>P:</b> +27 10 109 1728 <b>F:</b> +27 86 459 5761</p>
 							<h2>Quotation #BT{{quote.id}}</h2>
 						</td>
@@ -161,8 +161,10 @@ tr.rowsstart td{
 								<tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
 								<tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
 								<tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
-								{% for item in quote.responses if item.quote_status_id == 3 %}
-									<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+								{% for item in quote.responses %}
+									{% if item.quote_status_id == 3 %}
+										<tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+									{% endif %}
 				    			{% endfor %}
 								{% if quote.reg_number is not empty %}
 									<tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
@@ -175,7 +177,7 @@ tr.rowsstart td{
 						<td></td>
 						<td width="40%" valign="top" >
 							<table width="100%" border="0" cellpadding="2px" cellspacing="0">
-								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">BT-IND-{{quote.id}}</td></tr>
+								<tr><td width="50%"><b>Quotation No:</b></td><td width="50%">EA-IND-{{quote.id}}</td></tr>
 								<tr><td width="50%"><b>Date:</b></td><td width="50%">{{quote.created_at|date("Y-m-d")}}</td></tr>
 								<tr><td width="50%"><b>Sales Consultant:</b></td><td width="50%">{{quote.user.name}} {{quote.user.surname}}</td></tr>
 								<tr><td width="50%"></td><td width="50%">{{quote.user.email}}</td></tr>
@@ -241,21 +243,23 @@ tr.rowsstart td{
 
 
 				        {% set deliveryamount = 0 %}
-				        {% for item in quote.responses if item.quote_status_id == 4 %}
-							{% set counter = counter + 1 %}
-							{% set deliveryamount = deliveryamount + item.additionalamount %}
-							<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
-				        	<tr>
-				        		<td width="20px">{{counter}}</td>
-				        		<td>Delivery</td>
-				        		<td width="50px" class="text-center">1</td>
-				        		<td width="50px">&nbsp;</td>
-				              	<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+				        {% for item in quote.responses %}
+							{% if item.quote_status_id == 4 %}
+								{% set counter = counter + 1 %}
+								{% set deliveryamount = deliveryamount + item.additionalamount %}
+								<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+								<tr>
+									<td width="20px">{{counter}}</td>
+									<td>Delivery</td>
+									<td width="50px" class="text-center">1</td>
+									<td width="50px">&nbsp;</td>
+									<td  width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
 
-				              	<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
-				             </tr>
-				         </table>
-				     </div>
+									<td width="100px" class="text-right"><div class="totalr"><span>R </span><span>{{item.additionalamount|number_format(2, '.', ',')}}</span></div></td>
+								 </tr>
+							 </table>
+						 </div>
+							{% endif %}
 			    		{% endfor %}
 
 			    	<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
@@ -353,7 +357,7 @@ tr.rowsstart td{
 
 
 	<div class="page-break"></div>
-	<h2>BT INDUSTRIAL (PROPRIETARY) LIMITED (REGISTRATION NUMBER: 2017/05746/07) (“COMPANY”) TERMS AND CONDITIONS OF CREDIT SALE AGREEMENT</h2>
+	<h2>ELDERBERRY AMAZON (PROPRIETARY) LIMITED (REGISTRATION NUMBER: 2017/05746/07) (“COMPANY”) TERMS AND CONDITIONS OF CREDIT SALE AGREEMENT</h2>
 	<p>The Company grants credit to the Customer subject to the Customer complying with the Company&rsquo;s credit application process. The Customer hereby agrees to the following credit terms and conditions in connection with the application for credit sale.</p>
 <p><strong>1. Whole agreement and acceptance</strong> 1.1 The Customer agrees that these terms and conditions: 1.1.1 represent the entire agreement between the Customer and Company and that no alterations or additions to them may be effected unless agreed to by both parties, reduced to writing and signed by the Customer and a duly authorised representative of Company; 1.1.2 will, in the absence of any other agreement, govern all future contractual relationships between the parties; 1.1.3 are applicable to all existing debts between the parties; 1.1.4 are final and binding and are not subject to any suspensive or dissolutive conditions; 1.1.5 expressly exclude any conflicting terms and conditions stipulated by the Customer; 1.1.6 supersede all previous terms and conditions of sale without prejudice to any securities or guarantees held by Company. 1.2 Should the Customer be granted an account at Company such account is for the sole and exclusive use of the Customer to whom it was granted, and the Customer may under no circumstances allow any third party to accept service from Company using such account facility. 1.3 These terms and conditions become final and binding on acceptance by Company which acceptance shall be deemed on application for credit sale.</p>
 <p><strong>2. Personal Suretyship, co-indebtedness, representations, suitability, modifications and alternatives</strong> 2.1 The signatory hereby binds himself/herself in his/her personal capacity as Customer&rsquo;s director/s, member/s, owner/s, partner/s and no other document is required to effect such security. 2.2 The Customer acknowledges that it does not rely on any representations made by Company regarding the services or any of its qualities leading up to this agreement other than those contained in this agreement. All specifications, price lists, performance figures, advertisements, brochures and other technical data furnished by Company in respect of services verbally or in writing will not form part of the agreement in any way unless agreed to in writing by Company. 2.3 The Customer agrees that neither Company nor any of its employees will be held liable for any innocent misrepresentations made to the Customer. 2.4 It is the sole responsibility of the Customer to determine that the goods or services ordered are suitable for the purposes of intended use. 2.5 The Customer agrees to pay all costs resulting from any acts or omissions of the Customer including suspension of work, modification of requirements, failure or delay in giving authority to enable work to proceed on schedule or requirements that work be completed earlier than agreed. 2.6 The Customer is responsible for payment. Company will not re-invoice to third parties.</p>

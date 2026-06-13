@@ -37,7 +37,7 @@ class Mydashboard extends Controller
     public function index(){
         #Name: Farai Chakarisa
         #Description: Function to show sales targets and summary (eg invoice) with table and graph
-        #link: http://i.btindustrial.co.za/backend/bt/sales/mydashboard
+        #link: http://i.btindustrial.co.za/admin/bt/sales/mydashboard
         #Updated by Farai Chakarisa: Finalise graph
 
         #Add CSS

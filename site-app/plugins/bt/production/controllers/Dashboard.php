@@ -67,7 +67,7 @@ class Dashboard extends Controller
                 'title' => $desc,
                 'start' => $material->datecaptured,
                 'color' => 'green',
-                'url' => url("/backend/bt/production/dashboard/bydate?date=" . urlencode($material->datecaptured->format("Y-m-d"))),
+                'url' => url("/admin/bt/production/dashboard/bydate?date=" . urlencode($material->datecaptured->format("Y-m-d"))),
             ];
         }
 

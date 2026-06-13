@@ -13,12 +13,12 @@
     <div class="control-tabs content-tabs" data-control="tab">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Meeting</a>
+                <a class="active" id="profile-tab-link" data-toggle="tab" href="#profile-pane" role="tab" aria-controls="profile-pane" aria-selected="true">Meeting</a>
             </li>
 
 
             <li class="nav-item">
-                <a class="active" id="preview_tab-tab" data-toggle="tab" href="#preview_tab" role="tab" aria-controls="preview_tab" aria-selected="false">Attendees </a>
+                <a class="" id="preview_tab-tab-link" data-toggle="tab" href="#preview_tab-pane" role="tab" aria-controls="preview_tab-pane" aria-selected="false">Attendees </a>
             </li>
 
 
@@ -26,13 +26,13 @@
 
         </ul>
         <div class="tab-content" id="myTabContent" style="background: #fff">
-            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane active" id="profile-pane" role="tabpanel" aria-labelledby="profile-tab-link">
                 <div style="padding: 0px 20px">
                     <?= $this->formRender() ?>
                 </div>
             </div>
 
-            <div class="tab-pane" id="preview_tab" role="tabpanel" aria-labelledby="preview_tab-tab">
+            <div class="tab-pane" id="preview_tab-pane" role="tabpanel" aria-labelledby="preview_tab-tab-link">
                 <div class="form-preview" style="display: flex; justify-content: center;">
                     <?= $this->relationRender('back_users') ?>
                 </div>
@@ -147,26 +147,26 @@
     <div class="control-tabs content-tabs" data-control="tab">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Meeting</a>
+                <a class="active" id="profile2-tab-link" data-toggle="tab" href="#profile2-pane" role="tab" aria-controls="profile2-pane" aria-selected="true">Meeting</a>
             </li>
 
 
             <li class="nav-item">
-                <a class="active" id="preview_tab-tab" data-toggle="tab" href="#preview_tab" role="tab" aria-controls="preview_tab" aria-selected="false">Attendees </a>
+                <a class="" id="preview2_tab-tab-link" data-toggle="tab" href="#preview2_tab-pane" role="tab" aria-controls="preview2_tab-pane" aria-selected="false">Attendees </a>
             </li>
 
 
 
 
         </ul>
-        <div class="tab-content" id="myTabContent" style="background: #fff">
-            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-content" id="myTabContent2" style="background: #fff">
+            <div class="tab-pane active" id="profile2-pane" role="tabpanel" aria-labelledby="profile2-tab-link">
                 <div style="padding: 0px 20px">
                     <?= $this->formRender() ?>
                 </div>
             </div>
 
-            <div class="tab-pane" id="preview_tab" role="tabpanel" aria-labelledby="preview_tab-tab">
+            <div class="tab-pane" id="preview2_tab-pane" role="tabpanel" aria-labelledby="preview2_tab-tab-link">
                 <div class="form-preview" style="display: flex; justify-content: center;">
                     <?= $this->relationRender('back_users') ?>
                 </div>

@@ -102,7 +102,7 @@ class ResponsePO extends Model
         ##SEND EMAIL
         // $this->ModelRequest->load('requestpo');
         $Id = $this->requestpo->id;
-        $url = Config::get('app.url') . '/backend/bt/finance/requestpo/update/' . $Id;
+        $url = Config::get('app.url') . '/admin/bt/finance/requestpo/update/' . $Id;
         $link = "* View Request PO: $url";
 
 

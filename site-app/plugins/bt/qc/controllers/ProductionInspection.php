@@ -54,7 +54,7 @@ class ProductionInspection extends Controller
             if(isset($value->btline) && isset($value->btline->name)){
                 $desc .= ", Running on ".($value->btline->name?$value->btline->name:"");
             }
-            $events[] =  array('title' => $desc, 'start'=> $value->opendate,'color'=>$color,"url"=> "/backend/bt/qc/shiftinputs/update/".$value->id );
+            $events[] =  array('title' => $desc, 'start'=> $value->opendate,'color'=>$color,"url"=> "/admin/bt/qc/shiftinputs/update/".$value->id );
         }
 
         $this->vars['events'] = $events;

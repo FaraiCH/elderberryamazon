@@ -79,6 +79,7 @@ class FloorGraph extends ComponentBase
     {
 
         $this->addJs('https://code.jquery.com/ui/1.12.1/jquery-ui.js', 'Bt.Sales');
+        $this->addJs('https://code.highcharts.com/highcharts.js');
         $this->addJs('/plugins/bt/floor/assets/js/formfilter.js');
 
     }
@@ -105,67 +106,46 @@ class FloorGraph extends ComponentBase
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
 
-       //  return
-       // PipeModel::active()->whereBetween('start_date', array($this->startdate, $this->enddate." 23:59:00"))
-       //      ->with(['schedules' => function ($query) use ($data) {
-       //          $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"));
-       //      }])
-       //      ->orderBy('start_date','desc')
-       //      ->get();
+        $pipes = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->where('is_stock', 0)->get();
+        $parra= array();
+        foreach ($pipes as $v) {
+            if ($v->pipe_id) {
+                $parra[$v->pipe_id] = $v->pipe_id;
+            }
+        }
 
-       $pipes = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->where('is_stock', 0)->get();
-       $no = ScheduleModel::whereNotBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->lists('id');
-       $parra= array();
-       foreach ($pipes as $v) {
-           $parra[$v->pipe_id] = $v->pipe_id;
-       }
+        if (empty($parra)) {
+            return collect();
+        }
 
-       $mycompany = $this->company_name;
-       //return
-       $produced =  PipeModel::whereIn('id',$parra)
-            ->whereHas('schedules', function ($query) use ($data) {
-                $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"));
-            })
-            ->with(['schedules' => function ($query) use ($data) {
-                $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"));
-            }])
+        $mycompany = Input::get('company_only') ?: Input::get('company_exclude');
 
-           ->orderBy('start_date','desc');
-           //->has('schedules')
-
-        //return $d;//::schedules()->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->get();
-
-        // foreach ($obj as $key => $value) {
-        //     //dd($value->schedules()->sum('total_units_passed_qc'));
-        // }
+        $produced =  PipeModel::whereIn('id',$parra)
+             ->whereHas('schedules', function ($query) use ($data) {
+                 $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"));
+             })
+             ->with(['schedules' => function ($query) use ($data) {
+                 $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+                       ->with('usedmaterials', 'assignedto', 'scrapcodes');
+             }, 'quoteitems.quote.client', 'qpush.status', 'delivered'])
+            ->orderBy('start_date','desc')
+            ->limit(50);
 
         if(Input::get('company_only') != 0 && Input::get('company_exclude') != 0){
             $produced = $produced->get();
             $this->page['state'] = "error";
         }else{
             if(Input::get('company_only') != 0){
-                $this->company_name = Input::get('company_only');
-                $produced = $produced->whereHas('quoteitems', function($query) use($mycompany){
-                    $query->whereHas('quote', function($q) use ($mycompany){
-                        $q->whereHas('client', function($que) use($mycompany){
-                            $que->where('id', $mycompany);
-                        });
-                    });
+                $produced = $produced->whereHas('quoteitems.quote.client', function($query) use($mycompany){
+                    $query->where('id', $mycompany);
                 })->get();
-            }
-            if(Input::get('company_exclude') != 0){
-                $this->company_name = Input::get('company_exclude');
-                $produced = $produced->whereHas('quoteitems', function($query) use($mycompany){
-                    $query->whereHas('quote', function($q) use ($mycompany){
-                        $q->whereHas('client', function($que) use($mycompany){
-                            $que->where('id', '<>', $mycompany);
-                        });
-                    });
+            } elseif(Input::get('company_exclude') != 0){
+                $produced = $produced->whereHas('quoteitems.quote.client', function($query) use($mycompany){
+                    $query->where('id', '<>', $mycompany);
                 })->get();
+            } else {
+                $produced = $produced->get();
             }
-        }
-        if(Input::get('company_only') == 0 && Input::get('company_exclude') == 0){
-            $produced = $produced->get();
         }
 
         return $produced;
@@ -216,23 +196,27 @@ class FloorGraph extends ComponentBase
 
 
         $pipes = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))->get();
-       $parra= array();
-       foreach ($pipes as $v) {
-           $parra[$v->pipe_id] = $v->pipe_id;
-       }
+        $parra= array();
+        foreach ($pipes as $v) {
+            if ($v->pipe_id) {
+                $parra[$v->pipe_id] = $v->pipe_id;
+            }
+        }
 
+        if (empty($parra)) {
+            return json_encode([]);
+        }
 
-      // return
-      // PipeModel::whereIn('id',$parra)
-
-       $quote = PipeModel::whereIn('id',$parra)
+        $quote = PipeModel::whereIn('id',$parra)
                 ->whereHas('quoteitems',function($query) use($data){
                $query->whereBetween('created_at', array($data['startdate'], $data['enddate']." 23:59:00"));
                 })
                 ->with(['schedules' => function ($query) use ($data) {
-                $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"));
+                $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+                      ->with('scrapcodes');
             }])
             ->orderBy('start_date','desc')
+            ->limit(50)
             ->get();
             $tempArray =  array();
         foreach ($quote as $qkey => $qvalue) {
@@ -291,17 +275,24 @@ class FloorGraph extends ComponentBase
                $query->whereBetween('created_at', array($data['startdate'], $data['enddate']." 23:59:00"));
             })
             ->with(['schedules' => function ($query) use ($data) {
-                $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"));
+                $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+                      ->with('assignedto');
             }])
             ->orderBy('start_date','desc')
+            ->limit(50)
             ->get();
-            $tempArray =  array();
+
+        if ($quote->isEmpty()) {
+            return json_encode([]);
+        }
+
+        $tempArray =  array();
         foreach ($quote as $qkey => $qvalue) {
             foreach ($qvalue->schedules as $key => $value) {
                 if($value->weight_scrap_kg > 0){
 
-                    $oparator = "Unkown";
-                    if(!empty($value->assignedto) && $value->assignedto->name)
+                    $oparator = "Unknown";
+                    if(!empty($value->assignedto) && isset($value->assignedto->name))
                          $oparator = $value->assignedto->name;
 
 

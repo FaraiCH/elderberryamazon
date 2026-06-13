@@ -58,7 +58,7 @@ Route::any('/update-weekly-graph/', function (){
 
 });
 
-Route::any('/backend/bt/hr/export/wagebill', function (){
+Route::any('/admin/bt/hr/export/wagebill', function (){
     return Excel::download(new \Bt\Hr\Models\ExportWageDepartment(), 'WageBill.xlsx');
 });
 
@@ -494,6 +494,6 @@ function actualDateRangeArray($strDateFrom,$strDateTo)
     return $aryRange;
 }
 
-Route::any('/backend/hr/employee/profile',function () {
+Route::any('/admin/hr/employee/profile',function () {
     return Excel::download(new \Bt\Hr\Classes\ProfilePicExport(), 'Profile-Pic.xlsx');
 });

@@ -194,8 +194,10 @@
                             <tr><td width="50%"><b>Phone:</b></td><td width="50%">{{quote.phone}}</td></tr>
                             <tr><td width="50%" valign="top" ><b>Physical Address:</b></td><td width="50%">{{quote.physical_address}}</td></tr>
                             <tr><td width="50%"><b></b></td><td width="50%">{{quote.physical_code}}</td></tr>
-                            {% for item in quote.responses if item.quote_status_id == 3 %}
-                            <tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+                            {% for item in quote.responses %}
+                                {% if item.quote_status_id == 3 %}
+                                    <tr><td width="50%"><b>Delivery Address:</b></td><td width="50%">{{item.response}}</td></tr>
+                                {% endif %}
                             {% endfor %}
                             {% if quote.reg_number is not empty %}
                             <tr><td width="50%"><b>Reg Number:</b></td><td width="50%">{{quote.reg_number}}</td></tr>
@@ -296,22 +298,23 @@
 {% endfor %}
 
 
-{% set deliveryamount = 0 %}
-{% for item in quote.responses if item.quote_status_id == 4 %}
-{% set counter = counter + 1 %}
-{% set deliveryamount = deliveryamount + item.additionalamount %}
-<div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
-    <tr>
-        <td width="20px">{{counter}}</td>
-        <td>Delivery</td>
-        <td width="50px" class="text-center">1</td>
-        <td width="50px">&nbsp;</td>
-        <td  width="100px" class="text-right"><div class="totalr"><span>$ </span><span>{{(item.additionalamount/dollar)|number_format(2, '.', ',')}}</span></div></td>
+{% for item in quote.responses %}
+    {% if item.quote_status_id == 4 %}
+        {% set counter = counter + 1 %}
+        {% set deliveryamount = deliveryamount + item.additionalamount %}
+        <div><table width="100%" border="1" cellpadding="5px" cellspacing="" class="table table-sm">
+            <tr>
+                <td width="20px">{{counter}}</td>
+                <td>Delivery</td>
+                <td width="50px" class="text-center">1</td>
+                <td width="50px">&nbsp;</td>
+                <td  width="100px" class="text-right"><div class="totalr"><span>$ </span><span>{{(item.additionalamount/dollar)|number_format(2, '.', ',')}}</span></div></td>
 
-        <td width="100px" class="text-right"><div class="totalr"><span>$ </span><span>{{(item.additionalamount/dollar)|number_format(2, '.', ',')}}</span></div></td>
-    </tr>
-</table>
-</div>
+                <td width="100px" class="text-right"><div class="totalr"><span>$ </span><span>{{(item.additionalamount/dollar)|number_format(2, '.', ',')}}</span></div></td>
+            </tr>
+        </table>
+        </div>
+    {% endif %}
 {% endfor %}
 
 {% for delivery in quote.dispatch %}

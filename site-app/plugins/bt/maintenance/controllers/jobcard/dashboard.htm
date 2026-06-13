@@ -29,7 +29,7 @@
         <?php foreach($jobcardObj as $jobcard): ?>
             <?php if(!isset($jobcard->status->id) && !isset($jobcard->assignedto->id)): ?>
             <tr>
-                <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+                <td><a target="_blank" href="/admin/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
                 <td><?= $jobcard->job_summary ?></td>
                 <td><?= $jobcard->department->name ?></td>
                 <td><?= $jobcard->createdby->first_name ?> <?= $jobcard->createdby->last_name ?></td>
@@ -65,7 +65,7 @@
         <?php foreach($jobcardObj as $jobcard): ?>
         <?php if(isset($jobcard->status->id) && $jobcard->status->id != 5): ?>
             <tr>
-                <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+                <td><a target="_blank" href="/admin/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
                 <td><?= $jobcard->job_summary ?></td>
                 <?php if(isset($jobcard->assignedto->name)): ?>
                     <td><?= $jobcard->assignedto->name ?></td>
@@ -113,7 +113,7 @@
     <?php foreach($jobcardObj as $jobcard): ?>
     <?php if(isset($jobcard->status->id) && $jobcard->status->id != 5): ?>
     <tr>
-        <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+        <td><a target="_blank" href="/admin/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
         <td><?= $jobcard->job_summary ?></td>
         <?php if(isset($jobcard->assignedto->name)): ?>
         <td><?= $jobcard->assignedto->name ?></td>
@@ -159,7 +159,7 @@
     <?php foreach($jobcardObj as $jobcard): ?>
     <?php if(isset($jobcard->status->id) && $jobcard->status->id != 5): ?>
     <tr>
-        <td><a target="_blank" href="/backend/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
+        <td><a target="_blank" href="/admin/bt/maintenance/jobcard/update/<?= $jobcard->id ?>"><?= $jobcard->id ?></a></td>
         <td><?= $jobcard->job_summary ?></td>
         <?php if(isset($jobcard->assignedto->name)): ?>
             <td><?= $jobcard->assignedto->name ?></td>

@@ -168,16 +168,20 @@ tr.rowsstart td{
                                 {% if quote.linkaltinvoice.name is not empty %}
                                     <tr><td><br><b>Invoice No: {{quote.linkaltinvoice.name}}</b></td></tr>
 
-                                    {% for itemobject in quote.linkaltinvoice.quote.responses  if itemobject.quote_status_id == 10 %}
-                                        <tr><td><b>Purchase Order No: {{itemobject.response}}</b></td></tr>
+                                    {% for itemobject in quote.linkaltinvoice.quote.responses %}
+                                        {% if itemobject.quote_status_id == 10 %}
+                                            <tr><td><b>Purchase Order No: {{itemobject.response}}</b></td></tr>
+                                        {% endif %}
                                     {% endfor %}
 
                                 {% else %}
                                     <tr><td><br><b>Invoice No: {{quote.invoice.name}}</b></td></tr>
 
 
-                                    {% for itemobject in quote.invoice.quote.responses  if itemobject.quote_status_id == 10 %}
-                                        <tr><td><b>Purchase Order No: {{itemobject.response}}</b></td></tr>
+                                    {% for itemobject in quote.invoice.quote.responses %}
+                                        {% if itemobject.quote_status_id == 10 %}
+                                            <tr><td><b>Purchase Order No: {{itemobject.response}}</b></td></tr>
+                                        {% endif %}
                                     {% endfor %}
 
                                 {% endif %}

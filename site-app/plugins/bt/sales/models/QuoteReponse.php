@@ -16,6 +16,8 @@ use Mail;
  */
 class QuoteReponse extends Model
 {
+    use \October\Rain\Database\Traits\Nullable;
+
     /**
      * @var string The database table used by the model.
      */
@@ -30,6 +32,11 @@ class QuoteReponse extends Model
      * @var array Fillable fields
      */
     protected $fillable = [];
+
+    /**
+     * @var array Nullable attributes
+     */
+    public $nullable = ['amountpaid', 'amountdiscount', 'additionalamount', 'poamount'];
 
     /**
      * @var array Relations
@@ -224,7 +231,7 @@ class QuoteReponse extends Model
 
                 if($q->quote_status_id == 19){
                     #send email
-                    $url = env('APP_URL') .'/backend/bt/sales/newquote/update/'.$quote->id;
+                    $url = env('APP_URL') .'/admin/bt/sales/newquote/update/'.$quote->id;
                     $link = "
                     * View Quote: $url";
 
@@ -259,7 +266,7 @@ class QuoteReponse extends Model
                     $push = Push::where('quote_id',$data['quote_id'])->first();
 
                     #send email
-                    $url = env('APP_URL') .'/backend/bt/sales/newquote/update/'.$quote->id;
+                    $url = env('APP_URL') .'/admin/bt/sales/newquote/update/'.$quote->id;
                     $link = "
                     * View Quote: $url";
 

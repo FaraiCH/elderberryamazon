@@ -241,27 +241,27 @@ Route::any('/srn/qc-srn/{id}', function ($id){
 });
 
 
-Route::any('/backend/sales/invoices/export',function () {
+Route::any('/admin/sales/invoices/export',function () {
     return Excel::download(new \Bt\Sales\Models\InvoiceExport(), 'Invoice-Export.xlsx');
 });
 
-Route::any('/backend/sales/orders/export',function () {
+Route::any('/admin/sales/orders/export',function () {
     return Excel::download(new \Bt\Sales\Models\OrdersExport(), 'Orders-Export.xlsx');
 });
 
-Route::any('/backend/sales/orders/production/export',function () {
+Route::any('/admin/sales/orders/production/export',function () {
     return Excel::download(new \Bt\Sales\Models\ExportProductionBalance(), 'Orders-Export.xlsx');
 });
 
-Route::any('/backend/sales/pbitem/export',function () {
+Route::any('/admin/sales/pbitem/export',function () {
     return Excel::download(new \Bt\Sales\Models\PbItemExport(), 'ProductionBalItem-Export.xlsx');
 });
 
-Route::any('/backend/sales/deliveries/export',function () {
+Route::any('/admin/sales/deliveries/export',function () {
     return Excel::download(new \Bt\Sales\Models\DeliveryExport(), 'Delivery-Export.xlsx');
 });
 
-Route::any('/backend/sales/delivery/export', function () {
+Route::any('/admin/sales/delivery/export', function () {
     ini_set('memory_limit', '1024M');
     $collectionObj = array();
     $doneObj = array();
@@ -478,7 +478,7 @@ Route::any('/srn/V2/preview/download/{id}.pdf', function ($id) {
 });
 
 
-Route::any('/backend/sales/orders/export/pdf', function () {
+Route::any('/admin/sales/orders/export/pdf', function () {
     $im_id = 9999;
 
     if(isset($_SESSION['starter'])){
@@ -637,11 +637,11 @@ Route::any('/fab/item/{state}/download/{id}.pdf', function ($state, $id) {
 
 });
 
-Route::any('/backend/bt/sales/export/quote/items/', function (){
+Route::any('/admin/bt/sales/export/quote/items/', function (){
     return Excel::download(new \Bt\Sales\Models\QuoteItemExport(), 'Quote-Item-Export.xlsx');
 });
 
-Route::any('/backend/bt/sales/export/srn/items/', function (){
+Route::any('/admin/bt/sales/export/srn/items/', function (){
     return Excel::download(new \Bt\Sales\Models\SrnItemExport(), 'Srn-Item-Export.xlsx');
 });
 
@@ -669,10 +669,10 @@ Route::patch('/quote/approval/{key_pass}/{id}', function($key_pass, $id){
     return 'Hello World!';
 });
 
-Route::any('/backend/bt/sales/export/fabrication/items/', function (){
+Route::any('/admin/bt/sales/export/fabrication/items/', function (){
     return Excel::download(new \Bt\Sales\Models\FabItemExport(), 'Srn-Item-Export.xlsx');
 });
 
-Route::any('/backend/bt/sales/newquote/converted',function () {
+Route::any('/admin/bt/sales/newquote/converted',function () {
     return Excel::download(new \Bt\Sales\Models\ConvertedQuotes(), 'Converted-Quotes.xlsx');
 });

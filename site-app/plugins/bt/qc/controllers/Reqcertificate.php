@@ -77,7 +77,7 @@ class Reqcertificate extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/qc/reqcertificate/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/qc/reqcertificate/update/'.$id;
 
         $link = "
         * View COC Requets: $url";

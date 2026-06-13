@@ -17,7 +17,7 @@ class Weeklyhour extends Controller
 {
     ##Name: Katlego Phala
     ##Description: Weekly Hour graph display
-    ##link:https://bailaerp.bt-industrial.co.za/backend/bt/hr/weeklyhour/graph
+    ##link:https://bailaerp.bt-industrial.co.za/admin/bt/hr/weeklyhour/graph
 
 
     public $implement = [

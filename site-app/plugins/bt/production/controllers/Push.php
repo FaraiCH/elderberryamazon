@@ -61,7 +61,7 @@ class Push extends Controller
 
         foreach ($list as $key => $value) {
             $timestamp = strtotime($value->locked_date);
-            $td1 .= "<td style='text-align: center;'>".date("M-Y", $timestamp)."&nbsp;&nbsp;&nbsp; <a href='/backend/bt/inventory/blendedpurchase/update/".$value->id."'><i  class='icon-line-chart icon-1x'></i> View</a></td>";
+            $td1 .= "<td style='text-align: center;'>".date("M-Y", $timestamp)."&nbsp;&nbsp;&nbsp; <a href='/admin/bt/inventory/blendedpurchase/update/".$value->id."'><i  class='icon-line-chart icon-1x'></i> View</a></td>";
             $td2 .= "<td style='text-align: center;'>R ".$value->price."</td>";
             $td3 .= "<td style='text-align: center;'>".($value->is_locked?'<i  class="icon-lock icon-2x"></i>':'<i style="color: #ff3e1d" class="icon-unlock icon-2x"></i>')."</td>";
         }
@@ -82,7 +82,7 @@ class Push extends Controller
 
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/production/push/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/production/push/update/'.$id;
 
         $link = "
         * View Production: $url";

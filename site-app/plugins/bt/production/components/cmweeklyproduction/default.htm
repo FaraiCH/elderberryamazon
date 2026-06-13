@@ -1,7 +1,11 @@
 {% set obj = CmWeeklyProduction.monster %}
 
 {% partial __SELF__ ~ '::filterform'%}
-{% component 'RunningScheduleGraphs' %}
+<div class="row">
+    <div class="col-sm-12">
+        {% component 'RunningScheduleGraphs' %}
+    </div>
+</div>
 	<div class="card-body">
 		<table class="table table-striped table-bordered table-sm tabledownload" id="tabledownload" >
 			<thead>
@@ -76,8 +80,5 @@
 					</tr>
 
 		        </tfoot>
-	        </tbody>
-
-
 		</table>
 	</div>

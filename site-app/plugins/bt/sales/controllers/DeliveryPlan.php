@@ -61,7 +61,7 @@ class DeliveryPlan extends Controller
 
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/sales/deliveryplan/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/sales/deliveryplan/update/'.$id;
 
         $link = "
         * View Schedule: $url";
@@ -131,7 +131,7 @@ class DeliveryPlan extends Controller
             $date=date_create($value->schedule_date);
             $desc = "QT #".$value->quote_id.", ".$value->type->lookup__name_public.", ".$value->client->company_name.", ".$value->address." (".date_format($date,"Y/m/d ").")";
 
-            $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'color'=>$color,"url"=> "/backend/bt/sales/deliveryplan/preview/".$value->id );
+            $events[] =  array('title' => $desc, 'start'=> $value->schedule_date,'color'=>$color,"url"=> "/admin/bt/sales/deliveryplan/preview/".$value->id );
         }
 
         $this->vars['events'] = $events;

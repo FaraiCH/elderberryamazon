@@ -11,17 +11,17 @@
 
         <div class="layout-row">
             <div class="callout fade in callout-danger">
-                 <a class="btn btn-primary btn-lg oc-icon-wrench" target="_blank" href="/backend/bt/production/schedule/update/<?= e($formModel->pipe_id) ?>">Edit Production Pipe Details</a>
+                 <a class="btn btn-primary btn-lg oc-icon-wrench" target="_blank" href="/admin/bt/production/schedule/update/<?= e($formModel->pipe_id) ?>">Edit Production Pipe Details</a>
              <?php
 
                     foreach($formModel->pipe->jobcard as $key=>$value){
 
-                         echo '<a class="btn btn-primary btn-lg oc-icon-cog" target="_blank" href="/backend/bt/production/jobcard/update/'.$value->id.'">Edit Jobcard</a> ';
+                         echo '<a class="btn btn-primary btn-lg oc-icon-cog" target="_blank" href="/admin/bt/production/jobcard/update/'.$value->id.'">Edit Jobcard</a> ';
                     } 
                     
                     foreach($formModel->pipe->schedules as $key=>$value){
 
-                         echo '<a class="btn btn-primary btn-lg oc-icon-calendar-check-o" target="_blank" href="/backend/bt/production/schedule/update/'.$value->id.'">Edit Schedule Day Data</a>';
+                         echo '<a class="btn btn-primary btn-lg oc-icon-calendar-check-o" target="_blank" href="/admin/bt/production/schedule/update/'.$value->id.'">Edit Schedule Day Data</a>';
                     } 
                 ?>  
                 </div>

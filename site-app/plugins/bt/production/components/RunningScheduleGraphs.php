@@ -51,6 +51,8 @@ class RunningScheduleGraphs extends ComponentBase
             $current = Carbon::now();
             $this->startdate = $current->addDays(-30);
         }
+
+        $this->addJs('https://code.highcharts.com/highcharts.js');
     }
     public function getWeeklyProductionGraph(){
        $w =  ScheduleModel::select(

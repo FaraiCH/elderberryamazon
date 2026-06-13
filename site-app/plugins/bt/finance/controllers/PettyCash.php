@@ -63,7 +63,7 @@ class PettyCash extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/finance/pettycash/update/'.$id;
+        $url = Config::get('app.url').'/admin/bt/finance/pettycash/update/'.$id;
 
         $link = "
         * View pettycash: $url";
@@ -102,7 +102,7 @@ class PettyCash extends Controller
         $name .= ' '.$user->last_name;
 
         ##SEND EMAIL
-        $url = Config::get('app.url').'/backend/bt/finance/pettycash/preview/'.$id;
+        $url = Config::get('app.url').'/admin/bt/finance/pettycash/preview/'.$id;
 
         $link = "
         * View pettycash: $url";
