@@ -42,24 +42,22 @@ class FloorGraph extends ComponentBase
     }
 
     public function onRun(){
-        $this->loadAssets();
-        $this->prepareVars();
-    }
-
-    public function prepareVars() {
+        //dd($this->ScrapGraph());
+        //dd($this->producedPipes());
         if(Input::has('enddate')){
             $this->enddate = Input::get('enddate');
         }else{
-            $this->enddate = Carbon::now()->toDateString();
+            $this->enddate = Carbon::now();
         }
 
         if(Input::has('startdate')){
             $this->startdate = Input::get('startdate');
         }else{
             $current = Carbon::now();
-            $this->startdate = $current->subDays(7)->toDateString();
+            $this->startdate = $current->subDays(30)->toDateString();
         }
 
+        $this->loadAssets();
         $this->page['company_id'] = 0;
         if(Input::get('company_only') != 0 && Input::get('company_exclude') != 0){
             $this->page['state'] = "error";
@@ -72,33 +70,10 @@ class FloorGraph extends ComponentBase
                 $this->page['company_id_ex'] = Input::get('company_exclude');
             }else{
                 $this->page['state'] = "standard";
+
             }
         }
-    }
 
-    public function onLoadPipes()
-    {
-        $this->prepareVars();
-        $this->page['floorpipes'] = $this->producedPipes();
-        return [
-            '#pipes-table-body' => $this->renderPartial('@table-body')
-        ];
-    }
-
-    public function onLoadScrapGraph()
-    {
-        $this->prepareVars();
-        return [
-            'data' => json_decode($this->ScrapGraph())
-        ];
-    }
-
-    public function onLoadOperatorGraph()
-    {
-        $this->prepareVars();
-        return [
-            'data' => json_decode($this->OparatorGraph())
-        ];
     }
 
     public function loadAssets()
@@ -115,8 +90,18 @@ class FloorGraph extends ComponentBase
     }
 
     public function producedPipes(){
-        $this->prepareVars();
+        if(Input::has('enddate')){
+            $this->enddate = Input::get('enddate');
+        }else{
+            $this->enddate = Carbon::now();
+        }
 
+        if(Input::has('startdate')){
+            $this->startdate = Input::get('startdate');
+        }else{
+            $current = Carbon::now();
+            $this->startdate = $current->subDays(7)->toDateString();
+        }
         Session::put('prostart', $this->startdate);
         Session::put('enddate', $this->enddate);
 
@@ -192,7 +177,19 @@ class FloorGraph extends ComponentBase
     }
 
     public function ScrapGraph(){
-        $this->prepareVars();
+        if(Input::has('enddate')){
+            $this->enddate = Input::get('enddate');
+        }else{
+            $this->enddate = Carbon::now();
+        }
+
+        if(Input::has('startdate')){
+            $this->startdate = Input::get('startdate');
+        }else{
+            $current = Carbon::now();
+            $this->startdate = $current->subDays(7)->toDateString();
+        }
+
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
 
@@ -252,7 +249,18 @@ class FloorGraph extends ComponentBase
     }
 
     public function OparatorGraph(){
-        $this->prepareVars();
+        if(Input::has('enddate')){
+            $this->enddate = Input::get('enddate');
+        }else{
+            $this->enddate = Carbon::now();
+        }
+
+        if(Input::has('startdate')){
+            $this->startdate = Input::get('startdate');
+        }else{
+            $current = Carbon::now();
+            $this->startdate = $current->subDays(7)->toDateString();
+        }
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
 
