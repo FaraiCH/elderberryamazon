@@ -192,8 +192,6 @@ class FloorGraph extends ComponentBase
 
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
-//$quote = PipeModel::active()->whereBetween('start_date', array($this->startdate, $this->enddate." 23:59:00"))
-
 
         $parra = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
             ->whereNotNull('pipe_id')
@@ -206,11 +204,9 @@ class FloorGraph extends ComponentBase
         }
 
         $quote = PipeModel::whereIn('id',$parra)
-                ->whereHas('quoteitems',function($query) use($data){
-               $query->whereBetween('created_at', array($data['startdate'], $data['enddate']." 23:59:00"));
-                })
                 ->with(['schedules' => function ($query) use ($data) {
                 $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+                      ->where('weight_scrap_kg', '>', 0)
                       ->with('scrapcodes');
             }])
             ->orderBy('start_date','desc')
@@ -268,14 +264,22 @@ class FloorGraph extends ComponentBase
 
         $data = array('startdate' => $this->startdate, 'enddate' => $this->enddate);
 
-       //$quote = PipeModel::active()->whereBetween('start_date', array($this->startdate, $this->enddate." 23:59:00"))
-        $quote = PipeModel::whereHas('quoteitems',function($query) use($data){
-               $query->whereBetween('created_at', array($data['startdate'], $data['enddate']." 23:59:00"));
-            })
+        $parra = ScheduleModel::whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+            ->whereNotNull('pipe_id')
+            ->distinct()
+            ->pluck('pipe_id')
+            ->toArray();
+
+        if (empty($parra)) {
+            return json_encode([]);
+        }
+
+        $quote = PipeModel::whereIn('id', $parra)
             ->with(['schedules' => function ($query) use ($data) {
                 $query->whereBetween('production_date', array($data['startdate'], $data['enddate']." 23:59:00"))
+                      ->where('weight_scrap_kg', '>', 0)
                       ->with('assignedto');
-            }, 'quoteitems'])
+            }])
             ->orderBy('start_date','desc')
             ->limit(50)
             ->get();
