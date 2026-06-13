@@ -1,7 +1,7 @@
 #!/bin/bash
 DB_USER="farai"
 DB_PASS="@Paradice1"
-DB_NAME="amazon"
+DB_NAME="amazon_elder"
 
 while read file; do
     echo "Importing $file..."
