@@ -1,6 +1,10 @@
    <div class="tvhide">
  		<div style="padding: 10px" >
-            	<form name="frmfilter" id="frmfilter" class="form-inline" method="POST" >
+            	<form name="frmfilter" id="frmfilter" class="form-inline" method="POST"
+                    data-request="{{ __SELF__ }}::onLoadPipes"
+                    data-request-success="updateTotals()"
+                    data-request-loading="#pipes-table-body"
+                >
 
 				  <div class="form-group">
 				    <label for="exampleInputName2">Start Date: </label>
@@ -39,7 +43,7 @@
                         </select>
                     </div>
 
-				  <button type="submit" class="btn btn-primary">Filter</button>
+				  <button type="submit" class="btn btn-primary" onclick="$('#chart_floor, #chart_oparator').html('<div style=\'text-align: center; padding-top: 100px;\'><i class=\'fa fa-spinner fa-spin fa-3x\'></i> Loading...</div>'); $.request('{{ __SELF__ }}::onLoadScrapGraph', { data: $('#frmfilter').serialize(), success: function(res){ Highcharts.chart('chart_floor', { chart: { type: 'column' }, title: { text: 'Scrap' }, xAxis: { type: 'datetime' }, yAxis: { title: { text: 'kg' } }, series: res.data }); } }); $.request('{{ __SELF__ }}::onLoadOperatorGraph', { data: $('#frmfilter').serialize(), success: function(res){ Highcharts.chart('chart_oparator', { chart: { type: 'column' }, title: { text: 'Operator Scrap' }, xAxis: { type: 'datetime' }, yAxis: { title: { text: 'kg' } }, series: res.data }); } });">Filter</button>
 				</form>
 			</div>
 

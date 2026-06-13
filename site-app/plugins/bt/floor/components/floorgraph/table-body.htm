@@ -1,0 +1,106 @@
+{% set totalactualweight  = 0 %}
+{% set totaloverweight  = 0 %}
+{% set totalscrap = 0 %}
+{% set totalmaterial = 0 %}
+{% set totalmaterial_real = 0 %}
+
+{% set totalunits = 0 %}
+{% set totaldelivered = 0 %}
+{% set totalextras = 0 %}
+{% set totalfloor = 0 %}
+{% set totalfloorprice = 0 %}
+
+{% set row_count  = 0 %}
+{% set perc_scrap  = 0 %}
+{% set perc_weight  = 0 %}
+{% set total_waste  = 0 %}
+{% set total_waste_m_p  = 0 %}
+
+{% for item in floorpipes %}
+    {% if item.id > 3 %}
+        {% set row_count  = row_count + 1 %}
+        {% set total_auto_used = 0 %}
+        {% for sc in item.schedules %}
+            {% for rl in sc.usedmaterials %}
+                {% set total_auto_used = total_auto_used + rl.kg %}
+            {% endfor %}
+        {% endfor %}
+
+        {% if total_auto_used != 0 %}
+            <tr>
+                <td>{{ item.qpush.quote.id|default('N/A') }}</td>
+                <td>{{ item.qpush.quote.company_name|default('N/A') }}</td>
+                <td nowrap=""><a target="_blank" href="/pipe/item/download/{{item.id}}">{{ item.quoteitems.description|default('N/A') }}</a></td>
+                <td nowrap="">{{ item.qpush.status.name|default('N/A') }}</td>
+                <td nowrap="">{{ item.start_date|date("Y-m-d") }}</td>
+
+                <td nowrap="" align="right">
+                    {{ item.schedules.sum('total_units_passed_qc') }}
+                </td>
+
+                <td nowrap="" align="right" nowrap="nowrap">{{ item.schedules.sum('total_kg_processed')|number_format(1, '.', ',') }} kg</td>
+                {% set totalactualweight = totalactualweight + item.schedules.sum('total_kg_processed') %}
+
+                <td nowrap="" align="right" nowrap="nowrap">{{ item.schedules.sum('weight_scrap_kg')|number_format(1, '.', ',') }} kg</td>
+
+                <td>
+                    {% set p_scarp = (item.schedules.sum('total_kg_processed') > 0) ? ((item.schedules.sum('weight_scrap_kg') * 100) / item.schedules.sum('total_kg_processed')) : 0 %}
+                    {{ p_scarp|number_format(1, '.', ',') }} %
+                </td>
+
+                {% set perc_scrap = perc_scrap + p_scarp %}
+
+                <td nowrap="" align="right" nowrap="nowrap">{{ item.schedules.sum('over_weight_kg')|number_format(1, '.', ',') }} kg</td>
+                {% set totaloverweight = totaloverweight + item.schedules.sum('over_weight_kg') %}
+
+                <td nowrap="" align="right" nowrap="nowrap">
+                    {% set p_weight = (item.schedules.sum('total_kg_processed') > 0) ? ((item.schedules.sum('over_weight_kg') * 100) / item.schedules.sum('total_kg_processed')) : 0 %}
+                    {{ p_weight|number_format(1, '.', ',') }} %
+                </td>
+                {% set perc_weight = perc_weight + p_weight %}
+
+                <td nowrap="" align="right" nowrap="nowrap">
+                    {% set count_waste_m = item.schedules.sum('weight_scrap_kg') + item.schedules.sum('over_weight_kg') %}
+                    {{ count_waste_m|number_format(1, '.', ',') }} kg
+                    {% set total_waste = total_waste + count_waste_m %}
+                </td>
+
+                <td nowrap="" align="right" nowrap="nowrap">
+                    {% set count_waste_m_p = (item.schedules.sum('total_kg_processed') > 0) ? (count_waste_m * 100) / item.schedules.sum('total_kg_processed') : 0 %}
+                    {{ count_waste_m_p|number_format(1, '.', ',') }} %
+                    {% set total_waste_m_p = total_waste_m_p + count_waste_m_p %}
+                </td>
+
+                <td nowrap="" align="right" nowrap="nowrap">{{ (item.schedules.sum('weight_scrap_kg') + item.schedules.sum('total_kg_processed'))|number_format(1, '.', ',') }} kg</td>
+
+                <td nowrap="" align="right" nowrap="nowrap">
+                    {{ total_auto_used|number_format(1, '.', ',') }} kg
+                </td>
+
+                {% set totalscrap = totalscrap + item.schedules.sum('weight_scrap_kg') %}
+                {% set totalunits = totalunits + item.schedules.sum('total_units_passed_qc') %}
+                {% set totaldelivered = totaldelivered + item.delivered.sum('units') %}
+
+                {% if item.schedules.sum('total_units_passed_qc') > 0 %}
+                    {% set totalextras = totalextras + (item.schedules.sum('total_units_passed_qc') - item.quoteitems.units) %}
+                {% endif %}
+                {% set totalfloor = totalfloor + (item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')) %}
+                {% set totalfloorprice = totalfloorprice + ((item.schedules.sum('total_units_passed_qc') - item.delivered.sum('units')) * item.quoteitems.unitprice) %}
+                {% set totalmaterial = totalmaterial + total_auto_used %}
+                {% set totalmaterial_real = totalmaterial_real + item.schedules.sum('weight_scrap_kg') + item.schedules.sum('total_kg_processed') %}
+            </tr>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+<tr id="table-totals" data-total-units="{{ totalunits }}"
+    data-total-actual="{{ totalactualweight|number_format(1, '.', ',') }}"
+    data-total-scrap="{{ totalscrap|number_format(1, '.', ',') }}"
+    data-perc-scrap="{{ totalactualweight > 0 ? ((totalscrap / totalactualweight) * 100)|number_format(1, '.', ',') : 0 }}"
+    data-total-over="{{ totaloverweight|number_format(1, '.', ',') }}"
+    data-perc-weight="{{ row_count > 0 ? (perc_weight / row_count)|number_format(1, '.', ',') : 0 }}"
+    data-total-waste="{{ total_waste|number_format(1, '.', ',') }}"
+    data-perc-waste="{{ row_count > 0 ? (total_waste_m_p / row_count)|number_format(1, '.', ',') : 0 }}"
+    data-total-real="{{ totalmaterial_real|number_format(1, '.', ',') }}"
+    data-total-auto="{{ totalmaterial|number_format(1, '.', ',') }}">
+</tr>
